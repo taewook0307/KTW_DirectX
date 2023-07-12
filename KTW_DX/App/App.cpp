@@ -5,6 +5,7 @@
 #pragma comment(lib, "GameEnginePlatform.lib")
 
 #include <Windows.h>
+#include <memory>
 
 #include <GameEnginePlatform/GameEngineWindow.h>
 
