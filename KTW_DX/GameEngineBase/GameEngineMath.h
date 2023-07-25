@@ -257,6 +257,13 @@ public:
 		return VectorRotationToDegX(*this, _Deg);
 	}
 
+	static float DotProduct3D(const float4& _Left, const float4& _Right)
+	{
+		float Result = (_Left.X * _Right.X) + (_Left.Y * _Right.Y) + (_Left.Z * _Right.Z);
+		return Result;
+	}
+
+
 	static float4 Cross3D(const float4& _Left, const float4& _Right)
 	{
 		float4 Result;
@@ -416,6 +423,8 @@ public:
 			{0.0f, 0.0f, 0.0f, 1.0f}
 		};
 
+		float4 ArrVector[4];
+
 		struct
 		{
 			float _00;
@@ -469,14 +478,6 @@ public:
 		Arr2D[2][2] = _Value.Z;
 	}
 
-	void Pos(const float4& _Value)
-	{
-		Identity();
-
-		Arr2D[3][0] = _Value.X;
-		Arr2D[3][1] = _Value.Y;
-		Arr2D[3][2] = _Value.Z;
-	}
 
 
 	void RotationXDegs(const float _Value)
@@ -553,6 +554,64 @@ public:
 
 	}
 
+	void Pos(const float4& _Value)
+	{
+		Identity();
+
+		Arr2D[3][0] = _Value.X;
+		Arr2D[3][1] = _Value.Y;
+		Arr2D[3][2] = _Value.Z;
+	}
+
+	void LookAtLH(const float4& _EyePos, const float4& _EyeDir, const float4& _EyeUp)
+	{
+		Identity();
+
+		float4 EyePos = _EyePos;
+		float4 EyeForward = _EyeDir;
+		float4 EyeUp = _EyeUp;
+
+		// 카메라의 Z앞
+		EyeForward.Normalize();
+		// 카마라의 Y위 
+		EyeUp.Normalize();
+		// 카마라의 X위 
+		float4 EyeRight = float4::Cross3D(EyeUp, EyeForward);
+
+		// 회전행렬을 벡터만으로 만드는 방법.
+		// float4x4 RotMat;
+		ArrVector[0] = EyeRight;
+		ArrVector[1] = EyeUp;
+		ArrVector[2] = EyeForward;
+
+		// XYZ돌아서 어떤 물체를 바라보고 있는 카메라
+		// 회전행렬을 역으로 돌려야 한다.
+		// -X-Y-Z돌아서 어떤 물체를 원점으로 돌리게 만들어야 하는데.
+
+		float4 NegEyePos = -EyePos;
+
+		// 모든 물체가 이동해야할 방향을 구하고 있다.
+		float XValue = float4::DotProduct3D(EyeRight, NegEyePos);
+		float YValue = float4::DotProduct3D(EyeUp, NegEyePos);
+		float ZValue = float4::DotProduct3D(EyeForward, NegEyePos);
+
+
+
+		// 내적
+		// float4::
+
+		// 여기서 내적을 공부해야 합니다.
+
+		// 회전행렬의 축을 구성하는 규칙
+		// 그 두벡터에 수직인 벡터일수밖에
+		// [?][?][?][0] // ?
+		// [0][1][0][0] // y
+		// [0][0][1][0] // z
+		// [0][0][0][1]
+
+		int a = 0;
+	}
+
 	float4x4 operator*(const float4x4& _Other)
 	{
 		float4x4 Result;
@@ -578,14 +637,6 @@ public:
 		Result.Arr2D[3][1] = (A.Arr2D[3][0] * B.Arr2D[0][1]) + (A.Arr2D[3][1] * B.Arr2D[1][1]) + (A.Arr2D[3][2] * B.Arr2D[2][1]) + (A.Arr2D[3][3] * B.Arr2D[3][1]);
 		Result.Arr2D[3][2] = (A.Arr2D[3][0] * B.Arr2D[0][2]) + (A.Arr2D[3][1] * B.Arr2D[1][2]) + (A.Arr2D[3][2] * B.Arr2D[2][2]) + (A.Arr2D[3][3] * B.Arr2D[3][2]);
 		Result.Arr2D[3][3] = (A.Arr2D[3][0] * B.Arr2D[0][3]) + (A.Arr2D[3][1] * B.Arr2D[1][3]) + (A.Arr2D[3][2] * B.Arr2D[2][3]) + (A.Arr2D[3][3] * B.Arr2D[3][3]);
-
-		/*for (int i = 0; i < 4; i++)
-		{
-			for (int j = 0; j < 4; j++)
-			{
-				Result.Arr2D[i][j] = (A.Arr2D[i][0] * B.Arr2D[0][j]) + (A.Arr2D[i][1] * B.Arr2D[1][j]) + (A.Arr2D[i][2] * B.Arr2D[2][j]) + (A.Arr2D[i][3] * B.Arr2D[3][j]);
-			}
-		}*/
 
 		return Result;
 	}
