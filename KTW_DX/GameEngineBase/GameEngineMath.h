@@ -638,6 +638,14 @@ public:
 		Result.Arr2D[3][2] = (A.Arr2D[3][0] * B.Arr2D[0][2]) + (A.Arr2D[3][1] * B.Arr2D[1][2]) + (A.Arr2D[3][2] * B.Arr2D[2][2]) + (A.Arr2D[3][3] * B.Arr2D[3][2]);
 		Result.Arr2D[3][3] = (A.Arr2D[3][0] * B.Arr2D[0][3]) + (A.Arr2D[3][1] * B.Arr2D[1][3]) + (A.Arr2D[3][2] * B.Arr2D[2][3]) + (A.Arr2D[3][3] * B.Arr2D[3][3]);
 
+		/*for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				Result.Arr2D[i][j] = (A.Arr2D[i][0] * B.Arr2D[0][j]) + (A.Arr2D[i][1] * B.Arr2D[1][j]) + (A.Arr2D[i][2] * B.Arr2D[2][j]) + (A.Arr2D[i][3] * B.Arr2D[3][j]);
+			}
+		}*/
+
 		return Result;
 	}
 };
