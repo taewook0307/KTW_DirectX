@@ -44,26 +44,6 @@ void ContentsCore::Update(float _Delta)
 
 
 	{
-		// 물체로서의 크기 회전 위치
-		static float4 Scale = { 100.0f, 100.0f, 100.0f }; // 크기
-		static float4 Rotation = { 0, 0, 0 }; // 회전
-		static float4 Position = { 100.0f, 100.0f, 100.0f }; // 이동
-
-		//static float Dir = 1.0f;
-
-		//Scale -= float4(100.0f, 100.0f, 100.0f) * _Delta * Dir;
-
-		//if (100.0f <= abs(Scale.X))
-		//{
-		//	Dir *= -1.0f;
-		//}
-
-
-		Rotation.X += 90.0f * _Delta;
-		Rotation.Y += 90.0f * _Delta;
-		Rotation.Z += 90.0f * _Delta;
-
-
 		// 로컬과 월드의 차이입니다.
 		// 사각형을 만들기 위해서 점을 4개 만들었습니다.
 		// 바로 월드로 바로만든것
@@ -75,10 +55,10 @@ void ContentsCore::Update(float _Delta)
 
 		float4 BaseVertexs[4];
 
-		BaseVertexs[0] = { -0.5f, -0.5f, -0.5f };
-		BaseVertexs[1] = { 0.5f, -0.5f, -0.5f };
-		BaseVertexs[2] = { 0.5f, 0.5f, -0.5f };
-		BaseVertexs[3] = { -0.5f, 0.5f, -0.5f };
+		BaseVertexs[0] = { -0.5f, -0.5f, -0.5f, 1.0f };
+		BaseVertexs[1] = { 0.5f, -0.5f, -0.5f, 1.0f };
+		BaseVertexs[2] = { 0.5f, 0.5f, -0.5f, 1.0f };
+		BaseVertexs[3] = { -0.5f, 0.5f, -0.5f, 1.0f };
 
 		// 앞면
 		Vertex[0] = BaseVertexs[0];
@@ -154,6 +134,53 @@ void ContentsCore::Update(float _Delta)
 		// 
 		// short Arr[2][3] = {{0, 1, 2}, {0, 2, 3}}; 24
 
+
+		// 월드의 영역
+		static float4 Scale = { 100.0f, 100.0f, 100.0f }; // 크기
+		static float4 Rotation = { 0, 0, 0 }; // 회전
+		static float4 Position = { 100.0f, 100.0f, 0.0f }; // 이동
+		Rotation.X += 360.0f * _Delta;
+		Rotation.Y += 360.0f * _Delta;
+		Rotation.Z += 360.0f * _Delta;
+
+		float4x4 Scale4x4;
+		float4x4 Rotation4x4X;
+		float4x4 Rotation4x4Y;
+		float4x4 Rotation4x4Z;
+		float4x4 Rotation4x4;
+		float4x4 Position4x4;
+
+
+		Scale4x4.Scale(Scale);
+
+		Rotation4x4X.RotationXDegs(Rotation.X);
+		Rotation4x4Y.RotationYDegs(Rotation.Y);
+		Rotation4x4Z.RotationZDegs(Rotation.Z);
+		Rotation4x4 = Rotation4x4X * Rotation4x4Y * Rotation4x4Z;
+
+		Position4x4.Pos(Position);
+
+		// 행렬의 곱샘은 교환법칙이 성립하지 않습니다.
+		float4x4 World4x4 = Scale4x4 * Rotation4x4 * Position4x4;
+
+
+		// 카메라의 영역
+
+		float4x4 View4x4;
+		float4 EyePos = { 0.0f, 0.0f, -1000.0f, 1.0f };
+		float4 EyeDir = { 0.0f, 0.0f, 1.0f, 1.0f };
+		// View4x4.LookToLH
+		// float4 EyeLookPos = { 0.0f, 0.0f, 0.0f, 1.0f };
+		// 내부에서 계산된다.
+		// float4 EyeDir = EyePos - EyeLookPos;
+		float4 EyeUp = { 0.0f, 1.0f, 0.0f, 1.0f };
+
+		View4x4.LookAtLH(EyePos, EyeDir, EyeUp);
+
+
+
+		float4x4 WorldView4x4 = World4x4 * View4x4;
+
 		for (size_t indexCount = 0; indexCount < Index.size() / 3; indexCount++)
 		{
 			int ArrIndex[3];
@@ -169,45 +196,15 @@ void ContentsCore::Update(float _Delta)
 				// 위치를 더해줌으로해서 월드 상태로 이전시켰다고 한다.
 				float4 WorldPoint = Vertex[ArrIndex[VertexCount]];
 
-				// 위치 크기 회전을 적용시킬때 수학적으로 증명된
-				// 절대적인 기준이 있습니다.
-				// 크기 회전 위치 순서대로 적용시켜야 합니다.
-
-				// 모든걸 다 행렬이라는 것으로 처리합니다.
-				// 이렇게 벡터식으로 처리하지 않고 
-				// 전부다 행렬이라는것을 사용해서 복잡한 변환을 수행합니다.
-				// 그럼 행렬은 뭐냐?
-				// x열 y행의 숫자가 모여있는 2차원 배열입니다.
-				// 우리가 사용하는 float4 4열 1행 행렬이다.
-				// 행렬의 기준으로 본다면 행렬이 아닌게 없다.
-				// 1 <= 숫자하나가 덩그러니 있으면 1행 1열짜리 행렬일 것이다.
-
-				// 당연히 float4 행렬이 다른 행렬끼리 연산이 되므로
-				// 더 큰 행렬도 이에 사용될수 있을 것이다.
-
-				// 보통은 4x4 행렬을 사용해서
-				// 크기 회전 위치를 표현하는 변환행렬을 만듭니다.
-
-				// 로컬 => 월드 => 뷰 => 투영 => 뷰포트 => 모니터
-
-				// 일단 연산량의 차이.
-				// 행렬이 훨씬 연산이 작아요.
-				// 다양한 변환을 한번에 할수가 있다.
-
-				// WorldPoint *= World;
-
-				WorldPoint *= Scale;
-				WorldPoint = WorldPoint.VectorRotationToDegX(Rotation.X);
-				WorldPoint = WorldPoint.VectorRotationToDegY(Rotation.Y);
-				WorldPoint = WorldPoint.VectorRotationToDegZ(Rotation.Z);
-				WorldPoint += Position;
+				//변환식은 이제 딱 한가지 인것.
+				WorldPoint = WorldPoint * WorldView4x4;
 
 				Trifloat4[VertexCount] = WorldPoint;
 				Tri[VertexCount] = WorldPoint.WindowPOINT();
 			}
 			float4 Dir0 = Trifloat4[0] - Trifloat4[1];
 			float4 Dir1 = Trifloat4[1] - Trifloat4[2];
-			float4 Check = float4::Cross3D(Dir0, Dir1);
+			float4 Check = float4::Cross3D(Dir1, Dir0);
 			if (Check.Z < 1.0f)
 			{
 				continue;
