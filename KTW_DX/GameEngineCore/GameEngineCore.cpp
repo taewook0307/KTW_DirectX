@@ -28,6 +28,8 @@ void GameEngineCore::Update()
 
 	float DeltaTime = MainTime.GetDeltaTime();
 
+	GameEngineInput::Update(DeltaTime);
+
 	CoreObject->Update(DeltaTime);
 }
 

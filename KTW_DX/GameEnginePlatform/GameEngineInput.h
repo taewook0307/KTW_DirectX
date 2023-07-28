@@ -1,7 +1,5 @@
 #pragma once
 
-#pragma comment(lib, "GameEngineBase.lib")
-
 #include <Windows.h>
 #include <map>
 #include <string>
@@ -11,7 +9,7 @@
 class GameEngineInput
 {
 private:
-	class GameEngineKey 
+	class GameEngineKey
 	{
 		friend GameEngineInput;
 
@@ -25,12 +23,12 @@ private:
 
 		int Key = -1;
 
-		bool KeyCheck() 
+		bool KeyCheck()
 		{
 			return 0 != GetAsyncKeyState(Key);
 		}
 
-		void Reset() 
+		void Reset()
 		{
 			if (true == Press)
 			{
@@ -51,13 +49,13 @@ private:
 		void Update(float _DeltaTime);
 
 	public:
-		GameEngineKey() 
+		GameEngineKey()
 			: Key(-1)
 		{
 
 		}
 
-		GameEngineKey(int _Key) 
+		GameEngineKey(int _Key)
 			: Key(_Key)
 		{
 
@@ -74,8 +72,6 @@ public:
 	GameEngineInput(GameEngineInput&& _Other) noexcept = delete;
 	GameEngineInput& operator=(const GameEngineInput& _Other) = delete;
 	GameEngineInput& operator=(GameEngineInput&& _Other) noexcept = delete;
-
-	static float4 MousePos();
 
 	static void InputInit();
 	static void Update(float _DeltaTime);
