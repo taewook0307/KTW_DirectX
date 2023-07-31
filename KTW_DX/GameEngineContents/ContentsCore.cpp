@@ -11,25 +11,6 @@ ContentsCore::~ContentsCore()
 
 void ContentsCore::Start()
 {
-	// 회전방향을 외적으로 알아내는 방법
-	float4 PlayerPos = { 3, 5 };
-	float4 MonsterPos = { 5, 5 };
-
-	float4 PlayerDir = { 0, 1, 0 };
-	float4 PlayerLook = (PlayerPos - MonsterPos).NormalizeReturn();
-
-
-	float4 Check = float4::Cross3D(PlayerDir, PlayerLook);
-
-	// float4 Rev = float4::Cross3D({0, 10, 0}, { 0.01f, -10.0f, 0 });
-
-	if (0 > Check.Z)
-	{
-		// 왼쪽으로 돌아라.
-	}
-
-	int a = 0;
-
 }
 
 void ContentsCore::Update(float _Delta)
@@ -138,10 +119,39 @@ void ContentsCore::Update(float _Delta)
 		// 월드의 영역
 		static float4 Scale = { 100.0f, 100.0f, 100.0f }; // 크기
 		static float4 Rotation = { 0, 0, 0 }; // 회전
-		static float4 Position = { 100.0f, 100.0f, 0.0f }; // 이동
-		Rotation.X += 360.0f * _Delta;
-		Rotation.Y += 360.0f * _Delta;
-		Rotation.Z += 360.0f * _Delta;
+		static float4 Position = { 0.0f, 0.0f, 0.0f }; // 이동
+
+
+		float CamSpeed = 300.0f;
+		if (GameEngineInput::IsPress('A'))
+		{
+			Position += float4::LEFT * _Delta * CamSpeed;
+		}
+
+		if (GameEngineInput::IsPress('D'))
+		{
+			Position += float4::RIGHT * _Delta * CamSpeed;
+		}
+
+		if (GameEngineInput::IsPress('W'))
+		{
+			Position += float4::UP * _Delta * CamSpeed;
+		}
+
+		if (GameEngineInput::IsPress('S'))
+		{
+			Position += float4::DOWN * _Delta * CamSpeed;
+		}
+
+		if (GameEngineInput::IsPress('Q'))
+		{
+			Rotation.Z += 360.0f * _Delta;
+		}
+
+		if (GameEngineInput::IsPress('E'))
+		{
+			Rotation.Z -= 360.0f * _Delta;
+		}
 
 		float4x4 Scale4x4;
 		float4x4 Rotation4x4X;
@@ -166,20 +176,66 @@ void ContentsCore::Update(float _Delta)
 
 		// 카메라의 영역
 
-		float4x4 View4x4;
-		float4 EyePos = { 0.0f, 0.0f, -1000.0f, 1.0f };
-		float4 EyeDir = { 0.0f, 0.0f, 1.0f, 1.0f };
+		static float4 EyePos = { 0.0f, 0.0f, -500.0f, 1.0f };
+		static float4 EyeDir = { 0.0f, 0.0f, 1.0f, 1.0f };
 		// View4x4.LookToLH
 		// float4 EyeLookPos = { 0.0f, 0.0f, 0.0f, 1.0f };
 		// 내부에서 계산된다.
 		// float4 EyeDir = EyePos - EyeLookPos;
-		float4 EyeUp = { 0.0f, 1.0f, 0.0f, 1.0f };
+		static float4 EyeUp = { 0.0f, 1.0f, 0.0f, 1.0f };
 
+		float MoveSpeed = 300.0f;
+		if (GameEngineInput::IsPress(VK_NUMPAD4))
+		{
+			EyePos += float4::LEFT * _Delta * MoveSpeed;
+		}
+
+		if (GameEngineInput::IsPress(VK_NUMPAD6))
+		{
+			EyePos += float4::RIGHT * _Delta * MoveSpeed;
+		}
+
+		if (GameEngineInput::IsPress(VK_NUMPAD8))
+		{
+			EyePos += float4::FORWARD * _Delta * MoveSpeed;
+		}
+
+		if (GameEngineInput::IsPress(VK_NUMPAD5))
+		{
+			EyePos += float4::BACKWARD * _Delta * MoveSpeed;
+		}
+
+		if (GameEngineInput::IsPress(VK_NUMPAD7))
+		{
+			EyeDir.VectorRotationToDegY(360.0f * _Delta);
+		}
+
+		if (GameEngineInput::IsPress(VK_NUMPAD9))
+		{
+			EyeDir.VectorRotationToDegY(-360.0f * _Delta);
+		}
+
+		float4x4 View4x4;
 		View4x4.LookAtLH(EyePos, EyeDir, EyeUp);
 
+		float4x4 Projection4x4;
 
+		// 
+		//                           보고싶은 화면의 너비 
+		//                           12800                       7200
+		// 윈도우 크기가 아니라 내가 세상을 바라보고 싶은 크기
+		// 줌인 줌아웃을 아주 쉽게 만들수 있을것이다.
 
-		float4x4 WorldView4x4 = World4x4 * View4x4;
+		// Zoom += _Delta;
+		// Projection4x4.OrthographicLH(GetStartWindowSize().X * Zoom, GetStartWindowSize().Y * Zoom, 1000.0f, 0.1f);
+
+		Projection4x4.PerspectiveFovLH(60.0f, GetStartWindowSize().X, GetStartWindowSize().Y, 1000.0f, 0.1f);
+
+		float4x4 ViewPort4x4;
+		//                    확장 시키려는 화면 크기고요 윈도우의 크기
+		ViewPort4x4.ViewPort(GetStartWindowSize().X, GetStartWindowSize().Y, 0.0f, 0.0f);
+
+		float4x4 WorldViewProjection4x4 = World4x4 * View4x4 * Projection4x4;
 
 		for (size_t indexCount = 0; indexCount < Index.size() / 3; indexCount++)
 		{
@@ -197,9 +253,16 @@ void ContentsCore::Update(float _Delta)
 				float4 WorldPoint = Vertex[ArrIndex[VertexCount]];
 
 				//변환식은 이제 딱 한가지 인것.
-				WorldPoint = WorldPoint * WorldView4x4;
+				WorldPoint = WorldPoint * WorldViewProjection4x4;
+
+				WorldPoint /= WorldPoint.W;
+				WorldPoint.W = 1.0f;
+
+				WorldPoint = WorldPoint * ViewPort4x4;
 
 				Trifloat4[VertexCount] = WorldPoint;
+
+
 				Tri[VertexCount] = WorldPoint.WindowPOINT();
 			}
 			float4 Dir0 = Trifloat4[0] - Trifloat4[1];
@@ -209,9 +272,11 @@ void ContentsCore::Update(float _Delta)
 			{
 				continue;
 			}
-			Polygon(DC, &Tri[0], Tri.size());
+			Polygon(DC, &Tri[0], static_cast<int>(Tri.size()));
 		}
 
+		// 화면에 3d물체를 구별하고 선별하기 위한 변환은 다 끝났고
+		// 어떤 모니터에 뿌릴까만이 남게 된다. 최종적으로 화면에 어떻게 뿌릴것인가만이 남아있다.
 
 		GameEngineCore::MainWindow.DoubleBuffering();
 	}
