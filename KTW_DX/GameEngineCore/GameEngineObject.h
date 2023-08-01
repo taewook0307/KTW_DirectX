@@ -1,4 +1,5 @@
 #pragma once
+#include "GameEngineTransform.h"
 
 // 우리엔진의 가장 기본적인
 // Start 이녀석이 시작될때
@@ -26,6 +27,6 @@ public:
 protected:
 
 private:
-
+	GameEngineTransform Transform;
 };
 

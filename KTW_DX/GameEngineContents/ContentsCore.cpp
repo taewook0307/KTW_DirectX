@@ -17,7 +17,6 @@ void ContentsCore::Update(float _Delta)
 {
 	HDC DC;
 	{
-		// 윈도우 클리어
 		DC = GameEngineCore::MainWindow.GetBackBuffer()->GetImageDC();
 		float4 WinScale = GameEngineCore::MainWindow.GetScale();
 		Rectangle(DC, 0, 0, WinScale.iX(), WinScale.iY());
@@ -29,6 +28,8 @@ void ContentsCore::Update(float _Delta)
 		// 사각형을 만들기 위해서 점을 4개 만들었습니다.
 		// 바로 월드로 바로만든것
 		// 로컬이 존재하지 않는다.
+
+		// 다이렉트 x로
 
 		// 로컬상태
 		std::vector<float4> Vertex;
@@ -216,7 +217,7 @@ void ContentsCore::Update(float _Delta)
 		}
 
 		float4x4 View4x4;
-		View4x4.LookAtLH(EyePos, EyeDir, EyeUp);
+		View4x4.LookToLH(EyePos, EyeDir, EyeUp);
 
 		float4x4 Projection4x4;
 
@@ -227,9 +228,9 @@ void ContentsCore::Update(float _Delta)
 		// 줌인 줌아웃을 아주 쉽게 만들수 있을것이다.
 
 		// Zoom += _Delta;
-		// Projection4x4.OrthographicLH(GetStartWindowSize().X * Zoom, GetStartWindowSize().Y * Zoom, 1000.0f, 0.1f);
+		Projection4x4.OrthographicLH(GetStartWindowSize().X, GetStartWindowSize().Y, 1000.0f, 0.1f);
 
-		Projection4x4.PerspectiveFovLH(60.0f, GetStartWindowSize().X, GetStartWindowSize().Y, 1000.0f, 0.1f);
+		// Projection4x4.PerspectiveFovLH(60.0f, GetStartWindowSize().X, GetStartWindowSize().Y, 0.1f, 1000.0f);
 
 		float4x4 ViewPort4x4;
 		//                    확장 시키려는 화면 크기고요 윈도우의 크기
