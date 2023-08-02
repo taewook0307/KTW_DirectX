@@ -2,7 +2,7 @@
 #include "GameEngineObject.h"
 
 // Ό³Έν :
-class GameEngineComponent
+class GameEngineComponent : public GameEngineObject
 {
 public:
 	// constrcuter destructer

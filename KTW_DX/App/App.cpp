@@ -1,4 +1,5 @@
 ﻿// App.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
+#include <GameEngineContents/PreCompile.h>
 
 #pragma comment(lib, "GameEngineBase.lib")
 #pragma comment(lib, "GameEnginePlatform.lib")
@@ -17,14 +18,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ LPWSTR    lpCmdLine,
 	_In_ int       nCmdShow)
 {
-	/*float4x4 Left;
-	float4x4 Right;
+	float4x4 Rot0;
+	Rot0.RotationZDegs(20.0f);
 
-	Left.Scale({ 5, 2, 4 });
-
-	Right.Pos({ 120, 130, 140 });
-
-	float4x4 Result = Left * Right;*/
+	float4x4 Rot1;
+	Rot1.RotationZDegs(-20.0f);
 
 	GameEngineCore::EngineStart<ContentsCore>(hInstance);
 }
