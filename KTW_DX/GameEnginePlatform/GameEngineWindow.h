@@ -30,6 +30,12 @@ public:
 		return Hdc;
 	}
 
+	HWND GetHWND() const
+	{
+		return hWnd;
+	}
+
+
 	float4 GetScale()
 	{
 		return Scale;
