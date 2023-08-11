@@ -2,6 +2,7 @@
 #include "GameEngineDevice.h"
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include "GameEngineTexture.h"
+#include "GameEngineRenderTarget.h"
 
 #pragma comment(lib, "d3d11")
 #pragma comment(lib, "d3dcompiler")
@@ -285,6 +286,12 @@ void GameEngineDevice::CreateSwapChain()
 	// 텍스처로는 안됩니다.
 	BackBufferTexture = GameEngineTexture::Create(DXBackBufferTexture);
 
+	// 여기에 그려진것만 텍스처에 나옵니다.
+	// Api로 치면 Window에서 직접 얻어온 HDC입니다.
+	BackBufferRenderTarget = GameEngineRenderTarget::Create(BackBufferTexture);
+
+
+	// 텍스처는 랜더타겟이 아니야.
 	// 랜더타겟을 만들어야 한다.
 
 	// BackBufferTexture->Release();
@@ -292,4 +299,24 @@ void GameEngineDevice::CreateSwapChain()
 	// 스왑체인이지 텍스처가 아니다.
 	// 뭔가를 그리려면 텍스처가 존재해야 하는데.
 	// 그 텍스처를 
+}
+
+void GameEngineDevice::RenderStart()
+{
+	// 도화지를 한번 싹 지워요.
+	BackBufferRenderTarget->Clear();
+
+	// 이 도화지를 세팅합니다.
+	BackBufferRenderTarget->Setting();
+}
+
+void GameEngineDevice::RenderEnd()
+{
+	// 스왑체인에 연결된 텍스처에 그려져있는 색상을 화면에 출력하라는것.
+	HRESULT Result = SwapChain->Present(0, 0);
+	if (Result == DXGI_ERROR_DEVICE_REMOVED || Result == DXGI_ERROR_DEVICE_RESET)
+	{
+		MsgBoxAssert("전체화면에서 창모드로 변경했습니다.");
+		return;
+	}
 }

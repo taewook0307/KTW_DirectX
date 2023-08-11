@@ -12,6 +12,8 @@
 // Ό³Έν :
 class GameEngineDevice
 {
+	friend class GameEngineCore;
+
 public:
 	// constrcuter destructer
 	GameEngineDevice();
@@ -30,7 +32,15 @@ public:
 	// 
 	void Initiallize(const class GameEngineWindow& _Window);
 
+	ID3D11Device* GetDevice()
+	{
+		return Device;
+	}
 
+	ID3D11DeviceContext* GetContext()
+	{
+		return Context;
+	}
 
 protected:
 
@@ -54,6 +64,11 @@ private:
 	IDXGISwapChain* SwapChain = nullptr;
 
 	std::shared_ptr<class GameEngineTexture> BackBufferTexture;
+
+	std::shared_ptr<class GameEngineRenderTarget> BackBufferRenderTarget;
+
+	void RenderStart();
+	void RenderEnd();
 
 	void CreateSwapChain();
 };
