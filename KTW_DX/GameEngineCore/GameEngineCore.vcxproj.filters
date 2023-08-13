@@ -36,10 +36,25 @@
       <Filter>Resources</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineTexture.cpp">
-      <Filter>Resources</Filter>
+      <Filter>Resources\Texture</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineRenderTarget.cpp">
-      <Filter>Resources</Filter>
+      <Filter>Resources\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineDirectBuffer.cpp">
+      <Filter>Resources\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineVertexBuffer.cpp">
+      <Filter>Resources\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineDevice_Resources.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineInputLayOut.cpp">
+      <Filter>Vertex</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineVertex.cpp">
+      <Filter>Vertex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -78,10 +93,22 @@
       <Filter>Resources</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineTexture.h">
-      <Filter>Resources</Filter>
+      <Filter>Resources\Texture</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineRenderTarget.h">
-      <Filter>Resources</Filter>
+      <Filter>Resources\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineDirectBuffer.h">
+      <Filter>Resources\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineVertexBuffer.h">
+      <Filter>Resources\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineInputLayOut.h">
+      <Filter>Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineVertex.h">
+      <Filter>Vertex</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +129,15 @@
     </Filter>
     <Filter Include="Resources">
       <UniqueIdentifier>{91b2729d-a194-4138-b7f7-aa39aab443c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Buffer">
+      <UniqueIdentifier>{5fdfbd83-cb1b-4f86-87af-e7dce33fa5f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Texture">
+      <UniqueIdentifier>{9727ace4-131c-4196-92b2-70b74f8615d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vertex">
+      <UniqueIdentifier>{3f91d0ab-5dec-4d20-b3d7-680f43d23c55}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
