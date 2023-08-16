@@ -3,9 +3,11 @@
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="ContentsCore.h" />
+    <ClInclude Include="TitleLevel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp" />
     <ClCompile Include="ContentsCore.cpp" />
+    <ClCompile Include="TitleLevel.cpp" />
   </ItemGroup>
 </Project>
