@@ -56,6 +56,12 @@
     <ClCompile Include="GameEngineVertex.cpp">
       <Filter>Vertex</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineShader.cpp">
+      <Filter>Resources\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineVertexShader.cpp">
+      <Filter>Resources\Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -110,6 +116,12 @@
     <ClInclude Include="GameEngineVertex.h">
       <Filter>Vertex</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineShader.h">
+      <Filter>Resources\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineVertexShader.h">
+      <Filter>Resources\Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -138,6 +150,9 @@
     </Filter>
     <Filter Include="Vertex">
       <UniqueIdentifier>{3f91d0ab-5dec-4d20-b3d7-680f43d23c55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Shader">
+      <UniqueIdentifier>{9f0475c0-d58f-4645-9c0a-f0fd12cf3c12}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
