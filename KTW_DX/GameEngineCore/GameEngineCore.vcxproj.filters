@@ -66,6 +66,9 @@
       <Filter>Resources\Buffer</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineRasterizer.cpp" />
+    <ClCompile Include="GameEnginePixelShader.cpp">
+      <Filter>Resources\Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -130,6 +133,9 @@
       <Filter>Resources\Buffer</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineRasterizer.h" />
+    <ClInclude Include="GameEnginePixelShader.h">
+      <Filter>Resources\Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
