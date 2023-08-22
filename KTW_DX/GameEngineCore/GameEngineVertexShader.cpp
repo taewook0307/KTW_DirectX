@@ -65,7 +65,7 @@ void GameEngineVertexShader::ShaderLoad(
 	}
 
 
-	Result = GameEngineCore::MainDevcie.GetDevice()->CreateVertexShader(
+	Result = GameEngineCore::GetDevice()->CreateVertexShader(
 		BinaryCode->GetBufferPointer(),
 		BinaryCode->GetBufferSize(),
 		nullptr,
@@ -79,5 +79,5 @@ void GameEngineVertexShader::ShaderLoad(
 
 void GameEngineVertexShader::Setting()
 {
-	GameEngineCore::MainDevcie.GetContext()->VSSetShader(ShaderPtr, nullptr, 0);
+	GameEngineCore::GetContext()->VSSetShader(ShaderPtr, nullptr, 0);
 }

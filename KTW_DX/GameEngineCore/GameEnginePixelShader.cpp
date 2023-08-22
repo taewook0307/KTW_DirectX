@@ -65,7 +65,7 @@ void GameEnginePixelShader::ShaderLoad(
 	}
 
 
-	Result = GameEngineCore::MainDevcie.GetDevice()->CreatePixelShader(
+	Result = GameEngineCore::GetDevice()->CreatePixelShader(
 		BinaryCode->GetBufferPointer(),
 		BinaryCode->GetBufferSize(),
 		nullptr,
@@ -79,5 +79,5 @@ void GameEnginePixelShader::ShaderLoad(
 
 void GameEnginePixelShader::Setting()
 {
-	GameEngineCore::MainDevcie.GetContext()->PSSetShader(ShaderPtr, nullptr, 0);
+	GameEngineCore::GetContext()->PSSetShader(ShaderPtr, nullptr, 0);
 }

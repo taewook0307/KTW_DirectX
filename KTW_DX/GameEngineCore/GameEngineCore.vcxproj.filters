@@ -71,6 +71,9 @@
     <ClCompile Include="GameEngineRasterizer.cpp">
       <Filter>Resources\RenderingSetting</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineConstantBuffer.cpp">
+      <Filter>Resources\Buffer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -139,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="GameEngineRasterizer.h">
       <Filter>Resources\RenderingSetting</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineConstantBuffer.h">
+      <Filter>Resources\Buffer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
