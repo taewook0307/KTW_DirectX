@@ -21,3 +21,7 @@ void GameEngineSpriteRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 
 	GameEngineRenderer::Draw();
 }
+
+void GameEngineSpriteRenderer::SetSprite(std::string_view _Name)
+{
+}
