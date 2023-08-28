@@ -62,7 +62,7 @@ void GameEngineRenderer::ResSetting()
 {
 
 	{
-		float4x4 WorldViewProjection = Transform.GetWorldViewPorjectionMatrix();
+		float4x4 WorldViewProjection = Transform.GetWorldViewProjectionMatrix();
 
 		// 인풋어셈블러1 버텍스 버퍼 세팅
 		std::shared_ptr<GameEngineVertexBuffer> VertexBuffer = GameEngineVertexBuffer::Find("Rect");
