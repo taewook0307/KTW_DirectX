@@ -17,23 +17,27 @@ void Player::Start()
 	{
 
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>();
-		MainSpriteRenderer->SetSprite("NSet.png");
+		MainSpriteRenderer->SetSprite("MiniMap_Character.png");
+		MainSpriteRenderer->Transform.SetLocalScale({ 512, 512, 200 });
 	}
 
 	/*{
 		std::shared_ptr<GameEngineSpriteRenderer> Renderer = CreateComponent<GameEngineSpriteRenderer>(0);
+		Renderer->SetSprite("NSet.png");
 		Renderer->Transform.SetLocalPosition({ 0, -150, 0 });
 		Renderer->Transform.SetLocalScale({ 50, 50, 100 });
 	}
 
 	{
 		std::shared_ptr<GameEngineSpriteRenderer> Renderer = CreateComponent<GameEngineSpriteRenderer>(0);
+		Renderer->SetSprite("NSet.png");
 		Renderer->Transform.SetLocalPosition({ -150, 0, 0 });
 		Renderer->Transform.SetLocalScale({ 50, 50, 100 });
 	}
 
 	{
 		std::shared_ptr<GameEngineSpriteRenderer> Renderer = CreateComponent<GameEngineSpriteRenderer>(0);
+		Renderer->SetSprite("NSet.png");
 		Renderer->Transform.SetLocalPosition({ 150, 0, 0 });
 		Renderer->Transform.SetLocalScale({ 50, 50, 100 });
 	}*/
