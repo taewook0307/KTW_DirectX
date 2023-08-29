@@ -17,8 +17,7 @@ void Player::Start()
 	{
 
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>();
-		MainSpriteRenderer->SetSprite("MiniMap_Character.png");
-		MainSpriteRenderer->Transform.SetLocalScale({ 512, 512, 200 });
+		MainSpriteRenderer->SetSprite("cuphead_idle_0001.png");
 	}
 
 	/*{

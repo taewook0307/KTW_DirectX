@@ -22,7 +22,7 @@ void TitleLevel::Start()
 		// 엔진용 쉐이더를 전부다 전부다 로드하는 코드를 친다.
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Character");
+		Dir.MoveChild("Resources\\Texture\\Character\\Normal\\Idle");
 		std::vector<GameEngineFile> Files = Dir.GetAllFile();
 
 		for (size_t i = 0; i < Files.size(); i++)
@@ -32,7 +32,7 @@ void TitleLevel::Start()
 			GameEngineTexture::Load(File.GetStringPath());
 		}
 
-		GameEngineSprite::CreateSingle("MiniMap_Character.png");
+		GameEngineSprite::CreateSingle("cuphead_idle_0001.png");
 
 	}
 
