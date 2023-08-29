@@ -2,6 +2,7 @@
 #include "GameEngineSpriteRenderer.h"
 #include "GameEngineTexture.h"
 #include "GameEngineSampler.h"
+#include "GameEngineConstantBuffer.h"
 
 
 GameEngineSpriteRenderer::GameEngineSpriteRenderer()
@@ -20,14 +21,14 @@ void GameEngineSpriteRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 	// 부모쪽에서 대부분의 일은 해주고
 	GameEngineRenderer::ResSetting();
 
-	// 용도에 의해서
-// 여기에서 세팅되는것이 순서상 여기가 맞아.
-	//std::shared_ptr<GameEngineTexture> TestTexture = GameEngineTexture::Find("nset.png");
-	//if (nullptr == TestTexture)
-	//{
-	//	MsgBoxAssert("존재하지 않는 텍스처를 사용하려고 했습니다.");
-	//}
-	//TestTexture->PSSetting(0);
+	std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData");
+
+	if (nullptr != Buffer)
+	{
+		Buffer->ChangeData(CurSprite.SpriteData);
+		Buffer->Setting();
+	}
+
 
 	CurSprite.Texture->PSSetting(0);
 

@@ -30,11 +30,11 @@ void GameEngineSprite::ResCreateCut(std::string_view _Name, unsigned int _X, uns
 
 	SpriteDatas.resize(_X * _Y);
 
-	for (UINT y = 0; y < _Y; y++)
+	for (size_t y = 0; y < _Y; y++)
 	{
-		for (UINT x = 0; x < _X; x++)
+		for (size_t x = 0; x < _X; x++)
 		{
-			unsigned int index = (y * _X) + x;
+			unsigned int index = static_cast<unsigned int>((y * _X) + x);
 			SpriteDatas[index].Texture = Texture;
 			// GameEngineSpriteData[index].SpriteData = 
 		}
@@ -46,7 +46,7 @@ void GameEngineSprite::ResCreateCut(std::string_view _Name, unsigned int _X, uns
 
 }
 
-const SpriteData& GameEngineSprite::GetSpriteData(unsigned int _Index)
+SpriteData GameEngineSprite::GetSpriteData(unsigned int _Index)
 {
 	if (_Index >= SpriteDatas.size())
 	{

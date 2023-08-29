@@ -14,18 +14,39 @@ struct PixelOutPut
     float4 TEXCOORD : TEXCOORD;
 };
 
+//cbuffer SpriteData : register(b1)
+//{
+//    // float4 Sprite;
+//};
+
 
 // 파일명과 함수명을 일치시키고 버텍스 쉐이더면 무조건 뒤에 _VS를 붙입니다.
 // 의미있는 버텍스 쉐이더이다.
-PixelOutPut TextureShader_VS(GameEngineVertex2D _Input)
+PixelOutPut TextureShader_VS(GameEngineVertex2D _Input) 
 {
     // 쉐이더 문법 모두 0인 자료형으로 초기화 하는것
     PixelOutPut Result = (PixelOutPut)0;
-
+    
     // 내가 원하는 값을 이안에 넣어줄수 있어야 한다.
     Result.POSITION = mul(_Input.POSITION, WorldViewProjectionMatrix);
-    Result.TEXCOORD = _Input.TEXCOORD;
-
+    // Result.TEXCOORD = _Input.TEXCOORD;
+    
+    // 6의 버텍스가 들어올것이다.
+    
+    // 이걸 CPU에서 보내줘야 한다.
+    // 그래픽카드는 알도리가 없는 거니까.
+    float SizeX = 1.0f / 6.0f;
+    float SizeY = 1.0f / 6.0f;
+    float StartX = SizeX * 5.0f;
+    float StartY = SizeY * 0.0f;
+    
+    Result.TEXCOORD.x = (_Input.TEXCOORD.x * SizeX) + StartX;
+    Result.TEXCOORD.y = (_Input.TEXCOORD.y * SizeY) + StartY;
+    
+    // 버텍스 들은 어떻게 되어있나?
+    
+    
+    
     return Result;
 }
 
@@ -42,14 +63,14 @@ SamplerState Sampler : register(s0);
 
 float4 TextureShader_PS(PixelOutPut _Input) : SV_Target0
 {
-
+   
     float4 Color = DiffuseTex.Sample(Sampler, _Input.TEXCOORD.xy);
     // 블랜드라는 작업을 해줘야 한다.
-
+    
     if (0.0f >= Color.a)
     {
         clip(-1);
     }
-
+    
     return Color;
 }
