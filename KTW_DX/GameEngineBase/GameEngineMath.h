@@ -47,12 +47,19 @@ public:
 		float Arr1D[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 
 		struct
-
 		{
 			float X;
 			float Y;
 			float Z;
 			float W;
+		};
+
+		struct
+		{
+			float Pos2DX;
+			float Pos2DY;
+			float Scale2DX;
+			float Scale2DY;
 		};
 
 		float Arr2D[1][4];
@@ -384,7 +391,7 @@ public:
 
 	// GetUnitVectorFromDeg(45)
 
-	static float4 LerpClimp(const float4& Start, const float4& _End, float _Ratio)
+	static float4 LerpClamp(const float4& Start, const float4& _End, float _Ratio)
 	{
 		if (1.0f <= _Ratio)
 		{

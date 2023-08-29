@@ -15,23 +15,18 @@ GameEngineSpriteRenderer::~GameEngineSpriteRenderer()
 
 void GameEngineSpriteRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 {
-	// 랜더러는 뭐든지 그릴수 있어 니가 세팅만 잘해주면
-	// 
-
-	// 부모쪽에서 대부분의 일은 해주고
 	GameEngineRenderer::ResSetting();
 
-	std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData");
+	std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData", ShaderType::Vertex);
 
 	if (nullptr != Buffer)
 	{
-		Buffer->ChangeData(CurSprite.SpriteData);
-		Buffer->Setting();
+		Buffer->ChangeData(CurSprite.SpritePivot);
+		Buffer->Setting(1);
 	}
 
 
 	CurSprite.Texture->PSSetting(0);
-
 
 	std::shared_ptr<GameEngineSampler> Sampler = GameEngineSampler::Find("EngineBaseSampler");
 	if (nullptr == Sampler)
