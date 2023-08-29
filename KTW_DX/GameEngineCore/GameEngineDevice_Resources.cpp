@@ -42,7 +42,7 @@ void GameEngineDevice::ResourcesInit()
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("GameEngineResources");
 		Dir.MoveChild("GameEngineResources");
-		Dir.MoveChild("Textrure");
+		Dir.MoveChild("Texture");
 		std::vector<GameEngineFile> Files = Dir.GetAllFile();
 
 		for (size_t i = 0; i < Files.size(); i++)

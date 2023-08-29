@@ -21,8 +21,8 @@ void TitleLevel::Start()
 	{
 		// 엔진용 쉐이더를 전부다 전부다 로드하는 코드를 친다.
 		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("GameEngineResources");
-		Dir.MoveChild("GameEngineResources");
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources");
 		Dir.MoveChild("Texture");
 		std::vector<GameEngineFile> Files = Dir.GetAllFile();
 
@@ -33,7 +33,7 @@ void TitleLevel::Start()
 			GameEngineTexture::Load(File.GetStringPath());
 		}
 
-		GameEngineSprite::CreateSingle("NSet.png");
+		GameEngineSprite::CreateSingle("MiniMap_Character.png");
 
 	}
 

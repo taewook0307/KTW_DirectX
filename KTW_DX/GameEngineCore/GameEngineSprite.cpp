@@ -30,9 +30,9 @@ void GameEngineSprite::ResCreateCut(std::string_view _Name, unsigned int _X, uns
 
 	SpriteDatas.resize(_X * _Y);
 
-	for (size_t y = 0; y < _Y; y++)
+	for (UINT y = 0; y < _Y; y++)
 	{
-		for (size_t x = 0; x < _X; x++)
+		for (UINT x = 0; x < _X; x++)
 		{
 			unsigned int index = (y * _X) + x;
 			SpriteDatas[index].Texture = Texture;
