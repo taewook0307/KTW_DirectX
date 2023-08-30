@@ -34,25 +34,11 @@ void LogoLevel::Start()
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	Logo = CreateActor<BackGround>(UpdateOrder::BackGround);
-	Logo->BackGroundInit("Logo.png", Order);
+	Logo->AnimationInit("Logo", "Logo.png", 0.05f, -1, -1, false);
 }
 
 void LogoLevel::Update(float _Delta)
 {
-	// 이미지 체크용
-	if (true == GameEngineInput::IsPress('T'))
-	{
-		if (Order < 99)
-		{
-			++Order;
-		}
-		else
-		{
-			Order = 0;
-		}
-		Logo->BackGroundInit("Logo.png", Order);
-	}
-
 	// 강제 이동
 	if (true == GameEngineInput::IsPress('P'))
 	{

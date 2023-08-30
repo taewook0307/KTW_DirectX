@@ -16,7 +16,7 @@ public:
 	BackGround& operator=(BackGround&& _Other) noexcept = delete;
 
 	void BackGroundInit(std::string_view _FileName, int _Order = 0);
-
+	void AnimationInit(std::string_view _AnimationName, std::string_view _FileName, float _Inter = 0.1f, unsigned int _Start = -1, unsigned int _End = -1, bool _Loop = true);
 protected:
 	void Start();
 	void Update(float _Delta);
