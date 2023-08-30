@@ -34,6 +34,12 @@ public:
 		return std::dynamic_pointer_cast<ObjectType>(NewChild);
 	}
 
+	template<typename ObjectType, typename EnumType>
+	std::shared_ptr<ObjectType> CreateComponent(EnumType _Order)
+	{
+		return CreateComponent<ObjectType>(static_cast<int>(_Order));
+	}
+
 	class GameEngineLevel* GetLevel();
 
 protected:

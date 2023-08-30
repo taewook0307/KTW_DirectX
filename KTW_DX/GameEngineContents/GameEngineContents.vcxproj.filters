@@ -1,15 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="PreCompile.h" />
     <ClInclude Include="ContentsCore.h" />
-    <ClInclude Include="TitleLevel.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Player.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="PreCompile.h">
+      <Filter>PreCompile</Filter>
+    </ClInclude>
+    <ClInclude Include="LogoLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="CupHeadEnum.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PreCompile.cpp" />
     <ClCompile Include="ContentsCore.cpp" />
-    <ClCompile Include="TitleLevel.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Player.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>PreCompile</Filter>
+    </ClCompile>
+    <ClCompile Include="LogoLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Level">
+      <UniqueIdentifier>{a19a38e0-b7b1-4028-8b7a-561ffbdd99f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor">
+      <UniqueIdentifier>{58eadaa7-1c12-4058-a532-87253017239d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PreCompile">
+      <UniqueIdentifier>{9ad5767c-5a0d-42fd-b7bd-59ba144bacc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global">
+      <UniqueIdentifier>{9d4bde5e-6608-4d08-aedd-397f19625d78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
