@@ -31,7 +31,7 @@ void LogoLevel::Start()
 	}
 
 	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f });
-	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Perspective);
+	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	Logo = CreateActor<BackGround>(UpdateOrder::BackGround);
 	Logo->BackGroundInit("Logo.png", Order);

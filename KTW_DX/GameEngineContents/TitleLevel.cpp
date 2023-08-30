@@ -22,24 +22,18 @@ void TitleLevel::Start()
 		// 엔진용 쉐이더를 전부다 전부다 로드하는 코드를 친다.
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Character\\Normal\\Idle");
-		std::vector<GameEngineFile> Files = Dir.GetAllFile();
+		Dir.MoveChild("Resources\\Texture\\Character\\Normal");
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
-		for (size_t i = 0; i < Files.size(); i++)
+		for (size_t i = 0; i < Directorys.size(); i++)
 		{
-			// 구조적으로 잘 이해하고 있는지를 자신이 명확하게 인지하기 위해서
-			GameEngineFile& File = Files[i];
-			GameEngineTexture::Load(File.GetStringPath());
+			GameEngineDirectory& Dir = Directorys[i];
+
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
 		}
-
-		GameEngineSprite::CreateSingle("cuphead_idle_0001.png");
-
 	}
 
 	std::shared_ptr<Player> NewPlayer = CreateActor<Player>();
-
-	// GetMainCamera()->SetParent(NewPlayer);
-	// CreateActor<GameEngineRenderer>();
 }
 
 void TitleLevel::Update(float _Delta)

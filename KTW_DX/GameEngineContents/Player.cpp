@@ -15,7 +15,9 @@ Player::~Player()
 void Player::Start()
 {
 	MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>();
-	MainSpriteRenderer->SetSprite("cuphead_idle_0001.png");
+	MainSpriteRenderer->CreateAnimation("CupHead_Idle", "Idle");
+	MainSpriteRenderer->ChangeAnimation("CupHead_Idle");
+	MainSpriteRenderer->AutoSpriteSizeOn();
 }
 
 void Player::Update(float _Delta)
