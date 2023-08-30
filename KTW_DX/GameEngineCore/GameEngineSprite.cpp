@@ -47,7 +47,7 @@ void GameEngineSprite::ResCreateCut(std::string_view _Name, unsigned int _X, uns
 		}
 
 		Start.Pos2DX = 0.0f;
-		Start.Pos2DY = Start.Scale2DY;
+		Start.Pos2DY += Start.Scale2DY;
 	}
 
 

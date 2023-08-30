@@ -18,6 +18,7 @@ public:
 	void BackGroundInit(std::string_view _FileName, int _Order = 0);
 
 protected:
+	void Start();
 	void Update(float _Delta);
 
 private:
