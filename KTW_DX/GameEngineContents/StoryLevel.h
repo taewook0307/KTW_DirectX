@@ -18,6 +18,10 @@ public:
 protected:
 
 private:
+	unsigned int AnimationNumber = 1;
+
+	std::shared_ptr<class BackGround> StoryAnimation;
+
 	void Start() override;
 	void Update(float _Delta) override;
 };

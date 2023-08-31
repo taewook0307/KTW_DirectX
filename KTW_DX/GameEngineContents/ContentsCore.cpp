@@ -1,7 +1,9 @@
 ﻿#include "PreCompile.h"
 #include "ContentsCore.h"
+
 #include "LogoLevel.h"
 #include "TitleLevel.h"
+#include "StoryLevel.h"
 #include "PlayLevel.h"
 
 ContentsCore::ContentsCore()
@@ -16,6 +18,7 @@ void ContentsCore::Start()
 {
 	GameEngineCore::CreateLevel<LogoLevel>("LogoLevel");
 	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
+	GameEngineCore::CreateLevel<StoryLevel>("StoryLevel");
 	GameEngineCore::CreateLevel<PlayLevel>("PlayLevel");
 	GameEngineCore::ChangeLevel("LogoLevel");
 
