@@ -51,6 +51,7 @@ void TitleLevel::Start()
 
 	TitleAnimation = CreateActor<BackGround>(UpdateOrder::BackGround);
 	TitleAnimation->AnimationInit("Title_Animation", "TitleAnimation", 0.1f, false);
+	TitleAnimation->Transform.SetLocalPosition({ 0.0f, -75.0f });
 }
 
 void TitleLevel::Update(float _Delta)
