@@ -2,6 +2,7 @@
 #include "ContentsCore.h"
 #include "LogoLevel.h"
 #include "TitleLevel.h"
+#include "PlayLevel.h"
 
 ContentsCore::ContentsCore()
 {
@@ -15,6 +16,7 @@ void ContentsCore::Start()
 {
 	GameEngineCore::CreateLevel<LogoLevel>("LogoLevel");
 	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
+	GameEngineCore::CreateLevel<PlayLevel>("PlayLevel");
 	GameEngineCore::ChangeLevel("LogoLevel");
 
 	// 자기 텍스처 로드해야 한다.

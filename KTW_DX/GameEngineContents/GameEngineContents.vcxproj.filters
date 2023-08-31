@@ -20,6 +20,9 @@
     <ClInclude Include="CupHeadEnum.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="PlayLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -37,6 +40,9 @@
     </ClCompile>
     <ClCompile Include="BackGround.cpp">
       <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayLevel.cpp">
+      <Filter>Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
