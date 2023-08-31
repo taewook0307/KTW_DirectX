@@ -24,4 +24,6 @@ private:
 
 	void Update(float _Delta) override;
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
+
+	void ChangeStoryAnimation();
 };
