@@ -18,11 +18,8 @@ public:
 protected:
 
 private:
-	int Order = 0;
-
 	std::shared_ptr<class BackGround> Logo;
 
 	void Start() override;
-
 	void Update(float _Delta) override;
 };

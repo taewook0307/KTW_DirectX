@@ -23,6 +23,9 @@
     <ClInclude Include="PlayLevel.h">
       <Filter>Level\PlayLevel</Filter>
     </ClInclude>
+    <ClInclude Include="StoryLevel.h">
+      <Filter>Level\UILevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -43,6 +46,9 @@
     </ClCompile>
     <ClCompile Include="PlayLevel.cpp">
       <Filter>Level\PlayLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="StoryLevel.cpp">
+      <Filter>Level\UILevel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
