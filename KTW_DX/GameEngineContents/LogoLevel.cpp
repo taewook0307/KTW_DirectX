@@ -34,7 +34,7 @@ void LogoLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	Logo = CreateActor<BackGround>(UpdateOrder::BackGround);
-	Logo->AnimationInit("Logo", "Logo.png", 0.05f, false);
+	Logo->AnimationInit("Logo", "Logo.png", 0.04f, false);
 }
 
 void LogoLevel::Update(float _Delta)

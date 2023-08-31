@@ -49,7 +49,7 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	TitleBackGround->BackGroundInit("Title_BackGround.Png");
 
 	TitleAnimation = CreateActor<BackGround>(UpdateOrder::BackGround);
-	TitleAnimation->AnimationInit("Title_Animation", "TitleAnimation", 0.1f, true, false);
+	TitleAnimation->AnimationInit("Title_Animation", "TitleAnimation", 0.04f, true, false);
 	TitleAnimation->Transform.SetLocalPosition({ 0.0f, -75.0f });
 }
 
