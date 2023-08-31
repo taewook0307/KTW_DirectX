@@ -12,8 +12,7 @@ TitleLevel::~TitleLevel()
 {
 }
 
-
-void TitleLevel::Start()
+void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	GameEngineDirectory Dir;
 	Dir.MoveParentToExistsChild("Resources");

@@ -11,7 +11,7 @@ LogoLevel::~LogoLevel()
 {
 }
 
-void LogoLevel::Start()
+void LogoLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	{
 		GameEngineDirectory Dir;
@@ -30,8 +30,8 @@ void LogoLevel::Start()
 		GameEngineSprite::CreateCut("Logo.png", 5, 20);
 	}
 
-	/*GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f });
-	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);*/
+	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f });
+	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	Logo = CreateActor<BackGround>(UpdateOrder::BackGround);
 	Logo->AnimationInit("Logo", "Logo.png", 0.05f, true, -1, -1, false);

@@ -11,7 +11,7 @@ StoryLevel::~StoryLevel()
 {
 }
 
-void StoryLevel::Start()
+void StoryLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	GameEngineDirectory Dir;
 	Dir.MoveParentToExistsChild("Resources");

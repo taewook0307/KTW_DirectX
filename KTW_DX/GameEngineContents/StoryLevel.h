@@ -22,6 +22,6 @@ private:
 
 	std::shared_ptr<class BackGround> StoryAnimation;
 
-	void Start() override;
 	void Update(float _Delta) override;
+	void LevelStart(GameEngineLevel* _PrevLevel) override;
 };

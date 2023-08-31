@@ -20,6 +20,6 @@ protected:
 private:
 	std::shared_ptr<class BackGround> Logo;
 
-	void Start() override;
 	void Update(float _Delta) override;
+	void LevelStart(GameEngineLevel* _PrevLevel) override;
 };
