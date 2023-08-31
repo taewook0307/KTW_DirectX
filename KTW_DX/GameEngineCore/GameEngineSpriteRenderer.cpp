@@ -97,7 +97,7 @@ void GameEngineSpriteRenderer::SetSprite(std::string_view _Name, unsigned int in
 	}
 
 	CurSprite = Sprite->GetSpriteData(index);
-	Transform.SetLocalScale(CurSprite.GetScale());
+	Transform.SetLocalScale(CurSprite.GetScale() * AutoScaleRatio);
 }
 
 void GameEngineSpriteRenderer::CreateAnimation(
