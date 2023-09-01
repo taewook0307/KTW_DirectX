@@ -1,5 +1,6 @@
 ﻿#include "PreCompile.h"
 #include "MiniMapLevel.h"
+#include "MiniMapCharacter.h"
 
 #include "Map.h"
 
@@ -30,6 +31,8 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	MiniMap = CreateActor<Map>(UpdateOrder::BackGround);
 	MiniMap->MapInit("CupHead_MiniMap.png");
+
+	Character = CreateActor<MiniMapCharacter>(UpdateOrder::Player);
 }
 
 void MiniMapLevel::Update(float _Delta)
