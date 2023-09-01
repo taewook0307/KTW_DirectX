@@ -33,7 +33,7 @@ void StoryLevel::Update(float _Delta)
 {
 	if (true == GameEngineInput::IsDown('Z'))
 	{
-		if (AnimationNumber < 11)
+		if (AnimationNumber < 11 && true == StoryAnimation->AnimationEndCheck())
 		{
 			++AnimationNumber;
 			ChangeStoryAnimation();
