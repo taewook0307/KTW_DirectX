@@ -12,3 +12,4 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 
 #include "CupHeadEnum.h"
+#include "ActorEnum.h"

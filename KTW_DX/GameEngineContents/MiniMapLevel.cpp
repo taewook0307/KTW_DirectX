@@ -28,9 +28,13 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	}
 
 	GameEngineSprite::CreateSingle("CupHead_MiniMap.png");
+	
+	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
 
-	MiniMap = CreateActor<Map>(UpdateOrder::BackGround);
-	MiniMap->MapInit("CupHead_MiniMap.png");
+	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, -500 });
+
+	/*MiniMap = CreateActor<Map>(UpdateOrder::BackGround);
+	MiniMap->MapInit("CupHead_MiniMap.png");*/
 
 	Character = CreateActor<MiniMapCharacter>(UpdateOrder::Player);
 }

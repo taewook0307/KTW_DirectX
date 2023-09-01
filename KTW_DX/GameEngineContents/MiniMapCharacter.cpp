@@ -29,5 +29,25 @@ void MiniMapCharacter::Start()
 
 void MiniMapCharacter::Update(float _Delta)
 {
+	float Speed = 300.0f;
 
+	if (GameEngineInput::IsPress(VK_UP))
+	{
+		Transform.AddLocalPosition(float4::UP * _Delta * Speed);
+	}
+
+	if (GameEngineInput::IsPress(VK_DOWN))
+	{
+		Transform.AddLocalPosition(float4::DOWN * _Delta * Speed);
+	}
+
+	if (GameEngineInput::IsPress(VK_LEFT))
+	{
+		Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);
+	}
+
+	if (GameEngineInput::IsPress(VK_RIGHT))
+	{
+		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
+	}
 }

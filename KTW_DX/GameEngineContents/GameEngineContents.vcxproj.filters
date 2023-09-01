@@ -35,6 +35,9 @@
     <ClInclude Include="MiniMapLevel.h">
       <Filter>Level\UILevel</Filter>
     </ClInclude>
+    <ClInclude Include="ActorEnum.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
