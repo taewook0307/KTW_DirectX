@@ -31,19 +31,17 @@ void StoryLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void StoryLevel::Update(float _Delta)
 {
-	if (true == GameEngineInput::IsDown('Z'))
+	if (true == GameEngineInput::IsDown('Z') && true == StoryAnimation->AnimationEndCheck())
 	{
-		if (AnimationNumber < 11 && true == StoryAnimation->AnimationEndCheck())
+		if (AnimationNumber < 11)
 		{
 			++AnimationNumber;
 			ChangeStoryAnimation();
 		}
-		
-		if(true == StoryAnimation->AnimationEndCheck())
+		else
 		{
 			GameEngineCore::ChangeLevel("MiniMapLevel");
 		}
-		
 	}
 }
 
