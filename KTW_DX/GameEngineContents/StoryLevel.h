@@ -20,7 +20,7 @@ protected:
 private:
 	unsigned int AnimationNumber = 1;
 
-	std::shared_ptr<class BackGround> StoryAnimation;
+	std::shared_ptr<class BackGround> StoryAnimation = nullptr;
 
 	void Update(float _Delta) override;
 	void LevelStart(GameEngineLevel* _PrevLevel) override;

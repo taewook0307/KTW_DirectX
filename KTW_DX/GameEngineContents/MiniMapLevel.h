@@ -18,8 +18,8 @@ public:
 protected:
 
 private:
-	std::shared_ptr<class Map> MiniMap;
-	std::shared_ptr<class MiniMapCharacter> Character;
+	std::shared_ptr<class Map> MiniMap = nullptr;
+	std::shared_ptr<class MiniMapCharacter> Character = nullptr;
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void Update(float _Delta) override;

@@ -20,7 +20,8 @@ public:
 protected:
 
 private:
-	std::shared_ptr<GameEngineSpriteRenderer> MapRenderer;
+	std::shared_ptr<GameEngineSpriteRenderer> MapRenderer = nullptr;
+	std::shared_ptr<GameEngineSpriteRenderer> BitMapRenderer = nullptr;
 
 	void Start() override;
 };

@@ -20,6 +20,6 @@ protected:
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 
 private:
-	std::shared_ptr<class BackGround> TitleBackGround;
-	std::shared_ptr<class BackGround> TitleAnimation;
+	std::shared_ptr<class BackGround> TitleBackGround = nullptr;
+	std::shared_ptr<class BackGround> TitleAnimation = nullptr;
 };

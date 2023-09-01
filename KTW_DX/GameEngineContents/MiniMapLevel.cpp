@@ -14,6 +14,9 @@ MiniMapLevel::~MiniMapLevel()
 
 void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
+	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, -500 });
+
 	GameEngineDirectory Dir;
 	Dir.MoveParentToExistsChild("Resources");
 	Dir.MoveChild("Resources\\Texture\\Map");
@@ -28,13 +31,9 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	}
 
 	GameEngineSprite::CreateSingle("CupHead_MiniMap.png");
-	
-	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
 
-	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, -500 });
-
-	/*MiniMap = CreateActor<Map>(UpdateOrder::BackGround);
-	MiniMap->MapInit("CupHead_MiniMap.png");*/
+	MiniMap = CreateActor<Map>(UpdateOrder::BackGround);
+	MiniMap->MapInit("CupHead_MiniMap.png");
 
 	Character = CreateActor<MiniMapCharacter>(UpdateOrder::Player);
 }

@@ -18,7 +18,7 @@ public:
 protected:
 
 private:
-	std::shared_ptr<GameEngineSpriteRenderer> MainSprite;
+	std::shared_ptr<GameEngineSpriteRenderer> MainSprite = nullptr;
 
 	void Start() override;
 	void Update(float _Delta) override;
