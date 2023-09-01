@@ -16,12 +16,12 @@ public:
 	Map& operator=(Map&& _Other) noexcept = delete;
 
 	void MapInit(std::string_view _SpriteName);
+	void BitMapInit(std::string_view _SpriteName);
 
 protected:
 
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> MapRenderer = nullptr;
-	std::shared_ptr<GameEngineSpriteRenderer> BitMapRenderer = nullptr;
 
 	void Start() override;
 };

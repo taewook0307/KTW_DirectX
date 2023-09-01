@@ -11,7 +11,7 @@ Map::~Map()
 
 void Map::Start()
 {
-	MapRenderer = CreateComponent<GameEngineSpriteRenderer>(0);
+	MapRenderer = CreateComponent<GameEngineSpriteRenderer>(static_cast<int>(RenderOrder::Map));
 }
 
 void Map::MapInit(std::string_view _SpriteName)

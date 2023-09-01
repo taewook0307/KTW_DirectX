@@ -22,7 +22,7 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<StoryLevel>("StoryLevel");
 	GameEngineCore::CreateLevel<MiniMapLevel>("MiniMapLevel");
 	GameEngineCore::CreateLevel<PlayLevel>("PlayLevel");
-	GameEngineCore::ChangeLevel("LogoLevel");
+	GameEngineCore::ChangeLevel("MiniMapLevel");
 
 	// 자기 텍스처 로드해야 한다.
 }

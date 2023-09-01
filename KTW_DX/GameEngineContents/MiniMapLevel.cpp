@@ -30,10 +30,10 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		GameEngineTexture::Load(File.GetStringPath());
 	}
 
-	GameEngineSprite::CreateSingle("CupHead_MiniMap.png");
+	GameEngineSprite::CreateSingle("MiniMap.png");
 
 	MiniMap = CreateActor<Map>(UpdateOrder::BackGround);
-	MiniMap->MapInit("CupHead_MiniMap.png");
+	MiniMap->MapInit("MiniMap.png");
 
 	Character = CreateActor<MiniMapCharacter>(UpdateOrder::Player);
 }
