@@ -16,8 +16,8 @@ public:
 	Player& operator=(Player&& _Other) noexcept = delete;
 
 protected:
-	void Start();
-	void Update(float _Delta);
+	void Start() override;
+	void Update(float _Delta) override;
 
 private:
 	std::shared_ptr<class GameEngineSpriteRenderer> MainSpriteRenderer;
