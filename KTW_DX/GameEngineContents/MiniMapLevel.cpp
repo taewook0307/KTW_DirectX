@@ -32,7 +32,7 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	MiniMap->MapInit("CupHead_MiniMap.png");
 }
 
-void Update(float _Delta)
+void MiniMapLevel::Update(float _Delta)
 {
 
 }
