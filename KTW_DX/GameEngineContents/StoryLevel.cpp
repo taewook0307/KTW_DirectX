@@ -40,7 +40,7 @@ void StoryLevel::Update(float _Delta)
 		}
 		else
 		{
-			GameEngineCore::ChangeLevel("PlayLevel");
+			GameEngineCore::ChangeLevel("MiniMapLevel");
 		}
 		
 	}
