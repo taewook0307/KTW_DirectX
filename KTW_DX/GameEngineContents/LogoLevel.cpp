@@ -39,8 +39,7 @@ void LogoLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void LogoLevel::Update(float _Delta)
 {
-	// 강제 이동
-	if (true == GameEngineInput::IsPress('P'))
+	if (true == GameEngineInput::IsPress('Z') && true == Logo->AnimationEndCheck())
 	{
 		GameEngineCore::ChangeLevel("TitleLevel");
 	}

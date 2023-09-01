@@ -39,3 +39,8 @@ void BackGround::AnimationInit(std::string_view _AnimationName, std::string_view
 		MainSpriteRenderer->AutoSpriteSizeOn();
 	}
 }
+
+bool BackGround::AnimationEndCheck()
+{
+	return MainSpriteRenderer->IsCurAnimationEnd();
+}

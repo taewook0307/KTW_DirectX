@@ -15,7 +15,7 @@ void StoryLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	GameEngineDirectory Dir;
 	Dir.MoveParentToExistsChild("Resources");
-	Dir.MoveChild("Resources\\Texture\\Level\\Story");
+	Dir.MoveChild("Resources\\Texture\\Level\\Story\\Start");
 	std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
 	for (size_t i = 0; i < Directorys.size(); i++)
@@ -31,14 +31,15 @@ void StoryLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void StoryLevel::Update(float _Delta)
 {
-	if (true == GameEngineInput::IsPress('Z'))
+	if (true == GameEngineInput::IsDown('Z'))
 	{
-		if (AnimationNumber < 13)
+		if (AnimationNumber < 11)
 		{
 			++AnimationNumber;
 			ChangeStoryAnimation();
 		}
-		else
+		
+		if(true == StoryAnimation->AnimationEndCheck())
 		{
 			GameEngineCore::ChangeLevel("MiniMapLevel");
 		}

@@ -26,6 +26,15 @@
     <ClInclude Include="StoryLevel.h">
       <Filter>Level\UILevel</Filter>
     </ClInclude>
+    <ClInclude Include="MiniMapCharacter.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMapLevel.h">
+      <Filter>Level\UILevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -50,6 +59,15 @@
     <ClCompile Include="StoryLevel.cpp">
       <Filter>Level\UILevel</Filter>
     </ClCompile>
+    <ClCompile Include="MiniMapCharacter.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMapLevel.cpp">
+      <Filter>Level\UILevel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -69,6 +87,9 @@
     </Filter>
     <Filter Include="Level\PlayLevel">
       <UniqueIdentifier>{fcb6b039-482f-4568-9afa-75412533f43f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Boss">
+      <UniqueIdentifier>{94dd5ab7-7064-47ab-a630-cab23fbecd70}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
