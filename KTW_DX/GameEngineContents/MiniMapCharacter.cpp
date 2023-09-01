@@ -21,7 +21,7 @@ void MiniMapCharacter::Start()
 
 	GameEngineSprite::CreateCut("MiniMap_Character.png", 10, 11);
 
-	MainSprite = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Play);
+	MainSprite = CreateComponent<GameEngineSpriteRenderer>(static_cast<int>(RenderOrder::Play));
 	MainSprite->CreateAnimation("MiniCharacter_Idle", "MiniMap_Character.png", 0.1f, 67, 70);
 	MainSprite->ChangeAnimation("MiniCharacter_Idle");
 	MainSprite->AutoSpriteSizeOn();

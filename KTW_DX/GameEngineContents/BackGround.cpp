@@ -11,7 +11,7 @@ BackGround::~BackGround()
 
 void BackGround::Start()
 {
-	MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(0);
+	MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(static_cast<int>(RenderOrder::BackGround));
 }
 
 void BackGround::Update(float _Delta)

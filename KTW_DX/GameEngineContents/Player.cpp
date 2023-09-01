@@ -14,7 +14,7 @@ Player::~Player()
 
 void Player::Start()
 {
-	MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>();
+	MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(static_cast<int>(RenderOrder::Play));
 	MainSpriteRenderer->CreateAnimation("CupHead_Idle", "Idle");
 	MainSpriteRenderer->ChangeAnimation("CupHead_Idle");
 	MainSpriteRenderer->AutoSpriteSizeOn();
