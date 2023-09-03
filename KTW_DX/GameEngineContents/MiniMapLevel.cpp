@@ -35,8 +35,10 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	MiniMap = CreateActor<Map>(UpdateOrder::BackGround);
 	MiniMap->MapInit("MiniMap.png");
+	MiniMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 
 	Character = CreateActor<MiniMapCharacter>(UpdateOrder::Player);
+	Character->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 }
 
 void MiniMapLevel::Update(float _Delta)

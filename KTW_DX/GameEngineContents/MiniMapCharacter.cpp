@@ -29,7 +29,7 @@ void MiniMapCharacter::Start()
 
 void MiniMapCharacter::Update(float _Delta)
 {
-	float Speed = 300.0f;
+	float Speed = 200.0f;
 
 	if (GameEngineInput::IsPress(VK_UP))
 	{

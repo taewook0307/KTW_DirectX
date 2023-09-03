@@ -16,7 +16,8 @@ public:
 	Map& operator=(Map&& _Other) noexcept = delete;
 
 	void MapInit(std::string_view _SpriteName);
-	void BitMapInit(std::string_view _SpriteName);
+
+	GameEngineColor GetColor(float4 _Pos, std::string_view _MapFileName, GameEngineColor _DefaultColor);
 
 protected:
 
