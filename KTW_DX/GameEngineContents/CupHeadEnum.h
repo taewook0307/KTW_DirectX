@@ -7,8 +7,10 @@ enum class UpdateOrder
 
 enum class RenderOrder
 {
+	None,
 	BackGround,
 	Map,
 	Play,
+	MapUpper,
 	Max
 };

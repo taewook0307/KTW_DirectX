@@ -43,5 +43,5 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void MiniMapLevel::Update(float _Delta)
 {
-
+	GetMainCamera()->Transform.SetLocalPosition(Character->Transform.GetWorldPosition());
 }
