@@ -1,8 +1,11 @@
 ﻿#include "PreCompile.h"
 #include "Map.h"
 
+Map* Map::MainMap = nullptr;
+
 Map::Map()
 {
+	MainMap = this;
 }
 
 Map::~Map()

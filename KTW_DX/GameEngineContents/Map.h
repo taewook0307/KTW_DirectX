@@ -5,6 +5,8 @@
 class Map : public GameEngineActor
 {
 public:
+	static Map* MainMap;
+
 	// constrcuter destructer
 	Map();
 	~Map();
