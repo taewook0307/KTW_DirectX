@@ -16,6 +16,7 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, -500 });
+	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	GameEngineDirectory Dir;
 	Dir.MoveParentToExistsChild("Resources");

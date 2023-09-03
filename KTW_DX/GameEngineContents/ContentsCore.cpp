@@ -22,9 +22,7 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<StoryLevel>("StoryLevel");
 	GameEngineCore::CreateLevel<MiniMapLevel>("MiniMapLevel");
 	GameEngineCore::CreateLevel<PlayLevel>("PlayLevel");
-	GameEngineCore::ChangeLevel("MiniMapLevel");
-
-	// 자기 텍스처 로드해야 한다.
+	GameEngineCore::ChangeLevel("LogoLevel");
 }
 
 void ContentsCore::Update(float _Delta)
