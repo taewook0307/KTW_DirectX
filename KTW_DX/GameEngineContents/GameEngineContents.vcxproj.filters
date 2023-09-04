@@ -32,10 +32,10 @@
     <ClInclude Include="ActorEnum.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="MiniMapCharacter.h">
       <Filter>Actor\Character</Filter>
     </ClInclude>
-    <ClInclude Include="MiniMapCharacter.h">
+    <ClInclude Include="BaseCharacter.h">
       <Filter>Actor\Character</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,7 +68,7 @@
     <ClCompile Include="MiniMapCharacter.cpp">
       <Filter>Actor\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="BaseCharacter.cpp">
       <Filter>Actor\Character</Filter>
     </ClCompile>
   </ItemGroup>

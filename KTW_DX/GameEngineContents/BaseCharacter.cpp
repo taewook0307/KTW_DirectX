@@ -1,18 +1,15 @@
 ﻿#include "PreCompile.h"
-#include "Player.h"
+#include "BaseCharacter.h"
 
-#include <GameEngineCore/GameEngineTexture.h>
-
-Player::Player()
-{
-
-}
-
-Player::~Player()
+BaseCharacter::BaseCharacter()
 {
 }
 
-void Player::Start()
+BaseCharacter::~BaseCharacter()
+{
+}
+
+void BaseCharacter::Start()
 {
 	MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Play);
 	MainSpriteRenderer->CreateAnimation("CupHead_Idle", "Idle");
@@ -20,7 +17,7 @@ void Player::Start()
 	MainSpriteRenderer->AutoSpriteSizeOn();
 }
 
-void Player::Update(float _Delta)
+void BaseCharacter::Update(float _Delta)
 {
 	float Speed = 300.0f;
 
