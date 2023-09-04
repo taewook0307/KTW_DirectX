@@ -16,7 +16,10 @@ public:
 	BaseActor& operator=(BaseActor&& _Other) noexcept = delete;
 
 	void GravityOn(float _Delta);
+	void GravityReset();
 
+	void SetGravityForce(const float4& _Value);
+	float4 GetGravityForce();
 protected:
 
 private:

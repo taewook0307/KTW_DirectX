@@ -1,6 +1,8 @@
 #pragma once
 #include "BaseActor.h"
 
+#define JUMPPOWER 300.0f
+
 class BaseCharacter : public BaseActor
 {
 public:

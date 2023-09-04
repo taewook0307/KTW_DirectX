@@ -13,15 +13,21 @@ BaseActor::~BaseActor()
 
 void BaseActor::GravityOn(float _Delta)
 {
-	GameEngineColor Color = Map::MainMap->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
+	GravityForce.Y -= _Delta * 200.0f;
+	Transform.AddLocalPosition(GravityForce * _Delta);
+}
 
-	if (GameEngineColor::RED != Color)
-	{
-		GravityForce.Y -= _Delta * 100.0f;
-		Transform.AddLocalPosition(GravityForce * _Delta);
-	}
-	else
-	{
-		GravityForce = float4::ZERO;
-	}
+void BaseActor::GravityReset()
+{
+	GravityForce = float4::ZERO;
+}
+
+void BaseActor::SetGravityForce(const float4& _Value)
+{
+	GravityForce = _Value;
+}
+
+float4 BaseActor::GetGravityForce()
+{
+	return GravityForce;
 }
