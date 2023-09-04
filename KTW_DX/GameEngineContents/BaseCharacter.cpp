@@ -14,8 +14,8 @@ void BaseCharacter::Start()
 	MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Play);
 	MainSpriteRenderer->SetAutoScaleRatio(0.8f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Idle", "Idle");
-	MainSpriteRenderer->CreateAnimation("CupHead_Run", "Run");
-	MainSpriteRenderer->CreateAnimation("CupHead_Jump", "Jump", 0.08f);
+	MainSpriteRenderer->CreateAnimation("CupHead_Run", "Run", 0.05f);
+	MainSpriteRenderer->CreateAnimation("CupHead_Jump", "Jump", 0.05f);
 	MainSpriteRenderer->ChangeAnimation("CupHead_Idle");
 	MainSpriteRenderer->AutoSpriteSizeOn();
 }
