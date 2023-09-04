@@ -2,7 +2,7 @@
 
 #include <GameEngineCore/GameEngineActor.h>
 
-#define GRAVITYFORCE 1000.0f
+#define GRAVITYFORCE 3000.0f
 
 class BaseActor : public GameEngineActor
 {
