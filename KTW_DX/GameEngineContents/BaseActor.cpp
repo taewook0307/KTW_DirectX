@@ -13,7 +13,7 @@ BaseActor::~BaseActor()
 
 void BaseActor::GravityOn(float _Delta)
 {
-	GravityForce.Y -= _Delta * 200.0f;
+	GravityForce.Y -= _Delta * GRAVITYFORCE;
 	Transform.AddLocalPosition(GravityForce * _Delta);
 }
 
