@@ -15,6 +15,7 @@ Map::~Map()
 void Map::Start()
 {
 	MapRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Map);
+	BitMapRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Map);
 }
 
 void Map::MapInit(std::string_view _SpriteName)
@@ -23,11 +24,19 @@ void Map::MapInit(std::string_view _SpriteName)
 	MapRenderer->AutoSpriteSizeOn();
 }
 
-GameEngineColor Map::GetColor(float4 _Pos, std::string_view _MapFileName, GameEngineColor _DefaultColor)
+void Map::BitMapInit(std::string_view _SpriteName)
+{
+	BitMapRenderer->SetSprite(_SpriteName);
+	BitMapRenderer->AutoSpriteSizeOn();
+
+	BitMapFileName = _SpriteName;
+}
+
+GameEngineColor Map::GetColor(float4 _Pos, GameEngineColor _DefaultColor)
 {
 	_Pos.Y *= -1.0f;
 
-	std::shared_ptr<GameEngineTexture> Tex = GameEngineTexture::Find(_MapFileName);
+	std::shared_ptr<GameEngineTexture> Tex = GameEngineTexture::Find(BitMapFileName);
 
 	return Tex->GetColor(_Pos, _DefaultColor);
 }

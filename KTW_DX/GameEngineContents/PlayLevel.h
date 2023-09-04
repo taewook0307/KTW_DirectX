@@ -16,9 +16,8 @@ public:
 	PlayLevel& operator=(PlayLevel&& _Other) noexcept = delete;
 
 protected:
-	void Start() override;
-
+	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void Update(float _Delta) override;
 private:
-
+	std::shared_ptr<class Map> TestMap = nullptr;
 };

@@ -38,6 +38,9 @@
     <ClInclude Include="BaseCharacter.h">
       <Filter>Actor\Character</Filter>
     </ClInclude>
+    <ClInclude Include="BaseActor.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -73,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="BaseCharacter_State.cpp">
       <Filter>Actor\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseActor.cpp">
+      <Filter>Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

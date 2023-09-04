@@ -1,7 +1,7 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+#include "BaseActor.h"
 
-class BaseCharacter : public GameEngineActor
+class BaseCharacter : public BaseActor
 {
 public:
 	// constrcuter destructer
@@ -21,8 +21,10 @@ protected:
 
 	void IdleStart();
 	void IdleUpdate(float _Delta);
+
 	void RunStart();
 	void RunUpdate(float _Delta);
+
 	void JumpStart();
 	void JumpUpdate(float _Delta);
 

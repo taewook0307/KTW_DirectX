@@ -30,11 +30,12 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		GameEngineFile& File = Files[i];
 		GameEngineTexture::Load(File.GetStringPath());
 	}
-
+	GameEngineSprite::CreateSingle("CupHead_MiniMap.png");
 	GameEngineSprite::CreateSingle("MiniMap.png");
 
 	MiniMap = CreateActor<Map>(UpdateOrder::BackGround);
-	MiniMap->MapInit("MiniMap.png");
+	MiniMap->MapInit("CupHead_MiniMap.png");
+	MiniMap->BitMapInit("MiniMap.png");
 	MiniMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 
 	Character = CreateActor<MiniMapCharacter>(UpdateOrder::Player);
@@ -44,4 +45,9 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 void MiniMapLevel::Update(float _Delta)
 {
 	GetMainCamera()->Transform.SetLocalPosition(Character->Transform.GetWorldPosition());
+
+	if (true == GameEngineInput::IsDown('T'))
+	{
+		GameEngineCore::ChangeLevel("PlayLevel");
+	}
 }

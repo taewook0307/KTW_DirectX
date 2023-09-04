@@ -8,6 +8,8 @@ void BaseCharacter::IdleStart()
 
 void BaseCharacter::IdleUpdate(float _Delta)
 {
+	GravityOn(_Delta);
+
 	if (true == GameEngineInput::IsPress(VK_LEFT)
 		|| true == GameEngineInput::IsPress(VK_RIGHT))
 	{
@@ -27,6 +29,8 @@ void BaseCharacter::RunStart()
 
 void BaseCharacter::RunUpdate(float _Delta)
 {
+	GravityOn(_Delta);
+
 	float Speed = 300.0f;
 	float4 MovePos = float4::ZERO;
 

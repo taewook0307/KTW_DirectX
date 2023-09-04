@@ -14,7 +14,7 @@ PlayLevel::~PlayLevel()
 }
 
 
-void PlayLevel::Start()
+void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, -500 });
@@ -42,11 +42,20 @@ void PlayLevel::Start()
 		GameEngineSprite::CreateSingle("TestMap.Png");
 	}
 
+	{
+		GameEnginePath Path;
+		Path.MoveParentToExistsChild("Resources");
+		Path.MoveChild("Resources\\Texture\\Map\\TestBitMap.Png");
+		GameEngineTexture::Load(Path.GetStringPath());
+		GameEngineSprite::CreateSingle("TestBitMap.Png");
+	}
+
 	std::shared_ptr<BaseCharacter> NewPlayer = CreateActor<BaseCharacter>(UpdateOrder::Player);
 	NewPlayer->Transform.SetLocalPosition({ WinScaleHalf.X, 0.0f });
 
-	std::shared_ptr<Map> TestMap = CreateActor<Map>(UpdateOrder::Map);
+	TestMap = CreateActor<Map>(UpdateOrder::Map);
 	TestMap->MapInit("TestMap.Png");
+	TestMap->BitMapInit("TestBitMap.Png");
 	TestMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 }
 
