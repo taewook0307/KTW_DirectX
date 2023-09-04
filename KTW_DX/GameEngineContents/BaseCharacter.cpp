@@ -16,6 +16,7 @@ void BaseCharacter::Start()
 	MainSpriteRenderer->CreateAnimation("CupHead_Idle", "Idle");
 	MainSpriteRenderer->CreateAnimation("CupHead_Run", "Run", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Jump", "Jump", 0.05f);
+	MainSpriteRenderer->CreateAnimation("CupHead_Dash", "Dash_Air", 0.05f);
 	MainSpriteRenderer->ChangeAnimation("CupHead_Idle");
 	MainSpriteRenderer->AutoSpriteSizeOn();
 }
@@ -35,6 +36,8 @@ void BaseCharacter::StateUpdate(float _Delta)
 		return RunUpdate(_Delta);
 	case CharacterState::Jump:
 		return JumpUpdate(_Delta);
+	case CharacterState::Dash:
+		return DashUpdate(_Delta);
 	default:
 		break;
 	}
@@ -54,6 +57,9 @@ void BaseCharacter::ChangeState(CharacterState _State)
 			break;
 		case CharacterState::Jump:
 			JumpStart();
+			break;
+		case CharacterState::Dash:
+			DashStart();
 			break;
 		default:
 			break;

@@ -80,6 +80,9 @@
     <ClCompile Include="BaseActor.cpp">
       <Filter>Actor</Filter>
     </ClCompile>
+    <ClCompile Include="BaseCharacter_Shoot_State.cpp">
+      <Filter>Actor\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">

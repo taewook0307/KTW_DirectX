@@ -30,12 +30,18 @@ protected:
 	void JumpStart();
 	void JumpUpdate(float _Delta);
 
+	void DashStart();
+	void DashUpdate(float _Delta);
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
 
 	CharacterDir Dir = CharacterDir::None;
 	CharacterState CurState = CharacterState::Idle;
+
+	float Speed = 300.0f;
+	float DashSpeed = 500.0f;
 
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> MainSpriteRenderer = nullptr;

@@ -33,6 +33,12 @@ void BaseCharacter::IdleUpdate(float _Delta)
 		ChangeState(CharacterState::Jump);
 		return;
 	}
+
+	if (true == GameEngineInput::IsDown(VK_SHIFT))
+	{
+		ChangeState(CharacterState::Dash);
+		return;
+	}
 }
 
 void BaseCharacter::RunStart()
@@ -53,8 +59,6 @@ void BaseCharacter::RunUpdate(float _Delta)
 		GravityReset();
 	}
 	
-
-	float Speed = 300.0f;
 	float4 MovePos = float4::ZERO;
 
 	if (GameEngineInput::IsPress(VK_LEFT))
@@ -110,5 +114,26 @@ void BaseCharacter::JumpUpdate(float _Delta)
 	{
 		ChangeState(CharacterState::Idle);
 		return;
+	}
+
+	if (true == GameEngineInput::IsDown(VK_SHIFT))
+	{
+		ChangeState(CharacterState::Dash);
+		return;
+	}
+}
+
+void BaseCharacter::DashStart()
+{
+	ChangeAnimation("Dash");
+}
+
+void BaseCharacter::DashUpdate(float _Delta)
+{
+	Transform.AddLocalPosition(float4::RIGHT * DashSpeed * _Delta);
+
+	if (true == MainSpriteRenderer->IsCurAnimationEnd())
+	{
+		ChangeState(CharacterState::Idle);
 	}
 }

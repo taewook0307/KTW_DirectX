@@ -4,7 +4,8 @@ enum class CharacterState
 {
 	Idle,
 	Run,
-	Jump
+	Jump,
+	Dash
 };
 
 enum class MiniMapCharacterState
