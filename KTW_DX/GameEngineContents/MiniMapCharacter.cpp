@@ -50,13 +50,13 @@ void MiniMapCharacter::Update(float _Delta)
 	if (GameEngineInput::IsPress(VK_LEFT))
 	{
 		MovePos += float4::LEFT * _Delta * Speed;
-		CheckPos += { -20.0f, 0.0f };
+		CheckPos += { -20.0f, 40.0f };
 	}
 
 	if (GameEngineInput::IsPress(VK_RIGHT))
 	{
 		MovePos += float4::RIGHT * _Delta * Speed;
-		CheckPos += { 20.0f, 0.0f };
+		CheckPos += { 20.0f, 40.0f };
 	}
 
 	CheckPos += Transform.GetWorldPosition();

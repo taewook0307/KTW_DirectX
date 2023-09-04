@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
-    <ClInclude Include="Player.h">
-      <Filter>Actor</Filter>
-    </ClInclude>
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
@@ -26,9 +23,6 @@
     <ClInclude Include="StoryLevel.h">
       <Filter>Level\UILevel</Filter>
     </ClInclude>
-    <ClInclude Include="MiniMapCharacter.h">
-      <Filter>Actor</Filter>
-    </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Actor</Filter>
     </ClInclude>
@@ -38,12 +32,15 @@
     <ClInclude Include="ActorEnum.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Actor\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMapCharacter.h">
+      <Filter>Actor\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
-    <ClCompile Include="Player.cpp">
-      <Filter>Actor</Filter>
-    </ClCompile>
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
     </ClCompile>
@@ -62,14 +59,17 @@
     <ClCompile Include="StoryLevel.cpp">
       <Filter>Level\UILevel</Filter>
     </ClCompile>
-    <ClCompile Include="MiniMapCharacter.cpp">
-      <Filter>Actor</Filter>
-    </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Actor</Filter>
     </ClCompile>
     <ClCompile Include="MiniMapLevel.cpp">
       <Filter>Level\UILevel</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMapCharacter.cpp">
+      <Filter>Actor\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Actor\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +93,9 @@
     </Filter>
     <Filter Include="Actor\Boss">
       <UniqueIdentifier>{94dd5ab7-7064-47ab-a630-cab23fbecd70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Character">
+      <UniqueIdentifier>{5c1e6902-e740-47e8-9154-7378be7e2777}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

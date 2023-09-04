@@ -12,3 +12,16 @@ enum class MiniMapCharacterState
 	Idle,
 	Walk
 };
+
+enum class CharacterDir
+{
+	None,
+	Up,
+	Down,
+	Left,
+	Right,
+	RightUp,
+	LeftUp,
+	RightDown,
+	LeftDown
+};
