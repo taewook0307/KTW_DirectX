@@ -71,6 +71,9 @@
     <ClCompile Include="BaseCharacter.cpp">
       <Filter>Actor\Character</Filter>
     </ClCompile>
+    <ClCompile Include="BaseCharacter_State.cpp">
+      <Filter>Actor\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">

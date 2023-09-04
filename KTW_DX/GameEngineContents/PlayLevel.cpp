@@ -33,6 +33,7 @@ void PlayLevel::Start()
 			GameEngineSprite::CreateFolder(Dir.GetStringPath());
 		}
 	}
+
 	{
 		GameEnginePath Path;
 		Path.MoveParentToExistsChild("Resources");

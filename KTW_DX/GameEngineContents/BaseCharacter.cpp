@@ -13,21 +13,60 @@ void BaseCharacter::Start()
 {
 	MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Play);
 	MainSpriteRenderer->CreateAnimation("CupHead_Idle", "Idle");
+	MainSpriteRenderer->CreateAnimation("CupHead_Run", "Run");
+	MainSpriteRenderer->CreateAnimation("CupHead_Jump", "Jump");
 	MainSpriteRenderer->ChangeAnimation("CupHead_Idle");
 	MainSpriteRenderer->AutoSpriteSizeOn();
 }
 
 void BaseCharacter::Update(float _Delta)
 {
-	float Speed = 300.0f;
+	StateUpdate(_Delta);
+}
 
-	if (GameEngineInput::IsPress('A'))
+void BaseCharacter::StateUpdate(float _Delta)
+{
+	switch (CurState)
 	{
-		Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);
+	case CharacterState::Idle:
+		return IdleUpdate(_Delta);
+	case CharacterState::Run:
+		return RunUpdate(_Delta);
+	case CharacterState::Jump:
+		return JumpUpdate(_Delta);
+	default:
+		break;
+	}
+}
+
+void BaseCharacter::ChangeState(CharacterState _State)
+{
+	if (_State != CurState)
+	{
+		switch (_State)
+		{
+		case CharacterState::Idle:
+			IdleStart();
+			break;
+		case CharacterState::Run:
+			RunStart();
+			break;
+		case CharacterState::Jump:
+			JumpStart();
+			break;
+		default:
+			break;
+		}
 	}
 
-	if (GameEngineInput::IsPress('D'))
-	{
-		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
-	}
+	CurState = _State;
+}
+
+void BaseCharacter::ChangeAnimation(std::string_view _State)
+{
+	std::string AnimationName = "CupHead_";
+
+	AnimationName += _State;
+
+	MainSpriteRenderer->ChangeAnimation(AnimationName);
 }

@@ -220,6 +220,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BaseCharacter_State.cpp" />
     <ClCompile Include="ContentsCore.cpp">
       <SubType>
       </SubType>

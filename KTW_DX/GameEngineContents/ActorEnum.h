@@ -1,16 +1,16 @@
 #pragma once
 
-enum class CharacterEnum
+enum class CharacterState
 {
 	Idle,
-	Walk,
-	Aim
+	Run,
+	Jump
 };
 
 enum class MiniMapCharacterState
 {
 	Idle,
-	Walk
+	Run
 };
 
 enum class CharacterDir
