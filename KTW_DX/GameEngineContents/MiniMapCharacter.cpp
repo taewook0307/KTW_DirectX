@@ -59,10 +59,12 @@ void MiniMapCharacter::Update(float _Delta)
 		CheckPos += { 20.0f, 40.0f };
 	}
 
-	CheckPos += Transform.GetWorldPosition();
+	Transform.AddLocalPosition(MovePos);
+
+	/*CheckPos += Transform.GetWorldPosition();
 
 	if (Map::MainMap->GetColor(CheckPos, GameEngineColor::RED) != GameEngineColor::RED)
 	{
 		Transform.AddLocalPosition(MovePos);
-	}	
+	}	*/
 }
