@@ -26,12 +26,9 @@ enum class CharacterDir
 enum class CharacterAimDir
 {
 	None,
+	Straight,
+	StraightUp,
+	StraightDown,
 	Up,
-	Down,
-	Left,
-	Right,
-	RightUp,
-	LeftUp,
-	RightDown,
-	LeftDown
+	Down
 };

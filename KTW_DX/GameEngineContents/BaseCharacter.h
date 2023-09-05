@@ -56,6 +56,7 @@ protected:
 	CharacterDir Dir = CharacterDir::None;
 	CharacterAimDir AimDir = CharacterAimDir::None;
 	CharacterState CurState = CharacterState::Idle;
+	std::string State = "";
 
 	float Speed = 300.0f;
 	float DashSpeed = 600.0f;

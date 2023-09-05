@@ -27,7 +27,7 @@ void BaseCharacter::Start()
 	MainSpriteRenderer->SetAutoScaleRatio(0.8f);
 
 	Dir = CharacterDir::Right;
-	AimDir = CharacterAimDir::Right;
+	AimDir = CharacterAimDir::Straight;
 }
 
 void BaseCharacter::Update(float _Delta)
@@ -59,51 +59,43 @@ void BaseCharacter::DirChange()
 
 void BaseCharacter::AimDirChange()
 {
-	if (true == GameEngineInput::IsDown(VK_LEFT)
-		|| true == GameEngineInput::IsPress(VK_LEFT))
+	CharacterAimDir ChangeAimDir = CharacterAimDir::Straight;
+
+	if (true == GameEngineInput::IsPress(VK_UP) && true == GameEngineInput::IsPress(VK_RIGHT)
+		|| true == GameEngineInput::IsPress(VK_UP) && true == GameEngineInput::IsPress(VK_LEFT))
 	{
-		AimDir = CharacterAimDir::Left;
+		ChangeAimDir = CharacterAimDir::StraightUp;
 	}
 
-	if (true == GameEngineInput::IsDown(VK_RIGHT)
-		|| true == GameEngineInput::IsPress(VK_RIGHT))
+	else if (true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsPress(VK_RIGHT)
+		|| true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsPress(VK_LEFT))
 	{
-		AimDir = CharacterAimDir::Right;
+		ChangeAimDir = CharacterAimDir::StraightDown;
 	}
 
-	if (true == GameEngineInput::IsDown(VK_UP)
+	else if (true == GameEngineInput::IsDown(VK_LEFT) || true == GameEngineInput::IsPress(VK_LEFT)
+		|| true == GameEngineInput::IsDown(VK_RIGHT) || true == GameEngineInput::IsPress(VK_RIGHT))
+	{
+		ChangeAimDir = CharacterAimDir::Straight;
+	}
+
+	else if (true == GameEngineInput::IsDown(VK_UP)
 		|| true == GameEngineInput::IsPress(VK_UP))
 	{
-		AimDir = CharacterAimDir::Up;
+		ChangeAimDir = CharacterAimDir::Up;
 	}
 
-	if (true == GameEngineInput::IsDown(VK_DOWN)
+	else if (true == GameEngineInput::IsDown(VK_DOWN)
 		|| true == GameEngineInput::IsPress(VK_DOWN))
 	{
-		AimDir = CharacterAimDir::Down;
+		ChangeAimDir = CharacterAimDir::Down;
 	}
 
-	if (true == GameEngineInput::IsPress(VK_UP) && true == GameEngineInput::IsPress(VK_RIGHT))
+	if (ChangeAimDir != AimDir)
 	{
-		AimDir = CharacterAimDir::RightUp;
+		AimDir = ChangeAimDir;
+		ChangeAnimation(State);
 	}
-
-	if (true == GameEngineInput::IsPress(VK_UP) && true == GameEngineInput::IsPress(VK_LEFT))
-	{
-		AimDir = CharacterAimDir::LeftUp;
-	}
-
-	if (true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsPress(VK_RIGHT))
-	{
-		AimDir = CharacterAimDir::RightDown;
-	}
-
-	if (true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsPress(VK_LEFT))
-	{
-		AimDir = CharacterAimDir::LeftDown;
-	}
-
-	ChangeState(CurState);
 }
 
 void BaseCharacter::StateUpdate(float _Delta)
@@ -167,15 +159,15 @@ void BaseCharacter::ChangeAnimation(std::string_view _State)
 
 	if (_State == "Aim")
 	{
-		if (CharacterAimDir::Left == AimDir || CharacterAimDir::Right == AimDir)
+		if (CharacterAimDir::Straight == AimDir)
 		{
 			AnimationName += "_Straight";
 		}
-		else if (CharacterAimDir::LeftUp == AimDir || CharacterAimDir::RightUp == AimDir)
+		else if (CharacterAimDir::StraightUp == AimDir)
 		{
 			AnimationName += "_StraightUp";
 		}
-		else if (CharacterAimDir::LeftDown == AimDir || CharacterAimDir::LeftDown == AimDir)
+		else if (CharacterAimDir::StraightDown == AimDir)
 		{
 			AnimationName += "_StraightDown";
 		}
@@ -183,11 +175,13 @@ void BaseCharacter::ChangeAnimation(std::string_view _State)
 		{
 			AnimationName += "_Up";
 		}
-		else if (CharacterAimDir::Up == AimDir)
+		else if (CharacterAimDir::Down == AimDir)
 		{
 			AnimationName += "_Down";
 		}
 	}
+
+	State = _State;
 
 	MainSpriteRenderer->ChangeAnimation(AnimationName);
 }
