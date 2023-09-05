@@ -2,6 +2,10 @@
 #include "BaseActor.h"
 
 #define JUMPPOWER 1200.0f
+#define FLOORCOLOR GameEngineColor::RED
+
+#define LEFTCHECKPOS { -20.0f, 40.0f }
+#define RIGHTCHECKPOS { 20.0f, 40.0f }
 
 class BaseCharacter : public BaseActor
 {
@@ -45,7 +49,7 @@ protected:
 	CharacterState CurState = CharacterState::Idle;
 
 	float Speed = 300.0f;
-	float DashSpeed = 500.0f;
+	float DashSpeed = 600.0f;
 
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> MainSpriteRenderer = nullptr;
