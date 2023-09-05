@@ -27,6 +27,19 @@ void BaseCharacter::Update(float _Delta)
 	StateUpdate(_Delta);
 }
 
+void BaseCharacter::DirChange()
+{
+	if (true == GameEngineInput::IsDown(VK_LEFT) || true == GameEngineInput::IsPress(VK_LEFT))
+	{
+		Dir = CharacterDir::Left;
+	}
+
+	if (true == GameEngineInput::IsDown(VK_RIGHT) || true == GameEngineInput::IsPress(VK_RIGHT))
+	{
+		Dir = CharacterDir::Right;
+	}
+}
+
 void BaseCharacter::StateUpdate(float _Delta)
 {
 	switch (CurState)

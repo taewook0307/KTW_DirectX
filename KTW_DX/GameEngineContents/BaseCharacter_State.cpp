@@ -10,6 +10,9 @@ void BaseCharacter::IdleStart()
 
 void BaseCharacter::IdleUpdate(float _Delta)
 {
+	DirChange();
+
+	// Gravity
 	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
 
 	if (CheckColor != GameEngineColor::RED)
@@ -21,6 +24,7 @@ void BaseCharacter::IdleUpdate(float _Delta)
 		GravityReset();
 	}
 
+	// Change State
 	if (true == GameEngineInput::IsPress(VK_LEFT)
 		|| true == GameEngineInput::IsPress(VK_RIGHT))
 	{
@@ -48,6 +52,9 @@ void BaseCharacter::RunStart()
 
 void BaseCharacter::RunUpdate(float _Delta)
 {
+	DirChange();
+
+	// Gravity
 	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
 
 	if (CheckColor != GameEngineColor::RED)
@@ -59,7 +66,9 @@ void BaseCharacter::RunUpdate(float _Delta)
 		GravityReset();
 	}
 	
+	// Move
 	float4 MovePos = float4::ZERO;
+	float4 CheckPos = float4::ZERO;
 
 	if (GameEngineInput::IsPress(VK_LEFT))
 	{
@@ -71,8 +80,11 @@ void BaseCharacter::RunUpdate(float _Delta)
 		MovePos = float4::RIGHT * _Delta * Speed;
 	}
 
+	GameEngineColor MoveCheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
+
 	Transform.AddLocalPosition(MovePos);
 
+	// Change State
 	if (float4::ZERO == MovePos)
 	{
 		ChangeState(CharacterState::Idle);
@@ -88,6 +100,9 @@ void BaseCharacter::JumpStart()
 
 void BaseCharacter::JumpUpdate(float _Delta)
 {
+	DirChange();
+
+	// Gravity
 	GameEngineColor CheckColor;
 
 	if (GetGravityForce().Y > 0)
@@ -108,6 +123,7 @@ void BaseCharacter::JumpUpdate(float _Delta)
 		GravityReset();
 	}
 
+	// Change State
 	GameEngineColor Color = Map::MainMap->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
 
 	if (GameEngineColor::RED == Color)
@@ -130,7 +146,14 @@ void BaseCharacter::DashStart()
 
 void BaseCharacter::DashUpdate(float _Delta)
 {
-	Transform.AddLocalPosition(float4::RIGHT * DashSpeed * _Delta);
+	if (CharacterDir::Right == Dir)
+	{
+		Transform.AddLocalPosition(float4::RIGHT * DashSpeed * _Delta);
+	}
+	else if (CharacterDir::Left == Dir)
+	{
+		Transform.AddLocalPosition(float4::LEFT * DashSpeed * _Delta);
+	}
 
 	if (true == MainSpriteRenderer->IsCurAnimationEnd())
 	{

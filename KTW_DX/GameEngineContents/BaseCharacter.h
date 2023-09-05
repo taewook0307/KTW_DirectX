@@ -17,6 +17,7 @@ public:
 	BaseCharacter& operator=(BaseCharacter&& _Other) noexcept = delete;
 
 protected:
+	void DirChange();
 	void ChangeState(CharacterState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimation(std::string_view _State);
