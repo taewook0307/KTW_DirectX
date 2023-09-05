@@ -10,7 +10,6 @@ enum class RenderOrder
 {
 	None,
 	BackGround,
-	BitMap,
 	Map,
 	Play,
 	MapUpper,
