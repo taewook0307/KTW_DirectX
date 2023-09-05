@@ -134,6 +134,28 @@ void BaseCharacter::DashUpdate(float _Delta)
 
 	if (true == MainSpriteRenderer->IsCurAnimationEnd())
 	{
+		ChangeState(CharacterState::Fall);
+		return;
+	}
+}
+
+void BaseCharacter::FallStart()
+{
+	ChangeAnimation("Fall");
+}
+
+void BaseCharacter::FallUpdate(float _Delta)
+{
+	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
+
+	if (CheckColor != GameEngineColor::RED)
+	{
+		GravityOn(_Delta);
+	}
+	else
+	{
+		GravityReset();
 		ChangeState(CharacterState::Idle);
+		return;
 	}
 }

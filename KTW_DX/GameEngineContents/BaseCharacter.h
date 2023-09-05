@@ -33,6 +33,9 @@ protected:
 	void DashStart();
 	void DashUpdate(float _Delta);
 
+	void FallStart();
+	void FallUpdate(float _Delta);
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
