@@ -3,6 +3,46 @@
 
 #include "Map.h"
 
+
+void BaseCharacter::CharacterMove(float _Delta)
+{
+	float4 MovePos = float4::ZERO;
+	float4 CheckPos = float4::ZERO;
+
+	if (GameEngineInput::IsPress(VK_LEFT))
+	{
+		MovePos = float4::LEFT * _Delta * Speed;
+		CheckPos = LEFTCHECKPOS;
+	}
+
+	if (GameEngineInput::IsPress(VK_RIGHT))
+	{
+		MovePos = float4::RIGHT * _Delta * Speed;
+		CheckPos = RIGHTCHECKPOS;
+	}
+
+	GameEngineColor MoveCheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition() + CheckPos, FLOORCOLOR);
+
+	if (FLOORCOLOR != MoveCheckColor)
+	{
+		Transform.AddLocalPosition(MovePos);
+	}
+}
+
+void BaseCharacter::CharacterGravity(float _Delta, float4 _CheckPos)
+{
+	GameEngineColor CheckColor = Map::MainMap->GetColor(_CheckPos, FLOORCOLOR);
+
+	if (CheckColor != FLOORCOLOR)
+	{
+		GravityOn(_Delta);
+	}
+	else
+	{
+		GravityReset();
+	}
+}
+
 void BaseCharacter::IdleStart()
 {
 	ChangeAnimation("Idle");
@@ -13,16 +53,7 @@ void BaseCharacter::IdleUpdate(float _Delta)
 	DirChange();
 
 	// Gravity
-	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
-
-	if (CheckColor != FLOORCOLOR)
-	{
-		GravityOn(_Delta);
-	}
-	else
-	{
-		GravityReset();
-	}
+	CharacterGravity(_Delta, Transform.GetWorldPosition());
 
 	// Change State
 	if (true == GameEngineInput::IsPress(VK_LEFT)
@@ -55,44 +86,21 @@ void BaseCharacter::RunUpdate(float _Delta)
 	DirChange();
 
 	// Gravity
-	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
-
-	if (CheckColor != FLOORCOLOR)
-	{
-		GravityOn(_Delta);
-	}
-	else
-	{
-		GravityReset();
-	}
+	CharacterGravity(_Delta, Transform.GetWorldPosition());
 	
 	// Move
-	float4 MovePos = float4::ZERO;
-	float4 CheckPos = float4::ZERO;
-
-	if (GameEngineInput::IsPress(VK_LEFT))
-	{
-		MovePos = float4::LEFT * _Delta * Speed;
-		CheckPos = LEFTCHECKPOS;
-	}
-
-	if (GameEngineInput::IsPress(VK_RIGHT))
-	{
-		MovePos = float4::RIGHT * _Delta * Speed;
-		CheckPos = RIGHTCHECKPOS;
-	}
-
-	GameEngineColor MoveCheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition() + CheckPos, FLOORCOLOR);
-
-	if (FLOORCOLOR != MoveCheckColor)
-	{
-		Transform.AddLocalPosition(MovePos);
-	}
+	CharacterMove(_Delta);
 
 	// Change State
-	if (float4::ZERO == MovePos)
+	if (true == GameEngineInput::IsFree(VK_LEFT) && true == GameEngineInput::IsFree(VK_RIGHT))
 	{
 		ChangeState(CharacterState::Idle);
+		return;
+	}
+
+	if (true == GameEngineInput::IsDown('Z'))
+	{
+		ChangeState(CharacterState::Jump);
 		return;
 	}
 }
@@ -108,25 +116,17 @@ void BaseCharacter::JumpUpdate(float _Delta)
 	DirChange();
 
 	// Gravity
-	GameEngineColor CheckColor;
-
 	if (GetGravityForce().Y > 0)
 	{
-		CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition() + float4 {0.0f, 80.0f}, FLOORCOLOR);
+		CharacterGravity(_Delta, Transform.GetWorldPosition() + float4{ 0.0f, 80.0f });
 	}
 	else
 	{
-		CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
+		CharacterGravity(_Delta, Transform.GetWorldPosition());
 	}
 
-	if (CheckColor != FLOORCOLOR)
-	{
-		GravityOn(_Delta);
-	}
-	else
-	{
-		GravityReset();
-	}
+	//Move
+	CharacterMove(_Delta);
 
 	// Change State
 	GameEngineColor Color = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
@@ -151,14 +151,27 @@ void BaseCharacter::DashStart()
 
 void BaseCharacter::DashUpdate(float _Delta)
 {
+	float4 MovePos = float4::ZERO;
+	float4 CheckPos = float4::ZERO;
+
 	if (CharacterDir::Right == Dir)
 	{
-		Transform.AddLocalPosition(float4::RIGHT * DashSpeed * _Delta);
+		MovePos = float4::RIGHT * DashSpeed * _Delta;
+		CheckPos = RIGHTCHECKPOS;
 	}
 	else if (CharacterDir::Left == Dir)
 	{
-		Transform.AddLocalPosition(float4::LEFT * DashSpeed * _Delta);
+		MovePos = float4::LEFT * DashSpeed * _Delta;
+		CheckPos = LEFTCHECKPOS;
 	}
+
+	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition() + CheckPos, FLOORCOLOR);
+
+	if (CheckColor != FLOORCOLOR)
+	{
+		Transform.AddLocalPosition(MovePos);
+	}
+
 
 	if (true == MainSpriteRenderer->IsCurAnimationEnd())
 	{
@@ -174,20 +187,17 @@ void BaseCharacter::FallStart()
 
 void BaseCharacter::FallUpdate(float _Delta)
 {
-	// Gravity
-	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
+	DirChange();
 
-	if (CheckColor != FLOORCOLOR)
+	// Gravity
+	CharacterGravity(_Delta, Transform.GetWorldPosition());
+
+	if (0 == GetGravityForce().Y)
 	{
-		GravityOn(_Delta);
-	}
-	else
-	{
-		GravityReset();
 		ChangeState(CharacterState::Idle);
 		return;
 	}
 
 	// Move
-	GameEngineColor MoveCheck = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
+	CharacterMove(_Delta);
 }

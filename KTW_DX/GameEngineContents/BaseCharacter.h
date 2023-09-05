@@ -22,6 +22,10 @@ public:
 
 protected:
 	void DirChange();
+	void CharacterMove(float _Delta);
+	void CharacterGravity(float _Delta, float4 _CheckPos);
+
+protected:
 	void ChangeState(CharacterState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimation(std::string_view _State);

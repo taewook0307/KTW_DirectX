@@ -20,6 +20,8 @@ void BaseCharacter::Start()
 	MainSpriteRenderer->CreateAnimation("CupHead_Fall", "Jump", 0.05f);
 	MainSpriteRenderer->ChangeAnimation("CupHead_Idle");
 	MainSpriteRenderer->AutoSpriteSizeOn();
+
+	Dir = CharacterDir::Right;
 }
 
 void BaseCharacter::Update(float _Delta)
