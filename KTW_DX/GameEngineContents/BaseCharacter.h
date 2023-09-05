@@ -22,6 +22,7 @@ public:
 
 protected:
 	void DirChange();
+	void AimDirChange();
 	void CharacterMove(float _Delta);
 	void CharacterGravity(float _Delta, float4 _CheckPos);
 
@@ -45,11 +46,15 @@ protected:
 	void FallStart();
 	void FallUpdate(float _Delta);
 
+	void AimStart();
+	void AimUpdate(float _Delta);
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
 
 	CharacterDir Dir = CharacterDir::None;
+	CharacterAimDir AimDir = CharacterAimDir::None;
 	CharacterState CurState = CharacterState::Idle;
 
 	float Speed = 300.0f;

@@ -6,7 +6,8 @@ enum class CharacterState
 	Run,
 	Jump,
 	Dash,
-	Fall
+	Fall,
+	Aim
 };
 
 enum class MiniMapCharacterState

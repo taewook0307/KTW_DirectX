@@ -69,6 +69,12 @@ void BaseCharacter::IdleUpdate(float _Delta)
 		return;
 	}
 
+	if (true == GameEngineInput::IsPress('C'))
+	{
+		ChangeState(CharacterState::Aim);
+		return;
+	}
+
 	if (true == GameEngineInput::IsDown(VK_SHIFT))
 	{
 		ChangeState(CharacterState::Dash);
