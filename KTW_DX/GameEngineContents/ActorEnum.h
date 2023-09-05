@@ -2,6 +2,7 @@
 
 enum class CharacterState
 {
+	Intro,
 	Idle,
 	Run,
 	Jump,

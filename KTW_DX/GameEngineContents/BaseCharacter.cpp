@@ -12,6 +12,7 @@ BaseCharacter::~BaseCharacter()
 void BaseCharacter::Start()
 {
 	MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Play);
+	MainSpriteRenderer->CreateAnimation("CupHead_Intro", "Intro_Flex", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Idle", "Idle", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Run", "Run", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Jump", "Jump", 0.05f);
@@ -23,12 +24,13 @@ void BaseCharacter::Start()
 	MainSpriteRenderer->CreateAnimation("CupHead_Aim_Up", "Aim_Up", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Aim_Down", "Aim_Down", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Duck", "Duck_Idle", 0.05f);
-	MainSpriteRenderer->ChangeAnimation("CupHead_Idle");
 	MainSpriteRenderer->AutoSpriteSizeOn();
 	MainSpriteRenderer->SetAutoScaleRatio(0.8f);
 
 	Dir = CharacterDir::Right;
 	AimDir = CharacterAimDir::Straight;
+
+	ChangeState(CharacterState::Intro);
 }
 
 void BaseCharacter::Update(float _Delta)
@@ -103,6 +105,8 @@ void BaseCharacter::StateUpdate(float _Delta)
 {
 	switch (CurState)
 	{
+	case CharacterState::Intro:
+		return IntroUpdate(_Delta);
 	case CharacterState::Idle:
 		return IdleUpdate(_Delta);
 	case CharacterState::Run:
@@ -128,6 +132,9 @@ void BaseCharacter::ChangeState(CharacterState _State)
 	{
 		switch (_State)
 		{
+		case CharacterState::Intro:
+			IntroStart();
+			break;
 		case CharacterState::Idle:
 			IdleStart();
 			break;

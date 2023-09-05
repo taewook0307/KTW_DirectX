@@ -31,6 +31,9 @@ protected:
 	void StateUpdate(float _Delta);
 	void ChangeAnimation(std::string_view _State);
 
+	void IntroStart();
+	void IntroUpdate(float _Delta);
+
 	void IdleStart();
 	void IdleUpdate(float _Delta);
 

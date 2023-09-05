@@ -43,6 +43,20 @@ void BaseCharacter::CharacterGravity(float _Delta, float4 _CheckPos)
 	}
 }
 
+void BaseCharacter::IntroStart()
+{
+	ChangeAnimation("Intro");
+}
+
+void BaseCharacter::IntroUpdate(float _Delta)
+{
+	if (true == MainSpriteRenderer->IsCurAnimationEnd())
+	{
+		ChangeState(CharacterState::Idle);
+		return;
+	}
+}
+
 void BaseCharacter::IdleStart()
 {
 	ChangeAnimation("Idle");

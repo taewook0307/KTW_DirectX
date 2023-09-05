@@ -49,7 +49,7 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	}
 
 	std::shared_ptr<BaseCharacter> NewPlayer = CreateActor<BaseCharacter>(UpdateOrder::Player);
-	NewPlayer->Transform.SetLocalPosition({ WinScaleHalf.X, -20.0f });
+	NewPlayer->Transform.SetLocalPosition({ 230.0f, -677.0f });
 
 	StageMap = CreateActor<Map>(UpdateOrder::Map);
 	StageMap->MapAnimationInit("FirstBossMapAni", "FirstBossMap", 0.05f);
