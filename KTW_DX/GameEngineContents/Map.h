@@ -19,6 +19,7 @@ public:
 
 	void MapInit(std::string_view _SpriteName);
 	void BitMapInit(std::string_view _SpriteName);
+	void MapAnimationInit(std::string_view _AnimationName, std::string_view _FileName, float _Inter = 0.1f, bool _Loop = true, bool _SizeFixWindow = true, unsigned int _Start = -1, unsigned int _End = -1);
 
 	GameEngineColor GetColor(float4 _Pos, GameEngineColor _DefaultColor);
 

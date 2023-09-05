@@ -15,13 +15,28 @@ Map::~Map()
 void Map::Start()
 {
 	MapRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Map);
-	BitMapRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Map);
+	BitMapRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BitMap);
 }
 
 void Map::MapInit(std::string_view _SpriteName)
 {
 	MapRenderer->SetSprite(_SpriteName);
 	MapRenderer->AutoSpriteSizeOn();
+}
+
+void Map::MapAnimationInit(std::string_view _AnimationName, std::string_view _FileName, float _Inter /*= 0.1f*/, bool _Loop /*= true*/, bool _SizeFixWindow /*= true*/, unsigned int _Start /*= -1*/, unsigned int _End /*= -1*/)
+{
+	MapRenderer->CreateAnimation(_AnimationName, _FileName, _Inter, _Start, _End, _Loop);
+	MapRenderer->ChangeAnimation(_AnimationName);
+
+	if (true == _SizeFixWindow)
+	{
+		MapRenderer->Transform.SetLocalScale(GameEngineCore::MainWindow.GetScale());
+	}
+	else
+	{
+		MapRenderer->AutoSpriteSizeOn();
+	}
 }
 
 void Map::BitMapInit(std::string_view _SpriteName)

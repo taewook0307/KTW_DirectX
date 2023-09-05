@@ -1,20 +1,19 @@
 ﻿#include "PreCompile.h"
-#include "PlayLevel.h"
+#include "FirstBossStage.h"
 #include "ContentsCore.h"
 
 #include "BaseCharacter.h"
 #include "Map.h"
 
-PlayLevel::PlayLevel()
+FirstBossStage::FirstBossStage()
 {
 }
 
-PlayLevel::~PlayLevel()
+FirstBossStage::~FirstBossStage()
 {
 }
 
-
-void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
+void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, -500 });
@@ -35,31 +34,30 @@ void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	}
 
 	{
-		GameEnginePath Path;
-		Path.MoveParentToExistsChild("Resources");
-		Path.MoveChild("Resources\\Texture\\Map\\TestMap.Png");
-		GameEngineTexture::Load(Path.GetStringPath());
-		GameEngineSprite::CreateSingle("TestMap.Png");
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources\\Texture\\Map\\FirstBoss\\FirstBossMap");
+		GameEngineSprite::CreateFolder(Dir.GetStringPath());
 	}
 
 	{
 		GameEnginePath Path;
 		Path.MoveParentToExistsChild("Resources");
-		Path.MoveChild("Resources\\Texture\\Map\\TestBitMap.Png");
+		Path.MoveChild("Resources\\Texture\\Map\\FirstBoss\\FirstBossBitMap.png");
 		GameEngineTexture::Load(Path.GetStringPath());
-		GameEngineSprite::CreateSingle("TestBitMap.Png");
+		GameEngineSprite::CreateSingle("FirstBossBitMap.Png");
 	}
 
 	std::shared_ptr<BaseCharacter> NewPlayer = CreateActor<BaseCharacter>(UpdateOrder::Player);
-	NewPlayer->Transform.SetLocalPosition({ WinScaleHalf.X, 0.0f });
+	NewPlayer->Transform.SetLocalPosition({ WinScaleHalf.X, -20.0f });
 
-	TestMap = CreateActor<Map>(UpdateOrder::Map);
-	TestMap->MapInit("TestMap.Png");
-	TestMap->BitMapInit("TestBitMap.Png");
-	TestMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
+	StageMap = CreateActor<Map>(UpdateOrder::Map);
+	StageMap->MapAnimationInit("FirstBossMapAni", "FirstBossMap", 0.05f);
+	StageMap->BitMapInit("FirstBossBitMap.Png");
+	StageMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 }
 
-void PlayLevel::Update(float _Delta)
+void FirstBossStage::Update(float _Delta)
 {
-	int a = 0;
+
 }

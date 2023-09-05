@@ -5,7 +5,7 @@
 #include "TitleLevel.h"
 #include "StoryLevel.h"
 #include "MiniMapLevel.h"
-#include "PlayLevel.h"
+#include "FirstBossStage.h"
 
 ContentsCore::ContentsCore()
 {
@@ -21,8 +21,8 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
 	GameEngineCore::CreateLevel<StoryLevel>("StoryLevel");
 	GameEngineCore::CreateLevel<MiniMapLevel>("MiniMapLevel");
-	GameEngineCore::CreateLevel<PlayLevel>("PlayLevel");
-	GameEngineCore::ChangeLevel("PlayLevel");
+	GameEngineCore::CreateLevel<FirstBossStage>("FirstBossStage");
+	GameEngineCore::ChangeLevel("FirstBossStage");
 }
 
 void ContentsCore::Update(float _Delta)

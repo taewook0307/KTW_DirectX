@@ -185,6 +185,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="CupHeadEnum.h" />
+    <ClInclude Include="FirstBossStage.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="LogoLevel.h">
       <SubType>
       </SubType>
@@ -198,10 +202,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="MiniMapLevel.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="PlayLevel.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -234,6 +234,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FirstBossStage.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="LogoLevel.cpp">
       <SubType>
       </SubType>
@@ -247,10 +251,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MiniMapLevel.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="PlayLevel.cpp">
       <SubType>
       </SubType>
     </ClCompile>
