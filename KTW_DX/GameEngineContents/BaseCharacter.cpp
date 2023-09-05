@@ -12,7 +12,7 @@ BaseCharacter::~BaseCharacter()
 void BaseCharacter::Start()
 {
 	MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Play);
-	MainSpriteRenderer->CreateAnimation("CupHead_Idle", "Idle");
+	MainSpriteRenderer->CreateAnimation("CupHead_Idle", "Idle", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Run", "Run", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Jump", "Jump", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Dash", "Dash_Air", 0.05f);
@@ -22,6 +22,7 @@ void BaseCharacter::Start()
 	MainSpriteRenderer->CreateAnimation("CupHead_Aim_StraightDown", "Aim_StraightDown", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Aim_Up", "Aim_Up", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Aim_Down", "Aim_Down", 0.05f);
+	MainSpriteRenderer->CreateAnimation("CupHead_Duck", "Duck_Idle", 0.05f);
 	MainSpriteRenderer->ChangeAnimation("CupHead_Idle");
 	MainSpriteRenderer->AutoSpriteSizeOn();
 	MainSpriteRenderer->SetAutoScaleRatio(0.8f);
@@ -114,6 +115,8 @@ void BaseCharacter::StateUpdate(float _Delta)
 		return FallUpdate(_Delta);
 	case CharacterState::Aim:
 		return AimUpdate(_Delta);
+	case CharacterState::Duck:
+		return DuckUpdate(_Delta);
 	default:
 		break;
 	}
@@ -142,6 +145,9 @@ void BaseCharacter::ChangeState(CharacterState _State)
 			break;
 		case CharacterState::Aim:
 			AimStart();
+			break;
+		case CharacterState::Duck:
+			DuckStart();
 			break;
 		default:
 			break;

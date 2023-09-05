@@ -46,6 +46,9 @@ protected:
 	void FallStart();
 	void FallUpdate(float _Delta);
 
+	void DuckStart();
+	void DuckUpdate(float _Delta);
+
 	void AimStart();
 	void AimUpdate(float _Delta);
 

@@ -75,6 +75,12 @@ void BaseCharacter::IdleUpdate(float _Delta)
 		return;
 	}
 
+	if (true == GameEngineInput::IsPress(VK_DOWN))
+	{
+		ChangeState(CharacterState::Duck);
+		return;
+	}
+
 	if (true == GameEngineInput::IsDown(VK_SHIFT))
 	{
 		ChangeState(CharacterState::Dash);
@@ -206,4 +212,20 @@ void BaseCharacter::FallUpdate(float _Delta)
 
 	// Move
 	CharacterMove(_Delta);
+}
+
+void BaseCharacter::DuckStart()
+{
+	ChangeAnimation("Duck");
+}
+
+void BaseCharacter::DuckUpdate(float _Delta)
+{
+	DirChange();
+
+	if (true == GameEngineInput::IsFree(VK_DOWN))
+	{
+		ChangeState(CharacterState::Idle);
+		return;
+	}
 }
