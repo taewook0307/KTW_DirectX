@@ -18,6 +18,14 @@ void Map::Start()
 	BitMapRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Map);
 }
 
+void Map::Update(float _Delta)
+{
+	if (true == GameEngineInput::IsDown('J'))
+	{
+		RendererSwitch();
+	}
+}
+
 void Map::MapInit(std::string_view _SpriteName)
 {
 	MapRenderer->SetSprite(_SpriteName);
@@ -45,6 +53,8 @@ void Map::BitMapInit(std::string_view _SpriteName)
 	BitMapRenderer->AutoSpriteSizeOn();
 
 	BitMapFileName = _SpriteName;
+
+	BitMapRenderer->Off();
 }
 
 GameEngineColor Map::GetColor(float4 _Pos, GameEngineColor _DefaultColor)
@@ -54,4 +64,20 @@ GameEngineColor Map::GetColor(float4 _Pos, GameEngineColor _DefaultColor)
 	std::shared_ptr<GameEngineTexture> Tex = GameEngineTexture::Find(BitMapFileName);
 
 	return Tex->GetColor(_Pos, _DefaultColor);
+}
+
+void Map::RendererSwitch()
+{
+	BitMapRenderSwitch = !BitMapRenderSwitch;
+
+	if (true == BitMapRenderSwitch)
+	{
+		MapRenderer->Off();
+		BitMapRenderer->On();
+	}
+	else
+	{
+		MapRenderer->On();
+		BitMapRenderer->Off();
+	}
 }

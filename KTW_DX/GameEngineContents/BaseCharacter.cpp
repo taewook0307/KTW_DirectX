@@ -27,6 +27,15 @@ void BaseCharacter::Start()
 void BaseCharacter::Update(float _Delta)
 {
 	StateUpdate(_Delta);
+
+	if (CharacterDir::Left == Dir)
+	{
+		Transform.SetLocalScale({ -1.0f ,1.0f });
+	}
+	else
+	{
+		Transform.SetLocalScale({ 1.0f ,1.0f });
+	}
 }
 
 void BaseCharacter::DirChange()

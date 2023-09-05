@@ -31,5 +31,10 @@ private:
 
 	std::string BitMapFileName = "";
 
+	bool BitMapRenderSwitch = false;
+
 	void Start() override;
+	void Update(float _Delta) override;
+
+	void RendererSwitch();
 };

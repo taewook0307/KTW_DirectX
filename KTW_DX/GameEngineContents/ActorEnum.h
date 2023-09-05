@@ -18,6 +18,13 @@ enum class MiniMapCharacterState
 enum class CharacterDir
 {
 	None,
+	Left,
+	Right
+};
+
+enum class CharacterAimDir
+{
+	None,
 	Up,
 	Down,
 	Left,
