@@ -41,6 +41,12 @@
     <ClInclude Include="MiniMapCharacter.h">
       <Filter>Actor\Character\MiniMap</Filter>
     </ClInclude>
+    <ClInclude Include="MenuLevel.h">
+      <Filter>Level\UILevel</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectMenu.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -85,6 +91,12 @@
     </ClCompile>
     <ClCompile Include="MiniMapCharacter_State.cpp">
       <Filter>Actor\Character\MiniMap</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuLevel.cpp">
+      <Filter>Level\UILevel</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectMenu.cpp">
+      <Filter>Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

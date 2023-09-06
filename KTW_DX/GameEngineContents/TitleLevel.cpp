@@ -57,6 +57,6 @@ void TitleLevel::Update(float _Delta)
 {
 	if (true == GameEngineInput::IsPress(VK_RETURN))
 	{
-		GameEngineCore::ChangeLevel("StoryLevel");
+		GameEngineCore::ChangeLevel("MenuLevel");
 	}
 }

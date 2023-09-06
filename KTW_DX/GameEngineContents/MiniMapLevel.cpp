@@ -54,6 +54,6 @@ void MiniMapLevel::Update(float _Delta)
 
 	if (true == GameEngineInput::IsDown('T'))
 	{
-		GameEngineCore::ChangeLevel("PlayLevel");
+		GameEngineCore::ChangeLevel("FirstBossStage");
 	}
 }

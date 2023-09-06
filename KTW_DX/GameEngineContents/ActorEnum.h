@@ -35,3 +35,9 @@ enum class CharacterAimDir
 	Up,
 	Down
 };
+
+enum class MainMenuSelect
+{
+	Start,
+	Exit
+};

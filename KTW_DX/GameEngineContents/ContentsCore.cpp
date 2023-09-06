@@ -3,6 +3,7 @@
 
 #include "LogoLevel.h"
 #include "TitleLevel.h"
+#include "MenuLevel.h"
 #include "StoryLevel.h"
 #include "MiniMapLevel.h"
 #include "FirstBossStage.h"
@@ -19,10 +20,11 @@ void ContentsCore::Start()
 {
 	GameEngineCore::CreateLevel<LogoLevel>("LogoLevel");
 	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
+	GameEngineCore::CreateLevel<MenuLevel>("MenuLevel");
 	GameEngineCore::CreateLevel<StoryLevel>("StoryLevel");
 	GameEngineCore::CreateLevel<MiniMapLevel>("MiniMapLevel");
 	GameEngineCore::CreateLevel<FirstBossStage>("FirstBossStage");
-	GameEngineCore::ChangeLevel("MiniMapLevel");
+	GameEngineCore::ChangeLevel("LogoLevel");
 }
 
 void ContentsCore::Update(float _Delta)

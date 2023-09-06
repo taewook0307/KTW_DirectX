@@ -3,6 +3,7 @@ enum class UpdateOrder
 	Player,
 	Monster,
 	Map,
+	Menu,
 	BackGround
 };
 
