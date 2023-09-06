@@ -16,6 +16,22 @@ public:
 	MiniMapCharacter& operator=(MiniMapCharacter&& _Other) noexcept = delete;
 
 protected:
+	void DirChange();
+	void ChangeState(MiniMapCharacterState _State);
+	void StateUpdate(float _Delta);
+	void ChangeAnimation(std::string_view _State);
+
+	void IdleStart();
+	void IdleUpdate(float _Delta);
+
+	void RunStart();
+	void RunUpdate(float _Delta);
+
+protected:
+	CharacterDir Dir = CharacterDir::None;
+	CharacterAimDir MoveDir = CharacterAimDir::Down;
+	MiniMapCharacterState CurState = MiniMapCharacterState::None;
+	std::string State = "";
 
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> MainSprite = nullptr;

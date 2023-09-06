@@ -14,6 +14,7 @@ enum class CharacterState
 
 enum class MiniMapCharacterState
 {
+	None,
 	Idle,
 	Run
 };

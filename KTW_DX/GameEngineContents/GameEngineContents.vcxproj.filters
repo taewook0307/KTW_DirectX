@@ -29,9 +29,6 @@
     <ClInclude Include="ActorEnum.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="MiniMapCharacter.h">
-      <Filter>Actor\Character</Filter>
-    </ClInclude>
     <ClInclude Include="BaseCharacter.h">
       <Filter>Actor\Character</Filter>
     </ClInclude>
@@ -40,6 +37,9 @@
     </ClInclude>
     <ClInclude Include="FirstBossStage.h">
       <Filter>Level\PlayLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMapCharacter.h">
+      <Filter>Actor\Character\MiniMap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -65,9 +65,6 @@
     <ClCompile Include="MiniMapLevel.cpp">
       <Filter>Level\UILevel</Filter>
     </ClCompile>
-    <ClCompile Include="MiniMapCharacter.cpp">
-      <Filter>Actor\Character</Filter>
-    </ClCompile>
     <ClCompile Include="BaseCharacter.cpp">
       <Filter>Actor\Character</Filter>
     </ClCompile>
@@ -82,6 +79,12 @@
     </ClCompile>
     <ClCompile Include="FirstBossStage.cpp">
       <Filter>Level\PlayLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMapCharacter.cpp">
+      <Filter>Actor\Character\MiniMap</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMapCharacter_State.cpp">
+      <Filter>Actor\Character\MiniMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +111,9 @@
     </Filter>
     <Filter Include="Actor\Character">
       <UniqueIdentifier>{5c1e6902-e740-47e8-9154-7378be7e2777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Character\MiniMap">
+      <UniqueIdentifier>{983c635e-3cbd-47f4-9702-c8a1b1de45ce}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

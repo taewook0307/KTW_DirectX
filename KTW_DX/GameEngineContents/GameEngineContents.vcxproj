@@ -250,6 +250,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MiniMapCharacter_State.cpp" />
     <ClCompile Include="MiniMapLevel.cpp">
       <SubType>
       </SubType>

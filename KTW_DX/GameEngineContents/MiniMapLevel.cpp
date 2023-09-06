@@ -33,7 +33,7 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	GameEngineSprite::CreateSingle("CupHead_MiniMap.png");
 	GameEngineSprite::CreateSingle("MiniMap.png");
 
-	MiniMap = CreateActor<Map>(UpdateOrder::BackGround);
+	MiniMap = CreateActor<Map>(UpdateOrder::Map);
 	MiniMap->MapInit("CupHead_MiniMap.png");
 	MiniMap->BitMapInit("MiniMap.png");
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("CupHead_MiniMap.png");
