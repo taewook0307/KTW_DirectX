@@ -31,19 +31,23 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		GameEngineTexture::Load(File.GetStringPath());
 	}
 	GameEngineSprite::CreateSingle("CupHead_MiniMap.png");
-	GameEngineSprite::CreateSingle("MiniMap.png");
+	GameEngineSprite::CreateSingle("CupHead_MiniMap_BitMap.png");
+
 
 	MiniMap = CreateActor<Map>(UpdateOrder::Map);
 	MiniMap->MapInit("CupHead_MiniMap.png");
-	MiniMap->BitMapInit("MiniMap.png");
+	MiniMap->BitMapInit("CupHead_MiniMap_BitMap.png");
+
+
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("CupHead_MiniMap.png");
 
 	float4 MapTextureHalfScale = MapTexture->GetScale().Half();
 
 	MiniMap->Transform.SetLocalPosition({ MapTextureHalfScale.X, -MapTextureHalfScale.Y });
 
+
 	Character = CreateActor<MiniMapCharacter>(UpdateOrder::Player);
-	Character->Transform.SetLocalPosition({ 823.0f, -2090.0f });
+	Character->Transform.SetLocalPosition({ 823.0f, -2100.0f });
 }
 
 void MiniMapLevel::Update(float _Delta)

@@ -1,6 +1,8 @@
 #include "PreCompile.h"
 #include "MiniMapCharacter.h"
 
+#include "Map.h"
+
 void MiniMapCharacter::IdleStart()
 {
 	ChangeAnimation("Idle");
@@ -55,14 +57,12 @@ void MiniMapCharacter::RunUpdate(float _Delta)
 		CheckPos += { 20.0f, 40.0f };
 	}
 
-	Transform.AddLocalPosition(MovePos);
-
-	/*CheckPos += Transform.GetWorldPosition();
+	CheckPos += Transform.GetWorldPosition();
 
 	if (Map::MainMap->GetColor(CheckPos, FLOORCOLOR) != FLOORCOLOR)
 	{
 		Transform.AddLocalPosition(MovePos);
-	}*/
+	}
 
 	if (float4::ZERO == MovePos)
 	{

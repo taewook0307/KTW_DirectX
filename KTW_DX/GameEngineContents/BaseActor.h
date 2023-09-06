@@ -4,6 +4,8 @@
 
 #define GRAVITYFORCE 4000.0f
 
+#define FLOORCOLOR GameEngineColor::RED
+
 class BaseActor : public GameEngineActor
 {
 public:

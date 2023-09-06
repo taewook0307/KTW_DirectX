@@ -1,5 +1,7 @@
 #pragma once
 
+#define FLOORCOLOR GameEngineColor::RED
+
 #include <GameEngineCore/GameEngineActor.h>
 
 class MiniMapCharacter : public GameEngineActor
