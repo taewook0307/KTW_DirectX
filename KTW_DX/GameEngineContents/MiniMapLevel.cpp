@@ -43,11 +43,13 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	MiniMap->Transform.SetLocalPosition({ MapTextureHalfScale.X, -MapTextureHalfScale.Y });
 
 	Character = CreateActor<MiniMapCharacter>(UpdateOrder::Player);
-	Character->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
+	Character->Transform.SetLocalPosition({ 823.0f, -2090.0f });
 }
 
 void MiniMapLevel::Update(float _Delta)
 {
+	float4 Check = Character->Transform.GetWorldPosition();
+
 	GetMainCamera()->Transform.SetLocalPosition(Character->Transform.GetWorldPosition());
 
 	if (true == GameEngineInput::IsDown('T'))
