@@ -41,3 +41,16 @@ enum class MainMenuSelect
 	Start,
 	Exit
 };
+
+enum class BulletType
+{
+	Normal
+};
+
+enum class BulletState
+{
+	None,
+	Spawn,
+	Move,
+	Death
+};

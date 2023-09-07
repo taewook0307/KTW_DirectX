@@ -2,6 +2,7 @@ enum class UpdateOrder
 {
 	UI,
 	Player,
+	Bullet,
 	Monster,
 	Map,
 	Menu,
@@ -15,6 +16,7 @@ enum class RenderOrder
 	Map,
 	Play,
 	MapUpper,
+	Bullet,
 	Fade,
 	UI,
 	Max

@@ -56,6 +56,9 @@
     <ClInclude Include="MiniMapLevel.h">
       <Filter>Level\MiniMapLevel</Filter>
     </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Actor\Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -116,6 +119,12 @@
     <ClCompile Include="MiniMapLevel.cpp">
       <Filter>Level\MiniMapLevel</Filter>
     </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Actor\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet_State.cpp">
+      <Filter>Actor\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -150,6 +159,9 @@
     </Filter>
     <Filter Include="Level\MiniMapLevel">
       <UniqueIdentifier>{19b02982-2e08-48f5-8016-312f39f6fe0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Bullet">
+      <UniqueIdentifier>{4e4ac9cd-1018-4a3b-8af6-be50aa0bb39c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

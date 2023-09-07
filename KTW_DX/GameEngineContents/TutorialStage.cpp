@@ -48,6 +48,20 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 		GameEngineSprite::CreateSingle("TutorialTestBitMap.Png");
 	}
 
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources\\Texture\\BUllet");
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
+	}
+
 	std::shared_ptr<BaseCharacter> NewPlayer = CreateActor<BaseCharacter>(UpdateOrder::Player);
 	NewPlayer->Transform.SetLocalPosition({ 230.0f, -500.0f });
 

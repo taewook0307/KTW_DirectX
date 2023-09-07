@@ -48,6 +48,20 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 		GameEngineSprite::CreateSingle("FirstBossBitMap.Png");
 	}
 
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources\\Texture\\BUllet");
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
+	}
+
 	Player = CreateActor<BaseCharacter>(UpdateOrder::Player);
 	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
 
