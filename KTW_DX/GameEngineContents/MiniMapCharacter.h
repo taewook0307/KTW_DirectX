@@ -1,10 +1,8 @@
 #pragma once
 
-#define FLOORCOLOR GameEngineColor::RED
+#include "BaseActor.h"
 
-#include <GameEngineCore/GameEngineActor.h>
-
-class MiniMapCharacter : public GameEngineActor
+class MiniMapCharacter : public BaseActor
 {
 public:
 	// constrcuter destructer

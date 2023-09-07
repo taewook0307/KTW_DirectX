@@ -37,7 +37,6 @@ void MiniMapCharacter::RunUpdate(float _Delta)
 	if (GameEngineInput::IsPress(VK_UP))
 	{
 		MovePos += float4::UP * _Delta * Speed;
-		CheckPos += { 0.0f, 80.0f };
 	}
 
 	if (GameEngineInput::IsPress(VK_DOWN))
@@ -48,13 +47,46 @@ void MiniMapCharacter::RunUpdate(float _Delta)
 	if (GameEngineInput::IsPress(VK_LEFT))
 	{
 		MovePos += float4::LEFT * _Delta * Speed;
-		CheckPos += { -20.0f, 40.0f };
 	}
 
 	if (GameEngineInput::IsPress(VK_RIGHT))
 	{
 		MovePos += float4::RIGHT * _Delta * Speed;
-		CheckPos += { 20.0f, 40.0f };
+	}
+
+	if (CharacterDir::Left == Dir && CharacterAimDir::Straight == MoveDir)
+	{
+		CheckPos = { -20.0f, 40.0f };
+	}
+
+	if (CharacterDir::Right == Dir && CharacterAimDir::Straight == MoveDir)
+	{
+		CheckPos = { 20.0f, 40.0f };
+	}
+
+	if (CharacterDir::Left == Dir && CharacterAimDir::StraightDown == MoveDir)
+	{
+		CheckPos = { -20.0f, 0.0f };
+	}
+
+	if (CharacterDir::Right == Dir && CharacterAimDir::StraightDown == MoveDir)
+	{
+		CheckPos = { 20.0f, 0.0f };
+	}
+
+	if (CharacterDir::Left == Dir && CharacterAimDir::StraightUp == MoveDir)
+	{
+		CheckPos = { -20.0f, 80.0f };
+	}
+
+	if (CharacterDir::Right == Dir && CharacterAimDir::StraightUp == MoveDir)
+	{
+		CheckPos = { 20.0f, 80.0f };
+	}
+
+	if (CharacterAimDir::Up == MoveDir)
+	{
+		CheckPos = { 0.0f, 80.0f };
 	}
 
 	CheckPos += Transform.GetWorldPosition();
