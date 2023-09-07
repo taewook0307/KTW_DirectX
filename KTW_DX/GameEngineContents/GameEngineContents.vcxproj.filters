@@ -5,9 +5,6 @@
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
-    <ClInclude Include="BackGround.h">
-      <Filter>Actor</Filter>
-    </ClInclude>
     <ClInclude Include="CupHeadEnum.h">
       <Filter>Global</Filter>
     </ClInclude>
@@ -19,9 +16,6 @@
     </ClInclude>
     <ClInclude Include="StoryLevel.h">
       <Filter>Level\UILevel</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Actor</Filter>
     </ClInclude>
     <ClInclude Include="MiniMapLevel.h">
       <Filter>Level\UILevel</Filter>
@@ -39,28 +33,31 @@
       <Filter>Level\PlayLevel</Filter>
     </ClInclude>
     <ClInclude Include="MiniMapCharacter.h">
-      <Filter>Actor\Character\MiniMap</Filter>
+      <Filter>Actor\MiniMap</Filter>
     </ClInclude>
     <ClInclude Include="MenuLevel.h">
       <Filter>Level\UILevel</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectMenu.h">
-      <Filter>Actor</Filter>
     </ClInclude>
     <ClInclude Include="FadeObject.h">
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="MiniMapEnter.h">
-      <Filter>Actor</Filter>
+      <Filter>Actor\MiniMap</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>Actor\Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Actor\Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectMenu.h">
+      <Filter>Actor\Etc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
-    </ClCompile>
-    <ClCompile Include="BackGround.cpp">
-      <Filter>Actor</Filter>
     </ClCompile>
     <ClCompile Include="LogoLevel.cpp">
       <Filter>Level\UILevel</Filter>
@@ -70,9 +67,6 @@
     </ClCompile>
     <ClCompile Include="StoryLevel.cpp">
       <Filter>Level\UILevel</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Actor</Filter>
     </ClCompile>
     <ClCompile Include="MiniMapLevel.cpp">
       <Filter>Level\UILevel</Filter>
@@ -93,22 +87,28 @@
       <Filter>Level\PlayLevel</Filter>
     </ClCompile>
     <ClCompile Include="MiniMapCharacter.cpp">
-      <Filter>Actor\Character\MiniMap</Filter>
+      <Filter>Actor\MiniMap</Filter>
     </ClCompile>
     <ClCompile Include="MiniMapCharacter_State.cpp">
-      <Filter>Actor\Character\MiniMap</Filter>
+      <Filter>Actor\MiniMap</Filter>
     </ClCompile>
     <ClCompile Include="MenuLevel.cpp">
       <Filter>Level\UILevel</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectMenu.cpp">
-      <Filter>Actor</Filter>
     </ClCompile>
     <ClCompile Include="FadeObject.cpp">
       <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="MiniMapEnter.cpp">
-      <Filter>Actor</Filter>
+      <Filter>Actor\MiniMap</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>Actor\Etc</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Actor\Etc</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectMenu.cpp">
+      <Filter>Actor\Etc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -136,8 +136,11 @@
     <Filter Include="Actor\Character">
       <UniqueIdentifier>{5c1e6902-e740-47e8-9154-7378be7e2777}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Character\MiniMap">
+    <Filter Include="Actor\MiniMap">
       <UniqueIdentifier>{983c635e-3cbd-47f4-9702-c8a1b1de45ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Etc">
+      <UniqueIdentifier>{c8f58765-657a-47c9-bcd4-19e6cafa812f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

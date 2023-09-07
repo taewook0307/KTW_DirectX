@@ -34,7 +34,8 @@ protected:
 	std::string State = "";
 
 private:
-	std::shared_ptr<GameEngineSpriteRenderer> MainSprite = nullptr;
+	std::shared_ptr<GameEngineSpriteRenderer> MiniCharacterRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> MiniCharacterCollision = nullptr;
 
 	void Start() override;
 	void Update(float _Delta) override;

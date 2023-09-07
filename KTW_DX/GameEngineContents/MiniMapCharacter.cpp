@@ -23,25 +23,31 @@ void MiniMapCharacter::Start()
 
 	GameEngineSprite::CreateCut("MiniMap_Character.png", 10, 10);
 
-	MainSprite = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Play);
-	MainSprite->CreateAnimation("MiniCharacter_Idle_Up", "MiniMap_Character.png", 0.1f, 0, 3);
-	MainSprite->CreateAnimation("MiniCharacter_Run_Up", "MiniMap_Character.png", 0.05f, 4, 15);
+	MiniCharacterRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Play);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_Up", "MiniMap_Character.png", 0.1f, 0, 3);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_Up", "MiniMap_Character.png", 0.05f, 4, 15);
 
-	MainSprite->CreateAnimation("MiniCharacter_Idle_StraightUp", "MiniMap_Character.png", 0.1f, 16, 18);
-	MainSprite->CreateAnimation("MiniCharacter_Run_StraightUp", "MiniMap_Character.png", 0.05f, 19, 30);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_StraightUp", "MiniMap_Character.png", 0.1f, 16, 18);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_StraightUp", "MiniMap_Character.png", 0.05f, 19, 30);
 
-	MainSprite->CreateAnimation("MiniCharacter_Idle_Straight", "MiniMap_Character.png", 0.1f, 31, 34);
-	MainSprite->CreateAnimation("MiniCharacter_Run_Straight", "MiniMap_Character.png", 0.05f, 35, 45);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_Straight", "MiniMap_Character.png", 0.1f, 31, 34);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_Straight", "MiniMap_Character.png", 0.05f, 35, 45);
 
-	MainSprite->CreateAnimation("MiniCharacter_Idle_StraightDown", "MiniMap_Character.png", 0.1f, 46, 49);
-	MainSprite->CreateAnimation("MiniCharacter_Run_StraightDown", "MiniMap_Character.png", 0.05f, 50, 61);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_StraightDown", "MiniMap_Character.png", 0.1f, 46, 49);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_StraightDown", "MiniMap_Character.png", 0.05f, 50, 61);
 
-	MainSprite->CreateAnimation("MiniCharacter_Idle_Down", "MiniMap_Character.png", 0.1f, 62, 65);
-	MainSprite->CreateAnimation("MiniCharacter_Run_Down", "MiniMap_Character.png", 0.05f, 66, 78);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_Down", "MiniMap_Character.png", 0.1f, 62, 65);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_Down", "MiniMap_Character.png", 0.05f, 66, 78);
 
-	MainSprite->AutoSpriteSizeOn();
+	MiniCharacterRenderer->AutoSpriteSizeOn();
 
 	ChangeState(MiniMapCharacterState::Idle);
+
+	std::shared_ptr<GameEngineSprite> MiniCharacterSprite = GameEngineSprite::Find("MiniMap_Character.png");
+	float4 SpriteScale = MiniCharacterSprite->GetSpriteData(62).GetScale();
+
+	MiniCharacterCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Player);
+	MiniCharacterCollision->Transform.SetLocalScale(SpriteScale);
 }
 
 void MiniMapCharacter::Update(float _Delta)
@@ -182,5 +188,5 @@ void MiniMapCharacter::ChangeAnimation(std::string_view _State)
 
 	State = _State;
 
-	MainSprite->ChangeAnimation(AnimationName);
+	MiniCharacterRenderer->ChangeAnimation(AnimationName);
 }

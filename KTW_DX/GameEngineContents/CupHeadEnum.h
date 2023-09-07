@@ -19,3 +19,13 @@ enum class RenderOrder
 	UI,
 	Max
 };
+
+enum class CollisionOrder
+{
+	None,
+	Player,
+	Bullet,
+	Monster,
+	FieldEnter,
+	Max
+};
