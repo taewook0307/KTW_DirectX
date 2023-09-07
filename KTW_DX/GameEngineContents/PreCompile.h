@@ -11,5 +11,7 @@
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 
+#include <GameEngineCore/GameEngineCollision.h>
+
 #include "CupHeadEnum.h"
 #include "ActorEnum.h"
