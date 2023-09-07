@@ -56,7 +56,7 @@ void MiniMapLevel::Update(float _Delta)
 
 	GetMainCamera()->Transform.SetLocalPosition(Character->Transform.GetWorldPosition());
 
-	if (true == GameEngineInput::IsDown('T'))
+	if (true == GameEngineInput::IsDown(VK_RETURN))
 	{
 		GameEngineCore::ChangeLevel("FirstBossStage");
 	}
