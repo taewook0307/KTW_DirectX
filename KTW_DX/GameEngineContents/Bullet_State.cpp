@@ -27,22 +27,23 @@ void Bullet::MoveUpdate(float _Delta)
 
 	Transform.AddLocalPosition(MovePos);
 
-	/*float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
+	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
 
-	float4 WinScale = GameEngineCore::MainWindow.GetScale();
+	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
 
-	float4 WindowOutCheckPos = WinScale;
+	float4 WinLeftPos = { CameraPos.X - WinHalfScale.X, CameraPos.Y + WinHalfScale.Y };
+	float4 WinRightPos = { CameraPos.X + WinHalfScale.X, CameraPos.Y - WinHalfScale.Y };
 
 	float4 BulletPos = Transform.GetWorldPosition();
 
-	if (BulletPos.X < 0.0f
-		|| BulletPos.X >= WindowOutCheckPos.X
-		|| BulletPos.Y > 0.0f
-		|| BulletPos.Y <= WindowOutCheckPos.Y)
+	if (BulletPos.X < WinLeftPos.X
+		|| BulletPos.X >= WinRightPos.X
+		|| BulletPos.Y > WinLeftPos.Y
+		|| BulletPos.Y <= WinRightPos.Y)
 	{
 		ChangeBulletState(BulletState::Death);
 		return;
-	}*/
+	}
 }
 
 void Bullet::DeathStart()

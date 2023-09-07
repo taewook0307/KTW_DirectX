@@ -12,10 +12,11 @@ Bullet::~Bullet()
 void Bullet::Start()
 {
 	BulletRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Bullet);
-	BulletRenderer->CreateAnimation("Bullet_Spawn", "BulletSpawn");
-	BulletRenderer->CreateAnimation("Bullet_Move", "BulletMove");
-	BulletRenderer->CreateAnimation("Bullet_Death", "BulletDeath");
+	BulletRenderer->CreateAnimation("Bullet_Spawn", "BulletSpawn", 0.02f);
+	BulletRenderer->CreateAnimation("Bullet_Move", "BulletMove", 0.02f);
+	BulletRenderer->CreateAnimation("Bullet_Death", "BulletDeath", 0.02f);
 	BulletRenderer->AutoSpriteSizeOn();
+	BulletRenderer->SetAutoScaleRatio(0.3f);
 
 	ChangeBulletState(BulletState::Spawn);
 }
