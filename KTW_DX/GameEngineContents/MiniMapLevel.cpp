@@ -5,6 +5,8 @@
 #include "MiniMapEnter.h"
 #include "MiniMapCharacter.h"
 
+float4 MiniMapLevel::CharacterPos = CHARACTERSTARTPOS;
+
 MiniMapLevel::MiniMapLevel()
 {
 }
@@ -76,17 +78,20 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	// 캐릭터 생성
 	Character = CreateActor<MiniMapCharacter>(UpdateOrder::Player);
-	Character->Transform.SetLocalPosition(CHARACTERSTARTPOS);
+	Character->Transform.SetLocalPosition(CharacterPos);
 }
 
 void MiniMapLevel::Update(float _Delta)
 {
-	float4 Check = Character->Transform.GetWorldPosition();
-
 	GetMainCamera()->Transform.SetLocalPosition(Character->Transform.GetWorldPosition());
 
 	if (true == GameEngineInput::IsDown(VK_RETURN))
 	{
 		GameEngineCore::ChangeLevel("FirstBossStage");
 	}
+}
+
+void MiniMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
+{
+	CharacterPos = Character->Transform.GetWorldPosition();
 }

@@ -30,5 +30,8 @@ private:
 	std::shared_ptr<class MiniMapEnter> FirstEnter = nullptr;
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
+	void LevelEnd(GameEngineLevel* _NextLevel) override;
 	void Update(float _Delta) override;
+
+	static float4 CharacterPos;
 };

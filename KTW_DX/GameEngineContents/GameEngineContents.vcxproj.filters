@@ -17,9 +17,6 @@
     <ClInclude Include="StoryLevel.h">
       <Filter>Level\UILevel</Filter>
     </ClInclude>
-    <ClInclude Include="MiniMapLevel.h">
-      <Filter>Level\UILevel</Filter>
-    </ClInclude>
     <ClInclude Include="ActorEnum.h">
       <Filter>Global</Filter>
     </ClInclude>
@@ -56,6 +53,9 @@
     <ClInclude Include="TutorialStage.h">
       <Filter>Level\PlayLevel</Filter>
     </ClInclude>
+    <ClInclude Include="MiniMapLevel.h">
+      <Filter>Level\MiniMapLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -69,9 +69,6 @@
       <Filter>Level\UILevel</Filter>
     </ClCompile>
     <ClCompile Include="StoryLevel.cpp">
-      <Filter>Level\UILevel</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniMapLevel.cpp">
       <Filter>Level\UILevel</Filter>
     </ClCompile>
     <ClCompile Include="BaseCharacter.cpp">
@@ -116,6 +113,9 @@
     <ClCompile Include="TutorialStage.cpp">
       <Filter>Level\PlayLevel</Filter>
     </ClCompile>
+    <ClCompile Include="MiniMapLevel.cpp">
+      <Filter>Level\MiniMapLevel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -147,6 +147,9 @@
     </Filter>
     <Filter Include="Actor\Etc">
       <UniqueIdentifier>{c8f58765-657a-47c9-bcd4-19e6cafa812f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\MiniMapLevel">
+      <UniqueIdentifier>{19b02982-2e08-48f5-8016-312f39f6fe0f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
