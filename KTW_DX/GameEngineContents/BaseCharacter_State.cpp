@@ -124,6 +124,12 @@ void BaseCharacter::RunUpdate(float _Delta)
 		return;
 	}
 
+	if (true == GameEngineInput::IsDown(VK_SHIFT))
+	{
+		ChangeState(CharacterState::Dash);
+		return;
+	}
+
 	if (true == GameEngineInput::IsDown('Z'))
 	{
 		ChangeState(CharacterState::Jump);
