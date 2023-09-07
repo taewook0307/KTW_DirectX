@@ -34,3 +34,15 @@ void LogoLevel::Update(float _Delta)
 		GameEngineCore::ChangeLevel("TitleLevel");
 	}
 }
+
+
+void LogoLevel::LevelEnd(GameEngineLevel* _NextLevel)
+{
+	if (nullptr != Logo)
+	{
+		Logo->Death();
+		Logo = nullptr;
+	}
+
+	GameEngineTexture::Release("Logo.png");
+}
