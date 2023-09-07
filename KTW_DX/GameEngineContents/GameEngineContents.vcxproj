@@ -185,6 +185,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="CupHeadEnum.h" />
+    <ClInclude Include="FadeObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="FirstBossStage.h">
       <SubType>
       </SubType>
@@ -239,6 +243,10 @@
     <ClCompile Include="BaseCharacter_Shoot_State.cpp" />
     <ClCompile Include="BaseCharacter_State.cpp" />
     <ClCompile Include="ContentsCore.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FadeObject.cpp">
       <SubType>
       </SubType>
     </ClCompile>

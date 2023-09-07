@@ -47,6 +47,9 @@
     <ClInclude Include="SelectMenu.h">
       <Filter>Actor</Filter>
     </ClInclude>
+    <ClInclude Include="FadeObject.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -97,6 +100,9 @@
     </ClCompile>
     <ClCompile Include="SelectMenu.cpp">
       <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeObject.cpp">
+      <Filter>Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

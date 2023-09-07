@@ -1,5 +1,6 @@
 enum class UpdateOrder
 {
+	UI,
 	Player,
 	Monster,
 	Map,
@@ -14,5 +15,7 @@ enum class RenderOrder
 	Map,
 	Play,
 	MapUpper,
+	Fade,
+	UI,
 	Max
 };
