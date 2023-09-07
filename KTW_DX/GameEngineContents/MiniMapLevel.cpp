@@ -67,7 +67,7 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	TutorialEnter = CreateActor<MiniMapEnter>(UpdateOrder::Map);
 	TutorialEnter->EnterAnimationInit("Tutorial_Enter_Ani", "TutorialEnter");
 	TutorialEnter->Transform.SetLocalPosition(TUTORIALENTERPOS);
-	TutorialEnter->SetEnterLevel("TutorialLevel");
+	TutorialEnter->SetEnterLevel("TutorialStage");
 
 	FirstEnter = CreateActor<MiniMapEnter>(UpdateOrder::Map);
 	FirstEnter->EnterAnimationInit("FirstBossMap_Enter_Ani", "FirstBossMapEnter");

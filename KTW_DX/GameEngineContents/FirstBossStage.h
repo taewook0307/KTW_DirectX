@@ -18,6 +18,8 @@ public:
 protected:
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void Update(float _Delta) override;
+
 private:
 	std::shared_ptr<class Map> StageMap = nullptr;
+	std::shared_ptr<class BaseCharacter> Player = nullptr;
 };

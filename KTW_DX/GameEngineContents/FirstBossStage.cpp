@@ -48,8 +48,8 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 		GameEngineSprite::CreateSingle("FirstBossBitMap.Png");
 	}
 
-	std::shared_ptr<BaseCharacter> NewPlayer = CreateActor<BaseCharacter>(UpdateOrder::Player);
-	NewPlayer->Transform.SetLocalPosition({ 230.0f, -677.0f });
+	Player = CreateActor<BaseCharacter>(UpdateOrder::Player);
+	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
 
 	StageMap = CreateActor<Map>(UpdateOrder::Map);
 	StageMap->MapAnimationInit("FirstBossMapAni", "FirstBossMap", 0.05f);
@@ -59,5 +59,8 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 
 void FirstBossStage::Update(float _Delta)
 {
-
+	if (true == GameEngineInput::IsDown(VK_ESCAPE))
+	{
+		GameEngineCore::ChangeLevel("MiniMapLevel");
+	}
 }

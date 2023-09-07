@@ -53,6 +53,9 @@
     <ClInclude Include="SelectMenu.h">
       <Filter>Actor\Etc</Filter>
     </ClInclude>
+    <ClInclude Include="TutorialStage.h">
+      <Filter>Level\PlayLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -109,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="SelectMenu.cpp">
       <Filter>Actor\Etc</Filter>
+    </ClCompile>
+    <ClCompile Include="TutorialStage.cpp">
+      <Filter>Level\PlayLevel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
