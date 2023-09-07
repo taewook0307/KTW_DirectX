@@ -50,6 +50,9 @@
     <ClInclude Include="FadeObject.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="MiniMapEnter.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -103,6 +106,9 @@
     </ClCompile>
     <ClCompile Include="FadeObject.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMapEnter.cpp">
+      <Filter>Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
