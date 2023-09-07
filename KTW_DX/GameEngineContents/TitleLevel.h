@@ -22,5 +22,5 @@ protected:
 private:
 	std::shared_ptr<class BackGround> TitleBackGround = nullptr;
 	std::shared_ptr<class BackGround> TitleAnimation = nullptr;
-	std::shared_ptr<class FadeObject> FadeEffect = nullptr;
+	//std::shared_ptr<class FadeObject> FadeEffect = nullptr;
 };
