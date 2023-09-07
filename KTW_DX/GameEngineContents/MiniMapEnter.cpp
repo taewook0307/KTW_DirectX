@@ -20,11 +20,17 @@ void MiniMapEnter::Update(float _Delta)
 	if (true == EnterCollision->Collision(CollisionOrder::Player))
 	{
 		EnterRenderer->AnimationPauseOff();
+
+		if (true == GameEngineInput::IsDown('Z') || true == GameEngineInput::IsDown(VK_RETURN))
+		{
+			GameEngineCore::ChangeLevel(EnterLevel);
+		}
 	}
 	else
 	{
 		EnterRenderer->AnimationPauseOn();
 	}
+
 }
 
 void MiniMapEnter::EnterAnimationInit(std::string_view _AnimationName, std::string_view _SpriteName)
