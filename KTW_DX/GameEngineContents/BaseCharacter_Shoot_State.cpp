@@ -9,7 +9,6 @@ void BaseCharacter::AimStart()
 void BaseCharacter::AimUpdate(float _Delta)
 {
 	DirChange();
-	AimDirChange();
 
 	if (true == GameEngineInput::IsFree('C'))
 	{

@@ -29,6 +29,7 @@ void Bullet::Update(float _Delta)
 	{
 		Transform.SetLocalScale({ -1.0f, 1.0f });
 	}
+
 	else if (BulletDirection::Right == BulletDir)
 	{
 		Transform.SetLocalScale({ 1.0f, 1.0f });

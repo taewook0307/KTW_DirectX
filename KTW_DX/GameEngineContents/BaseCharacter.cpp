@@ -60,15 +60,35 @@ void BaseCharacter::Update(float _Delta)
 			std::shared_ptr<Bullet> NewBullet = GetLevel()->CreateActor<Bullet>(UpdateOrder::Bullet);
 			float4 NewBulletPos = float4::ZERO;
 
-			if (CharacterDir::Left == Dir)
+			if (CharacterDir::Left == Dir && CharacterAimDir::Straight == AimDir)
 			{
-				NewBulletPos = Transform.GetWorldPosition() + float4{ -50.0f, 0.0f };
+				NewBulletPos = Transform.GetWorldPosition() + float4{ -50.0f, 60.0f };
 				NewBullet->SetBulletDir(BulletDirection::Left);
 			}
-			else if(CharacterDir::Right == Dir)
+			else if(CharacterDir::Right == Dir && CharacterAimDir::Straight == AimDir)
 			{
-				NewBulletPos = Transform.GetWorldPosition() + float4{ 50.0f, 0.0f };
+				NewBulletPos = Transform.GetWorldPosition() + float4{ 50.0f, 60.0f };
 				NewBullet->SetBulletDir(BulletDirection::Right);
+			}
+			else if (CharacterDir::Left == Dir && CharacterAimDir::Up == AimDir)
+			{
+				NewBulletPos = Transform.GetWorldPosition() + float4{ -30.0f, 130.0f };
+				NewBullet->SetBulletDir(BulletDirection::Up);
+			}
+			else if (CharacterDir::Left == Dir && CharacterAimDir::Down == AimDir)
+			{
+				NewBulletPos = Transform.GetWorldPosition() + float4{ -20.0f, 00.0f };
+				NewBullet->SetBulletDir(BulletDirection::Down);
+			}
+			else if (CharacterDir::Right == Dir && CharacterAimDir::Up == AimDir)
+			{
+				NewBulletPos = Transform.GetWorldPosition() + float4{ 30.0f, 130.0f };
+				NewBullet->SetBulletDir(BulletDirection::Up);
+			}
+			else if (CharacterDir::Right == Dir && CharacterAimDir::Down == AimDir)
+			{
+				NewBulletPos = Transform.GetWorldPosition() + float4{ 20.0f, 00.0f };
+				NewBullet->SetBulletDir(BulletDirection::Down);
 			}
 			
 			NewBullet->Transform.SetLocalPosition(NewBulletPos);
@@ -99,6 +119,8 @@ void BaseCharacter::DirChange()
 	{
 		Dir = CharacterDir::Right;
 	}
+
+	AimDirChange();
 }
 
 void BaseCharacter::AimDirChange()
