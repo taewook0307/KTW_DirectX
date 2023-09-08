@@ -55,3 +55,16 @@ enum class BulletState
 	Move,
 	Death
 };
+
+enum class BulletDirection
+{
+	None,
+	Up,
+	RightUp,
+	Right,
+	RightDown,
+	Down,
+	LeftDown,
+	Left,
+	LeftUp
+};

@@ -61,10 +61,12 @@ void BaseCharacter::Update(float _Delta)
 			if (CharacterDir::Left == Dir)
 			{
 				NewBulletPos = Transform.GetWorldPosition() + float4{ -50.0f, 0.0f };
+				NewBullet->SetBulletDir(BulletDirection::Left);
 			}
 			else if(CharacterDir::Right == Dir)
 			{
 				NewBulletPos = Transform.GetWorldPosition() + float4{ 50.0f, 0.0f };
+				NewBullet->SetBulletDir(BulletDirection::Right);
 			}
 			
 			NewBullet->Transform.SetLocalPosition(NewBulletPos);

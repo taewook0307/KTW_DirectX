@@ -20,6 +20,11 @@ public:
 		Type = _Type;
 	}
 
+	void SetBulletDir(BulletDirection _Dir)
+	{
+		BulletDir = _Dir;
+	}
+
 protected:
 	void ChangeBulletState(BulletState _State);
 	void StateUpdate(float _Delta);
@@ -42,4 +47,6 @@ private:
 	BulletType Type = BulletType::Normal;
 	BulletState CurState = BulletState::None;
 	std::string State = "";
+
+	BulletDirection BulletDir = BulletDirection::None;
 };

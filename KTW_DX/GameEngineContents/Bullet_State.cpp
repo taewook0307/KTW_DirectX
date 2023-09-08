@@ -25,7 +25,19 @@ void Bullet::MoveUpdate(float _Delta)
 	float Speed = 700.0f;
 	float4 MovePos = float4::RIGHT * Speed * _Delta;
 
+	if (BulletDirection::Right == BulletDir)
+	{
+		MovePos = float4::RIGHT * Speed * _Delta;
+	}
+
+	else if (BulletDirection::Left == BulletDir)
+	{
+		MovePos = float4::LEFT * Speed * _Delta;
+	}
+
 	Transform.AddLocalPosition(MovePos);
+
+
 
 	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
 
