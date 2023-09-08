@@ -1,7 +1,7 @@
 #pragma once
 #include "BaseActor.h"
 
-#define JUMPPOWER 1200.0f
+#define JUMPPOWER 1500.0f
 #define SHOOTTIMER 0.2f
 
 #define LEFTCHECKPOS { -20.0f, 40.0f }

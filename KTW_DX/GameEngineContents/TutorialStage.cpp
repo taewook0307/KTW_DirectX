@@ -35,17 +35,17 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	{
 		GameEnginePath Path;
 		Path.MoveParentToExistsChild("Resources");
-		Path.MoveChild("Resources\\Texture\\Map\\Tutorial\\TutorialTestMap.png");
+		Path.MoveChild("Resources\\Texture\\Map\\Tutorial\\TutorialMap.png");
 		GameEngineTexture::Load(Path.GetStringPath());
-		GameEngineSprite::CreateSingle("TutorialTestMap.Png");
+		GameEngineSprite::CreateSingle("TutorialMap.Png");
 	}
 
 	{
 		GameEnginePath Path;
 		Path.MoveParentToExistsChild("Resources");
-		Path.MoveChild("Resources\\Texture\\Map\\Tutorial\\TutorialTestBitMap.png");
+		Path.MoveChild("Resources\\Texture\\Map\\Tutorial\\TutorialBitMap.png");
 		GameEngineTexture::Load(Path.GetStringPath());
-		GameEngineSprite::CreateSingle("TutorialTestBitMap.Png");
+		GameEngineSprite::CreateSingle("TutorialBitMap.Png");
 	}
 
 	{
@@ -62,20 +62,22 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
-	std::shared_ptr<BaseCharacter> NewPlayer = CreateActor<BaseCharacter>(UpdateOrder::Player);
-	NewPlayer->Transform.SetLocalPosition({ 230.0f, -500.0f });
+	Player = CreateActor<BaseCharacter>(UpdateOrder::Player);
+	Player->Transform.SetLocalPosition({ 230.0f, -500.0f });
 
 	TutorialMap = CreateActor<Map>(UpdateOrder::Map);
-	TutorialMap->MapInit("TutorialTestMap.Png");
-	TutorialMap->BitMapInit("TutorialTestBitMap.Png");
+	TutorialMap->MapInit("TutorialMap.Png");
+	TutorialMap->BitMapInit("TutorialBitMap.Png");
 
-	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialTestMap.Png");
+	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialMap.Png");
 	float4 SpriteHalfScale = Sprite->GetSpriteData(0).GetScale().Half();
 
 	TutorialMap->Transform.SetLocalPosition({ SpriteHalfScale.X, -SpriteHalfScale.Y });
 }
 void TutorialStage::Update(float _Delta)
 {
+	GetMainCamera()->Transform.SetLocalPosition(Player->Transform.GetWorldPosition());
+
 	if (true == GameEngineInput::IsDown(VK_ESCAPE))
 	{
 		GameEngineCore::ChangeLevel("MiniMapLevel");
