@@ -44,3 +44,8 @@ bool BackGround::AnimationEndCheck()
 {
 	return MainSpriteRenderer->IsCurAnimationEnd();
 }
+
+void BackGround::SetBackGroundRendererPivotType(PivotType _Pivot)
+{
+	MainSpriteRenderer->SetPivotType(_Pivot);
+}

@@ -68,7 +68,8 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	TitleAnimation = CreateActor<BackGround>(UpdateOrder::BackGround);
 	TitleAnimation->AnimationInit("Title_Animation", "TitleAnimation", 0.04f, true, false);
-	TitleAnimation->Transform.SetLocalPosition({ 0.0f, -75.0f });
+	TitleAnimation->Transform.SetLocalPosition({ 0.0f, -GameEngineCore::MainWindow.GetScale().Half().Y });
+	TitleAnimation->SetBackGroundRendererPivotType(PivotType::Bottom);
 }
 
 void TitleLevel::Update(float _Delta)

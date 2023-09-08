@@ -32,6 +32,8 @@ void BaseCharacter::Start()
 	MainSpriteRenderer->AutoSpriteSizeOn();
 	MainSpriteRenderer->SetAutoScaleRatio(0.8f);
 
+	MainSpriteRenderer->SetPivotType(PivotType::Bottom);
+
 	Dir = CharacterDir::Right;
 	AimDir = CharacterAimDir::Straight;
 
