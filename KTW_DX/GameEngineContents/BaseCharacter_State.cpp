@@ -260,6 +260,11 @@ void BaseCharacter::DuckUpdate(float _Delta)
 {
 	DirChange();
 
+	if (true == MainSpriteRenderer->IsCurAnimationEnd() && true == GameEngineInput::IsPress(VK_DOWN))
+	{
+		ChangeAnimation("Duck_Idle");
+	}
+
 	if (true == GameEngineInput::IsFree(VK_DOWN))
 	{
 		ChangeState(CharacterState::Idle);
