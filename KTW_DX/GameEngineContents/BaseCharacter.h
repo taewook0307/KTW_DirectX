@@ -2,6 +2,7 @@
 #include "BaseActor.h"
 
 #define JUMPPOWER 1200.0f
+#define SHOOTTIMER 0.2f
 
 #define LEFTCHECKPOS { -20.0f, 40.0f }
 #define RIGHTCHECKPOS { 20.0f, 40.0f }
@@ -54,6 +55,9 @@ protected:
 	void AimStart();
 	void AimUpdate(float _Delta);
 
+	void ShootStart();
+	void ShootUpdate(float _Delta);
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
@@ -66,6 +70,9 @@ protected:
 	float Speed = 300.0f;
 	float DashSpeed = 600.0f;
 
+
+	float ShootTimer = SHOOTTIMER;
+	bool Shoot = false;
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> MainSpriteRenderer = nullptr;
 };

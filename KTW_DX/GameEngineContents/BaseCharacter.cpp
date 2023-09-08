@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "BaseCharacter.h"
 
+#include "Bullet.h"
+
 BaseCharacter::BaseCharacter()
 {
 }
@@ -26,6 +28,7 @@ void BaseCharacter::Start()
 	MainSpriteRenderer->CreateAnimation("CupHead_Aim_Down", "Aim_Down", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Duck", "Duck", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Duck_Idle", "Duck_Idle", 0.05f);
+	MainSpriteRenderer->CreateAnimation("CupHead_Shoot", "Shoot_Straight", 0.05f);
 	MainSpriteRenderer->AutoSpriteSizeOn();
 	MainSpriteRenderer->SetAutoScaleRatio(0.8f);
 
@@ -46,6 +49,38 @@ void BaseCharacter::Update(float _Delta)
 	else
 	{
 		Transform.SetLocalScale({ 1.0f ,1.0f });
+	}
+
+	if (true == GameEngineInput::IsDown('X') || true == GameEngineInput::IsPress('X'))
+	{
+		if (false == Shoot)
+		{
+			std::shared_ptr<Bullet> NewBullet = GetLevel()->CreateActor<Bullet>(UpdateOrder::Bullet);
+			float4 NewBulletPos = float4::ZERO;
+
+			if (CharacterDir::Left == Dir)
+			{
+				NewBulletPos = Transform.GetWorldPosition() + float4{ -50.0f, 0.0f };
+			}
+			else if(CharacterDir::Right == Dir)
+			{
+				NewBulletPos = Transform.GetWorldPosition() + float4{ 50.0f, 0.0f };
+			}
+			
+			NewBullet->Transform.SetLocalPosition(NewBulletPos);
+			Shoot = true;
+		}
+	}
+
+	if (true == Shoot)
+	{
+		ShootTimer -= _Delta;
+
+		if (ShootTimer < 0.0f)
+		{
+			Shoot = false;
+			ShootTimer = SHOOTTIMER;
+		}
 	}
 }
 
@@ -123,6 +158,8 @@ void BaseCharacter::StateUpdate(float _Delta)
 		return AimUpdate(_Delta);
 	case CharacterState::Duck:
 		return DuckUpdate(_Delta);
+	case CharacterState::Shoot:
+		return ShootUpdate(_Delta);
 	default:
 		break;
 	}
@@ -157,6 +194,9 @@ void BaseCharacter::ChangeState(CharacterState _State)
 			break;
 		case CharacterState::Duck:
 			DuckStart();
+			break;
+		case CharacterState::Shoot:
+			ShootStart();
 			break;
 		default:
 			break;

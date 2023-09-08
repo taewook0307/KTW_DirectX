@@ -2,7 +2,6 @@
 #include "BaseCharacter.h"
 
 #include "Map.h"
-#include "Bullet.h"
 
 
 void BaseCharacter::CharacterMove(float _Delta)
@@ -78,13 +77,6 @@ void BaseCharacter::IdleUpdate(float _Delta)
 		return;
 	}
 
-	if (true == GameEngineInput::IsDown('X'))
-	{
-		std::shared_ptr<Bullet> NewBullet = GetLevel()->CreateActor<Bullet>(UpdateOrder::Bullet);
-		float4 NewBulletPos = Transform.GetWorldPosition() + float4 RIGHTCHECKPOS;
-		NewBullet->Transform.SetLocalPosition(NewBulletPos);
-	}
-
 	if (true == GameEngineInput::IsPress('Z'))
 	{
 		ChangeState(CharacterState::Jump);
@@ -94,6 +86,12 @@ void BaseCharacter::IdleUpdate(float _Delta)
 	if (true == GameEngineInput::IsPress('C'))
 	{
 		ChangeState(CharacterState::Aim);
+		return;
+	}
+
+	if (true == GameEngineInput::IsPress('X'))
+	{
+		ChangeState(CharacterState::Shoot);
 		return;
 	}
 

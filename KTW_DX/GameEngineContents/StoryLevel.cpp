@@ -43,6 +43,19 @@ void StoryLevel::Update(float _Delta)
 			GameEngineCore::ChangeLevel("MiniMapLevel");
 		}
 	}
+
+	if (true == GameEngineInput::IsPress(VK_RETURN))
+	{
+		if (AnimationNumber < 11)
+		{
+			++AnimationNumber;
+			ChangeStoryAnimation();
+		}
+		else
+		{
+			GameEngineCore::ChangeLevel("MiniMapLevel");
+		}
+	}
 }
 
 void StoryLevel::ChangeStoryAnimation()
