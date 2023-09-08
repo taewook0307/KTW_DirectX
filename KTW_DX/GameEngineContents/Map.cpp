@@ -39,7 +39,7 @@ void Map::MapAnimationInit(std::string_view _AnimationName, std::string_view _Fi
 
 	if (true == _SizeFixWindow)
 	{
-		MapRenderer->Transform.SetLocalScale(GameEngineCore::MainWindow.GetScale());
+		MapRenderer->SetImageScale(GameEngineCore::MainWindow.GetScale());
 	}
 	else
 	{

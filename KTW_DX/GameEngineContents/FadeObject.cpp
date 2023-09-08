@@ -17,7 +17,7 @@ void FadeObject::Start()
 void FadeObject::SetFadeType(bool _FadeIn)
 {
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
-	FadeRenderer->Transform.SetLocalScale(WinScale);
+	FadeRenderer->SetImageScale(WinScale);
 
 	if (true == _FadeIn)
 	{
