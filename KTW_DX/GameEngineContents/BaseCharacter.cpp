@@ -16,14 +16,16 @@ void BaseCharacter::Start()
 	MainSpriteRenderer->CreateAnimation("CupHead_Idle", "Idle", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Run", "Run", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Jump", "Jump", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Dash", "Dash_Air", 0.05f);
+	MainSpriteRenderer->CreateAnimation("CupHead_Dash", "Dash_Ground", 0.05f);
+	MainSpriteRenderer->CreateAnimation("CupHead_Dash_Air", "Dash_Air", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Fall", "Jump", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Aim_Straight", "Aim_Straight", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Aim_StraightUp", "Aim_StraightUp", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Aim_StraightDown", "Aim_StraightDown", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Aim_Up", "Aim_Up", 0.05f);
 	MainSpriteRenderer->CreateAnimation("CupHead_Aim_Down", "Aim_Down", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Duck", "Duck_Idle", 0.05f);
+	MainSpriteRenderer->CreateAnimation("CupHead_Duck", "Duck", 0.05f);
+	MainSpriteRenderer->CreateAnimation("CupHead_Duck_Idle", "Duck_Idle", 0.05f);
 	MainSpriteRenderer->AutoSpriteSizeOn();
 	MainSpriteRenderer->SetAutoScaleRatio(0.8f);
 

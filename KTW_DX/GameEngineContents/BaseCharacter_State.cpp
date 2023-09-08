@@ -186,7 +186,16 @@ void BaseCharacter::JumpUpdate(float _Delta)
 
 void BaseCharacter::DashStart()
 {
-	ChangeAnimation("Dash");
+	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
+
+	if (CheckColor != FLOORCOLOR)
+	{
+		ChangeAnimation("Dash_Air");
+	}
+	else
+	{
+		ChangeAnimation("Dash");
+	}
 }
 
 void BaseCharacter::DashUpdate(float _Delta)
