@@ -44,6 +44,12 @@ bool GameEngineCollision::Collision(int _Order, const float4& _Next, std::functi
 bool GameEngineCollision::CollisionEvent(int _Order, const EventParameter& _Event)
 {
 	std::shared_ptr<GameEngineCollisionGroup> OtherGroup = GetLevel()->Collisions[_Order];
+
+	if (nullptr == OtherGroup)
+	{
+		return false;
+	}
+
 	return OtherGroup->CollisionEvent(GetDynamic_Cast_This<GameEngineCollision>(), _Event);
 }
 
