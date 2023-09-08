@@ -59,6 +59,9 @@
     <ClInclude Include="Bullet.h">
       <Filter>Actor\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="LoadingObject.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -124,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="Bullet_State.cpp">
       <Filter>Actor\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingObject.cpp">
+      <Filter>Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
