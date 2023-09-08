@@ -24,6 +24,15 @@ void Bullet::Start()
 void Bullet::Update(float _Delta)
 {
 	StateUpdate(_Delta);
+
+	if (BulletDirection::Left == BulletDir)
+	{
+		Transform.SetLocalScale({ -1.0f, 1.0f });
+	}
+	else if (BulletDirection::Right == BulletDir)
+	{
+		Transform.SetLocalScale({ 1.0f, 1.0f });
+	}
 }
 
 void Bullet::ChangeBulletState(BulletState _State)
