@@ -62,6 +62,9 @@
     <ClInclude Include="LoadingObject.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="UpperObject.h">
+      <Filter>Actor\Etc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -130,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="LoadingObject.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="UpperObject.cpp">
+      <Filter>Actor\Etc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
