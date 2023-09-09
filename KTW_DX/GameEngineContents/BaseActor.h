@@ -5,6 +5,7 @@
 #define GRAVITYFORCE 4000.0f
 
 #define FLOORCOLOR GameEngineColor { 0, 0, 0, 255 }
+#define STOOLCOLOR GameEngineColor { 0, 0, 255, 255 }
 
 class BaseActor : public GameEngineActor
 {

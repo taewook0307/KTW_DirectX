@@ -33,13 +33,28 @@ void BaseCharacter::CharacterGravity(float _Delta, float4 _CheckPos)
 {
 	GameEngineColor CheckColor = Map::MainMap->GetColor(_CheckPos, FLOORCOLOR);
 
-	if (CheckColor != FLOORCOLOR)
+	if (false == StoolPass)
 	{
-		GravityOn(_Delta);
+		if (FLOORCOLOR != CheckColor && STOOLCOLOR != CheckColor)
+		{
+			GravityOn(_Delta);
+		}
+		else
+		{
+			GravityReset();
+		}
 	}
 	else
 	{
-		GravityReset();
+		if (FLOORCOLOR != CheckColor)
+		{
+			GravityOn(_Delta);
+		}
+		else
+		{
+			GravityReset();
+			StoolPass = false;
+		}
 	}
 }
 
@@ -169,7 +184,7 @@ void BaseCharacter::JumpUpdate(float _Delta)
 	// Change State
 	GameEngineColor Color = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
 
-	if (FLOORCOLOR == Color)
+	if (FLOORCOLOR == Color || STOOLCOLOR == Color)
 	{
 		ChangeState(CharacterState::Idle);
 		return;
@@ -257,10 +272,17 @@ void BaseCharacter::DuckStart()
 void BaseCharacter::DuckUpdate(float _Delta)
 {
 	DirChange();
+	CharacterGravity(_Delta, Transform.GetWorldPosition());
 
 	if (true == MainSpriteRenderer->IsCurAnimationEnd() && true == GameEngineInput::IsPress(VK_DOWN))
 	{
 		ChangeAnimation("Duck_Idle");
+	}
+
+	if (true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsDown('Z'))
+	{
+		ChangeAnimation("Fall");
+		StoolPass = true;
 	}
 
 	if (true == GameEngineInput::IsFree(VK_DOWN))

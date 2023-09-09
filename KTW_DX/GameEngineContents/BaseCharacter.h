@@ -73,6 +73,7 @@ protected:
 
 	float ShootTimer = SHOOTTIMER;
 	bool Shoot = false;
+	bool StoolPass = false;
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> MainSpriteRenderer = nullptr;
 };
