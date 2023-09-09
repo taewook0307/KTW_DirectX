@@ -104,13 +104,13 @@ void TutorialStage::TutorialLevelCameraMove()
 	float4 PlayerPos = Player->Transform.GetWorldPosition();
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 
-	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialMap.Png");
-	float4 SpriteScale = Sprite->GetSpriteData(0).GetScale();
-
 	if (PlayerPos.X < WinScale.Half().X)
 	{
 		return;
 	}
+
+	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialMap.Png");
+	float4 SpriteScale = Sprite->GetSpriteData(0).GetScale();
 
 	if (PlayerPos.X > SpriteScale.X - WinScale.Half().X)
 	{
