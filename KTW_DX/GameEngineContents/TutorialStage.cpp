@@ -33,25 +33,27 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	}
 
 	{
-		GameEnginePath Path;
-		Path.MoveParentToExistsChild("Resources");
-		Path.MoveChild("Resources\\Texture\\Map\\Tutorial\\TutorialMap.png");
-		GameEngineTexture::Load(Path.GetStringPath());
-		GameEngineSprite::CreateSingle("TutorialMap.Png");
-	}
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources\\Texture\\Map\\Tutorial");
+		std::vector<GameEngineFile> AllFiles = Dir.GetAllFile();
 
-	{
-		GameEnginePath Path;
-		Path.MoveParentToExistsChild("Resources");
-		Path.MoveChild("Resources\\Texture\\Map\\Tutorial\\TutorialBitMap.png");
-		GameEngineTexture::Load(Path.GetStringPath());
+		size_t FileCount = AllFiles.size();
+
+		for (size_t i = 0; i < FileCount; i++)
+		{
+			GameEngineFile File = AllFiles[i];
+			GameEngineTexture::Load(File.GetStringPath());
+		}
+
+		GameEngineSprite::CreateSingle("TutorialMap.Png");
 		GameEngineSprite::CreateSingle("TutorialBitMap.Png");
 	}
 
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\BUllet");
+		Dir.MoveChild("Resources\\Texture\\Bullet");
 		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
 		for (size_t i = 0; i < Directorys.size(); i++)
@@ -76,8 +78,6 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 }
 void TutorialStage::Update(float _Delta)
 {
-	GetMainCamera()->Transform.SetLocalPosition(Player->Transform.GetWorldPosition());
-
 	if (true == GameEngineInput::IsDown(VK_ESCAPE))
 	{
 		GameEngineCore::ChangeLevel("MiniMapLevel");
