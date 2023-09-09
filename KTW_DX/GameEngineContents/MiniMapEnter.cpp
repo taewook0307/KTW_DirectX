@@ -38,6 +38,7 @@ void MiniMapEnter::EnterAnimationInit(std::string_view _AnimationName, std::stri
 	EnterRenderer->CreateAnimation(_AnimationName, _SpriteName);
 	EnterRenderer->ChangeAnimation(_AnimationName);
 	EnterRenderer->AutoSpriteSizeOn();
+	EnterRenderer->SetPivotType(PivotType::Bottom);
 
 	std::shared_ptr<GameEngineSprite> CurSprite = GameEngineSprite::Find(_SpriteName);
 	float4 SpriteScale = CurSprite->GetSpriteData(0).GetScale();
