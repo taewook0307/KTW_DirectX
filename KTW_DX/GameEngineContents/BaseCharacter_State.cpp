@@ -104,12 +104,6 @@ void BaseCharacter::IdleUpdate(float _Delta)
 		return;
 	}
 
-	if (true == GameEngineInput::IsPress('X'))
-	{
-		ChangeState(CharacterState::Shoot);
-		return;
-	}
-
 	if (true == GameEngineInput::IsPress(VK_DOWN))
 	{
 		ChangeState(CharacterState::Duck);

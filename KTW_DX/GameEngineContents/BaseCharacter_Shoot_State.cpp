@@ -15,14 +15,20 @@ void BaseCharacter::AimUpdate(float _Delta)
 		ChangeState(CharacterState::Idle);
 		return;
 	}
+
+	if (true == GameEngineInput::IsPress('X'))
+	{
+		ChangeState(CharacterState::AimShoot);
+		return;
+	}
 }
 
-void BaseCharacter::ShootStart()
+void BaseCharacter::AimShootStart()
 {
-	ChangeAnimation("Shoot");
+	ChangeAnimation("AimShoot");
 }
 
-void BaseCharacter::ShootUpdate(float _Delta)
+void BaseCharacter::AimShootUpdate(float _Delta)
 {
 	DirChange();
 
@@ -37,4 +43,26 @@ void BaseCharacter::ShootUpdate(float _Delta)
 		ChangeState(CharacterState::Idle);
 		return;
 	}
+}
+
+void BaseCharacter::RunShootStart()
+{
+	ChangeAnimation("RunShoot");
+}
+
+void BaseCharacter::RunShootUpdate(float _Delta)
+{
+	DirChange();
+
+	if (true == GameEngineInput::IsFree('X'))
+	{
+		ChangeState(CharacterState::Run);
+		return;
+	}
+
+	/*if (true == GameEngineInput::IsFree('X'))
+	{
+		ChangeState(CharacterState::Run);
+		return;
+	}*/
 }

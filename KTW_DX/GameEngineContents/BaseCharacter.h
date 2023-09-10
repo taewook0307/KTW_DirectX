@@ -55,8 +55,11 @@ protected:
 	void AimStart();
 	void AimUpdate(float _Delta);
 
-	void ShootStart();
-	void ShootUpdate(float _Delta);
+	void AimShootStart();
+	void AimShootUpdate(float _Delta);
+
+	void RunShootStart();
+	void RunShootUpdate(float _Delta);
 
 protected:
 	void Start() override;

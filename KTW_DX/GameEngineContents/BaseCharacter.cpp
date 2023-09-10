@@ -28,11 +28,13 @@ void BaseCharacter::Start()
 	PlayerRenderer->CreateAnimation("CupHead_Aim_Down", "Aim_Down", 0.05f);
 	PlayerRenderer->CreateAnimation("CupHead_Duck", "Duck", 0.05f);
 	PlayerRenderer->CreateAnimation("CupHead_Duck_Idle", "Duck_Idle", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Shoot_Straight", "Shoot_Straight", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Shoot_StraightUp", "Shoot_StraightUp", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Shoot_StraightDown", "Shoot_StraightDown", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Shoot_Up", "Shoot_Up", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Shoot_Down", "Shoot_Down", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_AimShoot_Straight", "Shoot_Straight", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_AimShoot_StraightUp", "Shoot_StraightUp", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_AimShoot_StraightDown", "Shoot_StraightDown", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_AimShoot_Up", "Shoot_Up", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_AimShoot_Down", "Shoot_Down", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_RunShoot_Straight", "RunShoot_Straight", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_RunShoot_StraightUp", "RunShoot_StraightUp", 0.05f);
 	PlayerRenderer->AutoSpriteSizeOn();
 	PlayerRenderer->SetAutoScaleRatio(0.8f);
 	PlayerRenderer->SetPivotType(PivotType::Bottom);
@@ -233,8 +235,8 @@ void BaseCharacter::StateUpdate(float _Delta)
 		return AimUpdate(_Delta);
 	case CharacterState::Duck:
 		return DuckUpdate(_Delta);
-	case CharacterState::Shoot:
-		return ShootUpdate(_Delta);
+	case CharacterState::AimShoot:
+		return AimShootUpdate(_Delta);
 	default:
 		break;
 	}
@@ -270,8 +272,8 @@ void BaseCharacter::ChangeState(CharacterState _State)
 		case CharacterState::Duck:
 			DuckStart();
 			break;
-		case CharacterState::Shoot:
-			ShootStart();
+		case CharacterState::AimShoot:
+			AimShootStart();
 			break;
 		default:
 			break;
@@ -287,7 +289,7 @@ void BaseCharacter::ChangeAnimation(std::string_view _State)
 
 	AnimationName += _State;
 
-	if ("Aim" == _State || "Shoot" == _State)
+	if ("Aim" == _State || "AimShoot" == _State)
 	{
 		if (CharacterAimDir::Straight == AimDir)
 		{
