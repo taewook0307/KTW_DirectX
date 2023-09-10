@@ -28,6 +28,8 @@ void BaseCharacter::Start()
 	PlayerRenderer->CreateAnimation("CupHead_Aim_Down", "Aim_Down", 0.05f);
 	PlayerRenderer->CreateAnimation("CupHead_Duck", "Duck", 0.05f);
 	PlayerRenderer->CreateAnimation("CupHead_Duck_Idle", "Duck_Idle", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Shoot_Straight", "Shoot_Straight", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Shoot_Up", "Shoot_Up", 0.05f);
 	PlayerRenderer->CreateAnimation("CupHead_AimShoot_Straight", "Shoot_Straight", 0.05f);
 	PlayerRenderer->CreateAnimation("CupHead_AimShoot_StraightUp", "Shoot_StraightUp", 0.05f);
 	PlayerRenderer->CreateAnimation("CupHead_AimShoot_StraightDown", "Shoot_StraightDown", 0.05f);
@@ -64,88 +66,88 @@ void BaseCharacter::Update(float _Delta)
 		Transform.SetLocalScale({ 1.0f ,1.0f });
 	}
 
-	if (true == GameEngineInput::IsDown('X') || true == GameEngineInput::IsPress('X'))
-	{
-		if (false == Shoot)
-		{
-			std::shared_ptr<Bullet> NewBullet = GetLevel()->CreateActor<Bullet>(UpdateOrder::Bullet);
-			float4 NewBulletPos = float4::ZERO;
+	//if (true == GameEngineInput::IsDown('X') || true == GameEngineInput::IsPress('X'))
+	//{
+	//	if (false == Shoot)
+	//	{
+	//		std::shared_ptr<Bullet> NewBullet = GetLevel()->CreateActor<Bullet>(UpdateOrder::Bullet);
+	//		float4 NewBulletPos = float4::ZERO;
 
-			// 왼쪽
-			if (CharacterDir::Left == Dir && CharacterAimDir::Straight == AimDir)
-			{
-				NewBulletPos = Transform.GetWorldPosition() + float4{ -50.0f, 60.0f };
-				NewBullet->SetBulletDir(BulletDirection::Left);
-			}
+	//		// 왼쪽
+	//		if (CharacterDir::Left == Dir && CharacterAimDir::Straight == AimDir)
+	//		{
+	//			NewBulletPos = Transform.GetWorldPosition() + float4{ -50.0f, 60.0f };
+	//			NewBullet->SetBulletDir(BulletDirection::Left);
+	//		}
 
-			// 오른쪽
-			else if(CharacterDir::Right == Dir && CharacterAimDir::Straight == AimDir)
-			{
-				NewBulletPos = Transform.GetWorldPosition() + float4{ 50.0f, 60.0f };
-				NewBullet->SetBulletDir(BulletDirection::Right);
-			}
+	//		// 오른쪽
+	//		else if(CharacterDir::Right == Dir && CharacterAimDir::Straight == AimDir)
+	//		{
+	//			NewBulletPos = Transform.GetWorldPosition() + float4{ 50.0f, 60.0f };
+	//			NewBullet->SetBulletDir(BulletDirection::Right);
+	//		}
 
-			// 위(왼쪽)
-			else if (CharacterDir::Left == Dir && CharacterAimDir::Up == AimDir)
-			{
-				NewBulletPos = Transform.GetWorldPosition() + float4{ -30.0f, 130.0f };
-				NewBullet->SetBulletDir(BulletDirection::Up);
-			}
+	//		// 위(왼쪽)
+	//		else if (CharacterDir::Left == Dir && CharacterAimDir::Up == AimDir)
+	//		{
+	//			NewBulletPos = Transform.GetWorldPosition() + float4{ -30.0f, 130.0f };
+	//			NewBullet->SetBulletDir(BulletDirection::Up);
+	//		}
 
-			// 아래(왼쪽)
-			else if (CharacterDir::Left == Dir && CharacterAimDir::Down == AimDir)
-			{
-				NewBulletPos = Transform.GetWorldPosition() + float4{ -20.0f, 00.0f };
-				NewBullet->SetBulletDir(BulletDirection::Down);
-			}
+	//		// 아래(왼쪽)
+	//		else if (CharacterDir::Left == Dir && CharacterAimDir::Down == AimDir)
+	//		{
+	//			NewBulletPos = Transform.GetWorldPosition() + float4{ -20.0f, 00.0f };
+	//			NewBullet->SetBulletDir(BulletDirection::Down);
+	//		}
 
-			// 위(오른쪽)
-			else if (CharacterDir::Right == Dir && CharacterAimDir::Up == AimDir)
-			{
-				NewBulletPos = Transform.GetWorldPosition() + float4{ 30.0f, 130.0f };
-				NewBullet->SetBulletDir(BulletDirection::Up);
-			}
+	//		// 위(오른쪽)
+	//		else if (CharacterDir::Right == Dir && CharacterAimDir::Up == AimDir)
+	//		{
+	//			NewBulletPos = Transform.GetWorldPosition() + float4{ 30.0f, 130.0f };
+	//			NewBullet->SetBulletDir(BulletDirection::Up);
+	//		}
 
-			// 아래(오른쪽)
-			else if (CharacterDir::Right == Dir && CharacterAimDir::Down == AimDir)
-			{
-				NewBulletPos = Transform.GetWorldPosition() + float4{ 20.0f, 00.0f };
-				NewBullet->SetBulletDir(BulletDirection::Down);
-			}
-			
-			// 왼쪽 위
-			else if (CharacterDir::Left == Dir && CharacterAimDir::StraightUp == AimDir)
-			{
-				NewBulletPos = Transform.GetWorldPosition() + float4{ -50.0f, 110.0f };
-				NewBullet->SetBulletDir(BulletDirection::LeftUp);
-			}
+	//		// 아래(오른쪽)
+	//		else if (CharacterDir::Right == Dir && CharacterAimDir::Down == AimDir)
+	//		{
+	//			NewBulletPos = Transform.GetWorldPosition() + float4{ 20.0f, 00.0f };
+	//			NewBullet->SetBulletDir(BulletDirection::Down);
+	//		}
+	//		
+	//		// 왼쪽 위
+	//		else if (CharacterDir::Left == Dir && CharacterAimDir::StraightUp == AimDir)
+	//		{
+	//			NewBulletPos = Transform.GetWorldPosition() + float4{ -50.0f, 110.0f };
+	//			NewBullet->SetBulletDir(BulletDirection::LeftUp);
+	//		}
 
-			// 왼쪽 아래
-			else if (CharacterDir::Left == Dir && CharacterAimDir::StraightDown == AimDir)
-			{
-				NewBulletPos = Transform.GetWorldPosition() + float4{ -50.0f, 20.0f };
-				NewBullet->SetBulletDir(BulletDirection::LeftDown);
-			}
+	//		// 왼쪽 아래
+	//		else if (CharacterDir::Left == Dir && CharacterAimDir::StraightDown == AimDir)
+	//		{
+	//			NewBulletPos = Transform.GetWorldPosition() + float4{ -50.0f, 20.0f };
+	//			NewBullet->SetBulletDir(BulletDirection::LeftDown);
+	//		}
 
-			// 오른쪽 위
-			else if (CharacterDir::Right == Dir && CharacterAimDir::StraightUp == AimDir)
-			{
-				NewBulletPos = Transform.GetWorldPosition() + float4{ 50.0f, 110.0f };
-				NewBullet->SetBulletDir(BulletDirection::RightUp);
-			}
+	//		// 오른쪽 위
+	//		else if (CharacterDir::Right == Dir && CharacterAimDir::StraightUp == AimDir)
+	//		{
+	//			NewBulletPos = Transform.GetWorldPosition() + float4{ 50.0f, 110.0f };
+	//			NewBullet->SetBulletDir(BulletDirection::RightUp);
+	//		}
 
-			// 오른쪽 아래
-			else if (CharacterDir::Right == Dir && CharacterAimDir::StraightDown == AimDir)
-			{
-				NewBulletPos = Transform.GetWorldPosition() + float4{ 50.0f, 20.0f };
-				NewBullet->SetBulletDir(BulletDirection::RightDown);
-			}
+	//		// 오른쪽 아래
+	//		else if (CharacterDir::Right == Dir && CharacterAimDir::StraightDown == AimDir)
+	//		{
+	//			NewBulletPos = Transform.GetWorldPosition() + float4{ 50.0f, 20.0f };
+	//			NewBullet->SetBulletDir(BulletDirection::RightDown);
+	//		}
 
 
-			NewBullet->Transform.SetLocalPosition(NewBulletPos);
-			Shoot = true;
-		}
-	}
+	//		NewBullet->Transform.SetLocalPosition(NewBulletPos);
+	//		Shoot = true;
+	//	}
+	//}
 
 	if (true == Shoot)
 	{
@@ -235,8 +237,12 @@ void BaseCharacter::StateUpdate(float _Delta)
 		return AimUpdate(_Delta);
 	case CharacterState::Duck:
 		return DuckUpdate(_Delta);
+	case CharacterState::Shoot:
+		return ShootUpdate(_Delta);
 	case CharacterState::AimShoot:
 		return AimShootUpdate(_Delta);
+	case CharacterState::RunShoot:
+		return RunShootUpdate(_Delta);
 	default:
 		break;
 	}
@@ -272,8 +278,14 @@ void BaseCharacter::ChangeState(CharacterState _State)
 		case CharacterState::Duck:
 			DuckStart();
 			break;
+		case CharacterState::Shoot:
+			ShootStart();
+			break;
 		case CharacterState::AimShoot:
 			AimShootStart();
+			break;
+		case CharacterState::RunShoot:
+			RunShootStart();
 			break;
 		default:
 			break;
@@ -288,6 +300,38 @@ void BaseCharacter::ChangeAnimation(std::string_view _State)
 	std::string AnimationName = "CupHead_";
 
 	AnimationName += _State;
+
+	if ("Shoot" == _State)
+	{
+		if (CharacterAimDir::Straight == AimDir)
+		{
+			AnimationName += "_Straight";
+		}
+		else if (CharacterAimDir::Up == AimDir)
+		{
+			AnimationName += "_Up";
+		}
+		else
+		{
+			AnimationName += "_Straight";
+		}
+	}
+
+	if ("RunShoot" == _State)
+	{
+		if (CharacterAimDir::Straight == AimDir)
+		{
+			AnimationName += "_Straight";
+		}
+		else if (CharacterAimDir::StraightUp == AimDir)
+		{
+			AnimationName += "_StraightUp";
+		}
+		else
+		{
+			AnimationName += "_Straight";
+		}
+	}
 
 	if ("Aim" == _State || "AimShoot" == _State)
 	{

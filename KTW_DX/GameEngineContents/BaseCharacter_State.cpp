@@ -104,6 +104,12 @@ void BaseCharacter::IdleUpdate(float _Delta)
 		return;
 	}
 
+	if (true == GameEngineInput::IsPress('X'))
+	{
+		ChangeState(CharacterState::Shoot);
+		return;
+	}
+
 	if (true == GameEngineInput::IsPress(VK_DOWN))
 	{
 		ChangeState(CharacterState::Duck);
@@ -133,7 +139,8 @@ void BaseCharacter::RunUpdate(float _Delta)
 	CharacterMove(_Delta);
 
 	// Change State
-	if (true == GameEngineInput::IsFree(VK_LEFT) && true == GameEngineInput::IsFree(VK_RIGHT))
+	if (true == GameEngineInput::IsFree(VK_LEFT)
+		&& true == GameEngineInput::IsFree(VK_RIGHT))
 	{
 		ChangeState(CharacterState::Idle);
 		return;
@@ -142,6 +149,12 @@ void BaseCharacter::RunUpdate(float _Delta)
 	if (true == GameEngineInput::IsDown(VK_SHIFT))
 	{
 		ChangeState(CharacterState::Dash);
+		return;
+	}
+
+	if (true == GameEngineInput::IsDown('X'))
+	{
+		ChangeState(CharacterState::RunShoot);
 		return;
 	}
 
@@ -273,11 +286,16 @@ void BaseCharacter::DuckUpdate(float _Delta)
 	{
 		ChangeAnimation("Duck_Idle");
 	}
+	
+	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
 
-	if (true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsDown('Z'))
+	if (STOOLCOLOR == CheckColor)
 	{
-		ChangeAnimation("Fall");
-		StoolPass = true;
+		if (true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsDown('Z'))
+		{
+			ChangeAnimation("Fall");
+			StoolPass = true;
+		}
 	}
 
 	if (true == GameEngineInput::IsFree(VK_DOWN))
