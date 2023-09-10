@@ -113,6 +113,11 @@ public:
 		return CurFrameAnimations->IsEnd;
 	}
 
+	bool IsCurAnimation(std::string_view _AnimationName)
+	{
+		return CurFrameAnimations->AnimationName == _AnimationName;
+	}
+
 	void AnimationPauseSwitch();
 	void AnimationPauseOn();
 	void AnimationPauseOff();
