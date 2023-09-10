@@ -1,5 +1,7 @@
 #pragma once
 
+#define EXITPOS { 6645.0f, -604.0f }
+
 #include <GameEngineCore/GameEngineLevel.h>
 
 class TutorialStage : public GameEngineLevel
@@ -23,6 +25,7 @@ private:
 	std::shared_ptr<class BackGround> TutorialBackGround = nullptr;
 	std::shared_ptr<class UpperObject> TutorialBackGroundUpper = nullptr;
 	std::shared_ptr<class Map> TutorialMap = nullptr;
+	std::shared_ptr<class MiniMapEnter> TutorialExit = nullptr;
 	std::shared_ptr<class BaseCharacter> Player = nullptr;
 
 	void TutorialLevelCameraMove();

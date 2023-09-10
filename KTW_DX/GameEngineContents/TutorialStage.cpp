@@ -5,6 +5,7 @@
 #include "Map.h"
 #include "UpperObject.h"
 #include "BaseCharacter.h"
+#include "MiniMapEnter.h"
 
 TutorialStage::TutorialStage()
 {
@@ -52,6 +53,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 		GameEngineSprite::CreateSingle("TutorialBitMap.Png");
 		GameEngineSprite::CreateSingle("Tutorial_BackGround.Png");
 		GameEngineSprite::CreateSingle("Tutorial_BackGround_Upper.Png");
+		GameEngineSprite::CreateSingle("Tutorial_Exit.Png");
 	}
 
 	{
@@ -86,7 +88,13 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	TutorialMap->MapInit("TutorialMap.Png");
 	TutorialMap->BitMapInit("TutorialBitMap.Png");
 	TutorialMap->Transform.SetLocalPosition({ SpriteHalfScale.X, -SpriteHalfScale.Y });
+
+	TutorialExit = CreateActor<MiniMapEnter>(UpdateOrder::Map);
+	TutorialExit->EnterSpriteInit("Tutorial_Exit.png");
+	TutorialExit->SetEnterLevel("MiniMapLevel");
+	TutorialExit->Transform.SetLocalPosition(EXITPOS);
 }
+
 void TutorialStage::Update(float _Delta)
 {
 	float4 Check = Player->Transform.GetWorldPosition();

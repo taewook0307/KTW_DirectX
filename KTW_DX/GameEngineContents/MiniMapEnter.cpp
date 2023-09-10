@@ -19,18 +19,11 @@ void MiniMapEnter::Update(float _Delta)
 {
 	if (true == EnterCollision->Collision(CollisionOrder::Player))
 	{
-		EnterRenderer->AnimationPauseOff();
-
 		if (true == GameEngineInput::IsDown('Z') || true == GameEngineInput::IsDown(VK_RETURN))
 		{
 			GameEngineCore::ChangeLevel(EnterLevel);
 		}
 	}
-	else
-	{
-		EnterRenderer->AnimationPauseOn();
-	}
-
 }
 
 void MiniMapEnter::EnterAnimationInit(std::string_view _AnimationName, std::string_view _SpriteName)
@@ -44,6 +37,16 @@ void MiniMapEnter::EnterAnimationInit(std::string_view _AnimationName, std::stri
 	float4 SpriteScale = CurSprite->GetSpriteData(0).GetScale();
 
 	EnterCollision->Transform.SetLocalScale(SpriteScale);
+}
 
-	EnterRenderer->AnimationPauseOn();
+void MiniMapEnter::EnterSpriteInit(std::string_view _FileName, int _Order /*= 0*/)
+{
+	EnterRenderer->SetSprite(_FileName, _Order);
+	EnterRenderer->AutoSpriteSizeOn();
+	EnterRenderer->SetPivotType(PivotType::Bottom);
+
+	std::shared_ptr<GameEngineSprite> CurSprite = GameEngineSprite::Find(_FileName);
+	float4 SpriteScale = CurSprite->GetSpriteData(_Order).GetScale();
+
+	EnterCollision->Transform.SetLocalScale(SpriteScale);
 }

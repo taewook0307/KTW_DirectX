@@ -13,29 +13,34 @@ BaseCharacter::~BaseCharacter()
 
 void BaseCharacter::Start()
 {
-	MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Play);
-	MainSpriteRenderer->CreateAnimation("CupHead_Intro", "Intro_Flex", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Idle", "Idle", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Run", "Run", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Jump", "Jump", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Dash", "Dash_Ground", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Dash_Air", "Dash_Air", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Fall", "Jump", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Aim_Straight", "Aim_Straight", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Aim_StraightUp", "Aim_StraightUp", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Aim_StraightDown", "Aim_StraightDown", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Aim_Up", "Aim_Up", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Aim_Down", "Aim_Down", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Duck", "Duck", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Duck_Idle", "Duck_Idle", 0.05f);
-	MainSpriteRenderer->CreateAnimation("CupHead_Shoot", "Shoot_Straight", 0.05f);
-	MainSpriteRenderer->AutoSpriteSizeOn();
-	MainSpriteRenderer->SetAutoScaleRatio(0.8f);
-
-	MainSpriteRenderer->SetPivotType(PivotType::Bottom);
+	PlayerRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Play);
+	PlayerRenderer->CreateAnimation("CupHead_Intro", "Intro_Flex", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Idle", "Idle", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Run", "Run", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Jump", "Jump", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Dash", "Dash_Ground", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Dash_Air", "Dash_Air", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Fall", "Jump", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Aim_Straight", "Aim_Straight", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Aim_StraightUp", "Aim_StraightUp", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Aim_StraightDown", "Aim_StraightDown", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Aim_Up", "Aim_Up", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Aim_Down", "Aim_Down", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Duck", "Duck", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Duck_Idle", "Duck_Idle", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Shoot", "Shoot_Straight", 0.05f);
+	PlayerRenderer->AutoSpriteSizeOn();
+	PlayerRenderer->SetAutoScaleRatio(0.8f);
+	PlayerRenderer->SetPivotType(PivotType::Bottom);
 
 	Dir = CharacterDir::Right;
 	AimDir = CharacterAimDir::Straight;
+
+	std::shared_ptr<GameEngineSprite> CharacterSprite = GameEngineSprite::Find("Idle");
+	float4 SpriteScale = CharacterSprite->GetSpriteData(0).GetScale();
+
+	PlayerCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Player);
+	PlayerCollision->Transform.SetLocalScale(SpriteScale);
 
 	ChangeState(CharacterState::Intro);
 }
@@ -264,5 +269,5 @@ void BaseCharacter::ChangeAnimation(std::string_view _State)
 
 	State = _State;
 
-	MainSpriteRenderer->ChangeAnimation(AnimationName);
+	PlayerRenderer->ChangeAnimation(AnimationName);
 }

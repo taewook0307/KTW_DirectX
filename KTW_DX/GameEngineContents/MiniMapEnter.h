@@ -16,6 +16,7 @@ public:
 	MiniMapEnter& operator=(MiniMapEnter&& _Other) noexcept = delete;
 
 	void EnterAnimationInit(std::string_view _AnimationName, std::string_view _SpriteName);
+	void EnterSpriteInit(std::string_view _FileName, int _Order = 0);
 
 	inline void SetEnterLevel(std::string_view _EnterLevel)
 	{

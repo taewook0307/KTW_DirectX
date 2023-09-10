@@ -2,7 +2,7 @@
 
 #include <GameEngineCore/GameEngineLevel.h>
 
-#define TUTORIALENTERPOS { 823.0f, -2100.0f }
+#define TUTORIALENTERPOS { 750.0f, -2150.0f }
 #define FIRSTBOSSENTERPOS { 2205.0f, -2070.0f }
 
 #define CHARACTERSTARTPOS { 885.0f, -2208.0f }

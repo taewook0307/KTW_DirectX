@@ -65,7 +65,7 @@ void BaseCharacter::IntroStart()
 
 void BaseCharacter::IntroUpdate(float _Delta)
 {
-	if (true == MainSpriteRenderer->IsCurAnimationEnd())
+	if (true == PlayerRenderer->IsCurAnimationEnd())
 	{
 		ChangeState(CharacterState::Idle);
 		return;
@@ -235,7 +235,7 @@ void BaseCharacter::DashUpdate(float _Delta)
 	}
 
 
-	if (true == MainSpriteRenderer->IsCurAnimationEnd())
+	if (true == PlayerRenderer->IsCurAnimationEnd())
 	{
 		ChangeState(CharacterState::Fall);
 		return;
@@ -245,6 +245,7 @@ void BaseCharacter::DashUpdate(float _Delta)
 void BaseCharacter::FallStart()
 {
 	ChangeAnimation("Fall");
+	GravityReset();
 }
 
 void BaseCharacter::FallUpdate(float _Delta)
@@ -274,7 +275,7 @@ void BaseCharacter::DuckUpdate(float _Delta)
 	DirChange();
 	CharacterGravity(_Delta, Transform.GetWorldPosition());
 
-	if (true == MainSpriteRenderer->IsCurAnimationEnd() && true == GameEngineInput::IsPress(VK_DOWN))
+	if (true == PlayerRenderer->IsCurAnimationEnd() && true == GameEngineInput::IsPress(VK_DOWN))
 	{
 		ChangeAnimation("Duck_Idle");
 	}

@@ -75,5 +75,6 @@ protected:
 	bool Shoot = false;
 	bool StoolPass = false;
 private:
-	std::shared_ptr<GameEngineSpriteRenderer> MainSpriteRenderer = nullptr;
+	std::shared_ptr<GameEngineSpriteRenderer> PlayerRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> PlayerCollision = nullptr;
 };
