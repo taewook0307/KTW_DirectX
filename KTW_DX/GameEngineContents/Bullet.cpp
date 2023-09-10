@@ -44,6 +44,26 @@ void Bullet::Update(float _Delta)
 	{
 		Transform.SetLocalRotation({ 0.0f, 0.0f, -90.0f });
 	}
+
+	else if (BulletDirection::LeftUp == BulletDir)
+	{
+		Transform.SetLocalRotation({ 0.0f, 0.0f, 135.0f });
+	}
+
+	else if (BulletDirection::LeftDown == BulletDir)
+	{
+		Transform.SetLocalRotation({ 0.0f, 0.0f, -135.0f });
+	}
+
+	else if (BulletDirection::RightUp == BulletDir)
+	{
+		Transform.SetLocalRotation({ 0.0f, 0.0f, 45.0f });
+	}
+
+	else if (BulletDirection::RightDown == BulletDir)
+	{
+		Transform.SetLocalRotation({ 0.0f, 0.0f, -45.0f });
+	}
 }
 
 void Bullet::ChangeBulletState(BulletState _State)

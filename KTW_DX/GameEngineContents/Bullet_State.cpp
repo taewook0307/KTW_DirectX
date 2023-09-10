@@ -45,6 +45,26 @@ void Bullet::MoveUpdate(float _Delta)
 		MovePos = float4::DOWN * Speed * _Delta;
 	}
 
+	else if (BulletDirection::LeftUp == BulletDir)
+	{
+		MovePos = (float4::UP + float4::LEFT) * Speed * _Delta;
+	}
+
+	else if (BulletDirection::LeftDown == BulletDir)
+	{
+		MovePos = (float4::DOWN + float4::LEFT) * Speed * _Delta;
+	}
+
+	else if (BulletDirection::RightUp == BulletDir)
+	{
+		MovePos = (float4::UP + float4::RIGHT) * Speed * _Delta;
+	}
+
+	else if (BulletDirection::RightDown == BulletDir)
+	{
+		MovePos = (float4::DOWN + float4::RIGHT) * Speed * _Delta;
+	}
+
 	Transform.AddLocalPosition(MovePos);
 
 
