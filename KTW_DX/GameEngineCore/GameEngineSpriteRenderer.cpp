@@ -4,6 +4,8 @@
 #include "GameEngineSampler.h"
 #include "GameEngineConstantBuffer.h"
 
+std::shared_ptr<class GameEngineSampler> GameEngineSpriteRenderer::DefaultSampler;
+
 void GameEngineFrameAnimation::EventCall(int _Frame)
 {
 	if (true == FrameEventFunction.contains(Index[_Frame]))
@@ -71,7 +73,12 @@ SpriteData GameEngineFrameAnimation::Update(float _DeltaTime)
 
 GameEngineSpriteRenderer::GameEngineSpriteRenderer()
 {
-	Sampler = GameEngineSampler::Find("LINEAR");
+	if (nullptr == DefaultSampler)
+	{
+		MsgBoxAssert("SpriteRenderer에 설정할 기본 샘플러가 없습니다.");
+	}
+
+	Sampler = DefaultSampler;
 }
 
 GameEngineSpriteRenderer::~GameEngineSpriteRenderer()
@@ -117,6 +124,11 @@ void GameEngineSpriteRenderer::SetImageScale(const float4& _Scale)
 void GameEngineSpriteRenderer::AddImageScale(const float4& _Scale)
 {
 	ImageTransform.AddLocalScale(_Scale);
+}
+
+void GameEngineSpriteRenderer::SetDefaultSampler(std::string_view _SamplerName)
+{
+	DefaultSampler = GameEngineSampler::Find(_SamplerName);
 }
 
 void GameEngineSpriteRenderer::Render(GameEngineCamera* _Camera, float _Delta)
@@ -269,6 +281,7 @@ void GameEngineSpriteRenderer::AutoSpriteSizeOff()
 {
 	IsImageSize = false;
 }
+
 
 void GameEngineSpriteRenderer::SetSamplerState(SamplerOption _Option)
 {
