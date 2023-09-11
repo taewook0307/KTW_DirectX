@@ -1,6 +1,9 @@
 #pragma once
 
 #define PLAYERSTARTPOS { 230.0f, - 605.0f }
+#define PARRYPOS1 { 3892.0f, -320.f }
+#define PARRYPOS2 { 4099.0f, -320.f }
+#define PARRYPOS3 { 4296.0f, -320.f }
 #define EXITPOS { 6645.0f, -604.0f }
 
 #include <GameEngineCore/GameEngineLevel.h>
@@ -28,6 +31,10 @@ private:
 	std::shared_ptr<class Map> TutorialMap = nullptr;
 	std::shared_ptr<class MiniMapEnter> TutorialExit = nullptr;
 	std::shared_ptr<class BaseCharacter> Player = nullptr;
+
+	std::shared_ptr<class ParryObject> TutorialParry1 = nullptr;
+	std::shared_ptr<class ParryObject> TutorialParry2 = nullptr;
+	std::shared_ptr<class ParryObject> TutorialParry3 = nullptr;
 
 	void TutorialLevelCameraMove();
 };

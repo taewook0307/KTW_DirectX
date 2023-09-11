@@ -6,6 +6,7 @@
 #include "UpperObject.h"
 #include "BaseCharacter.h"
 #include "MiniMapEnter.h"
+#include "ParryObject.h"
 
 TutorialStage::TutorialStage()
 {
@@ -70,6 +71,20 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources\\Texture\\Parry");
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
+	}
+
 	Player = CreateActor<BaseCharacter>(UpdateOrder::Player);
 	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
 
@@ -88,6 +103,18 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	TutorialMap->MapInit("TutorialMap.Png");
 	TutorialMap->BitMapInit("TutorialBitMap.Png");
 	TutorialMap->Transform.SetLocalPosition({ SpriteHalfScale.X, -SpriteHalfScale.Y });
+
+	TutorialParry1 = CreateActor<ParryObject>(UpdateOrder::Map);
+	TutorialParry1->Transform.SetLocalPosition(PARRYPOS1);
+	TutorialParry1->ParryOn();
+
+	TutorialParry2 = CreateActor<ParryObject>(UpdateOrder::Map);
+	TutorialParry2->Transform.SetLocalPosition(PARRYPOS2);
+	TutorialParry2->ParryOff();
+
+	TutorialParry3 = CreateActor<ParryObject>(UpdateOrder::Map);
+	TutorialParry3->Transform.SetLocalPosition(PARRYPOS3);
+	TutorialParry3->ParryOff();
 
 	TutorialExit = CreateActor<MiniMapEnter>(UpdateOrder::Map);
 	TutorialExit->EnterSpriteInit("Tutorial_Exit.png");

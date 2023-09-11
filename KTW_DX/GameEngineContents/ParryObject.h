@@ -15,9 +15,21 @@ public:
 	ParryObject& operator=(const ParryObject& _Other) = delete;
 	ParryObject& operator=(ParryObject&& _Other) noexcept = delete;
 
+	void ParryOn()
+	{
+		Parry = true;
+	}
+
+	void ParryOff()
+	{
+		Parry = false;
+	}
+
 protected:
 
 private:
+	bool Parry = true;
+
 	std::shared_ptr<GameEngineSpriteRenderer> ParryRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> ParryCollision = nullptr;
 
