@@ -52,11 +52,11 @@ protected:
 	void DuckStart();
 	void DuckUpdate(float _Delta);
 
-	void ShootStart();
-	void ShootUpdate(float _Delta);
-
 	void AimStart();
 	void AimUpdate(float _Delta);
+
+	void ShootStart();
+	void ShootUpdate(float _Delta);
 
 	void AimShootStart();
 	void AimShootUpdate(float _Delta);
@@ -79,6 +79,10 @@ protected:
 	float Speed = 300.0f;
 	float DashSpeed = 600.0f;
 
+	void ShootBaseState();
+	void ShootAimState();
+	void ShootRunState();
+	void ShootDuckState();
 
 	float ShootTimer = SHOOTTIMER;
 	bool Shoot = false;

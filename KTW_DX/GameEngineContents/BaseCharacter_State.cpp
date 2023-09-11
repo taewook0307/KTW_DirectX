@@ -65,6 +65,9 @@ void BaseCharacter::IntroStart()
 
 void BaseCharacter::IntroUpdate(float _Delta)
 {
+	// Gravity
+	CharacterGravity(_Delta, Transform.GetWorldPosition());
+
 	if (true == PlayerRenderer->IsCurAnimationEnd())
 	{
 		ChangeState(CharacterState::Idle);
@@ -181,6 +184,7 @@ void BaseCharacter::JumpStart()
 void BaseCharacter::JumpUpdate(float _Delta)
 {
 	DirChange();
+	ShootAimState();
 
 	// Gravity
 	if (GetGravityForce().Y > 0)
@@ -303,6 +307,12 @@ void BaseCharacter::DuckUpdate(float _Delta)
 			ChangeAnimation("Fall");
 			StoolPass = true;
 		}
+	}
+
+	if (true == GameEngineInput::IsPress('X'))
+	{
+		ChangeState(CharacterState::DuckShoot);
+		return;
 	}
 
 	if (true == GameEngineInput::IsFree(VK_DOWN))
