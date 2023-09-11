@@ -64,6 +64,9 @@ protected:
 	void RunShootStart();
 	void RunShootUpdate(float _Delta);
 
+	void DuckShootStart();
+	void DuckShootUpdate(float _Delta);
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;

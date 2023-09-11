@@ -85,6 +85,13 @@ void BaseCharacter::IdleUpdate(float _Delta)
 	CharacterGravity(_Delta, Transform.GetWorldPosition());
 
 	// Change State
+	if (true == GameEngineInput::IsPress(VK_LEFT) && true == GameEngineInput::IsPress('X')
+		|| true == GameEngineInput::IsPress(VK_RIGHT) && true == GameEngineInput::IsPress('X'))
+	{
+		ChangeState(CharacterState::RunShoot);
+		return;
+	}
+
 	if (true == GameEngineInput::IsPress(VK_LEFT)
 		|| true == GameEngineInput::IsPress(VK_RIGHT))
 	{

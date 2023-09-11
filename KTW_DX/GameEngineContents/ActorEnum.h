@@ -12,7 +12,8 @@ enum class CharacterState
 	Duck,
 	Shoot,
 	AimShoot,
-	RunShoot
+	RunShoot,
+	DuckShoot
 };
 
 enum class MiniMapCharacterState

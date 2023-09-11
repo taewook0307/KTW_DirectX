@@ -22,6 +22,18 @@ void BaseCharacter::ShootUpdate(float _Delta)
 		ChangeState(CharacterState::RunShoot);
 		return;
 	}
+
+	if (true == GameEngineInput::IsPress(VK_DOWN))
+	{
+		ChangeState(CharacterState::Duck);
+		return;
+	}
+
+	if (true == GameEngineInput::IsDown('Z'))
+	{
+		ChangeState(CharacterState::Jump);
+		return;
+	}
 }
 
 void BaseCharacter::AimStart()
@@ -96,6 +108,32 @@ void BaseCharacter::RunShootUpdate(float _Delta)
 		&& true == GameEngineInput::IsFree(VK_RIGHT))
 	{
 		ChangeState(CharacterState::Shoot);
+		return;
+	}
+
+	if (true == GameEngineInput::IsDown('Z'))
+	{
+		ChangeState(CharacterState::Jump);
+		return;
+	}
+}
+
+void BaseCharacter::DuckShootStart()
+{
+	ChangeAnimation("DuckShoot");
+}
+
+void BaseCharacter::DuckShootUpdate(float _Delta)
+{
+	if (true == GameEngineInput::IsFree(VK_DOWN))
+	{
+		ChangeState(CharacterState::Shoot);
+		return;
+	}
+
+	if (true == GameEngineInput::IsFree('X'))
+	{
+		ChangeState(CharacterState::Duck);
 		return;
 	}
 }
