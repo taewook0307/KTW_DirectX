@@ -17,6 +17,13 @@ void ParryObject::Start()
 
 	ParryRenderer->ChangeAnimation("ParryOn");
 	ParryRenderer->AutoSpriteSizeOn();
+
+	ParryCollision = CreateComponent<GameEngineCollision>(CollisionOrder::ParryObject);
+	
+	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialParryOff");
+	float4 SpriteScale = Sprite->GetSpriteData(0).GetScale();
+
+	ParryCollision->Transform.SetLocalScale(SpriteScale);
 }
 
 void ParryObject::Update(float _Delta)

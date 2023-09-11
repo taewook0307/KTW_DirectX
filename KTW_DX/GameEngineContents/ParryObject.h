@@ -33,6 +33,8 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> ParryRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> ParryCollision = nullptr;
 
+	std::vector<std::shared_ptr<GameEngineCollision>> ParryCol;
+
 	void Start() override;
 	void Update(float _Delta) override;
 };
