@@ -2,6 +2,7 @@
 #include "MiniMapLevel.h"
 
 #include "Map.h"
+#include "UpperObject.h"
 #include "MiniMapEnter.h"
 #include "MiniMapCharacter.h"
 
@@ -36,6 +37,7 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 		GameEngineSprite::CreateSingle("CupHead_MiniMap.png");
 		GameEngineSprite::CreateSingle("CupHead_MiniMap_BitMap.png");
+		GameEngineSprite::CreateSingle("CupHead_MiniMap_Upper.png");
 	}
 
 	{
@@ -58,12 +60,13 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	MiniMap->MapInit("CupHead_MiniMap.png");
 	MiniMap->BitMapInit("CupHead_MiniMap_BitMap.png");
 
-
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("CupHead_MiniMap.png");
-
 	float4 MapTextureHalfScale = MapTexture->GetScale().Half();
-
 	MiniMap->Transform.SetLocalPosition({ MapTextureHalfScale.X, -MapTextureHalfScale.Y });
+
+	MiniMapUpper = CreateActor<UpperObject>(UpdateOrder::Map);
+	MiniMapUpper->UpperObjectInit("CupHead_MiniMap_Upper.png", 0, false);
+	MiniMapUpper->Transform.SetLocalPosition({ MapTextureHalfScale.X, -MapTextureHalfScale.Y });
 
 	// 플레이 입구 생성
 	TutorialEnter = CreateActor<MiniMapEnter>(UpdateOrder::Map);

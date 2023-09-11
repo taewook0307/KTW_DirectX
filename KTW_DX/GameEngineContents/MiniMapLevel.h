@@ -24,6 +24,7 @@ protected:
 
 private:
 	std::shared_ptr<class Map> MiniMap = nullptr;
+	std::shared_ptr<class UpperObject> MiniMapUpper = nullptr;
 	std::shared_ptr<class MiniMapCharacter> Character = nullptr;
 
 	std::shared_ptr<class MiniMapEnter> TutorialEnter = nullptr;
