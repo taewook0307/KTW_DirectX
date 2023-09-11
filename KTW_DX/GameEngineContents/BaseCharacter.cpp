@@ -18,6 +18,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->CreateAnimation("CupHead_Idle", "Idle", 0.05f);
 	PlayerRenderer->CreateAnimation("CupHead_Run", "Run", 0.05f);
 	PlayerRenderer->CreateAnimation("CupHead_Jump", "Jump", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Parry", "Parry", 0.03f);
 	PlayerRenderer->CreateAnimation("CupHead_Dash", "Dash_Ground", 0.05f);
 	PlayerRenderer->CreateAnimation("CupHead_Dash_Air", "Dash_Air", 0.05f);
 	PlayerRenderer->CreateAnimation("CupHead_Fall", "Jump", 0.05f);
@@ -147,6 +148,8 @@ void BaseCharacter::StateUpdate(float _Delta)
 		return RunUpdate(_Delta);
 	case CharacterState::Jump:
 		return JumpUpdate(_Delta);
+	case CharacterState::Parry:
+		return ParryUpdate(_Delta);
 	case CharacterState::Dash:
 		return DashUpdate(_Delta);
 	case CharacterState::Fall:
@@ -185,6 +188,9 @@ void BaseCharacter::ChangeState(CharacterState _State)
 			break;
 		case CharacterState::Jump:
 			JumpStart();
+			break;
+		case CharacterState::Parry:
+			ParryStart();
 			break;
 		case CharacterState::Dash:
 			DashStart();

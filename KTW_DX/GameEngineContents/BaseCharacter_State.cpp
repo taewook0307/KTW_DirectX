@@ -208,6 +208,12 @@ void BaseCharacter::JumpUpdate(float _Delta)
 		return;
 	}
 
+	if (true == GameEngineInput::IsDown('Z'))
+	{
+		ChangeState(CharacterState::Parry);
+		return;
+	}
+
 	if (true == GameEngineInput::IsDown(VK_SHIFT))
 	{
 		ChangeState(CharacterState::Dash);
@@ -316,6 +322,38 @@ void BaseCharacter::DuckUpdate(float _Delta)
 	}
 
 	if (true == GameEngineInput::IsFree(VK_DOWN))
+	{
+		ChangeState(CharacterState::Idle);
+		return;
+	}
+}
+
+void BaseCharacter::ParryStart()
+{
+	ChangeAnimation("Parry");
+}
+
+void BaseCharacter::ParryUpdate(float _Delta)
+{
+	DirChange();
+
+	// Gravity
+	if (GetGravityForce().Y > 0)
+	{
+		CharacterGravity(_Delta, Transform.GetWorldPosition() + float4{ 0.0f, 80.0f });
+	}
+	else
+	{
+		CharacterGravity(_Delta, Transform.GetWorldPosition());
+	}
+
+	//Move
+	CharacterMove(_Delta);
+
+	// Change State
+	GameEngineColor Color = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
+
+	if (FLOORCOLOR == Color || STOOLCOLOR == Color)
 	{
 		ChangeState(CharacterState::Idle);
 		return;
