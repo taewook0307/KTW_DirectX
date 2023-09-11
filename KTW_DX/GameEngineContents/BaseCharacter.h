@@ -90,6 +90,8 @@ protected:
 	float ShootTimer = SHOOTTIMER;
 	bool Shoot = false;
 	bool StoolPass = false;
+
+	bool ParrySuccess = false;
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> PlayerRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> PlayerCollision = nullptr;

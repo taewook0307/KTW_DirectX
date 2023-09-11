@@ -78,6 +78,12 @@ void BaseCharacter::Update(float _Delta)
 			ShootTimer = SHOOTTIMER;
 		}
 	}
+
+	if (true == ParrySuccess)
+	{
+		SetGravityForce(float4::UP * JUMPPOWER * 0.5f);
+		ParrySuccess = false;
+	}
 }
 
 void BaseCharacter::DirChange()

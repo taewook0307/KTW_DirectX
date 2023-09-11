@@ -350,6 +350,11 @@ void BaseCharacter::ParryUpdate(float _Delta)
 	//Move
 	CharacterMove(_Delta);
 
+	if (true == PlayerCollision->Collision(CollisionOrder::ParryObject))
+	{
+		ParrySuccess = true;
+	}
+
 	// Change State
 	GameEngineColor Color = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
 
