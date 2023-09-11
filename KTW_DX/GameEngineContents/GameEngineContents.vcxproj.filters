@@ -5,74 +5,74 @@
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
-    <ClInclude Include="CupHeadEnum.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="LogoLevel.h">
-      <Filter>Level\UILevel</Filter>
-    </ClInclude>
-    <ClInclude Include="TitleLevel.h">
-      <Filter>Level\UILevel</Filter>
-    </ClInclude>
-    <ClInclude Include="StoryLevel.h">
-      <Filter>Level\UILevel</Filter>
-    </ClInclude>
-    <ClInclude Include="ActorEnum.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseCharacter.h">
-      <Filter>Actor\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseActor.h">
-      <Filter>Actor</Filter>
-    </ClInclude>
-    <ClInclude Include="FirstBossStage.h">
-      <Filter>Level\PlayLevel</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniMapCharacter.h">
-      <Filter>Actor\MiniMap</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuLevel.h">
-      <Filter>Level\UILevel</Filter>
-    </ClInclude>
     <ClInclude Include="FadeObject.h">
       <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniMapEnter.h">
-      <Filter>Actor\MiniMap</Filter>
-    </ClInclude>
-    <ClInclude Include="BackGround.h">
-      <Filter>Actor\Etc</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Actor\Etc</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectMenu.h">
-      <Filter>Actor\Etc</Filter>
-    </ClInclude>
-    <ClInclude Include="TutorialStage.h">
-      <Filter>Level\PlayLevel</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniMapLevel.h">
-      <Filter>Level\MiniMapLevel</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>Actor\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="LoadingObject.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="UpperObject.h">
-      <Filter>Actor\Etc</Filter>
+    <ClInclude Include="FirstBossStage.h">
+      <Filter>Level\8. FirstBossStage</Filter>
+    </ClInclude>
+    <ClInclude Include="LogoLevel.h">
+      <Filter>Level\1. Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuLevel.h">
+      <Filter>Level\3. Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMapLevel.h">
+      <Filter>Level\7. MiniMap</Filter>
     </ClInclude>
     <ClInclude Include="SecondBossStage.h">
-      <Filter>Level\PlayLevel</Filter>
+      <Filter>Level\9. SecondBossStage</Filter>
     </ClInclude>
-    <ClInclude Include="ParryObject.h">
-      <Filter>Actor\Etc</Filter>
+    <ClInclude Include="StoryLevel.h">
+      <Filter>Level\4. Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleLevel.h">
+      <Filter>Level\2. Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TutorialStage.h">
+      <Filter>Level\6. Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseActor.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="CupHeadEnum.h">
+      <Filter>Global\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorEnum.h">
+      <Filter>Global\Enum</Filter>
     </ClInclude>
     <ClInclude Include="StoryBook.h">
-      <Filter>Actor\Etc</Filter>
+      <Filter>Level\4. Intro\IntroActor</Filter>
+    </ClInclude>
+    <ClInclude Include="ParryObject.h">
+      <Filter>Level\6. Tutorial\TutorialActor</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectMenu.h">
+      <Filter>Level\3. Menu\MenuActor</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMapEnter.h">
+      <Filter>Level\7. MiniMap\MiniMapActor</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMapCharacter.h">
+      <Filter>Level\7. MiniMap\MiniMapActor</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseCharacter.h">
+      <Filter>Global\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>Global\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Global\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="UpperObject.h">
+      <Filter>Global\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Global\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -80,88 +80,85 @@
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
     </ClCompile>
-    <ClCompile Include="LogoLevel.cpp">
-      <Filter>Level\UILevel</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleLevel.cpp">
-      <Filter>Level\UILevel</Filter>
-    </ClCompile>
-    <ClCompile Include="StoryLevel.cpp">
-      <Filter>Level\UILevel</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseCharacter.cpp">
-      <Filter>Actor\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseCharacter_State.cpp">
-      <Filter>Actor\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseActor.cpp">
-      <Filter>Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseCharacter_Shoot_State.cpp">
-      <Filter>Actor\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="FirstBossStage.cpp">
-      <Filter>Level\PlayLevel</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniMapCharacter.cpp">
-      <Filter>Actor\MiniMap</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniMapCharacter_State.cpp">
-      <Filter>Actor\MiniMap</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuLevel.cpp">
-      <Filter>Level\UILevel</Filter>
-    </ClCompile>
     <ClCompile Include="FadeObject.cpp">
       <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniMapEnter.cpp">
-      <Filter>Actor\MiniMap</Filter>
-    </ClCompile>
-    <ClCompile Include="BackGround.cpp">
-      <Filter>Actor\Etc</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Actor\Etc</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectMenu.cpp">
-      <Filter>Actor\Etc</Filter>
-    </ClCompile>
-    <ClCompile Include="TutorialStage.cpp">
-      <Filter>Level\PlayLevel</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniMapLevel.cpp">
-      <Filter>Level\MiniMapLevel</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>Actor\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet_State.cpp">
-      <Filter>Actor\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="LoadingObject.cpp">
       <Filter>Global</Filter>
     </ClCompile>
-    <ClCompile Include="UpperObject.cpp">
-      <Filter>Actor\Etc</Filter>
+    <ClCompile Include="FirstBossStage.cpp">
+      <Filter>Level\8. FirstBossStage</Filter>
+    </ClCompile>
+    <ClCompile Include="LogoLevel.cpp">
+      <Filter>Level\1. Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuLevel.cpp">
+      <Filter>Level\3. Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMapLevel.cpp">
+      <Filter>Level\7. MiniMap</Filter>
     </ClCompile>
     <ClCompile Include="SecondBossStage.cpp">
-      <Filter>Level\PlayLevel</Filter>
+      <Filter>Level\9. SecondBossStage</Filter>
     </ClCompile>
-    <ClCompile Include="ParryObject.cpp">
-      <Filter>Actor\Etc</Filter>
+    <ClCompile Include="StoryLevel.cpp">
+      <Filter>Level\4. Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLevel.cpp">
+      <Filter>Level\2. Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TutorialStage.cpp">
+      <Filter>Level\6. Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseActor.cpp">
+      <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="StoryBook.cpp">
-      <Filter>Actor\Etc</Filter>
+      <Filter>Level\4. Intro\IntroActor</Filter>
+    </ClCompile>
+    <ClCompile Include="ParryObject.cpp">
+      <Filter>Level\6. Tutorial\TutorialActor</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectMenu.cpp">
+      <Filter>Level\3. Menu\MenuActor</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMapEnter.cpp">
+      <Filter>Level\7. MiniMap\MiniMapActor</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMapCharacter_State.cpp">
+      <Filter>Level\7. MiniMap\MiniMapActor</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMapCharacter.cpp">
+      <Filter>Level\7. MiniMap\MiniMapActor</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCharacter.cpp">
+      <Filter>Global\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCharacter_Shoot_State.cpp">
+      <Filter>Global\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCharacter_State.cpp">
+      <Filter>Global\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>Global\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Global\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet_State.cpp">
+      <Filter>Global\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="UpperObject.cpp">
+      <Filter>Global\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Global\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
       <UniqueIdentifier>{a19a38e0-b7b1-4028-8b7a-561ffbdd99f6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor">
-      <UniqueIdentifier>{58eadaa7-1c12-4058-a532-87253017239d}</UniqueIdentifier>
     </Filter>
     <Filter Include="PreCompile">
       <UniqueIdentifier>{9ad5767c-5a0d-42fd-b7bd-59ba144bacc3}</UniqueIdentifier>
@@ -169,29 +166,83 @@
     <Filter Include="Global">
       <UniqueIdentifier>{9d4bde5e-6608-4d08-aedd-397f19625d78}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\UILevel">
-      <UniqueIdentifier>{65e77174-741e-4c2c-a7f6-2aed7cca14a9}</UniqueIdentifier>
+    <Filter Include="Level\1. Logo">
+      <UniqueIdentifier>{096cae90-882e-4025-b3df-3755d902c2dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\PlayLevel">
-      <UniqueIdentifier>{fcb6b039-482f-4568-9afa-75412533f43f}</UniqueIdentifier>
+    <Filter Include="Level\2. Title">
+      <UniqueIdentifier>{f6a7cfbb-241b-463c-a823-46a50f81057e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Boss">
-      <UniqueIdentifier>{94dd5ab7-7064-47ab-a630-cab23fbecd70}</UniqueIdentifier>
+    <Filter Include="Level\3. Menu">
+      <UniqueIdentifier>{80b84fbf-3b98-47ff-8eb7-e5ab5b9454f6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Character">
-      <UniqueIdentifier>{5c1e6902-e740-47e8-9154-7378be7e2777}</UniqueIdentifier>
+    <Filter Include="Level\4. Intro">
+      <UniqueIdentifier>{78ac67bd-80b7-4799-b652-179d59482a48}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\MiniMap">
-      <UniqueIdentifier>{983c635e-3cbd-47f4-9702-c8a1b1de45ce}</UniqueIdentifier>
+    <Filter Include="Level\5. Elder">
+      <UniqueIdentifier>{ee659898-ec94-4d15-a600-c8160a133f96}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Etc">
-      <UniqueIdentifier>{c8f58765-657a-47c9-bcd4-19e6cafa812f}</UniqueIdentifier>
+    <Filter Include="Level\6. Tutorial">
+      <UniqueIdentifier>{7ebb7514-88f6-4b7b-ab10-7502e13338fc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\MiniMapLevel">
-      <UniqueIdentifier>{19b02982-2e08-48f5-8016-312f39f6fe0f}</UniqueIdentifier>
+    <Filter Include="Level\7. MiniMap">
+      <UniqueIdentifier>{8ffe6679-c0e4-4d86-bbef-b2a79288aa5b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Bullet">
-      <UniqueIdentifier>{4e4ac9cd-1018-4a3b-8af6-be50aa0bb39c}</UniqueIdentifier>
+    <Filter Include="Level\8. FirstBossStage">
+      <UniqueIdentifier>{38cf6695-93f2-4cdc-ac1b-20be32c38c0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage">
+      <UniqueIdentifier>{02bc01cc-a455-4639-b9df-b25839ed9df6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\10. LastBossStage">
+      <UniqueIdentifier>{45435d38-5ce5-4c81-b8fd-2acf7f82a0bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\11. Outro">
+      <UniqueIdentifier>{d6741ea3-bd7a-4923-9bbb-dca04c5d237e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\1. Logo\LogoActor">
+      <UniqueIdentifier>{5f96bafa-89a5-477c-babe-4a7320e84abe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\2. Title\TitleActor">
+      <UniqueIdentifier>{b17a7ed6-5f7c-4eab-9d10-82ce8a38f52b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\3. Menu\MenuActor">
+      <UniqueIdentifier>{2d67a95c-64a1-4669-84e2-84d23b0e64e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\4. Intro\IntroActor">
+      <UniqueIdentifier>{191c639a-d635-4cd1-8045-af620d2d1c7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\5. Elder\ElderActor">
+      <UniqueIdentifier>{70956535-5298-44a9-aa3e-478dcae14661}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\6. Tutorial\TutorialActor">
+      <UniqueIdentifier>{12e38051-8787-45c1-9205-4a2e9999aa56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\7. MiniMap\MiniMapActor">
+      <UniqueIdentifier>{489d1c94-3703-4799-9cac-db509789ec86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\8. FirstBossStage\FirstBossStageActor">
+      <UniqueIdentifier>{433f4eb6-1c3d-4a27-9454-5e101c42b04c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor">
+      <UniqueIdentifier>{175169d8-1c19-4fb1-ae3f-3d6744264a85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\10. LastBossStage\LastBossStageActor">
+      <UniqueIdentifier>{4bc9a201-ead2-4c98-80aa-9bfd4e14f7c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\11. Outro\OutroActor">
+      <UniqueIdentifier>{53270b86-ee47-4e28-aae4-49b91e75b1f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Enum">
+      <UniqueIdentifier>{e41849ce-40a6-45be-b06d-ebd07d314e51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Character">
+      <UniqueIdentifier>{dc55b77e-ef78-429a-bf71-5aacf4954626}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Map">
+      <UniqueIdentifier>{f79cbb9b-b5b9-46f0-bc4f-240ba8291fff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\BackGround">
+      <UniqueIdentifier>{14805544-157a-4d78-bea8-168b28b39a69}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
