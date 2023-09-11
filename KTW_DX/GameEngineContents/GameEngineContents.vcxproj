@@ -238,6 +238,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="StoryBook.h" />
     <ClInclude Include="StoryLevel.h">
       <SubType>
       </SubType>
@@ -334,6 +335,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="StoryBook.cpp" />
     <ClCompile Include="StoryLevel.cpp">
       <SubType>
       </SubType>

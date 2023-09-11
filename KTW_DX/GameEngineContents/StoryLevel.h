@@ -18,12 +18,9 @@ public:
 protected:
 
 private:
-	unsigned int AnimationNumber = 1;
 
-	std::shared_ptr<class BackGround> StoryAnimation = nullptr;
+	std::shared_ptr<class StoryBook> Story = nullptr;
 
-	void Update(float _Delta) override;
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 
-	void ChangeStoryAnimation();
 };

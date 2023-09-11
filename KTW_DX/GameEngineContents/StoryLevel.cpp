@@ -1,7 +1,7 @@
 ﻿#include "PreCompile.h"
 #include "StoryLevel.h"
 
-#include "BackGround.h"
+#include "StoryBook.h"
 
 StoryLevel::StoryLevel()
 {
@@ -25,43 +25,5 @@ void StoryLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		GameEngineSprite::CreateFolder(Dir.GetStringPath());
 	}
 
-	StoryAnimation = CreateActor<BackGround>(UpdateOrder::BackGround);
-	StoryAnimation->AnimationInit("StoryPage_1", "Page_1", 0.05f, false);
-}
-
-void StoryLevel::Update(float _Delta)
-{
-	if (true == GameEngineInput::IsDown('Z') && true == StoryAnimation->AnimationEndCheck())
-	{
-		if (AnimationNumber < 11)
-		{
-			++AnimationNumber;
-			ChangeStoryAnimation();
-		}
-		else
-		{
-			GameEngineCore::ChangeLevel("MiniMapLevel");
-		}
-	}
-
-	if (true == GameEngineInput::IsPress(VK_RETURN))
-	{
-		if (AnimationNumber < 11)
-		{
-			++AnimationNumber;
-			ChangeStoryAnimation();
-		}
-		else
-		{
-			GameEngineCore::ChangeLevel("MiniMapLevel");
-		}
-	}
-}
-
-void StoryLevel::ChangeStoryAnimation()
-{
-	std::string AnimationName = "StoryPage_" + std::to_string(AnimationNumber);
-	std::string FolderName = "Page_" + std::to_string(AnimationNumber);
-
-	StoryAnimation->AnimationInit(AnimationName, FolderName, 0.05f, false);
+	Story = CreateActor<StoryBook>(UpdateOrder::BackGround);
 }

@@ -71,6 +71,9 @@
     <ClInclude Include="ParryObject.h">
       <Filter>Actor\Etc</Filter>
     </ClInclude>
+    <ClInclude Include="StoryBook.h">
+      <Filter>Actor\Etc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -147,6 +150,9 @@
       <Filter>Level\PlayLevel</Filter>
     </ClCompile>
     <ClCompile Include="ParryObject.cpp">
+      <Filter>Actor\Etc</Filter>
+    </ClCompile>
+    <ClCompile Include="StoryBook.cpp">
       <Filter>Actor\Etc</Filter>
     </ClCompile>
   </ItemGroup>
