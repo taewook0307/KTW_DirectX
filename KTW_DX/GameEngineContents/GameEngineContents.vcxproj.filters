@@ -65,6 +65,12 @@
     <ClInclude Include="UpperObject.h">
       <Filter>Actor\Etc</Filter>
     </ClInclude>
+    <ClInclude Include="SecondBossStage.h">
+      <Filter>Level\PlayLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="ParryObject.h">
+      <Filter>Actor\Etc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -135,6 +141,12 @@
       <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="UpperObject.cpp">
+      <Filter>Actor\Etc</Filter>
+    </ClCompile>
+    <ClCompile Include="SecondBossStage.cpp">
+      <Filter>Level\PlayLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="ParryObject.cpp">
       <Filter>Actor\Etc</Filter>
     </ClCompile>
   </ItemGroup>

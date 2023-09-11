@@ -28,7 +28,7 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<MiniMapLevel>("MiniMapLevel");
 	GameEngineCore::CreateLevel<TutorialStage>("TutorialStage");
 	GameEngineCore::CreateLevel<FirstBossStage>("FirstBossStage");
-	GameEngineCore::ChangeLevel("TutorialStage");
+	GameEngineCore::ChangeLevel("StoryLevel");
 }
 
 void ContentsCore::Update(float _Delta)

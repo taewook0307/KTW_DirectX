@@ -71,7 +71,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	}
 
 	Player = CreateActor<BaseCharacter>(UpdateOrder::Player);
-	Player->Transform.SetLocalPosition({ 230.0f, -500.0f });
+	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
 
 	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialMap.Png");
 	float4 SpriteHalfScale = Sprite->GetSpriteData(0).GetScale().Half();

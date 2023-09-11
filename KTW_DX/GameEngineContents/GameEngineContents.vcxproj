@@ -225,7 +225,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ParryObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PreCompile.h" />
+    <ClInclude Include="SecondBossStage.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="SelectMenu.h">
       <SubType>
       </SubType>
@@ -308,11 +316,19 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ParryObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PreCompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SecondBossStage.cpp">
+      <SubType>
+      </SubType>
     </ClCompile>
     <ClCompile Include="SelectMenu.cpp">
       <SubType>

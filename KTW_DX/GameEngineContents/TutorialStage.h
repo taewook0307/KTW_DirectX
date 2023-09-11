@@ -1,5 +1,6 @@
 #pragma once
 
+#define PLAYERSTARTPOS { 230.0f, - 605.0f }
 #define EXITPOS { 6645.0f, -604.0f }
 
 #include <GameEngineCore/GameEngineLevel.h>

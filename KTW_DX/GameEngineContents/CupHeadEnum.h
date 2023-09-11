@@ -29,5 +29,6 @@ enum class CollisionOrder
 	Bullet,
 	Monster,
 	FieldEnter,
+	ParryObject,
 	Max
 };
