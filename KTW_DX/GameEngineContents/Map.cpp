@@ -15,7 +15,7 @@ Map::~Map()
 void Map::Start()
 {
 	MapRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Map);
-	BitMapRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Map);
+	PixelMapRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Map);
 }
 
 void Map::Update(float _Delta)
@@ -47,37 +47,37 @@ void Map::MapAnimationInit(std::string_view _AnimationName, std::string_view _Fi
 	}
 }
 
-void Map::BitMapInit(std::string_view _SpriteName)
+void Map::PixelMapInit(std::string_view _SpriteName)
 {
-	BitMapRenderer->SetSprite(_SpriteName);
-	BitMapRenderer->AutoSpriteSizeOn();
+	PixelMapRenderer->SetSprite(_SpriteName);
+	PixelMapRenderer->AutoSpriteSizeOn();
 
-	BitMapFileName = _SpriteName;
+	PixelMapFileName = _SpriteName;
 
-	BitMapRenderer->Off();
+	PixelMapRenderer->Off();
 }
 
 GameEngineColor Map::GetColor(float4 _Pos, GameEngineColor _DefaultColor)
 {
 	_Pos.Y *= -1.0f;
 
-	std::shared_ptr<GameEngineTexture> Tex = GameEngineTexture::Find(BitMapFileName);
+	std::shared_ptr<GameEngineTexture> Tex = GameEngineTexture::Find(PixelMapFileName);
 
 	return Tex->GetColor(_Pos, _DefaultColor);
 }
 
 void Map::RendererSwitch()
 {
-	BitMapRenderSwitch = !BitMapRenderSwitch;
+	PixelMapRenderSwitch = !PixelMapRenderSwitch;
 
-	if (true == BitMapRenderSwitch)
+	if (true == PixelMapRenderSwitch)
 	{
 		MapRenderer->Off();
-		BitMapRenderer->On();
+		PixelMapRenderer->On();
 	}
 	else
 	{
 		MapRenderer->On();
-		BitMapRenderer->Off();
+		PixelMapRenderer->Off();
 	}
 }

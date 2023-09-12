@@ -101,7 +101,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 
 	TutorialMap = CreateActor<Map>(UpdateOrder::Map);
 	TutorialMap->MapInit("TutorialMap.Png");
-	TutorialMap->BitMapInit("TutorialBitMap.Png");
+	TutorialMap->PixelMapInit("TutorialBitMap.Png");
 	TutorialMap->Transform.SetLocalPosition({ SpriteHalfScale.X, -SpriteHalfScale.Y });
 
 	TutorialParry1 = CreateActor<ParryObject>(UpdateOrder::Map);

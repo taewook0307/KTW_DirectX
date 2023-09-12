@@ -58,7 +58,7 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	// 미니맵 생성
 	MiniMap = CreateActor<Map>(UpdateOrder::Map);
 	MiniMap->MapInit("CupHead_MiniMap.png");
-	MiniMap->BitMapInit("CupHead_MiniMap_BitMap.png");
+	MiniMap->PixelMapInit("CupHead_MiniMap_BitMap.png");
 
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("CupHead_MiniMap.png");
 	float4 MapTextureHalfScale = MapTexture->GetScale().Half();

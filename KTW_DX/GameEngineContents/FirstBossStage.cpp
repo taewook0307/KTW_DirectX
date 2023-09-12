@@ -67,7 +67,7 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 
 	StageMap = CreateActor<Map>(UpdateOrder::Map);
 	StageMap->MapAnimationInit("FirstBossMapAni", "FirstBossMap", 0.05f);
-	StageMap->BitMapInit("FirstBossBitMap.Png");
+	StageMap->PixelMapInit("FirstBossBitMap.Png");
 	StageMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 }
 
