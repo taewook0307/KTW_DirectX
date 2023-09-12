@@ -26,9 +26,6 @@
     <ClInclude Include="SecondBossStage.h">
       <Filter>Level\9. SecondBossStage</Filter>
     </ClInclude>
-    <ClInclude Include="StoryLevel.h">
-      <Filter>Level\4. Intro</Filter>
-    </ClInclude>
     <ClInclude Include="TitleLevel.h">
       <Filter>Level\2. Title</Filter>
     </ClInclude>
@@ -43,9 +40,6 @@
     </ClInclude>
     <ClInclude Include="ActorEnum.h">
       <Filter>Global\Enum</Filter>
-    </ClInclude>
-    <ClInclude Include="StoryBook.h">
-      <Filter>Level\4. Intro\IntroActor</Filter>
     </ClInclude>
     <ClInclude Include="ParryObject.h">
       <Filter>Level\6. Tutorial\TutorialActor</Filter>
@@ -74,6 +68,18 @@
     <ClInclude Include="Map.h">
       <Filter>Global\Map</Filter>
     </ClInclude>
+    <ClInclude Include="OutroLevel.h">
+      <Filter>Level\11. Outro</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroLevel.h">
+      <Filter>Level\4. Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="OutroBook.h">
+      <Filter>Level\11. Outro\OutroActor</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroBook.h">
+      <Filter>Level\4. Intro\IntroActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -101,9 +107,6 @@
     <ClCompile Include="SecondBossStage.cpp">
       <Filter>Level\9. SecondBossStage</Filter>
     </ClCompile>
-    <ClCompile Include="StoryLevel.cpp">
-      <Filter>Level\4. Intro</Filter>
-    </ClCompile>
     <ClCompile Include="TitleLevel.cpp">
       <Filter>Level\2. Title</Filter>
     </ClCompile>
@@ -112,9 +115,6 @@
     </ClCompile>
     <ClCompile Include="BaseActor.cpp">
       <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="StoryBook.cpp">
-      <Filter>Level\4. Intro\IntroActor</Filter>
     </ClCompile>
     <ClCompile Include="ParryObject.cpp">
       <Filter>Level\6. Tutorial\TutorialActor</Filter>
@@ -154,6 +154,18 @@
     </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Global\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="OutroLevel.cpp">
+      <Filter>Level\11. Outro</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroLevel.cpp">
+      <Filter>Level\4. Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="OutroBook.cpp">
+      <Filter>Level\11. Outro\OutroActor</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroBook.cpp">
+      <Filter>Level\4. Intro\IntroActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

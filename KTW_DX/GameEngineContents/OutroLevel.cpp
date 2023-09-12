@@ -1,21 +1,21 @@
 ﻿#include "PreCompile.h"
-#include "StoryLevel.h"
+#include "OutroLevel.h"
 
-#include "StoryBook.h"
+#include "OutroBook.h"
 
-StoryLevel::StoryLevel()
+OutroLevel::OutroLevel()
 {
 }
 
-StoryLevel::~StoryLevel()
+OutroLevel::~OutroLevel()
 {
 }
 
-void StoryLevel::LevelStart(GameEngineLevel* _PrevLevel)
+void OutroLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	GameEngineDirectory Dir;
 	Dir.MoveParentToExistsChild("Resources");
-	Dir.MoveChild("Resources\\Texture\\Level\\Story\\Start");
+	Dir.MoveChild("Resources\\Texture\\Level\\Story\\End");
 	std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
 	for (size_t i = 0; i < Directorys.size(); i++)
@@ -25,5 +25,5 @@ void StoryLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		GameEngineSprite::CreateFolder(Dir.GetStringPath());
 	}
 
-	Story = CreateActor<StoryBook>(UpdateOrder::BackGround);
+	Outro = CreateActor<OutroBook>(UpdateOrder::BackGround);
 }

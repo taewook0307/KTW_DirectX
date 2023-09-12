@@ -1,15 +1,15 @@
 ﻿#include "PreCompile.h"
-#include "StoryBook.h"
+#include "IntroBook.h"
 
-StoryBook::StoryBook()
+IntroBook::IntroBook()
 {
 }
 
-StoryBook::~StoryBook()
+IntroBook::~IntroBook()
 {
 }
 
-void StoryBook::Start()
+void IntroBook::Start()
 {
 	BookRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BackGround);
 

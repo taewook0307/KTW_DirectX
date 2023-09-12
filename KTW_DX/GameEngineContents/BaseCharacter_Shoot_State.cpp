@@ -245,6 +245,12 @@ void BaseCharacter::ShootUpdate(float _Delta)
 		return;
 	}
 
+	if (true == GameEngineInput::IsPress('C'))
+	{
+		ChangeState(CharacterState::AimShoot);
+		return;
+	}
+
 	if (true == GameEngineInput::IsDown('Z'))
 	{
 		ChangeState(CharacterState::Jump);

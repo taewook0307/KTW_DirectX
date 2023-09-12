@@ -62,7 +62,7 @@ void MenuLevel::Update(float _Delta)
 	if (MainMenuSelect::Start == CurSelect && GameEngineInput::IsDown(VK_RETURN)
 		|| MainMenuSelect::Start == CurSelect && GameEngineInput::IsDown('Z'))
 	{
-		GameEngineCore::ChangeLevel("StoryLevel");
+		GameEngineCore::ChangeLevel("IntroLevel");
 	}
 
 	if (MainMenuSelect::Exit == CurSelect && GameEngineInput::IsDown(VK_RETURN)
