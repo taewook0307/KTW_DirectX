@@ -14,31 +14,43 @@ BaseCharacter::~BaseCharacter()
 void BaseCharacter::Start()
 {
 	PlayerRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Play);
-	PlayerRenderer->CreateAnimation("CupHead_Intro", "Intro_Flex", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Idle", "Idle", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Run", "Run", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Jump", "Jump", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Parry", "Parry", 0.03f);
-	PlayerRenderer->CreateAnimation("CupHead_Dash", "Dash_Ground", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Dash_Air", "Dash_Air", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Fall", "Jump", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Aim_Straight", "Aim_Straight", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Aim_StraightUp", "Aim_StraightUp", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Aim_StraightDown", "Aim_StraightDown", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Aim_Up", "Aim_Up", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Aim_Down", "Aim_Down", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Duck", "Duck", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Duck_Idle", "Duck_Idle", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Shoot_Straight", "Shoot_Straight", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_Shoot_Up", "Shoot_Up", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_AimShoot_Straight", "Shoot_Straight", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_AimShoot_StraightUp", "Shoot_StraightUp", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_AimShoot_StraightDown", "Shoot_StraightDown", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_AimShoot_Up", "Shoot_Up", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_AimShoot_Down", "Shoot_Down", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_RunShoot_Straight", "RunShoot_Straight", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_RunShoot_StraightUp", "RunShoot_StraightUp", 0.05f);
-	PlayerRenderer->CreateAnimation("CupHead_DuckShoot", "Duck_Shoot", 0.05f);
+	PlayerRenderer->CreateAnimation("CupHead_Intro", "Intro_Flex", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Idle", "Idle", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Run", "Run", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Jump", "Jump", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Parry", "Parry", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Dash", "Dash_Ground", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Dash_Air", "Dash_Air", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Fall", "Jump", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Aim_Straight", "Aim_Straight", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Aim_StraightUp", "Aim_StraightUp", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Aim_StraightDown", "Aim_StraightDown", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Aim_Up", "Aim_Up", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Aim_Down", "Aim_Down", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Duck", "Duck", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Duck_Idle", "Duck_Idle", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Shoot_Straight", "Shoot_Straight", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Shoot_Up", "Shoot_Up", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_AimShoot_Straight", "Shoot_Straight", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_AimShoot_StraightUp", "Shoot_StraightUp", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_AimShoot_StraightDown", "Shoot_StraightDown", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_AimShoot_Up", "Shoot_Up", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_AimShoot_Down", "Shoot_Down", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_RunShoot_Straight", "RunShoot_Straight", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_RunShoot_StraightUp", "RunShoot_StraightUp", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_DuckShoot", "Duck_Shoot", CHARACTERANIMATIONINTER);
+
+	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Up", "Special_Up", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Down", "Special_Down", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Straight", "Special_Straight", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_StraightUp", "Special_StraightUp", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_StraightDown", "Special_StraightDown", CHARACTERANIMATIONINTER);
+
+	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Air_Up", "SpecialAir_Up", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Air_Down", "SpecialAir_Down", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Air_Straight", "SpecialAir_Straight", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Air_StraightUp", "SpecialAir_StraightUp", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Air_StraightDown", "SpecialAir_StraightDown", CHARACTERANIMATIONINTER);
 	PlayerRenderer->AutoSpriteSizeOn();
 	PlayerRenderer->SetAutoScaleRatio(0.8f);
 	PlayerRenderer->SetPivotType(PivotType::Bottom);
@@ -66,6 +78,11 @@ void BaseCharacter::Update(float _Delta)
 	else
 	{
 		Transform.SetLocalScale({ 1.0f ,1.0f });
+	}
+
+	if (true == GameEngineInput::IsPress('V'))
+	{
+		ChangeState(CharacterState::SpecialAttack);
 	}
 
 	if (true == Shoot)
@@ -172,6 +189,8 @@ void BaseCharacter::StateUpdate(float _Delta)
 		return RunShootUpdate(_Delta);
 	case CharacterState::DuckShoot:
 		return DuckShootUpdate(_Delta);
+	case CharacterState::SpecialAttack:
+		return SpecialAttackUpdate(_Delta);
 	default:
 		break;
 	}
@@ -222,6 +241,9 @@ void BaseCharacter::ChangeState(CharacterState _State)
 		case CharacterState::DuckShoot:
 			DuckShootStart();
 			break;
+		case CharacterState::SpecialAttack:
+			SpecialAttackStart();
+			break;
 		default:
 			break;
 		}
@@ -268,7 +290,10 @@ void BaseCharacter::ChangeAnimation(std::string_view _State)
 		}
 	}
 
-	if ("Aim" == _State || "AimShoot" == _State)
+	if ("Aim" == _State
+		|| "AimShoot" == _State
+		|| "SpecialAttack" == _State
+		|| "SpecialAttack_Air" == _State)
 	{
 		if (CharacterAimDir::Straight == AimDir)
 		{

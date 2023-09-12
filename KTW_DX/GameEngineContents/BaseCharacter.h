@@ -1,6 +1,8 @@
 #pragma once
 #include "BaseActor.h"
 
+#define CHARACTERANIMATIONINTER 0.05f
+
 #define JUMPPOWER 1500.0f
 #define SHOOTTIMER 0.2f
 
@@ -69,6 +71,9 @@ protected:
 
 	void ParryStart();
 	void ParryUpdate(float _Delta);
+
+	void SpecialAttackStart();
+	void SpecialAttackUpdate(float _Delta);
 
 protected:
 	void Start() override;
