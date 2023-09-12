@@ -89,6 +89,9 @@
     <ClCompile Include="GameEngineCollisionGroup.cpp">
       <Filter>Collision</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineBlend.cpp">
+      <Filter>Resources\RenderingSetting</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -178,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="GameEngineCollisionGroup.h">
       <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineBlend.h">
+      <Filter>Resources\RenderingSetting</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
