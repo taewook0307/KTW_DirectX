@@ -386,27 +386,3 @@ void BaseCharacter::DuckShootUpdate(float _Delta)
 		return;
 	}
 }
-
-void BaseCharacter::SpecialAttackStart()
-{
-	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
-
-	if (CheckColor != FLOORCOLOR)
-	{
-		ChangeAnimation("SpecialAttack_Air");
-	}
-	else
-	{
-		ChangeAnimation("SpecialAttack");
-	}
-	
-}
-
-void BaseCharacter::SpecialAttackUpdate(float _Delta)
-{
-	if (true == PlayerRenderer->IsCurAnimationEnd())
-	{
-		ChangeState(CharacterState::Idle);
-		return;
-	}
-}

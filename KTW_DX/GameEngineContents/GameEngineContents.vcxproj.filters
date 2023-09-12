@@ -59,9 +59,6 @@
     <ClInclude Include="BackGround.h">
       <Filter>Global\BackGround</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>Global\Character</Filter>
-    </ClInclude>
     <ClInclude Include="UpperObject.h">
       <Filter>Global\Map</Filter>
     </ClInclude>
@@ -79,6 +76,12 @@
     </ClInclude>
     <ClInclude Include="IntroBook.h">
       <Filter>Level\4. Intro\IntroActor</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Global\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialBullet.h">
+      <Filter>Global\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -143,12 +146,6 @@
     <ClCompile Include="BackGround.cpp">
       <Filter>Global\BackGround</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>Global\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet_State.cpp">
-      <Filter>Global\Character</Filter>
-    </ClCompile>
     <ClCompile Include="UpperObject.cpp">
       <Filter>Global\Map</Filter>
     </ClCompile>
@@ -166,6 +163,18 @@
     </ClCompile>
     <ClCompile Include="IntroBook.cpp">
       <Filter>Level\4. Intro\IntroActor</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Global\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet_State.cpp">
+      <Filter>Global\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialBullet.cpp">
+      <Filter>Global\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCharacter_SpecialAttack.cpp">
+      <Filter>Global\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +264,9 @@
     </Filter>
     <Filter Include="Global\BackGround">
       <UniqueIdentifier>{14805544-157a-4d78-bea8-168b28b39a69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Bullet">
+      <UniqueIdentifier>{b8da8222-5c14-482a-bd6d-d2ab54344955}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

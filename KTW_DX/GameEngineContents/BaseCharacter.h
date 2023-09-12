@@ -91,6 +91,7 @@ protected:
 	void ShootAimState();
 	void ShootRunState();
 	void ShootDuckState();
+	void SpecialShootState();
 
 	float ShootTimer = SHOOTTIMER;
 	bool Shoot = false;

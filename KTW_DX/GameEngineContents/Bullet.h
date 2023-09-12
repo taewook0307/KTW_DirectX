@@ -1,5 +1,7 @@
 #pragma once
 
+#define BULLETRATIO 0.5f
+
 #include <GameEngineCore/GameEngineActor.h>
 
 class Bullet : public GameEngineActor
@@ -28,7 +30,7 @@ public:
 protected:
 	void ChangeBulletState(BulletState _State);
 	void StateUpdate(float _Delta);
-	void ChangeBulletAnimation(std::string_view _State);
+	virtual void ChangeBulletAnimation(std::string_view _State);
 
 	void SpawnStart();
 	void SpawnUpdate(float _Delta);
@@ -42,11 +44,11 @@ protected:
 	void Start() override;
 	void Update(float _Delta) override;
 
-private:
 	std::shared_ptr<GameEngineSpriteRenderer> BulletRenderer = nullptr;
 	BulletType Type = BulletType::Normal;
 	BulletState CurState = BulletState::None;
 	std::string State = "";
 
 	BulletDirection BulletDir = BulletDirection::None;
+private:
 };

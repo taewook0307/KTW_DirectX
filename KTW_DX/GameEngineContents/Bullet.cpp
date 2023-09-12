@@ -16,7 +16,7 @@ void Bullet::Start()
 	BulletRenderer->CreateAnimation("Bullet_Move", "BulletMove", 0.02f);
 	BulletRenderer->CreateAnimation("Bullet_Death", "BulletDeath", 0.02f);
 	BulletRenderer->AutoSpriteSizeOn();
-	BulletRenderer->SetAutoScaleRatio(0.5f);
+	BulletRenderer->SetAutoScaleRatio(BULLETRATIO);
 
 	ChangeBulletState(BulletState::Spawn);
 }
