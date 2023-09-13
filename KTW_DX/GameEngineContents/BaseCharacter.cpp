@@ -153,6 +153,16 @@ void BaseCharacter::Update(float _Delta)
 		ChangeState(CharacterState::SpecialAttack);
 	}
 
+	if (true == Cheat && true == GameEngineInput::IsPress('V'))
+	{
+		ChangeState(CharacterState::SpecialAttack);
+	}
+
+	if (true == GameEngineInput::IsDown('P'))
+	{
+		Cheat = !Cheat;
+	}
+
 	if (true == Shoot)
 	{
 		ShootTimer -= _Delta;

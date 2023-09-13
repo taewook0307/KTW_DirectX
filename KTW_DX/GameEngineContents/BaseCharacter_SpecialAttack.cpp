@@ -81,16 +81,44 @@ void BaseCharacter::SpecialAttackStart()
 	{
 		ChangeAnimation("SpecialAttack");
 	}
-
 }
 
 void BaseCharacter::SpecialAttackUpdate(float _Delta)
 {
-	
-
-	if (true == PlayerRenderer->IsCurAnimationEnd())
+	if (true == Cheat)
 	{
-		ChangeState(CharacterState::Idle);
-		return;
+		SpecialShootState();
+	}
+
+	if (true == PlayerRenderer->IsCurAnimationEnd() && false == Cheat)
+	{
+		GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
+
+		if (CheckColor != FLOORCOLOR)
+		{
+			ChangeState(CharacterState::Fall);
+			return;
+		}
+		else
+		{
+			ChangeState(CharacterState::Idle);
+			return;
+		}
+	}
+
+	if (true == Cheat && true == PlayerRenderer->IsCurAnimationEnd() && true == GameEngineInput::IsFree('V'))
+	{
+		GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
+
+		if (CheckColor != FLOORCOLOR)
+		{
+			ChangeState(CharacterState::Fall);
+			return;
+		}
+		else
+		{
+			ChangeState(CharacterState::Idle);
+			return;
+		}
 	}
 }
