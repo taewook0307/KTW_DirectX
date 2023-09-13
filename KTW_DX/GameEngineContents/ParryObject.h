@@ -25,6 +25,11 @@ public:
 		Parry = false;
 	}
 
+	bool GetParry() const
+	{
+		return Parry;
+	}
+
 protected:
 
 private:

@@ -2,6 +2,7 @@
 #include "BaseCharacter.h"
 
 #include "Map.h"
+#include "ParryObject.h"
 
 
 void BaseCharacter::CharacterMove(float _Delta)
@@ -351,4 +352,21 @@ void BaseCharacter::ParryUpdate(float _Delta)
 
 	//Move
 	CharacterMove(_Delta);
+
+	
+	PlayerCollision->Collision(CollisionOrder::ParryObject,
+		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
+		{
+			std::shared_ptr<GameEngineCollision> CurCollision = _Col[_Col.size() - 1];
+			GameEngineActor* ColMaster = CurCollision->GetActor();
+			ParryObject* ColParryOB = dynamic_cast<ParryObject*>(ColMaster);
+
+			bool ParryState = ColParryOB->GetParry();
+			if (true == ParryState)
+			{
+				ColParryOB->ParryOff();
+				ParrySuccess = true;
+			}
+		}
+	);
 }
