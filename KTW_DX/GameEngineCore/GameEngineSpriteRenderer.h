@@ -87,6 +87,7 @@ public:
 		AutoScaleRatio.X = _Ratio;
 		AutoScaleRatio.Y = _Ratio;
 	}
+
 	inline void SetAutoScaleRatio(float4 _Ratio)
 	{
 		AutoScaleRatio = _Ratio;
@@ -146,8 +147,6 @@ public:
 	void SetImageScale(const float4& _Scale);
 	void AddImageScale(const float4& _Scale);
 
-	static void SetDefaultSampler(std::string_view _SamplerName);
-
 	std::shared_ptr<GameEngineSprite> GetSprite()
 	{
 		return Sprite;
@@ -178,8 +177,8 @@ private:
 	std::shared_ptr<GameEngineSprite> Sprite;
 	SpriteData CurSprite;
 
-	static std::shared_ptr<class GameEngineSampler> DefaultSampler;
 	std::shared_ptr<class GameEngineSampler> Sampler;
+
 	bool IsImageSize = false;
 	float4 AutoScaleRatio = { 1.0f,1.0f,1.0f };
 	bool IsPause = false;

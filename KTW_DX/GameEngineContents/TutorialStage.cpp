@@ -124,8 +124,6 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 
 void TutorialStage::Update(float _Delta)
 {
-	float4 Check = Player->Transform.GetWorldPosition();
-
 	TutorialLevelCameraMove();
 
 	if (true == GameEngineInput::IsDown(VK_ESCAPE))

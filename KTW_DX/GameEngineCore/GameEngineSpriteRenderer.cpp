@@ -4,7 +4,6 @@
 #include "GameEngineSampler.h"
 #include "GameEngineConstantBuffer.h"
 
-std::shared_ptr<class GameEngineSampler> GameEngineSpriteRenderer::DefaultSampler;
 
 void GameEngineFrameAnimation::EventCall(int _Frame)
 {
@@ -73,12 +72,6 @@ SpriteData GameEngineFrameAnimation::Update(float _DeltaTime)
 
 GameEngineSpriteRenderer::GameEngineSpriteRenderer()
 {
-	if (nullptr == DefaultSampler)
-	{
-		MsgBoxAssert("SpriteRenderer에 설정할 기본 샘플러가 없습니다.");
-	}
-
-	Sampler = DefaultSampler;
 }
 
 GameEngineSpriteRenderer::~GameEngineSpriteRenderer()
@@ -93,11 +86,7 @@ void GameEngineSpriteRenderer::Start()
 
 	ImageTransform.SetParent(Transform);
 
-
-	// CreateChild<GameEngineComponent>(0);
-
-	// CreateChild();
-
+	Sampler = GameEngineSampler::Find("LINEAR");
 }
 
 void GameEngineSpriteRenderer::Update(float _Delta)
@@ -126,10 +115,6 @@ void GameEngineSpriteRenderer::AddImageScale(const float4& _Scale)
 	ImageTransform.AddLocalScale(_Scale);
 }
 
-void GameEngineSpriteRenderer::SetDefaultSampler(std::string_view _SamplerName)
-{
-	DefaultSampler = GameEngineSampler::Find(_SamplerName);
-}
 
 void GameEngineSpriteRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 {
@@ -162,10 +147,9 @@ void GameEngineSpriteRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 
 	CurSprite.Texture->PSSetting(0);
 
-	// std::shared_ptr<GameEngineSampler> Sampler = GameEngineSampler::Find("EngineBaseSampler");
 	if (nullptr == Sampler)
 	{
-		MsgBoxAssert("존재하지 않는 텍스처를 사용하려고 했습니다.");
+		MsgBoxAssert("존재하지 않는 샘플러를 사용하려고 했습니다.");
 	}
 	Sampler->PSSetting(0);
 
