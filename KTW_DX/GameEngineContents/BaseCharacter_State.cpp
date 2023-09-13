@@ -225,6 +225,7 @@ void BaseCharacter::JumpUpdate(float _Delta)
 
 void BaseCharacter::DashStart()
 {
+	GravityReset();
 	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
 
 	if (CheckColor != FLOORCOLOR)
@@ -271,7 +272,6 @@ void BaseCharacter::DashUpdate(float _Delta)
 void BaseCharacter::FallStart()
 {
 	ChangeAnimation("Fall");
-	GravityReset();
 }
 
 void BaseCharacter::FallUpdate(float _Delta)
@@ -351,18 +351,4 @@ void BaseCharacter::ParryUpdate(float _Delta)
 
 	//Move
 	CharacterMove(_Delta);
-
-	if (true == PlayerCollision->Collision(CollisionOrder::ParryObject))
-	{
-		ParrySuccess = true;
-	}
-
-	// Change State
-	GameEngineColor Color = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
-
-	if (FLOORCOLOR == Color || STOOLCOLOR == Color)
-	{
-		ChangeState(CharacterState::Idle);
-		return;
-	}
 }

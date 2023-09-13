@@ -19,6 +19,14 @@ void BaseCharacter::Start()
 	PlayerRenderer->CreateAnimation("CupHead_Run", "Run", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Jump", "Jump", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Parry", "Parry", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetEndEvent("CupHead_Parry",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ChangeState(CharacterState::Fall);
+			return;
+		}
+	);
+
 	PlayerRenderer->CreateAnimation("CupHead_Dash", "Dash_Ground", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Dash_Air", "Dash_Air", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Fall", "Jump", CHARACTERANIMATIONINTER);
@@ -172,12 +180,6 @@ void BaseCharacter::Update(float _Delta)
 			Shoot = false;
 			ShootTimer = SHOOTTIMER;
 		}
-	}
-
-	if (true == ParrySuccess)
-	{
-		SetGravityForce(float4::UP * JUMPPOWER * 0.5f);
-		ParrySuccess = false;
 	}
 }
 
