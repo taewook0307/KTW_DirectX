@@ -41,11 +41,11 @@ SpriteData GameEngineFrameAnimation::Update(float _DeltaTime)
 
 	CurTime += _DeltaTime;
 
-	if (Inter <= CurTime)
+	if (Inter[CurIndex] <= CurTime)
 	{
+		CurTime -= Inter[CurIndex];
 		++CurIndex;
 		EventCheck = true;
-		CurTime -= Inter;
 
 		if (CurIndex > End - Start)
 		{
@@ -203,7 +203,7 @@ void GameEngineSpriteRenderer::CreateAnimation(
 	NewAnimation->SpriteName = _SpriteName;
 	NewAnimation->Sprite = Sprite;
 	NewAnimation->Loop = _Loop;
-	NewAnimation->Inter = _Inter;
+
 	NewAnimation->Parent = this;
 
 	if (_Start != -1)
@@ -229,6 +229,13 @@ void GameEngineSpriteRenderer::CreateAnimation(
 	{
 		NewAnimation->Index.push_back(i);
 	}
+
+	NewAnimation->Inter.resize(NewAnimation->Index.size());
+	for (size_t i = 0; i < NewAnimation->Index.size(); i++)
+	{
+		NewAnimation->Inter[i] = _Inter;
+	}
+
 
 
 	NewAnimation->CurIndex = 0;
