@@ -189,10 +189,12 @@ void BaseCharacter::JumpUpdate(float _Delta)
 	// Gravity
 	if (GetGravityForce().Y > 0)
 	{
+		StoolPass = true;
 		CharacterGravity(_Delta, Transform.GetWorldPosition() + float4{ 0.0f, 80.0f });
 	}
 	else
 	{
+		StoolPass = false;
 		CharacterGravity(_Delta, Transform.GetWorldPosition());
 	}
 
@@ -202,7 +204,7 @@ void BaseCharacter::JumpUpdate(float _Delta)
 	// Change State
 	GameEngineColor Color = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
 
-	if (FLOORCOLOR == Color || STOOLCOLOR == Color)
+	if (FLOORCOLOR == Color || (STOOLCOLOR == Color && false == StoolPass))
 	{
 		ChangeState(CharacterState::Idle);
 		return;
