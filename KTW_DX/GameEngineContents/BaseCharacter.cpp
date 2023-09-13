@@ -41,16 +41,84 @@ void BaseCharacter::Start()
 	PlayerRenderer->CreateAnimation("CupHead_DuckShoot", "Duck_Shoot", CHARACTERANIMATIONINTER);
 
 	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Up", "Special_Up", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Up", 6,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			SpecialShootState();
+		}
+	);
+
 	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Down", "Special_Down", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Down", 6,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			SpecialShootState();
+		}
+	);
+
 	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Straight", "Special_Straight", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Straight", 6, 
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			SpecialShootState();
+		}
+	);
 	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_StraightUp", "Special_StraightUp", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_StraightUp", 6,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			SpecialShootState();
+		}
+	);
+
 	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_StraightDown", "Special_StraightDown", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_StraightDown", 6,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			SpecialShootState();
+		}
+	);
 
 	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Air_Up", "SpecialAir_Up", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Air_Up", 6,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			SpecialShootState();
+		}
+	);
+
 	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Air_Down", "SpecialAir_Down", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Air_Down", 6,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			SpecialShootState();
+		}
+	);
+
 	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Air_Straight", "SpecialAir_Straight", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Air_Straight", 6,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			SpecialShootState();
+		}
+	);
+
 	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Air_StraightUp", "SpecialAir_StraightUp", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Air_StraightUp", 6,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			SpecialShootState();
+		}
+	);
+
 	PlayerRenderer->CreateAnimation("CupHead_SpecialAttack_Air_StraightDown", "SpecialAir_StraightDown", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Air_StraightDown", 6,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			SpecialShootState();
+		}
+	);
+
 	PlayerRenderer->AutoSpriteSizeOn();
 	PlayerRenderer->SetAutoScaleRatio(0.8f);
 	PlayerRenderer->SetPivotType(PivotType::Bottom);
@@ -80,7 +148,7 @@ void BaseCharacter::Update(float _Delta)
 		Transform.SetLocalScale({ 1.0f ,1.0f });
 	}
 
-	if (true == GameEngineInput::IsPress('V'))
+	if (true == GameEngineInput::IsDown('V'))
 	{
 		ChangeState(CharacterState::SpecialAttack);
 	}

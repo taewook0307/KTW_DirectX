@@ -95,6 +95,7 @@ protected:
 
 	float ShootTimer = SHOOTTIMER;
 	bool Shoot = false;
+
 	bool StoolPass = false;
 
 	bool ParrySuccess = false;
