@@ -13,8 +13,8 @@ BaseActor::~BaseActor()
 
 void BaseActor::GravityOn(float _Delta)
 {
-	GravityForce.Y -= _Delta * GRAVITYFORCE;
 	Transform.AddLocalPosition(GravityForce * _Delta);
+	GravityForce.Y -= _Delta * GRAVITYFORCE;
 }
 
 void BaseActor::GravityReset()
@@ -24,6 +24,7 @@ void BaseActor::GravityReset()
 
 void BaseActor::SetGravityForce(const float4& _Value)
 {
+	GravityReset();
 	GravityForce = _Value;
 }
 

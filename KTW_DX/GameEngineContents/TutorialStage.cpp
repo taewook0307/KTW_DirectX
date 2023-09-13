@@ -18,6 +18,8 @@ TutorialStage::~TutorialStage()
 
 void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	TutorialParry.resize(3);
+
 	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, -500 });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
@@ -104,18 +106,30 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	TutorialMap->PixelMapInit("TutorialBitMap.Png");
 	TutorialMap->Transform.SetLocalPosition({ SpriteHalfScale.X, -SpriteHalfScale.Y });
 
-	TutorialParry1 = CreateActor<ParryObject>(UpdateOrder::Map);
-	TutorialParry1->Transform.SetLocalPosition(PARRYPOS1);
-	TutorialParry1->ParryOn();
+	{
+		std::shared_ptr<ParryObject> Parry = CreateActor<ParryObject>(UpdateOrder::Map);
+		Parry->Transform.SetLocalPosition(PARRYPOS1);
+		Parry->ParryActive();
 
-	TutorialParry2 = CreateActor<ParryObject>(UpdateOrder::Map);
-	TutorialParry2->Transform.SetLocalPosition(PARRYPOS2);
-	TutorialParry2->ParryOff();
+		TutorialParry[0] = Parry;
+	}
 
-	TutorialParry3 = CreateActor<ParryObject>(UpdateOrder::Map);
-	TutorialParry3->Transform.SetLocalPosition(PARRYPOS3);
-	TutorialParry3->ParryOff();
+	{
+		std::shared_ptr<ParryObject> Parry = CreateActor<ParryObject>(UpdateOrder::Map);
+		Parry->Transform.SetLocalPosition(PARRYPOS2);
+		Parry->ParryInactive();
 
+		TutorialParry[1] = Parry;
+	}
+
+	{
+		std::shared_ptr<ParryObject> Parry = CreateActor<ParryObject>(UpdateOrder::Map);
+		Parry->Transform.SetLocalPosition(PARRYPOS3);
+		Parry->ParryInactive();
+
+		TutorialParry[2] = Parry;
+	}
+	
 	TutorialExit = CreateActor<MiniMapEnter>(UpdateOrder::Map);
 	TutorialExit->EnterSpriteInit("Tutorial_Exit.png");
 	TutorialExit->SetEnterLevel("MiniMapLevel");
@@ -129,6 +143,28 @@ void TutorialStage::Update(float _Delta)
 	if (true == GameEngineInput::IsDown(VK_ESCAPE))
 	{
 		GameEngineCore::ChangeLevel("MiniMapLevel");
+	}
+
+	size_t VectorSize = TutorialParry.size();
+
+	for (size_t i = 0; i < VectorSize; i++)
+	{
+		std::shared_ptr<ParryObject> CurParry = TutorialParry[i];
+
+		size_t NextIndex = i + 1;
+
+		if (VectorSize <= NextIndex)
+		{
+			NextIndex = 0;
+		}
+
+		std::shared_ptr<ParryObject> NextParry = TutorialParry[NextIndex];
+
+		if (false == CurParry->GetParryActivation() && true == CurParry->GetParry())
+		{
+			CurParry->ParryOff();
+			NextParry->ParryActive();
+		}
 	}
 }
 

@@ -32,9 +32,7 @@ private:
 	std::shared_ptr<class MiniMapEnter> TutorialExit = nullptr;
 	std::shared_ptr<class BaseCharacter> Player = nullptr;
 
-	std::shared_ptr<class ParryObject> TutorialParry1 = nullptr;
-	std::shared_ptr<class ParryObject> TutorialParry2 = nullptr;
-	std::shared_ptr<class ParryObject> TutorialParry3 = nullptr;
+	std::vector<std::shared_ptr<class ParryObject>> TutorialParry;
 
 	void TutorialLevelCameraMove();
 };

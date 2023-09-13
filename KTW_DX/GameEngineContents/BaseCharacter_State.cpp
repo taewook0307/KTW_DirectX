@@ -290,6 +290,12 @@ void BaseCharacter::FallUpdate(float _Delta)
 
 	// Move
 	CharacterMove(_Delta);
+
+	if (true == GameEngineInput::IsDown('Z'))
+	{
+		ChangeState(CharacterState::Parry);
+		return;
+	}
 }
 
 void BaseCharacter::DuckStart()
@@ -361,11 +367,15 @@ void BaseCharacter::ParryUpdate(float _Delta)
 			GameEngineActor* ColMaster = CurCollision->GetActor();
 			ParryObject* ColParryOB = dynamic_cast<ParryObject*>(ColMaster);
 
-			bool ParryState = ColParryOB->GetParry();
-			if (true == ParryState)
+			bool ParryActive = ColParryOB->GetParryActivation();
+			if (true == ParryActive)
 			{
-				ColParryOB->ParryOff();
+				ColParryOB->ParryInactive();
+				ColParryOB->ParryOn();
 				ParrySuccess = true;
+
+				ChangeState(CharacterState::Fall);
+				return;
 			}
 		}
 	);

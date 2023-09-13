@@ -184,7 +184,7 @@ void BaseCharacter::Update(float _Delta)
 
 	if (true == ParrySuccess)
 	{
-		float4 ParryPos = float4::UP * JUMPPOWER * 0.5f;
+		float4 ParryPos = float4::UP * JUMPPOWER * 0.7f;
 		SetGravityForce(ParryPos);
 		ParrySuccess = false;
 	}
