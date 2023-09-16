@@ -83,6 +83,9 @@
     <ClInclude Include="SpecialBullet.h">
       <Filter>Global\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="FirstBoss.h">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -175,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="BaseCharacter_SpecialAttack.cpp">
       <Filter>Global\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstBoss.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

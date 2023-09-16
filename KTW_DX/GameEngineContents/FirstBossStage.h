@@ -22,4 +22,5 @@ protected:
 private:
 	std::shared_ptr<class Map> StageMap = nullptr;
 	std::shared_ptr<class BaseCharacter> Player = nullptr;
+	std::shared_ptr<class FirstBoss> Boss = nullptr;
 };

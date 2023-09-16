@@ -3,6 +3,7 @@
 #include "ContentsCore.h"
 
 #include "BaseCharacter.h"
+#include "FirstBoss.h"
 #include "Map.h"
 
 FirstBossStage::FirstBossStage()
@@ -62,8 +63,25 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources\\Texture\\Boss\\FirstBoss");
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
+	}
+
 	Player = CreateActor<BaseCharacter>(UpdateOrder::Player);
 	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
+
+	Boss = CreateActor<FirstBoss>(UpdateOrder::Monster);
+	Boss->Transform.SetLocalPosition({ 1000.0f, -677.0f });
 
 	StageMap = CreateActor<Map>(UpdateOrder::Map);
 	StageMap->MapAnimationInit("FirstBossMapAni", "FirstBossMap", 0.05f);

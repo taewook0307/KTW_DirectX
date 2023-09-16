@@ -14,6 +14,7 @@ enum class RenderOrder
 	None,
 	BackGround,
 	Map,
+	Boss,
 	Play,
 	MapUpper,
 	Bullet,

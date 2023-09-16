@@ -28,7 +28,7 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<TutorialStage>("TutorialStage");
 	GameEngineCore::CreateLevel<FirstBossStage>("FirstBossStage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
-	GameEngineCore::ChangeLevel("TutorialStage");
+	GameEngineCore::ChangeLevel("FirstBossStage");
 }
 
 void ContentsCore::Update(float _Delta)
