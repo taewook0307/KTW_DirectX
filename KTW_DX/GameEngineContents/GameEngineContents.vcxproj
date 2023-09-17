@@ -312,6 +312,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FirstBoss_Phase1_State.cpp" />
     <ClCompile Include="IntroBook.cpp">
       <SubType>
       </SubType>

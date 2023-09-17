@@ -18,15 +18,24 @@ public:
 protected:
 
 private:
+	void IntroStart();
+	void IntroUpdate(float _Delta);
+
+private:
 	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;
 
 	ActorDir FirstBossDir = ActorDir::Left;
+	FirstBossState CurState = FirstBossState::None;
+	std::string State = "";
+
+	BossPhase CurPhase = BossPhase::Phase1;
 
 	void Start() override;
 	void Update(float _Delta) override;
 
 	void DirChange();
-	void ChangeState(CharacterState _State);
+	void PhaseChange();
+	void ChangeState(FirstBossState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimation(std::string_view _State);
 };

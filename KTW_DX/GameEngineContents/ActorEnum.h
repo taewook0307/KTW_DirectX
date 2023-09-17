@@ -1,5 +1,23 @@
 #pragma once
 
+enum class ActorDir
+{
+	None,
+	Left,
+	Right
+};
+
+// Character
+enum class CharacterAimDir
+{
+	None,
+	Straight,
+	StraightUp,
+	StraightDown,
+	Up,
+	Down
+};
+
 enum class CharacterState
 {
 	Intro,
@@ -25,29 +43,7 @@ enum class MiniMapCharacterState
 	Run
 };
 
-enum class ActorDir
-{
-	None,
-	Left,
-	Right
-};
-
-enum class CharacterAimDir
-{
-	None,
-	Straight,
-	StraightUp,
-	StraightDown,
-	Up,
-	Down
-};
-
-enum class MainMenuSelect
-{
-	Start,
-	Exit
-};
-
+// Bullet
 enum class BulletType
 {
 	Normal
@@ -72,4 +68,25 @@ enum class BulletDirection
 	LeftDown,
 	Left,
 	LeftUp
+};
+
+// Boss
+enum class BossPhase
+{
+	Phase1,
+	Phase2,
+	Phase3
+};
+
+enum class FirstBossState
+{
+	None,
+	Intro
+};
+
+// etc
+enum class MainMenuSelect
+{
+	Start,
+	Exit
 };
