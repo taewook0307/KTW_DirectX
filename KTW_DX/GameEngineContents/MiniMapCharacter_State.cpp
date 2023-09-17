@@ -54,32 +54,32 @@ void MiniMapCharacter::RunUpdate(float _Delta)
 		MovePos += float4::RIGHT * _Delta * Speed;
 	}
 
-	if (CharacterDir::Left == Dir && CharacterAimDir::Straight == MoveDir)
+	if (ActorDir::Left == Dir && CharacterAimDir::Straight == MoveDir)
 	{
 		CheckPos = { -20.0f, 40.0f };
 	}
 
-	if (CharacterDir::Right == Dir && CharacterAimDir::Straight == MoveDir)
+	if (ActorDir::Right == Dir && CharacterAimDir::Straight == MoveDir)
 	{
 		CheckPos = { 20.0f, 40.0f };
 	}
 
-	if (CharacterDir::Left == Dir && CharacterAimDir::StraightDown == MoveDir)
+	if (ActorDir::Left == Dir && CharacterAimDir::StraightDown == MoveDir)
 	{
 		CheckPos = { -20.0f, 0.0f };
 	}
 
-	if (CharacterDir::Right == Dir && CharacterAimDir::StraightDown == MoveDir)
+	if (ActorDir::Right == Dir && CharacterAimDir::StraightDown == MoveDir)
 	{
 		CheckPos = { 20.0f, 0.0f };
 	}
 
-	if (CharacterDir::Left == Dir && CharacterAimDir::StraightUp == MoveDir)
+	if (ActorDir::Left == Dir && CharacterAimDir::StraightUp == MoveDir)
 	{
 		CheckPos = { -20.0f, 80.0f };
 	}
 
-	if (CharacterDir::Right == Dir && CharacterAimDir::StraightUp == MoveDir)
+	if (ActorDir::Right == Dir && CharacterAimDir::StraightUp == MoveDir)
 	{
 		CheckPos = { 20.0f, 80.0f };
 	}

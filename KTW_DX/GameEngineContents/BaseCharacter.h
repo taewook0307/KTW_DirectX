@@ -79,7 +79,7 @@ protected:
 	void Start() override;
 	void Update(float _Delta) override;
 
-	CharacterDir Dir = CharacterDir::None;
+	ActorDir Dir = ActorDir::None;
 	CharacterAimDir AimDir = CharacterAimDir::None;
 	CharacterState CurState = CharacterState::Idle;
 	std::string State = "";

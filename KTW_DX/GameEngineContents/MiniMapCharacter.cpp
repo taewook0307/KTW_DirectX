@@ -54,7 +54,7 @@ void MiniMapCharacter::Update(float _Delta)
 {
 	DirChange();
 
-	if (CharacterDir::Left == Dir)
+	if (ActorDir::Left == Dir)
 	{
 		Transform.SetLocalScale({ -1.0f, 1.0f });
 	}
@@ -82,37 +82,37 @@ void MiniMapCharacter::DirChange()
 
 	if (true == GameEngineInput::IsPress(VK_RIGHT))
 	{
-		Dir = CharacterDir::Right;
+		Dir = ActorDir::Right;
 		CheckMoveDir = CharacterAimDir::Straight;
 	}
 
 	if (true == GameEngineInput::IsPress(VK_LEFT))
 	{
-		Dir = CharacterDir::Left;
+		Dir = ActorDir::Left;
 		CheckMoveDir = CharacterAimDir::Straight;
 	}
 
 	if (true == GameEngineInput::IsPress(VK_UP) && true == GameEngineInput::IsPress(VK_RIGHT))
 	{
-		Dir = CharacterDir::Right;
+		Dir = ActorDir::Right;
 		CheckMoveDir = CharacterAimDir::StraightUp;
 	}
 
 	if (true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsPress(VK_RIGHT))
 	{
-		Dir = CharacterDir::Right;
+		Dir = ActorDir::Right;
 		CheckMoveDir = CharacterAimDir::StraightDown;
 	}
 
 	if (true == GameEngineInput::IsPress(VK_UP) && true == GameEngineInput::IsPress(VK_LEFT))
 	{
-		Dir = CharacterDir::Left;
+		Dir = ActorDir::Left;
 		CheckMoveDir = CharacterAimDir::StraightUp;
 	}
 
 	if (true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsPress(VK_LEFT))
 	{
-		Dir = CharacterDir::Left;
+		Dir = ActorDir::Left;
 		CheckMoveDir = CharacterAimDir::StraightDown;
 	}
 

@@ -244,12 +244,12 @@ void BaseCharacter::DashUpdate(float _Delta)
 	float4 MovePos = float4::ZERO;
 	float4 CheckPos = float4::ZERO;
 
-	if (CharacterDir::Right == Dir)
+	if (ActorDir::Right == Dir)
 	{
 		MovePos = float4::RIGHT * DashSpeed * _Delta;
 		CheckPos = RIGHTCHECKPOS;
 	}
-	else if (CharacterDir::Left == Dir)
+	else if (ActorDir::Left == Dir)
 	{
 		MovePos = float4::LEFT * DashSpeed * _Delta;
 		CheckPos = LEFTCHECKPOS;

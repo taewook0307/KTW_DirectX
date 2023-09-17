@@ -20,6 +20,13 @@ protected:
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;
 
+	ActorDir FirstBossDir = ActorDir::Left;
+
 	void Start() override;
 	void Update(float _Delta) override;
+
+	void DirChange();
+	void ChangeState(CharacterState _State);
+	void StateUpdate(float _Delta);
+	void ChangeAnimation(std::string_view _State);
 };

@@ -131,7 +131,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetAutoScaleRatio(0.8f);
 	PlayerRenderer->SetPivotType(PivotType::Bottom);
 
-	Dir = CharacterDir::Right;
+	Dir = ActorDir::Right;
 	AimDir = CharacterAimDir::Straight;
 
 	std::shared_ptr<GameEngineSprite> CharacterSprite = GameEngineSprite::Find("Idle");
@@ -147,7 +147,7 @@ void BaseCharacter::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 
-	if (CharacterDir::Left == Dir)
+	if (ActorDir::Left == Dir)
 	{
 		Transform.SetLocalScale({ -1.0f ,1.0f });
 	}
@@ -194,12 +194,12 @@ void BaseCharacter::DirChange()
 {
 	if (true == GameEngineInput::IsDown(VK_LEFT) || true == GameEngineInput::IsPress(VK_LEFT))
 	{
-		Dir = CharacterDir::Left;
+		Dir = ActorDir::Left;
 	}
 
 	if (true == GameEngineInput::IsDown(VK_RIGHT) || true == GameEngineInput::IsPress(VK_RIGHT))
 	{
-		Dir = CharacterDir::Right;
+		Dir = ActorDir::Right;
 	}
 
 	AimDirChange();

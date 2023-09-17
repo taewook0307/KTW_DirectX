@@ -28,7 +28,7 @@ protected:
 	void RunUpdate(float _Delta);
 
 protected:
-	CharacterDir Dir = CharacterDir::None;
+	ActorDir Dir = ActorDir::None;
 	CharacterAimDir MoveDir = CharacterAimDir::Down;
 	MiniMapCharacterState CurState = MiniMapCharacterState::None;
 	std::string State = "";

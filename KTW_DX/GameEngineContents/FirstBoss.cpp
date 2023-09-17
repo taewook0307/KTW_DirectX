@@ -24,3 +24,23 @@ void FirstBoss::Update(float _Delta)
 {
 
 }
+
+void FirstBoss::DirChange()
+{
+
+}
+
+void FirstBoss::ChangeState(CharacterState _State)
+{
+
+}
+
+void FirstBoss::StateUpdate(float _Delta)
+{
+
+}
+
+void FirstBoss::ChangeAnimation(std::string_view _State)
+{
+
+}

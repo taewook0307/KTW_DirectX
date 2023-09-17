@@ -25,7 +25,7 @@ enum class MiniMapCharacterState
 	Run
 };
 
-enum class CharacterDir
+enum class ActorDir
 {
 	None,
 	Left,
