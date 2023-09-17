@@ -4,6 +4,7 @@
 
 class FirstBoss : public BaseActor
 {
+	friend class Bullet;
 public:
 	// constrcuter destructer
 	FirstBoss();
@@ -21,14 +22,22 @@ private:
 	void IntroStart();
 	void IntroUpdate(float _Delta);
 
-private:
-	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;
+	void PlusHitCount()
+	{
+		++HitCount;
+	}
 
-	ActorDir FirstBossDir = ActorDir::Left;
-	FirstBossState CurState = FirstBossState::None;
 	std::string State = "";
 
 	BossPhase CurPhase = BossPhase::Phase1;
+	int HitCount = 0;
+
+private:
+	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> FirstBossCollision = nullptr;
+
+	ActorDir FirstBossDir = ActorDir::Left;
+	FirstBossState CurState = FirstBossState::None;
 
 	void Start() override;
 	void Update(float _Delta) override;

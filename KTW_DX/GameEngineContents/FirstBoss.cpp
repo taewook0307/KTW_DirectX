@@ -20,6 +20,9 @@ void FirstBoss::Start()
 	FirstBossRenderer->SetPivotValue(float4{ 0.0f, 1.0f });
 	FirstBossRenderer->AutoSpriteSizeOn();
 
+	FirstBossCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Monster);
+	FirstBossCollision->Transform.SetLocalScale({ 100.0f, 100.0f });
+
 	ChangeState(FirstBossState::Intro);
 }
 
@@ -27,10 +30,7 @@ void FirstBoss::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 
-	if (GameEngineInput::IsDown('I'))
-	{
-		PhaseChange();
-	}
+	PhaseChange();
 }
 
 void FirstBoss::DirChange()
@@ -97,11 +97,11 @@ void FirstBoss::ChangeAnimation(std::string_view _State)
 
 void FirstBoss::PhaseChange()
 {
-	if (BossPhase::Phase1 == CurPhase)
+	if (BossPhase::Phase1 == CurPhase && HitCount > 288)
 	{
 		CurPhase = BossPhase::Phase2;
 	}
-	else if (BossPhase::Phase2 == CurPhase)
+	else if (BossPhase::Phase2 == CurPhase && HitCount > 540)
 	{
 		CurPhase = BossPhase::Phase3;
 	}

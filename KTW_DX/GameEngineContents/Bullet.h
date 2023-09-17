@@ -45,6 +45,8 @@ protected:
 	void Update(float _Delta) override;
 
 	std::shared_ptr<GameEngineSpriteRenderer> BulletRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> BulletCollision = nullptr;
+
 	BulletType Type = BulletType::Normal;
 	BulletState CurState = BulletState::None;
 	std::string State = "";

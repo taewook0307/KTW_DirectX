@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "Bullet.h"
 
+#include "FirstBoss.h"
+
 Bullet::Bullet()
 {
 }
@@ -17,6 +19,9 @@ void Bullet::Start()
 	BulletRenderer->CreateAnimation("Bullet_Death", "BulletDeath", 0.02f);
 	BulletRenderer->AutoSpriteSizeOn();
 	BulletRenderer->SetAutoScaleRatio(BULLETRATIO);
+
+	BulletCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Bullet);
+	BulletCollision->Transform.SetLocalScale({ 27.0f, 18.0f });
 
 	ChangeBulletState(BulletState::Spawn);
 }
@@ -64,6 +69,23 @@ void Bullet::Update(float _Delta)
 	{
 		Transform.SetLocalRotation({ 0.0f, 0.0f, -45.0f });
 	}
+
+	BulletCollision->Collision(CollisionOrder::Monster,
+		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
+		{
+			if (BulletState::Move == CurState)
+			{
+				std::shared_ptr<GameEngineCollision> CurCollision = _Col[_Col.size() - 1];
+				GameEngineActor* ColMaster = CurCollision->GetActor();
+				FirstBoss* ColBoss = dynamic_cast<FirstBoss*>(ColMaster);
+
+				ColBoss->PlusHitCount();
+
+				ChangeBulletState(BulletState::Death);
+				return;
+			}
+		}
+	);
 }
 
 void Bullet::ChangeBulletState(BulletState _State)
