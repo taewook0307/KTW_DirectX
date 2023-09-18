@@ -78,8 +78,14 @@ void Bullet::Update(float _Delta)
 				std::shared_ptr<GameEngineCollision> CurCollision = _Col[_Col.size() - 1];
 				GameEngineActor* ColMaster = CurCollision->GetActor();
 				FirstBoss* ColBoss = dynamic_cast<FirstBoss*>(ColMaster);
-
-				ColBoss->PlusHitCount();
+				
+				if (nullptr != ColBoss)
+				{
+					for (int i = 0; i < Att; ++i)
+					{
+						ColBoss->PlusHitCount();
+					}
+				}
 
 				ChangeBulletState(BulletState::Death);
 				return;

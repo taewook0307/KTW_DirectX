@@ -3,6 +3,7 @@
 
 SpecialBullet::SpecialBullet()
 {
+	Att = 8;
 }
 
 SpecialBullet::~SpecialBullet()
@@ -19,6 +20,9 @@ void SpecialBullet::Start()
 	BulletRenderer->SetAutoScaleRatio(BULLETRATIO);
 
 	ChangeBulletState(BulletState::Spawn);
+
+	BulletCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Bullet);
+	BulletCollision->Transform.SetLocalScale({ 27.0f, 18.0f });
 }
 
 void SpecialBullet::ChangeBulletAnimation(std::string_view _State)

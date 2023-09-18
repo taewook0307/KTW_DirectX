@@ -52,5 +52,7 @@ protected:
 	std::string State = "";
 
 	BulletDirection BulletDir = BulletDirection::None;
+
+	int Att = 4;
 private:
 };
