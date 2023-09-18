@@ -22,6 +22,12 @@ private:
 	void IntroStart();
 	void IntroUpdate(float _Delta);
 
+	void IdleStart();
+	void IdleUpdate(float _Delta);
+
+	void MoveStart();
+	void MoveUpdate(float _Delta);
+
 	void PlusHitCount()
 	{
 		++HitCount;

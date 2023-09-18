@@ -81,7 +81,9 @@ enum class BossPhase
 enum class FirstBossState
 {
 	None,
-	Intro
+	Intro,
+	Idle,
+	Jump
 };
 
 // etc
