@@ -18,12 +18,30 @@ void FirstBoss::Start()
 	FirstBossRenderer->CreateAnimation("Boss_Phase1_Move", "FirstBoss_Phase1_Move", 0.1f, 0, 2, false);
 	FirstBossRenderer->CreateAnimation("Boss_Phase1_MoveStay", "FirstBoss_Phase1_Move", 0.1f, 3, 7, false);
 	FirstBossRenderer->CreateAnimation("Boss_Phase1_MoveEnd", "FirstBoss_Phase1_Move", 0.1f, 8, 10, false);
+	FirstBossRenderer->CreateAnimation("Boss_Phase1_Attack", "FirstBoss_Phase1_Attack");
+	FirstBossRenderer->SetEndEvent("Boss_Phase1_Attack",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			BounceCount = 0;
+			ChangeState(FirstBossState::Idle);
+			return;
+		}
+	);
 
 	FirstBossRenderer->CreateAnimation("Boss_Phase2_Intro", "FirstBoss_Phase2_Intro");
 	FirstBossRenderer->CreateAnimation("Boss_Phase2_Idle", "FirstBoss_Phase2_Idle");
 	FirstBossRenderer->CreateAnimation("Boss_Phase2_Move", "FirstBoss_Phase2_Move", 0.1f, 0, 3, false);
 	FirstBossRenderer->CreateAnimation("Boss_Phase2_MoveStay", "FirstBoss_Phase2_Move", 0.1f, 4, 8, false);
 	FirstBossRenderer->CreateAnimation("Boss_Phase2_MoveEnd", "FirstBoss_Phase2_Move", 0.1f, 9, 13, false);
+	FirstBossRenderer->CreateAnimation("Boss_Phase2_Attack", "FirstBoss_Phase2_Attack");
+	FirstBossRenderer->SetEndEvent("Boss_Phase2_Attack",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			BounceCount = 0;
+			ChangeState(FirstBossState::Idle);
+			return;
+		}
+	);
 
 	/*FirstBossRenderer->CreateAnimation("Boss_Phase3_Intro", "FirstBoss_Phase3_Intro");
 	FirstBossRenderer->CreateAnimation("Boss_Phase3_Idle", "FirstBoss_Phase3_Idle");*/
@@ -46,10 +64,12 @@ void FirstBoss::Update(float _Delta)
 	if (ActorDir::Left == FirstBossDir)
 	{
 		Transform.SetLocalScale({ 1.0f ,1.0f });
+		FirstBossRenderer->SetPivotValue(float4{ 0.0f, 1.0f });
 	}
 	else
 	{
 		Transform.SetLocalScale({ -1.0f ,1.0f });
+		FirstBossRenderer->SetPivotValue(float4{ 1.0f, 1.0f });
 	}
 }
 
@@ -80,6 +100,9 @@ void FirstBoss::ChangeState(FirstBossState _State)
 		case FirstBossState::Move:
 			MoveStart();
 			break;
+		case FirstBossState::Attack:
+			AttackStart();
+			break;
 		default:
 			break;
 		}
@@ -98,6 +121,8 @@ void FirstBoss::StateUpdate(float _Delta)
 		return IdleUpdate(_Delta);
 	case FirstBossState::Move:
 		return MoveUpdate(_Delta);
+	case FirstBossState::Attack:
+		return AttackUpdate(_Delta);
 	default:
 		break;
 	}
@@ -130,6 +155,7 @@ void FirstBoss::PhaseChange()
 		CurPhase = BossPhase::Phase2;
 		ChangeState(FirstBossState::Intro);
 		HitCount = 0;
+		BounceCount = 0;
 	}
 
 	return;

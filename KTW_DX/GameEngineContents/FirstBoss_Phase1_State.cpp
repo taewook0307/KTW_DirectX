@@ -3,6 +3,37 @@
 
 #include "Map.h"
 
+void FirstBoss::FirstBossMove(float4 _Delta)
+{
+	float4 MovePos = float4::ZERO;
+	float4 CheckPos = float4::ZERO;
+
+	float4 CurPos = Transform.GetWorldPosition();
+
+	if (ActorDir::Left == FirstBossDir)
+	{
+		MovePos = float4::LEFT * Speed * _Delta;
+		CheckPos = CurPos + float4{ -40.0f, 30.0f };
+	}
+	else
+	{
+		MovePos = float4::RIGHT * Speed * _Delta;
+		CheckPos = CurPos + float4{ 40.0f, 30.0f };
+	}
+
+	GameEngineColor Color = Map::MainMap->GetColor(CheckPos, FLOORCOLOR);
+
+	if (FLOORCOLOR == Color)
+	{
+		DirChange();
+	}
+	else
+	{
+		Transform.AddLocalPosition(MovePos);
+	}
+}
+
+
 void FirstBoss::IntroStart()
 {
 	ChangeAnimation("Intro");
@@ -85,41 +116,28 @@ void FirstBoss::MoveUpdate(float _Delta)
 		return;
 	}
 
+	if (5 < BounceCount)
+	{
+		ChangeState(FirstBossState::Attack);
+		return;
+	}
+
 	GameEngineColor Color = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
 
 	if (FLOORCOLOR == Color)
 	{
+		++BounceCount;
 		ChangeState(FirstBossState::Idle);
 		return;
 	}
 }
 
-void FirstBoss::FirstBossMove(float4 _Delta)
+void FirstBoss::AttackStart()
 {
-	float4 MovePos = float4::ZERO;
-	float4 CheckPos = float4::ZERO;
+	ChangeAnimation("Attack");
+}
 
-	float4 CurPos = Transform.GetWorldPosition();
-
-	if (ActorDir::Left == FirstBossDir)
-	{
-		MovePos = float4::LEFT * Speed * _Delta;
-		CheckPos = CurPos + float4{ -40.0f, 30.0f };
-	}
-	else
-	{
-		MovePos = float4::RIGHT * Speed * _Delta;
-		CheckPos = CurPos + float4{ 40.0f, 30.0f };
-	}
-
-	GameEngineColor Color = Map::MainMap->GetColor(CheckPos, FLOORCOLOR);
-
-	if (FLOORCOLOR == Color)
-	{
-		DirChange();
-	}
-	else
-	{
-		Transform.AddLocalPosition(MovePos);
-	}
+void FirstBoss::AttackUpdate(float _Delta)
+{
+	BossGravity(float4::ZERO, _Delta);
 }

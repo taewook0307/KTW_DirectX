@@ -28,11 +28,15 @@ private:
 	void MoveStart();
 	void MoveUpdate(float _Delta);
 
+	void AttackStart();
+	void AttackUpdate(float _Delta);
+
 	std::string State = "";
 
 private:
 	float JumpPower = 1500.0f;
 	float Speed = 600.0f;
+	int BounceCount = 0;
 
 	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> FirstBossCollision = nullptr;

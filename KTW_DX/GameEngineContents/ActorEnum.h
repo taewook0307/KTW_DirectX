@@ -83,7 +83,8 @@ enum class FirstBossState
 	None,
 	Intro,
 	Idle,
-	Move
+	Move,
+	Attack
 };
 
 // etc
