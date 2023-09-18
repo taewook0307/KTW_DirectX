@@ -1,8 +1,8 @@
 #pragma once
 
-#include "BaseActor.h"
+#include "BaseBoss.h"
 
-class FirstBoss : public BaseActor
+class FirstBoss : public BaseBoss
 {
 	friend class Bullet;
 public:
@@ -55,6 +55,4 @@ private:
 	void ChangeState(FirstBossState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimation(std::string_view _State);
-
-	void FirstBossGravity(float4 _CheckPos, float _Delta);
 };

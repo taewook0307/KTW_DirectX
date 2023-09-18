@@ -1,8 +1,6 @@
 ﻿#include "PreCompile.h"
 #include "FirstBoss.h"
 
-#include "Map.h"
-
 FirstBoss::FirstBoss()
 {
 }
@@ -27,8 +25,8 @@ void FirstBoss::Start()
 	FirstBossRenderer->CreateAnimation("Boss_Phase2_MoveStay", "FirstBoss_Phase2_Move", 0.1f, 4, 8, false);
 	FirstBossRenderer->CreateAnimation("Boss_Phase2_MoveEnd", "FirstBoss_Phase2_Move", 0.1f, 9, 13, false);
 
-	FirstBossRenderer->CreateAnimation("Boss_Phase3_Intro", "FirstBoss_Phase3_Intro");
-	FirstBossRenderer->CreateAnimation("Boss_Phase3_Idle", "FirstBoss_Phase3_Idle");
+	/*FirstBossRenderer->CreateAnimation("Boss_Phase3_Intro", "FirstBoss_Phase3_Intro");
+	FirstBossRenderer->CreateAnimation("Boss_Phase3_Idle", "FirstBoss_Phase3_Idle");*/
 
 	FirstBossRenderer->SetPivotValue(float4{ 0.0f, 1.0f });
 	FirstBossRenderer->AutoSpriteSizeOn();
@@ -104,13 +102,9 @@ void FirstBoss::ChangeAnimation(std::string_view _State)
 	{
 		AnimationName += "Phase1_";
 	}
-	else if (BossPhase::Phase2 == CurPhase)
-	{
-		AnimationName += "Phase2_";
-	}
 	else
 	{
-		AnimationName += "Phase3_";
+		AnimationName += "Phase2_";
 	}
 
 	AnimationName += _State;
@@ -128,26 +122,6 @@ void FirstBoss::PhaseChange()
 		ChangeState(FirstBossState::Intro);
 		HitCount = 0;
 	}
-	else if (BossPhase::Phase2 == CurPhase && HitCount > 540)
-	{
-		CurPhase = BossPhase::Phase3;
-		ChangeState(FirstBossState::Intro);
-		HitCount = 0;
-	}
 
 	return;
-}
-
-void FirstBoss::FirstBossGravity(float4 _CheckPos, float _Delta)
-{
-	GameEngineColor CheckColor = Map::MainMap->GetColor(_CheckPos, FLOORCOLOR);
-
-	if (FLOORCOLOR != CheckColor)
-	{
-		GravityOn(_Delta);
-	}
-	else
-	{
-		GravityReset();
-	}
 }

@@ -24,7 +24,7 @@ void FirstBoss::IdleStart()
 
 void FirstBoss::IdleUpdate(float _Delta)
 {
-	FirstBossGravity(float4::ZERO, _Delta);
+	BossGravity(float4::ZERO, _Delta);
 
 	if (true == FirstBossRenderer->IsCurAnimationEnd())
 	{
@@ -43,11 +43,11 @@ void FirstBoss::MoveUpdate(float _Delta)
 {
 	if (GetGravityForce().Y > 0)
 	{
-		FirstBossGravity(Transform.GetWorldPosition() + float4{ 0.0f, 80.0f }, _Delta);
+		BossGravity(Transform.GetWorldPosition() + float4{ 0.0f, 80.0f }, _Delta);
 	}
 	else
 	{
-		FirstBossGravity(Transform.GetWorldPosition(), _Delta);
+		BossGravity(Transform.GetWorldPosition(), _Delta);
 	}
 
 	float GravityY = GetGravityForce().Y;

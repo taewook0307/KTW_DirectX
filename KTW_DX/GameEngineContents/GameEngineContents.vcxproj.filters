@@ -5,9 +5,6 @@
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
-    <ClInclude Include="FadeObject.h">
-      <Filter>Global</Filter>
-    </ClInclude>
     <ClInclude Include="LoadingObject.h">
       <Filter>Global</Filter>
     </ClInclude>
@@ -86,14 +83,20 @@
     <ClInclude Include="FirstBoss.h">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClInclude>
+    <ClInclude Include="FirstBossPhase3.h">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeObject.h">
+      <Filter>Global\Fade</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseBoss.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
-    </ClCompile>
-    <ClCompile Include="FadeObject.cpp">
-      <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="LoadingObject.cpp">
       <Filter>Global</Filter>
@@ -184,6 +187,15 @@
     </ClCompile>
     <ClCompile Include="FirstBoss_Phase1_State.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstBossPhase3.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeObject.cpp">
+      <Filter>Global\Fade</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseBoss.cpp">
+      <Filter>Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -276,6 +288,9 @@
     </Filter>
     <Filter Include="Global\Bullet">
       <UniqueIdentifier>{b8da8222-5c14-482a-bd6d-d2ab54344955}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Fade">
+      <UniqueIdentifier>{ca99aac8-a100-4cb5-a35c-b2e81b25e082}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
