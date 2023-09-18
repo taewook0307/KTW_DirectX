@@ -28,15 +28,7 @@ private:
 	void MoveStart();
 	void MoveUpdate(float _Delta);
 
-	void PlusHitCount()
-	{
-		++HitCount;
-	}
-
 	std::string State = "";
-
-	BossPhase CurPhase = BossPhase::Phase1;
-	int HitCount = 0;
 
 private:
 	float JumpPower = 1500.0f;

@@ -1,6 +1,6 @@
 #pragma once
 
-#define BULLETRATIO 0.5f
+#define BULLETRATIO 0.8f
 
 #include <GameEngineCore/GameEngineActor.h>
 

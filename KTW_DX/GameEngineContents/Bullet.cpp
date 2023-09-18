@@ -1,7 +1,7 @@
 ﻿#include "PreCompile.h"
 #include "Bullet.h"
 
-#include "FirstBoss.h"
+#include "BaseBoss.h"
 
 Bullet::Bullet()
 {
@@ -77,7 +77,7 @@ void Bullet::Update(float _Delta)
 			{
 				std::shared_ptr<GameEngineCollision> CurCollision = _Col[_Col.size() - 1];
 				GameEngineActor* ColMaster = CurCollision->GetActor();
-				FirstBoss* ColBoss = dynamic_cast<FirstBoss*>(ColMaster);
+				BaseBoss* ColBoss = dynamic_cast<BaseBoss*>(ColMaster);
 				
 				if (nullptr != ColBoss)
 				{

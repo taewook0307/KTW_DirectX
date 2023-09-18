@@ -19,6 +19,7 @@ void FirstBoss::IntroUpdate(float _Delta)
 
 void FirstBoss::IdleStart()
 {
+	FirstBossRenderer->SetPivotType(PivotType::Bottom);
 	ChangeAnimation("Idle");
 }
 
