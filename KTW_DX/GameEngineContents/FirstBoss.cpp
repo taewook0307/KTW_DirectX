@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "FirstBoss.h"
 
+#include "Map.h"
+
 FirstBoss::FirstBoss()
 {
 }
@@ -15,6 +17,9 @@ void FirstBoss::Start()
 
 	FirstBossRenderer->CreateAnimation("Boss_Phase1_Intro", "FirstBoss_Phase1_Intro");
 	FirstBossRenderer->CreateAnimation("Boss_Phase1_Idle", "FirstBoss_Phase1_Idle");
+	FirstBossRenderer->CreateAnimation("Boss_Phase1_Move", "FirstBoss_Phase1_Move", 0.1f, 0, 2, false);
+	FirstBossRenderer->CreateAnimation("Boss_Phase1_MoveStay", "FirstBoss_Phase1_Move", 0.1f, 3, 7, false);
+	FirstBossRenderer->CreateAnimation("Boss_Phase1_MoveEnd", "FirstBoss_Phase1_Move", 0.1f, 8, 10, false);
 
 	FirstBossRenderer->CreateAnimation("Boss_Phase2_Intro", "FirstBoss_Phase2_Intro");
 	FirstBossRenderer->CreateAnimation("Boss_Phase2_Idle", "FirstBoss_Phase2_Idle");
@@ -62,6 +67,9 @@ void FirstBoss::ChangeState(FirstBossState _State)
 		case FirstBossState::Idle:
 			IdleStart();
 			break;
+		case FirstBossState::Move:
+			MoveStart();
+			break;
 		default:
 			break;
 		}
@@ -78,6 +86,8 @@ void FirstBoss::StateUpdate(float _Delta)
 		return IntroUpdate(_Delta);
 	case FirstBossState::Idle:
 		return IdleUpdate(_Delta);
+	case FirstBossState::Move:
+		return MoveUpdate(_Delta);
 	default:
 		break;
 	}
@@ -123,4 +133,18 @@ void FirstBoss::PhaseChange()
 	}
 
 	return;
+}
+
+void FirstBoss::FirstBossGravity(float4 _CheckPos, float _Delta)
+{
+	GameEngineColor CheckColor = Map::MainMap->GetColor(_CheckPos, FLOORCOLOR);
+
+	if (FLOORCOLOR != CheckColor)
+	{
+		GravityOn(_Delta);
+	}
+	else
+	{
+		GravityReset();
+	}
 }
