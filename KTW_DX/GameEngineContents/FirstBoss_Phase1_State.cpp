@@ -42,6 +42,8 @@ void FirstBoss::MoveStart()
 
 void FirstBoss::MoveUpdate(float _Delta)
 {
+	FirstBossMove(_Delta);
+
 	if (GetGravityForce().Y > 0)
 	{
 		BossGravity(Transform.GetWorldPosition() + float4{ 0.0f, 80.0f }, _Delta);
@@ -55,11 +57,13 @@ void FirstBoss::MoveUpdate(float _Delta)
 
 	if (GravityY < 50.0f && GravityY > 0.0f)
 	{
-		if (BossPhase::Phase1 == CurPhase)
+		if (BossPhase::Phase1 == CurPhase
+			&& false == FirstBossRenderer->IsCurAnimation("Boss_Phase1_MoveStay"))
 		{
 			FirstBossRenderer->ChangeAnimation("Boss_Phase1_MoveStay");
 		}
-		else if (BossPhase::Phase2 == CurPhase)
+		else if (BossPhase::Phase2 == CurPhase
+			&& false == FirstBossRenderer->IsCurAnimation("Boss_Phase2_MoveStay"))
 		{
 			FirstBossRenderer->ChangeAnimation("Boss_Phase2_MoveStay");
 		}
@@ -68,11 +72,13 @@ void FirstBoss::MoveUpdate(float _Delta)
 
 	if (GravityY < 0.0f)
 	{
-		if (BossPhase::Phase1 == CurPhase)
+		if (BossPhase::Phase1 == CurPhase
+			&& false == FirstBossRenderer->IsCurAnimation("Boss_Phase1_MoveEnd"))
 		{
 			FirstBossRenderer->ChangeAnimation("Boss_Phase1_MoveEnd");
 		}
-		else if (BossPhase::Phase2 == CurPhase)
+		else if (BossPhase::Phase2 == CurPhase
+			&& false == FirstBossRenderer->IsCurAnimation("Boss_Phase2_MoveEnd"))
 		{
 			FirstBossRenderer->ChangeAnimation("Boss_Phase2_MoveEnd");
 		}
@@ -85,5 +91,35 @@ void FirstBoss::MoveUpdate(float _Delta)
 	{
 		ChangeState(FirstBossState::Idle);
 		return;
+	}
+}
+
+void FirstBoss::FirstBossMove(float4 _Delta)
+{
+	float4 MovePos = float4::ZERO;
+	float4 CheckPos = float4::ZERO;
+
+	float4 CurPos = Transform.GetWorldPosition();
+
+	if (ActorDir::Left == FirstBossDir)
+	{
+		MovePos = float4::LEFT * Speed * _Delta;
+		CheckPos = CurPos + float4{ -40.0f, 30.0f };
+	}
+	else
+	{
+		MovePos = float4::RIGHT * Speed * _Delta;
+		CheckPos = CurPos + float4{ 40.0f, 30.0f };
+	}
+
+	GameEngineColor Color = Map::MainMap->GetColor(CheckPos, FLOORCOLOR);
+
+	if (FLOORCOLOR == Color)
+	{
+		DirChange();
+	}
+	else
+	{
+		Transform.AddLocalPosition(MovePos);
 	}
 }

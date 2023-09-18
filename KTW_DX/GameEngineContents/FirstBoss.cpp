@@ -42,6 +42,15 @@ void FirstBoss::Update(float _Delta)
 	StateUpdate(_Delta);
 
 	PhaseChange();
+
+	if (ActorDir::Left == FirstBossDir)
+	{
+		Transform.SetLocalScale({ 1.0f ,1.0f });
+	}
+	else
+	{
+		Transform.SetLocalScale({ -1.0f ,1.0f });
+	}
 }
 
 void FirstBoss::DirChange()

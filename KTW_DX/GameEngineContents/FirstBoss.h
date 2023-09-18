@@ -32,6 +32,7 @@ private:
 
 private:
 	float JumpPower = 1500.0f;
+	float Speed = 600.0f;
 
 	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> FirstBossCollision = nullptr;
@@ -47,4 +48,6 @@ private:
 	void ChangeState(FirstBossState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimation(std::string_view _State);
+
+	void FirstBossMove(float4 _Delta);
 };
