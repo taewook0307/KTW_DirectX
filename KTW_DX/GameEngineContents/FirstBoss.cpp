@@ -23,6 +23,9 @@ void FirstBoss::Start()
 
 	FirstBossRenderer->CreateAnimation("Boss_Phase2_Intro", "FirstBoss_Phase2_Intro");
 	FirstBossRenderer->CreateAnimation("Boss_Phase2_Idle", "FirstBoss_Phase2_Idle");
+	FirstBossRenderer->CreateAnimation("Boss_Phase2_Move", "FirstBoss_Phase2_Move", 0.1f, 0, 3, false);
+	FirstBossRenderer->CreateAnimation("Boss_Phase2_MoveStay", "FirstBoss_Phase2_Move", 0.1f, 4, 8, false);
+	FirstBossRenderer->CreateAnimation("Boss_Phase2_MoveEnd", "FirstBoss_Phase2_Move", 0.1f, 9, 13, false);
 
 	FirstBossRenderer->CreateAnimation("Boss_Phase3_Intro", "FirstBoss_Phase3_Intro");
 	FirstBossRenderer->CreateAnimation("Boss_Phase3_Idle", "FirstBoss_Phase3_Idle");

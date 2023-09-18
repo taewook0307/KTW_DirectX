@@ -54,13 +54,27 @@ void FirstBoss::MoveUpdate(float _Delta)
 
 	if (GravityY < 50.0f && GravityY > 0.0f)
 	{
-		FirstBossRenderer->ChangeAnimation("Boss_Phase1_MoveStay");
+		if (BossPhase::Phase1 == CurPhase)
+		{
+			FirstBossRenderer->ChangeAnimation("Boss_Phase1_MoveStay");
+		}
+		else if (BossPhase::Phase2 == CurPhase)
+		{
+			FirstBossRenderer->ChangeAnimation("Boss_Phase2_MoveStay");
+		}
 		return;
 	}
 
 	if (GravityY < 0.0f)
 	{
-		FirstBossRenderer->ChangeAnimation("Boss_Phase1_MoveEnd");
+		if (BossPhase::Phase1 == CurPhase)
+		{
+			FirstBossRenderer->ChangeAnimation("Boss_Phase1_MoveEnd");
+		}
+		else if (BossPhase::Phase2 == CurPhase)
+		{
+			FirstBossRenderer->ChangeAnimation("Boss_Phase2_MoveEnd");
+		}
 		return;
 	}
 
