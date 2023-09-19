@@ -56,6 +56,7 @@ void FirstBoss::Start()
 			return;
 		}
 	);
+	FirstBossRenderer->CreateAnimation("Boss_Phase2_Death", "FirstBoss_Phase2_Death");
 
 	/*FirstBossRenderer->CreateAnimation("Boss_Phase3_Intro", "FirstBoss_Phase3_Intro");
 	FirstBossRenderer->CreateAnimation("Boss_Phase3_Idle", "FirstBoss_Phase3_Idle");*/
@@ -121,6 +122,9 @@ void FirstBoss::ChangeState(FirstBossState _State)
 		case FirstBossState::Attack:
 			AttackStart();
 			break;
+		case FirstBossState::Death:
+			DeathStart();
+			break;
 		default:
 			break;
 		}
@@ -141,6 +145,8 @@ void FirstBoss::StateUpdate(float _Delta)
 		return MoveUpdate(_Delta);
 	case FirstBossState::Attack:
 		return AttackUpdate(_Delta);
+	case FirstBossState::Death:
+		return DeathUpdate(_Delta);
 	default:
 		break;
 	}
@@ -172,6 +178,14 @@ void FirstBoss::PhaseChange()
 	{
 		CurPhase = BossPhase::Phase2;
 		ChangeState(FirstBossState::Intro);
+		HitCount = 0;
+		BounceCount = 0;
+	}
+
+	if (BossPhase::Phase2 == CurPhase && HitCount > 540)
+	{
+		CurPhase = BossPhase::Phase3;
+		ChangeState(FirstBossState::Death);
 		HitCount = 0;
 		BounceCount = 0;
 	}

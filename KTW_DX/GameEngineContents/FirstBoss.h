@@ -31,11 +31,14 @@ private:
 	void AttackStart();
 	void AttackUpdate(float _Delta);
 
+	void DeathStart();
+	void DeathUpdate(float _Delta);
+
 	std::string State = "";
 
 private:
 	float JumpPower = 1500.0f;
-	float Speed = 600.0f;
+	float Speed = 400.0f;
 	int BounceCount = 0;
 
 	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;

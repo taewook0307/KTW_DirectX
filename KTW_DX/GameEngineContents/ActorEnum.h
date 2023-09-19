@@ -85,7 +85,8 @@ enum class FirstBossState
 	Intro,
 	Idle,
 	Move,
-	Attack
+	Attack,
+	Death
 };
 
 // etc

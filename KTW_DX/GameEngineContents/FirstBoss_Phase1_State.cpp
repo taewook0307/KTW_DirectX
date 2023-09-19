@@ -131,3 +131,13 @@ void FirstBoss::AttackUpdate(float _Delta)
 {
 	BossGravity(Transform.GetWorldPosition(), _Delta);
 }
+
+void FirstBoss::DeathStart()
+{
+	ChangeAnimation("Death");
+}
+
+void FirstBoss::DeathUpdate(float _Delta)
+{
+	BossGravity(Transform.GetWorldPosition(), _Delta);
+}
