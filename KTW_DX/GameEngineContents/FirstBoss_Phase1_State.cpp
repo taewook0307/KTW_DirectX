@@ -112,7 +112,7 @@ void FirstBoss::MoveUpdate(float _Delta)
 		return;
 	}
 
-	if (5 < BounceCount)
+	if (0 < BounceCount)
 	{
 		ChangeState(FirstBossState::Attack);
 		return;

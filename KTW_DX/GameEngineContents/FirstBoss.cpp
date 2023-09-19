@@ -25,7 +25,7 @@ void FirstBoss::Start()
 	FirstBossRenderer->CreateAnimation("Boss_Phase1_Move", "FirstBoss_Phase1_Move", 0.1f, 0, 2, false);
 	FirstBossRenderer->CreateAnimation("Boss_Phase1_MoveStay", "FirstBoss_Phase1_Move", 0.1f, 3, 7, false);
 	FirstBossRenderer->CreateAnimation("Boss_Phase1_MoveEnd", "FirstBoss_Phase1_Move", 0.1f, 8, 10, false);
-	FirstBossRenderer->CreateAnimation("Boss_Phase1_Attack", "FirstBoss_Phase1_Attack");
+	FirstBossRenderer->CreateAnimation("Boss_Phase1_Attack", "FirstBoss_Phase1_Attack", 0.1f);
 	FirstBossRenderer->SetEndEvent("Boss_Phase1_Attack",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
