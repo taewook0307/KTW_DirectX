@@ -41,7 +41,7 @@ void FirstBoss::IntroStart()
 
 void FirstBoss::IntroUpdate(float _Delta)
 {
-	
+
 }
 
 void FirstBoss::IdleStart()
@@ -135,6 +135,7 @@ void FirstBoss::AttackUpdate(float _Delta)
 void FirstBoss::DeathStart()
 {
 	ChangeAnimation("Death");
+	Phase2End = true;
 }
 
 void FirstBoss::DeathUpdate(float _Delta)

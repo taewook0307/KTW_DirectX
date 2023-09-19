@@ -18,5 +18,40 @@ public:
 protected:
 
 private:
+	float IntroTimer = 3.0f;
 
+	void IntroStart();
+	void IntroUpdate(float _Delta);
+
+	void IdleStart();
+	void IdleUpdate(float _Delta);
+
+	void MoveStart();
+	void MoveUpdate(float _Delta);
+
+	void TurnStart();
+	void TurnUpdate(float _Delta);
+
+	void AttackStart();
+	void AttackUpdate(float _Delta);
+
+	void DeathStart();
+	void DeathUpdate(float _Delta);
+
+private:
+	float Speed = 400.0f;
+	std::string State = "";
+	ActorDir FirstBossDir = ActorDir::Left;
+	FirstBossState CurState = FirstBossState::None;
+
+	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> FirstBossCollision = nullptr;
+
+	void Start() override;
+	void Update(float _Delta) override;
+
+	void DirChange();
+	void ChangeState(FirstBossState _State);
+	void StateUpdate(float _Delta);
+	void ChangeAnimation(std::string_view _State);
 };

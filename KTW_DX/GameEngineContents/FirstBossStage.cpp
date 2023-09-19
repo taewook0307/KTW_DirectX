@@ -4,6 +4,7 @@
 
 #include "BaseCharacter.h"
 #include "FirstBoss.h"
+#include "FirstBossPhase3.h"
 #include "Map.h"
 
 FirstBossStage::FirstBossStage()
@@ -87,10 +88,21 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	StageMap->MapAnimationInit("FirstBossMapAni", "FirstBossMap", 0.05f);
 	StageMap->PixelMapInit("FirstBossBitMap.Png");
 	StageMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
+
+	
 }
 
 void FirstBossStage::Update(float _Delta)
 {
+	if (false == Phase3Start && true == Boss->GetPhase2End())
+	{
+		BossPhase3 = CreateActor<FirstBossPhase3>(UpdateOrder::Monster);
+		float SpawnX = Boss->Transform.GetWorldPosition().X;
+		BossPhase3->Transform.SetLocalPosition({ SpawnX, 0.0f });
+
+		Phase3Start = true;
+	}
+
 	if (true == GameEngineInput::IsDown(VK_ESCAPE))
 	{
 		GameEngineCore::ChangeLevel("MiniMapLevel");

@@ -324,11 +324,12 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FirstBossPhase3_State.cpp" />
     <ClCompile Include="FirstBossStage.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="FirstBoss_Phase1_State.cpp" />
+    <ClCompile Include="FirstBoss_State.cpp" />
     <ClCompile Include="IntroBook.cpp">
       <SubType>
       </SubType>

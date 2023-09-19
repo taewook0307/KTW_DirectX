@@ -184,7 +184,6 @@ void FirstBoss::PhaseChange()
 
 	if (BossPhase::Phase2 == CurPhase && HitCount > 540)
 	{
-		CurPhase = BossPhase::Phase3;
 		ChangeState(FirstBossState::Death);
 		HitCount = 0;
 		BounceCount = 0;

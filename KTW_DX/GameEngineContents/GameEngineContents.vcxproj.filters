@@ -185,9 +185,6 @@
     <ClCompile Include="FirstBoss.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClCompile>
-    <ClCompile Include="FirstBoss_Phase1_State.cpp">
-      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
-    </ClCompile>
     <ClCompile Include="FirstBossPhase3.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClCompile>
@@ -196,6 +193,12 @@
     </ClCompile>
     <ClCompile Include="BaseBoss.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstBossPhase3_State.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstBoss_State.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

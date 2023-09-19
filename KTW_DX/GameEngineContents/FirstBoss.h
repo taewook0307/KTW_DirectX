@@ -16,6 +16,11 @@ public:
 	FirstBoss& operator=(const FirstBoss& _Other) = delete;
 	FirstBoss& operator=(FirstBoss&& _Other) noexcept = delete;
 
+	bool GetPhase2End() const
+	{
+		return Phase2End;
+	}
+
 protected:
 
 private:
@@ -40,6 +45,8 @@ private:
 	float JumpPower = 1500.0f;
 	float Speed = 400.0f;
 	int BounceCount = 0;
+
+	bool Phase2End = false;
 
 	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> FirstBossCollision = nullptr;
