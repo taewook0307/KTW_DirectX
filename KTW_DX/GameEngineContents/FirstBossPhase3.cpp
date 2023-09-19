@@ -5,6 +5,7 @@
 
 FirstBossPhase3::FirstBossPhase3()
 {
+	HitCount = 0;
 }
 
 FirstBossPhase3::~FirstBossPhase3()
@@ -34,6 +35,8 @@ void FirstBossPhase3::Start()
 			ChangeState(FirstBossState::Move);
 		}
 	);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Death", "FirstBoss_Phase3_Death");
+
 	FirstBossRenderer->SetPivotType(PivotType::Bottom);
 	FirstBossRenderer->AutoSpriteSizeOn();
 
@@ -46,6 +49,12 @@ void FirstBossPhase3::Start()
 void FirstBossPhase3::Update(float _Delta)
 {
 	StateUpdate(_Delta);
+
+	if (HitCount > 372)
+	{
+		ChangeState(FirstBossState::Death);
+		return;
+	}
 }
 
 void FirstBossPhase3::DirChange()
