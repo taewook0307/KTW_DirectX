@@ -2,6 +2,7 @@
 #include "FirstBossPhase3.h"
 
 #include "Map.h"
+#include "BaseCharacter.h"
 
 void FirstBossPhase3::IntroStart()
 {
@@ -44,10 +45,24 @@ void FirstBossPhase3::IdleUpdate(float _Delta)
 void FirstBossPhase3::MoveStart()
 {
 	ChangeAnimation("Move");
+	FirstBossCollision->Transform.SetLocalPosition({ 0.0f, 90.0f });
 }
 
 void FirstBossPhase3::MoveUpdate(float _Delta)
 {
+	if (2 < DirChangeCount)
+	{
+		float4 CharacterPos = BaseCharacter::MainCharacter->Transform.GetWorldPosition();
+		float4 BossPos = Transform.GetWorldPosition();
+		float DirSize = fabs(BossPos.X - CharacterPos.X);
+
+		if (DirSize < 30.0f)
+		{
+			ChangeState(FirstBossState::Attack);
+			return;
+		}
+	}
+
 	float4 MovePos = float4::ZERO;
 	float4 CheckPos = float4::ZERO;
 
@@ -95,6 +110,7 @@ void FirstBossPhase3::TurnUpdate(float _Delta)
 void FirstBossPhase3::AttackStart()
 {
 	ChangeAnimation("Attack");
+	DirChangeCount = 0;
 }
 
 void FirstBossPhase3::AttackUpdate(float _Delta)

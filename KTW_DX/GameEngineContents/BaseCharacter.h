@@ -12,6 +12,8 @@
 class BaseCharacter : public BaseActor
 {
 public:
+	static BaseCharacter* MainCharacter;
+
 	// constrcuter destructer
 	BaseCharacter();
 	~BaseCharacter();

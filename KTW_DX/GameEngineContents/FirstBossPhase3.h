@@ -39,6 +39,8 @@ private:
 	void DeathUpdate(float _Delta);
 
 private:
+	int DirChangeCount = 0;
+
 	float Speed = 800.0f;
 	std::string State = "";
 	ActorDir FirstBossDir = ActorDir::Left;

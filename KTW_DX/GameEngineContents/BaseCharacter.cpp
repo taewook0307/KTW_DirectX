@@ -3,8 +3,11 @@
 
 #include "Bullet.h"
 
+BaseCharacter* BaseCharacter::MainCharacter = nullptr;
+
 BaseCharacter::BaseCharacter()
 {
+	MainCharacter = this;
 }
 
 BaseCharacter::~BaseCharacter()

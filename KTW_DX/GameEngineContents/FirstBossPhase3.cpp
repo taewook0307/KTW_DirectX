@@ -28,7 +28,12 @@ void FirstBossPhase3::Start()
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Turn_Left", "FirstBoss_Phase3_Turn_Left");
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Turn_Right", "FirstBoss_Phase3_Turn_Right");
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Attack", "FirstBoss_Phase3_Attack");
-
+	FirstBossRenderer->SetEndEvent("FirstBoss_Phase3_Attack",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ChangeState(FirstBossState::Move);
+		}
+	);
 	FirstBossRenderer->SetPivotType(PivotType::Bottom);
 	FirstBossRenderer->AutoSpriteSizeOn();
 
@@ -53,6 +58,8 @@ void FirstBossPhase3::DirChange()
 	{
 		FirstBossDir = ActorDir::Left;
 	}
+
+	++DirChangeCount;
 }
 
 void FirstBossPhase3::ChangeState(FirstBossState _State)
