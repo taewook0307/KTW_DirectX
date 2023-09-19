@@ -85,14 +85,14 @@ void FirstBoss::MoveUpdate(float _Delta)
 	if (GravityY < 50.0f && GravityY > 0.0f)
 	{
 		if (BossPhase::Phase1 == CurPhase
-			&& false == FirstBossRenderer->IsCurAnimation("Boss_Phase1_MoveStay"))
+			&& false == FirstBossRenderer->IsCurAnimation("FirstBoss_Phase1_MoveStay"))
 		{
-			FirstBossRenderer->ChangeAnimation("Boss_Phase1_MoveStay");
+			FirstBossRenderer->ChangeAnimation("FirstBoss_Phase1_MoveStay");
 		}
 		else if (BossPhase::Phase2 == CurPhase
-			&& false == FirstBossRenderer->IsCurAnimation("Boss_Phase2_MoveStay"))
+			&& false == FirstBossRenderer->IsCurAnimation("FirstBoss_Phase2_MoveStay"))
 		{
-			FirstBossRenderer->ChangeAnimation("Boss_Phase2_MoveStay");
+			FirstBossRenderer->ChangeAnimation("FirstBoss_Phase2_MoveStay");
 		}
 		return;
 	}
@@ -100,14 +100,14 @@ void FirstBoss::MoveUpdate(float _Delta)
 	if (GravityY < 0.0f)
 	{
 		if (BossPhase::Phase1 == CurPhase
-			&& false == FirstBossRenderer->IsCurAnimation("Boss_Phase1_MoveEnd"))
+			&& false == FirstBossRenderer->IsCurAnimation("FirstBoss_Phase1_MoveEnd"))
 		{
-			FirstBossRenderer->ChangeAnimation("Boss_Phase1_MoveEnd");
+			FirstBossRenderer->ChangeAnimation("FirstBoss_Phase1_MoveEnd");
 		}
 		else if (BossPhase::Phase2 == CurPhase
-			&& false == FirstBossRenderer->IsCurAnimation("Boss_Phase2_MoveEnd"))
+			&& false == FirstBossRenderer->IsCurAnimation("FirstBoss_Phase2_MoveEnd"))
 		{
-			FirstBossRenderer->ChangeAnimation("Boss_Phase2_MoveEnd");
+			FirstBossRenderer->ChangeAnimation("FirstBoss_Phase2_MoveEnd");
 		}
 		return;
 	}

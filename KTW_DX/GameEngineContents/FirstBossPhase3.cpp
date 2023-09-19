@@ -17,7 +17,12 @@ void FirstBossPhase3::Start()
 
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Intro", "FirstBoss_Phase3_Intro");
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Idle", "FirstBoss_Phase3_Idle");
-	
+	FirstBossRenderer->SetEndEvent("FirstBoss_Phase3_Idle",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ChangeState(FirstBossState::Move);
+		}
+	);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Move_Left", "FirstBoss_Phase3_Move_Left");
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Move_Right", "FirstBoss_Phase3_Move_Right");
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Turn_Left", "FirstBoss_Phase3_Turn_Left");
@@ -40,7 +45,14 @@ void FirstBossPhase3::Update(float _Delta)
 
 void FirstBossPhase3::DirChange()
 {
-
+	if (ActorDir::Left == FirstBossDir)
+	{
+		FirstBossDir = ActorDir::Right;
+	}
+	else
+	{
+		FirstBossDir = ActorDir::Left;
+	}
 }
 
 void FirstBossPhase3::ChangeState(FirstBossState _State)
@@ -101,6 +113,18 @@ void FirstBossPhase3::ChangeAnimation(std::string_view _State)
 	std::string AnimationName = "FirstBoss_Phase3_";
 
 	AnimationName += _State;
+
+	if ("Move" == _State || "Turn" == _State)
+	{
+		if (ActorDir::Left == FirstBossDir)
+		{
+			AnimationName += "_Left";
+		}
+		else
+		{
+			AnimationName += "_Right";
+		}
+	}
 
 	State = _State;
 
