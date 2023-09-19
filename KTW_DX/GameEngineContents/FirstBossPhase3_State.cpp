@@ -109,6 +109,7 @@ void FirstBossPhase3::TurnUpdate(float _Delta)
 
 void FirstBossPhase3::AttackStart()
 {
+	FirstBossRenderer->SetPivotType(PivotType::Center);
 	ChangeAnimation("Attack");
 	DirChangeCount = 0;
 }

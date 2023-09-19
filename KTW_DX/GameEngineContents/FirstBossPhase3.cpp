@@ -32,6 +32,7 @@ void FirstBossPhase3::Start()
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase3_Attack",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			FirstBossRenderer->SetPivotType(PivotType::Bottom);
 			ChangeState(FirstBossState::Move);
 		}
 	);
