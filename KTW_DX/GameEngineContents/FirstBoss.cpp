@@ -75,6 +75,12 @@ void FirstBoss::Update(float _Delta)
 
 	PhaseChange();
 
+	if (5 <= BounceCount)
+	{
+		ChangeState(FirstBossState::Attack);
+		return;
+	}
+
 	if (ActorDir::Left == FirstBossDir)
 	{
 		Transform.SetLocalScale({ 1.0f ,1.0f });

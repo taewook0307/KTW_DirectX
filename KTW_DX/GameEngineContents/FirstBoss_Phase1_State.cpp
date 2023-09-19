@@ -56,7 +56,7 @@ void FirstBoss::IdleUpdate(float _Delta)
 
 	if (true == FirstBossRenderer->IsCurAnimationEnd())
 	{
-		ChangeState(FirstBossState::Attack);
+		ChangeState(FirstBossState::Move);
 		return;
 	}
 }
@@ -109,12 +109,6 @@ void FirstBoss::MoveUpdate(float _Delta)
 		{
 			FirstBossRenderer->ChangeAnimation("Boss_Phase2_MoveEnd");
 		}
-		return;
-	}
-
-	if (0 == BounceCount)
-	{
-		ChangeState(FirstBossState::Attack);
 		return;
 	}
 
