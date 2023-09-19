@@ -26,4 +26,5 @@ private:
 	std::shared_ptr<class FirstBossPhase3> BossPhase3 = nullptr;
 
 	bool Phase3Start = false;
+	float Phase3Timer = 5.0f;
 };

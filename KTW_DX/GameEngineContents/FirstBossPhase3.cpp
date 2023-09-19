@@ -24,8 +24,11 @@ void FirstBossPhase3::Start()
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Turn_Right", "FirstBoss_Phase3_Turn_Right");
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Attack", "FirstBoss_Phase3_Attack");
 
-	FirstBossRenderer->AutoSpriteSizeOn();
 	FirstBossRenderer->SetPivotType(PivotType::Bottom);
+	FirstBossRenderer->AutoSpriteSizeOn();
+
+	FirstBossCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Monster);
+	FirstBossCollision->Transform.SetLocalScale({ 300.0f, 300.0f });
 
 	ChangeState(FirstBossState::Intro);
 }

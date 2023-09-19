@@ -88,13 +88,15 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	StageMap->MapAnimationInit("FirstBossMapAni", "FirstBossMap", 0.05f);
 	StageMap->PixelMapInit("FirstBossBitMap.Png");
 	StageMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
-
-	
 }
 
 void FirstBossStage::Update(float _Delta)
 {
-	if (false == Phase3Start && true == Boss->GetPhase2End())
+	if (true == Boss->GetPhase2End())
+	{
+		Phase3Timer -= _Delta;
+	}
+	if (false == Phase3Start && 0.0f > Phase3Timer)
 	{
 		BossPhase3 = CreateActor<FirstBossPhase3>(UpdateOrder::Monster);
 		float SpawnX = Boss->Transform.GetWorldPosition().X;

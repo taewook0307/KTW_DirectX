@@ -13,20 +13,20 @@ void FirstBoss::Start()
 {
 	FirstBossRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Boss);
 
-	FirstBossRenderer->CreateAnimation("Boss_Phase1_Intro", "FirstBoss_Phase1_Intro", 0.08f);
-	FirstBossRenderer->SetEndEvent("Boss_Phase1_Intro",
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Intro", "FirstBoss_Phase1_Intro", 0.08f);
+	FirstBossRenderer->SetEndEvent("FirstBoss_Phase1_Intro",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			ChangeState(FirstBossState::Idle);
 			return;
 		}
 	);
-	FirstBossRenderer->CreateAnimation("Boss_Phase1_Idle", "FirstBoss_Phase1_Idle");
-	FirstBossRenderer->CreateAnimation("Boss_Phase1_Move", "FirstBoss_Phase1_Move", 0.1f, 0, 2, false);
-	FirstBossRenderer->CreateAnimation("Boss_Phase1_MoveStay", "FirstBoss_Phase1_Move", 0.1f, 3, 7, false);
-	FirstBossRenderer->CreateAnimation("Boss_Phase1_MoveEnd", "FirstBoss_Phase1_Move", 0.1f, 8, 10, false);
-	FirstBossRenderer->CreateAnimation("Boss_Phase1_Attack", "FirstBoss_Phase1_Attack", 0.1f);
-	FirstBossRenderer->SetEndEvent("Boss_Phase1_Attack",
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Idle", "FirstBoss_Phase1_Idle");
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Move", "FirstBoss_Phase1_Move", 0.1f, 0, 2, false);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_MoveStay", "FirstBoss_Phase1_Move", 0.1f, 3, 7, false);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_MoveEnd", "FirstBoss_Phase1_Move", 0.1f, 8, 10, false);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Attack", "FirstBoss_Phase1_Attack", 0.1f);
+	FirstBossRenderer->SetEndEvent("FirstBoss_Phase1_Attack",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			BounceCount = 0;
@@ -35,20 +35,20 @@ void FirstBoss::Start()
 		}
 	);
 
-	FirstBossRenderer->CreateAnimation("Boss_Phase2_Intro", "FirstBoss_Phase2_Intro");
-	FirstBossRenderer->SetEndEvent("Boss_Phase2_Intro",
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_Intro", "FirstBoss_Phase2_Intro");
+	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_Intro",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			ChangeState(FirstBossState::Idle);
 			return;
 		}
 	);
-	FirstBossRenderer->CreateAnimation("Boss_Phase2_Idle", "FirstBoss_Phase2_Idle");
-	FirstBossRenderer->CreateAnimation("Boss_Phase2_Move", "FirstBoss_Phase2_Move", 0.1f, 0, 3, false);
-	FirstBossRenderer->CreateAnimation("Boss_Phase2_MoveStay", "FirstBoss_Phase2_Move", 0.1f, 4, 8, false);
-	FirstBossRenderer->CreateAnimation("Boss_Phase2_MoveEnd", "FirstBoss_Phase2_Move", 0.1f, 9, 13, false);
-	FirstBossRenderer->CreateAnimation("Boss_Phase2_Attack", "FirstBoss_Phase2_Attack");
-	FirstBossRenderer->SetEndEvent("Boss_Phase2_Attack",
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_Idle", "FirstBoss_Phase2_Idle");
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_Move", "FirstBoss_Phase2_Move", 0.1f, 0, 3, false);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_MoveStay", "FirstBoss_Phase2_Move", 0.1f, 4, 8, false);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_MoveEnd", "FirstBoss_Phase2_Move", 0.1f, 9, 13, false);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_Attack", "FirstBoss_Phase2_Attack");
+	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_Attack",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			BounceCount = 0;
@@ -56,10 +56,14 @@ void FirstBoss::Start()
 			return;
 		}
 	);
-	FirstBossRenderer->CreateAnimation("Boss_Phase2_Death", "FirstBoss_Phase2_Death");
-
-	/*FirstBossRenderer->CreateAnimation("Boss_Phase3_Intro", "FirstBoss_Phase3_Intro");
-	FirstBossRenderer->CreateAnimation("Boss_Phase3_Idle", "FirstBoss_Phase3_Idle");*/
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_Death", "FirstBoss_Phase2_Death");
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_Slime", "FirstBoss_Phase2_Slime");
+	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_Slime",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			Death();
+		}
+	);
 
 	FirstBossRenderer->SetPivotType(PivotType::Bottom);
 	FirstBossRenderer->AutoSpriteSizeOn();
@@ -125,6 +129,9 @@ void FirstBoss::ChangeState(FirstBossState _State)
 		case FirstBossState::Death:
 			DeathStart();
 			break;
+		case FirstBossState::Slime:
+			SlimeStart();
+			break;
 		default:
 			break;
 		}
@@ -147,6 +154,8 @@ void FirstBoss::StateUpdate(float _Delta)
 		return AttackUpdate(_Delta);
 	case FirstBossState::Death:
 		return DeathUpdate(_Delta);
+	case FirstBossState::Slime:
+		return SlimeUpdate(_Delta);
 	default:
 		break;
 	}
@@ -154,7 +163,7 @@ void FirstBoss::StateUpdate(float _Delta)
 
 void FirstBoss::ChangeAnimation(std::string_view _State)
 {
-	std::string AnimationName = "Boss_";
+	std::string AnimationName = "FirstBoss_";
 
 	if (BossPhase::Phase1 == CurPhase)
 	{

@@ -87,7 +87,8 @@ enum class FirstBossState
 	Move,
 	Attack,
 	Death,
-	Turn
+	Turn,
+	Slime
 };
 
 // etc

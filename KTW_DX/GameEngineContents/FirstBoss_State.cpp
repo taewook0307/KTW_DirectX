@@ -141,4 +141,20 @@ void FirstBoss::DeathStart()
 void FirstBoss::DeathUpdate(float _Delta)
 {
 	BossGravity(Transform.GetWorldPosition(), _Delta);
+
+	if (true == FirstBossCollision->Collision(CollisionOrder::Monster))
+	{
+		ChangeState(FirstBossState::Slime);
+		return;
+	}
+}
+
+void FirstBoss::SlimeStart()
+{
+	ChangeAnimation("Slime");
+}
+
+void FirstBoss::SlimeUpdate(float _Delta)
+{
+
 }

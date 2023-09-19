@@ -39,6 +39,9 @@ private:
 	void DeathStart();
 	void DeathUpdate(float _Delta);
 
+	void SlimeStart();
+	void SlimeUpdate(float _Delta);
+
 	std::string State = "";
 
 private:
