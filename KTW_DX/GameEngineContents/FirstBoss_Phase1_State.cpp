@@ -41,11 +41,7 @@ void FirstBoss::IntroStart()
 
 void FirstBoss::IntroUpdate(float _Delta)
 {
-	if (true == FirstBossRenderer->IsCurAnimationEnd())
-	{
-		ChangeState(FirstBossState::Idle);
-		return;
-	}
+	
 }
 
 void FirstBoss::IdleStart()

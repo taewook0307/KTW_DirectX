@@ -13,7 +13,14 @@ void FirstBoss::Start()
 {
 	FirstBossRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Boss);
 
-	FirstBossRenderer->CreateAnimation("Boss_Phase1_Intro", "FirstBoss_Phase1_Intro");
+	FirstBossRenderer->CreateAnimation("Boss_Phase1_Intro", "FirstBoss_Phase1_Intro", 0.08f);
+	FirstBossRenderer->SetEndEvent("Boss_Phase1_Intro",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ChangeState(FirstBossState::Idle);
+			return;
+		}
+	);
 	FirstBossRenderer->CreateAnimation("Boss_Phase1_Idle", "FirstBoss_Phase1_Idle");
 	FirstBossRenderer->CreateAnimation("Boss_Phase1_Move", "FirstBoss_Phase1_Move", 0.1f, 0, 2, false);
 	FirstBossRenderer->CreateAnimation("Boss_Phase1_MoveStay", "FirstBoss_Phase1_Move", 0.1f, 3, 7, false);
@@ -46,7 +53,7 @@ void FirstBoss::Start()
 	/*FirstBossRenderer->CreateAnimation("Boss_Phase3_Intro", "FirstBoss_Phase3_Intro");
 	FirstBossRenderer->CreateAnimation("Boss_Phase3_Idle", "FirstBoss_Phase3_Idle");*/
 
-	FirstBossRenderer->SetPivotValue(float4{ 0.0f, 1.0f });
+	FirstBossRenderer->SetPivotType(PivotType::Bottom);
 	FirstBossRenderer->AutoSpriteSizeOn();
 
 	FirstBossCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Monster);
@@ -64,12 +71,10 @@ void FirstBoss::Update(float _Delta)
 	if (ActorDir::Left == FirstBossDir)
 	{
 		Transform.SetLocalScale({ 1.0f ,1.0f });
-		FirstBossRenderer->SetPivotValue(float4{ 0.0f, 1.0f });
 	}
 	else
 	{
 		Transform.SetLocalScale({ -1.0f ,1.0f });
-		FirstBossRenderer->SetPivotValue(float4{ 1.0f, 1.0f });
 	}
 }
 
