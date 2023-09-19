@@ -1,7 +1,7 @@
 #pragma once
 #include "BaseActor.h"
 
-#define CHARACTERANIMATIONINTER 0.07f
+#define CHARACTERANIMATIONINTER 0.05f
 
 #define JUMPPOWER 1500.0f
 #define SHOOTTIMER 0.2f
@@ -81,7 +81,7 @@ protected:
 
 	ActorDir Dir = ActorDir::None;
 	CharacterAimDir AimDir = CharacterAimDir::None;
-	CharacterState CurState = CharacterState::Intro;
+	CharacterState CurState = CharacterState::None;
 	std::string State = "";
 
 	float Speed = 300.0f;

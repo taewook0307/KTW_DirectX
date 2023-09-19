@@ -149,7 +149,7 @@ void BaseCharacter::Start()
 	PlayerCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Player);
 	PlayerCollision->Transform.SetLocalScale(SpriteScale);
 
-	ChangeState(CharacterState::Idle);
+	ChangeState(CharacterState::Intro);
 }
 
 void BaseCharacter::Update(float _Delta)

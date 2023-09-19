@@ -20,6 +20,7 @@ enum class CharacterAimDir
 
 enum class CharacterState
 {
+	None,
 	Intro,
 	Idle,
 	Run,
