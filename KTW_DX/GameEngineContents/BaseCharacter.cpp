@@ -36,6 +36,15 @@ void BaseCharacter::Start()
 	PlayerRenderer->CreateAnimation("CupHead_Aim_Up", "Aim_Up", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Aim_Down", "Aim_Down", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Duck", "Duck", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetEndEvent("CupHead_Duck",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			if (true == GameEngineInput::IsPress(VK_DOWN))
+			{
+				ChangeAnimation("Duck_Idle");
+			}
+		}
+	);
 	PlayerRenderer->CreateAnimation("CupHead_Duck_Idle", "Duck_Idle", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Shoot_Straight", "Shoot_Straight", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Shoot_Up", "Shoot_Up", CHARACTERANIMATIONINTER);

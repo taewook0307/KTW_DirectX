@@ -307,11 +307,6 @@ void BaseCharacter::DuckUpdate(float _Delta)
 {
 	DirChange();
 	CharacterGravity(_Delta, Transform.GetWorldPosition());
-
-	if (true == PlayerRenderer->IsCurAnimationEnd() && true == GameEngineInput::IsPress(VK_DOWN))
-	{
-		ChangeAnimation("Duck_Idle");
-	}
 	
 	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
 
