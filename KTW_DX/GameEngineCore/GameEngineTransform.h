@@ -84,6 +84,7 @@ public:
 	float4 Quaternion = float4::ZERO;
 	float4 Position = float4::ZERO;
 
+	// 이걸 직접 수정하는 일은 없을겁니다.
 	float4 LocalScale;
 	float4 LocalRotation;
 	float4 LocalQuaternion;
@@ -188,7 +189,6 @@ public:
 		TransformUpdate();
 	}
 
-
 	void SetLocalRotation(const float4& _Value)
 	{
 		TransData.Rotation = _Value;
@@ -199,9 +199,7 @@ public:
 	{
 		TransData.Rotation += _Value;
 		TransformUpdate();
-
 	}
-
 
 	void SetLocalPosition(const float4& _Value)
 	{
@@ -215,16 +213,75 @@ public:
 		TransformUpdate();
 	}
 
+	bool AbsoluteScale = false;
+	bool AbsolutePosition = false;
+	bool AbsoluteRotation = false;
 
-	// Get
+	void SetWorldScale(const float4& _Value)
+	{
+		AbsoluteScale = true;
+		TransData.Scale = _Value;
+		TransformUpdate();
+	}
+
+	void SetWorldRotation(const float4& _Value)
+	{
+		AbsoluteRotation = true;
+		TransData.Rotation = _Value;
+		TransformUpdate();
+	}
+
+	void SetWorldPosition(const float4& _Value)
+	{
+		AbsolutePosition = true;
+		TransData.Position = _Value;
+		TransformUpdate();
+	}
+
+
+	void AddWorldScale(const float4& _Value)
+	{
+		SetWorldScale(GetWorldScale() + _Value);
+	}
+
+	void AddWorldRotation(const float4& _Value)
+	{
+		SetWorldRotation(GetWorldRotationEuler() + _Value);
+	}
+
+	void AddWorldPosition(const float4& _Value)
+	{
+		SetWorldPosition(GetWorldPosition() + _Value);
+	}
+
+	float4 GetWorldScale()
+	{
+		return TransData.WorldScale;
+	}
+
+	float4 GetWorldRotationEuler()
+	{
+		return TransData.WorldRotation;
+	}
+
 	float4 GetWorldPosition()
 	{
-		return TransData.WorldMatrix.ArrVector[3];
+		return TransData.WorldPosition;
 	}
 
 	float4 GetLocalScale()
 	{
 		return TransData.LocalScale;
+	}
+
+	float4 GetLocalRotationEuler()
+	{
+		return TransData.LocalRotation;
+	}
+
+	float4 GetLocalPosition()
+	{
+		return TransData.LocalPosition;
 	}
 
 
