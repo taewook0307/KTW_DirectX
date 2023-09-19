@@ -39,7 +39,7 @@ private:
 	void DeathUpdate(float _Delta);
 
 private:
-	float Speed = 400.0f;
+	float Speed = 800.0f;
 	std::string State = "";
 	ActorDir FirstBossDir = ActorDir::Left;
 	FirstBossState CurState = FirstBossState::None;

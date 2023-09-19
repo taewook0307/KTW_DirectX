@@ -6,6 +6,7 @@
 void FirstBossPhase3::IntroStart()
 {
 	ChangeAnimation("Intro");
+	FirstBossRenderer->AnimationPauseOn();
 }
 
 void FirstBossPhase3::IntroUpdate(float _Delta)
@@ -20,6 +21,7 @@ void FirstBossPhase3::IntroUpdate(float _Delta)
 
 	if (FLOORCOLOR == CurColor)
 	{
+		FirstBossRenderer->AnimationPauseOff();
 		GravityReset();
 		IntroTimer -= _Delta;
 	}
@@ -46,7 +48,33 @@ void FirstBossPhase3::MoveStart()
 
 void FirstBossPhase3::MoveUpdate(float _Delta)
 {
+	float4 MovePos = float4::ZERO;
+	float4 CheckPos = float4::ZERO;
 
+	if (ActorDir::Left == FirstBossDir)
+	{
+		MovePos = float4::LEFT * Speed * _Delta;
+		CheckPos = { -60.0f, 70.0f };
+	}
+	else
+	{
+		MovePos = float4::RIGHT * Speed * _Delta;
+		CheckPos = { 60.0f, 70.0f };
+	}
+
+	CheckPos += Transform.GetWorldPosition();
+
+	GameEngineColor CheckColor = Map::MainMap->GetColor(CheckPos, FLOORCOLOR);
+
+	if (FLOORCOLOR == CheckColor)
+	{
+		ChangeState(FirstBossState::Turn);
+		return;
+	}
+	else
+	{
+		Transform.AddLocalPosition(MovePos);
+	}
 }
 
 void FirstBossPhase3::TurnStart()
@@ -56,7 +84,12 @@ void FirstBossPhase3::TurnStart()
 
 void FirstBossPhase3::TurnUpdate(float _Delta)
 {
-
+	if (true == FirstBossRenderer->IsCurAnimationEnd())
+	{
+		DirChange();
+		ChangeState(FirstBossState::Move);
+		return;
+	}
 }
 
 void FirstBossPhase3::AttackStart()
