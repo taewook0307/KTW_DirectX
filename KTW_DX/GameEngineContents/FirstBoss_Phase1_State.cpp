@@ -56,7 +56,7 @@ void FirstBoss::IdleUpdate(float _Delta)
 
 	if (true == FirstBossRenderer->IsCurAnimationEnd())
 	{
-		ChangeState(FirstBossState::Move);
+		ChangeState(FirstBossState::Attack);
 		return;
 	}
 }
@@ -112,7 +112,7 @@ void FirstBoss::MoveUpdate(float _Delta)
 		return;
 	}
 
-	if (0 < BounceCount)
+	if (0 == BounceCount)
 	{
 		ChangeState(FirstBossState::Attack);
 		return;
@@ -135,5 +135,5 @@ void FirstBoss::AttackStart()
 
 void FirstBoss::AttackUpdate(float _Delta)
 {
-	BossGravity(float4::ZERO, _Delta);
+	BossGravity(Transform.GetWorldPosition(), _Delta);
 }
