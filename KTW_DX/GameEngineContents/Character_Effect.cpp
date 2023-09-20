@@ -12,9 +12,10 @@ void BaseCharacter::CreateJumpDust()
 	JumpEffect->Transform.SetLocalPosition(Pos);
 }
 
-void BaseCharacter::CreateDashDust()
+void BaseCharacter::CreateDashDust(ActorDir _DustDir)
 {
 	std::shared_ptr<DashDust> DashEffect = GetLevel()->CreateActor<DashDust>(UpdateOrder::UI);
+	DashEffect->SetDashDustDir(_DustDir);
 	float4 Pos = Transform.GetWorldPosition();
 	DashEffect->Transform.SetLocalPosition(Pos);
 }

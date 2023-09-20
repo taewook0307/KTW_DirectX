@@ -24,3 +24,15 @@ void DashDust::Start()
 
 	Renderer->ChangeAnimation("DashDust");
 }
+
+void DashDust::Update(float _Delta)
+{
+	if (ActorDir::Left == DashDustDir)
+	{
+		Transform.SetLocalScale({ -1.0f, 1.0f });
+	}
+	else
+	{
+		Transform.SetLocalScale({ 1.0f, 1.0f });
+	}
+}

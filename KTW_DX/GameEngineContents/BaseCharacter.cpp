@@ -35,14 +35,14 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetFrameEvent("CupHead_Dash", 0,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			CreateDashDust();
+			CreateDashDust(Dir);
 		}
 	);
 	PlayerRenderer->CreateAnimation("CupHead_Dash_Air", "Dash_Air", CHARACTERANIMATIONINTER);
 	PlayerRenderer->SetFrameEvent("CupHead_Dash_Air", 0,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			CreateDashDust();
+			CreateDashDust(Dir);
 		}
 	);
 	PlayerRenderer->CreateAnimation("CupHead_Fall", "Jump", CHARACTERANIMATIONINTER);

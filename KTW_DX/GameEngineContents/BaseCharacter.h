@@ -33,7 +33,7 @@ protected:
 	void CharacterGravity(float _Delta, float4 _CheckPos);
 
 	void CreateJumpDust();
-	void CreateDashDust();
+	void CreateDashDust(ActorDir _DustDir);
 	void CreateParryEffect();
 	void CreateSpecialDust(Direction8 _DustDirection);
 protected:
