@@ -97,4 +97,34 @@ void MiniMapLevel::Update(float _Delta)
 void MiniMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	CharacterPos = Character->Transform.GetWorldPosition();
+
+	if (nullptr != MiniMap)
+	{
+		MiniMap->Death();
+		MiniMap = nullptr;
+	}
+
+	if (nullptr != MiniMapUpper)
+	{
+		MiniMapUpper->Death();
+		MiniMapUpper = nullptr;
+	}
+
+	if (nullptr != Character)
+	{
+		Character->Death();
+		Character = nullptr;
+	}
+
+	if (nullptr != TutorialEnter)
+	{
+		TutorialEnter->Death();
+		TutorialEnter = nullptr;
+	}
+
+	if (nullptr != FirstEnter)
+	{
+		FirstEnter->Death();
+		FirstEnter = nullptr;
+	}
 }

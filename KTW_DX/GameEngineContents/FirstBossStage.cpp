@@ -123,3 +123,36 @@ void FirstBossStage::Update(float _Delta)
 		GameEngineCore::ChangeLevel("MiniMapLevel");
 	}
 }
+
+void FirstBossStage::LevelEnd(GameEngineLevel* _NextLevel)
+{
+	if (nullptr != StageMap)
+	{
+		StageMap->Death();
+		StageMap = nullptr;
+	}
+
+	if (nullptr != StageMapUpper)
+	{
+		StageMapUpper->Death();
+		StageMapUpper = nullptr;
+	}
+
+	if (nullptr != Player)
+	{
+		Player->Death();
+		Player = nullptr;
+	}
+
+	if (nullptr != Boss)
+	{
+		Boss->Death();
+		Boss = nullptr;
+	}
+
+	if (nullptr != BossPhase3)
+	{
+		BossPhase3->Death();
+		BossPhase3 = nullptr;
+	}
+}

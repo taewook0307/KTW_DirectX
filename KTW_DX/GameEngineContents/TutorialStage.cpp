@@ -192,3 +192,47 @@ void TutorialStage::TutorialLevelCameraMove()
 	TutorialBackGround->Transform.SetLocalPosition(MovePos);
 	TutorialBackGroundUpper->Transform.SetLocalPosition(MovePos);
 }
+
+void TutorialStage::LevelEnd(GameEngineLevel* _NextLevel)
+{
+	if (nullptr != TutorialBackGround)
+	{
+		TutorialBackGround->Death();
+		TutorialBackGround = nullptr;
+	}
+
+	if (nullptr != TutorialBackGroundUpper)
+	{
+		TutorialBackGroundUpper->Death();
+		TutorialBackGroundUpper = nullptr;
+	}
+
+	if (nullptr != TutorialMap)
+	{
+		TutorialMap->Death();
+		TutorialMap = nullptr;
+	}
+
+	if (nullptr != TutorialExit)
+	{
+		TutorialExit->Death();
+		TutorialExit = nullptr;
+	}
+
+	if (nullptr != Player)
+	{
+		Player->Death();
+		Player = nullptr;
+	}
+
+	for (size_t i = 0; i < TutorialParry.size(); i++)
+	{
+		if (nullptr != TutorialParry[i])
+		{
+			TutorialParry[i]->Death();
+			TutorialParry[i] = nullptr;
+		}
+	}
+
+	TutorialParry.clear();
+}

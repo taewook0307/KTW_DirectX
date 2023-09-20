@@ -27,3 +27,12 @@ void IntroLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	Intro = CreateActor<IntroBook>(UpdateOrder::BackGround);
 }
+
+void IntroLevel::LevelEnd(GameEngineLevel* _NextLevel)
+{
+	if (nullptr != Intro)
+	{
+		Intro->Death();
+		Intro = nullptr;
+	}
+}

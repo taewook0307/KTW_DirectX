@@ -21,4 +21,5 @@ private:
 	std::shared_ptr<class OutroBook> Outro = nullptr;
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
+	void LevelEnd(GameEngineLevel* _NextLevel) override;
 };

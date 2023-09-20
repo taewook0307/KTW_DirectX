@@ -16,8 +16,6 @@ public:
 	FirstBossStage& operator=(FirstBossStage&& _Other) noexcept = delete;
 
 protected:
-	void LevelStart(GameEngineLevel* _PrevLevel) override;
-	void Update(float _Delta) override;
 
 private:
 	std::shared_ptr<class Map> StageMap = nullptr;
@@ -28,4 +26,9 @@ private:
 
 	bool Phase3Start = false;
 	float Phase3Timer = 5.0f;
+	
+private:
+	void LevelStart(GameEngineLevel* _PrevLevel) override;
+	void LevelEnd(GameEngineLevel* _NextLevel) override;
+	void Update(float _Delta) override;
 };

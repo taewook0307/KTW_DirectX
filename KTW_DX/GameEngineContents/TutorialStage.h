@@ -22,8 +22,6 @@ public:
 	TutorialStage& operator=(TutorialStage&& _Other) noexcept = delete;
 
 protected:
-	void LevelStart(GameEngineLevel* _PrevLevel) override;
-	void Update(float _Delta) override;
 
 private:
 	std::shared_ptr<class BackGround> TutorialBackGround = nullptr;
@@ -35,4 +33,9 @@ private:
 	std::vector<std::shared_ptr<class ParryObject>> TutorialParry;
 
 	void TutorialLevelCameraMove();
+
+private:
+	void LevelStart(GameEngineLevel* _PrevLevel) override;
+	void LevelEnd(GameEngineLevel* _NextLevel) override;
+	void Update(float _Delta) override;
 };

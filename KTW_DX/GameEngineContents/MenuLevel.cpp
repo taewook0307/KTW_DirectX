@@ -85,3 +85,24 @@ void MenuLevel::MenuChange()
 		ExitMenu->SelectOn();
 	}
 }
+
+void MenuLevel::LevelEnd(GameEngineLevel* _NextLevel)
+{
+	if (nullptr != Back)
+	{
+		Back->Death();
+		Back = nullptr;
+	}
+
+	if (nullptr != StartMenu)
+	{
+		StartMenu->Death();
+		StartMenu = nullptr;
+	}
+
+	if (nullptr != ExitMenu)
+	{
+		ExitMenu->Death();
+		ExitMenu = nullptr;
+	}
+}

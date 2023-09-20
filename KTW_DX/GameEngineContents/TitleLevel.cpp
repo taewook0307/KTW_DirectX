@@ -2,7 +2,7 @@
 #include "TitleLevel.h"
 
 #include "BackGround.h"
-//#include "FadeObject.h"
+#include "FadeObject.h"
 
 
 TitleLevel::TitleLevel()
@@ -46,7 +46,7 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
-	/*{
+	{
 		GameEngineDirectory FadeDir;
 		FadeDir.MoveParentToExistsChild("Resources");
 		FadeDir.MoveChild("Resources\\Texture\\Fade");
@@ -61,7 +61,7 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 			GameEngineSprite::CreateFolder(Dir.GetStringPath());
 		}
-	}*/
+	}
 
 	TitleBackGround = CreateActor<BackGround>(UpdateOrder::BackGround);
 	TitleBackGround->BackGroundInit("Title_BackGround.Png");
@@ -74,12 +74,12 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void TitleLevel::Update(float _Delta)
 {
-	if (true == GameEngineInput::IsDown(VK_RETURN))
+	/*if (true == GameEngineInput::IsDown(VK_RETURN))
 	{
 		GameEngineCore::ChangeLevel("MenuLevel");
-	}
+	}*/
 
-	/*if (true == GameEngineInput::IsDown(VK_RETURN))
+	if (true == GameEngineInput::IsDown(VK_RETURN))
 	{
 		FadeEffect = CreateActor<FadeObject>(UpdateOrder::UI);
 		FadeEffect->SetFadeType();
@@ -88,5 +88,20 @@ void TitleLevel::Update(float _Delta)
 	if (nullptr != FadeEffect && true == FadeEffect->GetFadeAnimationEnd())
 	{
 		GameEngineCore::ChangeLevel("MenuLevel");
-	}*/
+	}
+}
+
+void TitleLevel::LevelEnd(GameEngineLevel* _NextLevel)
+{
+	if (nullptr != TitleBackGround)
+	{
+		TitleBackGround->Death();
+		TitleBackGround = nullptr;
+	}
+
+	if (nullptr != TitleAnimation)
+	{
+		TitleAnimation->Death();
+		TitleAnimation = nullptr;
+	}
 }

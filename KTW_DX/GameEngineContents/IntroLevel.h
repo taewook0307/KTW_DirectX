@@ -21,4 +21,5 @@ private:
 	std::shared_ptr<class IntroBook> Intro = nullptr;
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
+	void LevelEnd(GameEngineLevel* _NextLevel) override;
 };

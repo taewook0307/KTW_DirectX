@@ -27,3 +27,12 @@ void OutroLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	Outro = CreateActor<OutroBook>(UpdateOrder::BackGround);
 }
+
+void OutroLevel::LevelEnd(GameEngineLevel* _NextLevel)
+{
+	if (nullptr != Outro)
+	{
+		Outro->Death();
+		Outro = nullptr;
+	}
+}
