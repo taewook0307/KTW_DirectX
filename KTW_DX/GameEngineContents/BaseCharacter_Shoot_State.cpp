@@ -257,6 +257,12 @@ void BaseCharacter::ShootUpdate(float _Delta)
 		ChangeState(CharacterState::Jump);
 		return;
 	}
+
+	if (true == GameEngineInput::IsPress(VK_SHIFT))
+	{
+		ChangeState(CharacterState::Dash);
+		return;
+	}
 }
 
 void BaseCharacter::AimStart()
@@ -315,6 +321,12 @@ void BaseCharacter::AimShootUpdate(float _Delta)
 		ChangeState(CharacterState::Shoot);
 		return;
 	}
+
+	if (true == GameEngineInput::IsPress(VK_SHIFT))
+	{
+		ChangeState(CharacterState::Dash);
+		return;
+	}
 }
 
 void BaseCharacter::RunShootStart()
@@ -356,6 +368,12 @@ void BaseCharacter::RunShootUpdate(float _Delta)
 	if (true == GameEngineInput::IsPress(VK_DOWN))
 	{
 		ChangeState(CharacterState::DuckShoot);
+		return;
+	}
+
+	if (true == GameEngineInput::IsPress(VK_SHIFT))
+	{
+		ChangeState(CharacterState::Dash);
 		return;
 	}
 }

@@ -14,9 +14,9 @@ Bullet::~Bullet()
 void Bullet::Start()
 {
 	BulletRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Bullet);
-	BulletRenderer->CreateAnimation("Bullet_Spawn", "BulletSpawn", 0.02f);
-	BulletRenderer->CreateAnimation("Bullet_Move", "BulletMove", 0.02f);
-	BulletRenderer->CreateAnimation("Bullet_Death", "BulletDeath", 0.02f);
+	BulletRenderer->CreateAnimation("Bullet_Spawn", "BulletSpawn", BULLETANIMATIONINTER);
+	BulletRenderer->CreateAnimation("Bullet_Move", "BulletMove", BULLETANIMATIONINTER);
+	BulletRenderer->CreateAnimation("Bullet_Death", "BulletDeath", BULLETANIMATIONINTER);
 	BulletRenderer->AutoSpriteSizeOn();
 	BulletRenderer->SetAutoScaleRatio(BULLETRATIO);
 

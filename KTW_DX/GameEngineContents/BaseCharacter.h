@@ -1,7 +1,7 @@
 #pragma once
 #include "BaseActor.h"
 
-#define CHARACTERANIMATIONINTER 0.05f
+#define CHARACTERANIMATIONINTER 0.04f
 
 #define JUMPPOWER 1500.0f
 #define SHOOTTIMER 0.2f

@@ -22,7 +22,7 @@ void Bullet::MoveStart()
 
 void Bullet::MoveUpdate(float _Delta)
 {
-	float Speed = 700.0f;
+	float Speed = 1000.0f;
 	float4 MovePos = float4::RIGHT * Speed * _Delta;
 
 	if (BulletDirection::Right == BulletDir)

@@ -13,9 +13,9 @@ SpecialBullet::~SpecialBullet()
 void SpecialBullet::Start()
 {
 	BulletRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Bullet);
-	BulletRenderer->CreateAnimation("EXBullet_Spawn", "EXBulletSpawn", 0.02f);
-	BulletRenderer->CreateAnimation("EXBullet_Move", "EXBulletMove", 0.02f);
-	BulletRenderer->CreateAnimation("EXBullet_Death", "EXBulletDeath", 0.02f);
+	BulletRenderer->CreateAnimation("EXBullet_Spawn", "EXBulletSpawn", BULLETANIMATIONINTER);
+	BulletRenderer->CreateAnimation("EXBullet_Move", "EXBulletMove", BULLETANIMATIONINTER);
+	BulletRenderer->CreateAnimation("EXBullet_Death", "EXBulletDeath", BULLETANIMATIONINTER);
 	BulletRenderer->AutoSpriteSizeOn();
 	BulletRenderer->SetAutoScaleRatio(BULLETRATIO);
 
