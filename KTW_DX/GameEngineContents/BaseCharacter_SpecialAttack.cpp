@@ -13,7 +13,7 @@ void BaseCharacter::SpecialShootState()
 	// 왼쪽
 	if (ActorDir::Left == Dir && CharacterAimDir::Straight == AimDir)
 	{
-		CreateSpecialDust();
+		CreateSpecialDust(Direction8::Left);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ -80.0f, 40.0f };
 		NewBullet->SetBulletDir(Direction8::Left);
 	}
@@ -21,7 +21,7 @@ void BaseCharacter::SpecialShootState()
 	// 오른쪽
 	else if (ActorDir::Right == Dir && CharacterAimDir::Straight == AimDir)
 	{
-		CreateSpecialDust();
+		CreateSpecialDust(Direction8::Right);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ 80.0f, 40.0f };
 		NewBullet->SetBulletDir(Direction8::Right);
 	}
@@ -29,7 +29,7 @@ void BaseCharacter::SpecialShootState()
 	// 위
 	else if (CharacterAimDir::Up == AimDir)
 	{
-		CreateSpecialDust();
+		CreateSpecialDust(Direction8::Up);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ 0.0f, 130.0f };
 		NewBullet->SetBulletDir(Direction8::Up);
 	}
@@ -37,7 +37,7 @@ void BaseCharacter::SpecialShootState()
 	// 아래
 	else if (CharacterAimDir::Down == AimDir)
 	{
-		CreateSpecialDust();
+		CreateSpecialDust(Direction8::Down);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ 0.0f, 00.0f };
 		NewBullet->SetBulletDir(Direction8::Down);
 	}
@@ -45,7 +45,7 @@ void BaseCharacter::SpecialShootState()
 	// 왼쪽 위
 	else if (ActorDir::Left == Dir && CharacterAimDir::StraightUp == AimDir)
 	{
-		CreateSpecialDust();
+		CreateSpecialDust(Direction8::LeftUp);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ -50.0f, 110.0f };
 		NewBullet->SetBulletDir(Direction8::LeftUp);
 	}
@@ -53,7 +53,7 @@ void BaseCharacter::SpecialShootState()
 	// 왼쪽 아래
 	else if (ActorDir::Left == Dir && CharacterAimDir::StraightDown == AimDir)
 	{
-		CreateSpecialDust();
+		CreateSpecialDust(Direction8::LeftDown);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ -50.0f, 20.0f };
 		NewBullet->SetBulletDir(Direction8::LeftDown);
 	}
@@ -61,7 +61,7 @@ void BaseCharacter::SpecialShootState()
 	// 오른쪽 위
 	else if (ActorDir::Right == Dir && CharacterAimDir::StraightUp == AimDir)
 	{
-		CreateSpecialDust();
+		CreateSpecialDust(Direction8::RightUp);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ 50.0f, 110.0f };
 		NewBullet->SetBulletDir(Direction8::RightUp);
 	}
@@ -69,7 +69,7 @@ void BaseCharacter::SpecialShootState()
 	// 오른쪽 아래
 	else if (ActorDir::Right == Dir && CharacterAimDir::StraightDown == AimDir)
 	{
-		CreateSpecialDust();
+		CreateSpecialDust(Direction8::RightDown);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ 50.0f, 20.0f };
 		NewBullet->SetBulletDir(Direction8::RightDown);
 	}

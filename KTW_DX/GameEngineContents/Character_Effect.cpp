@@ -24,9 +24,10 @@ void BaseCharacter::CreateParryEffect()
 
 }
 
-void BaseCharacter::CreateSpecialDust()
+void BaseCharacter::CreateSpecialDust(Direction8 _DustDirection)
 {
 	std::shared_ptr<SpecialAttackDust> SpecialAttackEffect = GetLevel()->CreateActor<SpecialAttackDust>(UpdateOrder::UI);
+	SpecialAttackEffect->SetSpecialAttackDustDirection(_DustDirection);
 	float4 Pos = Transform.GetWorldPosition();
 	SpecialAttackEffect->Transform.SetLocalPosition(Pos);
 }

@@ -35,7 +35,7 @@ protected:
 	void CreateJumpDust();
 	void CreateDashDust();
 	void CreateParryEffect();
-	void CreateSpecialDust();
+	void CreateSpecialDust(Direction8 _DustDirection);
 protected:
 	void ChangeState(CharacterState _State);
 	void StateUpdate(float _Delta);
