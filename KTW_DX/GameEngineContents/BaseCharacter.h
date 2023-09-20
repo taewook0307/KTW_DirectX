@@ -32,6 +32,10 @@ protected:
 	void CharacterMove(float _Delta);
 	void CharacterGravity(float _Delta, float4 _CheckPos);
 
+	void CreateJumpDust();
+	void CreateDashDust();
+	void CreateParryEffect();
+	void CreateSpecialDust();
 protected:
 	void ChangeState(CharacterState _State);
 	void StateUpdate(float _Delta);

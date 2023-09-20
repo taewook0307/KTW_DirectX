@@ -2,6 +2,7 @@
 #include "BaseCharacter.h"
 
 #include "Bullet.h"
+#include "JumpDust.h"
 
 BaseCharacter* BaseCharacter::MainCharacter = nullptr;
 
@@ -31,7 +32,19 @@ void BaseCharacter::Start()
 	);
 
 	PlayerRenderer->CreateAnimation("CupHead_Dash", "Dash_Ground", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetFrameEvent("CupHead_Dash", 0,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			CreateDashDust();
+		}
+	);
 	PlayerRenderer->CreateAnimation("CupHead_Dash_Air", "Dash_Air", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetFrameEvent("CupHead_Dash_Air", 0,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			CreateDashDust();
+		}
+	);
 	PlayerRenderer->CreateAnimation("CupHead_Fall", "Jump", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Aim_Straight", "Aim_Straight", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Aim_StraightUp", "Aim_StraightUp", CHARACTERANIMATIONINTER);

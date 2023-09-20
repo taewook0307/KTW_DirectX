@@ -93,7 +93,16 @@
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="JumpDust.h">
-      <Filter>Global\Character</Filter>
+      <Filter>Global\Character\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="ParryEffect.h">
+      <Filter>Global\Character\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="DashDust.h">
+      <Filter>Global\Character\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialAttackDust.h">
+      <Filter>Global\Character\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -203,8 +212,20 @@
     <ClCompile Include="FirstBoss_State.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClCompile>
-    <ClCompile Include="JumpDust.cpp">
+    <ClCompile Include="Character_Effect.cpp">
       <Filter>Global\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="JumpDust.cpp">
+      <Filter>Global\Character\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="ParryEffect.cpp">
+      <Filter>Global\Character\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="DashDust.cpp">
+      <Filter>Global\Character\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialAttackDust.cpp">
+      <Filter>Global\Character\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -300,6 +321,9 @@
     </Filter>
     <Filter Include="Global\Fade">
       <UniqueIdentifier>{ca99aac8-a100-4cb5-a35c-b2e81b25e082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Character\Effect">
+      <UniqueIdentifier>{0f0f7058-91de-441e-8d4e-8c8b8d97f705}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

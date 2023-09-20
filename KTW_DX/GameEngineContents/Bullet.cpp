@@ -30,42 +30,42 @@ void Bullet::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 
-	if (BulletDirection::Left == BulletDir)
+	if (Direction8::Left == BulletDir)
 	{
 		Transform.SetLocalScale({ -1.0f, 1.0f });
 	}
 
-	else if (BulletDirection::Right == BulletDir)
+	else if (Direction8::Right == BulletDir)
 	{
 		Transform.SetLocalScale({ 1.0f, 1.0f });
 	}
 
-	else if (BulletDirection::Up == BulletDir)
+	else if (Direction8::Up == BulletDir)
 	{
 		Transform.SetLocalRotation({0.0f, 0.0f, 90.0f});
 	}
 
-	else if (BulletDirection::Down == BulletDir)
+	else if (Direction8::Down == BulletDir)
 	{
 		Transform.SetLocalRotation({ 0.0f, 0.0f, -90.0f });
 	}
 
-	else if (BulletDirection::LeftUp == BulletDir)
+	else if (Direction8::LeftUp == BulletDir)
 	{
 		Transform.SetLocalRotation({ 0.0f, 0.0f, 135.0f });
 	}
 
-	else if (BulletDirection::LeftDown == BulletDir)
+	else if (Direction8::LeftDown == BulletDir)
 	{
 		Transform.SetLocalRotation({ 0.0f, 0.0f, -135.0f });
 	}
 
-	else if (BulletDirection::RightUp == BulletDir)
+	else if (Direction8::RightUp == BulletDir)
 	{
 		Transform.SetLocalRotation({ 0.0f, 0.0f, 45.0f });
 	}
 
-	else if (BulletDirection::RightDown == BulletDir)
+	else if (Direction8::RightDown == BulletDir)
 	{
 		Transform.SetLocalRotation({ 0.0f, 0.0f, -45.0f });
 	}

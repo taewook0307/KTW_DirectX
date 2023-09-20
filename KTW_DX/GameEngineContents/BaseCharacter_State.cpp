@@ -3,8 +3,6 @@
 
 #include "Map.h"
 #include "ParryObject.h"
-#include "JumpDust.h"
-
 
 void BaseCharacter::CharacterMove(float _Delta)
 {
@@ -208,9 +206,7 @@ void BaseCharacter::JumpUpdate(float _Delta)
 
 	if (FLOORCOLOR == Color || (STOOLCOLOR == Color && false == StoolPass))
 	{
-		std::shared_ptr<JumpDust> JumpEffect = GetLevel()->CreateActor<JumpDust>(UpdateOrder::UI);
-		float4 Pos = Transform.GetWorldPosition();
-		JumpEffect->Transform.SetLocalPosition(Pos);
+		CreateJumpDust();
 
 		ChangeState(CharacterState::Idle);
 		return;
@@ -289,6 +285,7 @@ void BaseCharacter::FallUpdate(float _Delta)
 
 	if (0 == GetGravityForce().Y)
 	{
+		CreateJumpDust();
 		ChangeState(CharacterState::Idle);
 		return;
 	}

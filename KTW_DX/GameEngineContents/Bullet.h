@@ -23,7 +23,7 @@ public:
 		Type = _Type;
 	}
 
-	void SetBulletDir(BulletDirection _Dir)
+	void SetBulletDir(Direction8 _Dir)
 	{
 		BulletDir = _Dir;
 	}
@@ -52,7 +52,7 @@ protected:
 	BulletState CurState = BulletState::None;
 	std::string State = "";
 
-	BulletDirection BulletDir = BulletDirection::None;
+	Direction8 BulletDir = Direction8::None;
 
 	int Att = 4;
 private:

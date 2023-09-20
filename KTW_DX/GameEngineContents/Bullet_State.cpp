@@ -25,42 +25,42 @@ void Bullet::MoveUpdate(float _Delta)
 	float Speed = 1000.0f;
 	float4 MovePos = float4::RIGHT * Speed * _Delta;
 
-	if (BulletDirection::Right == BulletDir)
+	if (Direction8::Right == BulletDir)
 	{
 		MovePos = float4::RIGHT * Speed * _Delta;
 	}
 
-	else if (BulletDirection::Left == BulletDir)
+	else if (Direction8::Left == BulletDir)
 	{
 		MovePos = float4::LEFT * Speed * _Delta;
 	}
 
-	else if (BulletDirection::Up == BulletDir)
+	else if (Direction8::Up == BulletDir)
 	{
 		MovePos = float4::UP * Speed * _Delta;
 	}
 
-	else if (BulletDirection::Down == BulletDir)
+	else if (Direction8::Down == BulletDir)
 	{
 		MovePos = float4::DOWN * Speed * _Delta;
 	}
 
-	else if (BulletDirection::LeftUp == BulletDir)
+	else if (Direction8::LeftUp == BulletDir)
 	{
 		MovePos = (float4::UP + float4::LEFT) * Speed * _Delta;
 	}
 
-	else if (BulletDirection::LeftDown == BulletDir)
+	else if (Direction8::LeftDown == BulletDir)
 	{
 		MovePos = (float4::DOWN + float4::LEFT) * Speed * _Delta;
 	}
 
-	else if (BulletDirection::RightUp == BulletDir)
+	else if (Direction8::RightUp == BulletDir)
 	{
 		MovePos = (float4::UP + float4::RIGHT) * Speed * _Delta;
 	}
 
-	else if (BulletDirection::RightDown == BulletDir)
+	else if (Direction8::RightDown == BulletDir)
 	{
 		MovePos = (float4::DOWN + float4::RIGHT) * Speed * _Delta;
 	}

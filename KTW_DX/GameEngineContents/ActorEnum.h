@@ -58,7 +58,7 @@ enum class BulletState
 	Death
 };
 
-enum class BulletDirection
+enum class Direction8
 {
 	None,
 	Up,
