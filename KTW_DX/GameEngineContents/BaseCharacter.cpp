@@ -18,7 +18,7 @@ void BaseCharacter::Start()
 {
 	PlayerRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Play);
 	PlayerRenderer->CreateAnimation("CupHead_Intro", "Intro_Flex", CHARACTERANIMATIONINTER);
-	PlayerRenderer->CreateAnimation("CupHead_Idle", "Idle", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Idle", "Idle", IDLEINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Run", "Run", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Jump", "Jump", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Parry", "Parry", CHARACTERANIMATIONINTER);

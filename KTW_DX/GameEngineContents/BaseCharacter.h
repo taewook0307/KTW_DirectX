@@ -2,6 +2,7 @@
 #include "BaseActor.h"
 
 #define CHARACTERANIMATIONINTER 0.04f
+#define IDLEINTER 0.08f
 
 #define JUMPPOWER 1400.0f
 #define SHOOTTIMER 0.2f

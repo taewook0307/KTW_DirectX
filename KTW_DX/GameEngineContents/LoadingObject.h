@@ -18,5 +18,7 @@ public:
 protected:
 
 private:
+	std::shared_ptr<GameEngineSpriteRenderer> Renderer = nullptr;
 
+	void Start() override;
 };
