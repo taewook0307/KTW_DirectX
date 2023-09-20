@@ -6,6 +6,7 @@
 #include "FirstBoss.h"
 #include "FirstBossPhase3.h"
 #include "Map.h"
+#include "UpperObject.h"
 
 FirstBossStage::FirstBossStage()
 {
@@ -51,6 +52,14 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	}
 
 	{
+		GameEnginePath Path;
+		Path.MoveParentToExistsChild("Resources");
+		Path.MoveChild("Resources\\Texture\\Map\\FirstBoss\\FirstBossMap_Upper.png");
+		GameEngineTexture::Load(Path.GetStringPath());
+		GameEngineSprite::CreateSingle("FirstBossMap_Upper.Png");
+	}
+
+	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
 		Dir.MoveChild("Resources\\Texture\\BUllet");
@@ -88,6 +97,10 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	StageMap->MapAnimationInit("FirstBossMapAni", "FirstBossMap", 0.05f);
 	StageMap->PixelMapInit("FirstBossBitMap.Png");
 	StageMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
+
+	StageMapUpper = CreateActor<UpperObject>(UpdateOrder::Map);
+	StageMapUpper->UpperObjectInit("FirstBossMap_Upper.png");
+	StageMapUpper->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 }
 
 void FirstBossStage::Update(float _Delta)
