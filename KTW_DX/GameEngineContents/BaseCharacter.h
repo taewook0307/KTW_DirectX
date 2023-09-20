@@ -3,8 +3,9 @@
 
 #define CHARACTERANIMATIONINTER 0.04f
 
-#define JUMPPOWER 1500.0f
+#define JUMPPOWER 1400.0f
 #define SHOOTTIMER 0.2f
+#define SPEED 400.0f
 
 #define LEFTCHECKPOS { -20.0f, 40.0f }
 #define RIGHTCHECKPOS { 20.0f, 40.0f }
@@ -86,8 +87,8 @@ protected:
 	CharacterState CurState = CharacterState::None;
 	std::string State = "";
 
-	float Speed = 300.0f;
-	float DashSpeed = 600.0f;
+	float Speed = SPEED;
+	float DashSpeed = Speed * 2.0f;
 
 	void ShootBaseState();
 	void ShootAimState();
