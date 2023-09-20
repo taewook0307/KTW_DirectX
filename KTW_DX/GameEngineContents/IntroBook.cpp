@@ -105,8 +105,10 @@ void IntroBook::Start()
 
 	BookRenderer->CreateAnimation("StoryPage_11", "Page_11", BOOKANIMATIONINTER, -1, -1, false);
 	BookRenderer->SetEndEvent("StoryPage_11",
-		[](GameEngineSpriteRenderer* _Renderer)
+		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			BookRenderer = nullptr;
+			Death();
 			GameEngineCore::ChangeLevel("MiniMapLevel");
 		}
 	);
