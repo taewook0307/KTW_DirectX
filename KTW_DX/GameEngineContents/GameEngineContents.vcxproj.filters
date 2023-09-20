@@ -92,6 +92,9 @@
     <ClInclude Include="BaseBoss.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="JumpDust.h">
+      <Filter>Global\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -199,6 +202,9 @@
     </ClCompile>
     <ClCompile Include="FirstBoss_State.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
+    </ClCompile>
+    <ClCompile Include="JumpDust.cpp">
+      <Filter>Global\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
