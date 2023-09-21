@@ -20,6 +20,7 @@ void RunDust::Start()
 		}
 	);
 	Renderer->AutoSpriteSizeOn();
+	Renderer->SetAutoScaleRatio(0.8f);
 	Renderer->SetPivotType(PivotType::Bottom);
 
 	Renderer->ChangeAnimation("RunDust");

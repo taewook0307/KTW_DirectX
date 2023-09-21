@@ -19,8 +19,8 @@ void SpecialAttackDust::Start()
 			Death();
 		}
 	);
-	Renderer->SetAutoScaleRatio(0.8f);
 	Renderer->AutoSpriteSizeOn();
+	Renderer->SetAutoScaleRatio(0.8f);
 	Renderer->SetPivotValue({ 0.2f, 0.5f });
 
 	Renderer->ChangeAnimation("SpecialAttackDust");

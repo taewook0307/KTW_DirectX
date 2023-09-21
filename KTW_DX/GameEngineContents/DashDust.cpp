@@ -20,6 +20,7 @@ void DashDust::Start()
 		}
 	);
 	Renderer->AutoSpriteSizeOn();
+	Renderer->SetAutoScaleRatio(0.8f);
 	Renderer->SetPivotValue(float4{ 0.0f, 0.5f });
 
 	Renderer->ChangeAnimation("DashDust");
