@@ -3,6 +3,7 @@
 
 #include "Map.h"
 #include "BaseCharacter.h"
+#include "FirstBossPhase3Effect.h"
 
 void FirstBossPhase3::IntroStart()
 {
@@ -47,6 +48,12 @@ void FirstBossPhase3::MoveStart()
 
 void FirstBossPhase3::MoveUpdate(float _Delta)
 {
+	if (nullptr != Effect)
+	{
+		float4 Pos = Transform.GetWorldPosition();
+		Effect->Transform.SetLocalPosition(Pos);
+	}
+	
 	if (2 < DirChangeCount)
 	{
 		float4 CharacterPos = BaseCharacter::MainCharacter->Transform.GetWorldPosition();

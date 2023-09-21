@@ -20,8 +20,8 @@ void FirstBossMoveDust::Start()
 		}
 	);
 	Renderer->AutoSpriteSizeOn();
-	Renderer->SetPivotType(PivotType::Bottom);
-	Renderer->SetAutoScaleRatio(0.8f);
+	Renderer->SetPivotType(PivotType::Center);
+	Renderer->SetAutoScaleRatio(0.5f);
 
 	Renderer->ChangeAnimation("FirstBossDust_1");
 }
@@ -36,4 +36,6 @@ void FirstBossMoveDust::ChangeEffectPhase2()
 		}
 	);
 	Renderer->ChangeAnimation("FirstBossDust_2");
+
+	Renderer->SetAutoScaleRatio(0.8f);
 }

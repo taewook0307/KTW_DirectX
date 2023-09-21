@@ -38,20 +38,8 @@ void FirstBossPhase3::Start()
 			CreateEffect(CurState);
 		}
 	);
-	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase3_Move_Left", 2,
-		[=](GameEngineSpriteRenderer* _Renderer)
-		{
-			CreateEffect(CurState);
-		}
-	);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Move_Right", "FirstBoss_Phase3_Move_Right");
 	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase3_Move_Right", 0,
-		[=](GameEngineSpriteRenderer* _Renderer)
-		{
-			CreateEffect(CurState);
-		}
-	);
-	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase3_Move_Right", 2,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			CreateEffect(CurState);
@@ -191,7 +179,7 @@ void FirstBossPhase3::CreateEffect(FirstBossState _State)
 	{
 	case FirstBossState::Intro:
 	{
-		std::shared_ptr<FirstBossPhase3Effect> Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(UpdateOrder::Effect);
+		Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(UpdateOrder::Effect);
 		Effect->SetType(FirstBossState::Intro);
 		float4 Pos = Transform.GetWorldPosition();
 		Effect->Transform.SetLocalPosition(Pos);
@@ -199,16 +187,15 @@ void FirstBossPhase3::CreateEffect(FirstBossState _State)
 	}
 	case FirstBossState::Move:
 	{
-		std::shared_ptr<FirstBossPhase3Effect> Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(UpdateOrder::Effect);
+		Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(UpdateOrder::Effect);
 		Effect->SetType(FirstBossState::Move);
 		Effect->SetEffectDir(FirstBossDir);
-		float4 Pos = Transform.GetWorldPosition();
-		Effect->Transform.SetLocalPosition(Pos);
+		
 		break;
 	}
 	case FirstBossState::Attack:
 	{
-		std::shared_ptr<FirstBossPhase3Effect> Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(UpdateOrder::Effect);
+		Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(UpdateOrder::Effect);
 		Effect->SetType(FirstBossState::Attack);
 		float4 Pos = Transform.GetWorldPosition();
 		Effect->Transform.SetLocalPosition(Pos);

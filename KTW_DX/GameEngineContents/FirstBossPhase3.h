@@ -49,6 +49,7 @@ private:
 
 	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> FirstBossCollision = nullptr;
+	std::shared_ptr<class FirstBossPhase3Effect> Effect = nullptr;
 
 	void Start() override;
 	void Update(float _Delta) override;
