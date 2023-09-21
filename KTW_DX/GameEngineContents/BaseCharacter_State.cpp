@@ -380,6 +380,7 @@ void BaseCharacter::ParryUpdate(float _Delta)
 				ColParryOB->ParryInactive();
 				ColParryOB->ParryOn();
 				ParrySuccess = true;
+				CreateParryEffect();
 
 				ChangeState(CharacterState::Fall);
 				return;

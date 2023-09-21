@@ -3,6 +3,7 @@
 
 #include "JumpDust.h"
 #include "DashDust.h"
+#include "ParryEffect.h"
 #include "SpecialAttackDust.h"
 
 void BaseCharacter::CreateJumpDust()
@@ -22,7 +23,9 @@ void BaseCharacter::CreateDashDust(ActorDir _DustDir)
 
 void BaseCharacter::CreateParryEffect()
 {
-
+	std::shared_ptr<ParryEffect> Parry = GetLevel()->CreateActor<ParryEffect>(UpdateOrder::UI);
+	float4 Pos = Transform.GetWorldPosition();
+	Parry->Transform.SetLocalPosition(Pos);
 }
 
 void BaseCharacter::CreateSpecialDust(Direction8 _DustDirection)
