@@ -21,6 +21,7 @@ void SpecialAttackDust::Start()
 	);
 	Renderer->SetAutoScaleRatio(0.8f);
 	Renderer->AutoSpriteSizeOn();
+	Renderer->SetPivotValue({ 0.2f, 0.5f });
 
 	Renderer->ChangeAnimation("SpecialAttackDust");
 }
