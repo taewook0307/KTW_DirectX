@@ -12,7 +12,7 @@ SpecialAttackDust::~SpecialAttackDust()
 void SpecialAttackDust::Start()
 {
 	Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::PlayEffect);
-	Renderer->CreateAnimation("SpecialAttackDust", "Special_Dust", 0.05f);
+	Renderer->CreateAnimation("SpecialAttackDust", "Special_Dust", SPECIALATTACKEFFECTANIMATIONINTER);
 	Renderer->SetEndEvent("SpecialAttackDust",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{

@@ -1,5 +1,7 @@
 #pragma once
 
+#define SPECIALATTACKEFFECTANIMATIONINTER 0.05f
+
 #include <GameEngineCore/GameEngineActor.h>
 
 class SpecialAttackDust : public GameEngineActor

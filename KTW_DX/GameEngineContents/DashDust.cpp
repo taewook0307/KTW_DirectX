@@ -12,7 +12,7 @@ DashDust::~DashDust()
 void DashDust::Start()
 {
 	Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::PlayEffect);
-	Renderer->CreateAnimation("DashDust", "Dash_Dust", 0.05f);
+	Renderer->CreateAnimation("DashDust", "Dash_Dust", DASHEFFECTANIMATIONINTER);
 	Renderer->SetEndEvent("DashDust",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{

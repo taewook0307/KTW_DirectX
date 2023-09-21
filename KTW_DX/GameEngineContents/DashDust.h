@@ -1,5 +1,7 @@
 #pragma once
 
+#define DASHEFFECTANIMATIONINTER 0.05f
+
 #include <GameEngineCore/GameEngineActor.h>
 
 class DashDust : public GameEngineActor

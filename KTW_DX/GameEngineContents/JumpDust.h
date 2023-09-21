@@ -1,5 +1,7 @@
 #pragma once
 
+#define JUMPEFFECTANIMATIONINTER 0.05f
+
 #include <GameEngineCore/GameEngineActor.h>
 
 class JumpDust : public GameEngineActor
