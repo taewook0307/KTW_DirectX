@@ -23,13 +23,10 @@ void FirstBossPhase3::IntroUpdate(float _Delta)
 	if (FLOORCOLOR == CurColor)
 	{
 		FirstBossRenderer->AnimationPauseOff();
-		GravityReset();
 		IntroTimer -= _Delta;
 	}
-	else
-	{
-		GravityOn(_Delta);
-	}
+
+	ActorGravity(_Delta, Transform.GetWorldPosition());
 }
 
 void FirstBossPhase3::IdleStart()
@@ -39,7 +36,7 @@ void FirstBossPhase3::IdleStart()
 
 void FirstBossPhase3::IdleUpdate(float _Delta)
 {
-
+	ActorGravity(_Delta, Transform.GetWorldPosition());
 }
 
 void FirstBossPhase3::MoveStart()

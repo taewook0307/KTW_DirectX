@@ -30,7 +30,7 @@ protected:
 	void DirChange();
 	void AimDirChange();
 	void CharacterMove(float _Delta);
-	void CharacterGravity(float _Delta, float4 _CheckPos);
+	void ActorGravity(float _Delta, float4 _CheckPos) override;
 
 	void CreateJumpDust();
 	void CreateDashDust(ActorDir _DustDir);

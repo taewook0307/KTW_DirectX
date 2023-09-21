@@ -41,7 +41,7 @@ void FirstBoss::IntroStart()
 
 void FirstBoss::IntroUpdate(float _Delta)
 {
-
+	ActorGravity(_Delta, Transform.GetWorldPosition());
 }
 
 void FirstBoss::IdleStart()
@@ -52,7 +52,8 @@ void FirstBoss::IdleStart()
 
 void FirstBoss::IdleUpdate(float _Delta)
 {
-	BossGravity(float4::ZERO, _Delta);
+	float4 BossPos = Transform.GetWorldPosition();
+	ActorGravity(_Delta, BossPos);
 
 	if (true == FirstBossRenderer->IsCurAnimationEnd())
 	{
@@ -73,11 +74,11 @@ void FirstBoss::MoveUpdate(float _Delta)
 
 	if (GetGravityForce().Y > 0)
 	{
-		BossGravity(Transform.GetWorldPosition() + float4{ 0.0f, 80.0f }, _Delta);
+		ActorGravity(_Delta, Transform.GetWorldPosition() + float4{ 0.0f, 80.0f });
 	}
 	else
 	{
-		BossGravity(Transform.GetWorldPosition(), _Delta);
+		ActorGravity(_Delta, Transform.GetWorldPosition());
 	}
 
 	float GravityY = GetGravityForce().Y;
@@ -129,7 +130,7 @@ void FirstBoss::AttackStart()
 
 void FirstBoss::AttackUpdate(float _Delta)
 {
-	BossGravity(Transform.GetWorldPosition(), _Delta);
+	ActorGravity(_Delta, Transform.GetWorldPosition());
 }
 
 void FirstBoss::DeathStart()
@@ -140,7 +141,7 @@ void FirstBoss::DeathStart()
 
 void FirstBoss::DeathUpdate(float _Delta)
 {
-	BossGravity(Transform.GetWorldPosition(), _Delta);
+	ActorGravity(_Delta, Transform.GetWorldPosition());
 
 	if (true == FirstBossCollision->Collision(CollisionOrder::Monster))
 	{

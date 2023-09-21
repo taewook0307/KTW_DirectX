@@ -29,7 +29,7 @@ void BaseCharacter::CharacterMove(float _Delta)
 	}
 }
 
-void BaseCharacter::CharacterGravity(float _Delta, float4 _CheckPos)
+void BaseCharacter::ActorGravity(float _Delta, float4 _CheckPos)
 {
 	GameEngineColor CheckColor = Map::MainMap->GetColor(_CheckPos, FLOORCOLOR);
 
@@ -41,6 +41,16 @@ void BaseCharacter::CharacterGravity(float _Delta, float4 _CheckPos)
 		}
 		else
 		{
+			float4 CheckPos = Transform.GetWorldPosition() + float4::UP;
+			GameEngineColor UpColor = Map::MainMap->GetColor(CheckPos, FLOORCOLOR);
+
+			while (UpColor == FLOORCOLOR)
+			{
+				CheckPos = Transform.GetWorldPosition() + float4::UP;
+				UpColor = Map::MainMap->GetColor(CheckPos, FLOORCOLOR);
+				Transform.AddLocalPosition(float4::UP);
+			}
+
 			GravityReset();
 		}
 	}
@@ -66,7 +76,7 @@ void BaseCharacter::IntroStart()
 void BaseCharacter::IntroUpdate(float _Delta)
 {
 	// Gravity
-	CharacterGravity(_Delta, Transform.GetWorldPosition());
+	ActorGravity(_Delta, Transform.GetWorldPosition());
 
 	if (true == PlayerRenderer->IsCurAnimationEnd())
 	{
@@ -85,7 +95,7 @@ void BaseCharacter::IdleUpdate(float _Delta)
 	DirChange();
 
 	// Gravity
-	CharacterGravity(_Delta, Transform.GetWorldPosition());
+	ActorGravity(_Delta, Transform.GetWorldPosition());
 
 	// Change State
 	if (true == GameEngineInput::IsPress(VK_LEFT) && true == GameEngineInput::IsPress('X')
@@ -143,7 +153,7 @@ void BaseCharacter::RunUpdate(float _Delta)
 	DirChange();
 
 	// Gravity
-	CharacterGravity(_Delta, Transform.GetWorldPosition());
+	ActorGravity(_Delta, Transform.GetWorldPosition());
 	
 	// Move
 	CharacterMove(_Delta);
@@ -190,12 +200,12 @@ void BaseCharacter::JumpUpdate(float _Delta)
 	if (GetGravityForce().Y > 0)
 	{
 		StoolPass = true;
-		CharacterGravity(_Delta, Transform.GetWorldPosition() + float4{ 0.0f, 80.0f });
+		ActorGravity(_Delta, Transform.GetWorldPosition() + float4{ 0.0f, 80.0f });
 	}
 	else
 	{
 		StoolPass = false;
-		CharacterGravity(_Delta, Transform.GetWorldPosition());
+		ActorGravity(_Delta, Transform.GetWorldPosition());
 	}
 
 	//Move
@@ -281,7 +291,7 @@ void BaseCharacter::FallUpdate(float _Delta)
 	DirChange();
 
 	// Gravity
-	CharacterGravity(_Delta, Transform.GetWorldPosition());
+	ActorGravity(_Delta, Transform.GetWorldPosition());
 
 	if (0 == GetGravityForce().Y)
 	{
@@ -308,7 +318,7 @@ void BaseCharacter::DuckStart()
 void BaseCharacter::DuckUpdate(float _Delta)
 {
 	DirChange();
-	CharacterGravity(_Delta, Transform.GetWorldPosition());
+	ActorGravity(_Delta, Transform.GetWorldPosition());
 	
 	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
 
@@ -346,11 +356,11 @@ void BaseCharacter::ParryUpdate(float _Delta)
 	// Gravity
 	if (GetGravityForce().Y > 0)
 	{
-		CharacterGravity(_Delta, Transform.GetWorldPosition() + float4{ 0.0f, 80.0f });
+		ActorGravity(_Delta, Transform.GetWorldPosition() + float4{ 0.0f, 80.0f });
 	}
 	else
 	{
-		CharacterGravity(_Delta, Transform.GetWorldPosition());
+		ActorGravity(_Delta, Transform.GetWorldPosition());
 	}
 
 	//Move

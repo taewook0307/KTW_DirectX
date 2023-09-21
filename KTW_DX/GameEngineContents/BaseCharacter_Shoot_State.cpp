@@ -223,7 +223,7 @@ void BaseCharacter::ShootUpdate(float _Delta)
 	DirChange();
 
 	// Gravity
-	CharacterGravity(_Delta, Transform.GetWorldPosition());
+	ActorGravity(_Delta, Transform.GetWorldPosition());
 
 	ShootBaseState();
 
@@ -275,7 +275,7 @@ void BaseCharacter::AimUpdate(float _Delta)
 	DirChange();
 
 	// Gravity
-	CharacterGravity(_Delta, Transform.GetWorldPosition());
+	ActorGravity(_Delta, Transform.GetWorldPosition());
 
 	if (true == GameEngineInput::IsFree('C'))
 	{
@@ -300,7 +300,7 @@ void BaseCharacter::AimShootUpdate(float _Delta)
 	DirChange();
 
 	// Gravity
-	CharacterGravity(_Delta, Transform.GetWorldPosition());
+	ActorGravity(_Delta, Transform.GetWorldPosition());
 
 	ShootAimState();
 
@@ -339,7 +339,7 @@ void BaseCharacter::RunShootUpdate(float _Delta)
 	DirChange();
 
 	// Gravity
-	CharacterGravity(_Delta, Transform.GetWorldPosition());
+	ActorGravity(_Delta, Transform.GetWorldPosition());
 
 	ShootRunState();
 
@@ -388,7 +388,7 @@ void BaseCharacter::DuckShootUpdate(float _Delta)
 	DirChange();
 
 	// Gravity
-	CharacterGravity(_Delta, Transform.GetWorldPosition());
+	ActorGravity(_Delta, Transform.GetWorldPosition());
 
 	ShootDuckState();
 
