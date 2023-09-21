@@ -21,6 +21,18 @@ void BaseCharacter::Start()
 	PlayerRenderer->CreateAnimation("CupHead_Intro", "Intro_Flex", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Idle", "Idle", IDLEINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Run", "Run", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetFrameEvent("CupHead_Run", 1,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			CreateRunDust();
+		}
+	);
+	PlayerRenderer->SetFrameEvent("CupHead_Run", 9,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			CreateRunDust();
+		}
+	);
 	PlayerRenderer->CreateAnimation("CupHead_Jump", "Jump", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Parry", "Parry", CHARACTERANIMATIONINTER);
 	PlayerRenderer->SetEndEvent("CupHead_Parry",

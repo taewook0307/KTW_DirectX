@@ -1,10 +1,18 @@
 #include "PreCompile.h"
 #include "BaseCharacter.h"
 
+#include "RunDust.h"
 #include "JumpDust.h"
 #include "DashDust.h"
 #include "ParryEffect.h"
 #include "SpecialAttackDust.h"
+
+void BaseCharacter::CreateRunDust()
+{
+	std::shared_ptr<RunDust> RunEffect = GetLevel()->CreateActor<RunDust>(UpdateOrder::UI);
+	float4 Pos = Transform.GetWorldPosition();
+	RunEffect->Transform.SetLocalPosition(Pos);
+}
 
 void BaseCharacter::CreateJumpDust()
 {

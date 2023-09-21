@@ -104,6 +104,9 @@
     <ClInclude Include="SpecialAttackDust.h">
       <Filter>Global\Character\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="RunDust.h">
+      <Filter>Global\Character\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -225,6 +228,9 @@
       <Filter>Global\Character\Effect</Filter>
     </ClCompile>
     <ClCompile Include="SpecialAttackDust.cpp">
+      <Filter>Global\Character\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="RunDust.cpp">
       <Filter>Global\Character\Effect</Filter>
     </ClCompile>
   </ItemGroup>

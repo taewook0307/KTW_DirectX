@@ -32,6 +32,7 @@ protected:
 	void CharacterMove(float _Delta);
 	void ActorGravity(float _Delta, float4 _CheckPos) override;
 
+	void CreateRunDust();
 	void CreateJumpDust();
 	void CreateDashDust(ActorDir _DustDir);
 	void CreateParryEffect();
