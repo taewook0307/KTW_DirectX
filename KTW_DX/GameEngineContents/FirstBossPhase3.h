@@ -38,6 +38,7 @@ private:
 	void DeathStart();
 	void DeathUpdate(float _Delta);
 
+	void CreateEffect(FirstBossState _State);
 private:
 	int DirChangeCount = 0;
 

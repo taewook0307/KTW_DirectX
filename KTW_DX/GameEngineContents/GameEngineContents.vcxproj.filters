@@ -110,6 +110,9 @@
     <ClInclude Include="FirstBossMoveDust.h">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="FirstBossPhase3Effect.h">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -237,6 +240,9 @@
       <Filter>Global\Character\Effect</Filter>
     </ClCompile>
     <ClCompile Include="FirstBossMoveDust.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstBossPhase3Effect.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Effect</Filter>
     </ClCompile>
   </ItemGroup>

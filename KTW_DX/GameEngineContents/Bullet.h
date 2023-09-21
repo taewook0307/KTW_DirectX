@@ -18,12 +18,12 @@ public:
 	Bullet& operator=(const Bullet& _Other) = delete;
 	Bullet& operator=(Bullet&& _Other) noexcept = delete;
 
-	void SetBulletType(BulletType _Type)
+	void SetBulletType(const BulletType& _Type)
 	{
 		Type = _Type;
 	}
 
-	void SetBulletDir(Direction8 _Dir)
+	void SetBulletDir(const Direction8& _Dir)
 	{
 		BulletDir = _Dir;
 	}
