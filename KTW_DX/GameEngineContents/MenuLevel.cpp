@@ -23,13 +23,9 @@ void MenuLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	{
 		GameEngineFile& File = AllFiles[i];
 		GameEngineTexture::Load(File.GetStringPath());
+		std::string FileName = File.GetFileName();
+		GameEngineSprite::CreateSingle(FileName);
 	}
-
-	GameEngineSprite::CreateSingle("MainMenu.png");
-	GameEngineSprite::CreateSingle("Start_Select.png");
-	GameEngineSprite::CreateSingle("Start_UnSelect.png");
-	GameEngineSprite::CreateSingle("Exit_Select.png");
-	GameEngineSprite::CreateSingle("Exit_UnSelect.png");
 
 	Back = CreateActor<BackGround>(UpdateOrder::BackGround);
 	Back->BackGroundInit("MainMenu.png");
