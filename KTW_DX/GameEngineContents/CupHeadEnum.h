@@ -4,6 +4,7 @@ enum class UpdateOrder
 	Player,
 	Bullet,
 	Monster,
+	Effect,
 	Map,
 	Menu,
 	BackGround

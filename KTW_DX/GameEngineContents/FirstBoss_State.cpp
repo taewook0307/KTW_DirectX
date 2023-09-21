@@ -118,6 +118,7 @@ void FirstBoss::MoveUpdate(float _Delta)
 	if (FLOORCOLOR == Color)
 	{
 		++BounceCount;
+		CreateMoveDust();
 		ChangeState(FirstBossState::Idle);
 		return;
 	}

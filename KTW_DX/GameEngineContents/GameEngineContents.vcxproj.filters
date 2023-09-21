@@ -107,6 +107,9 @@
     <ClInclude Include="RunDust.h">
       <Filter>Global\Character\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="FirstBossMoveDust.h">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -233,6 +236,9 @@
     <ClCompile Include="RunDust.cpp">
       <Filter>Global\Character\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="FirstBossMoveDust.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -330,6 +336,9 @@
     </Filter>
     <Filter Include="Global\Character\Effect">
       <UniqueIdentifier>{0f0f7058-91de-441e-8d4e-8c8b8d97f705}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\8. FirstBossStage\FirstBossStageActor\Effect">
+      <UniqueIdentifier>{dcf193ea-a223-4db2-85b2-c464f476879f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

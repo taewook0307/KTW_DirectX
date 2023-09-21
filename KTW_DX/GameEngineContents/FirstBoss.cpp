@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "FirstBoss.h"
 
+#include "FirstBossMoveDust.h"
+
 FirstBoss::FirstBoss()
 {
 }
@@ -199,4 +201,16 @@ void FirstBoss::PhaseChange()
 	}
 
 	return;
+}
+
+void FirstBoss::CreateMoveDust()
+{
+	std::shared_ptr<FirstBossMoveDust> MoveEffect = GetLevel()->CreateActor<FirstBossMoveDust>(UpdateOrder::Effect);
+	float4 MonsterPos = Transform.GetWorldPosition();
+	MoveEffect->Transform.SetLocalPosition(MonsterPos);
+
+	if (BossPhase::Phase2 == CurPhase)
+	{
+		MoveEffect->ChangeEffectPhase2();
+	}
 }

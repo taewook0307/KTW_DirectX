@@ -67,4 +67,5 @@ private:
 	void ChangeAnimation(std::string_view _State);
 
 	void FirstBossMove(float4 _Delta);
+	void CreateMoveDust();
 };
