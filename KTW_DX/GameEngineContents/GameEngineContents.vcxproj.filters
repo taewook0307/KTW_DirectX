@@ -113,6 +113,9 @@
     <ClInclude Include="FirstBossPhase3Effect.h">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="FirstMapFadeObject.h">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -244,6 +247,9 @@
     </ClCompile>
     <ClCompile Include="FirstBossPhase3Effect.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstMapFadeObject.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
