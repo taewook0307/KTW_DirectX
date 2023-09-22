@@ -157,7 +157,7 @@ void GameEngineDevice::ResourcesInit()
 		// sizeof(TransformData) 바이트패딩 규칙이
 		// 달라서 그리가 다르다고 인식할수 있다. 
 		// 주의해야 한다.
-		GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData", ShaderType::Vertex, 0);
+		GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData");
 	}
 
 	{

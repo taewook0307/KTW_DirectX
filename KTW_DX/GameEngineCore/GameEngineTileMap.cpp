@@ -142,7 +142,7 @@ void GameEngineTileMap::Render(GameEngineCamera* _Camera, float _Delta)
 			//	continue;
 			//}
 
-			std::shared_ptr<GameEngineConstantBuffer> TransBuffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData", ShaderType::Vertex);
+			std::shared_ptr<GameEngineConstantBuffer> TransBuffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData");
 
 			if (nullptr != TransBuffer)
 			{
@@ -167,7 +167,7 @@ void GameEngineTileMap::Render(GameEngineCamera* _Camera, float _Delta)
 
 			SpriteData& TileSprite = Tiles[y][x].Data;
 
-			std::shared_ptr<GameEngineConstantBuffer> SpriteBuffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData", ShaderType::Vertex);
+			std::shared_ptr<GameEngineConstantBuffer> SpriteBuffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData");
 			if (nullptr != SpriteBuffer)
 			{
 				SpriteBuffer->ChangeData(TileSprite.SpritePivot);

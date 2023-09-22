@@ -250,6 +250,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineShaderResHelper.cpp" />
     <ClCompile Include="GameEngineSprite.cpp">
       <SubType>
       </SubType>
@@ -372,6 +373,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineShaderResHelper.h" />
     <ClInclude Include="GameEngineSprite.h">
       <SubType>
       </SubType>

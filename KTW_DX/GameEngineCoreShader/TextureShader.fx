@@ -40,9 +40,6 @@ PixelOutPut TextureShader_VS(GameEngineVertex2D _Input)
     Result.TEXCOORD.y = (_Input.TEXCOORD.y * Scale2DY) + Pos2DY;
     
     // 버텍스 들은 어떻게 되어있나?
-    
-    
-    
     return Result;
 }
 
