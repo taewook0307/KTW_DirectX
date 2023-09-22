@@ -18,5 +18,5 @@ public:
 protected:
 
 private:
-
+	void Update(float _Delta) override;
 };

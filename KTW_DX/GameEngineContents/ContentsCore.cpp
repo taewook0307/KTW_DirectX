@@ -8,6 +8,7 @@
 #include "MiniMapLevel.h"
 #include "TutorialStage.h"
 #include "FirstBossStage.h"
+#include "SecondBossStage.h"
 #include "OutroLevel.h"
 
 ContentsCore::ContentsCore()
@@ -27,8 +28,9 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<MiniMapLevel>("MiniMapLevel");
 	GameEngineCore::CreateLevel<TutorialStage>("TutorialStage");
 	GameEngineCore::CreateLevel<FirstBossStage>("FirstBossStage");
+	GameEngineCore::CreateLevel<SecondBossStage>("SecondBossStage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
-	GameEngineCore::ChangeLevel("FirstBossStage");
+	GameEngineCore::ChangeLevel("MiniMapLevel");
 }
 
 void ContentsCore::Update(float _Delta)

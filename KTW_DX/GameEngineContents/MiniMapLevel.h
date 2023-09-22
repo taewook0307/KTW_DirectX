@@ -4,6 +4,7 @@
 
 #define TUTORIALENTERPOS { 750.0f, -2150.0f }
 #define FIRSTBOSSENTERPOS { 2205.0f, -2070.0f }
+#define SECONDBOSSENTERPOS { 4100.0f, -2620.0f }
 
 #define CHARACTERSTARTPOS { 885.0f, -2208.0f }
 
@@ -29,6 +30,7 @@ private:
 
 	std::shared_ptr<class MiniMapEnter> TutorialEnter = nullptr;
 	std::shared_ptr<class MiniMapEnter> FirstEnter = nullptr;
+	std::shared_ptr<class MiniMapEnter> SecondEnter = nullptr;
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;

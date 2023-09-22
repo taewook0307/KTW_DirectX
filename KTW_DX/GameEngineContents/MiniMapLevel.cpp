@@ -79,6 +79,11 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	FirstEnter->Transform.SetLocalPosition(FIRSTBOSSENTERPOS);
 	FirstEnter->SetEnterLevel("FirstBossStage");
 
+	SecondEnter = CreateActor<MiniMapEnter>(UpdateOrder::Map);
+	SecondEnter->EnterAnimationInit("Tutorial_Enter_Ani", "SecondBossMapEnter");
+	SecondEnter->Transform.SetLocalPosition(SECONDBOSSENTERPOS);
+	SecondEnter->SetEnterLevel("SecondBossStage");
+
 	// 캐릭터 생성
 	Character = CreateActor<MiniMapCharacter>(UpdateOrder::Player);
 	Character->Transform.SetLocalPosition(CharacterPos);
@@ -86,7 +91,8 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void MiniMapLevel::Update(float _Delta)
 {
-	GetMainCamera()->Transform.SetLocalPosition(Character->Transform.GetWorldPosition());
+	float4 CharacterPos = Character->Transform.GetWorldPosition();
+	GetMainCamera()->Transform.SetLocalPosition(CharacterPos);
 
 	if (true == GameEngineInput::IsDown(VK_RETURN))
 	{
