@@ -13,6 +13,8 @@
 #include "GameEngineTexture.h"
 #include "GameEngineSprite.h"
 #include "GameEngineBlend.h"
+#include "GameEngineMesh.h"
+#include "GameEngineMaterial.h"
 
 void GameEngineDevice::ResourcesInit()
 {
@@ -105,6 +107,8 @@ void GameEngineDevice::ResourcesInit()
 		};
 
 		GameEngineIndexBuffer::Create("Rect", Index);
+
+		GameEngineMesh::Create("Rect");
 	}
 
 	{
@@ -199,7 +203,7 @@ void GameEngineDevice::ResourcesInit()
 		Desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
 		Desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
 
-		std::shared_ptr<GameEngineBlend> Blend = GameEngineBlend::Create("EngineBlend", Desc);
+		std::shared_ptr<GameEngineBlend> Blend = GameEngineBlend::Create("AlphaBlend", Desc);
 	}
 
 
@@ -245,13 +249,6 @@ void GameEngineDevice::ResourcesInit()
 	}
 
 
-
-	// 엔진수준에서 지원해주는 가장 기초적인 리소스들은 여기에서 만들어질 겁니다.
-	// 기본 매쉬
-	// 기본 텍스처
-	// 기본 쉐이더
-	// 여기에서 자기 텍스처 로드하지마세요.
-
 	{
 		// 엔진용 쉐이더를 전부다 전부다 로드하는 코드를 친다.
 		GameEngineDirectory Dir;
@@ -266,5 +263,20 @@ void GameEngineDevice::ResourcesInit()
 			GameEngineShader::AutoCompile(File);
 		}
 	}
+
+
+	{
+		std::shared_ptr<GameEngineMaterial> Mat = GameEngineMaterial::Create("2DTexture");
+		Mat->SetVertexShader("TextureShader_VS");
+		Mat->SetPixelShader("TextureShader_PS");
+	}
+
+
+	// 엔진수준에서 지원해주는 가장 기초적인 리소스들은 여기에서 만들어질 겁니다.
+	// 기본 매쉬
+	// 기본 텍스처
+	// 기본 쉐이더
+	// 여기에서 자기 텍스처 로드하지마세요.
+
 
 }
