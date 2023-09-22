@@ -51,13 +51,16 @@ PixelOutPut TextureShader_VS(GameEngineVertex2D _Input)
 // 보통 샘플러와 텍스처는 1쌍으로 사용되기 때문에
 // 샘플러는 텍스처의 색상을 가져올때 보간을 해주거나 특수한 공식등을 내부에서
 // 사용해주는 용도가 있다.
+
+// 우리 규칙
+
 Texture2D DiffuseTex : register(t0);
-SamplerState Sampler : register(s0);
+SamplerState DiffuseTexSampler : register(s0);
 
 float4 TextureShader_PS(PixelOutPut _Input) : SV_Target0
 {
    
-    float4 Color = DiffuseTex.Sample(Sampler, _Input.TEXCOORD.xy);
+    float4 Color = DiffuseTex.Sample(DiffuseTexSampler, _Input.TEXCOORD.xy);
     // 블랜드라는 작업을 해줘야 한다.
     
     if (0.0f >= Color.a)

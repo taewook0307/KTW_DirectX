@@ -16,28 +16,6 @@
 
 void GameEngineDevice::ResourcesInit()
 {
-
-	// 엔진수준에서 지원해주는 가장 기초적인 리소스들은 여기에서 만들어질 겁니다.
-	// 기본 매쉬
-	// 기본 텍스처
-	// 기본 쉐이더
-	// 여기에서 자기 텍스처 로드하지마세요.
-
-	{
-		// 엔진용 쉐이더를 전부다 전부다 로드하는 코드를 친다.
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("GameEngineCoreShader");
-		Dir.MoveChild("GameEngineCoreShader");
-		std::vector<GameEngineFile> Files = Dir.GetAllFile({ ".fx" });
-
-		for (size_t i = 0; i < Files.size(); i++)
-		{
-			// 구조적으로 잘 이해하고 있는지를 자신이 명확하게 인지하기 위해서
-			GameEngineFile& File = Files[i];
-			GameEngineShader::AutoCompile(File);
-		}
-	}
-
 	{
 		// 엔진용 쉐이더를 전부다 전부다 로드하는 코드를 친다.
 		GameEngineDirectory Dir;
@@ -150,16 +128,6 @@ void GameEngineDevice::ResourcesInit()
 		GameEngineIndexBuffer::Create("FullRect", Index);
 	}
 
-	// 나중에 사라질거임
-	{
-		// 약간위험할수 있다.
-		// 그래픽카드에서의 바이트 패딩 규칙과 
-		// sizeof(TransformData) 바이트패딩 규칙이
-		// 달라서 그리가 다르다고 인식할수 있다. 
-		// 주의해야 한다.
-		GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData");
-	}
-
 	{
 
 		//D3D11_FILL_MODE FillMode;
@@ -241,7 +209,7 @@ void GameEngineDevice::ResourcesInit()
 		// 일반적인 보간형식 <= 뭉개진다.
 		// D3D11_FILTER_MIN_MAG_MIP_
 		// 그 밉맵에서 색상가져올때 다 뭉개는 방식으로 가져오겠다.
-		Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+		Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
 		Desc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
 		Desc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
 		Desc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
@@ -252,7 +220,7 @@ void GameEngineDevice::ResourcesInit()
 		Desc.MinLOD = -FLT_MAX;
 		Desc.MaxLOD = FLT_MAX;
 
-		std::shared_ptr<GameEngineSampler> Rasterizer = GameEngineSampler::Create("LINEAR", Desc);
+		std::shared_ptr<GameEngineSampler> Rasterizer = GameEngineSampler::Create("EngineBaseSampler", Desc);
 	}
 
 
@@ -275,4 +243,28 @@ void GameEngineDevice::ResourcesInit()
 
 		std::shared_ptr<GameEngineSampler> Rasterizer = GameEngineSampler::Create("POINT", Desc);
 	}
+
+
+
+	// 엔진수준에서 지원해주는 가장 기초적인 리소스들은 여기에서 만들어질 겁니다.
+	// 기본 매쉬
+	// 기본 텍스처
+	// 기본 쉐이더
+	// 여기에서 자기 텍스처 로드하지마세요.
+
+	{
+		// 엔진용 쉐이더를 전부다 전부다 로드하는 코드를 친다.
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("GameEngineCoreShader");
+		Dir.MoveChild("GameEngineCoreShader");
+		std::vector<GameEngineFile> Files = Dir.GetAllFile({ ".fx" });
+
+		for (size_t i = 0; i < Files.size(); i++)
+		{
+			// 구조적으로 잘 이해하고 있는지를 자신이 명확하게 인지하기 위해서
+			GameEngineFile& File = Files[i];
+			GameEngineShader::AutoCompile(File);
+		}
+	}
+
 }

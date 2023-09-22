@@ -136,16 +136,16 @@ void GameEngineSpriteRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 
 	GameEngineRenderer::ResSetting();
 
-	std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData");
+	//std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData");
 
-	if (nullptr != Buffer)
-	{
-		Buffer->ChangeData(CurSprite.SpritePivot);
-		Buffer->Setting(1);
-	}
+	//if (nullptr != Buffer)
+	//{
+	//	Buffer->ChangeData(CurSprite.SpritePivot);
+	//	Buffer->Setting(1);
+	//}
 
 
-	CurSprite.Texture->PSSetting(0);
+	// CurSprite.Texture->PSSetting(0);
 
 	if (nullptr == Sampler)
 	{
@@ -273,22 +273,6 @@ void GameEngineSpriteRenderer::AutoSpriteSizeOn()
 void GameEngineSpriteRenderer::AutoSpriteSizeOff()
 {
 	IsImageSize = false;
-}
-
-
-void GameEngineSpriteRenderer::SetSamplerState(SamplerOption _Option)
-{
-	switch (_Option)
-	{
-	case SamplerOption::LINEAR:
-		Sampler = GameEngineSampler::Find("LINEAR");
-		break;
-	case SamplerOption::POINT:
-		Sampler = GameEngineSampler::Find("POINT");
-		break;
-	default:
-		break;
-	}
 }
 
 void GameEngineSpriteRenderer::SetFrameEvent(std::string_view _AnimationName, int _Frame, std::function<void(GameEngineSpriteRenderer*)> _Function)
