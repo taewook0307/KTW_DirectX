@@ -55,14 +55,13 @@ private:
 	std::shared_ptr<GameEngineCollision> FirstBossCollision = nullptr;
 
 	ActorDir FirstBossDir = ActorDir::Left;
-	FirstBossState CurState = FirstBossState::None;
 
 	void Start() override;
 	void Update(float _Delta) override;
 
 	void DirChange();
 	void PhaseChange();
-	void ChangeState(FirstBossState _State);
+	void ChangeState(BossState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimation(std::string_view _State);
 

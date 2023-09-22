@@ -57,7 +57,7 @@ void FirstBoss::IdleUpdate(float _Delta)
 
 	if (true == FirstBossRenderer->IsCurAnimationEnd())
 	{
-		ChangeState(FirstBossState::Move);
+		ChangeState(BossState::Move);
 		return;
 	}
 }
@@ -119,7 +119,7 @@ void FirstBoss::MoveUpdate(float _Delta)
 	{
 		++BounceCount;
 		CreateMoveDust();
-		ChangeState(FirstBossState::Idle);
+		ChangeState(BossState::Idle);
 		return;
 	}
 }
@@ -146,7 +146,7 @@ void FirstBoss::DeathUpdate(float _Delta)
 
 	if (true == FirstBossCollision->Collision(CollisionOrder::MonsterBody))
 	{
-		ChangeState(FirstBossState::Slime);
+		ChangeState(BossState::Slime);
 		return;
 	}
 }

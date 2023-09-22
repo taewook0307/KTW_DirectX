@@ -15,7 +15,7 @@ public:
 	FirstBossPhase3Effect& operator=(const FirstBossPhase3Effect& _Other) = delete;
 	FirstBossPhase3Effect& operator=(FirstBossPhase3Effect&& _Other) noexcept = delete;
 
-	void SetType(FirstBossState _State);
+	void SetType(BossState _State);
 
 	void SetEffectDir(ActorDir _Dir)
 	{
@@ -26,7 +26,7 @@ protected:
 
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> Renderer = nullptr;
-	FirstBossState EffectType = FirstBossState::None;
+	BossState EffectType = BossState::None;
 	ActorDir EffectDir = ActorDir::None;
 
 	void Start() override;

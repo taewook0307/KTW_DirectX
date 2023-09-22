@@ -14,13 +14,13 @@ void FirstBossPhase3Effect::Start()
 	Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::PlayEffect);
 }
 
-void FirstBossPhase3Effect::SetType(FirstBossState _State)
+void FirstBossPhase3Effect::SetType(BossState _State)
 {
 	EffectType = _State;
 
 	switch (EffectType)
 	{
-	case FirstBossState::Intro:
+	case BossState::Intro:
 	{
 		Renderer->CreateAnimation("FirstBoss3IntroDust", "FirstBoss_Phase3_Intro_Dust");
 		Renderer->SetEndEvent("FirstBoss3IntroDust",
@@ -32,7 +32,7 @@ void FirstBossPhase3Effect::SetType(FirstBossState _State)
 		Renderer->ChangeAnimation("FirstBoss3IntroDust");
 		break;
 	}
-	case FirstBossState::Move:
+	case BossState::Move:
 	{
 		Renderer->CreateAnimation("FirstBoss3MoveDust", "FirstBoss_Phase3_Move_Dust");
 		Renderer->SetEndEvent("FirstBoss3MoveDust",
@@ -44,7 +44,7 @@ void FirstBossPhase3Effect::SetType(FirstBossState _State)
 		Renderer->ChangeAnimation("FirstBoss3MoveDust");
 		break;
 	}
-	case FirstBossState::Attack:
+	case BossState::Attack:
 	{
 		Renderer->CreateAnimation("FirstBoss3AttackDust", "FirstBoss_Phase3_Attack_Dust");
 		Renderer->SetEndEvent("FirstBoss3AttackDust",
@@ -56,7 +56,7 @@ void FirstBossPhase3Effect::SetType(FirstBossState _State)
 		Renderer->ChangeAnimation("FirstBoss3AttackDust");
 		break;
 	}
-	/*case FirstBossState::Death:
+	/*case BossState::Death:
 		break;*/
 	default:
 		break;

@@ -28,7 +28,7 @@ void FirstBossPhase3::Start()
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase3_Idle",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			ChangeState(FirstBossState::Move);
+			ChangeState(BossState::Move);
 		}
 	);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Move_Left", "FirstBoss_Phase3_Move_Left");
@@ -58,7 +58,7 @@ void FirstBossPhase3::Start()
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			FirstBossRenderer->SetPivotType(PivotType::Bottom);
-			ChangeState(FirstBossState::Move);
+			ChangeState(BossState::Move);
 		}
 	);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Death", "FirstBoss_Phase3_Death");
@@ -69,7 +69,7 @@ void FirstBossPhase3::Start()
 	FirstBossCollision = CreateComponent<GameEngineCollision>(CollisionOrder::MonsterBody);
 	FirstBossCollision->Transform.SetLocalScale({ 300.0f, 300.0f });
 
-	ChangeState(FirstBossState::Intro);
+	ChangeState(BossState::Intro);
 }
 
 void FirstBossPhase3::Update(float _Delta)
@@ -79,7 +79,7 @@ void FirstBossPhase3::Update(float _Delta)
 	if (HitCount > 372)
 	{
 		FirstBossRenderer->SetPivotType(PivotType::Bottom);
-		ChangeState(FirstBossState::Death);
+		ChangeState(BossState::Death);
 		return;
 	}
 }
@@ -98,28 +98,28 @@ void FirstBossPhase3::DirChange()
 	++DirChangeCount;
 }
 
-void FirstBossPhase3::ChangeState(FirstBossState _State)
+void FirstBossPhase3::ChangeState(BossState _State)
 {
 	if (_State != CurState)
 	{
 		switch (_State)
 		{
-		case FirstBossState::Intro:
+		case BossState::Intro:
 			IntroStart();
 			break;
-		case FirstBossState::Idle:
+		case BossState::Idle:
 			IdleStart();
 			break;
-		case FirstBossState::Move:
+		case BossState::Move:
 			MoveStart();
 			break;
-		case FirstBossState::Turn:
+		case BossState::Turn:
 			TurnStart();
 			break;
-		case FirstBossState::Attack:
+		case BossState::Attack:
 			AttackStart();
 			break;
-		case FirstBossState::Death:
+		case BossState::Death:
 			DeathStart();
 			break;
 		default:
@@ -134,17 +134,17 @@ void FirstBossPhase3::StateUpdate(float _Delta)
 {
 	switch (CurState)
 	{
-	case FirstBossState::Intro:
+	case BossState::Intro:
 		return IntroUpdate(_Delta);
-	case FirstBossState::Idle:
+	case BossState::Idle:
 		return IdleUpdate(_Delta);
-	case FirstBossState::Move:
+	case BossState::Move:
 		return MoveUpdate(_Delta);
-	case FirstBossState::Turn:
+	case BossState::Turn:
 		return TurnUpdate(_Delta);
-	case FirstBossState::Attack:
+	case BossState::Attack:
 		return AttackUpdate(_Delta);
-	case FirstBossState::Death:
+	case BossState::Death:
 		return DeathUpdate(_Delta);
 	default:
 		break;
@@ -174,30 +174,30 @@ void FirstBossPhase3::ChangeAnimation(std::string_view _State)
 	FirstBossRenderer->ChangeAnimation(AnimationName);
 }
 
-void FirstBossPhase3::CreateEffect(FirstBossState _State)
+void FirstBossPhase3::CreateEffect(BossState _State)
 {
 	switch (_State)
 	{
-	case FirstBossState::Intro:
+	case BossState::Intro:
 	{
 		Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(UpdateOrder::Effect);
-		Effect->SetType(FirstBossState::Intro);
+		Effect->SetType(BossState::Intro);
 		float4 Pos = Transform.GetWorldPosition();
 		Effect->Transform.SetLocalPosition(Pos);
 		break;
 	}
-	case FirstBossState::Move:
+	case BossState::Move:
 	{
 		Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(UpdateOrder::Effect);
-		Effect->SetType(FirstBossState::Move);
+		Effect->SetType(BossState::Move);
 		Effect->SetEffectDir(FirstBossDir);
 		
 		break;
 	}
-	case FirstBossState::Attack:
+	case BossState::Attack:
 	{
 		Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(UpdateOrder::Effect);
-		Effect->SetType(FirstBossState::Attack);
+		Effect->SetType(BossState::Attack);
 		float4 Pos = Transform.GetWorldPosition();
 		Effect->Transform.SetLocalPosition(Pos);
 		break;

@@ -81,7 +81,7 @@ enum class BossPhase
 	Phase3
 };
 
-enum class FirstBossState
+enum class BossState
 {
 	None,
 	Intro,

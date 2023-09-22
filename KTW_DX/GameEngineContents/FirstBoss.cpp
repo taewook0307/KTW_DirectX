@@ -19,7 +19,7 @@ void FirstBoss::Start()
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase1_Intro",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			ChangeState(FirstBossState::Idle);
+			ChangeState(BossState::Idle);
 			return;
 		}
 	);
@@ -32,7 +32,7 @@ void FirstBoss::Start()
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			BounceCount = 0;
-			ChangeState(FirstBossState::Idle);
+			ChangeState(BossState::Idle);
 			return;
 		}
 	);
@@ -41,7 +41,7 @@ void FirstBoss::Start()
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_Intro",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			ChangeState(FirstBossState::Idle);
+			ChangeState(BossState::Idle);
 			return;
 		}
 	);
@@ -54,7 +54,7 @@ void FirstBoss::Start()
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			BounceCount = 0;
-			ChangeState(FirstBossState::Idle);
+			ChangeState(BossState::Idle);
 			return;
 		}
 	);
@@ -73,7 +73,7 @@ void FirstBoss::Start()
 	FirstBossCollision = CreateComponent<GameEngineCollision>(CollisionOrder::MonsterBody);
 	FirstBossCollision->Transform.SetLocalScale({ 100.0f, 100.0f });
 
-	ChangeState(FirstBossState::Intro);
+	ChangeState(BossState::Intro);
 }
 
 void FirstBoss::Update(float _Delta)
@@ -84,7 +84,7 @@ void FirstBoss::Update(float _Delta)
 
 	if (5 <= BounceCount)
 	{
-		ChangeState(FirstBossState::Attack);
+		ChangeState(BossState::Attack);
 		return;
 	}
 
@@ -110,28 +110,28 @@ void FirstBoss::DirChange()
 	}
 }
 
-void FirstBoss::ChangeState(FirstBossState _State)
+void FirstBoss::ChangeState(BossState _State)
 {
 	if (_State != CurState)
 	{
 		switch (_State)
 		{
-		case FirstBossState::Intro:
+		case BossState::Intro:
 			IntroStart();
 			break;
-		case FirstBossState::Idle:
+		case BossState::Idle:
 			IdleStart();
 			break;
-		case FirstBossState::Move:
+		case BossState::Move:
 			MoveStart();
 			break;
-		case FirstBossState::Attack:
+		case BossState::Attack:
 			AttackStart();
 			break;
-		case FirstBossState::Death:
+		case BossState::Death:
 			DeathStart();
 			break;
-		case FirstBossState::Slime:
+		case BossState::Slime:
 			SlimeStart();
 			break;
 		default:
@@ -146,17 +146,17 @@ void FirstBoss::StateUpdate(float _Delta)
 {
 	switch (CurState)
 	{
-	case FirstBossState::Intro:
+	case BossState::Intro:
 		return IntroUpdate(_Delta);
-	case FirstBossState::Idle:
+	case BossState::Idle:
 		return IdleUpdate(_Delta);
-	case FirstBossState::Move:
+	case BossState::Move:
 		return MoveUpdate(_Delta);
-	case FirstBossState::Attack:
+	case BossState::Attack:
 		return AttackUpdate(_Delta);
-	case FirstBossState::Death:
+	case BossState::Death:
 		return DeathUpdate(_Delta);
-	case FirstBossState::Slime:
+	case BossState::Slime:
 		return SlimeUpdate(_Delta);
 	default:
 		break;
@@ -188,14 +188,14 @@ void FirstBoss::PhaseChange()
 	if (BossPhase::Phase1 == CurPhase && HitCount > 288)
 	{
 		CurPhase = BossPhase::Phase2;
-		ChangeState(FirstBossState::Intro);
+		ChangeState(BossState::Intro);
 		HitCount = 0;
 		BounceCount = 0;
 	}
 
 	if (BossPhase::Phase2 == CurPhase && HitCount > 540)
 	{
-		ChangeState(FirstBossState::Death);
+		ChangeState(BossState::Death);
 		HitCount = 0;
 		BounceCount = 0;
 	}

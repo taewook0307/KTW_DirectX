@@ -247,7 +247,7 @@ void BaseCharacter::Update(float _Delta)
 	PlayerCollision->Collision(CollisionOrder::MonsterBody,
 		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
 		{
-			if (CharacterState::Hit != CurState)
+			if (CharacterState::Hit != CurState && false == Cheat)
 			{
 				ChangeState(CharacterState::Hit);
 				return;
