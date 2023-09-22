@@ -30,7 +30,9 @@ enum class CollisionOrder
 	None,
 	Player,
 	Bullet,
-	Monster,
+	MonsterBody,
+	MonsterAttack,
+	UnDamageMonster,
 	FieldEnter,
 	ParryObject,
 	Max

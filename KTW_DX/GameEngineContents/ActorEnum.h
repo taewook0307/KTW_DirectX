@@ -34,7 +34,9 @@ enum class CharacterState
 	RunShoot,
 	DuckShoot,
 	Parry,
-	SpecialAttack
+	SpecialAttack,
+	Hit,
+	Death
 };
 
 enum class MiniMapCharacterState

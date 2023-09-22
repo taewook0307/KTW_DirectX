@@ -70,7 +70,7 @@ void FirstBoss::Start()
 	FirstBossRenderer->SetPivotType(PivotType::Bottom);
 	FirstBossRenderer->AutoSpriteSizeOn();
 
-	FirstBossCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Monster);
+	FirstBossCollision = CreateComponent<GameEngineCollision>(CollisionOrder::MonsterBody);
 	FirstBossCollision->Transform.SetLocalScale({ 100.0f, 100.0f });
 
 	ChangeState(FirstBossState::Intro);

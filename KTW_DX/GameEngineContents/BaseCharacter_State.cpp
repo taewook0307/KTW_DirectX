@@ -388,3 +388,22 @@ void BaseCharacter::ParryUpdate(float _Delta)
 		}
 	);
 }
+
+void BaseCharacter::HitStart()
+{
+	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
+
+	if (CheckColor != FLOORCOLOR)
+	{
+		ChangeAnimation("Hit_Air");
+	}
+	else
+	{
+		ChangeAnimation("Hit");
+	}
+}
+
+void BaseCharacter::HitUpdate(float _Delta)
+{
+
+}

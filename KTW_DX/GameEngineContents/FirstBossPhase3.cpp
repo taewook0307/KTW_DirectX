@@ -66,7 +66,7 @@ void FirstBossPhase3::Start()
 	FirstBossRenderer->SetPivotType(PivotType::Bottom);
 	FirstBossRenderer->AutoSpriteSizeOn();
 
-	FirstBossCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Monster);
+	FirstBossCollision = CreateComponent<GameEngineCollision>(CollisionOrder::MonsterBody);
 	FirstBossCollision->Transform.SetLocalScale({ 300.0f, 300.0f });
 
 	ChangeState(FirstBossState::Intro);
@@ -78,6 +78,7 @@ void FirstBossPhase3::Update(float _Delta)
 
 	if (HitCount > 372)
 	{
+		FirstBossRenderer->SetPivotType(PivotType::Bottom);
 		ChangeState(FirstBossState::Death);
 		return;
 	}

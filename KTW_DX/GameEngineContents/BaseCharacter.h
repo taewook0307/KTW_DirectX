@@ -84,6 +84,9 @@ protected:
 	void SpecialAttackStart();
 	void SpecialAttackUpdate(float _Delta);
 
+	void HitStart();
+	void HitUpdate(float _Delta);
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;

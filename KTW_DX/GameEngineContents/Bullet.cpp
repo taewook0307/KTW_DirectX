@@ -70,7 +70,7 @@ void Bullet::Update(float _Delta)
 		Transform.SetLocalRotation({ 0.0f, 0.0f, -45.0f });
 	}
 
-	BulletCollision->Collision(CollisionOrder::Monster,
+	BulletCollision->Collision(CollisionOrder::MonsterBody,
 		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
 		{
 			if (BulletState::Move == CurState)

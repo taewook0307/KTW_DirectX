@@ -164,6 +164,24 @@ void BaseCharacter::Start()
 		}
 	);
 
+	PlayerRenderer->CreateAnimation("CupHead_Hit", "Hit_Ground", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetEndEvent("CupHead_Hit",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ChangeState(CharacterState::Idle);
+			return;
+		}
+	);
+
+	PlayerRenderer->CreateAnimation("CupHead_Hit_Air", "Hit_Air", CHARACTERANIMATIONINTER);
+	PlayerRenderer->SetEndEvent("CupHead_Hit_Air",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ChangeState(CharacterState::Fall);
+			return;
+		}
+	);
+
 	PlayerRenderer->AutoSpriteSizeOn();
 	PlayerRenderer->SetAutoScaleRatio(0.8f);
 	PlayerRenderer->SetPivotType(PivotType::Bottom);
@@ -225,6 +243,18 @@ void BaseCharacter::Update(float _Delta)
 		SetGravityForce(ParryPos);
 		ParrySuccess = false;
 	}
+
+	PlayerCollision->Collision(CollisionOrder::MonsterBody,
+		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
+		{
+			if (CharacterState::Hit != CurState)
+			{
+				ChangeState(CharacterState::Hit);
+				return;
+			}
+			
+		}
+	);
 }
 
 void BaseCharacter::DirChange()
@@ -315,6 +345,8 @@ void BaseCharacter::StateUpdate(float _Delta)
 		return DuckShootUpdate(_Delta);
 	case CharacterState::SpecialAttack:
 		return SpecialAttackUpdate(_Delta);
+	case CharacterState::Hit:
+		return HitUpdate(_Delta);
 	default:
 		break;
 	}
@@ -367,6 +399,9 @@ void BaseCharacter::ChangeState(CharacterState _State)
 			break;
 		case CharacterState::SpecialAttack:
 			SpecialAttackStart();
+			break;
+		case CharacterState::Hit:
+			HitStart();
 			break;
 		default:
 			break;
