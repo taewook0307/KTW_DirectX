@@ -67,4 +67,5 @@ private:
 
 	void FirstBossMove(float4 _Delta);
 	void CreateMoveDust();
+	void CreateParryObject();
 };

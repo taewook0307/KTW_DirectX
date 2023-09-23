@@ -2,6 +2,7 @@
 #include "FirstBoss.h"
 
 #include "FirstBossMoveDust.h"
+#include "FirstMapParryObject.h"
 
 FirstBoss::FirstBoss()
 {
@@ -38,6 +39,13 @@ void FirstBoss::Start()
 	);
 
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_Intro", "FirstBoss_Phase2_Intro");
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase2_Intro", 29,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			CreateParryObject();
+		}
+	);
+
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_Intro",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -213,4 +221,18 @@ void FirstBoss::CreateMoveDust()
 	{
 		MoveEffect->ChangeEffectPhase2();
 	}
+}
+
+void FirstBoss::CreateParryObject()
+{
+	std::shared_ptr<FirstMapParryObject> ParryObject = GetLevel()->CreateActor<FirstMapParryObject>(UpdateOrder::Effect);
+	float4 MonsterPos = Transform.GetWorldPosition();
+	
+	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("FirstBoss_Phase2_Intro");
+	float4 SpriteScale = Sprite->GetSpriteData(29).GetScale();
+
+	float4 ParryObjectPos = { MonsterPos.X, (MonsterPos.Y + SpriteScale.Y) };
+
+	ParryObject->Transform.SetLocalPosition(ParryObjectPos);
+	ParryObject->ParryActive();
 }

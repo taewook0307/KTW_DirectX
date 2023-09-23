@@ -44,6 +44,13 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	}
 
 	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources\\Texture\\Map\\FirstBoss\\FirstBossParryObject");
+		GameEngineSprite::CreateFolder(Dir.GetStringPath());
+	}
+
+	{
 		GameEnginePath Path;
 		Path.MoveParentToExistsChild("Resources");
 		Path.MoveChild("Resources\\Texture\\Map\\FirstBoss\\FirstBossBitMap.png");

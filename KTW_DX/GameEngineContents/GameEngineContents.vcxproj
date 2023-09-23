@@ -221,7 +221,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="FirstMapFadeObject.h">
+    <ClInclude Include="FirstMapParryObject.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -375,7 +375,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="FirstBoss_State.cpp" />
-    <ClCompile Include="FirstMapFadeObject.cpp">
+    <ClCompile Include="FirstMapParryObject.cpp">
       <SubType>
       </SubType>
     </ClCompile>
