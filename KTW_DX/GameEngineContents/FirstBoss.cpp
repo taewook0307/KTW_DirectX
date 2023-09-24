@@ -38,29 +38,17 @@ void FirstBoss::Start()
 		}
 	);
 
-	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_Intro", "FirstBoss_Phase2_Intro", 0.1f, 0, 32);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_Intro", "FirstBoss_Phase2_Intro", 0.1f, 0, 28);
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_Intro",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			CreateParryObject();
 			FirstBossRenderer->ChangeAnimation("FirstBoss_Phase2_IntroStay");
 		}
 	);
 
-	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_IntroStay", "FirstBoss_Phase2_Intro", 0.1f, 32, 36);
-	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase2_IntroStay", 32,
-		[=](GameEngineSpriteRenderer* _Renderer)
-		{
-			CreateParryObject();
-		}
-	);
-	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_IntroStay",
-		[=](GameEngineSpriteRenderer* _Renderer)
-		{
-			FirstBossRenderer->ChangeAnimation("FirstBoss_Phase2_IntroEnd");
-		}
-	);
-
-	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_IntroEnd", "FirstBoss_Phase2_Intro", 0.1f, 37, 47);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_IntroStay", "FirstBoss_Phase2_Intro", 0.1f, 29, 32);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_IntroEnd", "FirstBoss_Phase2_Intro", 0.1f, 33, 47);
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_IntroEnd",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{

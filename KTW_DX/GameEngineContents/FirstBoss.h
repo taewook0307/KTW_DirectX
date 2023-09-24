@@ -49,6 +49,7 @@ private:
 	float Speed = 400.0f;
 	int BounceCount = 0;
 
+	float Phase2IntroTimer = 3.0f;
 	bool Phase2End = false;
 
 	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;

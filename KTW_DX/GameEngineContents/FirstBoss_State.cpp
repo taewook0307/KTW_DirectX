@@ -42,6 +42,17 @@ void FirstBoss::IntroStart()
 void FirstBoss::IntroUpdate(float _Delta)
 {
 	ActorGravity(_Delta, Transform.GetWorldPosition());
+
+	if (true == FirstBossRenderer->IsCurAnimation("FirstBoss_Phase2_IntroStay"))
+	{
+		Phase2IntroTimer -= _Delta;
+	}
+
+	if (Phase2IntroTimer < 0.0f && true == FirstBossRenderer->IsCurAnimationEnd() && true == FirstBossRenderer->IsCurAnimation("FirstBoss_Phase2_IntroStay"))
+	{
+		FirstBossRenderer->ChangeAnimation("FirstBoss_Phase2_IntroEnd");
+		Phase2IntroTimer = 0.0f;
+	}
 }
 
 void FirstBoss::IdleStart()
