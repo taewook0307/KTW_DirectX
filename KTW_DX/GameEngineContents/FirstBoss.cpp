@@ -14,6 +14,8 @@ FirstBoss::~FirstBoss()
 
 void FirstBoss::Start()
 {
+	AllParry.resize(3);
+
 	FirstBossRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Boss);
 
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Intro", "FirstBoss_Phase1_Intro", 0.08f);
@@ -49,6 +51,13 @@ void FirstBoss::Start()
 
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_IntroStay", "FirstBoss_Phase2_Intro", 0.1f, 29, 32);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_IntroEnd", "FirstBoss_Phase2_Intro", 0.1f, 33, 47);
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase2_IntroEnd", 33,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			AllParryDeath();
+		}
+	);
+
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_IntroEnd",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -228,7 +237,17 @@ void FirstBoss::CreateMoveDust()
 
 void FirstBoss::CreateParryObject()
 {
-	std::shared_ptr<FirstMapParryObject> ParryObject = GetLevel()->CreateActor<FirstMapParryObject>(UpdateOrder::Effect);
+	for (size_t i = 0; i < AllParry.size(); i++)
+	{
+		std::shared_ptr<FirstMapParryObject> ParryObject = GetLevel()->CreateActor<FirstMapParryObject>(UpdateOrder::Effect);
+
+		if (nullptr != ParryObject)
+		{
+			ParryObject->ParryActive();
+			AllParry[i] = ParryObject;
+		}
+	}
+
 	float4 MonsterPos = Transform.GetWorldPosition();
 	
 	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("FirstBoss_Phase2_Intro");
@@ -236,6 +255,20 @@ void FirstBoss::CreateParryObject()
 
 	float4 ParryObjectPos = { MonsterPos.X, (MonsterPos.Y + SpriteScale.Y) };
 
-	ParryObject->Transform.SetLocalPosition(ParryObjectPos);
-	ParryObject->ParryActive();
+	AllParry[0]->Transform.SetLocalPosition(ParryObjectPos);
+
+	ParryObjectPos = { MonsterPos.X - 50.0f, (MonsterPos.Y + SpriteScale.Y) };
+	AllParry[1]->Transform.SetLocalPosition(ParryObjectPos);
+
+	ParryObjectPos = { MonsterPos.X + 50.0f, (MonsterPos.Y + SpriteScale.Y) };
+	AllParry[2]->Transform.SetLocalPosition(ParryObjectPos);
+}
+
+void FirstBoss::AllParryDeath()
+{
+	size_t Check = AllParry.size();
+	for (size_t i = 0; i < Check; i++)
+	{
+		AllParry[i]->ParryInactive();
+	}
 }

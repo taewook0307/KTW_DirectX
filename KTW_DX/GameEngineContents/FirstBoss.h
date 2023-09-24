@@ -49,7 +49,6 @@ private:
 	float Speed = 400.0f;
 	int BounceCount = 0;
 
-	float Phase2IntroTimer = 3.0f;
 	bool Phase2End = false;
 
 	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;
@@ -68,5 +67,9 @@ private:
 
 	void FirstBossMove(float4 _Delta);
 	void CreateMoveDust();
+
+	float Phase2IntroTimer = 3.0f;
+	std::vector<std::shared_ptr<class FirstMapParryObject>> AllParry;
 	void CreateParryObject();
+	void AllParryDeath();
 };
