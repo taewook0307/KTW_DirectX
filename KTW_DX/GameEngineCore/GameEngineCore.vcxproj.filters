@@ -77,9 +77,6 @@
     <ClCompile Include="GameEngineSprite.cpp">
       <Filter>Resources\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineSpriteRenderer.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="GameEngineSampler.cpp">
       <Filter>Resources\Texture</Filter>
     </ClCompile>
@@ -106,6 +103,12 @@
     </ClCompile>
     <ClCompile Include="GameEngineShaderResHelper.cpp">
       <Filter>Resources\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineSpriteRenderer.cpp">
+      <Filter>Rendering\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineUIRenderer.cpp">
+      <Filter>Rendering\Contents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -182,9 +185,6 @@
     <ClInclude Include="GameEngineSprite.h">
       <Filter>Resources\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngineSpriteRenderer.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="ThirdParty\DirectXTex\inc\DirectXTex.h">
       <Filter>ThirdParty\inc</Filter>
     </ClInclude>
@@ -214,6 +214,15 @@
     </ClInclude>
     <ClInclude Include="GameEngineShaderResHelper.h">
       <Filter>Resources\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineEnum.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineSpriteRenderer.h">
+      <Filter>Rendering\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineUIRenderer.h">
+      <Filter>Rendering\Contents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -276,6 +285,9 @@
     </Filter>
     <Filter Include="Debug">
       <UniqueIdentifier>{cfaab60a-cd05-4a2c-9960-8be123b8024a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global">
+      <UniqueIdentifier>{3874a497-c4a9-4e69-9e9c-165c2a17b618}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
