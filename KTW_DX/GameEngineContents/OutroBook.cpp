@@ -69,8 +69,10 @@ void OutroBook::Start()
 
 	BookRenderer->CreateAnimation("StoryPage_18", "Page_18", BOOKANIMATIONINTER, -1, -1, false);
 	BookRenderer->SetEndEvent("StoryPage_18",
-		[](GameEngineSpriteRenderer* _Renderer)
+		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			BookRenderer = nullptr;
+			Death();
 			GameEngineCore::ChangeLevel("MenuLevel");
 		}
 	);
