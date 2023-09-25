@@ -38,7 +38,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetEndEvent("CupHead_Parry",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			ChangeState(CharacterState::Fall);
+			ChangeState(ECHARACTERSTATE::Fall);
 			return;
 		}
 	);
@@ -168,7 +168,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetEndEvent("CupHead_Hit",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			ChangeState(CharacterState::Idle);
+			ChangeState(ECHARACTERSTATE::Idle);
 			return;
 		}
 	);
@@ -177,7 +177,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetEndEvent("CupHead_Hit_Air",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			ChangeState(CharacterState::Fall);
+			ChangeState(ECHARACTERSTATE::Fall);
 			return;
 		}
 	);
@@ -186,8 +186,8 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetAutoScaleRatio(0.8f);
 	PlayerRenderer->SetPivotType(PivotType::Bottom);
 
-	Dir = ActorDir::Right;
-	AimDir = CharacterAimDir::Straight;
+	Dir = EACTORDIR::Right;
+	AimDir = ECHARACTERAIMDIR::Straight;
 
 	std::shared_ptr<GameEngineSprite> CharacterSprite = GameEngineSprite::Find("Idle");
 	float4 SpriteScale = CharacterSprite->GetSpriteData(0).GetScale();
@@ -195,14 +195,14 @@ void BaseCharacter::Start()
 	PlayerCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Player);
 	PlayerCollision->Transform.SetLocalScale(SpriteScale);
 
-	ChangeState(CharacterState::Intro);
+	ChangeState(ECHARACTERSTATE::Intro);
 }
 
 void BaseCharacter::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 
-	if (ActorDir::Left == Dir)
+	if (EACTORDIR::Left == Dir)
 	{
 		Transform.SetLocalScale({ -1.0f ,1.0f });
 	}
@@ -213,12 +213,12 @@ void BaseCharacter::Update(float _Delta)
 
 	if (true == GameEngineInput::IsDown('V'))
 	{
-		ChangeState(CharacterState::SpecialAttack);
+		ChangeState(ECHARACTERSTATE::SpecialAttack);
 	}
 
 	if (true == Cheat && true == GameEngineInput::IsPress('V'))
 	{
-		ChangeState(CharacterState::SpecialAttack);
+		ChangeState(ECHARACTERSTATE::SpecialAttack);
 	}
 
 	if (true == GameEngineInput::IsDown('P'))
@@ -247,9 +247,9 @@ void BaseCharacter::Update(float _Delta)
 	PlayerCollision->Collision(CollisionOrder::MonsterBody,
 		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
 		{
-			if (CharacterState::Hit != CurState && false == Cheat)
+			if (ECHARACTERSTATE::Hit != CurState && false == Cheat)
 			{
-				ChangeState(CharacterState::Hit);
+				ChangeState(ECHARACTERSTATE::Hit);
 				return;
 			}
 			
@@ -261,12 +261,12 @@ void BaseCharacter::DirChange()
 {
 	if (true == GameEngineInput::IsDown(VK_LEFT) || true == GameEngineInput::IsPress(VK_LEFT))
 	{
-		Dir = ActorDir::Left;
+		Dir = EACTORDIR::Left;
 	}
 
 	if (true == GameEngineInput::IsDown(VK_RIGHT) || true == GameEngineInput::IsPress(VK_RIGHT))
 	{
-		Dir = ActorDir::Right;
+		Dir = EACTORDIR::Right;
 	}
 
 	AimDirChange();
@@ -274,36 +274,36 @@ void BaseCharacter::DirChange()
 
 void BaseCharacter::AimDirChange()
 {
-	CharacterAimDir ChangeAimDir = CharacterAimDir::Straight;
+	ECHARACTERAIMDIR ChangeAimDir = ECHARACTERAIMDIR::Straight;
 
 	if (true == GameEngineInput::IsPress(VK_UP) && true == GameEngineInput::IsPress(VK_RIGHT)
 		|| true == GameEngineInput::IsPress(VK_UP) && true == GameEngineInput::IsPress(VK_LEFT))
 	{
-		ChangeAimDir = CharacterAimDir::StraightUp;
+		ChangeAimDir = ECHARACTERAIMDIR::StraightUp;
 	}
 
 	else if (true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsPress(VK_RIGHT)
 		|| true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsPress(VK_LEFT))
 	{
-		ChangeAimDir = CharacterAimDir::StraightDown;
+		ChangeAimDir = ECHARACTERAIMDIR::StraightDown;
 	}
 
 	else if (true == GameEngineInput::IsDown(VK_LEFT) || true == GameEngineInput::IsPress(VK_LEFT)
 		|| true == GameEngineInput::IsDown(VK_RIGHT) || true == GameEngineInput::IsPress(VK_RIGHT))
 	{
-		ChangeAimDir = CharacterAimDir::Straight;
+		ChangeAimDir = ECHARACTERAIMDIR::Straight;
 	}
 
 	else if (true == GameEngineInput::IsDown(VK_UP)
 		|| true == GameEngineInput::IsPress(VK_UP))
 	{
-		ChangeAimDir = CharacterAimDir::Up;
+		ChangeAimDir = ECHARACTERAIMDIR::Up;
 	}
 
 	else if (true == GameEngineInput::IsDown(VK_DOWN)
 		|| true == GameEngineInput::IsPress(VK_DOWN))
 	{
-		ChangeAimDir = CharacterAimDir::Down;
+		ChangeAimDir = ECHARACTERAIMDIR::Down;
 	}
 
 	if (ChangeAimDir != AimDir)
@@ -317,90 +317,90 @@ void BaseCharacter::StateUpdate(float _Delta)
 {
 	switch (CurState)
 	{
-	case CharacterState::Intro:
+	case ECHARACTERSTATE::Intro:
 		return IntroUpdate(_Delta);
-	case CharacterState::Idle:
+	case ECHARACTERSTATE::Idle:
 		return IdleUpdate(_Delta);
-	case CharacterState::Run:
+	case ECHARACTERSTATE::Run:
 		return RunUpdate(_Delta);
-	case CharacterState::Jump:
+	case ECHARACTERSTATE::Jump:
 		return JumpUpdate(_Delta);
-	case CharacterState::Parry:
+	case ECHARACTERSTATE::Parry:
 		return ParryUpdate(_Delta);
-	case CharacterState::Dash:
+	case ECHARACTERSTATE::Dash:
 		return DashUpdate(_Delta);
-	case CharacterState::Fall:
+	case ECHARACTERSTATE::Fall:
 		return FallUpdate(_Delta);
-	case CharacterState::Aim:
+	case ECHARACTERSTATE::Aim:
 		return AimUpdate(_Delta);
-	case CharacterState::Duck:
+	case ECHARACTERSTATE::Duck:
 		return DuckUpdate(_Delta);
-	case CharacterState::Shoot:
+	case ECHARACTERSTATE::Shoot:
 		return ShootUpdate(_Delta);
-	case CharacterState::AimShoot:
+	case ECHARACTERSTATE::AimShoot:
 		return AimShootUpdate(_Delta);
-	case CharacterState::RunShoot:
+	case ECHARACTERSTATE::RunShoot:
 		return RunShootUpdate(_Delta);
-	case CharacterState::DuckShoot:
+	case ECHARACTERSTATE::DuckShoot:
 		return DuckShootUpdate(_Delta);
-	case CharacterState::SpecialAttack:
+	case ECHARACTERSTATE::SpecialAttack:
 		return SpecialAttackUpdate(_Delta);
-	case CharacterState::Hit:
+	case ECHARACTERSTATE::Hit:
 		return HitUpdate(_Delta);
 	default:
 		break;
 	}
 }
 
-void BaseCharacter::ChangeState(CharacterState _State)
+void BaseCharacter::ChangeState(ECHARACTERSTATE _State)
 {
 	if (_State != CurState)
 	{
 		switch (_State)
 		{
-		case CharacterState::Intro:
+		case ECHARACTERSTATE::Intro:
 			IntroStart();
 			break;
-		case CharacterState::Idle:
+		case ECHARACTERSTATE::Idle:
 			IdleStart();
 			break;
-		case CharacterState::Run:
+		case ECHARACTERSTATE::Run:
 			RunStart();
 			break;
-		case CharacterState::Jump:
+		case ECHARACTERSTATE::Jump:
 			JumpStart();
 			break;
-		case CharacterState::Parry:
+		case ECHARACTERSTATE::Parry:
 			ParryStart();
 			break;
-		case CharacterState::Dash:
+		case ECHARACTERSTATE::Dash:
 			DashStart();
 			break;
-		case CharacterState::Fall:
+		case ECHARACTERSTATE::Fall:
 			FallStart();
 			break;
-		case CharacterState::Aim:
+		case ECHARACTERSTATE::Aim:
 			AimStart();
 			break;
-		case CharacterState::Duck:
+		case ECHARACTERSTATE::Duck:
 			DuckStart();
 			break;
-		case CharacterState::Shoot:
+		case ECHARACTERSTATE::Shoot:
 			ShootStart();
 			break;
-		case CharacterState::AimShoot:
+		case ECHARACTERSTATE::AimShoot:
 			AimShootStart();
 			break;
-		case CharacterState::RunShoot:
+		case ECHARACTERSTATE::RunShoot:
 			RunShootStart();
 			break;
-		case CharacterState::DuckShoot:
+		case ECHARACTERSTATE::DuckShoot:
 			DuckShootStart();
 			break;
-		case CharacterState::SpecialAttack:
+		case ECHARACTERSTATE::SpecialAttack:
 			SpecialAttackStart();
 			break;
-		case CharacterState::Hit:
+		case ECHARACTERSTATE::Hit:
 			HitStart();
 			break;
 		default:
@@ -419,11 +419,11 @@ void BaseCharacter::ChangeAnimation(std::string_view _State)
 
 	if ("Shoot" == _State)
 	{
-		if (CharacterAimDir::Straight == AimDir)
+		if (ECHARACTERAIMDIR::Straight == AimDir)
 		{
 			AnimationName += "_Straight";
 		}
-		else if (CharacterAimDir::Up == AimDir)
+		else if (ECHARACTERAIMDIR::Up == AimDir)
 		{
 			AnimationName += "_Up";
 		}
@@ -435,11 +435,11 @@ void BaseCharacter::ChangeAnimation(std::string_view _State)
 
 	if ("RunShoot" == _State)
 	{
-		if (CharacterAimDir::Straight == AimDir)
+		if (ECHARACTERAIMDIR::Straight == AimDir)
 		{
 			AnimationName += "_Straight";
 		}
-		else if (CharacterAimDir::StraightUp == AimDir)
+		else if (ECHARACTERAIMDIR::StraightUp == AimDir)
 		{
 			AnimationName += "_StraightUp";
 		}
@@ -454,23 +454,23 @@ void BaseCharacter::ChangeAnimation(std::string_view _State)
 		|| "SpecialAttack" == _State
 		|| "SpecialAttack_Air" == _State)
 	{
-		if (CharacterAimDir::Straight == AimDir)
+		if (ECHARACTERAIMDIR::Straight == AimDir)
 		{
 			AnimationName += "_Straight";
 		}
-		else if (CharacterAimDir::StraightUp == AimDir)
+		else if (ECHARACTERAIMDIR::StraightUp == AimDir)
 		{
 			AnimationName += "_StraightUp";
 		}
-		else if (CharacterAimDir::StraightDown == AimDir)
+		else if (ECHARACTERAIMDIR::StraightDown == AimDir)
 		{
 			AnimationName += "_StraightDown";
 		}
-		else if (CharacterAimDir::Up == AimDir)
+		else if (ECHARACTERAIMDIR::Up == AimDir)
 		{
 			AnimationName += "_Up";
 		}
-		else if (CharacterAimDir::Down == AimDir)
+		else if (ECHARACTERAIMDIR::Down == AimDir)
 		{
 			AnimationName += "_Down";
 		}

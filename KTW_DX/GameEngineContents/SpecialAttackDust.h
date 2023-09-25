@@ -17,7 +17,7 @@ public:
 	SpecialAttackDust& operator=(const SpecialAttackDust& _Other) = delete;
 	SpecialAttackDust& operator=(SpecialAttackDust&& _Other) noexcept = delete;
 
-	void SetSpecialAttackDustDirection(Direction8 _DustDirection)
+	void SetSpecialAttackDustDirection(EDIRECTION8 _DustDirection)
 	{
 		SpecialAttackDustDirection = _DustDirection;
 	}
@@ -27,7 +27,7 @@ protected:
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> Renderer = nullptr;
 
-	Direction8 SpecialAttackDustDirection = Direction8::None;
+	EDIRECTION8 SpecialAttackDustDirection = EDIRECTION8::None;
 
 	void Start() override;
 	void Update(float _Delta) override;

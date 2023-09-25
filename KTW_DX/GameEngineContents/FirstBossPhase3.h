@@ -38,13 +38,13 @@ private:
 	void DeathStart();
 	void DeathUpdate(float _Delta);
 
-	void CreateEffect(BossState _State);
+	void CreateEffect(EBOSSSTATE _State);
 private:
 	int DirChangeCount = 0;
 
 	float Speed = 800.0f;
 	std::string State = "";
-	ActorDir FirstBossDir = ActorDir::Left;
+	EACTORDIR FirstBossDir = EACTORDIR::Left;
 
 	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> FirstBossCollision = nullptr;
@@ -54,7 +54,7 @@ private:
 	void Update(float _Delta) override;
 
 	void DirChange();
-	void ChangeState(BossState _State);
+	void ChangeState(EBOSSSTATE _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimation(std::string_view _State);
 };

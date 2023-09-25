@@ -23,7 +23,7 @@ private:
 	std::shared_ptr<class SelectMenu> StartMenu = nullptr;
 	std::shared_ptr<class SelectMenu> ExitMenu = nullptr;
 
-	MainMenuSelect CurSelect = MainMenuSelect::Start;
+	EMAINMENUSELECT CurSelect = EMAINMENUSELECT::Start;
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;

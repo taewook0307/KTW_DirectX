@@ -19,7 +19,7 @@ void SpecialBullet::Start()
 	BulletRenderer->AutoSpriteSizeOn();
 	BulletRenderer->SetAutoScaleRatio(BULLETRATIO);
 
-	ChangeBulletState(BulletState::Spawn);
+	ChangeBulletState(EBULLETSTATE::Spawn);
 
 	BulletCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Bullet);
 	BulletCollision->Transform.SetLocalScale({ 27.0f, 18.0f });

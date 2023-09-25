@@ -17,7 +17,7 @@ public:
 	DashDust& operator=(const DashDust& _Other) = delete;
 	DashDust& operator=(DashDust&& _Other) noexcept = delete;
 
-	void SetDashDustDir(ActorDir _DustDir)
+	void SetDashDustDir(EACTORDIR _DustDir)
 	{
 		DashDustDir = _DustDir;
 	}
@@ -27,7 +27,7 @@ protected:
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> Renderer = nullptr;
 
-	ActorDir DashDustDir = ActorDir::None;
+	EACTORDIR DashDustDir = EACTORDIR::None;
 
 	void Start() override;
 	void Update(float _Delta) override;

@@ -10,7 +10,7 @@ void FirstBoss::FirstBossMove(float4 _Delta)
 
 	float4 CurPos = Transform.GetWorldPosition();
 
-	if (ActorDir::Left == FirstBossDir)
+	if (EACTORDIR::Left == FirstBossDir)
 	{
 		MovePos = float4::LEFT * Speed * _Delta;
 		CheckPos = CurPos + float4{ -40.0f, 30.0f };
@@ -68,7 +68,7 @@ void FirstBoss::IdleUpdate(float _Delta)
 
 	if (true == FirstBossRenderer->IsCurAnimationEnd())
 	{
-		ChangeState(BossState::Move);
+		ChangeState(EBOSSSTATE::Move);
 		return;
 	}
 }
@@ -96,12 +96,12 @@ void FirstBoss::MoveUpdate(float _Delta)
 
 	if (GravityY < 50.0f && GravityY > 0.0f)
 	{
-		if (BossPhase::Phase1 == CurPhase
+		if (EBOSSPHASE::Phase1 == CurPhase
 			&& false == FirstBossRenderer->IsCurAnimation("FirstBoss_Phase1_MoveStay"))
 		{
 			FirstBossRenderer->ChangeAnimation("FirstBoss_Phase1_MoveStay");
 		}
-		else if (BossPhase::Phase2 == CurPhase
+		else if (EBOSSPHASE::Phase2 == CurPhase
 			&& false == FirstBossRenderer->IsCurAnimation("FirstBoss_Phase2_MoveStay"))
 		{
 			FirstBossRenderer->ChangeAnimation("FirstBoss_Phase2_MoveStay");
@@ -111,12 +111,12 @@ void FirstBoss::MoveUpdate(float _Delta)
 
 	if (GravityY < 0.0f)
 	{
-		if (BossPhase::Phase1 == CurPhase
+		if (EBOSSPHASE::Phase1 == CurPhase
 			&& false == FirstBossRenderer->IsCurAnimation("FirstBoss_Phase1_MoveEnd"))
 		{
 			FirstBossRenderer->ChangeAnimation("FirstBoss_Phase1_MoveEnd");
 		}
-		else if (BossPhase::Phase2 == CurPhase
+		else if (EBOSSPHASE::Phase2 == CurPhase
 			&& false == FirstBossRenderer->IsCurAnimation("FirstBoss_Phase2_MoveEnd"))
 		{
 			FirstBossRenderer->ChangeAnimation("FirstBoss_Phase2_MoveEnd");
@@ -130,7 +130,7 @@ void FirstBoss::MoveUpdate(float _Delta)
 	{
 		++BounceCount;
 		CreateMoveDust();
-		ChangeState(BossState::Idle);
+		ChangeState(EBOSSSTATE::Idle);
 		return;
 	}
 }
@@ -157,7 +157,7 @@ void FirstBoss::DeathUpdate(float _Delta)
 
 	if (true == FirstBossCollision->Collision(CollisionOrder::MonsterBody))
 	{
-		ChangeState(BossState::Slime);
+		ChangeState(EBOSSSTATE::Slime);
 		return;
 	}
 }

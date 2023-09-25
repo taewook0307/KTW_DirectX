@@ -80,7 +80,7 @@ void BaseCharacter::IntroUpdate(float _Delta)
 
 	if (true == PlayerRenderer->IsCurAnimationEnd())
 	{
-		ChangeState(CharacterState::Idle);
+		ChangeState(ECHARACTERSTATE::Idle);
 		return;
 	}
 }
@@ -101,44 +101,44 @@ void BaseCharacter::IdleUpdate(float _Delta)
 	if (true == GameEngineInput::IsPress(VK_LEFT) && true == GameEngineInput::IsPress('X')
 		|| true == GameEngineInput::IsPress(VK_RIGHT) && true == GameEngineInput::IsPress('X'))
 	{
-		ChangeState(CharacterState::RunShoot);
+		ChangeState(ECHARACTERSTATE::RunShoot);
 		return;
 	}
 
 	if (true == GameEngineInput::IsPress(VK_LEFT)
 		|| true == GameEngineInput::IsPress(VK_RIGHT))
 	{
-		ChangeState(CharacterState::Run);
+		ChangeState(ECHARACTERSTATE::Run);
 		return;
 	}
 
 	if (true == GameEngineInput::IsPress('Z'))
 	{
-		ChangeState(CharacterState::Jump);
+		ChangeState(ECHARACTERSTATE::Jump);
 		return;
 	}
 
 	if (true == GameEngineInput::IsPress('C'))
 	{
-		ChangeState(CharacterState::Aim);
+		ChangeState(ECHARACTERSTATE::Aim);
 		return;
 	}
 
 	if (true == GameEngineInput::IsPress('X'))
 	{
-		ChangeState(CharacterState::Shoot);
+		ChangeState(ECHARACTERSTATE::Shoot);
 		return;
 	}
 
 	if (true == GameEngineInput::IsPress(VK_DOWN))
 	{
-		ChangeState(CharacterState::Duck);
+		ChangeState(ECHARACTERSTATE::Duck);
 		return;
 	}
 
 	if (true == GameEngineInput::IsDown(VK_SHIFT))
 	{
-		ChangeState(CharacterState::Dash);
+		ChangeState(ECHARACTERSTATE::Dash);
 		return;
 	}
 }
@@ -162,25 +162,25 @@ void BaseCharacter::RunUpdate(float _Delta)
 	if (true == GameEngineInput::IsFree(VK_LEFT)
 		&& true == GameEngineInput::IsFree(VK_RIGHT))
 	{
-		ChangeState(CharacterState::Idle);
+		ChangeState(ECHARACTERSTATE::Idle);
 		return;
 	}
 
 	if (true == GameEngineInput::IsDown(VK_SHIFT))
 	{
-		ChangeState(CharacterState::Dash);
+		ChangeState(ECHARACTERSTATE::Dash);
 		return;
 	}
 
 	if (true == GameEngineInput::IsDown('X'))
 	{
-		ChangeState(CharacterState::RunShoot);
+		ChangeState(ECHARACTERSTATE::RunShoot);
 		return;
 	}
 
 	if (true == GameEngineInput::IsDown('Z'))
 	{
-		ChangeState(CharacterState::Jump);
+		ChangeState(ECHARACTERSTATE::Jump);
 		return;
 	}
 }
@@ -218,19 +218,19 @@ void BaseCharacter::JumpUpdate(float _Delta)
 	{
 		CreateJumpDust();
 
-		ChangeState(CharacterState::Idle);
+		ChangeState(ECHARACTERSTATE::Idle);
 		return;
 	}
 
 	if (true == GameEngineInput::IsDown('Z'))
 	{
-		ChangeState(CharacterState::Parry);
+		ChangeState(ECHARACTERSTATE::Parry);
 		return;
 	}
 
 	if (true == GameEngineInput::IsDown(VK_SHIFT))
 	{
-		ChangeState(CharacterState::Dash);
+		ChangeState(ECHARACTERSTATE::Dash);
 		return;
 	}
 }
@@ -255,12 +255,12 @@ void BaseCharacter::DashUpdate(float _Delta)
 	float4 MovePos = float4::ZERO;
 	float4 CheckPos = float4::ZERO;
 
-	if (ActorDir::Right == Dir)
+	if (EACTORDIR::Right == Dir)
 	{
 		MovePos = float4::RIGHT * DashSpeed * _Delta;
 		CheckPos = RIGHTCHECKPOS;
 	}
-	else if (ActorDir::Left == Dir)
+	else if (EACTORDIR::Left == Dir)
 	{
 		MovePos = float4::LEFT * DashSpeed * _Delta;
 		CheckPos = LEFTCHECKPOS;
@@ -276,7 +276,7 @@ void BaseCharacter::DashUpdate(float _Delta)
 
 	if (true == PlayerRenderer->IsCurAnimationEnd())
 	{
-		ChangeState(CharacterState::Fall);
+		ChangeState(ECHARACTERSTATE::Fall);
 		return;
 	}
 }
@@ -296,7 +296,7 @@ void BaseCharacter::FallUpdate(float _Delta)
 	if (0 == GetGravityForce().Y)
 	{
 		CreateJumpDust();
-		ChangeState(CharacterState::Idle);
+		ChangeState(ECHARACTERSTATE::Idle);
 		return;
 	}
 
@@ -305,7 +305,7 @@ void BaseCharacter::FallUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsDown('Z'))
 	{
-		ChangeState(CharacterState::Parry);
+		ChangeState(ECHARACTERSTATE::Parry);
 		return;
 	}
 }
@@ -333,13 +333,13 @@ void BaseCharacter::DuckUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsPress('X'))
 	{
-		ChangeState(CharacterState::DuckShoot);
+		ChangeState(ECHARACTERSTATE::DuckShoot);
 		return;
 	}
 
 	if (true == GameEngineInput::IsFree(VK_DOWN))
 	{
-		ChangeState(CharacterState::Idle);
+		ChangeState(ECHARACTERSTATE::Idle);
 		return;
 	}
 }
@@ -382,7 +382,7 @@ void BaseCharacter::ParryUpdate(float _Delta)
 				ParrySuccess = true;
 				CreateParryEffect();
 
-				ChangeState(CharacterState::Fall);
+				ChangeState(ECHARACTERSTATE::Fall);
 				return;
 			}
 		}

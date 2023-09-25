@@ -41,7 +41,7 @@ void MiniMapCharacter::Start()
 
 	MiniCharacterRenderer->AutoSpriteSizeOn();
 
-	ChangeState(MiniMapCharacterState::Idle);
+	ChangeState(EMINIMAPCHARACTERSTATE::Idle);
 
 	std::shared_ptr<GameEngineSprite> MiniCharacterSprite = GameEngineSprite::Find("MiniMap_Character.png");
 	float4 SpriteScale = MiniCharacterSprite->GetSpriteData(62).GetScale();
@@ -54,7 +54,7 @@ void MiniMapCharacter::Update(float _Delta)
 {
 	DirChange();
 
-	if (ActorDir::Left == Dir)
+	if (EACTORDIR::Left == Dir)
 	{
 		Transform.SetLocalScale({ -1.0f, 1.0f });
 	}
@@ -68,71 +68,71 @@ void MiniMapCharacter::Update(float _Delta)
 
 void MiniMapCharacter::DirChange()
 {
-	CharacterAimDir CheckMoveDir = CharacterAimDir::None;
+	ECHARACTERAIMDIR CheckMoveDir = ECHARACTERAIMDIR::None;
 
 	if (true == GameEngineInput::IsPress(VK_UP))
 	{
-		CheckMoveDir = CharacterAimDir::Up;
+		CheckMoveDir = ECHARACTERAIMDIR::Up;
 	}
 
 	if (true == GameEngineInput::IsPress(VK_DOWN))
 	{
-		CheckMoveDir = CharacterAimDir::Down;
+		CheckMoveDir = ECHARACTERAIMDIR::Down;
 	}
 
 	if (true == GameEngineInput::IsPress(VK_RIGHT))
 	{
-		Dir = ActorDir::Right;
-		CheckMoveDir = CharacterAimDir::Straight;
+		Dir = EACTORDIR::Right;
+		CheckMoveDir = ECHARACTERAIMDIR::Straight;
 	}
 
 	if (true == GameEngineInput::IsPress(VK_LEFT))
 	{
-		Dir = ActorDir::Left;
-		CheckMoveDir = CharacterAimDir::Straight;
+		Dir = EACTORDIR::Left;
+		CheckMoveDir = ECHARACTERAIMDIR::Straight;
 	}
 
 	if (true == GameEngineInput::IsPress(VK_UP) && true == GameEngineInput::IsPress(VK_RIGHT))
 	{
-		Dir = ActorDir::Right;
-		CheckMoveDir = CharacterAimDir::StraightUp;
+		Dir = EACTORDIR::Right;
+		CheckMoveDir = ECHARACTERAIMDIR::StraightUp;
 	}
 
 	if (true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsPress(VK_RIGHT))
 	{
-		Dir = ActorDir::Right;
-		CheckMoveDir = CharacterAimDir::StraightDown;
+		Dir = EACTORDIR::Right;
+		CheckMoveDir = ECHARACTERAIMDIR::StraightDown;
 	}
 
 	if (true == GameEngineInput::IsPress(VK_UP) && true == GameEngineInput::IsPress(VK_LEFT))
 	{
-		Dir = ActorDir::Left;
-		CheckMoveDir = CharacterAimDir::StraightUp;
+		Dir = EACTORDIR::Left;
+		CheckMoveDir = ECHARACTERAIMDIR::StraightUp;
 	}
 
 	if (true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsPress(VK_LEFT))
 	{
-		Dir = ActorDir::Left;
-		CheckMoveDir = CharacterAimDir::StraightDown;
+		Dir = EACTORDIR::Left;
+		CheckMoveDir = ECHARACTERAIMDIR::StraightDown;
 	}
 
-	if (CheckMoveDir != MoveDir && CharacterAimDir::None != CheckMoveDir)
+	if (CheckMoveDir != MoveDir && ECHARACTERAIMDIR::None != CheckMoveDir)
 	{
 		MoveDir = CheckMoveDir;
 		ChangeAnimation(State);
 	}
 }
 
-void MiniMapCharacter::ChangeState(MiniMapCharacterState _State)
+void MiniMapCharacter::ChangeState(EMINIMAPCHARACTERSTATE _State)
 {
 	if (_State != CurState)
 	{
 		switch (_State)
 		{
-		case MiniMapCharacterState::Idle:
+		case EMINIMAPCHARACTERSTATE::Idle:
 			IdleStart();
 			break;
-		case MiniMapCharacterState::Run:
+		case EMINIMAPCHARACTERSTATE::Run:
 			RunStart();
 			break;
 		default:
@@ -147,9 +147,9 @@ void MiniMapCharacter::StateUpdate(float _Delta)
 {
 	switch (CurState)
 	{
-	case MiniMapCharacterState::Idle:
+	case EMINIMAPCHARACTERSTATE::Idle:
 		return IdleUpdate(_Delta);
-	case MiniMapCharacterState::Run:
+	case EMINIMAPCHARACTERSTATE::Run:
 		return RunUpdate(_Delta);
 	default:
 		break;
@@ -164,23 +164,23 @@ void MiniMapCharacter::ChangeAnimation(std::string_view _State)
 
 	if ("Idle" == _State || "Run" == _State)
 	{
-		if (CharacterAimDir::Up == MoveDir)
+		if (ECHARACTERAIMDIR::Up == MoveDir)
 		{
 			AnimationName += "_Up";
 		}
-		else if (CharacterAimDir::StraightUp == MoveDir)
+		else if (ECHARACTERAIMDIR::StraightUp == MoveDir)
 		{
 			AnimationName += "_StraightUp";
 		}
-		else if (CharacterAimDir::Straight == MoveDir)
+		else if (ECHARACTERAIMDIR::Straight == MoveDir)
 		{
 			AnimationName += "_Straight";
 		}
-		else if (CharacterAimDir::StraightDown == MoveDir)
+		else if (ECHARACTERAIMDIR::StraightDown == MoveDir)
 		{
 			AnimationName += "_StraightDown";
 		}
-		else if (CharacterAimDir::Down == MoveDir)
+		else if (ECHARACTERAIMDIR::Down == MoveDir)
 		{
 			AnimationName += "_Down";
 		}

@@ -28,7 +28,7 @@ void DashDust::Start()
 
 void DashDust::Update(float _Delta)
 {
-	if (ActorDir::Left == DashDustDir)
+	if (EACTORDIR::Left == DashDustDir)
 	{
 		Transform.SetLocalScale({ -1.0f, 1.0f });
 	}

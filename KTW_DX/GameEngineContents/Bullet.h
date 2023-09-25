@@ -18,18 +18,18 @@ public:
 	Bullet& operator=(const Bullet& _Other) = delete;
 	Bullet& operator=(Bullet&& _Other) noexcept = delete;
 
-	void SetBulletType(const BulletType& _Type)
+	void SetBulletType(const EBULLETTYPE& _Type)
 	{
 		Type = _Type;
 	}
 
-	void SetBulletDir(const Direction8& _Dir)
+	void SetBulletDir(const EDIRECTION8& _Dir)
 	{
 		BulletDir = _Dir;
 	}
 
 protected:
-	void ChangeBulletState(BulletState _State);
+	void ChangeBulletState(EBULLETSTATE _State);
 	void StateUpdate(float _Delta);
 	virtual void ChangeBulletAnimation(std::string_view _State);
 
@@ -48,11 +48,11 @@ protected:
 	std::shared_ptr<GameEngineSpriteRenderer> BulletRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> BulletCollision = nullptr;
 
-	BulletType Type = BulletType::Normal;
-	BulletState CurState = BulletState::None;
+	EBULLETTYPE Type = EBULLETTYPE::Normal;
+	EBULLETSTATE CurState = EBULLETSTATE::None;
 	std::string State = "";
 
-	Direction8 BulletDir = Direction8::None;
+	EDIRECTION8 BulletDir = EDIRECTION8::None;
 
 	int Att = 4;
 private:

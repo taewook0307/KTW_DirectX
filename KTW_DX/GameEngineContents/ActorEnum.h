@@ -1,6 +1,6 @@
 #pragma once
 
-enum class ActorDir
+enum class EACTORDIR
 {
 	None,
 	Left,
@@ -8,7 +8,7 @@ enum class ActorDir
 };
 
 // Character
-enum class CharacterAimDir
+enum class ECHARACTERAIMDIR
 {
 	None,
 	Straight,
@@ -18,7 +18,7 @@ enum class CharacterAimDir
 	Down
 };
 
-enum class CharacterState
+enum class ECHARACTERSTATE
 {
 	None,
 	Intro,
@@ -39,7 +39,7 @@ enum class CharacterState
 	Death
 };
 
-enum class MiniMapCharacterState
+enum class EMINIMAPCHARACTERSTATE
 {
 	None,
 	Idle,
@@ -47,12 +47,12 @@ enum class MiniMapCharacterState
 };
 
 // Bullet
-enum class BulletType
+enum class EBULLETTYPE
 {
 	Normal
 };
 
-enum class BulletState
+enum class EBULLETSTATE
 {
 	None,
 	Spawn,
@@ -60,7 +60,7 @@ enum class BulletState
 	Death
 };
 
-enum class Direction8
+enum class EDIRECTION8
 {
 	None,
 	Up,
@@ -74,14 +74,14 @@ enum class Direction8
 };
 
 // Boss
-enum class BossPhase
+enum class EBOSSPHASE
 {
 	Phase1,
 	Phase2,
 	Phase3
 };
 
-enum class BossState
+enum class EBOSSSTATE
 {
 	None,
 	Intro,
@@ -94,7 +94,7 @@ enum class BossState
 };
 
 // etc
-enum class MainMenuSelect
+enum class EMAINMENUSELECT
 {
 	Start,
 	Exit

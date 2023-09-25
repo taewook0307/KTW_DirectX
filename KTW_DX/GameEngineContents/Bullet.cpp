@@ -23,49 +23,49 @@ void Bullet::Start()
 	BulletCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Bullet);
 	BulletCollision->Transform.SetLocalScale({ 27.0f, 18.0f });
 
-	ChangeBulletState(BulletState::Spawn);
+	ChangeBulletState(EBULLETSTATE::Spawn);
 }
 
 void Bullet::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 
-	if (Direction8::Left == BulletDir)
+	if (EDIRECTION8::Left == BulletDir)
 	{
 		Transform.SetLocalScale({ -1.0f, 1.0f });
 	}
 
-	else if (Direction8::Right == BulletDir)
+	else if (EDIRECTION8::Right == BulletDir)
 	{
 		Transform.SetLocalScale({ 1.0f, 1.0f });
 	}
 
-	else if (Direction8::Up == BulletDir)
+	else if (EDIRECTION8::Up == BulletDir)
 	{
 		Transform.SetLocalRotation({0.0f, 0.0f, 90.0f});
 	}
 
-	else if (Direction8::Down == BulletDir)
+	else if (EDIRECTION8::Down == BulletDir)
 	{
 		Transform.SetLocalRotation({ 0.0f, 0.0f, -90.0f });
 	}
 
-	else if (Direction8::LeftUp == BulletDir)
+	else if (EDIRECTION8::LeftUp == BulletDir)
 	{
 		Transform.SetLocalRotation({ 0.0f, 0.0f, 135.0f });
 	}
 
-	else if (Direction8::LeftDown == BulletDir)
+	else if (EDIRECTION8::LeftDown == BulletDir)
 	{
 		Transform.SetLocalRotation({ 0.0f, 0.0f, -135.0f });
 	}
 
-	else if (Direction8::RightUp == BulletDir)
+	else if (EDIRECTION8::RightUp == BulletDir)
 	{
 		Transform.SetLocalRotation({ 0.0f, 0.0f, 45.0f });
 	}
 
-	else if (Direction8::RightDown == BulletDir)
+	else if (EDIRECTION8::RightDown == BulletDir)
 	{
 		Transform.SetLocalRotation({ 0.0f, 0.0f, -45.0f });
 	}
@@ -73,7 +73,7 @@ void Bullet::Update(float _Delta)
 	BulletCollision->Collision(CollisionOrder::MonsterBody,
 		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
 		{
-			if (BulletState::Move == CurState)
+			if (EBULLETSTATE::Move == CurState)
 			{
 				std::shared_ptr<GameEngineCollision> CurCollision = _Col[_Col.size() - 1];
 				GameEngineActor* ColMaster = CurCollision->GetActor();
@@ -87,26 +87,26 @@ void Bullet::Update(float _Delta)
 					}
 				}
 
-				ChangeBulletState(BulletState::Death);
+				ChangeBulletState(EBULLETSTATE::Death);
 				return;
 			}
 		}
 	);
 }
 
-void Bullet::ChangeBulletState(BulletState _State)
+void Bullet::ChangeBulletState(EBULLETSTATE _State)
 {
 	if (CurState != _State)
 	{
 		switch (_State)
 		{
-		case BulletState::Spawn:
+		case EBULLETSTATE::Spawn:
 			SpawnStart();
 			break;
-		case BulletState::Move:
+		case EBULLETSTATE::Move:
 			MoveStart();
 			break;
-		case BulletState::Death:
+		case EBULLETSTATE::Death:
 			DeathStart();
 			break;
 		default:
@@ -121,11 +121,11 @@ void Bullet::StateUpdate(float _Delta)
 {
 	switch (CurState)
 	{
-	case BulletState::Spawn:
+	case EBULLETSTATE::Spawn:
 		return SpawnUpdate(_Delta);
-	case BulletState::Move:
+	case EBULLETSTATE::Move:
 		return MoveUpdate(_Delta);
-	case BulletState::Death:
+	case EBULLETSTATE::Death:
 		return DeathUpdate(_Delta);
 	default:
 		break;

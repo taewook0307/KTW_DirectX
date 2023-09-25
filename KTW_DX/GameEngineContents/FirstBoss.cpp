@@ -22,7 +22,7 @@ void FirstBoss::Start()
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase1_Intro",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			ChangeState(BossState::Idle);
+			ChangeState(EBOSSSTATE::Idle);
 			return;
 		}
 	);
@@ -35,7 +35,7 @@ void FirstBoss::Start()
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			BounceCount = 0;
-			ChangeState(BossState::Idle);
+			ChangeState(EBOSSSTATE::Idle);
 			return;
 		}
 	);
@@ -61,7 +61,7 @@ void FirstBoss::Start()
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_IntroEnd",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			ChangeState(BossState::Idle);
+			ChangeState(EBOSSSTATE::Idle);
 			return;
 		}
 	);
@@ -74,7 +74,7 @@ void FirstBoss::Start()
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			BounceCount = 0;
-			ChangeState(BossState::Idle);
+			ChangeState(EBOSSSTATE::Idle);
 			return;
 		}
 	);
@@ -95,7 +95,7 @@ void FirstBoss::Start()
 	FirstBossCollision = CreateComponent<GameEngineCollision>(CollisionOrder::MonsterBody);
 	FirstBossCollision->Transform.SetLocalScale({ 100.0f, 100.0f });
 
-	ChangeState(BossState::Intro);
+	ChangeState(EBOSSSTATE::Intro);
 }
 
 void FirstBoss::Update(float _Delta)
@@ -106,11 +106,11 @@ void FirstBoss::Update(float _Delta)
 
 	if (5 <= BounceCount)
 	{
-		ChangeState(BossState::Attack);
+		ChangeState(EBOSSSTATE::Attack);
 		return;
 	}
 
-	if (ActorDir::Left == FirstBossDir)
+	if (EACTORDIR::Left == FirstBossDir)
 	{
 		Transform.SetLocalScale({ 1.0f ,1.0f });
 	}
@@ -122,38 +122,38 @@ void FirstBoss::Update(float _Delta)
 
 void FirstBoss::DirChange()
 {
-	if (ActorDir::Left == FirstBossDir)
+	if (EACTORDIR::Left == FirstBossDir)
 	{
-		FirstBossDir = ActorDir::Right;
+		FirstBossDir = EACTORDIR::Right;
 	}
 	else
 	{
-		FirstBossDir = ActorDir::Left;
+		FirstBossDir = EACTORDIR::Left;
 	}
 }
 
-void FirstBoss::ChangeState(BossState _State)
+void FirstBoss::ChangeState(EBOSSSTATE _State)
 {
 	if (_State != CurState)
 	{
 		switch (_State)
 		{
-		case BossState::Intro:
+		case EBOSSSTATE::Intro:
 			IntroStart();
 			break;
-		case BossState::Idle:
+		case EBOSSSTATE::Idle:
 			IdleStart();
 			break;
-		case BossState::Move:
+		case EBOSSSTATE::Move:
 			MoveStart();
 			break;
-		case BossState::Attack:
+		case EBOSSSTATE::Attack:
 			AttackStart();
 			break;
-		case BossState::Death:
+		case EBOSSSTATE::Death:
 			DeathStart();
 			break;
-		case BossState::Slime:
+		case EBOSSSTATE::Slime:
 			SlimeStart();
 			break;
 		default:
@@ -168,17 +168,17 @@ void FirstBoss::StateUpdate(float _Delta)
 {
 	switch (CurState)
 	{
-	case BossState::Intro:
+	case EBOSSSTATE::Intro:
 		return IntroUpdate(_Delta);
-	case BossState::Idle:
+	case EBOSSSTATE::Idle:
 		return IdleUpdate(_Delta);
-	case BossState::Move:
+	case EBOSSSTATE::Move:
 		return MoveUpdate(_Delta);
-	case BossState::Attack:
+	case EBOSSSTATE::Attack:
 		return AttackUpdate(_Delta);
-	case BossState::Death:
+	case EBOSSSTATE::Death:
 		return DeathUpdate(_Delta);
-	case BossState::Slime:
+	case EBOSSSTATE::Slime:
 		return SlimeUpdate(_Delta);
 	default:
 		break;
@@ -189,7 +189,7 @@ void FirstBoss::ChangeAnimation(std::string_view _State)
 {
 	std::string AnimationName = "FirstBoss_";
 
-	if (BossPhase::Phase1 == CurPhase)
+	if (EBOSSPHASE::Phase1 == CurPhase)
 	{
 		AnimationName += "Phase1_";
 	}
@@ -207,17 +207,17 @@ void FirstBoss::ChangeAnimation(std::string_view _State)
 
 void FirstBoss::PhaseChange()
 {
-	if (BossPhase::Phase1 == CurPhase && HitCount > 288)
+	if (EBOSSPHASE::Phase1 == CurPhase && HitCount > 288)
 	{
-		CurPhase = BossPhase::Phase2;
-		ChangeState(BossState::Intro);
+		CurPhase = EBOSSPHASE::Phase2;
+		ChangeState(EBOSSSTATE::Intro);
 		HitCount = 0;
 		BounceCount = 0;
 	}
 
-	if (BossPhase::Phase2 == CurPhase && HitCount > 540)
+	if (EBOSSPHASE::Phase2 == CurPhase && HitCount > 540)
 	{
-		ChangeState(BossState::Death);
+		ChangeState(EBOSSSTATE::Death);
 		HitCount = 0;
 		BounceCount = 0;
 	}
@@ -231,7 +231,7 @@ void FirstBoss::CreateMoveDust()
 	float4 MonsterPos = Transform.GetWorldPosition();
 	MoveEffect->Transform.SetLocalPosition(MonsterPos);
 
-	if (BossPhase::Phase2 == CurPhase)
+	if (EBOSSPHASE::Phase2 == CurPhase)
 	{
 		MoveEffect->ChangeEffectPhase2();
 	}

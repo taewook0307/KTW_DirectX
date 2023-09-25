@@ -11,67 +11,67 @@ void BaseCharacter::SpecialShootState()
 	float4 NewBulletPos = float4::ZERO;
 
 	// 왼쪽
-	if (ActorDir::Left == Dir && CharacterAimDir::Straight == AimDir)
+	if (EACTORDIR::Left == Dir && ECHARACTERAIMDIR::Straight == AimDir)
 	{
-		CreateSpecialDust(Direction8::Left);
+		CreateSpecialDust(EDIRECTION8::Left);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ -80.0f, 40.0f };
-		NewBullet->SetBulletDir(Direction8::Left);
+		NewBullet->SetBulletDir(EDIRECTION8::Left);
 	}
 
 	// 오른쪽
-	else if (ActorDir::Right == Dir && CharacterAimDir::Straight == AimDir)
+	else if (EACTORDIR::Right == Dir && ECHARACTERAIMDIR::Straight == AimDir)
 	{
-		CreateSpecialDust(Direction8::Right);
+		CreateSpecialDust(EDIRECTION8::Right);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ 80.0f, 40.0f };
-		NewBullet->SetBulletDir(Direction8::Right);
+		NewBullet->SetBulletDir(EDIRECTION8::Right);
 	}
 
 	// 위
-	else if (CharacterAimDir::Up == AimDir)
+	else if (ECHARACTERAIMDIR::Up == AimDir)
 	{
-		CreateSpecialDust(Direction8::Up);
+		CreateSpecialDust(EDIRECTION8::Up);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ 0.0f, 130.0f };
-		NewBullet->SetBulletDir(Direction8::Up);
+		NewBullet->SetBulletDir(EDIRECTION8::Up);
 	}
 
 	// 아래
-	else if (CharacterAimDir::Down == AimDir)
+	else if (ECHARACTERAIMDIR::Down == AimDir)
 	{
-		CreateSpecialDust(Direction8::Down);
+		CreateSpecialDust(EDIRECTION8::Down);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ 0.0f, 00.0f };
-		NewBullet->SetBulletDir(Direction8::Down);
+		NewBullet->SetBulletDir(EDIRECTION8::Down);
 	}
 
 	// 왼쪽 위
-	else if (ActorDir::Left == Dir && CharacterAimDir::StraightUp == AimDir)
+	else if (EACTORDIR::Left == Dir && ECHARACTERAIMDIR::StraightUp == AimDir)
 	{
-		CreateSpecialDust(Direction8::LeftUp);
+		CreateSpecialDust(EDIRECTION8::LeftUp);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ -50.0f, 110.0f };
-		NewBullet->SetBulletDir(Direction8::LeftUp);
+		NewBullet->SetBulletDir(EDIRECTION8::LeftUp);
 	}
 
 	// 왼쪽 아래
-	else if (ActorDir::Left == Dir && CharacterAimDir::StraightDown == AimDir)
+	else if (EACTORDIR::Left == Dir && ECHARACTERAIMDIR::StraightDown == AimDir)
 	{
-		CreateSpecialDust(Direction8::LeftDown);
+		CreateSpecialDust(EDIRECTION8::LeftDown);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ -50.0f, 20.0f };
-		NewBullet->SetBulletDir(Direction8::LeftDown);
+		NewBullet->SetBulletDir(EDIRECTION8::LeftDown);
 	}
 
 	// 오른쪽 위
-	else if (ActorDir::Right == Dir && CharacterAimDir::StraightUp == AimDir)
+	else if (EACTORDIR::Right == Dir && ECHARACTERAIMDIR::StraightUp == AimDir)
 	{
-		CreateSpecialDust(Direction8::RightUp);
+		CreateSpecialDust(EDIRECTION8::RightUp);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ 50.0f, 110.0f };
-		NewBullet->SetBulletDir(Direction8::RightUp);
+		NewBullet->SetBulletDir(EDIRECTION8::RightUp);
 	}
 
 	// 오른쪽 아래
-	else if (ActorDir::Right == Dir && CharacterAimDir::StraightDown == AimDir)
+	else if (EACTORDIR::Right == Dir && ECHARACTERAIMDIR::StraightDown == AimDir)
 	{
-		CreateSpecialDust(Direction8::RightDown);
+		CreateSpecialDust(EDIRECTION8::RightDown);
 		NewBulletPos = Transform.GetWorldPosition() + float4{ 50.0f, 20.0f };
-		NewBullet->SetBulletDir(Direction8::RightDown);
+		NewBullet->SetBulletDir(EDIRECTION8::RightDown);
 	}
 
 	NewBullet->Transform.SetLocalPosition(NewBulletPos);
@@ -104,12 +104,12 @@ void BaseCharacter::SpecialAttackUpdate(float _Delta)
 
 		if (CheckColor != FLOORCOLOR)
 		{
-			ChangeState(CharacterState::Fall);
+			ChangeState(ECHARACTERSTATE::Fall);
 			return;
 		}
 		else
 		{
-			ChangeState(CharacterState::Idle);
+			ChangeState(ECHARACTERSTATE::Idle);
 			return;
 		}
 	}
@@ -120,12 +120,12 @@ void BaseCharacter::SpecialAttackUpdate(float _Delta)
 
 		if (CheckColor != FLOORCOLOR)
 		{
-			ChangeState(CharacterState::Fall);
+			ChangeState(ECHARACTERSTATE::Fall);
 			return;
 		}
 		else
 		{
-			ChangeState(CharacterState::Idle);
+			ChangeState(ECHARACTERSTATE::Idle);
 			return;
 		}
 	}

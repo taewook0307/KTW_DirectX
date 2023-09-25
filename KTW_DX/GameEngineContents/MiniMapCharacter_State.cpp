@@ -17,7 +17,7 @@ void MiniMapCharacter::IdleUpdate(float _Delta)
 		|| true == GameEngineInput::IsPress(VK_DOWN)
 		)
 	{
-		ChangeState(MiniMapCharacterState::Run);
+		ChangeState(EMINIMAPCHARACTERSTATE::Run);
 		return;
 	}
 }
@@ -54,37 +54,37 @@ void MiniMapCharacter::RunUpdate(float _Delta)
 		MovePos += float4::RIGHT * _Delta * Speed;
 	}
 
-	if (ActorDir::Left == Dir && CharacterAimDir::Straight == MoveDir)
+	if (EACTORDIR::Left == Dir && ECHARACTERAIMDIR::Straight == MoveDir)
 	{
 		CheckPos = { -20.0f, 40.0f };
 	}
 
-	if (ActorDir::Right == Dir && CharacterAimDir::Straight == MoveDir)
+	if (EACTORDIR::Right == Dir && ECHARACTERAIMDIR::Straight == MoveDir)
 	{
 		CheckPos = { 20.0f, 40.0f };
 	}
 
-	if (ActorDir::Left == Dir && CharacterAimDir::StraightDown == MoveDir)
+	if (EACTORDIR::Left == Dir && ECHARACTERAIMDIR::StraightDown == MoveDir)
 	{
 		CheckPos = { -20.0f, 0.0f };
 	}
 
-	if (ActorDir::Right == Dir && CharacterAimDir::StraightDown == MoveDir)
+	if (EACTORDIR::Right == Dir && ECHARACTERAIMDIR::StraightDown == MoveDir)
 	{
 		CheckPos = { 20.0f, 0.0f };
 	}
 
-	if (ActorDir::Left == Dir && CharacterAimDir::StraightUp == MoveDir)
+	if (EACTORDIR::Left == Dir && ECHARACTERAIMDIR::StraightUp == MoveDir)
 	{
 		CheckPos = { -20.0f, 80.0f };
 	}
 
-	if (ActorDir::Right == Dir && CharacterAimDir::StraightUp == MoveDir)
+	if (EACTORDIR::Right == Dir && ECHARACTERAIMDIR::StraightUp == MoveDir)
 	{
 		CheckPos = { 20.0f, 80.0f };
 	}
 
-	if (CharacterAimDir::Up == MoveDir)
+	if (ECHARACTERAIMDIR::Up == MoveDir)
 	{
 		CheckPos = { 0.0f, 80.0f };
 	}
@@ -98,7 +98,7 @@ void MiniMapCharacter::RunUpdate(float _Delta)
 
 	if (float4::ZERO == MovePos)
 	{
-		ChangeState(MiniMapCharacterState::Idle);
+		ChangeState(EMINIMAPCHARACTERSTATE::Idle);
 		return;
 	}
 }

@@ -54,14 +54,14 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> FirstBossCollision = nullptr;
 
-	ActorDir FirstBossDir = ActorDir::Left;
+	EACTORDIR FirstBossDir = EACTORDIR::Left;
 
 	void Start() override;
 	void Update(float _Delta) override;
 
 	void DirChange();
 	void PhaseChange();
-	void ChangeState(BossState _State);
+	void ChangeState(EBOSSSTATE _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimation(std::string_view _State);
 

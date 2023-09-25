@@ -43,26 +43,26 @@ void MenuLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void MenuLevel::Update(float _Delta)
 {
-	if (MainMenuSelect::Start == CurSelect && GameEngineInput::IsDown(VK_DOWN))
+	if (EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown(VK_DOWN))
 	{
-		CurSelect = MainMenuSelect::Exit;
+		CurSelect = EMAINMENUSELECT::Exit;
 		MenuChange();
 	}
 
-	if (MainMenuSelect::Exit == CurSelect && GameEngineInput::IsDown(VK_UP))
+	if (EMAINMENUSELECT::Exit == CurSelect && GameEngineInput::IsDown(VK_UP))
 	{
-		CurSelect = MainMenuSelect::Start;
+		CurSelect = EMAINMENUSELECT::Start;
 		MenuChange();
 	}
 
-	if (MainMenuSelect::Start == CurSelect && GameEngineInput::IsDown(VK_RETURN)
-		|| MainMenuSelect::Start == CurSelect && GameEngineInput::IsDown('Z'))
+	if (EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown(VK_RETURN)
+		|| EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown('Z'))
 	{
 		GameEngineCore::ChangeLevel("IntroLevel");
 	}
 
-	if (MainMenuSelect::Exit == CurSelect && GameEngineInput::IsDown(VK_RETURN)
-		|| MainMenuSelect::Exit == CurSelect && GameEngineInput::IsDown('Z'))
+	if (EMAINMENUSELECT::Exit == CurSelect && GameEngineInput::IsDown(VK_RETURN)
+		|| EMAINMENUSELECT::Exit == CurSelect && GameEngineInput::IsDown('Z'))
 	{
 		GameEngineWindow::WindowLoopOff();
 	}
@@ -70,12 +70,12 @@ void MenuLevel::Update(float _Delta)
 
 void MenuLevel::MenuChange()
 {
-	if (MainMenuSelect::Start == CurSelect)
+	if (EMAINMENUSELECT::Start == CurSelect)
 	{
 		StartMenu->SelectOn();
 		ExitMenu->SelectOff();
 	}
-	else if (MainMenuSelect::Exit == CurSelect)
+	else if (EMAINMENUSELECT::Exit == CurSelect)
 	{
 		StartMenu->SelectOff();
 		ExitMenu->SelectOn();

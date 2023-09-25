@@ -10,7 +10,7 @@ void Bullet::SpawnUpdate(float _Delta)
 {
 	if (true == BulletRenderer->IsCurAnimationEnd())
 	{
-		ChangeBulletState(BulletState::Move);
+		ChangeBulletState(EBULLETSTATE::Move);
 		return;
 	}
 }
@@ -25,42 +25,42 @@ void Bullet::MoveUpdate(float _Delta)
 	float Speed = 1000.0f;
 	float4 MovePos = float4::RIGHT * Speed * _Delta;
 
-	if (Direction8::Right == BulletDir)
+	if (EDIRECTION8::Right == BulletDir)
 	{
 		MovePos = float4::RIGHT * Speed * _Delta;
 	}
 
-	else if (Direction8::Left == BulletDir)
+	else if (EDIRECTION8::Left == BulletDir)
 	{
 		MovePos = float4::LEFT * Speed * _Delta;
 	}
 
-	else if (Direction8::Up == BulletDir)
+	else if (EDIRECTION8::Up == BulletDir)
 	{
 		MovePos = float4::UP * Speed * _Delta;
 	}
 
-	else if (Direction8::Down == BulletDir)
+	else if (EDIRECTION8::Down == BulletDir)
 	{
 		MovePos = float4::DOWN * Speed * _Delta;
 	}
 
-	else if (Direction8::LeftUp == BulletDir)
+	else if (EDIRECTION8::LeftUp == BulletDir)
 	{
 		MovePos = (float4::UP + float4::LEFT) * Speed * _Delta;
 	}
 
-	else if (Direction8::LeftDown == BulletDir)
+	else if (EDIRECTION8::LeftDown == BulletDir)
 	{
 		MovePos = (float4::DOWN + float4::LEFT) * Speed * _Delta;
 	}
 
-	else if (Direction8::RightUp == BulletDir)
+	else if (EDIRECTION8::RightUp == BulletDir)
 	{
 		MovePos = (float4::UP + float4::RIGHT) * Speed * _Delta;
 	}
 
-	else if (Direction8::RightDown == BulletDir)
+	else if (EDIRECTION8::RightDown == BulletDir)
 	{
 		MovePos = (float4::DOWN + float4::RIGHT) * Speed * _Delta;
 	}
@@ -83,7 +83,7 @@ void Bullet::MoveUpdate(float _Delta)
 		|| BulletPos.Y > WinLeftPos.Y
 		|| BulletPos.Y <= WinRightPos.Y)
 	{
-		ChangeBulletState(BulletState::Death);
+		ChangeBulletState(EBULLETSTATE::Death);
 		return;
 	}
 }

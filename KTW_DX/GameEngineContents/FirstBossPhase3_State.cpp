@@ -15,7 +15,7 @@ void FirstBossPhase3::IntroUpdate(float _Delta)
 {
 	if (IntroTimer < 0.0f)
 	{
-		ChangeState(BossState::Idle);
+		ChangeState(EBOSSSTATE::Idle);
 		return;
 	}
 
@@ -62,7 +62,7 @@ void FirstBossPhase3::MoveUpdate(float _Delta)
 
 		if (DirSize < 30.0f)
 		{
-			ChangeState(BossState::Attack);
+			ChangeState(EBOSSSTATE::Attack);
 			return;
 		}
 	}
@@ -70,7 +70,7 @@ void FirstBossPhase3::MoveUpdate(float _Delta)
 	float4 MovePos = float4::ZERO;
 	float4 CheckPos = float4::ZERO;
 
-	if (ActorDir::Left == FirstBossDir)
+	if (EACTORDIR::Left == FirstBossDir)
 	{
 		MovePos = float4::LEFT * Speed * _Delta;
 		CheckPos = { -60.0f, 70.0f };
@@ -87,7 +87,7 @@ void FirstBossPhase3::MoveUpdate(float _Delta)
 
 	if (FLOORCOLOR == CheckColor)
 	{
-		ChangeState(BossState::Turn);
+		ChangeState(EBOSSSTATE::Turn);
 		return;
 	}
 	else
@@ -106,7 +106,7 @@ void FirstBossPhase3::TurnUpdate(float _Delta)
 	if (true == FirstBossRenderer->IsCurAnimationEnd())
 	{
 		DirChange();
-		ChangeState(BossState::Move);
+		ChangeState(EBOSSSTATE::Move);
 		return;
 	}
 }

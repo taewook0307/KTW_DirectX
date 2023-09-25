@@ -14,13 +14,13 @@ void FirstBossPhase3Effect::Start()
 	Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::PlayEffect);
 }
 
-void FirstBossPhase3Effect::SetType(BossState _State)
+void FirstBossPhase3Effect::SetType(EBOSSSTATE _State)
 {
 	EffectType = _State;
 
 	switch (EffectType)
 	{
-	case BossState::Intro:
+	case EBOSSSTATE::Intro:
 	{
 		Renderer->CreateAnimation("FirstBoss3IntroDust", "FirstBoss_Phase3_Intro_Dust");
 		Renderer->SetEndEvent("FirstBoss3IntroDust",
@@ -32,7 +32,7 @@ void FirstBossPhase3Effect::SetType(BossState _State)
 		Renderer->ChangeAnimation("FirstBoss3IntroDust");
 		break;
 	}
-	case BossState::Move:
+	case EBOSSSTATE::Move:
 	{
 		Renderer->CreateAnimation("FirstBoss3MoveDust", "FirstBoss_Phase3_Move_Dust");
 		Renderer->SetEndEvent("FirstBoss3MoveDust",
@@ -44,7 +44,7 @@ void FirstBossPhase3Effect::SetType(BossState _State)
 		Renderer->ChangeAnimation("FirstBoss3MoveDust");
 		break;
 	}
-	case BossState::Attack:
+	case EBOSSSTATE::Attack:
 	{
 		Renderer->CreateAnimation("FirstBoss3AttackDust", "FirstBoss_Phase3_Attack_Dust");
 		Renderer->SetEndEvent("FirstBoss3AttackDust",
@@ -69,11 +69,11 @@ void FirstBossPhase3Effect::SetType(BossState _State)
 
 void FirstBossPhase3Effect::Update(float _Delta)
 {
-	if (ActorDir::None == EffectDir)
+	if (EACTORDIR::None == EffectDir)
 	{
 		return;
 	}
-	else if (ActorDir::Left == EffectDir)
+	else if (EACTORDIR::Left == EffectDir)
 	{
 		Transform.SetLocalScale({ -1.0f, 1.0f });
 	}

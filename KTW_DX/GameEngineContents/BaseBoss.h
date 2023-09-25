@@ -17,7 +17,7 @@ public:
 
 	void PlusHitCount()
 	{
-		if (BossState::Intro == CurState)
+		if (EBOSSSTATE::Intro == CurState)
 		{
 			return;
 		}
@@ -26,8 +26,8 @@ public:
 	}
 
 protected:
-	BossPhase CurPhase = BossPhase::Phase1;
-	BossState CurState = BossState::None;
+	EBOSSPHASE CurPhase = EBOSSPHASE::Phase1;
+	EBOSSSTATE CurState = EBOSSSTATE::None;
 
 	int HitCount = 0;
 

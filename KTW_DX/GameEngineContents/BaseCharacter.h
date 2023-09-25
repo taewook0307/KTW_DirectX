@@ -34,11 +34,11 @@ protected:
 
 	void CreateRunDust();
 	void CreateJumpDust();
-	void CreateDashDust(ActorDir _DustDir);
+	void CreateDashDust(EACTORDIR _DustDir);
 	void CreateParryEffect();
-	void CreateSpecialDust(Direction8 _DustDirection);
+	void CreateSpecialDust(EDIRECTION8 _DustDirection);
 protected:
-	void ChangeState(CharacterState _State);
+	void ChangeState(ECHARACTERSTATE _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimation(std::string_view _State);
 
@@ -91,9 +91,9 @@ protected:
 	void Start() override;
 	void Update(float _Delta) override;
 
-	ActorDir Dir = ActorDir::None;
-	CharacterAimDir AimDir = CharacterAimDir::None;
-	CharacterState CurState = CharacterState::None;
+	EACTORDIR Dir = EACTORDIR::None;
+	ECHARACTERAIMDIR AimDir = ECHARACTERAIMDIR::None;
+	ECHARACTERSTATE CurState = ECHARACTERSTATE::None;
 	std::string State = "";
 
 	float Speed = SPEED;

@@ -28,7 +28,7 @@ void FirstBossPhase3::Start()
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase3_Idle",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			ChangeState(BossState::Move);
+			ChangeState(EBOSSSTATE::Move);
 		}
 	);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Move_Left", "FirstBoss_Phase3_Move_Left");
@@ -58,7 +58,7 @@ void FirstBossPhase3::Start()
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			FirstBossRenderer->SetPivotType(PivotType::Bottom);
-			ChangeState(BossState::Move);
+			ChangeState(EBOSSSTATE::Move);
 		}
 	);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Death", "FirstBoss_Phase3_Death");
@@ -69,7 +69,7 @@ void FirstBossPhase3::Start()
 	FirstBossCollision = CreateComponent<GameEngineCollision>(CollisionOrder::MonsterBody);
 	FirstBossCollision->Transform.SetLocalScale({ 300.0f, 300.0f });
 
-	ChangeState(BossState::Intro);
+	ChangeState(EBOSSSTATE::Intro);
 }
 
 void FirstBossPhase3::Update(float _Delta)
@@ -79,47 +79,47 @@ void FirstBossPhase3::Update(float _Delta)
 	if (HitCount > 372)
 	{
 		FirstBossRenderer->SetPivotType(PivotType::Bottom);
-		ChangeState(BossState::Death);
+		ChangeState(EBOSSSTATE::Death);
 		return;
 	}
 }
 
 void FirstBossPhase3::DirChange()
 {
-	if (ActorDir::Left == FirstBossDir)
+	if (EACTORDIR::Left == FirstBossDir)
 	{
-		FirstBossDir = ActorDir::Right;
+		FirstBossDir = EACTORDIR::Right;
 	}
 	else
 	{
-		FirstBossDir = ActorDir::Left;
+		FirstBossDir = EACTORDIR::Left;
 	}
 
 	++DirChangeCount;
 }
 
-void FirstBossPhase3::ChangeState(BossState _State)
+void FirstBossPhase3::ChangeState(EBOSSSTATE _State)
 {
 	if (_State != CurState)
 	{
 		switch (_State)
 		{
-		case BossState::Intro:
+		case EBOSSSTATE::Intro:
 			IntroStart();
 			break;
-		case BossState::Idle:
+		case EBOSSSTATE::Idle:
 			IdleStart();
 			break;
-		case BossState::Move:
+		case EBOSSSTATE::Move:
 			MoveStart();
 			break;
-		case BossState::Turn:
+		case EBOSSSTATE::Turn:
 			TurnStart();
 			break;
-		case BossState::Attack:
+		case EBOSSSTATE::Attack:
 			AttackStart();
 			break;
-		case BossState::Death:
+		case EBOSSSTATE::Death:
 			DeathStart();
 			break;
 		default:
@@ -134,17 +134,17 @@ void FirstBossPhase3::StateUpdate(float _Delta)
 {
 	switch (CurState)
 	{
-	case BossState::Intro:
+	case EBOSSSTATE::Intro:
 		return IntroUpdate(_Delta);
-	case BossState::Idle:
+	case EBOSSSTATE::Idle:
 		return IdleUpdate(_Delta);
-	case BossState::Move:
+	case EBOSSSTATE::Move:
 		return MoveUpdate(_Delta);
-	case BossState::Turn:
+	case EBOSSSTATE::Turn:
 		return TurnUpdate(_Delta);
-	case BossState::Attack:
+	case EBOSSSTATE::Attack:
 		return AttackUpdate(_Delta);
-	case BossState::Death:
+	case EBOSSSTATE::Death:
 		return DeathUpdate(_Delta);
 	default:
 		break;
@@ -159,7 +159,7 @@ void FirstBossPhase3::ChangeAnimation(std::string_view _State)
 
 	if ("Move" == _State || "Turn" == _State)
 	{
-		if (ActorDir::Left == FirstBossDir)
+		if (EACTORDIR::Left == FirstBossDir)
 		{
 			AnimationName += "_Left";
 		}
@@ -174,30 +174,30 @@ void FirstBossPhase3::ChangeAnimation(std::string_view _State)
 	FirstBossRenderer->ChangeAnimation(AnimationName);
 }
 
-void FirstBossPhase3::CreateEffect(BossState _State)
+void FirstBossPhase3::CreateEffect(EBOSSSTATE _State)
 {
 	switch (_State)
 	{
-	case BossState::Intro:
+	case EBOSSSTATE::Intro:
 	{
 		Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(UpdateOrder::Effect);
-		Effect->SetType(BossState::Intro);
+		Effect->SetType(EBOSSSTATE::Intro);
 		float4 Pos = Transform.GetWorldPosition();
 		Effect->Transform.SetLocalPosition(Pos);
 		break;
 	}
-	case BossState::Move:
+	case EBOSSSTATE::Move:
 	{
 		Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(UpdateOrder::Effect);
-		Effect->SetType(BossState::Move);
+		Effect->SetType(EBOSSSTATE::Move);
 		Effect->SetEffectDir(FirstBossDir);
 		
 		break;
 	}
-	case BossState::Attack:
+	case EBOSSSTATE::Attack:
 	{
 		Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(UpdateOrder::Effect);
-		Effect->SetType(BossState::Attack);
+		Effect->SetType(EBOSSSTATE::Attack);
 		float4 Pos = Transform.GetWorldPosition();
 		Effect->Transform.SetLocalPosition(Pos);
 		break;

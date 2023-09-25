@@ -17,7 +17,7 @@ public:
 
 protected:
 	void DirChange();
-	void ChangeState(MiniMapCharacterState _State);
+	void ChangeState(EMINIMAPCHARACTERSTATE _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimation(std::string_view _State);
 
@@ -28,9 +28,9 @@ protected:
 	void RunUpdate(float _Delta);
 
 protected:
-	ActorDir Dir = ActorDir::None;
-	CharacterAimDir MoveDir = CharacterAimDir::Down;
-	MiniMapCharacterState CurState = MiniMapCharacterState::None;
+	EACTORDIR Dir = EACTORDIR::None;
+	ECHARACTERAIMDIR MoveDir = ECHARACTERAIMDIR::Down;
+	EMINIMAPCHARACTERSTATE CurState = EMINIMAPCHARACTERSTATE::None;
 	std::string State = "";
 
 private:

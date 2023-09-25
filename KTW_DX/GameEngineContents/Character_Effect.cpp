@@ -21,7 +21,7 @@ void BaseCharacter::CreateJumpDust()
 	JumpEffect->Transform.SetLocalPosition(Pos);
 }
 
-void BaseCharacter::CreateDashDust(ActorDir _DustDir)
+void BaseCharacter::CreateDashDust(EACTORDIR _DustDir)
 {
 	std::shared_ptr<DashDust> DashEffect = GetLevel()->CreateActor<DashDust>(UpdateOrder::Effect);
 	DashEffect->SetDashDustDir(_DustDir);
@@ -36,7 +36,7 @@ void BaseCharacter::CreateParryEffect()
 	Parry->Transform.SetLocalPosition(Pos);
 }
 
-void BaseCharacter::CreateSpecialDust(Direction8 _DustDirection)
+void BaseCharacter::CreateSpecialDust(EDIRECTION8 _DustDirection)
 {
 	std::shared_ptr<SpecialAttackDust> SpecialAttackEffect = GetLevel()->CreateActor<SpecialAttackDust>(UpdateOrder::Effect);
 	SpecialAttackEffect->SetSpecialAttackDustDirection(_DustDirection);
