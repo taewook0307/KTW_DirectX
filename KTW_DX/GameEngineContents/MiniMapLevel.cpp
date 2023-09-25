@@ -25,7 +25,7 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Map");
+		Dir.MoveChild("Resources\\Texture\\MiniMapLevel\\Map");
 		std::vector<GameEngineFile> Files = Dir.GetAllFile();
 
 		size_t FileSize = Files.size();
@@ -43,7 +43,7 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\MiniMapEnter");
+		Dir.MoveChild("Resources\\Texture\\MiniMapLevel\\MiniMapEnter");
 		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
 		for (size_t i = 0; i < Directorys.size(); i++)

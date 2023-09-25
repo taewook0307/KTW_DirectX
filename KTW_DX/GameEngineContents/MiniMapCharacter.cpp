@@ -15,7 +15,7 @@ void MiniMapCharacter::Start()
 {
 	GameEnginePath Path;
 	Path.MoveParentToExistsChild("Resources");
-	Path.MoveChild("Resources\\Texture\\Character");
+	Path.MoveChild("Resources\\Texture\\MiniMapLevel");
 
 	GameEngineFile File = Path.PlusFilePath("MiniMap_Character.png");
 

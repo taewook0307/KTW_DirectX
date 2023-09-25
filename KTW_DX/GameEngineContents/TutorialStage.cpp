@@ -27,7 +27,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Character\\Normal");
+		Dir.MoveChild("Resources\\Texture\\Global\\Character\\CupHead");
 		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
 		for (size_t i = 0; i < Directorys.size(); i++)
@@ -41,7 +41,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Map\\Tutorial");
+		Dir.MoveChild("Resources\\Texture\\Tutorial");
 		std::vector<GameEngineFile> AllFiles = Dir.GetAllFile();
 
 		size_t FileCount = AllFiles.size();
@@ -62,7 +62,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Bullet");
+		Dir.MoveChild("Resources\\Texture\\Global\\Bullet");
 		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
 		for (size_t i = 0; i < Directorys.size(); i++)
@@ -76,7 +76,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Parry");
+		Dir.MoveChild("Resources\\Texture\\Tutorial\\Parry");
 		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
 		for (size_t i = 0; i < Directorys.size(); i++)

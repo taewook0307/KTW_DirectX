@@ -16,7 +16,7 @@ void MenuLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	GameEngineDirectory MenuDir;
 	MenuDir.MoveParentToExistsChild("Resources");
-	MenuDir.MoveChild("Resources\\Texture\\Level\\MainMenu");
+	MenuDir.MoveChild("Resources\\Texture\\MainMenu");
 	std::vector<GameEngineFile> AllFiles = MenuDir.GetAllFile();
 
 	for (size_t i = 0; i < AllFiles.size(); i++)
