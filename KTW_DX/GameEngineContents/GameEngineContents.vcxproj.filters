@@ -116,6 +116,10 @@
     <ClInclude Include="FirstMapParryObject.h">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClInclude>
+    <ClInclude Include="PirateBoss.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
+    </ClInclude>
+    <ClInclude Include="ShipBoss.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -251,6 +255,10 @@
     <ClCompile Include="FirstMapParryObject.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClCompile>
+    <ClCompile Include="PirateBoss.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
+    </ClCompile>
+    <ClCompile Include="ShipBoss.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
