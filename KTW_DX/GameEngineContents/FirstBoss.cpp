@@ -83,6 +83,8 @@ void FirstBoss::Start()
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_Slime",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			FirstBossRenderer = nullptr;
+			FirstBossCollision = nullptr;
 			Death();
 		}
 	);
