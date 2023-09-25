@@ -391,6 +391,8 @@ void BaseCharacter::ParryUpdate(float _Delta)
 
 void BaseCharacter::HitStart()
 {
+	NoDamage = true;
+
 	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
 
 	if (CheckColor != FLOORCOLOR)

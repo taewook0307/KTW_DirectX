@@ -21,7 +21,6 @@ void SpecialAttackDust::Start()
 	);
 	Renderer->AutoSpriteSizeOn();
 	Renderer->SetAutoScaleRatio(0.8f);
-	Renderer->SetPivotValue({ 0.2f, 0.5f });
 
 	Renderer->ChangeAnimation("SpecialAttackDust");
 }
@@ -31,11 +30,13 @@ void SpecialAttackDust::Update(float _Delta)
 	if (EDIRECTION8::Left == SpecialAttackDustDirection)
 	{
 		Renderer->LeftFlip();
+		Renderer->SetPivotValue(ATTACKEFFECTLEFTPIVOT);
 	}
 
 	else if (EDIRECTION8::Right == SpecialAttackDustDirection)
 	{
 		Renderer->RightFlip();
+		Renderer->SetPivotValue(ATTACKEFFECTRIGHTPIVOT);
 	}
 
 	else if (EDIRECTION8::Up == SpecialAttackDustDirection)

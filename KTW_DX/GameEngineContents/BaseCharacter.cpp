@@ -237,6 +237,17 @@ void BaseCharacter::Update(float _Delta)
 		}
 	}
 
+	if (true == NoDamage)
+	{
+		NoDamageTimer -= _Delta;
+
+		if (NoDamageTimer < 0.0f)
+		{
+			NoDamage = false;
+			NoDamageTimer = NODAMAGETIMER;
+		}
+	}
+
 	if (true == ParrySuccess)
 	{
 		float4 ParryPos = float4::UP * JUMPPOWER * 0.7f;
@@ -247,7 +258,7 @@ void BaseCharacter::Update(float _Delta)
 	PlayerCollision->Collision(ECOLLISIONORDER::MonsterBody,
 		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
 		{
-			if (ECHARACTERSTATE::Hit != CurState && false == Cheat)
+			if (ECHARACTERSTATE::Hit != CurState && false == NoDamage)
 			{
 				ChangeState(ECHARACTERSTATE::Hit);
 				return;

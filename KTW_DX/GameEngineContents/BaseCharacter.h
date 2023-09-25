@@ -4,9 +4,10 @@
 #define CHARACTERANIMATIONINTER 0.04f
 #define IDLEINTER 0.08f
 
+#define SPEED 400.0f
 #define JUMPPOWER 1400.0f
 #define SHOOTTIMER 0.2f
-#define SPEED 400.0f
+#define NODAMAGETIMER 2.0f
 
 #define LEFTCHECKPOS { -20.0f, 40.0f }
 #define RIGHTCHECKPOS { 20.0f, 40.0f }
@@ -107,6 +108,9 @@ protected:
 
 	float ShootTimer = SHOOTTIMER;
 	bool Shoot = false;
+
+	float NoDamageTimer = NODAMAGETIMER;
+	bool NoDamage = false;
 
 	bool StoolPass = false;
 

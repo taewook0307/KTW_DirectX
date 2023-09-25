@@ -2,6 +2,9 @@
 
 #define SPECIALATTACKEFFECTANIMATIONINTER 0.05f
 
+#define ATTACKEFFECTLEFTPIVOT { 0.8f, 0.5f }
+#define ATTACKEFFECTRIGHTPIVOT { 0.2f, 0.5f }
+
 #include <GameEngineCore/GameEngineActor.h>
 
 class SpecialAttackDust : public GameEngineActor
