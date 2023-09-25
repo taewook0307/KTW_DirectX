@@ -204,11 +204,11 @@ void BaseCharacter::Update(float _Delta)
 
 	if (EACTORDIR::Left == Dir)
 	{
-		Transform.SetLocalScale({ -1.0f ,1.0f });
+		PlayerRenderer->LeftFlip();
 	}
 	else
 	{
-		Transform.SetLocalScale({ 1.0f ,1.0f });
+		PlayerRenderer->RightFlip();
 	}
 
 	if (true == GameEngineInput::IsDown('V'))

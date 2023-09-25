@@ -30,12 +30,12 @@ void SpecialAttackDust::Update(float _Delta)
 {
 	if (EDIRECTION8::Left == SpecialAttackDustDirection)
 	{
-		Transform.SetLocalScale({ -1.0f, 1.0f });
+		Renderer->LeftFlip();
 	}
 
 	else if (EDIRECTION8::Right == SpecialAttackDustDirection)
 	{
-		Transform.SetLocalScale({ 1.0f, 1.0f });
+		Renderer->RightFlip();
 	}
 
 	else if (EDIRECTION8::Up == SpecialAttackDustDirection)

@@ -75,10 +75,10 @@ void FirstBossPhase3Effect::Update(float _Delta)
 	}
 	else if (EACTORDIR::Left == EffectDir)
 	{
-		Transform.SetLocalScale({ -1.0f, 1.0f });
+		Renderer->LeftFlip();
 	}
 	else
 	{
-		Transform.SetLocalScale({ 1.0f, 1.0f });
+		Renderer->RightFlip();
 	}
 }

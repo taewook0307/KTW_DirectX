@@ -32,12 +32,12 @@ void Bullet::Update(float _Delta)
 
 	if (EDIRECTION8::Left == BulletDir)
 	{
-		Transform.SetLocalScale({ -1.0f, 1.0f });
+		BulletRenderer->LeftFlip();
 	}
 
 	else if (EDIRECTION8::Right == BulletDir)
 	{
-		Transform.SetLocalScale({ 1.0f, 1.0f });
+		BulletRenderer->RightFlip();
 	}
 
 	else if (EDIRECTION8::Up == BulletDir)

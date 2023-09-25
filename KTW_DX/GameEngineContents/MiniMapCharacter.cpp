@@ -56,11 +56,11 @@ void MiniMapCharacter::Update(float _Delta)
 
 	if (EACTORDIR::Left == Dir)
 	{
-		Transform.SetLocalScale({ -1.0f, 1.0f });
+		MiniCharacterRenderer->LeftFlip();
 	}
 	else
 	{
-		Transform.SetLocalScale({ 1.0f, 1.0f });
+		MiniCharacterRenderer->RightFlip();
 	}
 
 	StateUpdate(_Delta);

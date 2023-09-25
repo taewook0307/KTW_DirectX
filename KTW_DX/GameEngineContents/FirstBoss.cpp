@@ -112,11 +112,11 @@ void FirstBoss::Update(float _Delta)
 
 	if (EACTORDIR::Left == FirstBossDir)
 	{
-		Transform.SetLocalScale({ 1.0f ,1.0f });
+		FirstBossRenderer->RightFlip();
 	}
 	else
 	{
-		Transform.SetLocalScale({ -1.0f ,1.0f });
+		FirstBossRenderer->LeftFlip();
 	}
 }
 
