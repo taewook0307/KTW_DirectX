@@ -14,6 +14,10 @@ SecondBossStage::~SecondBossStage()
 
 void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
+	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, -500 });
+	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
+
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
@@ -28,12 +32,13 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
-	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
+	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 
 	PirateBossActor = CreateActor<PirateBoss>(EUPDATEORDER::Monster);
-	PirateBossActor->Transform.SetLocalPosition({ 500.0f, 0.0f});
+	PirateBossActor->Transform.SetLocalPosition({ 1100.0f, -WinScaleHalf.Y});
+
 	ShipBossActor = CreateActor<ShipBoss>(EUPDATEORDER::Monster);
-	ShipBossActor->Transform.SetLocalPosition({ WinHalfScale.X + 20.0f, -WinHalfScale.Y });
+	ShipBossActor->Transform.SetLocalPosition({ WinScale.X, -WinScale.Y });
 }
 
 void SecondBossStage::Update(float _Delta)

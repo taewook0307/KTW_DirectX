@@ -19,6 +19,7 @@ protected:
 
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> PirateRenderer = nullptr;
+	std::shared_ptr<GameEngineSpriteRenderer> PirateUpperRenderer = nullptr;
 
 	void Start() override;
 	void Update(float _Delta);

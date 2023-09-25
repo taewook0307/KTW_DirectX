@@ -16,6 +16,7 @@ enum class ERENDERORDER
 	BackGround,
 	Map,
 	Boss,
+	BossEffect,
 	Play,
 	PlayEffect,
 	MapUpper,
