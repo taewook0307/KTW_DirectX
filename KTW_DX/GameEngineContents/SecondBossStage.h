@@ -18,5 +18,10 @@ public:
 protected:
 
 private:
+	std::shared_ptr<class PirateBoss> PirateBossActor = nullptr;
+
+private:
+	void LevelStart(GameEngineLevel* _PrevLevel) override;
+	void LevelEnd(GameEngineLevel* _NextLevel) override;
 	void Update(float _Delta) override;
 };

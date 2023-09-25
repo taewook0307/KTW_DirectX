@@ -119,7 +119,9 @@
     <ClInclude Include="PirateBoss.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
     </ClInclude>
-    <ClInclude Include="ShipBoss.h" />
+    <ClInclude Include="ShipBoss.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -258,7 +260,9 @@
     <ClCompile Include="PirateBoss.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
     </ClCompile>
-    <ClCompile Include="ShipBoss.cpp" />
+    <ClCompile Include="ShipBoss.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
