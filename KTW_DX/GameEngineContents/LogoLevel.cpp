@@ -18,7 +18,7 @@ void LogoLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	
 	GameEnginePath Path;
 	Path.MoveParentToExistsChild("Resources");
-	Path.MoveChild("Resources\\Texture\\Level\\Logo\\Logo.png");
+	Path.MoveChild("Resources\\Texture\\Logo\\Logo.png");
 	GameEngineTexture::Load(Path.GetStringPath());
 
 	GameEngineSprite::CreateCut("Logo.png", 5, 20);

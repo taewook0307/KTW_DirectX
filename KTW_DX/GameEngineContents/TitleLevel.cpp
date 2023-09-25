@@ -15,25 +15,11 @@ TitleLevel::~TitleLevel()
 
 void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	GameEngineDirectory Dir;
-	Dir.MoveParentToExistsChild("Resources");
-	Dir.MoveChild("Resources\\Texture\\Level\\Title");
-
 	{
-		std::vector<GameEngineFile> Files = Dir.GetAllFile();
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources\\Texture\\Title");
 
-		size_t FileSize = Files.size();
-
-		for (size_t i = 0; i < FileSize; i++)
-		{
-			GameEngineFile& File = Files[i];
-			GameEngineTexture::Load(File.GetStringPath());
-		}
-
-		GameEngineSprite::CreateSingle("Title_BackGround.Png");
-	}
-
-	{
 		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
 		size_t DirSize = Directorys.size();
@@ -47,9 +33,18 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	}
 
 	{
+		GameEnginePath Path;
+		Path.MoveParentToExistsChild("Resources");
+		Path.MoveChild("Resources\\Texture\\Title\\Title_BackGround.Png");
+		GameEngineTexture::Load(Path.GetStringPath());
+
+		GameEngineSprite::CreateSingle("Title_BackGround.Png");
+	}
+
+	{
 		GameEngineDirectory FadeDir;
 		FadeDir.MoveParentToExistsChild("Resources");
-		FadeDir.MoveChild("Resources\\Texture\\Fade");
+		FadeDir.MoveChild("Resources\\Texture\\Global\\Fade");
 
 		std::vector<GameEngineDirectory> Directorys = FadeDir.GetAllDirectory();
 
