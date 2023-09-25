@@ -12,8 +12,8 @@ PirateBoss::~PirateBoss()
 void PirateBoss::Start()
 {
 	PirateRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
-	PirateRenderer->CreateAnimation("PirateIdle", "Pirate_Idle", 1.0f);
-	PirateRenderer->CreateAnimation("PirateShoot", "Pirate_Shoot", 1.0f);
+	PirateRenderer->CreateAnimation("PirateIdle", "Pirate_Idle");
+	PirateRenderer->CreateAnimation("PirateShoot", "Pirate_Shoot");
 	PirateRenderer->SetEndEvent("PirateShoot",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
