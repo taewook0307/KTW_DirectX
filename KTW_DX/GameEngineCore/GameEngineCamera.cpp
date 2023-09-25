@@ -16,6 +16,8 @@ void GameEngineCamera::Start()
 {
 	GameEngineActor::Start();
 
+	ZoomValue = 1.0f;
+
 	GameEngineLevel* Level = GetLevel();
 
 	if (nullptr == Level)
@@ -38,6 +40,8 @@ void GameEngineCamera::Update(float _Delta)
 	Transform.LookToLH(Position, Forward, Up);
 
 	float4 WindowScale = GameEngineCore::MainWindow.GetScale();
+
+	WindowScale *= ZoomValue;
 
 	switch (ProjectionType)
 	{
