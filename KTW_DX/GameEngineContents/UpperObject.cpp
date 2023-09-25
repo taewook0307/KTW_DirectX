@@ -11,7 +11,7 @@ UpperObject::~UpperObject()
 
 void UpperObject::Start()
 {
-	UpperObjectRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::MapUpper);
+	UpperObjectRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::MapUpper);
 }
 
 void UpperObject::UpperObjectInit(std::string_view _FileName, int _Order /*= 0*/, bool _WinSizeOn /*= true*/)

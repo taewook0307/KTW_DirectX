@@ -11,7 +11,7 @@ FirstBossMoveDust::~FirstBossMoveDust()
 
 void FirstBossMoveDust::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::PlayEffect);
+	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PlayEffect);
 	Renderer->CreateAnimation("FirstBossDust_1", "FirstBoss_Phase1_Dust", 0.05f);
 	Renderer->SetEndEvent("FirstBossDust_1",
 		[=](GameEngineSpriteRenderer* _Renderer)

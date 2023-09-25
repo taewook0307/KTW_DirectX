@@ -1,4 +1,4 @@
-enum class UpdateOrder
+enum class EUPDATEORDER
 {
 	UI,
 	Player,
@@ -10,7 +10,7 @@ enum class UpdateOrder
 	BackGround
 };
 
-enum class RenderOrder
+enum class ERENDERORDER
 {
 	None,
 	BackGround,
@@ -25,7 +25,7 @@ enum class RenderOrder
 	Max
 };
 
-enum class CollisionOrder
+enum class ECOLLISIONORDER
 {
 	None,
 	Player,

@@ -7,7 +7,7 @@
 
 void BaseCharacter::SpecialShootState()
 {
-	std::shared_ptr<SpecialBullet> NewBullet = GetLevel()->CreateActor<SpecialBullet>(UpdateOrder::Bullet);
+	std::shared_ptr<SpecialBullet> NewBullet = GetLevel()->CreateActor<SpecialBullet>(EUPDATEORDER::Bullet);
 	float4 NewBulletPos = float4::ZERO;
 
 	// ¿ÞÂÊ

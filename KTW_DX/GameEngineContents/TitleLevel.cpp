@@ -58,10 +58,10 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
-	TitleBackGround = CreateActor<BackGround>(UpdateOrder::BackGround);
+	TitleBackGround = CreateActor<BackGround>(EUPDATEORDER::BackGround);
 	TitleBackGround->BackGroundInit("Title_BackGround.Png");
 
-	TitleAnimation = CreateActor<BackGround>(UpdateOrder::BackGround);
+	TitleAnimation = CreateActor<BackGround>(EUPDATEORDER::BackGround);
 	TitleAnimation->AnimationInit("Title_Animation", "TitleAnimation", 0.04f, true, false);
 	TitleAnimation->Transform.SetLocalPosition({ 0.0f, -GameEngineCore::MainWindow.GetScale().Half().Y });
 	TitleAnimation->SetBackGroundRendererPivotType(PivotType::Bottom);
@@ -76,7 +76,7 @@ void TitleLevel::Update(float _Delta)
 
 	if (true == GameEngineInput::IsDown(VK_RETURN))
 	{
-		FadeEffect = CreateActor<FadeObject>(UpdateOrder::UI);
+		FadeEffect = CreateActor<FadeObject>(EUPDATEORDER::UI);
 		FadeEffect->SetFadeType();
 	}
 

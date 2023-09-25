@@ -25,7 +25,7 @@ void OutroLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		GameEngineSprite::CreateFolder(Dir.GetStringPath());
 	}
 
-	Outro = CreateActor<OutroBook>(UpdateOrder::BackGround);
+	Outro = CreateActor<OutroBook>(EUPDATEORDER::BackGround);
 }
 
 void OutroLevel::LevelEnd(GameEngineLevel* _NextLevel)

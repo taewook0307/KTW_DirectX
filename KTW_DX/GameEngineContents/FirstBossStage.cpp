@@ -94,18 +94,18 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
-	Player = CreateActor<BaseCharacter>(UpdateOrder::Player);
+	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
 
-	Boss = CreateActor<FirstBoss>(UpdateOrder::Monster);
+	Boss = CreateActor<FirstBoss>(EUPDATEORDER::Monster);
 	Boss->Transform.SetLocalPosition({ 1000.0f, -677.0f });
 
-	StageMap = CreateActor<Map>(UpdateOrder::Map);
+	StageMap = CreateActor<Map>(EUPDATEORDER::Map);
 	StageMap->MapAnimationInit("FirstBossMapAni", "FirstBossMap", 0.05f);
 	StageMap->PixelMapInit("FirstBossBitMap.Png");
 	StageMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 
-	StageMapUpper = CreateActor<UpperObject>(UpdateOrder::Map);
+	StageMapUpper = CreateActor<UpperObject>(EUPDATEORDER::Map);
 	StageMapUpper->UpperObjectInit("FirstBossMap_Upper.png");
 	StageMapUpper->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 }
@@ -118,7 +118,7 @@ void FirstBossStage::Update(float _Delta)
 	}
 	if (false == Phase3Start && 0.0f > Phase3Timer)
 	{
-		BossPhase3 = CreateActor<FirstBossPhase3>(UpdateOrder::Monster);
+		BossPhase3 = CreateActor<FirstBossPhase3>(EUPDATEORDER::Monster);
 		float SpawnX = Boss->Transform.GetWorldPosition().X;
 		BossPhase3->Transform.SetLocalPosition({ SpawnX, 0.0f });
 

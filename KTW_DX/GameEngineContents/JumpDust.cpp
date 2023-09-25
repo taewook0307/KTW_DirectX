@@ -11,7 +11,7 @@ JumpDust::~JumpDust()
 
 void JumpDust::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::PlayEffect);
+	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PlayEffect);
 	Renderer->CreateAnimation("JumpDust", "Jump_Dust", JUMPEFFECTANIMATIONINTER);
 	Renderer->SetEndEvent("JumpDust",
 		[=](GameEngineSpriteRenderer* _Renderer)

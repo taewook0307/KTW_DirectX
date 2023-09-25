@@ -25,7 +25,7 @@ void IntroLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		GameEngineSprite::CreateFolder(Dir.GetStringPath());
 	}
 
-	Intro = CreateActor<IntroBook>(UpdateOrder::BackGround);
+	Intro = CreateActor<IntroBook>(EUPDATEORDER::BackGround);
 }
 
 void IntroLevel::LevelEnd(GameEngineLevel* _NextLevel)

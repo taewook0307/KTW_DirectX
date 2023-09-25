@@ -12,7 +12,7 @@ SpecialBullet::~SpecialBullet()
 
 void SpecialBullet::Start()
 {
-	BulletRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Bullet);
+	BulletRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Bullet);
 	BulletRenderer->CreateAnimation("EXBullet_Spawn", "EXBulletSpawn", BULLETANIMATIONINTER);
 	BulletRenderer->CreateAnimation("EXBullet_Move", "EXBulletMove", BULLETANIMATIONINTER);
 	BulletRenderer->CreateAnimation("EXBullet_Death", "EXBulletDeath", BULLETANIMATIONINTER);
@@ -21,7 +21,7 @@ void SpecialBullet::Start()
 
 	ChangeBulletState(EBULLETSTATE::Spawn);
 
-	BulletCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Bullet);
+	BulletCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::Bullet);
 	BulletCollision->Transform.SetLocalScale({ 27.0f, 18.0f });
 }
 

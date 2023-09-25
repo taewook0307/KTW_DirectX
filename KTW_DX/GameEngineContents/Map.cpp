@@ -14,8 +14,8 @@ Map::~Map()
 
 void Map::Start()
 {
-	MapRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Map);
-	PixelMapRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Map);
+	MapRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Map);
+	PixelMapRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Map);
 }
 
 void Map::Update(float _Delta)

@@ -11,7 +11,7 @@ IntroBook::~IntroBook()
 
 void IntroBook::Start()
 {
-	BookRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BackGround);
+	BookRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::BackGround);
 
 	BookRenderer->CreateAnimation("StoryPage_1", "Page_1", BOOKANIMATIONINTER, -1, -1, false);
 	BookRenderer->SetEndEvent("StoryPage_1",

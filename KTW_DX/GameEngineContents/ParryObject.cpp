@@ -11,14 +11,14 @@ ParryObject::~ParryObject()
 
 void ParryObject::Start()
 {
-	ParryRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Play);
+	ParryRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
 	ParryRenderer->CreateAnimation("ParryActive", "TutorialParryOn");
 	ParryRenderer->CreateAnimation("ParryInactive", "TutorialParryOff");
 
 	ParryRenderer->ChangeAnimation("ParryActive");
 	ParryRenderer->AutoSpriteSizeOn();
 
-	ParryCollision = CreateComponent<GameEngineCollision>(CollisionOrder::ParryObject);
+	ParryCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::ParryObject);
 	
 	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialParryOff");
 	float4 SpriteScale = Sprite->GetSpriteData(0).GetScale();

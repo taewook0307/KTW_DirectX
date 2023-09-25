@@ -27,7 +27,7 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
-	PirateBossActor = CreateActor<PirateBoss>(UpdateOrder::Monster);
+	PirateBossActor = CreateActor<PirateBoss>(EUPDATEORDER::Monster);
 }
 
 void SecondBossStage::Update(float _Delta)

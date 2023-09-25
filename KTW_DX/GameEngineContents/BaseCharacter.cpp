@@ -17,7 +17,7 @@ BaseCharacter::~BaseCharacter()
 
 void BaseCharacter::Start()
 {
-	PlayerRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Play);
+	PlayerRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
 	PlayerRenderer->CreateAnimation("CupHead_Intro", "Intro_Flex", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Idle", "Idle", IDLEINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Run", "Run", CHARACTERANIMATIONINTER);
@@ -192,7 +192,7 @@ void BaseCharacter::Start()
 	std::shared_ptr<GameEngineSprite> CharacterSprite = GameEngineSprite::Find("Idle");
 	float4 SpriteScale = CharacterSprite->GetSpriteData(0).GetScale();
 
-	PlayerCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Player);
+	PlayerCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::Player);
 	PlayerCollision->Transform.SetLocalScale(SpriteScale);
 
 	ChangeState(ECHARACTERSTATE::Intro);
@@ -244,7 +244,7 @@ void BaseCharacter::Update(float _Delta)
 		ParrySuccess = false;
 	}
 
-	PlayerCollision->Collision(CollisionOrder::MonsterBody,
+	PlayerCollision->Collision(ECOLLISIONORDER::MonsterBody,
 		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
 		{
 			if (ECHARACTERSTATE::Hit != CurState && false == Cheat)

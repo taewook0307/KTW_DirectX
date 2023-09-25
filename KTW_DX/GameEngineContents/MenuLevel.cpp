@@ -27,14 +27,14 @@ void MenuLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		GameEngineSprite::CreateSingle(FileName);
 	}
 
-	Back = CreateActor<BackGround>(UpdateOrder::BackGround);
+	Back = CreateActor<BackGround>(EUPDATEORDER::BackGround);
 	Back->BackGroundInit("MainMenu.png");
 
-	StartMenu = CreateActor<SelectMenu>(UpdateOrder::Menu);
+	StartMenu = CreateActor<SelectMenu>(EUPDATEORDER::Menu);
 	StartMenu->SelectMenuInit("Start_Select.png", "Start_UnSelect.png");
 	StartMenu->Transform.SetLocalPosition({ 0.0f, 30.0f });
 
-	ExitMenu = CreateActor<SelectMenu>(UpdateOrder::Menu);
+	ExitMenu = CreateActor<SelectMenu>(EUPDATEORDER::Menu);
 	ExitMenu->SelectMenuInit("Exit_Select.png", "Exit_UnSelect.png");
 	ExitMenu->Transform.SetLocalPosition({ 0.0f, -30.0f });
 

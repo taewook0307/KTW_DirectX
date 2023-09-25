@@ -56,7 +56,7 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 
 	// 미니맵 생성
-	MiniMap = CreateActor<Map>(UpdateOrder::Map);
+	MiniMap = CreateActor<Map>(EUPDATEORDER::Map);
 	MiniMap->MapInit("CupHead_MiniMap.png");
 	MiniMap->PixelMapInit("CupHead_MiniMap_BitMap.png");
 
@@ -64,28 +64,28 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	float4 MapTextureHalfScale = MapTexture->GetScale().Half();
 	MiniMap->Transform.SetLocalPosition({ MapTextureHalfScale.X, -MapTextureHalfScale.Y });
 
-	MiniMapUpper = CreateActor<UpperObject>(UpdateOrder::Map);
+	MiniMapUpper = CreateActor<UpperObject>(EUPDATEORDER::Map);
 	MiniMapUpper->UpperObjectInit("CupHead_MiniMap_Upper.png", 0, false);
 	MiniMapUpper->Transform.SetLocalPosition({ MapTextureHalfScale.X, -MapTextureHalfScale.Y });
 
 	// 플레이 입구 생성
-	TutorialEnter = CreateActor<MiniMapEnter>(UpdateOrder::Map);
+	TutorialEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
 	TutorialEnter->EnterAnimationInit("Tutorial_Enter_Ani", "TutorialEnter");
 	TutorialEnter->Transform.SetLocalPosition(TUTORIALENTERPOS);
 	TutorialEnter->SetEnterLevel("TutorialStage");
 
-	FirstEnter = CreateActor<MiniMapEnter>(UpdateOrder::Map);
+	FirstEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
 	FirstEnter->EnterAnimationInit("FirstBossMap_Enter_Ani", "FirstBossMapEnter");
 	FirstEnter->Transform.SetLocalPosition(FIRSTBOSSENTERPOS);
 	FirstEnter->SetEnterLevel("FirstBossStage");
 
-	SecondEnter = CreateActor<MiniMapEnter>(UpdateOrder::Map);
+	SecondEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
 	SecondEnter->EnterAnimationInit("Tutorial_Enter_Ani", "SecondBossMapEnter");
 	SecondEnter->Transform.SetLocalPosition(SECONDBOSSENTERPOS);
 	SecondEnter->SetEnterLevel("SecondBossStage");
 
 	// 캐릭터 생성
-	Character = CreateActor<MiniMapCharacter>(UpdateOrder::Player);
+	Character = CreateActor<MiniMapCharacter>(EUPDATEORDER::Player);
 	Character->Transform.SetLocalPosition(CharacterPos);
 }
 

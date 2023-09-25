@@ -11,7 +11,7 @@ RunDust::~RunDust()
 
 void RunDust::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::PlayEffect);
+	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PlayEffect);
 	Renderer->CreateAnimation("RunDust", "Run_Dust", RUNEFFECTANIMATIONINTER);
 	Renderer->SetEndEvent("RunDust",
 		[=](GameEngineSpriteRenderer* _Renderer)

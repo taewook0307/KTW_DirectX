@@ -11,7 +11,7 @@ ParryEffect::~ParryEffect()
 
 void ParryEffect::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::PlayEffect);
+	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PlayEffect);
 	Renderer->CreateAnimation("ParryEffect", "Parry_Effect", PARRYEFFECTANIMATIONINTER);
 	Renderer->SetEndEvent("ParryEffect",
 		[=](GameEngineSpriteRenderer* _Renderer)

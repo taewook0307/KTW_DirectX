@@ -23,7 +23,7 @@ void MiniMapCharacter::Start()
 
 	GameEngineSprite::CreateCut("MiniMap_Character.png", 10, 10);
 
-	MiniCharacterRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Play);
+	MiniCharacterRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
 	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_Up", "MiniMap_Character.png", 0.1f, 0, 3);
 	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_Up", "MiniMap_Character.png", 0.05f, 4, 15);
 
@@ -46,7 +46,7 @@ void MiniMapCharacter::Start()
 	std::shared_ptr<GameEngineSprite> MiniCharacterSprite = GameEngineSprite::Find("MiniMap_Character.png");
 	float4 SpriteScale = MiniCharacterSprite->GetSpriteData(62).GetScale();
 
-	MiniCharacterCollision = CreateComponent<GameEngineCollision>(CollisionOrder::Player);
+	MiniCharacterCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::Player);
 	MiniCharacterCollision->Transform.SetLocalScale(SpriteScale);
 }
 

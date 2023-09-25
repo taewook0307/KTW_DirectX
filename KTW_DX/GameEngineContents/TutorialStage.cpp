@@ -87,27 +87,27 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
-	Player = CreateActor<BaseCharacter>(UpdateOrder::Player);
+	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
 
 	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialMap.Png");
 	float4 SpriteHalfScale = Sprite->GetSpriteData(0).GetScale().Half();
 
-	TutorialBackGround = CreateActor<BackGround>(UpdateOrder::BackGround);
+	TutorialBackGround = CreateActor<BackGround>(EUPDATEORDER::BackGround);
 	TutorialBackGround->BackGroundInit("Tutorial_BackGround.png");
 	TutorialBackGround->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 
-	TutorialBackGroundUpper = CreateActor<UpperObject>(UpdateOrder::BackGround);
+	TutorialBackGroundUpper = CreateActor<UpperObject>(EUPDATEORDER::BackGround);
 	TutorialBackGroundUpper->UpperObjectInit("Tutorial_BackGround_Upper.png");
 	TutorialBackGroundUpper->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 
-	TutorialMap = CreateActor<Map>(UpdateOrder::Map);
+	TutorialMap = CreateActor<Map>(EUPDATEORDER::Map);
 	TutorialMap->MapInit("TutorialMap.Png");
 	TutorialMap->PixelMapInit("TutorialBitMap.Png");
 	TutorialMap->Transform.SetLocalPosition({ SpriteHalfScale.X, -SpriteHalfScale.Y });
 
 	{
-		std::shared_ptr<ParryObject> Parry = CreateActor<ParryObject>(UpdateOrder::Map);
+		std::shared_ptr<ParryObject> Parry = CreateActor<ParryObject>(EUPDATEORDER::Map);
 		Parry->Transform.SetLocalPosition(PARRYPOS1);
 		Parry->ParryActive();
 
@@ -115,7 +115,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	}
 
 	{
-		std::shared_ptr<ParryObject> Parry = CreateActor<ParryObject>(UpdateOrder::Map);
+		std::shared_ptr<ParryObject> Parry = CreateActor<ParryObject>(EUPDATEORDER::Map);
 		Parry->Transform.SetLocalPosition(PARRYPOS2);
 		Parry->ParryInactive();
 
@@ -123,14 +123,14 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	}
 
 	{
-		std::shared_ptr<ParryObject> Parry = CreateActor<ParryObject>(UpdateOrder::Map);
+		std::shared_ptr<ParryObject> Parry = CreateActor<ParryObject>(EUPDATEORDER::Map);
 		Parry->Transform.SetLocalPosition(PARRYPOS3);
 		Parry->ParryInactive();
 
 		TutorialParry[2] = Parry;
 	}
 	
-	TutorialExit = CreateActor<MiniMapEnter>(UpdateOrder::Map);
+	TutorialExit = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
 	TutorialExit->EnterSpriteInit("Tutorial_Exit.png");
 	TutorialExit->SetEnterLevel("MiniMapLevel");
 	TutorialExit->Transform.SetLocalPosition(EXITPOS);

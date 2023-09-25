@@ -155,7 +155,7 @@ void FirstBoss::DeathUpdate(float _Delta)
 {
 	ActorGravity(_Delta, Transform.GetWorldPosition());
 
-	if (true == FirstBossCollision->Collision(CollisionOrder::MonsterBody))
+	if (true == FirstBossCollision->Collision(ECOLLISIONORDER::MonsterBody))
 	{
 		ChangeState(EBOSSSTATE::Slime);
 		return;

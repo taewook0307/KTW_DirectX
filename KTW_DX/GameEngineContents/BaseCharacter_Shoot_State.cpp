@@ -10,7 +10,7 @@ void BaseCharacter::ShootBaseState()
 	{
 		if (false == Shoot)
 		{
-			std::shared_ptr<Bullet> NewBullet = GetLevel()->CreateActor<Bullet>(UpdateOrder::Bullet);
+			std::shared_ptr<Bullet> NewBullet = GetLevel()->CreateActor<Bullet>(EUPDATEORDER::Bullet);
 			float4 NewBulletPos = float4::ZERO;
 
 			// ¿ÞÂÊ
@@ -57,7 +57,7 @@ void BaseCharacter::ShootAimState()
 	{
 		if (false == Shoot)
 		{
-			std::shared_ptr<Bullet> NewBullet = GetLevel()->CreateActor<Bullet>(UpdateOrder::Bullet);
+			std::shared_ptr<Bullet> NewBullet = GetLevel()->CreateActor<Bullet>(EUPDATEORDER::Bullet);
 			float4 NewBulletPos = float4::ZERO;
 
 			// ¿ÞÂÊ
@@ -142,7 +142,7 @@ void BaseCharacter::ShootRunState()
 	{
 		if (false == Shoot)
 		{
-			std::shared_ptr<Bullet> NewBullet = GetLevel()->CreateActor<Bullet>(UpdateOrder::Bullet);
+			std::shared_ptr<Bullet> NewBullet = GetLevel()->CreateActor<Bullet>(EUPDATEORDER::Bullet);
 			float4 NewBulletPos = float4::ZERO;
 
 			if (EACTORDIR::Left == Dir)
@@ -188,7 +188,7 @@ void BaseCharacter::ShootDuckState()
 	{
 		if (false == Shoot)
 		{
-			std::shared_ptr<Bullet> NewBullet = GetLevel()->CreateActor<Bullet>(UpdateOrder::Bullet);
+			std::shared_ptr<Bullet> NewBullet = GetLevel()->CreateActor<Bullet>(EUPDATEORDER::Bullet);
 			float4 NewBulletPos = float4::ZERO;
 
 			// ¿ÞÂÊ

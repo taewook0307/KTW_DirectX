@@ -23,7 +23,7 @@ void LogoLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	GameEngineSprite::CreateCut("Logo.png", 5, 20);
 
-	Logo = CreateActor<BackGround>(UpdateOrder::BackGround);
+	Logo = CreateActor<BackGround>(EUPDATEORDER::BackGround);
 	Logo->AnimationInit("Logo", "Logo.png", 0.04f, false);
 }
 

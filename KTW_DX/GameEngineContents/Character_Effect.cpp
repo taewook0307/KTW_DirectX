@@ -9,21 +9,21 @@
 
 void BaseCharacter::CreateRunDust()
 {
-	std::shared_ptr<RunDust> RunEffect = GetLevel()->CreateActor<RunDust>(UpdateOrder::Effect);
+	std::shared_ptr<RunDust> RunEffect = GetLevel()->CreateActor<RunDust>(EUPDATEORDER::Effect);
 	float4 Pos = Transform.GetWorldPosition();
 	RunEffect->Transform.SetLocalPosition(Pos);
 }
 
 void BaseCharacter::CreateJumpDust()
 {
-	std::shared_ptr<JumpDust> JumpEffect = GetLevel()->CreateActor<JumpDust>(UpdateOrder::Effect);
+	std::shared_ptr<JumpDust> JumpEffect = GetLevel()->CreateActor<JumpDust>(EUPDATEORDER::Effect);
 	float4 Pos = Transform.GetWorldPosition();
 	JumpEffect->Transform.SetLocalPosition(Pos);
 }
 
 void BaseCharacter::CreateDashDust(EACTORDIR _DustDir)
 {
-	std::shared_ptr<DashDust> DashEffect = GetLevel()->CreateActor<DashDust>(UpdateOrder::Effect);
+	std::shared_ptr<DashDust> DashEffect = GetLevel()->CreateActor<DashDust>(EUPDATEORDER::Effect);
 	DashEffect->SetDashDustDir(_DustDir);
 	float4 Pos = Transform.GetWorldPosition();
 	DashEffect->Transform.SetLocalPosition(Pos);
@@ -31,14 +31,14 @@ void BaseCharacter::CreateDashDust(EACTORDIR _DustDir)
 
 void BaseCharacter::CreateParryEffect()
 {
-	std::shared_ptr<ParryEffect> Parry = GetLevel()->CreateActor<ParryEffect>(UpdateOrder::Effect);
+	std::shared_ptr<ParryEffect> Parry = GetLevel()->CreateActor<ParryEffect>(EUPDATEORDER::Effect);
 	float4 Pos = Transform.GetWorldPosition();
 	Parry->Transform.SetLocalPosition(Pos);
 }
 
 void BaseCharacter::CreateSpecialDust(EDIRECTION8 _DustDirection)
 {
-	std::shared_ptr<SpecialAttackDust> SpecialAttackEffect = GetLevel()->CreateActor<SpecialAttackDust>(UpdateOrder::Effect);
+	std::shared_ptr<SpecialAttackDust> SpecialAttackEffect = GetLevel()->CreateActor<SpecialAttackDust>(EUPDATEORDER::Effect);
 	SpecialAttackEffect->SetSpecialAttackDustDirection(_DustDirection);
 	float4 Pos = Transform.GetWorldPosition();
 	SpecialAttackEffect->Transform.SetLocalPosition(Pos);

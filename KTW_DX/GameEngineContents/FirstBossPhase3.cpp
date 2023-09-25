@@ -15,7 +15,7 @@ FirstBossPhase3::~FirstBossPhase3()
 
 void FirstBossPhase3::Start()
 {
-	FirstBossRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Boss);
+	FirstBossRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
 
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Intro", "FirstBoss_Phase3_Intro");
 	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase3_Intro", 0,
@@ -66,7 +66,7 @@ void FirstBossPhase3::Start()
 	FirstBossRenderer->SetPivotType(PivotType::Bottom);
 	FirstBossRenderer->AutoSpriteSizeOn();
 
-	FirstBossCollision = CreateComponent<GameEngineCollision>(CollisionOrder::MonsterBody);
+	FirstBossCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
 	FirstBossCollision->Transform.SetLocalScale({ 300.0f, 300.0f });
 
 	ChangeState(EBOSSSTATE::Intro);
@@ -180,7 +180,7 @@ void FirstBossPhase3::CreateEffect(EBOSSSTATE _State)
 	{
 	case EBOSSSTATE::Intro:
 	{
-		Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(UpdateOrder::Effect);
+		Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(EUPDATEORDER::Effect);
 		Effect->SetType(EBOSSSTATE::Intro);
 		float4 Pos = Transform.GetWorldPosition();
 		Effect->Transform.SetLocalPosition(Pos);
@@ -188,7 +188,7 @@ void FirstBossPhase3::CreateEffect(EBOSSSTATE _State)
 	}
 	case EBOSSSTATE::Move:
 	{
-		Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(UpdateOrder::Effect);
+		Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(EUPDATEORDER::Effect);
 		Effect->SetType(EBOSSSTATE::Move);
 		Effect->SetEffectDir(FirstBossDir);
 		
@@ -196,7 +196,7 @@ void FirstBossPhase3::CreateEffect(EBOSSSTATE _State)
 	}
 	case EBOSSSTATE::Attack:
 	{
-		Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(UpdateOrder::Effect);
+		Effect = GetLevel()->CreateActor<FirstBossPhase3Effect>(EUPDATEORDER::Effect);
 		Effect->SetType(EBOSSSTATE::Attack);
 		float4 Pos = Transform.GetWorldPosition();
 		Effect->Transform.SetLocalPosition(Pos);

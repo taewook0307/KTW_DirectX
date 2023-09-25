@@ -16,7 +16,7 @@ void FirstBoss::Start()
 {
 	AllParry.resize(3);
 
-	FirstBossRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Boss);
+	FirstBossRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
 
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Intro", "FirstBoss_Phase1_Intro", 0.08f);
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase1_Intro",
@@ -92,7 +92,7 @@ void FirstBoss::Start()
 	FirstBossRenderer->SetPivotType(PivotType::Bottom);
 	FirstBossRenderer->AutoSpriteSizeOn();
 
-	FirstBossCollision = CreateComponent<GameEngineCollision>(CollisionOrder::MonsterBody);
+	FirstBossCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
 	FirstBossCollision->Transform.SetLocalScale({ 100.0f, 100.0f });
 
 	ChangeState(EBOSSSTATE::Intro);
@@ -227,7 +227,7 @@ void FirstBoss::PhaseChange()
 
 void FirstBoss::CreateMoveDust()
 {
-	std::shared_ptr<FirstBossMoveDust> MoveEffect = GetLevel()->CreateActor<FirstBossMoveDust>(UpdateOrder::Effect);
+	std::shared_ptr<FirstBossMoveDust> MoveEffect = GetLevel()->CreateActor<FirstBossMoveDust>(EUPDATEORDER::Effect);
 	float4 MonsterPos = Transform.GetWorldPosition();
 	MoveEffect->Transform.SetLocalPosition(MonsterPos);
 
@@ -241,7 +241,7 @@ void FirstBoss::CreateParryObject()
 {
 	for (size_t i = 0; i < AllParry.size(); i++)
 	{
-		std::shared_ptr<FirstMapParryObject> ParryObject = GetLevel()->CreateActor<FirstMapParryObject>(UpdateOrder::Effect);
+		std::shared_ptr<FirstMapParryObject> ParryObject = GetLevel()->CreateActor<FirstMapParryObject>(EUPDATEORDER::Effect);
 
 		if (nullptr != ParryObject)
 		{

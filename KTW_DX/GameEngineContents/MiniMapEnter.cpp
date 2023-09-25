@@ -11,13 +11,13 @@ MiniMapEnter::~MiniMapEnter()
 
 void MiniMapEnter::Start()
 {
-	EnterRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Map);
-	EnterCollision = CreateComponent<GameEngineCollision>(CollisionOrder::FieldEnter);
+	EnterRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Map);
+	EnterCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::FieldEnter);
 }
 
 void MiniMapEnter::Update(float _Delta)
 {
-	if (true == EnterCollision->Collision(CollisionOrder::Player))
+	if (true == EnterCollision->Collision(ECOLLISIONORDER::Player))
 	{
 		if (true == GameEngineInput::IsDown('Z') || true == GameEngineInput::IsDown(VK_RETURN))
 		{

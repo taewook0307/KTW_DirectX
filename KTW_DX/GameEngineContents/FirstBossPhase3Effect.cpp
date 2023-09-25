@@ -11,7 +11,7 @@ FirstBossPhase3Effect::~FirstBossPhase3Effect()
 
 void FirstBossPhase3Effect::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::PlayEffect);
+	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PlayEffect);
 }
 
 void FirstBossPhase3Effect::SetType(EBOSSSTATE _State)

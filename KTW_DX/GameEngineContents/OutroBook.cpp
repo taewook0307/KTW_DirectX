@@ -11,7 +11,7 @@ OutroBook::~OutroBook()
 
 void OutroBook::Start()
 {
-	BookRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BackGround);
+	BookRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::BackGround);
 
 	BookRenderer->CreateAnimation("StoryPage_12", "Page_12", BOOKANIMATIONINTER, -1, -1, false);
 	BookRenderer->SetEndEvent("StoryPage_12",
