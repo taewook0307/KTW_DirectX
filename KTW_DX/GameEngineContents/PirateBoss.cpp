@@ -12,37 +12,44 @@ PirateBoss::~PirateBoss()
 void PirateBoss::Start()
 {
 	PirateRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
-	PirateRenderer->CreateAnimation("PirateIdle", "Pirate_Idle");
-	PirateRenderer->CreateAnimation("PirateLaugh", "Pirate_Laugh");
-	PirateRenderer->CreateAnimation("PirateShootReady", "Pirate_Shoot_Ready", 0.1f, -1, -1, false);
-	PirateRenderer->SetEndEvent("PirateShootReady",
+	PirateRenderer->CreateAnimation("Pirate_Idle", "Pirate_Idle");
+	PirateRenderer->CreateAnimation("Pirate_Laugh", "Pirate_Laugh");
+	PirateRenderer->CreateAnimation("Pirate_Whistle", "Pirate_Whistle", 0.1f, -1, -1, false);
+	PirateRenderer->SetEndEvent("Pirate_Whistle",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			PirateRenderer->ChangeAnimation("PirateShootIdle");
+			PirateRenderer->ChangeAnimation("Pirate_Idle");
 		}
 	);
-	PirateRenderer->CreateAnimation("PirateShootIdle", "Pirate_Shoot_Idle", 0.1f, -1, -1, false);
-	PirateRenderer->SetEndEvent("PirateShootIdle",
+	PirateRenderer->CreateAnimation("Pirate_Shoot_Ready", "Pirate_Shoot_Ready", 0.1f, -1, -1, false);
+	PirateRenderer->SetEndEvent("Pirate_Shoot_Ready",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			PirateRenderer->ChangeAnimation("PirateShoot");
+			PirateRenderer->ChangeAnimation("Pirate_Shoot_Idle");
 		}
 	);
-	PirateRenderer->CreateAnimation("PirateShoot", "Pirate_Shoot", 0.1f, -1, -1, false);
-	PirateRenderer->SetEndEvent("PirateShoot",
+	PirateRenderer->CreateAnimation("Pirate_Shoot_Idle", "Pirate_Shoot_Idle", 0.1f, -1, -1, false);
+	PirateRenderer->SetEndEvent("Pirate_Shoot_Idle",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			PirateRenderer->ChangeAnimation("PirateShootEnd");
+			PirateRenderer->ChangeAnimation("Pirate_Shoot");
 		}
 	);
-	PirateRenderer->CreateAnimation("PirateShootEnd", "Pirate_Shoot_End", 0.1f, -1, -1, false);
-	PirateRenderer->SetEndEvent("PirateShootEnd",
+	PirateRenderer->CreateAnimation("Pirate_Shoot", "Pirate_Shoot", 0.1f, -1, -1, false);
+	PirateRenderer->SetEndEvent("Pirate_Shoot",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			PirateRenderer->ChangeAnimation("PirateIdle");
+			PirateRenderer->ChangeAnimation("Pirate_Shoot_End");
 		}
 	);
-	PirateRenderer->ChangeAnimation("PirateIdle");
+	PirateRenderer->CreateAnimation("Pirate_Shoot_End", "Pirate_Shoot_End", 0.1f, -1, -1, false);
+	PirateRenderer->SetEndEvent("Pirate_Shoot_End",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			PirateRenderer->ChangeAnimation("Pirate_Idle");
+		}
+	);
+	PirateRenderer->ChangeAnimation("Pirate_Idle");
 	PirateRenderer->AutoSpriteSizeOn();
 	PirateRenderer->SetPivotType(PivotType::Bottom);
 
@@ -57,13 +64,18 @@ void PirateBoss::Update(float _Delta)
 {
 	if (true == GameEngineInput::IsDown('P'))
 	{
-		PirateRenderer->ChangeAnimation("PirateShootReady");
+		PirateRenderer->ChangeAnimation("Pirate_Shoot_Ready");
 		//PirateUpperRenderer->On();
 		//PirateUpperRenderer->ChangeAnimation("PirateShootUpper");
 	}
 
 	if (true == GameEngineInput::IsDown('O'))
 	{
-		PirateRenderer->ChangeAnimation("PirateLaugh");
+		PirateRenderer->ChangeAnimation("Pirate_Laugh");
+	}
+
+	if (true == GameEngineInput::IsDown('I'))
+	{
+		PirateRenderer->ChangeAnimation("Pirate_Whistle");
 	}
 }
