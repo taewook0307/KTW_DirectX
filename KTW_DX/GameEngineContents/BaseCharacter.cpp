@@ -266,6 +266,18 @@ void BaseCharacter::Update(float _Delta)
 			
 		}
 	);
+
+	PlayerCollision->Collision(ECOLLISIONORDER::MonsterAttack,
+		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
+		{
+			if (ECHARACTERSTATE::Hit != CurState && false == NoDamage)
+			{
+				ChangeState(ECHARACTERSTATE::Hit);
+				return;
+			}
+
+		}
+	);
 }
 
 void BaseCharacter::DirChange()

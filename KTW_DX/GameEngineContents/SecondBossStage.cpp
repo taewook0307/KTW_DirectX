@@ -1,8 +1,10 @@
 ﻿#include "PreCompile.h"
 #include "SecondBossStage.h"
 
+#include "BaseCharacter.h"
 #include "PirateBoss.h"
 #include "ShipBoss.h"
+#include "Map.h"
 
 SecondBossStage::SecondBossStage()
 {
@@ -18,6 +20,18 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, -500 });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
+	GameEngineDirectory Dir;
+	Dir.MoveParentToExistsChild("Resources");
+	Dir.MoveChild("Resources\\Texture\\Global\\Character");
+	std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+	for (size_t i = 0; i < Directorys.size(); i++)
+	{
+		GameEngineDirectory& Dir = Directorys[i];
+
+		GameEngineSprite::CreateFolder(Dir.GetStringPath());
+	}
+
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
@@ -32,13 +46,40 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources\\Texture\\SecondBossStage\\Map");
+		std::vector<GameEngineFile> Files = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Files.size(); i++)
+		{
+			GameEngineFile& File = Files[i];
+
+			std::string PathCheck = File.GetStringPath();
+			std::string FileNameCheck = File.GetFileName();
+
+			GameEngineTexture::Load(File.GetStringPath());
+			GameEngineSprite::CreateSingle(File.GetFileName());
+		}
+	}
+
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 
 	PirateBossActor = CreateActor<PirateBoss>(EUPDATEORDER::Monster);
-	PirateBossActor->Transform.SetLocalPosition({ WinScaleHalf.X, -500.0f });
+	PirateBossActor->Transform.SetLocalPosition({ WinScale.X - 50.0f, -500.0f });
 
 	ShipBossActor = CreateActor<ShipBoss>(EUPDATEORDER::Monster);
-	ShipBossActor->Transform.SetLocalPosition({ WinScaleHalf.X + 100.0f, -WinScale.Y });
+	ShipBossActor->Transform.SetLocalPosition({ WinScale.X + 50.0f, -WinScale.Y });
+
+	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
+	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
+
+	// 테스트용 맵
+	SecondStageMap = CreateActor<Map>(EUPDATEORDER::Map);
+	SecondStageMap->MapInit("SecondTestMap.Png");
+	SecondStageMap->PixelMapInit("SecondTestPixelMap.Png");
+	SecondStageMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 }
 
 void SecondBossStage::Update(float _Delta)

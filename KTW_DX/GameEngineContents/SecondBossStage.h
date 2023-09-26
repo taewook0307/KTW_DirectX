@@ -18,8 +18,10 @@ public:
 protected:
 
 private:
+	std::shared_ptr<class BaseCharacter> Player = nullptr;
 	std::shared_ptr<class PirateBoss> PirateBossActor = nullptr;
 	std::shared_ptr<class ShipBoss> ShipBossActor = nullptr;
+	std::shared_ptr<class Map> SecondStageMap = nullptr;
 
 private:
 	void LevelStart(GameEngineLevel* _PrevLevel) override;

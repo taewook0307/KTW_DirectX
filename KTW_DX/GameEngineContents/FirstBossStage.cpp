@@ -25,7 +25,7 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Global\\Character\\CupHead");
+		Dir.MoveChild("Resources\\Texture\\Global\\Character");
 		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
 		for (size_t i = 0; i < Directorys.size(); i++)
@@ -64,20 +64,6 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 		Path.MoveChild("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap_Upper.png");
 		GameEngineTexture::Load(Path.GetStringPath());
 		GameEngineSprite::CreateSingle("FirstBossMap_Upper.Png");
-	}
-
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Global\\BUllet");
-		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
-
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			GameEngineDirectory& Dir = Directorys[i];
-
-			GameEngineSprite::CreateFolder(Dir.GetStringPath());
-		}
 	}
 
 	{

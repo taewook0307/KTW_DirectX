@@ -122,6 +122,9 @@
     <ClInclude Include="ShipBoss.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
     </ClInclude>
+    <ClInclude Include="PirateBullet.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -263,6 +266,9 @@
     <ClCompile Include="ShipBoss.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
     </ClCompile>
+    <ClCompile Include="PirateBullet.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -360,6 +366,9 @@
     </Filter>
     <Filter Include="Level\8. FirstBossStage\FirstBossStageActor\Effect">
       <UniqueIdentifier>{dcf193ea-a223-4db2-85b2-c464f476879f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\PirateBullet">
+      <UniqueIdentifier>{f84a79c9-4c10-4ed2-88a8-7b75ae11addd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

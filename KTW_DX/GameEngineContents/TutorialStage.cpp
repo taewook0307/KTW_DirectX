@@ -27,7 +27,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Global\\Character\\CupHead");
+		Dir.MoveChild("Resources\\Texture\\Global\\Character");
 		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
 		for (size_t i = 0; i < Directorys.size(); i++)
@@ -57,20 +57,6 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 		GameEngineSprite::CreateSingle("Tutorial_BackGround.Png");
 		GameEngineSprite::CreateSingle("Tutorial_BackGround_Upper.Png");
 		GameEngineSprite::CreateSingle("Tutorial_Exit.Png");
-	}
-
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Global\\Bullet");
-		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
-
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			GameEngineDirectory& Dir = Directorys[i];
-
-			GameEngineSprite::CreateFolder(Dir.GetStringPath());
-		}
 	}
 
 	{

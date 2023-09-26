@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "PirateBoss.h"
 
+#include "PirateBullet.h"
+
 PirateBoss::PirateBoss()
 {
 }
@@ -106,6 +108,7 @@ void PirateBoss::Start()
 	PirateRenderer->SetEndEvent("Pirate_Shoot",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			CreatePirateBullet();
 			PirateRenderer->ChangeAnimation("Pirate_Shoot_End");
 		}
 	);
@@ -150,4 +153,13 @@ void PirateBoss::Update(float _Delta)
 	{
 		PirateRenderer->ChangeAnimation("Pirate_Knockout");
 	}
+}
+
+void PirateBoss::CreatePirateBullet()
+{
+	std::shared_ptr<PirateBullet> NewBullet = GetLevel()->CreateActor<PirateBullet>(EUPDATEORDER::Bullet);
+	float4 PiratePos = Transform.GetWorldPosition();
+	float4 BulletPos = { PiratePos.X, PiratePos.Y + 100.0f };
+	NewBullet->Transform.SetLocalPosition(BulletPos);
+	//NewBullet->SetDirVector()
 }
