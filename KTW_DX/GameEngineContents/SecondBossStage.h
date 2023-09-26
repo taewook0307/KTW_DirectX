@@ -19,7 +19,7 @@ protected:
 
 private:
 	std::shared_ptr<class PirateBoss> PirateBossActor = nullptr;
-	//std::shared_ptr<class ShipBoss> ShipBossActor = nullptr;
+	std::shared_ptr<class ShipBoss> ShipBossActor = nullptr;
 
 private:
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
