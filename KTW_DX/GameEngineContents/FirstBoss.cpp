@@ -207,7 +207,7 @@ void FirstBoss::ChangeAnimation(std::string_view _State)
 
 void FirstBoss::PhaseChange()
 {
-	if (EBOSSPHASE::Phase1 == CurPhase && HitCount > 288)
+	if (EBOSSPHASE::Phase1 == CurPhase && HitCount > PHASE1HP)
 	{
 		CurPhase = EBOSSPHASE::Phase2;
 		ChangeState(EBOSSSTATE::Intro);
@@ -215,7 +215,7 @@ void FirstBoss::PhaseChange()
 		BounceCount = 0;
 	}
 
-	if (EBOSSPHASE::Phase2 == CurPhase && HitCount > 540)
+	if (EBOSSPHASE::Phase2 == CurPhase && HitCount > PHASE2HP)
 	{
 		ChangeState(EBOSSSTATE::Death);
 		HitCount = 0;

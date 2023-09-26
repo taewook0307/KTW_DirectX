@@ -2,6 +2,11 @@
 
 #include "BaseBoss.h"
 
+#define PHASE1HP 288
+#define PHASE2HP 540
+
+#define PHASE2INTROTIMER 3.0f
+
 class FirstBoss : public BaseBoss
 {
 	friend class Bullet;
@@ -68,7 +73,7 @@ private:
 	void FirstBossMove(float4 _Delta);
 	void CreateMoveDust();
 
-	float Phase2IntroTimer = 3.0f;
+	float Phase2IntroTimer = PHASE2INTROTIMER;
 	std::vector<std::shared_ptr<class FirstMapParryObject>> AllParry;
 	void CreateParryObject();
 	void AllParryDeath();
