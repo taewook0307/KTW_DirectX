@@ -13,6 +13,7 @@ void PirateBoss::Start()
 {
 	PirateRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
 	PirateRenderer->CreateAnimation("PirateIdle", "Pirate_Idle");
+	PirateRenderer->CreateAnimation("PirateLaugh", "Pirate_Laugh");
 	PirateRenderer->CreateAnimation("PirateShootReady", "Pirate_Shoot_Ready", 0.1f, -1, -1, false);
 	PirateRenderer->SetEndEvent("PirateShootReady",
 		[=](GameEngineSpriteRenderer* _Renderer)
@@ -59,5 +60,10 @@ void PirateBoss::Update(float _Delta)
 		PirateRenderer->ChangeAnimation("PirateShootReady");
 		//PirateUpperRenderer->On();
 		//PirateUpperRenderer->ChangeAnimation("PirateShootUpper");
+	}
+
+	if (true == GameEngineInput::IsDown('O'))
+	{
+		PirateRenderer->ChangeAnimation("PirateLaugh");
 	}
 }
