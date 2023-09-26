@@ -73,7 +73,7 @@ enum class EDIRECTION8
 	LeftUp
 };
 
-// Boss
+// First Boss
 enum class EBOSSPHASE
 {
 	Phase1,
@@ -91,6 +91,24 @@ enum class EBOSSSTATE
 	Death,
 	Turn,
 	Slime
+};
+
+// Second Boss
+enum class EPIRATEBOSSSTATE
+{
+	None,
+	Idle,
+	Shoot,
+	Laugh,
+	Knockout,
+	Whistle
+};
+
+enum class EPIRATEBULLETSTATE
+{
+	None,
+	Move,
+	Death
 };
 
 // etc

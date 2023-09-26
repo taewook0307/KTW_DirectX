@@ -20,7 +20,7 @@ protected:
 	float4 PlayerPos = float4::ZERO;
 
 private:
-	float Speed = 300.0f;
+	float Speed = 500.0f;
 	std::shared_ptr<GameEngineSpriteRenderer> BulletRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> BulletCollision = nullptr;
 

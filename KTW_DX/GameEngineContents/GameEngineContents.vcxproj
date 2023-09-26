@@ -452,6 +452,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="PirateBoss_State.cpp" />
     <ClCompile Include="PirateBullet.cpp">
       <SubType>
       </SubType>

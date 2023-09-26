@@ -30,14 +30,11 @@ void PirateBullet::Start()
 	BulletCollision->Transform.SetLocalScale({ 10.0f, 10.0f });
 
 	PlayerPos = BaseCharacter::MainCharacter->Transform.GetWorldPosition();
-	
 }
 
 void PirateBullet::Update(float _Delta)
 {
-	float4 Check = PlayerPos;
 	DirVector = PlayerPos - Transform.GetWorldPosition();
-	float4 CheckVector = DirVector;
 
 	float4 MovePos = DirVector.NormalizeReturn() * _Delta * Speed;
 
