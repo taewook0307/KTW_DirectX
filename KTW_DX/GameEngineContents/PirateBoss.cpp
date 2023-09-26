@@ -14,6 +14,7 @@ void PirateBoss::Start()
 	PirateRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
 	PirateRenderer->CreateAnimation("Pirate_Idle", "Pirate_Idle");
 	PirateRenderer->CreateAnimation("Pirate_Laugh", "Pirate_Laugh");
+	PirateRenderer->CreateAnimation("Pirate_Knockout", "Pirate_Knockout");
 	PirateRenderer->CreateAnimation("Pirate_Whistle", "Pirate_Whistle", 0.1f, -1, -1, false);
 	PirateRenderer->SetEndEvent("Pirate_Whistle",
 		[=](GameEngineSpriteRenderer* _Renderer)
@@ -77,5 +78,10 @@ void PirateBoss::Update(float _Delta)
 	if (true == GameEngineInput::IsDown('I'))
 	{
 		PirateRenderer->ChangeAnimation("Pirate_Whistle");
+	}
+
+	if (true == GameEngineInput::IsDown('U'))
+	{
+		PirateRenderer->ChangeAnimation("Pirate_Knockout");
 	}
 }
