@@ -7,6 +7,9 @@
 
 #define PHASE2INTROTIMER 3.0f
 
+#define PHASE1BODYCOLLISIONSCALE { 180.0f, 180.0f }
+#define PHASE2BODYCOLLISIONSCALE { 335.0f, 335.0f }
+
 class FirstBoss : public BaseBoss
 {
 	friend class Bullet;

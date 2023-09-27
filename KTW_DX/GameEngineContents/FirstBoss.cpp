@@ -94,8 +94,7 @@ void FirstBoss::Start()
 
 	FirstBossCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
 	
-	std::shared_ptr<GameEngineSprite> BossSprite = GameEngineSprite::Find("FirstBoss_Phase1_Idle");
-	float4 CollisionScale = BossSprite->GetSpriteData(0).GetScale();
+	float4 CollisionScale = PHASE1BODYCOLLISIONSCALE;
 	float4 CollisionPosition = { 0.0f, CollisionScale.Half().Y };
 
 	FirstBossCollision->Transform.SetLocalScale(CollisionScale);

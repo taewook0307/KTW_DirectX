@@ -59,8 +59,7 @@ void FirstBoss::IdleStart()
 {
 	if (EBOSSPHASE::Phase2 == CurPhase)
 	{
-		std::shared_ptr<GameEngineSprite> BossSprite = GameEngineSprite::Find("FirstBoss_Phase2_Idle");
-		float4 CollisionScale = BossSprite->GetSpriteData(0).GetScale();
+		float4 CollisionScale = PHASE2BODYCOLLISIONSCALE;
 		float4 CollisionPosition = { 0.0f, CollisionScale.Half().Y };
 
 		FirstBossCollision->Transform.SetLocalScale(CollisionScale);
