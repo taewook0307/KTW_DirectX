@@ -4,9 +4,12 @@
 void PirateBullet::CameraOutCheck()
 {
 	float4 BulletPos = Transform.GetWorldPosition();
+	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 	
 	if (0 > BulletPos.X
-		|| -720.0f > BulletPos.Y)
+		|| WinScale.X < BulletPos.X
+		|| 0 < BulletPos.Y
+		|| -WinScale.Y > BulletPos.Y)
 	{
 		ChangeState(EPIRATEBULLETSTATE::Death);
 		return;
