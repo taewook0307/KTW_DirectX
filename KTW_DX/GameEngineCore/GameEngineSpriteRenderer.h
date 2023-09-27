@@ -43,6 +43,7 @@ public:
 enum class PivotType
 {
 	Center,
+	Top,
 	Bottom,
 	Left,
 	LeftTop,
