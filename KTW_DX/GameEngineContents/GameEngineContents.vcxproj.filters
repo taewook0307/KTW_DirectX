@@ -272,6 +272,9 @@
     <ClCompile Include="PirateBoss_State.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
     </ClCompile>
+    <ClCompile Include="PirateBullet_State.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">

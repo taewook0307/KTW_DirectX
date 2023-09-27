@@ -24,29 +24,67 @@ void PirateBullet::Start()
 	);
 	BulletRenderer->AutoSpriteSizeOn();
 	BulletRenderer->SetPivotType(PivotType::Left);
-	BulletRenderer->ChangeAnimation("Pirate_Bullet_Yellow_Move");
 
 	BulletCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterAttack);
 	BulletCollision->Transform.SetLocalScale({ 10.0f, 10.0f });
 
 	PlayerPos = BaseCharacter::MainCharacter->Transform.GetWorldPosition();
+	ChangeState(EPIRATEBULLETSTATE::Move);
 }
 
 void PirateBullet::Update(float _Delta)
 {
-	DirVector = PlayerPos - Transform.GetWorldPosition();
-
-	float4 MovePos = DirVector.NormalizeReturn() * _Delta * Speed;
-
-	if (BulletRenderer->IsCurAnimation("Pirate_Bullet_Yellow_Move"))
-	{
-		Transform.AddLocalPosition(MovePos);
-	}
+	StateUpdate(_Delta);
 
 	BulletCollision->Collision(ECOLLISIONORDER::Player,
 		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
 		{
-			BulletRenderer->ChangeAnimation("Pirate_Bullet_Yellow_Death");
+			ChangeState(EPIRATEBULLETSTATE::Death);
+			return;
 		}
 	);
+}
+
+void PirateBullet::ChangeState(EPIRATEBULLETSTATE _State)
+{
+	if (_State != CurState)
+	{
+		switch (_State)
+		{
+		case EPIRATEBULLETSTATE::Move:
+			MoveStart();
+			break;
+		case EPIRATEBULLETSTATE::Death:
+			DeathStart();
+			break;
+		default:
+			break;
+		}
+
+		CurState = _State;
+	}
+}
+
+void PirateBullet::StateUpdate(float _Delta)
+{
+	switch (CurState)
+	{
+	case EPIRATEBULLETSTATE::Move:
+		return MoveUpdate(_Delta);
+	case EPIRATEBULLETSTATE::Death:
+		return DeathUpdate(_Delta);
+	default:
+		break;
+	}
+}
+
+void PirateBullet::ChangeAnimation(std::string_view _State)
+{
+	std::string AnimationName = "Pirate_Bullet_Yellow_";
+
+	AnimationName += _State;
+
+	State = _State;
+
+	BulletRenderer->ChangeAnimation(AnimationName);
 }

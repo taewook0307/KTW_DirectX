@@ -124,6 +124,7 @@ void PirateBoss::Start()
 		{
 			if (2 < ShootCount)
 			{
+				ShootCount = 0;
 				PirateRenderer->ChangeAnimation("Pirate_Shoot_End");
 			}
 			else
