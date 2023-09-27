@@ -67,10 +67,10 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 
 	PirateBossActor = CreateActor<PirateBoss>(EUPDATEORDER::Monster);
-	PirateBossActor->Transform.SetLocalPosition({ WinScale.X - 50.0f, -500.0f });
+	PirateBossActor->Transform.SetLocalPosition({ WinScale.X, -500.0f });
 
 	ShipBossActor = CreateActor<ShipBoss>(EUPDATEORDER::Monster);
-	ShipBossActor->Transform.SetLocalPosition({ WinScale.X + 50.0f, -WinScale.Y });
+	ShipBossActor->Transform.SetLocalPosition({ WinScale.X + 60.0f, -WinScale.Y - 50.0f });
 
 	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
@@ -78,7 +78,7 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	// 테스트용 맵
 	SecondStageMap = CreateActor<Map>(EUPDATEORDER::Map);
 	SecondStageMap->MapInit("SecondTestMap.Png");
-	SecondStageMap->PixelMapInit("SecondTestPixelMap.Png");
+	SecondStageMap->PixelMapInit("SecondStagePixelMap.Png");
 	SecondStageMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 }
 
