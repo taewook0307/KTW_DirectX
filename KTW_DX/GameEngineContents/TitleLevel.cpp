@@ -38,7 +38,7 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		Path.MoveChild("Resources\\Texture\\Title\\Title_BackGround.Png");
 		GameEngineTexture::Load(Path.GetStringPath());
 
-		GameEngineSprite::CreateSingle("Title_BackGround.Png");
+		GameEngineSprite::CreateSingle(Path.GetFileName());
 	}
 
 	{
@@ -69,11 +69,6 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void TitleLevel::Update(float _Delta)
 {
-	/*if (true == GameEngineInput::IsDown(VK_RETURN))
-	{
-		GameEngineCore::ChangeLevel("MenuLevel");
-	}*/
-
 	if (true == GameEngineInput::IsDown(VK_RETURN))
 	{
 		FadeEffect = CreateActor<FadeObject>(EUPDATEORDER::UI);
@@ -82,6 +77,8 @@ void TitleLevel::Update(float _Delta)
 
 	if (nullptr != FadeEffect && true == FadeEffect->GetFadeAnimationEnd())
 	{
+		TitleBackGround->BackGroundDeath();
+		TitleAnimation->BackGroundDeath();
 		GameEngineCore::ChangeLevel("MenuLevel");
 	}
 }
@@ -98,5 +95,36 @@ void TitleLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	{
 		TitleAnimation->Death();
 		TitleAnimation = nullptr;
+	}
+
+	{
+		GameEngineTexture::Release("Title_BackGround.Png");
+		GameEngineSprite::Release("Title_BackGround.Png");
+	}
+
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources\\Texture\\Title");
+
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		size_t DirSize = Directorys.size();
+
+		for (size_t i = 0; i < DirSize; i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+
+			GameEngineSprite::Release(Dir.GetFileName());
+
+			std::vector<GameEngineFile> Files = Dir.GetAllFile();
+
+			for (size_t i = 0; i < Files.size(); i++)
+			{
+				GameEngineFile File = Files[i];
+
+				GameEngineTexture::Release(File.GetFileName());
+			}
+		}
 	}
 }

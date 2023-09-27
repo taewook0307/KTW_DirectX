@@ -31,6 +31,7 @@ void LogoLevel::Update(float _Delta)
 {
 	if (true == Logo->AnimationEndCheck())
 	{
+		Logo->BackGroundDeath();
 		GameEngineCore::ChangeLevel("TitleLevel");
 	}
 }
@@ -42,4 +43,7 @@ void LogoLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		Logo->Death();
 		Logo = nullptr;
 	}
+
+	GameEngineSprite::Release("Logo.png");
+	GameEngineTexture::Release("Logo.png");
 }

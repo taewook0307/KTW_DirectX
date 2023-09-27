@@ -49,3 +49,9 @@ void BackGround::SetBackGroundRendererPivotType(PivotType _Pivot)
 {
 	MainSpriteRenderer->SetPivotType(_Pivot);
 }
+
+void BackGround::BackGroundDeath()
+{
+	MainSpriteRenderer = nullptr;
+	Death();
+}

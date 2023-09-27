@@ -21,6 +21,8 @@ public:
 
 	void SetBackGroundRendererPivotType(PivotType _Pivot);
 
+	void BackGroundDeath();
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
