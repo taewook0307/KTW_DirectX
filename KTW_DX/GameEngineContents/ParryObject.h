@@ -48,13 +48,13 @@ public:
 	}
 
 protected:
-	std::shared_ptr<GameEngineSpriteRenderer> ParryRenderer = nullptr;
-	std::shared_ptr<GameEngineCollision> ParryCollision = nullptr;
-
 	bool ParryActivation = false;
 	bool Parry = false;
 
-private:
 	void Start() override;
 	void Update(float _Delta) override;
+
+private:
+	std::shared_ptr<GameEngineSpriteRenderer> ParryRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> ParryCollision = nullptr;
 };
