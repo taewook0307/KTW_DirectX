@@ -251,7 +251,7 @@ void PirateBoss::CreatePirateBullet()
 	}
 
 	float4 PiratePos = Transform.GetWorldPosition();
-	float4 BulletPos = { PiratePos.X, PiratePos.Y + 100.0f };
+	float4 BulletPos = { PiratePos.X - 220.0f, PiratePos.Y + 120.0f };
 
 	NewBullet->Transform.SetLocalPosition(BulletPos);
 
