@@ -103,6 +103,11 @@ void FirstBoss::Start()
 	FirstBossUnDamageCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::UnDamageMonster);
 	FirstBossUnDamageCollision->Off();
 
+	float4 AttackCollisionScale = PHASE1ATTACKCOLLISIONSCALE;
+	FirstBossAttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterAttack);
+	FirstBossAttackCollision->Transform.SetLocalScale(AttackCollisionScale);
+	FirstBossAttackCollision->Off();
+
 	ChangeState(EBOSSSTATE::Intro);
 }
 

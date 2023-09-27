@@ -9,6 +9,8 @@
 
 #define PHASE1BODYCOLLISIONSCALE { 180.0f, 180.0f }
 #define PHASE2BODYCOLLISIONSCALE { 335.0f, 335.0f }
+#define PHASE1ATTACKCOLLISIONSCALE { 330.0f, 330.0f }
+#define PHASE2ATTACKCOLLISIONSCALE { 220.0f, 220.0f }
 
 class FirstBoss : public BaseBoss
 {
@@ -62,7 +64,7 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> FirstBossCollision = nullptr;
 	std::shared_ptr<GameEngineCollision> FirstBossUnDamageCollision = nullptr;
-	//std::shared_ptr<GameEngineCollision> FirstBossAttackCollision = nullptr;
+	std::shared_ptr<GameEngineCollision> FirstBossAttackCollision = nullptr;
 
 	EACTORDIR FirstBossDir = EACTORDIR::Left;
 
