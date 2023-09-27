@@ -128,6 +128,9 @@
     <ClInclude Include="ParryPirateBullet.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
     </ClInclude>
+    <ClInclude Include="ClearEffect.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -280,6 +283,9 @@
     </ClCompile>
     <ClCompile Include="ParryPirateBullet.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearEffect.cpp">
+      <Filter>Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

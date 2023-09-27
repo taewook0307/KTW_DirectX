@@ -7,6 +7,7 @@
 #include "FirstBossPhase3.h"
 #include "Map.h"
 #include "UpperObject.h"
+#include "ClearEffect.h"
 
 FirstBossStage::FirstBossStage()
 {
@@ -80,6 +81,13 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources\\Texture\\Global\\Clear_Effect");
+		GameEngineSprite::CreateFolder(Dir.GetStringPath());
+	}
+
 	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
 
@@ -115,6 +123,20 @@ void FirstBossStage::Update(float _Delta)
 	{
 		GameEngineCore::ChangeLevel("MiniMapLevel");
 	}
+
+	if (false == Phase3End
+		&& nullptr != BossPhase3
+		&& true == BossPhase3->GetStageClear())
+	{
+		ClearUI = CreateActor<ClearEffect>(EUPDATEORDER::UI);
+		Phase3End = true;
+	}
+
+	if (true == Phase3End)
+	{
+
+	}
+	// GameEngineCore::ChangeLevel("MiniMapLevel");
 }
 
 void FirstBossStage::LevelEnd(GameEngineLevel* _NextLevel)

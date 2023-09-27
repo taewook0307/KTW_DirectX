@@ -15,6 +15,11 @@ public:
 	FirstBossPhase3& operator=(const FirstBossPhase3& _Other) = delete;
 	FirstBossPhase3& operator=(FirstBossPhase3&& _Other) noexcept = delete;
 
+	bool GetStageClear() const
+	{
+		return StageClear;
+	}
+
 protected:
 
 private:
@@ -41,6 +46,7 @@ private:
 	void CreateEffect(EBOSSSTATE _State);
 private:
 	int DirChangeCount = 0;
+	bool StageClear = false;
 
 	float Speed = 800.0f;
 	std::string State = "";

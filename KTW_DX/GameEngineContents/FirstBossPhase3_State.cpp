@@ -125,6 +125,7 @@ void FirstBossPhase3::AttackUpdate(float _Delta)
 void FirstBossPhase3::DeathStart()
 {
 	ChangeAnimation("Death");
+	StageClear = true;
 }
 
 void FirstBossPhase3::DeathUpdate(float _Delta)
