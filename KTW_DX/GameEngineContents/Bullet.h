@@ -55,5 +55,7 @@ protected:
 	EDIRECTION8 BulletDir = EDIRECTION8::None;
 
 	int Att = 4;
+
+	void BulletHitSuccess(std::vector<std::shared_ptr<GameEngineCollision>> _Col);
 private:
 };

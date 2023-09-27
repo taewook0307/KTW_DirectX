@@ -57,7 +57,17 @@ void FirstBoss::IntroUpdate(float _Delta)
 
 void FirstBoss::IdleStart()
 {
-	FirstBossRenderer->SetPivotType(PivotType::Bottom);
+	if (EBOSSPHASE::Phase2 == CurPhase)
+	{
+		std::shared_ptr<GameEngineSprite> BossSprite = GameEngineSprite::Find("FirstBoss_Phase2_Idle");
+		float4 CollisionScale = BossSprite->GetSpriteData(0).GetScale();
+		float4 CollisionPosition = { 0.0f, CollisionScale.Half().Y };
+
+		FirstBossCollision->Transform.SetLocalScale(CollisionScale);
+		FirstBossCollision->Transform.SetLocalPosition(CollisionPosition);
+		FirstBossUnDamageCollision->Transform.SetLocalScale(CollisionScale);
+		FirstBossUnDamageCollision->Transform.SetLocalPosition(CollisionPosition);
+	}
 	ChangeAnimation("Idle");
 }
 
@@ -149,13 +159,15 @@ void FirstBoss::DeathStart()
 {
 	ChangeAnimation("Death");
 	Phase2End = true;
+	FirstBossCollision->Off();
+	FirstBossUnDamageCollision->On();
 }
 
 void FirstBoss::DeathUpdate(float _Delta)
 {
 	ActorGravity(_Delta, Transform.GetWorldPosition());
 
-	if (true == FirstBossCollision->Collision(ECOLLISIONORDER::MonsterBody))
+	if (true == FirstBossUnDamageCollision->Collision(ECOLLISIONORDER::UnDamageMonster))
 	{
 		ChangeState(EBOSSSTATE::Slime);
 		return;

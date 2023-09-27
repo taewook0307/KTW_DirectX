@@ -51,7 +51,14 @@ void FirstBossPhase3::Start()
 	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase3_Attack", 9,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			FirstBossAttackCollision->On();
 			CreateEffect(CurState);
+		}
+	);
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase3_Attack", 10,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			FirstBossAttackCollision->Off();
 		}
 	);
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase3_Attack",
@@ -66,8 +73,13 @@ void FirstBossPhase3::Start()
 	FirstBossRenderer->SetPivotType(PivotType::Bottom);
 	FirstBossRenderer->AutoSpriteSizeOn();
 
-	FirstBossCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
-	FirstBossCollision->Transform.SetLocalScale({ 300.0f, 300.0f });
+	FirstBossCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::UnDamageMonster);
+	FirstBossCollision->Transform.SetLocalScale({ 200.0f, 200.0f });
+	FirstBossCollision->Transform.SetLocalPosition({ 0.0f, 300.0f });
+
+	FirstBossAttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterAttack);
+	FirstBossAttackCollision->Transform.SetLocalScale({ 300.0f, 300.0f });
+	FirstBossAttackCollision->Off();
 
 	ChangeState(EBOSSSTATE::Intro);
 }

@@ -73,23 +73,13 @@ void Bullet::Update(float _Delta)
 	BulletCollision->Collision(ECOLLISIONORDER::MonsterBody,
 		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
 		{
-			if (EBULLETSTATE::Move == CurState)
-			{
-				std::shared_ptr<GameEngineCollision> CurCollision = _Col[_Col.size() - 1];
-				GameEngineActor* ColMaster = CurCollision->GetActor();
-				BaseBoss* ColBoss = dynamic_cast<BaseBoss*>(ColMaster);
-				
-				if (nullptr != ColBoss)
-				{
-					for (int i = 0; i < Att; ++i)
-					{
-						ColBoss->PlusHitCount();
-					}
-				}
-
-				ChangeBulletState(EBULLETSTATE::Death);
-				return;
-			}
+			BulletHitSuccess(_Col);
+		}
+	);
+	BulletCollision->Collision(ECOLLISIONORDER::UnDamageMonster,
+		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
+		{
+			BulletHitSuccess(_Col);
 		}
 	);
 }
@@ -141,4 +131,25 @@ void Bullet::ChangeBulletAnimation(std::string_view _State)
 	State = _State;
 
 	BulletRenderer->ChangeAnimation(AnimationName);
+}
+
+void Bullet::BulletHitSuccess(std::vector<std::shared_ptr<GameEngineCollision>> _Col)
+{
+	if (EBULLETSTATE::Move == CurState)
+	{
+		std::shared_ptr<GameEngineCollision> CurCollision = _Col[_Col.size() - 1];
+		GameEngineActor* ColMaster = CurCollision->GetActor();
+		BaseBoss* ColBoss = dynamic_cast<BaseBoss*>(ColMaster);
+
+		if (nullptr != ColBoss)
+		{
+			for (int i = 0; i < Att; ++i)
+			{
+				ColBoss->PlusHitCount();
+			}
+		}
+
+		ChangeBulletState(EBULLETSTATE::Death);
+		return;
+	}
 }

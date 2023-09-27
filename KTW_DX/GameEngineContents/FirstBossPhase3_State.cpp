@@ -43,7 +43,6 @@ void FirstBossPhase3::IdleUpdate(float _Delta)
 void FirstBossPhase3::MoveStart()
 {
 	ChangeAnimation("Move");
-	FirstBossCollision->Transform.SetLocalPosition({ 0.0f, 90.0f });
 }
 
 void FirstBossPhase3::MoveUpdate(float _Delta)
