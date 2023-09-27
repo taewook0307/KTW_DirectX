@@ -30,11 +30,18 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<FirstBossStage>("FirstBossStage");
 	GameEngineCore::CreateLevel<SecondBossStage>("SecondBossStage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
-	GameEngineCore::ChangeLevel("SecondBossStage");
+	GameEngineCore::ChangeLevel("FirstBossStage");
+
+	GameEngineLevel::OffDebug();
 }
 
 void ContentsCore::Update(float _Delta)
 {
+	if (true == GameEngineInput::IsDown('K'))
+	{
+		GameEngineLevel::IsDebug = !GameEngineLevel::IsDebug;
+	}
+
 	if (true == GameEngineInput::IsDown(VK_F1))
 	{
 		GameEngineCore::ChangeLevel("MiniMapLevel");

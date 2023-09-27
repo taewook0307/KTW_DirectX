@@ -190,10 +190,12 @@ void BaseCharacter::Start()
 	AimDir = ECHARACTERAIMDIR::Straight;
 
 	std::shared_ptr<GameEngineSprite> CharacterSprite = GameEngineSprite::Find("Idle");
-	float4 SpriteScale = CharacterSprite->GetSpriteData(0).GetScale();
+	float4 CollisionScale = CharacterSprite->GetSpriteData(0).GetScale().Half();
+	float4 CollisionPosition = { 0.0f, CollisionScale.Half().Y};
 
 	PlayerCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::Player);
-	PlayerCollision->Transform.SetLocalScale(SpriteScale);
+	PlayerCollision->Transform.SetLocalScale(CollisionScale);
+	PlayerCollision->Transform.SetLocalPosition(CollisionPosition);
 
 	ChangeState(ECHARACTERSTATE::Intro);
 }
