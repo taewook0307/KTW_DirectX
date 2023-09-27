@@ -188,10 +188,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ClearEffect.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="ContentsCore.h">
       <SubType>
       </SubType>
@@ -322,6 +318,18 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="StageClearUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="StageFailUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="StageStartUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TitleLevel.h">
       <SubType>
       </SubType>
@@ -361,10 +369,6 @@
     </ClCompile>
     <ClCompile Include="Bullet_State.cpp" />
     <ClCompile Include="Character_Effect.cpp" />
-    <ClCompile Include="ClearEffect.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="ContentsCore.cpp">
       <SubType>
       </SubType>
@@ -501,6 +505,18 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="SpecialBullet.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="StageClearUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="StageFailUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="StageStartUI.cpp">
       <SubType>
       </SubType>
     </ClCompile>

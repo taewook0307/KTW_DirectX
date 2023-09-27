@@ -128,8 +128,14 @@
     <ClInclude Include="ParryPirateBullet.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
     </ClInclude>
-    <ClInclude Include="ClearEffect.h">
-      <Filter>Global</Filter>
+    <ClInclude Include="StageFailUI.h">
+      <Filter>Global\StageEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="StageClearUI.h">
+      <Filter>Global\StageEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="StageStartUI.h">
+      <Filter>Global\StageEffect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -284,8 +290,14 @@
     <ClCompile Include="ParryPirateBullet.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
     </ClCompile>
-    <ClCompile Include="ClearEffect.cpp">
-      <Filter>Global</Filter>
+    <ClCompile Include="StageFailUI.cpp">
+      <Filter>Global\StageEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="StageClearUI.cpp">
+      <Filter>Global\StageEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="StageStartUI.cpp">
+      <Filter>Global\StageEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -387,6 +399,9 @@
     </Filter>
     <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\PirateBullet">
       <UniqueIdentifier>{f84a79c9-4c10-4ed2-88a8-7b75ae11addd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\StageEffect">
+      <UniqueIdentifier>{2c170efc-d8be-4d48-96aa-ab525ea29bca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

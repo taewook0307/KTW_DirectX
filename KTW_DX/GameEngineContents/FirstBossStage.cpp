@@ -7,7 +7,9 @@
 #include "FirstBossPhase3.h"
 #include "Map.h"
 #include "UpperObject.h"
-#include "ClearEffect.h"
+#include "StageStartUI.h"
+#include "StageFailUI.h"
+#include "StageClearUI.h"
 
 FirstBossStage::FirstBossStage()
 {
@@ -84,8 +86,15 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Global\\Clear_Effect");
-		GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		Dir.MoveChild("Resources\\Texture\\Global\\StageEffect");
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
 	}
 
 	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
@@ -102,6 +111,8 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	StageMapUpper = CreateActor<UpperObject>(EUPDATEORDER::Map);
 	StageMapUpper->UpperObjectInit("FirstBossMap_Upper.png");
 	StageMapUpper->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
+
+	CreateActor<StageStartUI>(EUPDATEORDER::UI);
 }
 
 void FirstBossStage::Update(float _Delta)
@@ -128,15 +139,19 @@ void FirstBossStage::Update(float _Delta)
 		&& nullptr != BossPhase3
 		&& true == BossPhase3->GetStageClear())
 	{
-		ClearUI = CreateActor<ClearEffect>(EUPDATEORDER::UI);
+		ClearUI = CreateActor<StageClearUI>(EUPDATEORDER::UI);
 		Phase3End = true;
 	}
 
 	if (true == Phase3End)
 	{
-
+		PhaseMoveTimer -= _Delta;
 	}
-	// GameEngineCore::ChangeLevel("MiniMapLevel");
+
+	if (PhaseMoveTimer < 0.0f)
+	{
+		GameEngineCore::ChangeLevel("MiniMapLevel");
+	}
 }
 
 void FirstBossStage::LevelEnd(GameEngineLevel* _NextLevel)
