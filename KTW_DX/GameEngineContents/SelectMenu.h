@@ -34,8 +34,8 @@ public:
 protected:
 
 private:
-	std::shared_ptr<GameEngineSpriteRenderer> OnRenderer = nullptr;
-	std::shared_ptr<GameEngineSpriteRenderer> OffRenderer = nullptr;
+	std::shared_ptr<GameEngineUIRenderer> OnRenderer = nullptr;
+	std::shared_ptr<GameEngineUIRenderer> OffRenderer = nullptr;
 
 	bool IsSelect = false;
 

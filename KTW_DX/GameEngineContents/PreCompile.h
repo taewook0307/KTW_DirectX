@@ -10,6 +10,7 @@
 
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include <GameEngineCore/GameEngineUIRenderer.h>
 
 #include <GameEngineCore/GameEngineCollision.h>
 

@@ -11,8 +11,8 @@ SelectMenu::~SelectMenu()
 
 void SelectMenu::Start()
 {
-	OnRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
-	OffRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
+	OnRenderer = CreateComponent<GameEngineUIRenderer>(ERENDERORDER::Play);
+	OffRenderer = CreateComponent<GameEngineUIRenderer>(ERENDERORDER::Play);
 }
 
 void SelectMenu::Update(float _Delta)
