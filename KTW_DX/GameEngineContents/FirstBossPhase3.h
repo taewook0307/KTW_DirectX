@@ -50,6 +50,7 @@ private:
 
 	float Speed = 800.0f;
 	std::string State = "";
+	EBOSSSTATE CurState = EBOSSSTATE::None;
 	EACTORDIR FirstBossDir = EACTORDIR::Left;
 
 	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;

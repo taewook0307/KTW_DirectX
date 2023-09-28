@@ -36,6 +36,7 @@ void FirstBoss::FirstBossMove(float4 _Delta)
 
 void FirstBoss::IntroStart()
 {
+	IsIntroState = true;
 	ChangeAnimation("Intro");
 }
 

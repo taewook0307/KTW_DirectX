@@ -2,7 +2,12 @@
 
 #include "BaseBoss.h"
 #define PIRATEBOSSANIMATIONINTER 0.05f
-#define IDLETIMER 2.0f
+
+#define PIRATECOLLISIONSCALE { 390.0f, 250.0f }
+#define PIRATECOLLISIONPOSITION { 0.0f, 250.0f }
+
+#define IDLETIMER 3.0f
+#define INTROTIMER 3.0f
 
 class PirateBoss : public BaseBoss
 {
@@ -20,15 +25,16 @@ public:
 protected:
 
 private:
+	float IntroTimer = INTROTIMER;
+	void IntroStart();
+	void IntroUpdate(float _Delta);
+	
 	float IdleTimer = IDLETIMER;
 	void IdleStart();
 	void IdleUpdate(float _Delta);
 
 	void ShootStart();
 	void ShootUpdate(float _Delta);
-
-	void LaughStart();
-	void LaughUpdate(float _Delta);
 
 	void KnockoutStart();
 	void KnockoutUpdate(float _Delta);
@@ -46,10 +52,12 @@ private:
 
 	std::shared_ptr<GameEngineSpriteRenderer> PirateRenderer = nullptr;
 	std::shared_ptr<GameEngineSpriteRenderer> PirateUpperRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> PirateCollision = nullptr;
 
 	void Start() override;
 	void Update(float _Delta);
 	void CreatePirateBullet();
+	void PhaseChange();
 
 	int ShootCount = 0;
 };

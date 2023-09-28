@@ -53,6 +53,7 @@ private:
 	void SlimeUpdate(float _Delta);
 
 	std::string State = "";
+	EBOSSSTATE CurState = EBOSSSTATE::None;
 
 private:
 	float JumpPower = 1500.0f;

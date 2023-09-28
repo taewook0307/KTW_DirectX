@@ -7,6 +7,7 @@
 
 void FirstBossPhase3::IntroStart()
 {
+	IsIntroState = true;
 	ChangeAnimation("Intro");
 	FirstBossRenderer->AnimationPauseOn();
 }
@@ -15,6 +16,7 @@ void FirstBossPhase3::IntroUpdate(float _Delta)
 {
 	if (IntroTimer < 0.0f)
 	{
+		IsIntroState = false;
 		ChangeState(EBOSSSTATE::Idle);
 		return;
 	}

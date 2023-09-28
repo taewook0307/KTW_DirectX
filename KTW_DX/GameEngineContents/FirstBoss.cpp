@@ -22,6 +22,7 @@ void FirstBoss::Start()
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase1_Intro",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			IsIntroState = false;
 			ChangeState(EBOSSSTATE::Idle);
 			return;
 		}
@@ -70,6 +71,7 @@ void FirstBoss::Start()
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_IntroEnd",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			IsIntroState = false;
 			ChangeState(EBOSSSTATE::Idle);
 			return;
 		}

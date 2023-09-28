@@ -5,6 +5,7 @@
 
 PirateBoss::PirateBoss()
 {
+	HitCount = 0;
 }
 
 PirateBoss::~PirateBoss()
@@ -55,10 +56,20 @@ void PirateBoss::Start()
 	PirateRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
 	PirateRenderer->CreateAnimation("Pirate_Idle", "Pirate_Idle");
 
-	PirateRenderer->CreateAnimation("Pirate_Laugh", "Pirate_Laugh");
-	PirateRenderer->SetEndEvent("Pirate_Laugh",
+	PirateRenderer->CreateAnimation("Pirate_Intro_Ready", "Pirate_Intro", 0.1f, 0, 3, false);
+	PirateRenderer->SetEndEvent("Pirate_Intro_Ready",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			PirateRenderer->ChangeAnimation("Pirate_Intro");
+		}
+	);
+	PirateRenderer->CreateAnimation("Pirate_Intro", "Pirate_Intro", 0.1f, 4, 11, true);
+
+	PirateRenderer->CreateAnimation("Pirate_Intro_End", "Pirate_Intro", 0.1f, 12, 13, false);
+	PirateRenderer->SetEndEvent("Pirate_Intro_End",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			IsIntroState = false;
 			ChangeState(EPIRATEBOSSSTATE::Idle);
 			return;
 		}
@@ -152,12 +163,18 @@ void PirateBoss::Start()
 	PirateRenderer->AutoSpriteSizeOn();
 	PirateRenderer->SetPivotType(PivotType::Bottom);
 
-	ChangeState(EPIRATEBOSSSTATE::Idle);
+	PirateCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
+	PirateCollision->Transform.SetLocalScale(PIRATECOLLISIONSCALE);
+	PirateCollision->Transform.SetLocalPosition(PIRATECOLLISIONPOSITION);
+
+	ChangeState(EPIRATEBOSSSTATE::Intro);
 }
 
 void PirateBoss::Update(float _Delta)
 {
 	StateUpdate(_Delta);
+
+	PhaseChange();
 
 	if (true == GameEngineInput::IsDown('O'))
 	{
@@ -182,14 +199,14 @@ void PirateBoss::ChangeState(EPIRATEBOSSSTATE _State)
 	{
 		switch (_State)
 		{
+		case EPIRATEBOSSSTATE::Intro:
+			IntroStart();
+			break;
 		case EPIRATEBOSSSTATE::Idle:
 			IdleStart();
 			break;
 		case EPIRATEBOSSSTATE::Shoot:
 			ShootStart();
-			break;
-		case EPIRATEBOSSSTATE::Laugh:
-			LaughStart();
 			break;
 		case EPIRATEBOSSSTATE::Knockout:
 			KnockoutStart();
@@ -209,12 +226,12 @@ void PirateBoss::StateUpdate(float _Delta)
 {
 	switch (CurState)
 	{
+	case EPIRATEBOSSSTATE::Intro:
+		return IntroUpdate(_Delta);
 	case EPIRATEBOSSSTATE::Idle:
 		return IdleUpdate(_Delta);
 	case EPIRATEBOSSSTATE::Shoot:
 		return ShootUpdate(_Delta);
-	case EPIRATEBOSSSTATE::Laugh:
-		return LaughUpdate(_Delta);
 	case EPIRATEBOSSSTATE::Knockout:
 		return KnockoutUpdate(_Delta);
 	case EPIRATEBOSSSTATE::Whistle:
@@ -256,4 +273,15 @@ void PirateBoss::CreatePirateBullet()
 	NewBullet->Transform.SetLocalPosition(BulletPos);
 
 	++ShootCount;
+}
+
+void PirateBoss::PhaseChange()
+{
+	if (936 < HitCount && EBOSSPHASE::Phase1 == CurPhase)
+	{
+		CurPhase = EBOSSPHASE::Phase2;
+		HitCount = 0;
+		ChangeState(EPIRATEBOSSSTATE::Knockout);
+		return;
+	}
 }

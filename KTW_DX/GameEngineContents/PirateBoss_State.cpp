@@ -1,6 +1,25 @@
 #include "PreCompile.h"
 #include "PirateBoss.h"
 
+
+void PirateBoss::IntroStart()
+{
+	IsIntroState = true;
+	ChangeAnimation("Intro");
+}
+
+void PirateBoss::IntroUpdate(float _Delta)
+{
+	if (IntroTimer < 0.0f)
+	{
+		IntroTimer = INTROTIMER;
+		PirateRenderer->ChangeAnimation("Pirate_Intro_End");
+	}
+
+	IntroTimer -= _Delta;
+}
+
+
 void PirateBoss::IdleStart()
 {
 	ChangeAnimation("Idle");
@@ -8,7 +27,7 @@ void PirateBoss::IdleStart()
 
 void PirateBoss::IdleUpdate(float _Delta)
 {
-	if (IdleTimer < 0.0f)
+	if (IdleTimer < 0.0f && EBOSSPHASE::Phase1 == CurPhase)
 	{
 		IdleTimer = IDLETIMER;
 		ChangeState(EPIRATEBOSSSTATE::Shoot);
@@ -25,17 +44,6 @@ void PirateBoss::ShootStart()
 }
 
 void PirateBoss::ShootUpdate(float _Delta)
-{
-
-}
-
-
-void PirateBoss::LaughStart()
-{
-	ChangeAnimation("Laugh");
-}
-
-void PirateBoss::LaughUpdate(float _Delta)
 {
 
 }

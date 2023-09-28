@@ -17,7 +17,7 @@ public:
 
 	void PlusHitCount()
 	{
-		if (EBOSSSTATE::Intro == CurState)
+		if (true == IsIntroState)
 		{
 			return;
 		}
@@ -27,7 +27,7 @@ public:
 
 protected:
 	EBOSSPHASE CurPhase = EBOSSPHASE::Phase1;
-	EBOSSSTATE CurState = EBOSSSTATE::None;
+	bool IsIntroState = false;
 
 	int HitCount = 0;
 

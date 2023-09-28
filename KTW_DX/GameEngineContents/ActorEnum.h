@@ -97,9 +97,9 @@ enum class EBOSSSTATE
 enum class EPIRATEBOSSSTATE
 {
 	None,
+	Intro,
 	Idle,
 	Shoot,
-	Laugh,
 	Knockout,
 	Whistle
 };
