@@ -21,7 +21,6 @@ void IntroLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	for (size_t i = 0; i < Directorys.size(); i++)
 	{
 		GameEngineDirectory& Dir = Directorys[i];
-
 		GameEngineSprite::CreateFolder(Dir.GetStringPath());
 	}
 

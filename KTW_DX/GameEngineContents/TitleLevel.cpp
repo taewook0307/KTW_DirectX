@@ -27,7 +27,6 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		for (size_t i = 0; i < DirSize; i++)
 		{
 			GameEngineDirectory& Dir = Directorys[i];
-
 			GameEngineSprite::CreateFolder(Dir.GetStringPath());
 		}
 	}
@@ -37,7 +36,6 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		Path.MoveParentToExistsChild("Resources");
 		Path.MoveChild("Resources\\Texture\\Title\\Title_BackGround.Png");
 		GameEngineTexture::Load(Path.GetStringPath());
-
 		GameEngineSprite::CreateSingle(Path.GetFileName());
 	}
 
@@ -53,7 +51,6 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		for (size_t i = 0; i < DirSize; i++)
 		{
 			GameEngineDirectory& Dir = Directorys[i];
-
 			GameEngineSprite::CreateFolder(Dir.GetStringPath());
 		}
 	}

@@ -22,6 +22,7 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, -500 });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
+	// 리소스 Load
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
@@ -34,10 +35,8 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		{
 			GameEngineFile& File = Files[i];
 			GameEngineTexture::Load(File.GetStringPath());
+			GameEngineSprite::CreateSingle(File.GetFileName());
 		}
-		GameEngineSprite::CreateSingle("CupHead_MiniMap.png");
-		GameEngineSprite::CreateSingle("CupHead_MiniMap_BitMap.png");
-		GameEngineSprite::CreateSingle("CupHead_MiniMap_Upper.png");
 	}
 
 	{
@@ -49,7 +48,6 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		for (size_t i = 0; i < Directorys.size(); i++)
 		{
 			GameEngineDirectory& Dir = Directorys[i];
-
 			GameEngineSprite::CreateFolder(Dir.GetStringPath());
 		}
 	}

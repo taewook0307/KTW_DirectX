@@ -24,6 +24,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, -500 });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
+	// 리소스 Load
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
@@ -33,7 +34,6 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 		for (size_t i = 0; i < Directorys.size(); i++)
 		{
 			GameEngineDirectory& Dir = Directorys[i];
-
 			GameEngineSprite::CreateFolder(Dir.GetStringPath());
 		}
 	}
@@ -50,13 +50,8 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 		{
 			GameEngineFile File = AllFiles[i];
 			GameEngineTexture::Load(File.GetStringPath());
+			GameEngineSprite::CreateSingle(File.GetFileName());
 		}
-
-		GameEngineSprite::CreateSingle("TutorialMap.Png");
-		GameEngineSprite::CreateSingle("TutorialBitMap.Png");
-		GameEngineSprite::CreateSingle("Tutorial_BackGround.Png");
-		GameEngineSprite::CreateSingle("Tutorial_BackGround_Upper.Png");
-		GameEngineSprite::CreateSingle("Tutorial_Exit.Png");
 	}
 
 	{
@@ -68,7 +63,6 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 		for (size_t i = 0; i < Directorys.size(); i++)
 		{
 			GameEngineDirectory& Dir = Directorys[i];
-
 			GameEngineSprite::CreateFolder(Dir.GetStringPath());
 		}
 	}
