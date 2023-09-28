@@ -88,6 +88,9 @@ protected:
 	void HitStart();
 	void HitUpdate(float _Delta);
 
+	void DeathStart();
+	void DeathUpdate(float _Delta);
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
@@ -97,6 +100,7 @@ protected:
 	ECHARACTERSTATE CurState = ECHARACTERSTATE::None;
 	std::string State = "";
 
+	int Hp = 3;
 	float Speed = SPEED;
 	float DashSpeed = Speed * 2.0f;
 

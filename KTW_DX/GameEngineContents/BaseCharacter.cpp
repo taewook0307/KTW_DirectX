@@ -182,6 +182,8 @@ void BaseCharacter::Start()
 		}
 	);
 
+	PlayerRenderer->CreateAnimation("CupHead_Death", "Death", 0.1f);
+
 	PlayerRenderer->AutoSpriteSizeOn();
 	PlayerRenderer->SetAutoScaleRatio(0.8f);
 	PlayerRenderer->SetPivotType(PivotType::Bottom);
@@ -372,6 +374,8 @@ void BaseCharacter::StateUpdate(float _Delta)
 		return SpecialAttackUpdate(_Delta);
 	case ECHARACTERSTATE::Hit:
 		return HitUpdate(_Delta);
+	case ECHARACTERSTATE::Death:
+		return DeathUpdate(_Delta);
 	default:
 		break;
 	}
@@ -427,6 +431,9 @@ void BaseCharacter::ChangeState(ECHARACTERSTATE _State)
 			break;
 		case ECHARACTERSTATE::Hit:
 			HitStart();
+			break;
+		case ECHARACTERSTATE::Death:
+			DeathStart();
 			break;
 		default:
 			break;

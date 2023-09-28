@@ -403,9 +403,33 @@ void BaseCharacter::HitStart()
 	{
 		ChangeAnimation("Hit");
 	}
+
+	--Hp;
 }
 
 void BaseCharacter::HitUpdate(float _Delta)
 {
+	if (Hp <= 0)
+	{
+		ChangeState(ECHARACTERSTATE::Death);
+		return;
+	}
+}
 
+void BaseCharacter::DeathStart()
+{
+	ChangeAnimation("Death");
+	PlayerCollision->Off();
+}
+
+void BaseCharacter::DeathUpdate(float _Delta)
+{
+	float4 MovePos = float4::UP * Speed * 0.5f * _Delta;
+
+	Transform.AddLocalPosition(MovePos);
+
+	if (true == PlayerRenderer->IsCurAnimationEnd())
+	{
+		Death();
+	}
 }

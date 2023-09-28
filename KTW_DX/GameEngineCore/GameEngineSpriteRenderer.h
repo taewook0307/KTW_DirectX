@@ -44,7 +44,11 @@ enum class PivotType
 {
 	Center,
 	Top,
+	RightUp,
+	Right,
+	RightBottom,
 	Bottom,
+	LeftBottom,
 	Left,
 	LeftTop,
 };
