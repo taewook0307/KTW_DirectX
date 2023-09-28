@@ -22,5 +22,7 @@ void StageFailUI::Start()
 	);
 
 	Renderer->ChangeAnimation("Fail_Effect");
-	Renderer->Transform.SetLocalScale({ 1280.0f, 720.0f });
+
+	float4 WinScale = GameEngineCore::MainWindow.GetScale();
+	Renderer->SetImageScale(WinScale);
 }
