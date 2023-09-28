@@ -18,6 +18,8 @@ public:
 	void EnterAnimationInit(std::string_view _AnimationName, std::string_view _SpriteName);
 	void EnterSpriteInit(std::string_view _FileName, int _Order = 0);
 
+	void SetCollisionScaleAndPosition(float4 _Scale = float4::ONE, float4 _Position = float4::ZERO);
+
 	inline void SetEnterLevel(std::string_view _EnterLevel)
 	{
 		EnterLevel = _EnterLevel;

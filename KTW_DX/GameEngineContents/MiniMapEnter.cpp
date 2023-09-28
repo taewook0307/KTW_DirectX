@@ -50,3 +50,9 @@ void MiniMapEnter::EnterSpriteInit(std::string_view _FileName, int _Order /*= 0*
 
 	EnterCollision->Transform.SetLocalScale(SpriteScale);
 }
+
+void MiniMapEnter::SetCollisionScaleAndPosition(float4 _Scale /*= float4::ONE*/, float4 _Position /*= float4::ZERO*/)
+{
+	EnterCollision->Transform.SetLocalScale(_Scale);
+	EnterCollision->Transform.SetLocalPosition(_Position);
+}

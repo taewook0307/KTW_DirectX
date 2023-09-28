@@ -43,11 +43,12 @@ void MiniMapCharacter::Start()
 
 	ChangeState(EMINIMAPCHARACTERSTATE::Idle);
 
-	std::shared_ptr<GameEngineSprite> MiniCharacterSprite = GameEngineSprite::Find("MiniMap_Character.png");
-	float4 SpriteScale = MiniCharacterSprite->GetSpriteData(62).GetScale();
+	float4 CollisionScale = MINIMAPCHARACTERCOLLISIONSCALE;
+	float4 CollisionPosition = { 0.0f, CollisionScale.Half().Y };
 
 	MiniCharacterCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::Player);
-	MiniCharacterCollision->Transform.SetLocalScale(SpriteScale);
+	MiniCharacterCollision->Transform.SetLocalScale(CollisionScale);
+	MiniCharacterCollision->Transform.SetLocalPosition(CollisionPosition);
 }
 
 void MiniMapCharacter::Update(float _Delta)

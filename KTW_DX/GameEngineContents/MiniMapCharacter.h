@@ -2,6 +2,8 @@
 
 #include "BaseActor.h"
 
+#define MINIMAPCHARACTERCOLLISIONSCALE { 60.0f, 90.0f }
+
 class MiniMapCharacter : public BaseActor
 {
 public:

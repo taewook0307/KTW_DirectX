@@ -73,16 +73,19 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	TutorialEnter->EnterAnimationInit("Tutorial_Enter_Ani", "TutorialEnter");
 	TutorialEnter->Transform.SetLocalPosition(TUTORIALENTERPOS);
 	TutorialEnter->SetEnterLevel("TutorialStage");
+	TutorialEnter->SetCollisionScaleAndPosition(TUTORIALENTERCOLLISIONSCALE, TUTORIALENTERCOLLISIONSPOSITION);
 
 	FirstEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
 	FirstEnter->EnterAnimationInit("FirstBossMap_Enter_Ani", "FirstBossMapEnter");
 	FirstEnter->Transform.SetLocalPosition(FIRSTBOSSENTERPOS);
 	FirstEnter->SetEnterLevel("FirstBossStage");
+	FirstEnter->SetCollisionScaleAndPosition(FIRSTBOSSENTERCOLLISIONSCALE, FIRSTBOSSENTERCOLLISIONSPOSITION);
 
 	SecondEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
 	SecondEnter->EnterAnimationInit("Tutorial_Enter_Ani", "SecondBossMapEnter");
 	SecondEnter->Transform.SetLocalPosition(SECONDBOSSENTERPOS);
 	SecondEnter->SetEnterLevel("SecondBossStage");
+	SecondEnter->SetCollisionScaleAndPosition(SECONDBOSSENTERCOLLISIONSCALE);
 
 	// 캐릭터 생성
 	Character = CreateActor<MiniMapCharacter>(EUPDATEORDER::Player);
@@ -93,11 +96,6 @@ void MiniMapLevel::Update(float _Delta)
 {
 	float4 CharacterPos = Character->Transform.GetWorldPosition();
 	GetMainCamera()->Transform.SetLocalPosition(CharacterPos);
-
-	if (true == GameEngineInput::IsDown(VK_RETURN))
-	{
-		GameEngineCore::ChangeLevel("FirstBossStage");
-	}
 }
 
 void MiniMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
