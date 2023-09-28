@@ -176,6 +176,7 @@ void FirstBoss::DeathUpdate(float _Delta)
 void FirstBoss::SlimeStart()
 {
 	ChangeAnimation("Slime");
+	FirstBossUnDamageCollision->Off();
 }
 
 void FirstBoss::SlimeUpdate(float _Delta)

@@ -110,8 +110,8 @@ void FirstBoss::Start()
 	FirstBossCollision->Transform.SetLocalPosition(CollisionPosition);
 
 	FirstBossUnDamageCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::UnDamageMonster);
-	FirstBossCollision->Transform.SetLocalScale(CollisionScale);
-	FirstBossCollision->Transform.SetLocalPosition(CollisionPosition);
+	FirstBossUnDamageCollision->Transform.SetLocalScale(CollisionScale);
+	FirstBossUnDamageCollision->Transform.SetLocalPosition(CollisionPosition);
 	FirstBossUnDamageCollision->Off();
 
 	float4 AttackCollisionScale = PHASE1ATTACKCOLLISIONSCALE;
