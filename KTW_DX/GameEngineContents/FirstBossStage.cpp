@@ -21,6 +21,8 @@ FirstBossStage::~FirstBossStage()
 
 void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	StageResult = ESTAGERESULT::None;
+
 	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, -500 });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
@@ -135,18 +137,15 @@ void FirstBossStage::Update(float _Delta)
 		GameEngineCore::ChangeLevel("MiniMapLevel");
 	}
 
-	if (ESTAGERESULT::None == StageResult
-		&& nullptr != BossPhase3
-		&& true == BossPhase3->GetStageClear())
+	if (ESTAGERESULT::Success == StageResult)
 	{
-		ClearUI = CreateActor<StageClearUI>(EUPDATEORDER::UI);
-		StageResult = ESTAGERESULT::Success;
+		CreateActor<StageClearUI>(EUPDATEORDER::UI);
 	}
 
-	/*if (ESTAGERESULT::Fail == StageResult)
+	if (ESTAGERESULT::Fail == StageResult)
 	{
-		ClearUI = CreateActor<StageFailUI>(EUPDATEORDER::UI);
-	}*/
+		CreateActor<StageFailUI>(EUPDATEORDER::UI);
+	}
 
 	if (ESTAGERESULT::None != StageResult)
 	{

@@ -137,6 +137,9 @@
     <ClInclude Include="StageStartUI.h">
       <Filter>Global\StageEffect</Filter>
     </ClInclude>
+    <ClInclude Include="StageLevel.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -298,6 +301,9 @@
     </ClCompile>
     <ClCompile Include="StageStartUI.cpp">
       <Filter>Global\StageEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="StageLevel.cpp">
+      <Filter>Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "ParryObject.h"
 #include "StageFailUI.h"
+#include "FirstBossStage.h"
 
 void BaseCharacter::CharacterMove(float _Delta)
 {
@@ -421,6 +422,7 @@ void BaseCharacter::DeathStart()
 {
 	ChangeAnimation("Death");
 	PlayerCollision->Off();
+	FirstBossStage::StageFail();
 }
 
 void BaseCharacter::DeathUpdate(float _Delta)
