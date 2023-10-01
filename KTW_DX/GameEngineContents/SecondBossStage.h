@@ -1,8 +1,8 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineLevel.h>
+#include "StageLevel.h"
 
-class SecondBossStage : public GameEngineLevel
+class SecondBossStage : public StageLevel
 {
 public:
 	// constrcuter destructer

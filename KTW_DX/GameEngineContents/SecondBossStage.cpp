@@ -80,10 +80,14 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	SecondStageMap->MapInit("SecondTestMap.Png");
 	SecondStageMap->PixelMapInit("SecondStagePixelMap.Png");
 	SecondStageMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
+
+	StageLevel::LevelStart(_PrevLevel);
 }
 
 void SecondBossStage::Update(float _Delta)
 {
+	StageLevel::Update(_Delta);
+
 	if (true == GameEngineInput::IsDown(VK_ESCAPE))
 	{
 		GameEngineCore::ChangeLevel("MiniMapLevel");
