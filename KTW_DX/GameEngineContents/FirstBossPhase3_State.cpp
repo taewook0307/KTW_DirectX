@@ -4,7 +4,7 @@
 #include "Map.h"
 #include "BaseCharacter.h"
 #include "FirstBossPhase3Effect.h"
-#include "FirstBossStage.h"
+#include "StageLevel.h"
 
 void FirstBossPhase3::IntroStart()
 {
@@ -128,7 +128,7 @@ void FirstBossPhase3::AttackUpdate(float _Delta)
 void FirstBossPhase3::DeathStart()
 {
 	ChangeAnimation("Death");
-	FirstBossStage::StageClear();
+	StageLevel::StageClear();
 }
 
 void FirstBossPhase3::DeathUpdate(float _Delta)

@@ -85,20 +85,6 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Global\\StageEffect");
-		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
-
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			GameEngineDirectory& Dir = Directorys[i];
-
-			GameEngineSprite::CreateFolder(Dir.GetStringPath());
-		}
-	}
-
 	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
 
@@ -114,11 +100,13 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	StageMapUpper->UpperObjectInit("FirstBossMap_Upper.png");
 	StageMapUpper->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 
-	CreateActor<StageStartUI>(EUPDATEORDER::UI);
+	StageLevel::LevelStart(_PrevLevel);
 }
 
 void FirstBossStage::Update(float _Delta)
 {
+	StageLevel::Update(_Delta);
+
 	if (true == Boss->GetPhase2End())
 	{
 		Phase3Timer -= _Delta;
@@ -135,16 +123,6 @@ void FirstBossStage::Update(float _Delta)
 	if (true == GameEngineInput::IsDown(VK_ESCAPE))
 	{
 		GameEngineCore::ChangeLevel("MiniMapLevel");
-	}
-
-	if (ESTAGERESULT::Success == StageResult)
-	{
-		CreateActor<StageClearUI>(EUPDATEORDER::UI);
-	}
-
-	if (ESTAGERESULT::Fail == StageResult)
-	{
-		CreateActor<StageFailUI>(EUPDATEORDER::UI);
 	}
 
 	if (ESTAGERESULT::None != StageResult)
