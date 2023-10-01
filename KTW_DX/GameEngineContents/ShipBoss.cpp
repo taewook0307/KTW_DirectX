@@ -16,5 +16,5 @@ void ShipBoss::Start()
 
 	ShipRenderer->ChangeAnimation("ShipIdle");
 	ShipRenderer->AutoSpriteSizeOn();
-	ShipRenderer->SetPivotValue({ 0.0f, 1.0f });
+	ShipRenderer->SetPivotType(PivotType::RightBottom);
 }

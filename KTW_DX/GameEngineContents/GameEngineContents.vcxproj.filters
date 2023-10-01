@@ -343,9 +343,6 @@
     <Filter Include="Level\11. Outro">
       <UniqueIdentifier>{d6741ea3-bd7a-4923-9bbb-dca04c5d237e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\2. Title\TitleActor">
-      <UniqueIdentifier>{b17a7ed6-5f7c-4eab-9d10-82ce8a38f52b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Level\3. Menu\MenuActor">
       <UniqueIdentifier>{2d67a95c-64a1-4669-84e2-84d23b0e64e8}</UniqueIdentifier>
     </Filter>
