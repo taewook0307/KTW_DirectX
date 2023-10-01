@@ -26,7 +26,7 @@ private:
 	std::shared_ptr<class StageClearUI> ClearUI = nullptr;
 
 	bool Phase3Start = false;
-	bool Phase3End = false;
+	ESTAGERESULT StageResult = ESTAGERESULT::None;
 	float Phase3Timer = 5.0f;
 	float PhaseMoveTimer = 5.0f;
 

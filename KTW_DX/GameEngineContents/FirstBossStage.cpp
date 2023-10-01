@@ -135,15 +135,20 @@ void FirstBossStage::Update(float _Delta)
 		GameEngineCore::ChangeLevel("MiniMapLevel");
 	}
 
-	if (false == Phase3End
+	if (ESTAGERESULT::None == StageResult
 		&& nullptr != BossPhase3
 		&& true == BossPhase3->GetStageClear())
 	{
 		ClearUI = CreateActor<StageClearUI>(EUPDATEORDER::UI);
-		Phase3End = true;
+		StageResult = ESTAGERESULT::Success;
 	}
 
-	if (true == Phase3End)
+	/*if (ESTAGERESULT::Fail == StageResult)
+	{
+		ClearUI = CreateActor<StageFailUI>(EUPDATEORDER::UI);
+	}*/
+
+	if (ESTAGERESULT::None != StageResult)
 	{
 		PhaseMoveTimer -= _Delta;
 	}

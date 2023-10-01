@@ -117,3 +117,10 @@ enum class EMAINMENUSELECT
 	Start,
 	Exit
 };
+
+enum class ESTAGERESULT
+{
+	None,
+	Success,
+	Fail
+};

@@ -3,6 +3,7 @@
 
 #include "Map.h"
 #include "ParryObject.h"
+#include "StageFailUI.h"
 
 void BaseCharacter::CharacterMove(float _Delta)
 {
