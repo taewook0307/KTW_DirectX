@@ -132,8 +132,6 @@ void FirstBossStage::Update(float _Delta)
 
 	if (PhaseMoveTimer < 0.0f)
 	{
-		PhaseMoveTimer = PHASEMOVETIMER;
-		StageResult = ESTAGERESULT::None;
 		GameEngineCore::ChangeLevel("MiniMapLevel");
 	}
 }
@@ -141,6 +139,8 @@ void FirstBossStage::Update(float _Delta)
 void FirstBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	StageLevel::LevelEnd(_NextLevel);
+	PhaseMoveTimer = PHASEMOVETIMER;
+	StageResult = ESTAGERESULT::None;
 
 	if (nullptr != StageMap)
 	{
