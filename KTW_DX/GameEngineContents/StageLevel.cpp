@@ -48,3 +48,8 @@ void StageLevel::Update(float _Delta)
 		ResultUI = true;
 	}
 }
+
+void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
+{
+	ResultUI = false;
+}

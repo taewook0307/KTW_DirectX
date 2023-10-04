@@ -2,6 +2,9 @@
 
 #include "StageLevel.h"
 
+#define PHASE3TIMER 5.0f
+#define PHASEMOVETIMER 5.0f
+
 class FirstBossStage : public StageLevel
 {
 public:
@@ -25,8 +28,8 @@ private:
 	std::shared_ptr<class FirstBossPhase3> BossPhase3 = nullptr;
 
 	bool Phase3Start = false;
-	float Phase3Timer = 5.0f;
-	float PhaseMoveTimer = 5.0f;
+	float Phase3Timer = PHASE3TIMER;
+	float PhaseMoveTimer = PHASEMOVETIMER;
 
 private:
 	void LevelStart(GameEngineLevel* _PrevLevel) override;

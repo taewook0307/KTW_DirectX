@@ -35,6 +35,7 @@ protected:
 	static ESTAGERESULT StageResult;
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
+	void LevelEnd(GameEngineLevel* _NextLevel) override;
 	void Update(float _Delta) override;
 
 private:
