@@ -177,22 +177,6 @@ void PirateBoss::Update(float _Delta)
 	StateUpdate(_Delta);
 
 	PhaseChange();
-
-	if (true == GameEngineInput::IsDown('O'))
-	{
-		ChangeState(EPIRATEBOSSSTATE::Shoot);
-		return;
-	}
-	if (true == GameEngineInput::IsDown('I'))
-	{
-		ChangeState(EPIRATEBOSSSTATE::Knockout);
-		return;
-	}
-	if (true == GameEngineInput::IsDown('O'))
-	{
-		ChangeState(EPIRATEBOSSSTATE::Shoot);
-		return;
-	}
 }
 
 void PirateBoss::ChangeState(EPIRATEBOSSSTATE _State)

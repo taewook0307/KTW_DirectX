@@ -504,6 +504,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ShipBoss_State.cpp" />
     <ClCompile Include="SpecialAttackDust.cpp">
       <SubType>
       </SubType>

@@ -111,6 +111,13 @@ enum class EPIRATEBULLETSTATE
 	Death
 };
 
+enum class ESHIPBOSSSTATE
+{
+	None,
+	Idle,
+	Attack
+};
+
 // etc
 enum class EMAINMENUSELECT
 {
