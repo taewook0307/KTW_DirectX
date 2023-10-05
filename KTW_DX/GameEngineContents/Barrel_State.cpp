@@ -2,6 +2,7 @@
 #include "Barrel.h"
 
 #include "BaseCharacter.h"
+#include "Map.h"
 
 void Barrel::IdleStart()
 {
@@ -43,8 +44,16 @@ void Barrel::DropStart()
 }
 void Barrel::DropUpdate(float _Delta)
 {
-	if (true == Renderer->IsCurAnimationEnd())
+	float4 BarrelPos = Transform.GetWorldPosition();
+	GameEngineColor CheckColor = Map::MainMap->GetColor(BarrelPos, FLOORCOLOR);
+
+	if (FLOORCOLOR != CheckColor)
 	{
+		GravityOn(_Delta);
+	}
+	else
+	{
+		GravityReset();
 		ChangeState(EBARRELSTATE::Smash);
 		return;
 	}
@@ -69,7 +78,11 @@ void Barrel::SmashEndStart()
 }
 void Barrel::SmashEndUpdate(float _Delta)
 {
-	if (true == Renderer->IsCurAnimationEnd())
+	Transform.AddLocalPosition(float4::UP * 300.0f * _Delta);
+
+	float4 BarrelPos = Transform.GetWorldPosition();
+
+	if (-220.0f < BarrelPos.Y)
 	{
 		ChangeState(EBARRELSTATE::Idle);
 		return;

@@ -18,7 +18,7 @@ void Barrel::Start()
 	Renderer->CreateAnimation("Barrel_Smash", "Barrel_Smash", 0.1f, -1, -1, false);
 	Renderer->CreateAnimation("Barrel_SmashEnd", "Barrel_SmashEnd", 0.1f, -1, -1, false);
 	Renderer->AutoSpriteSizeOn();
-	Renderer->SetPivotType(PivotType::Top);
+	Renderer->SetPivotType(PivotType::Bottom);
 
 	ChangeState(EBARRELSTATE::Idle);
 }

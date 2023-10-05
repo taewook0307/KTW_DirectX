@@ -1,10 +1,10 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineActor.h>
+#include "BaseActor.h"
 
 #define IDLETIMER 3.0f
 
-class Barrel : public GameEngineActor
+class Barrel : public BaseActor
 {
 public:
 	// constrcuter destructer

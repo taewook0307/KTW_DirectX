@@ -80,7 +80,7 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
 
 	BarrelActor = CreateActor<Barrel>(EUPDATEORDER::Monster);
-	BarrelActor->Transform.SetLocalPosition({ WinScale.Half().X, 0.0f });
+	BarrelActor->Transform.SetLocalPosition({ WinScale.Half().X, -220.0f });
 
 	// 테스트용 맵
 	SecondStageMap = CreateActor<Map>(EUPDATEORDER::Map);
