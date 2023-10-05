@@ -63,9 +63,8 @@ void PirateBoss::Start()
 			PirateRenderer->ChangeAnimation("Pirate_Intro");
 		}
 	);
-	PirateRenderer->CreateAnimation("Pirate_Intro", "Pirate_Intro", 0.1f, 4, 11, true);
-
-	PirateRenderer->CreateAnimation("Pirate_Intro_End", "Pirate_Intro", 0.1f, 12, 13, false);
+	PirateRenderer->CreateAnimation("Pirate_Intro", "Pirate_Intro", PIRATEBOSSANIMATIONINTER, 4, 11, true);
+	PirateRenderer->CreateAnimation("Pirate_Intro_End", "Pirate_Intro", PIRATEBOSSANIMATIONINTER, 12, 13, false);
 	PirateRenderer->SetEndEvent("Pirate_Intro_End",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -172,6 +171,9 @@ void PirateBoss::Start()
 
 void PirateBoss::Update(float _Delta)
 {
+	OutputDebugStringA(std::to_string(HitCount).c_str());
+	OutputDebugStringA("\n");
+
 	StateUpdate(_Delta);
 
 	PhaseChange();
@@ -277,11 +279,16 @@ void PirateBoss::CreatePirateBullet()
 
 void PirateBoss::PhaseChange()
 {
-	if (936 < HitCount && EBOSSPHASE::Phase1 == CurPhase)
+	if (400 < HitCount && EBOSSPHASE::Phase1 == CurPhase)
 	{
 		CurPhase = EBOSSPHASE::Phase2;
+		return;
+	}
+
+	if (952 < HitCount && EBOSSPHASE::Phase2 == CurPhase)
+	{
+		CurPhase = EBOSSPHASE::Phase3;
 		HitCount = 0;
-		ChangeState(EPIRATEBOSSSTATE::Knockout);
 		return;
 	}
 }

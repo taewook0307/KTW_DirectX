@@ -34,6 +34,26 @@ void PirateBoss::IdleUpdate(float _Delta)
 		return;
 	}
 
+	if (IdleTimer < 0.0f && EBOSSPHASE::Phase2 == CurPhase)
+	{
+		IdleTimer = IDLETIMER;
+
+		GameEngineRandom RandomUnit;
+
+		int Random = RandomUnit.RandomInt(0, 1);
+
+		if (0 == Random)
+		{
+			ChangeState(EPIRATEBOSSSTATE::Shoot);
+			return;
+		}
+		else
+		{
+			ChangeState(EPIRATEBOSSSTATE::Whistle);
+			return;
+		}
+	}
+
 	IdleTimer -= _Delta;
 }
 
