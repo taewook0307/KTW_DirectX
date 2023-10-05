@@ -96,5 +96,5 @@ void SecondBossStage::Update(float _Delta)
 
 void SecondBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
-
+	StageLevel::LevelEnd(_NextLevel);
 }

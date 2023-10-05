@@ -188,6 +188,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="CannonBall.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CannonBallDust.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ContentsCore.h">
       <SubType>
       </SubType>
@@ -372,6 +380,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Bullet_State.cpp" />
+    <ClCompile Include="CannonBall.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CannonBallDust.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Character_Effect.cpp" />
     <ClCompile Include="ContentsCore.cpp">
       <SubType>
