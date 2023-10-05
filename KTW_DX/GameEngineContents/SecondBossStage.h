@@ -21,6 +21,7 @@ private:
 	std::shared_ptr<class BaseCharacter> Player = nullptr;
 	std::shared_ptr<class PirateBoss> PirateBossActor = nullptr;
 	std::shared_ptr<class ShipBoss> ShipBossActor = nullptr;
+	std::shared_ptr<class Barrel> BarrelActor = nullptr;
 	std::shared_ptr<class Map> SecondStageMap = nullptr;
 
 private:

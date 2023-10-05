@@ -118,6 +118,17 @@ enum class ESHIPBOSSSTATE
 	Attack
 };
 
+//Enemy
+enum class EBARRELSTATE
+{
+	None,
+	Idle,
+	SmashReady,
+	Drop,
+	Smash,
+	SmashEnd
+};
+
 // etc
 enum class EMAINMENUSELECT
 {
