@@ -26,9 +26,11 @@ void PirateBullet::Start()
 	BulletRenderer->SetPivotType(PivotType::Left);
 
 	BulletCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterAttack);
-	BulletCollision->Transform.SetLocalScale({ 10.0f, 10.0f });
+	BulletCollision->Transform.SetLocalScale(PIRATEBULLETCOLLISIONSCALE);
+	BulletCollision->Transform.SetLocalPosition(PIRATEBULLETCOLLISIONPOSITION);
 
-	PlayerPos = BaseCharacter::MainCharacter->Transform.GetWorldPosition();
+	float4 CharacterPos = BaseCharacter::MainCharacter->Transform.GetWorldPosition();
+	PlayerPos = { CharacterPos.X, CharacterPos.Y + ADJUSTVALUE };
 	ChangeState(EPIRATEBULLETSTATE::Move);
 }
 

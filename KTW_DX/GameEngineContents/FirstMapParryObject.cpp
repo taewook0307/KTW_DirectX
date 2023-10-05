@@ -33,8 +33,11 @@ void FirstMapParryObject::Update(float _Delta)
 	}
 	else
 	{
+		if (nullptr != ParryRenderer)
+		{
+			ParryRenderer->Death();
+			ParryRenderer = nullptr;
+		}
 		Death();
-		ParryRenderer = nullptr;
-		ParryCollision = nullptr;
 	}
 }

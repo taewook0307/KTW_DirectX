@@ -289,10 +289,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ParryPirateBullet.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="PirateBoss.h">
       <SubType>
       </SubType>
@@ -481,10 +477,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ParryObject.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="ParryPirateBullet.cpp">
       <SubType>
       </SubType>
     </ClCompile>
