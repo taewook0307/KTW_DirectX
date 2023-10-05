@@ -3,6 +3,12 @@
 #include "BaseActor.h"
 
 #define IDLETIMER 3.0f
+#define RIGHTMOVEMAX 900.0f
+#define LEFTMOVEMIN 200.0f
+#define RIGHTMOVECHECKPOS { 40.0f, 0.0f }
+#define LEFTMOVECHECKPOS { -40.0f, 0.0f }
+#define ATTACKCOLLISIONSCALE { 160.0f, 110.0f }
+#define ATTACKCOLLISIONPOSITION { 0.0f, 90.0f }
 
 class Barrel : public BaseActor
 {
@@ -37,6 +43,7 @@ private:
 	void SmashEndUpdate(float _Delta);
 
 private:
+	float Speed = 100.0f;
 	EBARRELSTATE CurState = EBARRELSTATE::None;
 	std::string State = "";
 	EACTORDIR Dir = EACTORDIR::Left;
@@ -44,7 +51,6 @@ private:
 	void StateUpdate(float _Delta);
 	void ChangeState(EBARRELSTATE _State);
 	void ChangeAnimation(std::string_view _State);
-	void DirChange();
 	void BarrelMove(float _Delta);
 
 	void Start() override;

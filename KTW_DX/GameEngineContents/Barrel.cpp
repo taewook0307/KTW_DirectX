@@ -23,6 +23,10 @@ void Barrel::Start()
 	Renderer->SetPivotType(PivotType::Bottom);
 
 	ChangeState(EBARRELSTATE::Idle);
+ 
+	Collision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterAttack);
+	Collision->Transform.SetLocalScale(ATTACKCOLLISIONSCALE);
+	Collision->Transform.SetLocalPosition(ATTACKCOLLISIONPOSITION);
 }
 
 void Barrel::Update(float _Delta)
@@ -88,18 +92,6 @@ void Barrel::ChangeAnimation(std::string_view _State)
 	Renderer->ChangeAnimation(AnimationName);
 }
 
-void Barrel::DirChange()
-{
-	if (EACTORDIR::Left == Dir)
-	{
-		Dir = EACTORDIR::Right;
-	}
-	else
-	{
-		Dir = EACTORDIR::Left;
-	}
-}
-
 void Barrel::BarrelMove(float _Delta)
 {
 	float4 MovePos = float4::ZERO;
@@ -107,25 +99,27 @@ void Barrel::BarrelMove(float _Delta)
 
 	if (EACTORDIR::Left == Dir)
 	{
-		MovePos = float4::LEFT * 100.0f * _Delta;
-		CheckPos = { -30.0f, 0.0f };
+		MovePos = float4::LEFT * Speed * _Delta;
+		CheckPos = LEFTMOVECHECKPOS;
 	}
 	else
 	{
-		MovePos = float4::RIGHT * 100.0f * _Delta;
-		CheckPos = { 30.0f, 0.0f };
+		MovePos = float4::RIGHT * Speed * _Delta;
+		CheckPos = RIGHTMOVECHECKPOS;
 	}
 
 	CheckPos += Transform.GetWorldPosition();
-	
-	GameEngineColor CheckColor = Map::MainMap->GetColor(CheckPos, FLOORCOLOR);
 
-	if (FLOORCOLOR != CheckColor)
+	if (CheckPos.X > RIGHTMOVEMAX)
 	{
-		Transform.AddLocalPosition(MovePos);
+		Dir = EACTORDIR::Left;
+		return;
 	}
-	else
+	else if (CheckPos.X < LEFTMOVEMIN)
 	{
-		DirChange();
+		Dir = EACTORDIR::Right;
+		return;
 	}
+	
+	Transform.AddLocalPosition(MovePos);
 }
