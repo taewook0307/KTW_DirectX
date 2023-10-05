@@ -58,6 +58,7 @@ private:
 	void Update(float _Delta);
 	void CreatePirateBullet();
 	void PhaseChange();
+	void SummonEnemy();
 
 	int ShootCount = 0;
 };

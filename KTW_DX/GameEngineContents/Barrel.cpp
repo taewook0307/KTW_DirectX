@@ -24,9 +24,9 @@ void Barrel::Start()
 
 	ChangeState(EBARRELSTATE::Idle);
  
-	Collision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterAttack);
-	Collision->Transform.SetLocalScale(ATTACKCOLLISIONSCALE);
-	Collision->Transform.SetLocalPosition(ATTACKCOLLISIONPOSITION);
+	AttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterAttack);
+	AttackCollision->Transform.SetLocalScale(ATTACKCOLLISIONSCALE);
+	AttackCollision->Transform.SetLocalPosition(ATTACKCOLLISIONPOSITION);
 }
 
 void Barrel::Update(float _Delta)

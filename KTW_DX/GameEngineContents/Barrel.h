@@ -57,5 +57,5 @@ private:
 	void Update(float _Delta) override;
 
 	std::shared_ptr<GameEngineSpriteRenderer> Renderer = nullptr;
-	std::shared_ptr<GameEngineCollision> Collision = nullptr;
+	std::shared_ptr<GameEngineCollision> AttackCollision = nullptr;
 };

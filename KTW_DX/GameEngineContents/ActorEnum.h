@@ -129,6 +129,15 @@ enum class EBARRELSTATE
 	SmashEnd
 };
 
+enum class ESHARKSTATE
+{
+	None,
+	Fin,
+	Entry,
+	Bite,
+	Leave
+};
+
 // etc
 enum class EMAINMENUSELECT
 {

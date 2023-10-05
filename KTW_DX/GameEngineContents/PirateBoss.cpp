@@ -2,6 +2,7 @@
 #include "PirateBoss.h"
 
 #include "PirateBullet.h"
+#include "Shark.h"
 
 PirateBoss::PirateBoss()
 {
@@ -177,6 +178,11 @@ void PirateBoss::Update(float _Delta)
 	StateUpdate(_Delta);
 
 	PhaseChange();
+
+	if (true == GameEngineInput::IsDown('O'))
+	{
+		SummonEnemy();
+	}
 }
 
 void PirateBoss::ChangeState(EPIRATEBOSSSTATE _State)
@@ -275,4 +281,10 @@ void PirateBoss::PhaseChange()
 		HitCount = 0;
 		return;
 	}
+}
+
+void PirateBoss::SummonEnemy()
+{
+	std::shared_ptr SummonShark = GetLevel()->CreateActor<Shark>(EUPDATEORDER::Monster);
+	SummonShark->Transform.SetLocalPosition({ -830.0f, -630.0f });
 }
