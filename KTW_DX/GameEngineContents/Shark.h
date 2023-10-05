@@ -2,6 +2,10 @@
 
 #include <GameEngineCore/GameEngineActor.h>
 
+#define SHARKANMATIONINTER 0.05f
+#define SHARKBITEANIMATIONINTER 0.03f
+#define SHARKSPEED 800.0f
+
 class Shark : public GameEngineActor
 {
 public:
@@ -30,7 +34,7 @@ private:
 	void LeaveUpdate(float _Delta);
 
 private:
-	float Speed = 400.0f;
+	float Speed = SHARKSPEED;
 	ESHARKSTATE CurState = ESHARKSTATE::None;
 	std::string State = "";
 

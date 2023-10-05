@@ -12,8 +12,8 @@ Shark::~Shark()
 void Shark::Start()
 {
 	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
-	Renderer->CreateAnimation("Shark_Entry", "Shark_Entry");
-	Renderer->CreateAnimation("Shark_Bite", "Shark_Bite", 0.1f, -1, -1, false);
+	Renderer->CreateAnimation("Shark_Entry", "Shark_Entry", SHARKANMATIONINTER);
+	Renderer->CreateAnimation("Shark_Bite", "Shark_Bite", SHARKBITEANIMATIONINTER, -1, -1, false);
 	Renderer->SetEndEvent("Shark_Bite",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -21,7 +21,7 @@ void Shark::Start()
 			return;
 		}
 	);
-	Renderer->CreateAnimation("Shark_Leave", "Shark_Leave");
+	Renderer->CreateAnimation("Shark_Leave", "Shark_Leave", SHARKANMATIONINTER);
 
 	Renderer->AutoSpriteSizeOn();
 	Renderer->SetPivotType(PivotType::LeftBottom);
