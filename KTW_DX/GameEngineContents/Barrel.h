@@ -39,10 +39,13 @@ private:
 private:
 	EBARRELSTATE CurState = EBARRELSTATE::None;
 	std::string State = "";
+	EACTORDIR Dir = EACTORDIR::Left;
 
 	void StateUpdate(float _Delta);
 	void ChangeState(EBARRELSTATE _State);
 	void ChangeAnimation(std::string_view _State);
+	void DirChange();
+	void BarrelMove(float _Delta);
 
 	void Start() override;
 	void Update(float _Delta) override;

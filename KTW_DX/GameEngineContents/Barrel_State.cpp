@@ -17,6 +17,8 @@ void Barrel::IdleUpdate(float _Delta)
 		return;
 	}
 
+	BarrelMove(_Delta);
+
 	IdleTimer -= _Delta;
 }
 
@@ -29,9 +31,11 @@ void Barrel::SmashReadyUpdate(float _Delta)
 	float4 CharacterPos = BaseCharacter::MainCharacter->Transform.GetWorldPosition();
 	float4 BarrelPos = Transform.GetWorldPosition();
 
-	float Dir = fabs(CharacterPos.X - BarrelPos.X);
+	BarrelMove(_Delta);
 
-	if (Dir < 5.0f)
+	float Distance = fabs(CharacterPos.X - BarrelPos.X);
+
+	if (Distance < 10.0f)
 	{
 		ChangeState(EBARRELSTATE::Drop);
 		return;

@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "Barrel.h"
 
+#include "Map.h"
+
 Barrel::Barrel()
 {
 }
@@ -84,4 +86,46 @@ void Barrel::ChangeAnimation(std::string_view _State)
 	State = _State;
 
 	Renderer->ChangeAnimation(AnimationName);
+}
+
+void Barrel::DirChange()
+{
+	if (EACTORDIR::Left == Dir)
+	{
+		Dir = EACTORDIR::Right;
+	}
+	else
+	{
+		Dir = EACTORDIR::Left;
+	}
+}
+
+void Barrel::BarrelMove(float _Delta)
+{
+	float4 MovePos = float4::ZERO;
+	float4 CheckPos = float4::ZERO;
+
+	if (EACTORDIR::Left == Dir)
+	{
+		MovePos = float4::LEFT * 100.0f * _Delta;
+		CheckPos = { -30.0f, 0.0f };
+	}
+	else
+	{
+		MovePos = float4::RIGHT * 100.0f * _Delta;
+		CheckPos = { 30.0f, 0.0f };
+	}
+
+	CheckPos += Transform.GetWorldPosition();
+	
+	GameEngineColor CheckColor = Map::MainMap->GetColor(CheckPos, FLOORCOLOR);
+
+	if (FLOORCOLOR != CheckColor)
+	{
+		Transform.AddLocalPosition(MovePos);
+	}
+	else
+	{
+		DirChange();
+	}
 }
