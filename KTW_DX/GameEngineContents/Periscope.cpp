@@ -19,6 +19,7 @@ void Periscope::Start()
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			SummonStart = true;
+			Renderer->Off();
 		}
 	);
 	Renderer->AutoSpriteSizeOn();

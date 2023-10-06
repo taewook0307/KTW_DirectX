@@ -66,7 +66,5 @@ private:
 	bool SummonScope = false;
 	void SummonEnemy();
 
-	void TestSummon();
-
 	int ShootCount = 0;
 };

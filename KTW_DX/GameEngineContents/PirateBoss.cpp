@@ -180,11 +180,6 @@ void PirateBoss::Update(float _Delta)
 	StateUpdate(_Delta);
 
 	PhaseChange();
-
-	if (true == GameEngineInput::IsDown('O'))
-	{
-		TestSummon();
-	}
 }
 
 void PirateBoss::ChangeState(EPIRATEBOSSSTATE _State)
@@ -299,10 +294,4 @@ void PirateBoss::SummonEnemy()
 		SummonPeriscope->Transform.SetLocalPosition(SUMMONSCOPEPOS);
 		SummonScope = false;
 	}
-}
-
-void PirateBoss::TestSummon()
-{
-	std::shared_ptr<Periscope> SummonPeriscope = GetLevel()->CreateActor<Periscope>(EUPDATEORDER::Monster);
-	SummonPeriscope->Transform.SetLocalPosition(SUMMONSCOPEPOS);
 }
