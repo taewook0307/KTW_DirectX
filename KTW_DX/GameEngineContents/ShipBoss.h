@@ -2,6 +2,10 @@
 
 #include "BaseBoss.h"
 
+#define SHIPANIMATIONINTER 0.05f
+#define SHIPIDLETIMER 5.0f
+#define CANNONATTACKCOUNT 3
+
 class ShipBoss : public BaseBoss
 {
 public:
@@ -16,9 +20,11 @@ public:
 	ShipBoss& operator=(ShipBoss&& _Other) noexcept = delete;
 
 protected:
+	float IdleTimer = SHIPIDLETIMER;
 	void IdleStart();
 	void IdleUpdate(float _Delta);
 
+	int CannonAttackCount = CANNONATTACKCOUNT;
 	void AttackStart();
 	void AttackUpdate(float _Delta);
 

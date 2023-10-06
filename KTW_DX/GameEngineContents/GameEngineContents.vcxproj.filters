@@ -137,23 +137,23 @@
     <ClInclude Include="StageLevel.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="Shark.h">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Barrel.h">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="CannonBallDust.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipCannon</Filter>
     </ClInclude>
     <ClInclude Include="CannonBall.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipCannon</Filter>
     </ClInclude>
-    <ClInclude Include="DogFish.h">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Periscope.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Barrel.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Barrel</Filter>
+    </ClInclude>
+    <ClInclude Include="DogFish.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\DogFish</Filter>
+    </ClInclude>
+    <ClInclude Include="Shark.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Shark</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -317,18 +317,6 @@
     <ClCompile Include="StageLevel.cpp">
       <Filter>Global</Filter>
     </ClCompile>
-    <ClCompile Include="Shark_State.cpp">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Shark.cpp">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Barrel_State.cpp">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Barrel.cpp">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="CannonBallDust.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipCannon</Filter>
     </ClCompile>
@@ -338,14 +326,26 @@
     <ClCompile Include="ShipBoss_State.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
     </ClCompile>
-    <ClCompile Include="DogFish.cpp">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="DogFish_State.cpp">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Periscope.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Barrel_State.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Barrel</Filter>
+    </ClCompile>
+    <ClCompile Include="Barrel.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Barrel</Filter>
+    </ClCompile>
+    <ClCompile Include="DogFish.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\DogFish</Filter>
+    </ClCompile>
+    <ClCompile Include="DogFish_State.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\DogFish</Filter>
+    </ClCompile>
+    <ClCompile Include="Shark.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Shark</Filter>
+    </ClCompile>
+    <ClCompile Include="Shark_State.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Shark</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -453,6 +453,15 @@
     </Filter>
     <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\ShipCannon">
       <UniqueIdentifier>{148e33fa-9262-4e46-8042-d02c642d8d97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\Enemy\Barrel">
+      <UniqueIdentifier>{c09082e7-7967-4893-9aca-765f2ecbe86b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\Enemy\DogFish">
+      <UniqueIdentifier>{b6f8a986-5585-4a16-b94f-c1fdb15a2859}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\Enemy\Shark">
+      <UniqueIdentifier>{217b88c0-cb2e-4d25-bacc-8faf7ce8096d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

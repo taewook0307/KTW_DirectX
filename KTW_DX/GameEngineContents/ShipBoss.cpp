@@ -15,20 +15,13 @@ ShipBoss::~ShipBoss()
 void ShipBoss::Start()
 {
 	ShipRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
-	ShipRenderer->CreateAnimation("Ship_Idle", "Ship_Idle");
-	ShipRenderer->CreateAnimation("Ship_Attack", "Ship_Attack");
+	ShipRenderer->CreateAnimation("Ship_Idle", "Ship_Idle", SHIPANIMATIONINTER);
+	ShipRenderer->CreateAnimation("Ship_Attack", "Ship_Attack", SHIPANIMATIONINTER);
 
 	ShipRenderer->SetFrameEvent("Ship_Attack", 19,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			CreateCannonBall();
-		}
-	);
-	ShipRenderer->SetEndEvent("Ship_Attack",
-		[=](GameEngineSpriteRenderer* _Renderer)
-		{
-			ChangeState(ESHIPBOSSSTATE::Idle);
-			return;
 		}
 	);
 
