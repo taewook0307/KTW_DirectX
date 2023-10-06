@@ -80,6 +80,12 @@ void DogFish::MoveUpdate(float _Delta)
 	// ¿Ãµø
 	float4 MovePos = float4::LEFT * Speed * _Delta;
 	Transform.AddLocalPosition(MovePos);
+
+	float4 Pos = Transform.GetWorldPosition();
+	if (Pos.X < -100.0f)
+	{
+		Death();
+	}
 }
 
 void DogFish::DeathStart()
@@ -89,5 +95,12 @@ void DogFish::DeathStart()
 
 void DogFish::DeathUpdate(float _Delta)
 {
+	float4 MovePos = float4::UP * Speed * _Delta;
+	Transform.AddLocalPosition(MovePos);
 
+	float4 Pos = Transform.GetWorldPosition();
+	if (Pos.Y > 0.0f)
+	{
+		Death();
+	}
 }

@@ -18,6 +18,7 @@ void Bullet::SpawnUpdate(float _Delta)
 void Bullet::MoveStart()
 {
 	ChangeBulletAnimation("Move");
+	BulletCollision->On();
 }
 
 void Bullet::MoveUpdate(float _Delta)

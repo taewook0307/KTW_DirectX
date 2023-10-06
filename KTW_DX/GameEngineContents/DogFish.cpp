@@ -30,6 +30,8 @@ void DogFish::Start()
 	Renderer->SetPivotType(PivotType::Bottom);
 
 	BodyCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
+	BodyCollision->Transform.SetLocalScale(DOGFISHCOLLISIONSCALE);
+	BodyCollision->Transform.SetLocalPosition(DOGFISHCOLLISIONPOSITION);
 
 	ChangeState(EDOGFISHSTATE::Jump);
 }
@@ -38,22 +40,12 @@ void DogFish::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 
-	if (true == GameEngineInput::IsDown(VK_NUMPAD1))
+	if (true == BodyCollision->Collision(ECOLLISIONORDER::Bullet))
 	{
-		ChangeState(EDOGFISHSTATE::Jump);
-		return;
+		--Life;
 	}
-	if (true == GameEngineInput::IsDown(VK_NUMPAD2))
-	{
-		ChangeState(EDOGFISHSTATE::Landing);
-		return;
-	}
-	if (true == GameEngineInput::IsDown(VK_NUMPAD3))
-	{
-		ChangeState(EDOGFISHSTATE::Move);
-		return;
-	}
-	if (true == GameEngineInput::IsDown(VK_NUMPAD4))
+
+	if (0 >= Life)
 	{
 		ChangeState(EDOGFISHSTATE::Death);
 		return;

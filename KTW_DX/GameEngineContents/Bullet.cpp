@@ -22,6 +22,7 @@ void Bullet::Start()
 
 	BulletCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::Bullet);
 	BulletCollision->Transform.SetLocalScale({ 27.0f, 18.0f });
+	BulletCollision->Off();
 
 	ChangeBulletState(EBULLETSTATE::Spawn);
 }

@@ -4,6 +4,9 @@
 
 #define DOGFISHJUMPPOWER 1400.0f
 
+#define DOGFISHCOLLISIONSCALE { 150.0f, 70.0f }
+#define DOGFISHCOLLISIONPOSITION { 0.0f, 35.0f }
+
 class DogFish : public BaseActor
 {
 public:
@@ -34,15 +37,15 @@ private:
 	void DeathUpdate(float _Delta);
 
 private:
+	int Life = 3;
+	float Speed = 400.0f;
+
 	EDOGFISHSTATE CurState = EDOGFISHSTATE::None;
 	std::string State = "";
 
 	void StateUpdate(float _Delta);
 	void ChangeState(EDOGFISHSTATE _State);
 	void ChangeAnimation(std::string_view _State);
-
-	float Speed = 400.0f;
-	void DogFishMove();
 
 	void Start() override;
 	void Update(float _Delta) override;
