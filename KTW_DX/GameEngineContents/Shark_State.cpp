@@ -1,6 +1,8 @@
 #include "PreCompile.h"
 #include "Shark.h"
 
+#include "Shark_SplashEffect.h"
+
 void Shark::FinStart()
 {
 	ChangeAnimation("Fin");
@@ -29,6 +31,10 @@ void Shark::EntryStart()
 {
 	Transform.SetLocalPosition({ -830.0f, -670.0f });
 	AttackCollision->On();
+
+	std::shared_ptr<Shark_SplashEffect> Effect = GetLevel()->CreateActor<Shark_SplashEffect>(EUPDATEORDER::Effect);
+	Effect->Transform.SetLocalPosition({ 0.0f, -670.0f });
+
 	ChangeAnimation("Entry");
 }
 void Shark::EntryUpdate(float _Delta)

@@ -158,6 +158,9 @@
     <ClInclude Include="Whistle_Effect.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Pirate</Filter>
     </ClInclude>
+    <ClInclude Include="Shark_SplashEffect.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Shark</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -352,6 +355,9 @@
     </ClCompile>
     <ClCompile Include="Whistle_Effect.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Pirate</Filter>
+    </ClCompile>
+    <ClCompile Include="Shark_SplashEffect.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Shark</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
