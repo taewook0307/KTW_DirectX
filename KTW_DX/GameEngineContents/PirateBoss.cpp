@@ -4,6 +4,7 @@
 #include "PirateBullet.h"
 #include "Shark.h"
 #include "Periscope.h"
+#include "Whistle_Effect.h"
 
 PirateBoss::PirateBoss()
 {
@@ -79,6 +80,16 @@ void PirateBoss::Start()
 	PirateRenderer->CreateAnimation("Pirate_Knockout", "Pirate_Knockout", PIRATEBOSSANIMATIONINTER, -1, -1, false);
 
 	PirateRenderer->CreateAnimation("Pirate_Whistle", "Pirate_Whistle", PIRATEBOSSANIMATIONINTER, -1, -1, false);
+	PirateRenderer->SetFrameEvent("Pirate_Whistle", 24,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			std::shared_ptr<Whistle_Effect> Effect = GetLevel()->CreateActor<Whistle_Effect>(EUPDATEORDER::Effect);
+			float4 Pos = Transform.GetWorldPosition();
+			float4 EffectPos = { Pos.X - 160.0f, Pos.Y + 390.0f };
+			Effect->Transform.SetLocalPosition(EffectPos);
+		}
+	);
+
 	PirateRenderer->SetEndEvent("Pirate_Whistle",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{

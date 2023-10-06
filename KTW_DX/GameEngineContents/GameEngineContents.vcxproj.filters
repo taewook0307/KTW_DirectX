@@ -116,12 +116,6 @@
     <ClInclude Include="FirstMapParryObject.h">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClInclude>
-    <ClInclude Include="PirateBoss.h">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
-    </ClInclude>
-    <ClInclude Include="ShipBoss.h">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
-    </ClInclude>
     <ClInclude Include="PirateBullet.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
     </ClInclude>
@@ -154,6 +148,15 @@
     </ClInclude>
     <ClInclude Include="Shark.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Shark</Filter>
+    </ClInclude>
+    <ClInclude Include="PirateBoss.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Pirate</Filter>
+    </ClInclude>
+    <ClInclude Include="ShipBoss.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="Whistle_Effect.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Pirate</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -290,17 +293,8 @@
     <ClCompile Include="FirstMapParryObject.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClCompile>
-    <ClCompile Include="PirateBoss.cpp">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
-    </ClCompile>
-    <ClCompile Include="ShipBoss.cpp">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
-    </ClCompile>
     <ClCompile Include="PirateBullet.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
-    </ClCompile>
-    <ClCompile Include="PirateBoss_State.cpp">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
     </ClCompile>
     <ClCompile Include="PirateBullet_State.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
@@ -323,9 +317,6 @@
     <ClCompile Include="CannonBall.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipCannon</Filter>
     </ClCompile>
-    <ClCompile Include="ShipBoss_State.cpp">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
-    </ClCompile>
     <ClCompile Include="Periscope.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
     </ClCompile>
@@ -346,6 +337,21 @@
     </ClCompile>
     <ClCompile Include="Shark_State.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Shark</Filter>
+    </ClCompile>
+    <ClCompile Include="PirateBoss_State.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Pirate</Filter>
+    </ClCompile>
+    <ClCompile Include="PirateBoss.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Pirate</Filter>
+    </ClCompile>
+    <ClCompile Include="ShipBoss.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="ShipBoss_State.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="Whistle_Effect.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Pirate</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -462,6 +468,12 @@
     </Filter>
     <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\Enemy\Shark">
       <UniqueIdentifier>{217b88c0-cb2e-4d25-bacc-8faf7ce8096d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\Pirate">
+      <UniqueIdentifier>{7a5510b7-f035-450a-9cd8-fdf40dd515f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\Ship">
+      <UniqueIdentifier>{58882584-3913-444d-8b9e-d45108b30505}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

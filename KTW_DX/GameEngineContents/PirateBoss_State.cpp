@@ -1,7 +1,6 @@
 #include "PreCompile.h"
 #include "PirateBoss.h"
 
-
 void PirateBoss::IntroStart()
 {
 	IsIntroState = true;

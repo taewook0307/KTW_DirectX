@@ -24,6 +24,8 @@ private:
 	std::shared_ptr<class Barrel> BarrelActor = nullptr;
 	std::shared_ptr<class Map> SecondStageMap = nullptr;
 
+	bool Phase3Start = false;
+
 private:
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
