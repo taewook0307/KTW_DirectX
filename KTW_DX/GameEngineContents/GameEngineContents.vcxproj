@@ -213,6 +213,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="DogFish_DeathEffect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DogFish_Splash.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="FadeObject.h">
       <SubType>
       </SubType>
@@ -423,6 +431,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="DogFish.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DogFish_DeathEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DogFish_Splash.cpp">
       <SubType>
       </SubType>
     </ClCompile>

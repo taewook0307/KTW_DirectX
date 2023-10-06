@@ -49,6 +49,8 @@ private:
 	void ChangeState(EDOGFISHSTATE _State);
 	void ChangeAnimation(std::string_view _State);
 
+	void CreateDeathEffect();
+
 	void Start() override;
 	void Update(float _Delta) override;
 

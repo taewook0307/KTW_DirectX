@@ -161,6 +161,12 @@
     <ClInclude Include="Shark_SplashEffect.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Shark</Filter>
     </ClInclude>
+    <ClInclude Include="DogFish_Splash.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\DogFish</Filter>
+    </ClInclude>
+    <ClInclude Include="DogFish_DeathEffect.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\DogFish</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -358,6 +364,12 @@
     </ClCompile>
     <ClCompile Include="Shark_SplashEffect.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Shark</Filter>
+    </ClCompile>
+    <ClCompile Include="DogFish_Splash.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\DogFish</Filter>
+    </ClCompile>
+    <ClCompile Include="DogFish_DeathEffect.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\DogFish</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

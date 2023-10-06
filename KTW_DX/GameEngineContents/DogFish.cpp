@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "DogFish.h"
 
+#include "DogFish_DeathEffect.h"
+
 DogFish::DogFish()
 {
 }
@@ -104,4 +106,19 @@ void DogFish::ChangeAnimation(std::string_view _State)
 	State = _State;
 
 	Renderer->ChangeAnimation(AnimationName);
+}
+
+void DogFish::CreateDeathEffect()
+{
+	std::shared_ptr<DogFish_DeathEffect> Effect = nullptr;
+	Effect = GetLevel()->CreateActor<DogFish_DeathEffect>(EUPDATEORDER::Effect);
+
+	if (nullptr == Effect)
+	{
+		MsgBoxAssert("DogFish DeathEffect생성에 실패했습니다");
+		return;
+	}
+
+	float4 Pos = Transform.GetWorldPosition();
+	Effect->Transform.SetLocalPosition(Pos);
 }

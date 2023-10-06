@@ -2,6 +2,7 @@
 #include "Periscope.h"
 
 #include "DogFish.h"
+#include "DogFish_Splash.h"
 
 Periscope::Periscope()
 {
@@ -33,6 +34,9 @@ void Periscope::Update(float _Delta)
 	{
 		std::shared_ptr<DogFish> NewDogFish = GetLevel()->CreateActor<DogFish>(EUPDATEORDER::Monster);
 		NewDogFish->Transform.SetLocalPosition(SUMMONPOS);
+
+		std::shared_ptr<DogFish_Splash> Effect = GetLevel()->CreateActor<DogFish_Splash>(EUPDATEORDER::Monster);
+		Effect->Transform.SetLocalPosition(SUMMONPOS);
 
 		SummonTimer = SUMMONTIMER;
 		--SummonCount;

@@ -92,6 +92,7 @@ void DogFish::DeathStart()
 {
 	ChangeAnimation("Death");
 	BodyCollision->Off();
+	CreateDeathEffect();
 }
 
 void DogFish::DeathUpdate(float _Delta)
