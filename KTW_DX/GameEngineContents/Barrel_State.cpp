@@ -13,7 +13,7 @@ void Barrel::IdleUpdate(float _Delta)
 {
 	if (IdleTimer < 0.0f)
 	{
-		IdleTimer = IDLETIMER;
+		IdleTimer = BARRELIDLETIMER;
 		ChangeState(EBARRELSTATE::SmashReady);
 		return;
 	}
@@ -50,18 +50,24 @@ void Barrel::DropStart()
 }
 void Barrel::DropUpdate(float _Delta)
 {
-	float4 BarrelPos = Transform.GetWorldPosition();
-	GameEngineColor CheckColor = Map::MainMap->GetColor(BarrelPos, FLOORCOLOR);
+	DropTimer -= _Delta;
 
-	if (FLOORCOLOR != CheckColor)
+	if (0.0f > DropTimer)
 	{
-		GravityOn(_Delta);
-	}
-	else
-	{
-		GravityReset();
-		ChangeState(EBARRELSTATE::Smash);
-		return;
+		float4 BarrelPos = Transform.GetWorldPosition();
+		GameEngineColor CheckColor = Map::MainMap->GetColor(BarrelPos, FLOORCOLOR);
+
+		if (FLOORCOLOR != CheckColor)
+		{
+			GravityOn(_Delta);
+		}
+		else
+		{
+			GravityReset();
+			DropTimer = BARRELDROPTIMER;
+			ChangeState(EBARRELSTATE::Smash);
+			return;
+		}
 	}
 }
 

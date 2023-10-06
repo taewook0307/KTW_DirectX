@@ -2,7 +2,8 @@
 
 #include "BaseActor.h"
 
-#define IDLETIMER 3.0f
+#define BARRELIDLETIMER 5.0f
+#define BARRELDROPTIMER 0.5f
 #define RIGHTMOVEMAX 900.0f
 #define LEFTMOVEMIN 200.0f
 #define RIGHTMOVECHECKPOS { 40.0f, 0.0f }
@@ -26,13 +27,14 @@ public:
 protected:
 
 private:
-	float IdleTimer = IDLETIMER;
+	float IdleTimer = BARRELIDLETIMER;
 	void IdleStart();
 	void IdleUpdate(float _Delta);
 
 	void SmashReadyStart();
 	void SmashReadyUpdate(float _Delta);
 
+	float DropTimer = BARRELDROPTIMER;
 	void DropStart();
 	void DropUpdate(float _Delta);
 
