@@ -2,6 +2,8 @@
 
 #include <GameEngineCore/GameEngineLevel.h>
 
+#define PHASEMOVETIMER 5.0f
+
 class StageLevel : public GameEngineLevel
 {
 public:
@@ -33,6 +35,7 @@ public:
 
 protected:
 	static ESTAGERESULT StageResult;
+	float PhaseMoveTimer = PHASEMOVETIMER;
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;

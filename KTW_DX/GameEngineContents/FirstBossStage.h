@@ -3,7 +3,6 @@
 #include "StageLevel.h"
 
 #define PHASE3TIMER 5.0f
-#define PHASEMOVETIMER 5.0f
 
 class FirstBossStage : public StageLevel
 {
@@ -29,7 +28,6 @@ private:
 
 	bool Phase3Start = false;
 	float Phase3Timer = PHASE3TIMER;
-	float PhaseMoveTimer = PHASEMOVETIMER;
 
 private:
 	void LevelStart(GameEngineLevel* _PrevLevel) override;

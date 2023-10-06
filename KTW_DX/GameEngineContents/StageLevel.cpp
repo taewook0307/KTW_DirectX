@@ -47,9 +47,21 @@ void StageLevel::Update(float _Delta)
 		CreateActor<StageFailUI>(EUPDATEORDER::UI);
 		ResultUI = true;
 	}
+
+	if (ESTAGERESULT::None != StageResult)
+	{
+		PhaseMoveTimer -= _Delta;
+	}
+
+	if (PhaseMoveTimer < 0.0f)
+	{
+		GameEngineCore::ChangeLevel("MiniMapLevel");
+	}
 }
 
 void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	ResultUI = false;
+	PhaseMoveTimer = PHASEMOVETIMER;
+	StageResult = ESTAGERESULT::None;
 }

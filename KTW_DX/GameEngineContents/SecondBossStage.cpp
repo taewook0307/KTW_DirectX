@@ -122,4 +122,28 @@ void SecondBossStage::Update(float _Delta)
 void SecondBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	StageLevel::LevelEnd(_NextLevel);
+
+	if (nullptr != Player)
+	{
+		Player->Death();
+		Player = nullptr;
+	}
+
+	if (nullptr != PirateBossActor)
+	{
+		PirateBossActor->Death();
+		PirateBossActor = nullptr;
+	}
+
+	if (nullptr != ShipBossActor)
+	{
+		ShipBossActor->Death();
+		ShipBossActor = nullptr;
+	}
+
+	if (nullptr != BarrelActor)
+	{
+		BarrelActor->Death();
+		BarrelActor = nullptr;
+	}
 }
