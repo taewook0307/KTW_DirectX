@@ -39,6 +39,7 @@ private:
 	void KnockoutStart();
 	void KnockoutUpdate(float _Delta);
 
+	bool WhistleTime = true;
 	void WhistleStart();
 	void WhistleUpdate(float _Delta);
 

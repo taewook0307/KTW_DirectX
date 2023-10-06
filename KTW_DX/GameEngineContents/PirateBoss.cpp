@@ -81,6 +81,7 @@ void PirateBoss::Start()
 	PirateRenderer->SetEndEvent("Pirate_Whistle",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			SummonEnemy();
 			ChangeState(EPIRATEBOSSSTATE::Idle);
 			return;
 		}
@@ -178,11 +179,6 @@ void PirateBoss::Update(float _Delta)
 	StateUpdate(_Delta);
 
 	PhaseChange();
-
-	if (true == GameEngineInput::IsDown('O'))
-	{
-		SummonEnemy();
-	}
 }
 
 void PirateBoss::ChangeState(EPIRATEBOSSSTATE _State)

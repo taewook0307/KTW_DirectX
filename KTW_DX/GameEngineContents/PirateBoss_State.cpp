@@ -38,17 +38,15 @@ void PirateBoss::IdleUpdate(float _Delta)
 	{
 		IdleTimer = IDLETIMER;
 
-		GameEngineRandom RandomUnit;
-
-		int Random = RandomUnit.RandomInt(0, 1);
-
-		if (0 == Random)
+		if (false == WhistleTime)
 		{
+			WhistleTime = true;
 			ChangeState(EPIRATEBOSSSTATE::Shoot);
 			return;
 		}
 		else
 		{
+			WhistleTime = false;
 			ChangeState(EPIRATEBOSSSTATE::Whistle);
 			return;
 		}
