@@ -12,10 +12,10 @@ DogFish::~DogFish()
 void DogFish::Start()
 {
 	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
-	Renderer->CreateAnimation("DogFish_Jump", "DogFish_Jump", 0.05f, 0, 3, false);
-	Renderer->CreateAnimation("DogFish_JumpToFall", "DogFish_Jump", 0.05f, 4, 7, false);
-	Renderer->CreateAnimation("DogFish_Fall", "DogFish_Jump", 0.05f, 8, 9, false);
-	Renderer->CreateAnimation("DogFish_Landing", "DogFish_Landing", 0.05f, -1, -1, false);
+	Renderer->CreateAnimation("DogFish_Jump", "DogFish_Jump", DOGFISHANIMATIONINTER, 0, 3, false);
+	Renderer->CreateAnimation("DogFish_JumpToFall", "DogFish_Jump", DOGFISHANIMATIONINTER, 4, 7, false);
+	Renderer->CreateAnimation("DogFish_Fall", "DogFish_Jump", DOGFISHANIMATIONINTER, 8, 9, false);
+	Renderer->CreateAnimation("DogFish_Landing", "DogFish_Landing", DOGFISHANIMATIONINTER, -1, -1, false);
 	Renderer->SetEndEvent("DogFish_Landing",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -23,8 +23,8 @@ void DogFish::Start()
 			return;
 		}
 	);
-	Renderer->CreateAnimation("DogFish_Move", "DogFish_Move", 0.05f);
-	Renderer->CreateAnimation("DogFish_Death", "DogFish_Death", 0.05f);
+	Renderer->CreateAnimation("DogFish_Move", "DogFish_Move", DOGFISHANIMATIONINTER);
+	Renderer->CreateAnimation("DogFish_Death", "DogFish_Death", DOGFISHANIMATIONINTER);
 
 	Renderer->AutoSpriteSizeOn();
 	Renderer->SetPivotType(PivotType::Bottom);

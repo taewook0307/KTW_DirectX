@@ -3,6 +3,7 @@
 
 #include "PirateBullet.h"
 #include "Shark.h"
+#include "Periscope.h"
 
 PirateBoss::PirateBoss()
 {
@@ -179,6 +180,11 @@ void PirateBoss::Update(float _Delta)
 	StateUpdate(_Delta);
 
 	PhaseChange();
+
+	if (true == GameEngineInput::IsDown('O'))
+	{
+		TestSummon();
+	}
 }
 
 void PirateBoss::ChangeState(EPIRATEBOSSSTATE _State)
@@ -281,6 +287,22 @@ void PirateBoss::PhaseChange()
 
 void PirateBoss::SummonEnemy()
 {
-	std::shared_ptr SummonShark = GetLevel()->CreateActor<Shark>(EUPDATEORDER::Monster);
-	SummonShark->Transform.SetLocalPosition({ 1000.0f, -500.0f });
+	if (false == SummonScope)
+	{
+		std::shared_ptr SummonShark = GetLevel()->CreateActor<Shark>(EUPDATEORDER::Monster);
+		SummonShark->Transform.SetLocalPosition(SUMMONSHARKPOS);
+		SummonScope = true;
+	}
+	else
+	{
+		std::shared_ptr<Periscope> SummonPeriscope = GetLevel()->CreateActor<Periscope>(EUPDATEORDER::Monster);
+		SummonPeriscope->Transform.SetLocalPosition(SUMMONSCOPEPOS);
+		SummonScope = false;
+	}
+}
+
+void PirateBoss::TestSummon()
+{
+	std::shared_ptr<Periscope> SummonPeriscope = GetLevel()->CreateActor<Periscope>(EUPDATEORDER::Monster);
+	SummonPeriscope->Transform.SetLocalPosition(SUMMONSCOPEPOS);
 }

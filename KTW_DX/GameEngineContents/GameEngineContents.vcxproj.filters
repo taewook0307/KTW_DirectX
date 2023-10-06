@@ -152,6 +152,9 @@
     <ClInclude Include="DogFish.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Periscope.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -339,6 +342,9 @@
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="DogFish_State.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Periscope.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
     </ClCompile>
   </ItemGroup>

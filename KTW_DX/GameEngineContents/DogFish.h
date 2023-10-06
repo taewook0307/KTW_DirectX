@@ -4,6 +4,8 @@
 
 #define DOGFISHJUMPPOWER 1400.0f
 
+#define DOGFISHANIMATIONINTER 0.05f
+
 #define DOGFISHCOLLISIONSCALE { 150.0f, 70.0f }
 #define DOGFISHCOLLISIONPOSITION { 0.0f, 35.0f }
 
@@ -38,7 +40,7 @@ private:
 
 private:
 	int Life = 3;
-	float Speed = 400.0f;
+	float Speed = 600.0f;
 
 	EDOGFISHSTATE CurState = EDOGFISHSTATE::None;
 	std::string State = "";

@@ -7,7 +7,6 @@
 #include "ShipBoss.h"
 
 #include "Barrel.h"
-#include "DogFish.h"
 
 #include "Map.h"
 
@@ -80,11 +79,8 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
 
-	BarrelActor = CreateActor<Barrel>(EUPDATEORDER::Monster);
-	BarrelActor->Transform.SetLocalPosition({ WinScale.Half().X, -220.0f });
-
-	/*DogFishActor = CreateActor<DogFish>(EUPDATEORDER::Monster);
-	DogFishActor->Transform.SetLocalPosition({ 1050.0f, -720.0f });*/
+	/*BarrelActor = CreateActor<Barrel>(EUPDATEORDER::Monster);
+	BarrelActor->Transform.SetLocalPosition({ WinScale.Half().X, -220.0f });*/
 
 	// 테스트용 맵
 	SecondStageMap = CreateActor<Map>(EUPDATEORDER::Map);

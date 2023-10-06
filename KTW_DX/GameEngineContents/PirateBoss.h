@@ -9,6 +9,9 @@
 #define IDLETIMER 3.0f
 #define INTROTIMER 3.0f
 
+#define SUMMONSHARKPOS { 1000.0f, -500.0f }
+#define SUMMONSCOPEPOS { 1050.0f, -720.0f }
+
 class PirateBoss : public BaseBoss
 {
 public:
@@ -59,7 +62,11 @@ private:
 	void Update(float _Delta);
 	void CreatePirateBullet();
 	void PhaseChange();
+
+	bool SummonScope = false;
 	void SummonEnemy();
+
+	void TestSummon();
 
 	int ShootCount = 0;
 };
