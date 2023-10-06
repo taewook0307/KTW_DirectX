@@ -79,8 +79,8 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
 
-	/*BarrelActor = CreateActor<Barrel>(EUPDATEORDER::Monster);
-	BarrelActor->Transform.SetLocalPosition({ WinScale.Half().X, -220.0f });*/
+	BarrelActor = CreateActor<Barrel>(EUPDATEORDER::Monster);
+	BarrelActor->Transform.SetLocalPosition({ WinScale.Half().X, -220.0f });
 
 	// 테스트용 맵
 	SecondStageMap = CreateActor<Map>(EUPDATEORDER::Map);
@@ -98,24 +98,6 @@ void SecondBossStage::Update(float _Delta)
 	if (true == GameEngineInput::IsDown(VK_ESCAPE))
 	{
 		GameEngineCore::ChangeLevel("MiniMapLevel");
-	}
-
-	if (true == GameEngineInput::IsPress(VK_NUMPAD6))
-	{
-		GetMainCamera()->Transform.AddLocalPosition(float4::RIGHT * 300.0f * _Delta);
-	}
-	if (true == GameEngineInput::IsPress(VK_NUMPAD4))
-	{
-		GetMainCamera()->Transform.AddLocalPosition(float4::LEFT * 300.0f * _Delta);
-	}
-
-	if (true == GameEngineInput::IsPress(VK_NUMPAD8))
-	{
-		GetMainCamera()->Transform.AddLocalPosition(float4::UP * 300.0f * _Delta);
-	}
-	if (true == GameEngineInput::IsPress(VK_NUMPAD2))
-	{
-		GetMainCamera()->Transform.AddLocalPosition(float4::DOWN * 300.0f * _Delta);
 	}
 }
 
