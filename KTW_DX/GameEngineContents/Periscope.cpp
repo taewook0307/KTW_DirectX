@@ -3,6 +3,7 @@
 
 #include "DogFish.h"
 #include "DogFish_Splash.h"
+#include "PirateBoss.h"
 
 Periscope::Periscope()
 {
@@ -49,6 +50,7 @@ void Periscope::Update(float _Delta)
 
 	if (0 == SummonCount)
 	{
+		PirateBoss::MainPirateBoss->SummonDeath();
 		Death();
 	}
 }

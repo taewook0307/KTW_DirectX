@@ -6,9 +6,12 @@
 #include "Periscope.h"
 #include "Whistle_Effect.h"
 
+PirateBoss* PirateBoss::MainPirateBoss = nullptr;
+
 PirateBoss::PirateBoss()
 {
 	HitCount = 0;
+	MainPirateBoss = this;
 }
 
 PirateBoss::~PirateBoss()
@@ -293,6 +296,8 @@ void PirateBoss::PhaseChange()
 
 void PirateBoss::SummonEnemy()
 {
+	IsSummonDeath = false;
+
 	if (false == SummonScope)
 	{
 		std::shared_ptr SummonShark = GetLevel()->CreateActor<Shark>(EUPDATEORDER::Monster);

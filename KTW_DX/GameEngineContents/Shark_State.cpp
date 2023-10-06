@@ -2,6 +2,7 @@
 #include "Shark.h"
 
 #include "Shark_SplashEffect.h"
+#include "PirateBoss.h"
 
 void Shark::FinStart()
 {
@@ -71,6 +72,7 @@ void Shark::LeaveUpdate(float _Delta)
 
 	if (-760.0f > SharkPos.X)
 	{
+		PirateBoss::MainPirateBoss->SummonDeath();
 		Death();
 	}
 }

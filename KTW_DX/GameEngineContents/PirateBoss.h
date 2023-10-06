@@ -15,6 +15,8 @@
 class PirateBoss : public BaseBoss
 {
 public:
+	static PirateBoss* MainPirateBoss;
+
 	// constrcuter destructer
 	PirateBoss();
 	~PirateBoss();
@@ -24,6 +26,11 @@ public:
 	PirateBoss(PirateBoss&& _Other) noexcept = delete;
 	PirateBoss& operator=(const PirateBoss& _Other) = delete;
 	PirateBoss& operator=(PirateBoss&& _Other) noexcept = delete;
+
+	void SummonDeath()
+	{
+		IsSummonDeath = true;
+	}
 
 protected:
 
@@ -42,6 +49,7 @@ private:
 	void KnockoutStart();
 	void KnockoutUpdate(float _Delta);
 
+	bool IsSummonDeath = true;
 	bool WhistleTime = true;
 	void WhistleStart();
 	void WhistleUpdate(float _Delta);

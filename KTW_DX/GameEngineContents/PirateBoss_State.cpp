@@ -51,7 +51,22 @@ void PirateBoss::IdleUpdate(float _Delta)
 		}
 	}
 
-	IdleTimer -= _Delta;
+	if (EBOSSPHASE::Phase1 == CurPhase)
+	{
+		IdleTimer -= _Delta;
+	}
+	else if (EBOSSPHASE::Phase2 == CurPhase)
+	{
+		if (true == IsSummonDeath)
+		{
+			IdleTimer -= _Delta;
+			return;
+		}
+		else
+		{
+			return;
+		}
+	}
 }
 
 
