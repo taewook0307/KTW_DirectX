@@ -3,12 +3,15 @@
 #include "BaseBoss.h"
 
 #define SHIPANIMATIONINTER 0.05f
-#define SHIPIDLETIMER 5.0f
+#define SHIPIDLETIMER 7.0f
 #define CANNONATTACKCOUNT 3
 
 class ShipBoss : public BaseBoss
 {
+	friend class PirateBoss;
 public:
+	static ShipBoss* MainShip;
+
 	// constrcuter destructer
 	ShipBoss();
 	~ShipBoss();
@@ -27,6 +30,9 @@ protected:
 	int CannonAttackCount = CANNONATTACKCOUNT;
 	void AttackStart();
 	void AttackUpdate(float _Delta);
+
+	void TransformStart();
+	void TransformUpdate(float _Delta);
 
 protected:
 	void StateUpdate(float _Delta);

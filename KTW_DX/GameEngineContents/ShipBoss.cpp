@@ -4,8 +4,11 @@
 #include "CannonBall.h"
 #include "CannonBallDust.h"
 
+ShipBoss* ShipBoss::MainShip = nullptr;
+
 ShipBoss::ShipBoss()
 {
+	MainShip = this;
 }
 
 ShipBoss::~ShipBoss()
@@ -25,6 +28,8 @@ void ShipBoss::Start()
 		}
 	);
 
+	ShipRenderer->CreateAnimation("Ship_Phase3_Transform", "Ship_Transform", 0.1f, -1, -1, false);
+
 	ShipRenderer->AutoSpriteSizeOn();
 	ShipRenderer->SetPivotType(PivotType::RightBottom);
 
@@ -35,11 +40,11 @@ void ShipBoss::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 
-	if (true == GameEngineInput::IsDown('I'))
+	/*if (EBOSSPHASE::Phase3 == CurPhase)
 	{
-		ChangeState(ESHIPBOSSSTATE::Attack);
+		ChangeState(ESHIPBOSSSTATE::Transform);
 		return;
-	}
+	}*/
 }
 
 void ShipBoss::StateUpdate(float _Delta)
@@ -50,6 +55,8 @@ void ShipBoss::StateUpdate(float _Delta)
 		return IdleUpdate(_Delta);
 	case ESHIPBOSSSTATE::Attack:
 		return AttackUpdate(_Delta);
+	case ESHIPBOSSSTATE::Transform:
+		return TransformUpdate(_Delta);
 	default:
 		break;
 	}
@@ -67,6 +74,9 @@ void ShipBoss::ChangeState(ESHIPBOSSSTATE _State)
 		case ESHIPBOSSSTATE::Attack:
 			AttackStart();
 			break;
+		case ESHIPBOSSSTATE::Transform:
+			TransformStart();
+			break;
 		default:
 			break;
 		}
@@ -77,6 +87,11 @@ void ShipBoss::ChangeState(ESHIPBOSSSTATE _State)
 void ShipBoss::ChangeAnimation(std::string_view _State)
 {
 	std::string AnimationName = "Ship_";
+
+	if (EBOSSPHASE::Phase3 == CurPhase)
+	{
+		AnimationName += "Phase3_";
+	}
 
 	AnimationName += _State;
 

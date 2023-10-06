@@ -5,6 +5,7 @@
 #include "Shark.h"
 #include "Periscope.h"
 #include "Whistle_Effect.h"
+#include "ShipBoss.h"
 
 PirateBoss* PirateBoss::MainPirateBoss = nullptr;
 
@@ -289,6 +290,7 @@ void PirateBoss::PhaseChange()
 	if (952 < HitCount && EBOSSPHASE::Phase2 == CurPhase)
 	{
 		CurPhase = EBOSSPHASE::Phase3;
+		ShipBoss::MainShip->CurPhase = EBOSSPHASE::Phase3;
 		HitCount = 0;
 		return;
 	}

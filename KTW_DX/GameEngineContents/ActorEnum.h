@@ -115,7 +115,8 @@ enum class ESHIPBOSSSTATE
 {
 	None,
 	Idle,
-	Attack
+	Attack,
+	Transform
 };
 
 //Enemy
