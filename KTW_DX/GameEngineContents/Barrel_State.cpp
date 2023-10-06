@@ -7,6 +7,7 @@
 void Barrel::IdleStart()
 {
 	ChangeAnimation("Idle");
+	AttackCollision->Off();
 }
 void Barrel::IdleUpdate(float _Delta)
 {
@@ -25,6 +26,7 @@ void Barrel::IdleUpdate(float _Delta)
 void Barrel::SmashReadyStart()
 {
 	ChangeAnimation("SmashReady");
+	AttackCollision->On();
 }
 void Barrel::SmashReadyUpdate(float _Delta)
 {
@@ -71,6 +73,7 @@ void Barrel::SmashUpdate(float _Delta)
 {
 	if (true == Renderer->IsCurAnimationEnd())
 	{
+		AttackCollision->Off();
 		ChangeState(EBARRELSTATE::SmashEnd);
 		return;
 	}

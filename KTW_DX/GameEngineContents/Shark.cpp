@@ -12,6 +12,7 @@ Shark::~Shark()
 void Shark::Start()
 {
 	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
+	Renderer->CreateAnimation("Shark_Fin", "Shark_Fin");
 	Renderer->CreateAnimation("Shark_Entry", "Shark_Entry", SHARKANMATIONINTER);
 	Renderer->CreateAnimation("Shark_Bite", "Shark_Bite", SHARKBITEANIMATIONINTER, -1, -1, false);
 	Renderer->SetEndEvent("Shark_Bite",
@@ -25,7 +26,12 @@ void Shark::Start()
 
 	Renderer->AutoSpriteSizeOn();
 	Renderer->SetPivotType(PivotType::LeftBottom);
-	ChangeState(ESHARKSTATE::Entry);
+
+	AttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterAttack);
+	AttackCollision->Transform.SetLocalScale(SHARKCOLLISIONSCALE);
+	AttackCollision->Transform.SetLocalPosition(SHARKCOLLISIONPOSITION);
+
+	ChangeState(ESHARKSTATE::Fin);
 }
 
 void Shark::Update(float _Delta)

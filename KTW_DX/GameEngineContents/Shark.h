@@ -4,7 +4,13 @@
 
 #define SHARKANMATIONINTER 0.05f
 #define SHARKBITEANIMATIONINTER 0.03f
+
+#define SHARKCOLLISIONSCALE { 750.0f, 300.0f }
+#define SHARKCOLLISIONPOSITION { 325.0f, 150.0f }
+
+#define FINSPEED 500.0f
 #define SHARKSPEED 800.0f
+#define LEAVESPEED 400.0f
 
 class Shark : public GameEngineActor
 {
@@ -34,7 +40,9 @@ private:
 	void LeaveUpdate(float _Delta);
 
 private:
+	float FinSpeed = FINSPEED;
 	float Speed = SHARKSPEED;
+	float LeaveSpeed = LEAVESPEED;
 	ESHARKSTATE CurState = ESHARKSTATE::None;
 	std::string State = "";
 

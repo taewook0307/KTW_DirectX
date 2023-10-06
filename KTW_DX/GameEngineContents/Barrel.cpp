@@ -21,12 +21,12 @@ void Barrel::Start()
 	Renderer->CreateAnimation("Barrel_SmashEnd", "Barrel_SmashEnd", 0.1f, -1, -1, false);
 	Renderer->AutoSpriteSizeOn();
 	Renderer->SetPivotType(PivotType::Bottom);
-
-	ChangeState(EBARRELSTATE::Idle);
  
 	AttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterAttack);
 	AttackCollision->Transform.SetLocalScale(ATTACKCOLLISIONSCALE);
 	AttackCollision->Transform.SetLocalPosition(ATTACKCOLLISIONPOSITION);
+
+	ChangeState(EBARRELSTATE::Idle);
 }
 
 void Barrel::Update(float _Delta)

@@ -125,9 +125,6 @@
     <ClInclude Include="PirateBullet.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
     </ClInclude>
-    <ClInclude Include="ParryPirateBullet.h">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
-    </ClInclude>
     <ClInclude Include="StageFailUI.h">
       <Filter>Global\StageEffect</Filter>
     </ClInclude>
@@ -139,6 +136,18 @@
     </ClInclude>
     <ClInclude Include="StageLevel.h">
       <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Shark.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Barrel.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CannonBallDust.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipCannon</Filter>
+    </ClInclude>
+    <ClInclude Include="CannonBall.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipCannon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -290,9 +299,6 @@
     <ClCompile Include="PirateBullet_State.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
     </ClCompile>
-    <ClCompile Include="ParryPirateBullet.cpp">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
-    </ClCompile>
     <ClCompile Include="StageFailUI.cpp">
       <Filter>Global\StageEffect</Filter>
     </ClCompile>
@@ -304,6 +310,27 @@
     </ClCompile>
     <ClCompile Include="StageLevel.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Shark_State.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Shark.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Barrel_State.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Barrel.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CannonBallDust.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipCannon</Filter>
+    </ClCompile>
+    <ClCompile Include="CannonBall.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipCannon</Filter>
+    </ClCompile>
+    <ClCompile Include="ShipBoss_State.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -405,6 +432,12 @@
     </Filter>
     <Filter Include="Global\StageEffect">
       <UniqueIdentifier>{2c170efc-d8be-4d48-96aa-ab525ea29bca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\Enemy">
+      <UniqueIdentifier>{3e4030c6-4dc4-4b4a-a87c-76066d276ed4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\ShipCannon">
+      <UniqueIdentifier>{148e33fa-9262-4e46-8042-d02c642d8d97}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

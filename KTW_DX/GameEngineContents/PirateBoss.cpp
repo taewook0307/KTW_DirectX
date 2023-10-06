@@ -286,5 +286,5 @@ void PirateBoss::PhaseChange()
 void PirateBoss::SummonEnemy()
 {
 	std::shared_ptr SummonShark = GetLevel()->CreateActor<Shark>(EUPDATEORDER::Monster);
-	SummonShark->Transform.SetLocalPosition({ -830.0f, -670.0f });
+	SummonShark->Transform.SetLocalPosition({ 1000.0f, -500.0f });
 }
