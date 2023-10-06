@@ -60,9 +60,10 @@ enum class ECOLLISIONORDER
 	None,
 	Player,
 	Bullet,
+	BossBody,
+	BossAttack,
+	UnDamageBoss,
 	MonsterBody,
-	MonsterAttack,
-	UnDamageMonster,
 	FieldEnter,
 	ParryObject,
 	Max

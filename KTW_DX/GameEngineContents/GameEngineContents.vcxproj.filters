@@ -149,6 +149,9 @@
     <ClInclude Include="CannonBall.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipCannon</Filter>
     </ClInclude>
+    <ClInclude Include="DogFish.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -331,6 +334,12 @@
     </ClCompile>
     <ClCompile Include="ShipBoss_State.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor</Filter>
+    </ClCompile>
+    <ClCompile Include="DogFish.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="DogFish_State.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

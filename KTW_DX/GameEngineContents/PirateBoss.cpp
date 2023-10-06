@@ -164,7 +164,7 @@ void PirateBoss::Start()
 	PirateRenderer->AutoSpriteSizeOn();
 	PirateRenderer->SetPivotType(PivotType::Bottom);
 
-	PirateCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
+	PirateCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossBody);
 	PirateCollision->Transform.SetLocalScale(PIRATECOLLISIONSCALE);
 	PirateCollision->Transform.SetLocalPosition(PIRATECOLLISIONPOSITION);
 

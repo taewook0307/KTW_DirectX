@@ -70,16 +70,23 @@ void Bullet::Update(float _Delta)
 		Transform.SetLocalRotation({ 0.0f, 0.0f, -45.0f });
 	}
 
-	BulletCollision->Collision(ECOLLISIONORDER::MonsterBody,
+	BulletCollision->Collision(ECOLLISIONORDER::BossBody,
 		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
 		{
 			BulletHitSuccess(_Col);
 		}
 	);
-	BulletCollision->Collision(ECOLLISIONORDER::UnDamageMonster,
+	BulletCollision->Collision(ECOLLISIONORDER::UnDamageBoss,
 		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
 		{
 			BulletHitSuccess(_Col);
+		}
+	);
+	BulletCollision->Collision(ECOLLISIONORDER::MonsterBody,
+		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
+		{
+			ChangeBulletState(EBULLETSTATE::Death);
+			return;
 		}
 	);
 }

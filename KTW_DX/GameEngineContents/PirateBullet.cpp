@@ -25,7 +25,7 @@ void PirateBullet::Start()
 	BulletRenderer->AutoSpriteSizeOn();
 	BulletRenderer->SetPivotType(PivotType::Left);
 
-	BulletCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterAttack);
+	BulletCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
 	BulletCollision->Transform.SetLocalScale(PIRATEBULLETCOLLISIONSCALE);
 	BulletCollision->Transform.SetLocalPosition(PIRATEBULLETCOLLISIONPOSITION);
 

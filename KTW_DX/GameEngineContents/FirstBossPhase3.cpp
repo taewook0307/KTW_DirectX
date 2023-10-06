@@ -73,11 +73,11 @@ void FirstBossPhase3::Start()
 	FirstBossRenderer->SetPivotType(PivotType::Bottom);
 	FirstBossRenderer->AutoSpriteSizeOn();
 
-	FirstBossCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::UnDamageMonster);
+	FirstBossCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::UnDamageBoss);
 	FirstBossCollision->Transform.SetLocalScale({ 200.0f, 200.0f });
 	FirstBossCollision->Transform.SetLocalPosition({ 0.0f, 300.0f });
 
-	FirstBossAttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterAttack);
+	FirstBossAttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
 	FirstBossAttackCollision->Transform.SetLocalScale({ 300.0f, 300.0f });
 	FirstBossAttackCollision->Off();
 

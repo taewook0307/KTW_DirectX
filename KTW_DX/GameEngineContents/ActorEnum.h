@@ -138,6 +138,15 @@ enum class ESHARKSTATE
 	Leave
 };
 
+enum class EDOGFISHSTATE
+{
+	None,
+	Jump,
+	Landing,
+	Move,
+	Death
+};
+
 // etc
 enum class EMAINMENUSELECT
 {

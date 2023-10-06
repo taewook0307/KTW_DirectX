@@ -259,6 +259,28 @@ void BaseCharacter::Update(float _Delta)
 		ParrySuccess = false;
 	}
 
+	PlayerCollision->Collision(ECOLLISIONORDER::BossBody,
+		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
+		{
+			if (ECHARACTERSTATE::Hit != CurState && false == NoDamage)
+			{
+				ChangeState(ECHARACTERSTATE::Hit);
+				return;
+			}
+		}
+	);
+
+	PlayerCollision->Collision(ECOLLISIONORDER::BossAttack,
+		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
+		{
+			if (ECHARACTERSTATE::Hit != CurState && false == NoDamage)
+			{
+				ChangeState(ECHARACTERSTATE::Hit);
+				return;
+			}
+		}
+	);
+
 	PlayerCollision->Collision(ECOLLISIONORDER::MonsterBody,
 		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
 		{
@@ -267,19 +289,6 @@ void BaseCharacter::Update(float _Delta)
 				ChangeState(ECHARACTERSTATE::Hit);
 				return;
 			}
-			
-		}
-	);
-
-	PlayerCollision->Collision(ECOLLISIONORDER::MonsterAttack,
-		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
-		{
-			if (ECHARACTERSTATE::Hit != CurState && false == NoDamage)
-			{
-				ChangeState(ECHARACTERSTATE::Hit);
-				return;
-			}
-
 		}
 	);
 }

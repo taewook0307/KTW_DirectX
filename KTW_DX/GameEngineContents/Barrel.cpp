@@ -22,7 +22,7 @@ void Barrel::Start()
 	Renderer->AutoSpriteSizeOn();
 	Renderer->SetPivotType(PivotType::Bottom);
  
-	AttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterAttack);
+	AttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
 	AttackCollision->Transform.SetLocalScale(ATTACKCOLLISIONSCALE);
 	AttackCollision->Transform.SetLocalPosition(ATTACKCOLLISIONPOSITION);
 

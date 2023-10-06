@@ -20,7 +20,7 @@ void CannonBall::Start()
 
 	Renderer->ChangeAnimation("Cannon_Move");
 
-	Collision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterAttack);
+	Collision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
 	Collision->Transform.SetLocalScale(CANNONCOLLISIONSCALE);
 	Collision->Transform.SetLocalPosition(CANNONCOLLISIONPOSITION);
 }

@@ -27,7 +27,7 @@ void Shark::Start()
 	Renderer->AutoSpriteSizeOn();
 	Renderer->SetPivotType(PivotType::LeftBottom);
 
-	AttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterAttack);
+	AttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
 	AttackCollision->Transform.SetLocalScale(SHARKCOLLISIONSCALE);
 	AttackCollision->Transform.SetLocalPosition(SHARKCOLLISIONPOSITION);
 

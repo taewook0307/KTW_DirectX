@@ -103,7 +103,7 @@ void FirstBoss::Start()
 	FirstBossRenderer->SetPivotType(PivotType::Bottom);
 	FirstBossRenderer->AutoSpriteSizeOn();
 
-	FirstBossCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
+	FirstBossCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossBody);
 	
 	float4 CollisionScale = PHASE1BODYCOLLISIONSCALE;
 	float4 CollisionPosition = { 0.0f, CollisionScale.Half().Y };
@@ -111,13 +111,13 @@ void FirstBoss::Start()
 	FirstBossCollision->Transform.SetLocalScale(CollisionScale);
 	FirstBossCollision->Transform.SetLocalPosition(CollisionPosition);
 
-	FirstBossUnDamageCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::UnDamageMonster);
+	FirstBossUnDamageCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::UnDamageBoss);
 	FirstBossUnDamageCollision->Transform.SetLocalScale(CollisionScale);
 	FirstBossUnDamageCollision->Transform.SetLocalPosition(CollisionPosition);
 	FirstBossUnDamageCollision->Off();
 
 	float4 AttackCollisionScale = PHASE1ATTACKCOLLISIONSCALE;
-	FirstBossAttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterAttack);
+	FirstBossAttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
 	FirstBossAttackCollision->Transform.SetLocalScale(AttackCollisionScale);
 	FirstBossAttackCollision->Off();
 
