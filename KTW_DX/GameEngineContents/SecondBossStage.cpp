@@ -74,7 +74,7 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	PirateBossActor->Transform.SetLocalPosition({ WinScale.X - 80.0f, -470.0f });
 
 	ShipBossActor = CreateActor<ShipBoss>(EUPDATEORDER::Monster);
-	ShipBossActor->Transform.SetLocalPosition({ WinScale.X + 60.0f, -WinScale.Y });
+	ShipBossActor->Transform.SetLocalPosition({ WinScale.X + 70.0f, -WinScale.Y });
 
 	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
