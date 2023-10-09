@@ -61,8 +61,6 @@ void ShipBoss::WinceUpdate(float _Delta)
 
 void ShipBoss::TransformStart()
 {
-	float4 WinScale = GameEngineCore::MainWindow.GetScale();
-	Transform.SetLocalPosition({ WinScale.X, -WinScale.Y });
 	ChangeAnimation("Transform");
 }
 
