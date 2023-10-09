@@ -42,6 +42,8 @@ protected:
 	ESHIPBOSSSTATE CurState = ESHIPBOSSSTATE::None;
 	std::string State = "";
 
+	bool ChangeShip = false;
+
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> ShipRenderer = nullptr;
 

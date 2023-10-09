@@ -28,7 +28,13 @@ void ShipBoss::Start()
 		}
 	);
 
-	ShipRenderer->CreateAnimation("Ship_Phase3_Transform", "Ship_Transform", 0.1f, -1, -1, false);
+	ShipRenderer->CreateAnimation("Ship_Transform", "Ship_Transform", 0.1f, -1, -1, false);
+	ShipRenderer->SetEndEvent("Ship_Transform",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ChangeShip = true;
+		}
+	);
 
 	ShipRenderer->AutoSpriteSizeOn();
 	ShipRenderer->SetPivotType(PivotType::RightBottom);
@@ -40,11 +46,11 @@ void ShipBoss::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 
-	/*if (EBOSSPHASE::Phase3 == CurPhase)
+	if (EBOSSPHASE::Phase3 == CurPhase)
 	{
 		ChangeState(ESHIPBOSSSTATE::Transform);
 		return;
-	}*/
+	}
 }
 
 void ShipBoss::StateUpdate(float _Delta)
@@ -88,7 +94,7 @@ void ShipBoss::ChangeAnimation(std::string_view _State)
 {
 	std::string AnimationName = "Ship_";
 
-	if (EBOSSPHASE::Phase3 == CurPhase)
+	if (EBOSSPHASE::Phase3 == CurPhase && true == ChangeShip)
 	{
 		AnimationName += "Phase3_";
 	}
@@ -104,7 +110,7 @@ void ShipBoss::CreateCannonBall()
 {
 	std::shared_ptr NewCannonBall = GetLevel()->CreateActor<CannonBall>(EUPDATEORDER::Bullet);
 	float4 ShipPos = Transform.GetWorldPosition();
-	float4 CreatePos = { ShipPos.X - 480.0f, ShipPos.Y + 140.0f };
+	float4 CreatePos = { ShipPos.X - 480.0f, ShipPos.Y + 90.0f };
 
 	NewCannonBall->Transform.SetLocalPosition(CreatePos);
 
