@@ -28,6 +28,15 @@ void ShipBoss::Start()
 		}
 	);
 
+	ShipRenderer->CreateAnimation("Ship_Wince", "Ship_Wince", 0.1f, -1, -1, false);
+	ShipRenderer->SetEndEvent("Ship_Wince",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ChangeState(ESHIPBOSSSTATE::Transform);
+			return;
+		}
+	);
+
 	ShipRenderer->CreateAnimation("Ship_Transform", "Ship_Transform", 0.1f, -1, -1, false);
 	ShipRenderer->SetEndEvent("Ship_Transform",
 		[=](GameEngineSpriteRenderer* _Renderer)
@@ -45,12 +54,6 @@ void ShipBoss::Start()
 void ShipBoss::Update(float _Delta)
 {
 	StateUpdate(_Delta);
-
-	if (EBOSSPHASE::Phase3 == CurPhase)
-	{
-		ChangeState(ESHIPBOSSSTATE::Transform);
-		return;
-	}
 }
 
 void ShipBoss::StateUpdate(float _Delta)
@@ -61,6 +64,8 @@ void ShipBoss::StateUpdate(float _Delta)
 		return IdleUpdate(_Delta);
 	case ESHIPBOSSSTATE::Attack:
 		return AttackUpdate(_Delta);
+	case ESHIPBOSSSTATE::Wince:
+		return WinceUpdate(_Delta);
 	case ESHIPBOSSSTATE::Transform:
 		return TransformUpdate(_Delta);
 	default:
@@ -79,6 +84,9 @@ void ShipBoss::ChangeState(ESHIPBOSSSTATE _State)
 			break;
 		case ESHIPBOSSSTATE::Attack:
 			AttackStart();
+			break;
+		case ESHIPBOSSSTATE::Wince:
+			WinceStart();
 			break;
 		case ESHIPBOSSSTATE::Transform:
 			TransformStart();

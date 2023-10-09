@@ -31,6 +31,9 @@ protected:
 	void AttackStart();
 	void AttackUpdate(float _Delta);
 
+	void WinceStart();
+	void WinceUpdate(float _Delta);
+
 	void TransformStart();
 	void TransformUpdate(float _Delta);
 

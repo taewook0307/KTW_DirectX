@@ -116,6 +116,7 @@ enum class ESHIPBOSSSTATE
 	None,
 	Idle,
 	Attack,
+	Wince,
 	Transform
 };
 

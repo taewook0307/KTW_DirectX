@@ -8,6 +8,12 @@ void ShipBoss::IdleStart()
 
 void ShipBoss::IdleUpdate(float _Delta)
 {
+	if (EBOSSPHASE::Phase3 == CurPhase)
+	{
+		ChangeState(ESHIPBOSSSTATE::Wince);
+		return;
+	}
+
 	if (0.0f > IdleTimer)
 	{
 		IdleTimer = SHIPIDLETIMER;
@@ -41,6 +47,16 @@ void ShipBoss::AttackUpdate(float _Delta)
 		ChangeState(ESHIPBOSSSTATE::Attack);
 		return;
 	}
+}
+
+void ShipBoss::WinceStart()
+{
+	ChangeAnimation("Wince");
+}
+
+void ShipBoss::WinceUpdate(float _Delta)
+{
+
 }
 
 void ShipBoss::TransformStart()
