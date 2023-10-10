@@ -69,6 +69,13 @@ void ShipBoss::Start()
 	ShipRenderer->AutoSpriteSizeOn();
 	ShipRenderer->SetPivotType(PivotType::RightBottom);
 
+
+	ShipPrevRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PrevBoss1);
+	ShipPrevRenderer->CreateAnimation("Ship_Phase3_Idle_Prev", "Ship_Phase3_Idle_Prev", SHIPANIMATIONINTER);
+	ShipPrevRenderer->AutoSpriteSizeOn();
+	ShipPrevRenderer->SetPivotType(PivotType::RightBottom);
+	ShipPrevRenderer->Off();
+
 	ChangeState(ESHIPBOSSSTATE::Idle);
 }
 

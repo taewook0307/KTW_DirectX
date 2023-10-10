@@ -5,6 +5,11 @@
 void ShipBoss::IdleStart()
 {
 	ChangeAnimation("Idle");
+	if (EBOSSPHASE::Phase3 == CurPhase)
+	{
+		ShipPrevRenderer->On();
+		ShipPrevRenderer->ChangeAnimation("Ship_Phase3_Idle_Prev");
+	}
 }
 
 void ShipBoss::IdleUpdate(float _Delta)
@@ -12,6 +17,7 @@ void ShipBoss::IdleUpdate(float _Delta)
 	if (EBOSSPHASE::Phase3 == CurPhase && false == ChangeShip)
 	{
 		IdleTimer = SHIPIDLETIMER;
+		ShipPrevRenderer->Off();
 		ChangeState(ESHIPBOSSSTATE::Wince);
 		return;
 	}
@@ -26,6 +32,7 @@ void ShipBoss::IdleUpdate(float _Delta)
 	if (0.0f > IdleTimer && EBOSSPHASE::Phase3 == CurPhase && true == ChangeShip)
 	{
 		IdleTimer = SHIPIDLETIMER;
+		ShipPrevRenderer->Off();
 		ChangeState(ESHIPBOSSSTATE::Charge);
 		return;
 	}
