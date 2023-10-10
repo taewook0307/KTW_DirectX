@@ -42,6 +42,26 @@ void ShipBoss::Start()
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			ChangeShip = true;
+			ChangeState(ESHIPBOSSSTATE::Idle);
+			return;
+		}
+	);
+
+	ShipRenderer->CreateAnimation("Ship_Phase3_Idle", "Ship_Phase3_Idle", SHIPANIMATIONINTER);
+	ShipRenderer->CreateAnimation("Ship_Phase3_Charge", "Ship_Phase3_Charge", 0.1f, -1, -1, false);
+	ShipRenderer->SetEndEvent("Ship_Phase3_Charge",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ChangeState(ESHIPBOSSSTATE::Attack);
+			return;
+		}
+	);
+	ShipRenderer->CreateAnimation("Ship_Phase3_Attack", "Ship_Phase3_Attack", 0.1f);
+	ShipRenderer->SetEndEvent("Ship_Phase3_Attack",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ChangeState(ESHIPBOSSSTATE::Idle);
+			return;
 		}
 	);
 
@@ -64,10 +84,6 @@ void ShipBoss::StateUpdate(float _Delta)
 		return IdleUpdate(_Delta);
 	case ESHIPBOSSSTATE::Attack:
 		return AttackUpdate(_Delta);
-	case ESHIPBOSSSTATE::Wince:
-		return WinceUpdate(_Delta);
-	case ESHIPBOSSSTATE::Transform:
-		return TransformUpdate(_Delta);
 	default:
 		break;
 	}
@@ -90,6 +106,9 @@ void ShipBoss::ChangeState(ESHIPBOSSSTATE _State)
 			break;
 		case ESHIPBOSSSTATE::Transform:
 			TransformStart();
+			break;
+		case ESHIPBOSSSTATE::Charge:
+			ChargeStart();
 			break;
 		default:
 			break;

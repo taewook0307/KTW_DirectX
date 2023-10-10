@@ -8,16 +8,23 @@ void ShipBoss::IdleStart()
 
 void ShipBoss::IdleUpdate(float _Delta)
 {
-	if (EBOSSPHASE::Phase3 == CurPhase)
+	if (EBOSSPHASE::Phase3 == CurPhase && false == ChangeShip)
 	{
 		ChangeState(ESHIPBOSSSTATE::Wince);
 		return;
 	}
 
-	if (0.0f > IdleTimer)
+	if (0.0f > IdleTimer && EBOSSPHASE::Phase3 != CurPhase)
 	{
 		IdleTimer = SHIPIDLETIMER;
 		ChangeState(ESHIPBOSSSTATE::Attack);
+		return;
+	}
+
+	if (0.0f > IdleTimer && EBOSSPHASE::Phase3 == CurPhase)
+	{
+		IdleTimer = SHIPIDLETIMER;
+		ChangeState(ESHIPBOSSSTATE::Charge);
 		return;
 	}
 
@@ -31,21 +38,29 @@ void ShipBoss::AttackStart()
 
 void ShipBoss::AttackUpdate(float _Delta)
 {
-	if (true == ShipRenderer->IsCurAnimationEnd())
+	if (EBOSSPHASE::Phase3 != CurPhase)
 	{
-		--CannonAttackCount;
-	}
+		if (true == ShipRenderer->IsCurAnimationEnd())
+		{
+			--CannonAttackCount;
+		}
 
-	if (0 >= CannonAttackCount)
-	{
-		CannonAttackCount = CANNONATTACKCOUNT;
-		ChangeState(ESHIPBOSSSTATE::Idle);
-		return;
+		if (0 >= CannonAttackCount)
+		{
+			CannonAttackCount = CANNONATTACKCOUNT;
+			ChangeState(ESHIPBOSSSTATE::Idle);
+			return;
+		}
+		else
+		{
+			ChangeState(ESHIPBOSSSTATE::Attack);
+			return;
+		}
 	}
 	else
 	{
-		ChangeState(ESHIPBOSSSTATE::Attack);
-		return;
+		/*ChangeState(ESHIPBOSSSTATE::Idle);
+		return;*/
 	}
 }
 
@@ -54,17 +69,12 @@ void ShipBoss::WinceStart()
 	ChangeAnimation("Wince");
 }
 
-void ShipBoss::WinceUpdate(float _Delta)
-{
-
-}
-
 void ShipBoss::TransformStart()
 {
 	ChangeAnimation("Transform");
 }
 
-void ShipBoss::TransformUpdate(float _Delta)
+void ShipBoss::ChargeStart()
 {
-	
+	ChangeAnimation("Charge");
 }
