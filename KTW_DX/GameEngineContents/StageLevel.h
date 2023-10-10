@@ -33,6 +33,11 @@ public:
 		}
 	}
 
+	static ESTAGERESULT GetStageResult()
+	{
+		return StageResult;
+	}
+
 protected:
 	static ESTAGERESULT StageResult;
 	float PhaseMoveTimer = PHASEMOVETIMER;

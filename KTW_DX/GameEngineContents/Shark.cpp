@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "Shark.h"
 
+#include "StageLevel.h"
+
 Shark::Shark()
 {
 }
@@ -37,6 +39,11 @@ void Shark::Start()
 void Shark::Update(float _Delta)
 {
 	StateUpdate(_Delta);
+
+	if (ESTAGERESULT::None != StageLevel::GetStageResult())
+	{
+		Death();
+	}
 }
 
 void Shark::StateUpdate(float _Delta)

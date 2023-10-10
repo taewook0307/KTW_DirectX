@@ -2,6 +2,7 @@
 #include "DogFish.h"
 
 #include "DogFish_DeathEffect.h"
+#include "StageLevel.h"
 
 DogFish::DogFish()
 {
@@ -51,6 +52,11 @@ void DogFish::Update(float _Delta)
 	{
 		ChangeState(EDOGFISHSTATE::Death);
 		return;
+	}
+
+	if (ESTAGERESULT::None != StageLevel::GetStageResult())
+	{
+		Death();
 	}
 }
 

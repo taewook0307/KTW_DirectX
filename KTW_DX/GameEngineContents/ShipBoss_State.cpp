@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "ShipBoss.h"
+#include "StageLevel.h"
 
 void ShipBoss::IdleStart()
 {
@@ -10,6 +11,7 @@ void ShipBoss::IdleUpdate(float _Delta)
 {
 	if (EBOSSPHASE::Phase3 == CurPhase && false == ChangeShip)
 	{
+		IdleTimer = SHIPIDLETIMER;
 		ChangeState(ESHIPBOSSSTATE::Wince);
 		return;
 	}
@@ -21,7 +23,7 @@ void ShipBoss::IdleUpdate(float _Delta)
 		return;
 	}
 
-	if (0.0f > IdleTimer && EBOSSPHASE::Phase3 == CurPhase)
+	if (0.0f > IdleTimer && EBOSSPHASE::Phase3 == CurPhase && true == ChangeShip)
 	{
 		IdleTimer = SHIPIDLETIMER;
 		ChangeState(ESHIPBOSSSTATE::Charge);
@@ -59,8 +61,7 @@ void ShipBoss::AttackUpdate(float _Delta)
 	}
 	else
 	{
-		/*ChangeState(ESHIPBOSSSTATE::Idle);
-		return;*/
+		
 	}
 }
 
@@ -77,4 +78,10 @@ void ShipBoss::TransformStart()
 void ShipBoss::ChargeStart()
 {
 	ChangeAnimation("Charge");
+}
+
+void ShipBoss::DeathStart()
+{
+	StageLevel::StageClear();
+	ChangeAnimation("Death");
 }

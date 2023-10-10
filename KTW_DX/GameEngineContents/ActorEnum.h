@@ -118,7 +118,8 @@ enum class ESHIPBOSSSTATE
 	Attack,
 	Wince,
 	Transform,
-	Charge
+	Charge,
+	Death
 };
 
 //Enemy

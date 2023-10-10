@@ -64,6 +64,7 @@ void ShipBoss::Start()
 			return;
 		}
 	);
+	ShipRenderer->CreateAnimation("Ship_Phase3_Death", "Ship_Phase3_Death", 0.1f);
 
 	ShipRenderer->AutoSpriteSizeOn();
 	ShipRenderer->SetPivotType(PivotType::RightBottom);
@@ -74,6 +75,12 @@ void ShipBoss::Start()
 void ShipBoss::Update(float _Delta)
 {
 	StateUpdate(_Delta);
+
+	if (true == GameEngineInput::IsDown('O'))
+	{
+		ChangeState(ESHIPBOSSSTATE::Death);
+		return;
+	}
 }
 
 void ShipBoss::StateUpdate(float _Delta)
@@ -109,6 +116,9 @@ void ShipBoss::ChangeState(ESHIPBOSSSTATE _State)
 			break;
 		case ESHIPBOSSSTATE::Charge:
 			ChargeStart();
+			break;
+		case ESHIPBOSSSTATE::Death:
+			DeathStart();
 			break;
 		default:
 			break;

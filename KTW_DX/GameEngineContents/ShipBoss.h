@@ -37,6 +37,8 @@ protected:
 
 	void ChargeStart();
 
+	void DeathStart();
+
 protected:
 	void StateUpdate(float _Delta);
 	void ChangeState(ESHIPBOSSSTATE _State);
