@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "UpperObject.h"
 
+#include "Map.h"
+
 UpperObject::UpperObject()
 {
 }
@@ -12,6 +14,18 @@ UpperObject::~UpperObject()
 void UpperObject::Start()
 {
 	UpperObjectRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperPlayer);
+}
+
+void UpperObject::Update(float _Delta)
+{
+	if (true == Map::MainMap->GetPixelMapRenderSwitch())
+	{
+		UpperObjectRenderer->Off();
+	}
+	else
+	{
+		UpperObjectRenderer->On();
+	}
 }
 
 void UpperObject::UpperObjectInit(std::string_view _FileName, int _Order /*= 0*/, bool _WinSizeOn /*= true*/)

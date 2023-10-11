@@ -22,5 +22,5 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer>  UpperObjectRenderer = nullptr;
 
 	void Start() override;
+	void Update(float _Delta);
 };
-

@@ -23,6 +23,11 @@ public:
 
 	GameEngineColor GetColor(float4 _Pos, GameEngineColor _DefaultColor);
 
+	bool GetPixelMapRenderSwitch()
+	{
+		return PixelMapRenderSwitch;
+	}
+
 protected:
 
 private:
