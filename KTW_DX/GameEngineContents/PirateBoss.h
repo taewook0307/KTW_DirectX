@@ -8,6 +8,7 @@
 
 #define IDLETIMER 3.0f
 #define INTROTIMER 3.0f
+#define PIRATEDEATHTIMER 3.0f
 
 #define SUMMONSHARKPOS { 1000.0f, -500.0f }
 #define SUMMONSCOPEPOS { 1050.0f, -720.0f }
@@ -32,6 +33,8 @@ public:
 		IsSummonDeath = true;
 	}
 
+	void ChangePhase3();
+
 protected:
 
 private:
@@ -44,15 +47,16 @@ private:
 	void IdleUpdate(float _Delta);
 
 	void ShootStart();
-	void ShootUpdate(float _Delta);
 
 	void KnockoutStart();
-	void KnockoutUpdate(float _Delta);
 
 	bool IsSummonDeath = true;
 	bool WhistleTime = true;
 	void WhistleStart();
-	void WhistleUpdate(float _Delta);
+
+	float PirateDeathTimer = PIRATEDEATHTIMER;
+	void DeathStart();
+	void DeathUpdate(float _Delta);
 
 private:
 	void ChangeState(EPIRATEBOSSSTATE _State);

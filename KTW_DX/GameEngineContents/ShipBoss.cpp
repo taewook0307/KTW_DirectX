@@ -1,6 +1,7 @@
 ﻿#include "PreCompile.h"
 #include "ShipBoss.h"
 
+#include "PirateBoss.h"
 #include "CannonBall.h"
 #include "CannonBallDust.h"
 
@@ -38,6 +39,13 @@ void ShipBoss::Start()
 	);
 
 	ShipRenderer->CreateAnimation("Ship_Transform", "Ship_Transform", 0.1f, -1, -1, false);
+	ShipRenderer->SetFrameEvent("Ship_Transform", 3,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			PirateBoss::MainPirateBoss->ChangePhase3();
+		}
+	);
+	
 	ShipRenderer->SetEndEvent("Ship_Transform",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -48,6 +56,7 @@ void ShipBoss::Start()
 	);
 
 	ShipRenderer->CreateAnimation("Ship_Phase3_Idle", "Ship_Phase3_Idle", SHIPANIMATIONINTER);
+
 	ShipRenderer->CreateAnimation("Ship_Phase3_Charge", "Ship_Phase3_Charge", 0.1f, -1, -1, false);
 	ShipRenderer->SetEndEvent("Ship_Phase3_Charge",
 		[=](GameEngineSpriteRenderer* _Renderer)

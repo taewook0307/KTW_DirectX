@@ -101,7 +101,8 @@ enum class EPIRATEBOSSSTATE
 	Idle,
 	Shoot,
 	Knockout,
-	Whistle
+	Whistle,
+	Death
 };
 
 enum class EPIRATEBULLETSTATE

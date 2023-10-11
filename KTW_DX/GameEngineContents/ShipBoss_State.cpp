@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "ShipBoss.h"
+
 #include "StageLevel.h"
 
 void ShipBoss::IdleStart()
@@ -26,14 +27,6 @@ void ShipBoss::IdleUpdate(float _Delta)
 	{
 		IdleTimer = SHIPIDLETIMER;
 		ChangeState(ESHIPBOSSSTATE::Attack);
-		return;
-	}
-
-	if (0.0f > IdleTimer && EBOSSPHASE::Phase3 == CurPhase && true == ChangeShip)
-	{
-		IdleTimer = SHIPIDLETIMER;
-		ShipPrevRenderer->Off();
-		ChangeState(ESHIPBOSSSTATE::Charge);
 		return;
 	}
 
@@ -68,7 +61,8 @@ void ShipBoss::AttackUpdate(float _Delta)
 	}
 	else
 	{
-		
+		ChangeState(ESHIPBOSSSTATE::Wince);
+		return;
 	}
 }
 

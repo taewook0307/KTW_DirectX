@@ -177,6 +177,9 @@ void PirateBoss::Start()
 			return;
 		}
 	);
+
+	PirateRenderer->CreateAnimation("Pirate_Death", "Pirate_Death", PIRATEBOSSANIMATIONINTER);
+
 	PirateRenderer->AutoSpriteSizeOn();
 	PirateRenderer->SetPivotType(PivotType::Bottom);
 
@@ -218,6 +221,9 @@ void PirateBoss::ChangeState(EPIRATEBOSSSTATE _State)
 		case EPIRATEBOSSSTATE::Whistle:
 			WhistleStart();
 			break;
+		case EPIRATEBOSSSTATE::Death:
+			DeathStart();
+			break;
 		default:
 			break;
 		}
@@ -234,12 +240,8 @@ void PirateBoss::StateUpdate(float _Delta)
 		return IntroUpdate(_Delta);
 	case EPIRATEBOSSSTATE::Idle:
 		return IdleUpdate(_Delta);
-	case EPIRATEBOSSSTATE::Shoot:
-		return ShootUpdate(_Delta);
-	case EPIRATEBOSSSTATE::Knockout:
-		return KnockoutUpdate(_Delta);
-	case EPIRATEBOSSSTATE::Whistle:
-		return WhistleUpdate(_Delta);
+	case EPIRATEBOSSSTATE::Death:
+		return DeathUpdate(_Delta);
 	default:
 		break;
 	}
@@ -312,4 +314,10 @@ void PirateBoss::SummonEnemy()
 		SummonPeriscope->Transform.SetLocalPosition(SUMMONSCOPEPOS);
 		SummonScope = false;
 	}
+}
+
+void PirateBoss::ChangePhase3()
+{
+	ChangeState(EPIRATEBOSSSTATE::Death);
+	return;
 }
