@@ -14,14 +14,14 @@ void DogFish::JumpUpdate(float _Delta)
 	//애니메이션
 	float GravityValue = GetGravityForce().Y;
 
-	if (GravityValue < 30.0f && true == Renderer->IsCurAnimation("DogFish_Jump"))
+	if (GravityValue < 30.0f && true == DogFishRenderer->IsCurAnimation("DogFish_Jump"))
 	{
-		Renderer->ChangeAnimation("DogFish_JumpToFall");
+		DogFishRenderer->ChangeAnimation("DogFish_JumpToFall");
 	}
 
-	if (GravityValue < 0.0f && true == Renderer->IsCurAnimation("DogFish_JumpToFall"))
+	if (GravityValue < 0.0f && true == DogFishRenderer->IsCurAnimation("DogFish_JumpToFall"))
 	{
-		Renderer->ChangeAnimation("DogFish_Fall");
+		DogFishRenderer->ChangeAnimation("DogFish_Fall");
 	}
 
 	// 이동

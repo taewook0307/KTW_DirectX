@@ -11,18 +11,18 @@ StageFailUI::~StageFailUI()
 
 void StageFailUI::Start()
 {
-	Renderer = CreateComponent<GameEngineUIRenderer>(ERENDERORDER::UI);
-	Renderer->CreateAnimation("Fail_Effect", "StageFail_Effect", 0.1f, -1, -1, false);
-	Renderer->SetEndEvent("Fail_Effect",
+	EffectRenderer = CreateComponent<GameEngineUIRenderer>(ERENDERORDER::UI);
+	EffectRenderer->CreateAnimation("Fail_Effect", "StageFail_Effect", 0.1f, -1, -1, false);
+	EffectRenderer->SetEndEvent("Fail_Effect",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			Renderer = nullptr;
+			EffectRenderer = nullptr;
 			Death();
 		}
 	);
 
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
-	Renderer->SetImageScale(WinScale);
+	EffectRenderer->SetImageScale(WinScale);
 
-	Renderer->ChangeAnimation("Fail_Effect");
+	EffectRenderer->ChangeAnimation("Fail_Effect");
 }

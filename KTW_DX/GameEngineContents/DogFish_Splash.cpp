@@ -11,17 +11,17 @@ DogFish_Splash::~DogFish_Splash()
 
 void DogFish_Splash::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PlayEffect);
-	Renderer->CreateAnimation("DogFish_SplashEffect", "DogFish_SplashEffect", 0.05f, -1, -1, false);
-	Renderer->SetEndEvent("DogFish_SplashEffect",
+	EffectRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PlayEffect);
+	EffectRenderer->CreateAnimation("DogFish_SplashEffect", "DogFish_SplashEffect", 0.05f, -1, -1, false);
+	EffectRenderer->SetEndEvent("DogFish_SplashEffect",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			Renderer = nullptr;
+			EffectRenderer = nullptr;
 			Death();
 		}
 	);
-	Renderer->AutoSpriteSizeOn();
-	Renderer->SetPivotType(PivotType::RightBottom);
+	EffectRenderer->AutoSpriteSizeOn();
+	EffectRenderer->SetPivotType(PivotType::RightBottom);
 
-	Renderer->ChangeAnimation("DogFish_SplashEffect");
+	EffectRenderer->ChangeAnimation("DogFish_SplashEffect");
 }

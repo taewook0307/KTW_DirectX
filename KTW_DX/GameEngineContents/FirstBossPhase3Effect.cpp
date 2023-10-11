@@ -11,7 +11,7 @@ FirstBossPhase3Effect::~FirstBossPhase3Effect()
 
 void FirstBossPhase3Effect::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PlayEffect);
+	EffectRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PlayEffect);
 }
 
 void FirstBossPhase3Effect::SetType(EBOSSSTATE _State)
@@ -22,38 +22,38 @@ void FirstBossPhase3Effect::SetType(EBOSSSTATE _State)
 	{
 	case EBOSSSTATE::Intro:
 	{
-		Renderer->CreateAnimation("FirstBoss3IntroDust", "FirstBoss_Phase3_Intro_Dust");
-		Renderer->SetEndEvent("FirstBoss3IntroDust",
+		EffectRenderer->CreateAnimation("FirstBoss3IntroDust", "FirstBoss_Phase3_Intro_Dust");
+		EffectRenderer->SetEndEvent("FirstBoss3IntroDust",
 			[=](GameEngineSpriteRenderer* _Renderer)
 			{
 				Death();
 			}
 		);
-		Renderer->ChangeAnimation("FirstBoss3IntroDust");
+		EffectRenderer->ChangeAnimation("FirstBoss3IntroDust");
 		break;
 	}
 	case EBOSSSTATE::Move:
 	{
-		Renderer->CreateAnimation("FirstBoss3MoveDust", "FirstBoss_Phase3_Move_Dust");
-		Renderer->SetEndEvent("FirstBoss3MoveDust",
+		EffectRenderer->CreateAnimation("FirstBoss3MoveDust", "FirstBoss_Phase3_Move_Dust");
+		EffectRenderer->SetEndEvent("FirstBoss3MoveDust",
 			[=](GameEngineSpriteRenderer* _Renderer)
 			{
 				Death();
 			}
 		);
-		Renderer->ChangeAnimation("FirstBoss3MoveDust");
+		EffectRenderer->ChangeAnimation("FirstBoss3MoveDust");
 		break;
 	}
 	case EBOSSSTATE::Attack:
 	{
-		Renderer->CreateAnimation("FirstBoss3AttackDust", "FirstBoss_Phase3_Attack_Dust");
-		Renderer->SetEndEvent("FirstBoss3AttackDust",
+		EffectRenderer->CreateAnimation("FirstBoss3AttackDust", "FirstBoss_Phase3_Attack_Dust");
+		EffectRenderer->SetEndEvent("FirstBoss3AttackDust",
 			[=](GameEngineSpriteRenderer* _Renderer)
 			{
 				Death();
 			}
 		);
-		Renderer->ChangeAnimation("FirstBoss3AttackDust");
+		EffectRenderer->ChangeAnimation("FirstBoss3AttackDust");
 		break;
 	}
 	/*case BossState::Death:
@@ -62,9 +62,9 @@ void FirstBossPhase3Effect::SetType(EBOSSSTATE _State)
 		break;
 	}
 
-	Renderer->SetPivotType(PivotType::Bottom);
-	Renderer->AutoSpriteSizeOn();
-	Renderer->SetAutoScaleRatio(0.8f);
+	EffectRenderer->SetPivotType(PivotType::Bottom);
+	EffectRenderer->AutoSpriteSizeOn();
+	EffectRenderer->SetAutoScaleRatio(0.8f);
 }
 
 void FirstBossPhase3Effect::Update(float _Delta)
@@ -75,10 +75,10 @@ void FirstBossPhase3Effect::Update(float _Delta)
 	}
 	else if (EACTORDIR::Left == EffectDir)
 	{
-		Renderer->LeftFlip();
+		EffectRenderer->LeftFlip();
 	}
 	else
 	{
-		Renderer->RightFlip();
+		EffectRenderer->RightFlip();
 	}
 }

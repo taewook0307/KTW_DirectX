@@ -28,8 +28,8 @@ public:
 protected:
 
 private:
-	std::shared_ptr<GameEngineSpriteRenderer> EnterRenderer = nullptr;
-	std::shared_ptr<GameEngineCollision> EnterCollision = nullptr;
+	std::shared_ptr<GameEngineSpriteRenderer> MiniMapEnterRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> MiniMapEnterCollision = nullptr;
 	std::string EnterLevel = "";
 
 	void Start() override;

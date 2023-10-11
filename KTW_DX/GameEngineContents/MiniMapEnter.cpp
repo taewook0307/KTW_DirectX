@@ -11,13 +11,13 @@ MiniMapEnter::~MiniMapEnter()
 
 void MiniMapEnter::Start()
 {
-	EnterRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Map);
-	EnterCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::FieldEnter);
+	MiniMapEnterRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Map);
+	MiniMapEnterCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::FieldEnter);
 }
 
 void MiniMapEnter::Update(float _Delta)
 {
-	if (true == EnterCollision->Collision(ECOLLISIONORDER::Player))
+	if (true == MiniMapEnterCollision->Collision(ECOLLISIONORDER::Player))
 	{
 		if (true == GameEngineInput::IsDown('Z') || true == GameEngineInput::IsDown(VK_RETURN))
 		{
@@ -28,31 +28,31 @@ void MiniMapEnter::Update(float _Delta)
 
 void MiniMapEnter::EnterAnimationInit(std::string_view _AnimationName, std::string_view _SpriteName)
 {
-	EnterRenderer->CreateAnimation(_AnimationName, _SpriteName);
-	EnterRenderer->ChangeAnimation(_AnimationName);
-	EnterRenderer->AutoSpriteSizeOn();
-	EnterRenderer->SetPivotType(PivotType::Bottom);
+	MiniMapEnterRenderer->CreateAnimation(_AnimationName, _SpriteName);
+	MiniMapEnterRenderer->ChangeAnimation(_AnimationName);
+	MiniMapEnterRenderer->AutoSpriteSizeOn();
+	MiniMapEnterRenderer->SetPivotType(PivotType::Bottom);
 
 	std::shared_ptr<GameEngineSprite> CurSprite = GameEngineSprite::Find(_SpriteName);
 	float4 SpriteScale = CurSprite->GetSpriteData(0).GetScale();
 
-	EnterCollision->Transform.SetLocalScale(SpriteScale);
+	MiniMapEnterCollision->Transform.SetLocalScale(SpriteScale);
 }
 
 void MiniMapEnter::EnterSpriteInit(std::string_view _FileName, int _Order /*= 0*/)
 {
-	EnterRenderer->SetSprite(_FileName, _Order);
-	EnterRenderer->AutoSpriteSizeOn();
-	EnterRenderer->SetPivotType(PivotType::Bottom);
+	MiniMapEnterRenderer->SetSprite(_FileName, _Order);
+	MiniMapEnterRenderer->AutoSpriteSizeOn();
+	MiniMapEnterRenderer->SetPivotType(PivotType::Bottom);
 
 	std::shared_ptr<GameEngineSprite> CurSprite = GameEngineSprite::Find(_FileName);
 	float4 SpriteScale = CurSprite->GetSpriteData(_Order).GetScale();
 
-	EnterCollision->Transform.SetLocalScale(SpriteScale);
+	MiniMapEnterCollision->Transform.SetLocalScale(SpriteScale);
 }
 
 void MiniMapEnter::SetCollisionScaleAndPosition(float4 _Scale /*= float4::ONE*/, float4 _Position /*= float4::ZERO*/)
 {
-	EnterCollision->Transform.SetLocalScale(_Scale);
-	EnterCollision->Transform.SetLocalPosition(_Position);
+	MiniMapEnterCollision->Transform.SetLocalScale(_Scale);
+	MiniMapEnterCollision->Transform.SetLocalPosition(_Position);
 }

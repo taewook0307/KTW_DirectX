@@ -53,6 +53,6 @@ private:
 	void Start() override;
 	void Update(float _Delta) override;
 
-	std::shared_ptr<GameEngineSpriteRenderer> Renderer = nullptr;
+	std::shared_ptr<GameEngineSpriteRenderer> SharkRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> AttackCollision = nullptr;
 };

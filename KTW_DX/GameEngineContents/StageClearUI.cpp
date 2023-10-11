@@ -11,18 +11,18 @@ StageClearUI::~StageClearUI()
 
 void StageClearUI::Start()
 {
-	Renderer = CreateComponent<GameEngineUIRenderer>(ERENDERORDER::UI);
-	Renderer->CreateAnimation("Clear_Effect", "StageClear_Effect", 0.1f, -1, -1, false);
-	Renderer->SetEndEvent("Clear_Effect",
+	EffectRenderer = CreateComponent<GameEngineUIRenderer>(ERENDERORDER::UI);
+	EffectRenderer->CreateAnimation("Clear_Effect", "StageClear_Effect", 0.1f, -1, -1, false);
+	EffectRenderer->SetEndEvent("Clear_Effect",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			Renderer = nullptr;
+			EffectRenderer = nullptr;
 			Death();
 		}
 	);
 
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
-	Renderer->SetImageScale(WinScale);
+	EffectRenderer->SetImageScale(WinScale);
 
-	Renderer->ChangeAnimation("Clear_Effect");
+	EffectRenderer->ChangeAnimation("Clear_Effect");
 }

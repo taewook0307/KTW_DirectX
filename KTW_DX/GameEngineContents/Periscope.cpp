@@ -15,18 +15,18 @@ Periscope::~Periscope()
 
 void Periscope::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
-	Renderer->CreateAnimation("Periscope", "Periscope", 0.05f, -1, -1, false);
-	Renderer->SetEndEvent("Periscope",
+	PeriscopeRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
+	PeriscopeRenderer->CreateAnimation("Periscope", "Periscope", 0.05f, -1, -1, false);
+	PeriscopeRenderer->SetEndEvent("Periscope",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			SummonStart = true;
-			Renderer->Off();
+			PeriscopeRenderer->Off();
 		}
 	);
-	Renderer->AutoSpriteSizeOn();
-	Renderer->SetPivotType(PivotType::Bottom);
-	Renderer->ChangeAnimation("Periscope");
+	PeriscopeRenderer->AutoSpriteSizeOn();
+	PeriscopeRenderer->SetPivotType(PivotType::Bottom);
+	PeriscopeRenderer->ChangeAnimation("Periscope");
 }
 
 void Periscope::Update(float _Delta)

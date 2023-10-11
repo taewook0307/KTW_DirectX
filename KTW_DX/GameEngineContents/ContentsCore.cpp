@@ -11,6 +11,7 @@
 #include "SecondBossStage.h"
 #include "OutroLevel.h"
 #include <GameEngineCore/GameEngineBlend.h>
+#include <GameEngineCore/GameEngineRenderTarget.h>
 
 ContentsCore::ContentsCore()
 {
@@ -46,6 +47,8 @@ void ContentsCore::Start()
 	//	Mat->SetPixelShader("TextureShader_PS");
 	//	Mat->SetBlendState("OverRay");
 	//}
+
+	GameEngineRenderTarget::IsDepth = false;
 
 	GameEngineCore::CreateLevel<LogoLevel>("LogoLevel");
 	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");

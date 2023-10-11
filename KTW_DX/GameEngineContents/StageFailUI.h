@@ -18,7 +18,7 @@ public:
 protected:
 
 private:
-	std::shared_ptr<GameEngineUIRenderer> Renderer = nullptr;
+	std::shared_ptr<GameEngineUIRenderer> EffectRenderer = nullptr;
 
 	void Start() override;
 };

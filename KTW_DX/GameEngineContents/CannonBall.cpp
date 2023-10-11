@@ -13,12 +13,12 @@ CannonBall::~CannonBall()
 
 void CannonBall::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Bullet);
-	Renderer->CreateAnimation("Cannon_Move", "Ship_Cannon");
-	Renderer->AutoSpriteSizeOn();
-	Renderer->SetPivotType(PivotType::LeftBottom);
+	CannonBallRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Bullet);
+	CannonBallRenderer->CreateAnimation("Cannon_Move", "Ship_Cannon");
+	CannonBallRenderer->AutoSpriteSizeOn();
+	CannonBallRenderer->SetPivotType(PivotType::LeftBottom);
 
-	Renderer->ChangeAnimation("Cannon_Move");
+	CannonBallRenderer->ChangeAnimation("Cannon_Move");
 
 	Collision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
 	Collision->Transform.SetLocalScale(CANNONCOLLISIONSCALE);

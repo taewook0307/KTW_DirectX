@@ -13,21 +13,21 @@ Shark::~Shark()
 
 void Shark::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
-	Renderer->CreateAnimation("Shark_Fin", "Shark_Fin");
-	Renderer->CreateAnimation("Shark_Entry", "Shark_Entry", SHARKANMATIONINTER);
-	Renderer->CreateAnimation("Shark_Bite", "Shark_Bite", SHARKBITEANIMATIONINTER, -1, -1, false);
-	Renderer->SetEndEvent("Shark_Bite",
+	SharkRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
+	SharkRenderer->CreateAnimation("Shark_Fin", "Shark_Fin");
+	SharkRenderer->CreateAnimation("Shark_Entry", "Shark_Entry", SHARKANMATIONINTER);
+	SharkRenderer->CreateAnimation("Shark_Bite", "Shark_Bite", SHARKBITEANIMATIONINTER, -1, -1, false);
+	SharkRenderer->SetEndEvent("Shark_Bite",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			ChangeState(ESHARKSTATE::Leave);
 			return;
 		}
 	);
-	Renderer->CreateAnimation("Shark_Leave", "Shark_Leave", SHARKANMATIONINTER);
+	SharkRenderer->CreateAnimation("Shark_Leave", "Shark_Leave", SHARKANMATIONINTER);
 
-	Renderer->AutoSpriteSizeOn();
-	Renderer->SetPivotType(PivotType::LeftBottom);
+	SharkRenderer->AutoSpriteSizeOn();
+	SharkRenderer->SetPivotType(PivotType::LeftBottom);
 
 	AttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
 	AttackCollision->Transform.SetLocalScale(SHARKCOLLISIONSCALE);
@@ -95,5 +95,5 @@ void Shark::ChangeAnimation(std::string_view _State)
 
 	State = _State;
 
-	Renderer->ChangeAnimation(AnimationName);
+	SharkRenderer->ChangeAnimation(AnimationName);
 }

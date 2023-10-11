@@ -8,8 +8,8 @@ void Shark::FinStart()
 {
 	ChangeAnimation("Fin");
 	AttackCollision->Off();
-	Renderer->SetAutoScaleRatio(0.7f);
-	Renderer->SetRenderOrder(ERENDERORDER::PrevBoss);
+	SharkRenderer->SetAutoScaleRatio(0.7f);
+	SharkRenderer->SetRenderOrder(ERENDERORDER::PrevBoss);
 }
 void Shark::FinUpdate(float _Delta)
 {
@@ -21,8 +21,8 @@ void Shark::FinUpdate(float _Delta)
 
 	if (-830.0f > SharkPos.X)
 	{
-		Renderer->SetAutoScaleRatio(1.0f);
-		Renderer->SetRenderOrder(ERENDERORDER::Boss);
+		SharkRenderer->SetAutoScaleRatio(1.0f);
+		SharkRenderer->SetRenderOrder(ERENDERORDER::Boss);
 		ChangeState(ESHARKSTATE::Entry);
 		return;
 	}

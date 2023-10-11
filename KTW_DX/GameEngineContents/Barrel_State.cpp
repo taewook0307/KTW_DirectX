@@ -77,7 +77,7 @@ void Barrel::SmashStart()
 }
 void Barrel::SmashUpdate(float _Delta)
 {
-	if (true == Renderer->IsCurAnimationEnd())
+	if (true == BarrelRenderer->IsCurAnimationEnd())
 	{
 		AttackCollision->Off();
 		ChangeState(EBARRELSTATE::SmashEnd);

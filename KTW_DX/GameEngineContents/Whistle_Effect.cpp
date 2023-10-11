@@ -11,17 +11,17 @@ Whistle_Effect::~Whistle_Effect()
 
 void Whistle_Effect::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PlayEffect);
-	Renderer->CreateAnimation("Whistle_Effect", "Pirate_Whistle_Effect", 0.05f, -1, -1, false);
-	Renderer->SetEndEvent("Whistle_Effect",
+	EffectRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PlayEffect);
+	EffectRenderer->CreateAnimation("Whistle_Effect", "Pirate_Whistle_Effect", 0.05f, -1, -1, false);
+	EffectRenderer->SetEndEvent("Whistle_Effect",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			Renderer = nullptr;
+			EffectRenderer = nullptr;
 			Death();
 		}
 	);
-	Renderer->AutoSpriteSizeOn();
-	Renderer->SetPivotType(PivotType::RightBottom);
+	EffectRenderer->AutoSpriteSizeOn();
+	EffectRenderer->SetPivotType(PivotType::RightBottom);
 
-	Renderer->ChangeAnimation("Whistle_Effect");
+	EffectRenderer->ChangeAnimation("Whistle_Effect");
 }

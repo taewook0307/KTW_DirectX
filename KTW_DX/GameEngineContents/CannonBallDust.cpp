@@ -11,22 +11,22 @@ CannonBallDust::~CannonBallDust()
 
 void CannonBallDust::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::BossEffect);
-	Renderer->CreateAnimation("CannonBall_Effect", "CannonBall_Effect", 0.05f);
-	Renderer->SetEndEvent("CannonBall_Effect",
+	EffectRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::BossEffect);
+	EffectRenderer->CreateAnimation("CannonBall_Effect", "CannonBall_Effect", 0.05f);
+	EffectRenderer->SetEndEvent("CannonBall_Effect",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			if (nullptr != Renderer)
+			if (nullptr != EffectRenderer)
 			{
-				Renderer->Death();
-				Renderer = nullptr;
+				EffectRenderer->Death();
+				EffectRenderer = nullptr;
 			}
 
 			Death();
 		}
 	);
 
-	Renderer->ChangeAnimation("CannonBall_Effect");
-	Renderer->AutoSpriteSizeOn();
-	Renderer->SetPivotType(PivotType::Left);
+	EffectRenderer->ChangeAnimation("CannonBall_Effect");
+	EffectRenderer->AutoSpriteSizeOn();
+	EffectRenderer->SetPivotType(PivotType::Left);
 }

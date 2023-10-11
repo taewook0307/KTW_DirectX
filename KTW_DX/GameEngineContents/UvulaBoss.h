@@ -25,6 +25,8 @@ private:
 	EUVULABOSSSTATE CurState = EUVULABOSSSTATE::None;
 	std::string State = "";
 
+	std::shared_ptr<GameEngineSpriteRenderer> UvulaRenderer = nullptr;
+
 	void Start() override;
 	void Update(float _Delta) override;
 };

@@ -13,14 +13,14 @@ Barrel::~Barrel()
 
 void Barrel::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
-	Renderer->CreateAnimation("Barrel_Idle", "Barrel_Idle");
-	Renderer->CreateAnimation("Barrel_SmashReady", "Barrel_SmashReady");
-	Renderer->CreateAnimation("Barrel_Drop", "Barrel_Drop", 0.2f, -1, -1, false);
-	Renderer->CreateAnimation("Barrel_Smash", "Barrel_Smash", 0.1f, -1, -1, false);
-	Renderer->CreateAnimation("Barrel_SmashEnd", "Barrel_SmashEnd", 0.1f, -1, -1, false);
-	Renderer->AutoSpriteSizeOn();
-	Renderer->SetPivotType(PivotType::Bottom);
+	BarrelRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
+	BarrelRenderer->CreateAnimation("Barrel_Idle", "Barrel_Idle");
+	BarrelRenderer->CreateAnimation("Barrel_SmashReady", "Barrel_SmashReady");
+	BarrelRenderer->CreateAnimation("Barrel_Drop", "Barrel_Drop", 0.2f, -1, -1, false);
+	BarrelRenderer->CreateAnimation("Barrel_Smash", "Barrel_Smash", 0.1f, -1, -1, false);
+	BarrelRenderer->CreateAnimation("Barrel_SmashEnd", "Barrel_SmashEnd", 0.1f, -1, -1, false);
+	BarrelRenderer->AutoSpriteSizeOn();
+	BarrelRenderer->SetPivotType(PivotType::Bottom);
  
 	AttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
 	AttackCollision->Transform.SetLocalScale(ATTACKCOLLISIONSCALE);
@@ -89,7 +89,7 @@ void Barrel::ChangeAnimation(std::string_view _State)
 
 	State = _State;
 
-	Renderer->ChangeAnimation(AnimationName);
+	BarrelRenderer->ChangeAnimation(AnimationName);
 }
 
 void Barrel::BarrelMove(float _Delta)

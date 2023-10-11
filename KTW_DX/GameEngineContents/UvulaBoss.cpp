@@ -3,6 +3,7 @@
 
 UvulaBoss::UvulaBoss()
 {
+	HitCount = 0;
 }
 
 UvulaBoss::~UvulaBoss()

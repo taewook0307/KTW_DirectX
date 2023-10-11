@@ -14,23 +14,23 @@ DogFish::~DogFish()
 
 void DogFish::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
-	Renderer->CreateAnimation("DogFish_Jump", "DogFish_Jump", DOGFISHANIMATIONINTER, 0, 3, false);
-	Renderer->CreateAnimation("DogFish_JumpToFall", "DogFish_Jump", DOGFISHANIMATIONINTER, 4, 7, false);
-	Renderer->CreateAnimation("DogFish_Fall", "DogFish_Jump", DOGFISHANIMATIONINTER, 8, 9, false);
-	Renderer->CreateAnimation("DogFish_Landing", "DogFish_Landing", DOGFISHANIMATIONINTER, -1, -1, false);
-	Renderer->SetEndEvent("DogFish_Landing",
+	DogFishRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
+	DogFishRenderer->CreateAnimation("DogFish_Jump", "DogFish_Jump", DOGFISHANIMATIONINTER, 0, 3, false);
+	DogFishRenderer->CreateAnimation("DogFish_JumpToFall", "DogFish_Jump", DOGFISHANIMATIONINTER, 4, 7, false);
+	DogFishRenderer->CreateAnimation("DogFish_Fall", "DogFish_Jump", DOGFISHANIMATIONINTER, 8, 9, false);
+	DogFishRenderer->CreateAnimation("DogFish_Landing", "DogFish_Landing", DOGFISHANIMATIONINTER, -1, -1, false);
+	DogFishRenderer->SetEndEvent("DogFish_Landing",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			ChangeState(EDOGFISHSTATE::Move);
 			return;
 		}
 	);
-	Renderer->CreateAnimation("DogFish_Move", "DogFish_Move", DOGFISHANIMATIONINTER);
-	Renderer->CreateAnimation("DogFish_Death", "DogFish_Death", DOGFISHANIMATIONINTER);
+	DogFishRenderer->CreateAnimation("DogFish_Move", "DogFish_Move", DOGFISHANIMATIONINTER);
+	DogFishRenderer->CreateAnimation("DogFish_Death", "DogFish_Death", DOGFISHANIMATIONINTER);
 
-	Renderer->AutoSpriteSizeOn();
-	Renderer->SetPivotType(PivotType::Bottom);
+	DogFishRenderer->AutoSpriteSizeOn();
+	DogFishRenderer->SetPivotType(PivotType::Bottom);
 
 	BodyCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
 	BodyCollision->Transform.SetLocalScale(DOGFISHCOLLISIONSCALE);
@@ -111,7 +111,7 @@ void DogFish::ChangeAnimation(std::string_view _State)
 
 	State = _State;
 
-	Renderer->ChangeAnimation(AnimationName);
+	DogFishRenderer->ChangeAnimation(AnimationName);
 }
 
 void DogFish::CreateDeathEffect()
