@@ -46,7 +46,7 @@ private:
 	std::string State = "";
 
 	void StateUpdate(float _Delta);
-	void ChangeState(EDOGFISHSTATE _State);
+	void ChangeState(EDOGFISHSTATE _CurState);
 	void ChangeAnimation(std::string_view _State);
 
 	void CreateDeathEffect();

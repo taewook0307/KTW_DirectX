@@ -35,8 +35,8 @@ protected:
 	EPIRATEBULLETSTATE CurState = EPIRATEBULLETSTATE::None;
 	std::string State = "";
 
-	void ChangeState(EPIRATEBULLETSTATE _State);
 	void StateUpdate(float _Delta);
+	void ChangeState(EPIRATEBULLETSTATE _CurState);
 	virtual void ChangeAnimation(std::string_view _State);
 
 	void Start() override;

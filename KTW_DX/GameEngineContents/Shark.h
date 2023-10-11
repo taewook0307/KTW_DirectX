@@ -47,7 +47,7 @@ private:
 	std::string State = "";
 
 	void StateUpdate(float _Delta);
-	void ChangeState(ESHARKSTATE _State);
+	void ChangeState(ESHARKSTATE _CurState);
 	void ChangeAnimation(std::string_view _State);
 
 	void Start() override;

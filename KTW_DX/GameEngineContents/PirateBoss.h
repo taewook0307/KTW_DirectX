@@ -59,8 +59,8 @@ private:
 	void DeathUpdate(float _Delta);
 
 private:
-	void ChangeState(EPIRATEBOSSSTATE _State);
 	void StateUpdate(float _Delta);
+	void ChangeState(EPIRATEBOSSSTATE _CurState);
 	void ChangeAnimation(std::string_view _State);
 
 	EPIRATEBOSSSTATE CurState = EPIRATEBOSSSTATE::None;

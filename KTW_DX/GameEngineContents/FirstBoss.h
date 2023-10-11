@@ -74,8 +74,8 @@ private:
 
 	void DirChange();
 	void PhaseChange();
-	void ChangeState(EBOSSSTATE _State);
 	void StateUpdate(float _Delta);
+	void ChangeState(EBOSSSTATE _CurState);
 	void ChangeAnimation(std::string_view _State);
 
 	void FirstBossMove(float4 _Delta);

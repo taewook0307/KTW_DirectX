@@ -112,11 +112,11 @@ void ShipBoss::StateUpdate(float _Delta)
 	}
 }
 
-void ShipBoss::ChangeState(ESHIPBOSSSTATE _State)
+void ShipBoss::ChangeState(ESHIPBOSSSTATE _CurState)
 {
-	if (_State != CurState)
+	if (_CurState != CurState)
 	{
-		switch (_State)
+		switch (_CurState)
 		{
 		case ESHIPBOSSSTATE::Idle:
 			IdleStart();
@@ -139,7 +139,7 @@ void ShipBoss::ChangeState(ESHIPBOSSSTATE _State)
 		default:
 			break;
 		}
-		CurState = _State;
+		CurState = _CurState;
 	}
 }
 

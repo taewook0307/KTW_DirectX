@@ -41,7 +41,7 @@ protected:
 
 protected:
 	void StateUpdate(float _Delta);
-	void ChangeState(ESHIPBOSSSTATE _State);
+	void ChangeState(ESHIPBOSSSTATE _CurState);
 	void ChangeAnimation(std::string_view _State);
 
 	ESHIPBOSSSTATE CurState = ESHIPBOSSSTATE::None;

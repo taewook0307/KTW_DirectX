@@ -124,11 +124,11 @@ void MiniMapCharacter::DirChange()
 	}
 }
 
-void MiniMapCharacter::ChangeState(EMINIMAPCHARACTERSTATE _State)
+void MiniMapCharacter::ChangeState(EMINIMAPCHARACTERSTATE _CurState)
 {
-	if (_State != CurState)
+	if (_CurState != CurState)
 	{
-		switch (_State)
+		switch (_CurState)
 		{
 		case EMINIMAPCHARACTERSTATE::Idle:
 			IdleStart();
@@ -141,7 +141,7 @@ void MiniMapCharacter::ChangeState(EMINIMAPCHARACTERSTATE _State)
 		}
 	}
 
-	CurState = _State;
+	CurState = _CurState;
 }
 
 void MiniMapCharacter::StateUpdate(float _Delta)

@@ -39,8 +39,8 @@ protected:
 	void CreateParryEffect();
 	void CreateSpecialDust(EDIRECTION8 _DustDirection);
 protected:
-	void ChangeState(ECHARACTERSTATE _State);
 	void StateUpdate(float _Delta);
+	void ChangeState(ECHARACTERSTATE _CurState);
 	void ChangeAnimation(std::string_view _State);
 
 	void IntroStart();

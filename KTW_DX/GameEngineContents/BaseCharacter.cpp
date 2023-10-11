@@ -390,11 +390,11 @@ void BaseCharacter::StateUpdate(float _Delta)
 	}
 }
 
-void BaseCharacter::ChangeState(ECHARACTERSTATE _State)
+void BaseCharacter::ChangeState(ECHARACTERSTATE _CurState)
 {
-	if (_State != CurState)
+	if (_CurState != CurState)
 	{
-		switch (_State)
+		switch (_CurState)
 		{
 		case ECHARACTERSTATE::Intro:
 			IntroStart();
@@ -449,7 +449,7 @@ void BaseCharacter::ChangeState(ECHARACTERSTATE _State)
 		}
 	}
 
-	CurState = _State;
+	CurState = _CurState;
 }
 
 void BaseCharacter::ChangeAnimation(std::string_view _State)

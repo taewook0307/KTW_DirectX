@@ -200,11 +200,11 @@ void PirateBoss::Update(float _Delta)
 	PhaseChange();
 }
 
-void PirateBoss::ChangeState(EPIRATEBOSSSTATE _State)
+void PirateBoss::ChangeState(EPIRATEBOSSSTATE _CurState)
 {
-	if (_State != CurState)
+	if (_CurState != CurState)
 	{
-		switch (_State)
+		switch (_CurState)
 		{
 		case EPIRATEBOSSSTATE::Intro:
 			IntroStart();
@@ -228,7 +228,7 @@ void PirateBoss::ChangeState(EPIRATEBOSSSTATE _State)
 			break;
 		}
 
-		CurState = _State;
+		CurState = _CurState;
 	}
 }
 

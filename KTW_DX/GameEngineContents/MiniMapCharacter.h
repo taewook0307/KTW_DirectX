@@ -19,8 +19,8 @@ public:
 
 protected:
 	void DirChange();
-	void ChangeState(EMINIMAPCHARACTERSTATE _State);
 	void StateUpdate(float _Delta);
+	void ChangeState(EMINIMAPCHARACTERSTATE _CurState);
 	void ChangeAnimation(std::string_view _State);
 
 	void IdleStart();

@@ -158,11 +158,11 @@ void FirstBoss::DirChange()
 	}
 }
 
-void FirstBoss::ChangeState(EBOSSSTATE _State)
+void FirstBoss::ChangeState(EBOSSSTATE _CurState)
 {
-	if (_State != CurState)
+	if (_CurState != CurState)
 	{
-		switch (_State)
+		switch (_CurState)
 		{
 		case EBOSSSTATE::Intro:
 			IntroStart();
@@ -187,7 +187,7 @@ void FirstBoss::ChangeState(EBOSSSTATE _State)
 		}
 	}
 
-	CurState = _State;
+	CurState = _CurState;
 }
 
 void FirstBoss::StateUpdate(float _Delta)

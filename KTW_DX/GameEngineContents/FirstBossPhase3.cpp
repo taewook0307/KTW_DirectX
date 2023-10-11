@@ -110,11 +110,11 @@ void FirstBossPhase3::DirChange()
 	++DirChangeCount;
 }
 
-void FirstBossPhase3::ChangeState(EBOSSSTATE _State)
+void FirstBossPhase3::ChangeState(EBOSSSTATE _CurState)
 {
-	if (_State != CurState)
+	if (_CurState != CurState)
 	{
-		switch (_State)
+		switch (_CurState)
 		{
 		case EBOSSSTATE::Intro:
 			IntroStart();
@@ -139,7 +139,7 @@ void FirstBossPhase3::ChangeState(EBOSSSTATE _State)
 		}
 	}
 
-	CurState = _State;
+	CurState = _CurState;
 }
 
 void FirstBossPhase3::StateUpdate(float _Delta)

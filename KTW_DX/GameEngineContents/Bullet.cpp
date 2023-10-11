@@ -92,11 +92,11 @@ void Bullet::Update(float _Delta)
 	);
 }
 
-void Bullet::ChangeBulletState(EBULLETSTATE _State)
+void Bullet::ChangeBulletState(EBULLETSTATE _CurState)
 {
-	if (CurState != _State)
+	if (CurState != _CurState)
 	{
-		switch (_State)
+		switch (_CurState)
 		{
 		case EBULLETSTATE::Spawn:
 			SpawnStart();
@@ -111,7 +111,7 @@ void Bullet::ChangeBulletState(EBULLETSTATE _State)
 			break;
 		}
 
-		CurState = _State;
+		CurState = _CurState;
 	}
 }
 

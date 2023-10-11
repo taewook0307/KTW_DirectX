@@ -123,6 +123,13 @@ enum class ESHIPBOSSSTATE
 	Death
 };
 
+enum class EUVULABOSSSTATE
+{
+	None,
+	Idle,
+	Shoot
+};
+
 //Enemy
 enum class EBARRELSTATE
 {

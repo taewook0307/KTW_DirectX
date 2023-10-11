@@ -51,7 +51,7 @@ private:
 	EACTORDIR Dir = EACTORDIR::Left;
 
 	void StateUpdate(float _Delta);
-	void ChangeState(EBARRELSTATE _State);
+	void ChangeState(EBARRELSTATE _CurState);
 	void ChangeAnimation(std::string_view _State);
 	void BarrelMove(float _Delta);
 

@@ -11,8 +11,6 @@ StageStartUI::~StageStartUI()
 
 void StageStartUI::Start()
 {
-	float4 WinScale = GameEngineCore::MainWindow.GetScale();
-
 	Renderer = CreateComponent<GameEngineUIRenderer>(ERENDERORDER::UI);
 	Renderer->CreateAnimation("Start_Effect", "StageStart_Effect", 0.05f, -1, -1, false);
 	Renderer->SetEndEvent("Start_Effect",
@@ -23,6 +21,8 @@ void StageStartUI::Start()
 		}
 	);
 
-	Renderer->ChangeAnimation("Start_Effect");
+	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 	Renderer->SetImageScale(WinScale);
+
+	Renderer->ChangeAnimation("Start_Effect");
 }

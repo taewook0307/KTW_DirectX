@@ -29,8 +29,8 @@ public:
 	}
 
 protected:
-	void ChangeBulletState(EBULLETSTATE _State);
 	void StateUpdate(float _Delta);
+	void ChangeBulletState(EBULLETSTATE _CurState);
 	virtual void ChangeBulletAnimation(std::string_view _State);
 
 	void SpawnStart();

@@ -77,11 +77,11 @@ void DogFish::StateUpdate(float _Delta)
 	}
 }
 
-void DogFish::ChangeState(EDOGFISHSTATE _State)
+void DogFish::ChangeState(EDOGFISHSTATE _CurState)
 {
-	if (_State != CurState)
+	if (_CurState != CurState)
 	{
-		switch (_State)
+		switch (_CurState)
 		{
 		case EDOGFISHSTATE::Jump:
 			JumpStart();
@@ -99,7 +99,7 @@ void DogFish::ChangeState(EDOGFISHSTATE _State)
 			break;
 		}
 
-		CurState = _State;
+		CurState = _CurState;
 	}
 }
 
