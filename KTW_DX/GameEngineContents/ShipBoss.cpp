@@ -92,11 +92,11 @@ void ShipBoss::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 
-	if (true == GameEngineInput::IsDown('O'))
+	/*if (true == GameEngineInput::IsDown('O'))
 	{
 		ChangeState(ESHIPBOSSSTATE::Death);
 		return;
-	}
+	}*/
 }
 
 void ShipBoss::StateUpdate(float _Delta)
