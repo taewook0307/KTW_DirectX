@@ -57,7 +57,7 @@ void ShipBoss::Start()
 
 	ShipRenderer->CreateAnimation("Ship_Phase3_Idle", "Ship_Phase3_Idle", SHIPANIMATIONINTER);
 
-	ShipRenderer->CreateAnimation("Ship_Phase3_Attack", "Ship_Phase3_Idle", SHIPANIMATIONINTER, 0, 12, false);
+	ShipRenderer->CreateAnimation("Ship_Phase3_Attack", "Ship_Phase3_Idle", SHIPANIMATIONINTER, 7, 19, false);
 
 	ShipRenderer->CreateAnimation("Ship_Phase3_Charge", "Ship_Phase3_Charge", 0.1f, -1, -1, false);
 	ShipRenderer->SetEndEvent("Ship_Phase3_Charge",
@@ -83,7 +83,7 @@ void ShipBoss::Start()
 
 	ShipPrevRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PrevBoss1);
 	ShipPrevRenderer->CreateAnimation("Ship_Phase3_Idle_Prev", "Ship_Phase3_Idle_Prev", SHIPANIMATIONINTER);
-	//ShipPrevRenderer->CreateAnimation("Ship_Phase3_Attack_Prev", "Ship_Phase3_Attack_Prev", SHIPANIMATIONINTER);
+	ShipPrevRenderer->CreateAnimation("Ship_Phase3_Attack_Prev", "Ship_Phase3_Attack_Prev", SHIPANIMATIONINTER);
 	ShipPrevRenderer->AutoSpriteSizeOn();
 	ShipPrevRenderer->SetPivotType(PivotType::RightBottom);
 	ShipPrevRenderer->Off();

@@ -37,6 +37,11 @@ void ShipBoss::IdleUpdate(float _Delta)
 void ShipBoss::AttackStart()
 {
 	ChangeAnimation("Attack");
+	if (EBOSSPHASE::Phase3 == CurPhase)
+	{
+		ShipPrevRenderer->On();
+		ShipPrevRenderer->ChangeAnimation("Ship_Phase3_Attack_Prev");
+	}
 }
 
 void ShipBoss::AttackUpdate(float _Delta)
@@ -49,6 +54,7 @@ void ShipBoss::AttackUpdate(float _Delta)
 	if (0 >= CannonAttackCount)
 	{
 		CannonAttackCount = CANNONATTACKCOUNT;
+		ShipPrevRenderer->Off();
 		ChangeState(ESHIPBOSSSTATE::Idle);
 		return;
 	}
