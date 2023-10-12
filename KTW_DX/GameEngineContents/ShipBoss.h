@@ -37,6 +37,8 @@ protected:
 
 	void ChargeStart();
 
+	void BeamStart();
+
 	void DeathStart();
 
 protected:

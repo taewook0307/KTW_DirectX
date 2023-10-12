@@ -120,6 +120,7 @@ enum class ESHIPBOSSSTATE
 	Wince,
 	Transform,
 	Charge,
+	Beam,
 	Death
 };
 
