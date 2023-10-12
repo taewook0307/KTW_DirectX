@@ -185,7 +185,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->CreateAnimation("CupHead_Death", "Death", 0.1f);
 
 	PlayerRenderer->AutoSpriteSizeOn();
-	PlayerRenderer->SetAutoScaleRatio(0.8f);
+	//PlayerRenderer->SetAutoScaleRatio(0.8f);
 	PlayerRenderer->SetPivotType(PivotType::Bottom);
 
 	Dir = EACTORDIR::Right;
@@ -196,6 +196,7 @@ void BaseCharacter::Start()
 	float4 CollisionPosition = { 0.0f, CollisionScale.Half().Y};
 
 	PlayerCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::Player);
+	PlayerCollision->SetCollisionType(ColType::AABBBOX2D);
 	PlayerCollision->Transform.SetLocalScale(CollisionScale);
 	PlayerCollision->Transform.SetLocalPosition(CollisionPosition);
 

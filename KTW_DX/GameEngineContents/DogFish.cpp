@@ -33,6 +33,7 @@ void DogFish::Start()
 	DogFishRenderer->SetPivotType(PivotType::Bottom);
 
 	BodyCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
+	BodyCollision->SetCollisionType(ColType::AABBBOX2D);
 	BodyCollision->Transform.SetLocalScale(DOGFISHCOLLISIONSCALE);
 	BodyCollision->Transform.SetLocalPosition(DOGFISHCOLLISIONPOSITION);
 

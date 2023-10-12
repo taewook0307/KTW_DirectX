@@ -167,9 +167,6 @@
     <ClInclude Include="DogFish_DeathEffect.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\DogFish</Filter>
     </ClInclude>
-    <ClInclude Include="UvulaBoss.h">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Uvula</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -374,9 +371,6 @@
     <ClCompile Include="DogFish_DeathEffect.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\DogFish</Filter>
     </ClCompile>
-    <ClCompile Include="UvulaBoss.cpp">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Uvula</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -498,9 +492,6 @@
     </Filter>
     <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\Ship">
       <UniqueIdentifier>{58882584-3913-444d-8b9e-d45108b30505}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\Uvula">
-      <UniqueIdentifier>{47708131-5d2c-45ac-8971-fe5254043545}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

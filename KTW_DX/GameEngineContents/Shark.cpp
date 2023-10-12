@@ -30,6 +30,7 @@ void Shark::Start()
 	SharkRenderer->SetPivotType(PivotType::LeftBottom);
 
 	AttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
+	AttackCollision->SetCollisionType(ColType::AABBBOX2D);
 	AttackCollision->Transform.SetLocalScale(SHARKCOLLISIONSCALE);
 	AttackCollision->Transform.SetLocalPosition(SHARKCOLLISIONPOSITION);
 

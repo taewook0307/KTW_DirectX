@@ -22,7 +22,8 @@ void SpecialBullet::Start()
 	ChangeBulletState(EBULLETSTATE::Spawn);
 
 	BulletCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::Bullet);
-	BulletCollision->Transform.SetLocalScale({ 27.0f, 18.0f });
+	BulletCollision->SetCollisionType(ColType::AABBBOX2D);
+	BulletCollision->Transform.SetLocalScale({ 170.0f, 100.0f });
 }
 
 void SpecialBullet::ChangeBulletAnimation(std::string_view _State)

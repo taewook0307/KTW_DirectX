@@ -23,6 +23,7 @@ void Barrel::Start()
 	BarrelRenderer->SetPivotType(PivotType::Bottom);
  
 	AttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
+	AttackCollision->SetCollisionType(ColType::AABBBOX2D);
 	AttackCollision->Transform.SetLocalScale(ATTACKCOLLISIONSCALE);
 	AttackCollision->Transform.SetLocalPosition(ATTACKCOLLISIONPOSITION);
 

@@ -21,6 +21,7 @@ void Bullet::Start()
 	BulletRenderer->SetAutoScaleRatio(BULLETRATIO);
 
 	BulletCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::Bullet);
+	BulletCollision->SetCollisionType(ColType::AABBBOX2D);
 	BulletCollision->Transform.SetLocalScale({ 27.0f, 18.0f });
 	BulletCollision->Off();
 

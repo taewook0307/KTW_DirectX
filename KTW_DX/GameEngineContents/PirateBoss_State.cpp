@@ -90,6 +90,7 @@ void PirateBoss::WhistleStart()
 void PirateBoss::DeathStart()
 {
 	ChangeAnimation("Death");
+	PirateCollision->Off();
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 	Transform.SetLocalPosition({ WinScale.Half().X, 0.0f});
 	PirateRenderer->SetAutoScaleRatio(0.8f);
