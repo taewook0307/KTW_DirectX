@@ -4,6 +4,7 @@
 #include "StageStartUI.h"
 #include "StageClearUI.h"
 #include "StageFailUI.h"
+#include "BaseCharacter.h"
 
 ESTAGERESULT StageLevel::StageResult = ESTAGERESULT::None;
 
@@ -33,7 +34,24 @@ void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources\\Texture\\Global\\Character");
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
+	}
+
 	CreateActor<StageStartUI>(EUPDATEORDER::UI);
+
+	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
+	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
 }
 
 void StageLevel::Update(float _Delta)
@@ -66,4 +84,10 @@ void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	ResultUI = false;
 	PhaseMoveTimer = PHASEMOVETIMER;
 	StageResult = ESTAGERESULT::None;
+
+	if (nullptr != Player)
+	{
+		Player->Death();
+		Player = nullptr;
+	}
 }

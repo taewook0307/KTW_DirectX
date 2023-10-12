@@ -2,7 +2,6 @@
 #include "FirstBossStage.h"
 #include "ContentsCore.h"
 
-#include "BaseCharacter.h"
 #include "FirstBoss.h"
 #include "FirstBossPhase3.h"
 #include "Map.h"
@@ -26,20 +25,6 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, -500 });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
-
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Global\\Character");
-		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
-
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			GameEngineDirectory& Dir = Directorys[i];
-
-			GameEngineSprite::CreateFolder(Dir.GetStringPath());
-		}
-	}
 
 	{
 		GameEngineDirectory Dir;
@@ -84,9 +69,6 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 			GameEngineSprite::CreateFolder(Dir.GetStringPath());
 		}
 	}
-
-	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
-	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
 
 	Boss = CreateActor<FirstBoss>(EUPDATEORDER::Monster);
 	Boss->Transform.SetLocalPosition({ 1000.0f, -677.0f });
@@ -140,12 +122,6 @@ void FirstBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 	{
 		StageMapUpper->Death();
 		StageMapUpper = nullptr;
-	}
-
-	if (nullptr != Player)
-	{
-		Player->Death();
-		Player = nullptr;
 	}
 
 	if (nullptr != Boss)

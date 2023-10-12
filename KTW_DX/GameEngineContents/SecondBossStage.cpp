@@ -1,8 +1,6 @@
 ﻿#include "PreCompile.h"
 #include "SecondBossStage.h"
 
-#include "BaseCharacter.h"
-
 #include "PirateBoss.h"
 #include "ShipBoss.h"
 
@@ -23,18 +21,6 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, -500 });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
-
-	GameEngineDirectory Dir;
-	Dir.MoveParentToExistsChild("Resources");
-	Dir.MoveChild("Resources\\Texture\\Global\\Character");
-	std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
-
-	for (size_t i = 0; i < Directorys.size(); i++)
-	{
-		GameEngineDirectory& Dir = Directorys[i];
-
-		GameEngineSprite::CreateFolder(Dir.GetStringPath());
-	}
 
 	{
 		GameEngineDirectory Dir;
@@ -76,9 +62,6 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ShipBossActor = CreateActor<ShipBoss>(EUPDATEORDER::Monster);
 	ShipBossActor->Transform.SetLocalPosition({ WinScale.X + 80.0f, -WinScale.Y });
 
-	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
-	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
-
 	BarrelActor = CreateActor<Barrel>(EUPDATEORDER::Monster);
 	BarrelActor->Transform.SetLocalPosition({ WinScale.Half().X, -220.0f });
 
@@ -104,12 +87,6 @@ void SecondBossStage::Update(float _Delta)
 void SecondBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	StageLevel::LevelEnd(_NextLevel);
-
-	if (nullptr != Player)
-	{
-		Player->Death();
-		Player = nullptr;
-	}
 
 	if (nullptr != PirateBossActor)
 	{
