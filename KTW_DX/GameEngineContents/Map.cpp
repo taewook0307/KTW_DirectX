@@ -14,13 +14,14 @@ Map::~Map()
 
 void Map::Start()
 {
+	GameEngineInput::AddInputObject(this);
 	MapRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Map);
 	PixelMapRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Map);
 }
 
 void Map::Update(float _Delta)
 {
-	if (true == GameEngineInput::IsDown('J'))
+	if (true == GameEngineInput::IsDown('J', this))
 	{
 		RendererSwitch();
 	}

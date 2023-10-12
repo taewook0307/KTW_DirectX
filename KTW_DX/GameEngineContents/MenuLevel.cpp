@@ -14,6 +14,8 @@ MenuLevel::~MenuLevel()
 
 void MenuLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	GameEngineInput::AddInputObject(this);
+
 	//리소스 Load
 	{
 		GameEngineDirectory MenuDir;
@@ -46,26 +48,26 @@ void MenuLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void MenuLevel::Update(float _Delta)
 {
-	if (EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown(VK_DOWN))
+	if (EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown(VK_DOWN, this))
 	{
 		CurSelect = EMAINMENUSELECT::Exit;
 		MenuChange();
 	}
 
-	if (EMAINMENUSELECT::Exit == CurSelect && GameEngineInput::IsDown(VK_UP))
+	if (EMAINMENUSELECT::Exit == CurSelect && GameEngineInput::IsDown(VK_UP, this))
 	{
 		CurSelect = EMAINMENUSELECT::Start;
 		MenuChange();
 	}
 
-	if (EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown(VK_RETURN)
-		|| EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown('Z'))
+	if (EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown(VK_RETURN, this)
+		|| EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown('Z', this))
 	{
 		GameEngineCore::ChangeLevel("IntroLevel");
 	}
 
-	if (EMAINMENUSELECT::Exit == CurSelect && GameEngineInput::IsDown(VK_RETURN)
-		|| EMAINMENUSELECT::Exit == CurSelect && GameEngineInput::IsDown('Z'))
+	if (EMAINMENUSELECT::Exit == CurSelect && GameEngineInput::IsDown(VK_RETURN, this)
+		|| EMAINMENUSELECT::Exit == CurSelect && GameEngineInput::IsDown('Z', this))
 	{
 		GameEngineWindow::WindowLoopOff();
 	}

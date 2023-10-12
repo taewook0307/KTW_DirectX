@@ -114,7 +114,7 @@ void BaseCharacter::SpecialAttackUpdate(float _Delta)
 		}
 	}
 
-	if (true == Cheat && true == PlayerRenderer->IsCurAnimationEnd() && true == GameEngineInput::IsFree('V'))
+	if (true == Cheat && true == PlayerRenderer->IsCurAnimationEnd() && true == GameEngineInput::IsFree('V', this))
 	{
 		GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
 

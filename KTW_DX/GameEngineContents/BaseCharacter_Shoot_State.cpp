@@ -6,7 +6,7 @@
 
 void BaseCharacter::ShootBaseState()
 {
-	if (true == GameEngineInput::IsDown('X') || true == GameEngineInput::IsPress('X'))
+	if (true == GameEngineInput::IsDown('X', this) || true == GameEngineInput::IsPress('X', this))
 	{
 		if (false == Shoot)
 		{
@@ -53,7 +53,7 @@ void BaseCharacter::ShootBaseState()
 
 void BaseCharacter::ShootAimState()
 {
-	if (true == GameEngineInput::IsDown('X') || true == GameEngineInput::IsPress('X'))
+	if (true == GameEngineInput::IsDown('X', this) || true == GameEngineInput::IsPress('X', this))
 	{
 		if (false == Shoot)
 		{
@@ -138,7 +138,7 @@ void BaseCharacter::ShootAimState()
 
 void BaseCharacter::ShootRunState()
 {
-	if (true == GameEngineInput::IsDown('X') || true == GameEngineInput::IsPress('X'))
+	if (true == GameEngineInput::IsDown('X', this) || true == GameEngineInput::IsPress('X', this))
 	{
 		if (false == Shoot)
 		{
@@ -184,7 +184,7 @@ void BaseCharacter::ShootRunState()
 
 void BaseCharacter::ShootDuckState()
 {
-	if (true == GameEngineInput::IsDown('X') || true == GameEngineInput::IsPress('X'))
+	if (true == GameEngineInput::IsDown('X', this) || true == GameEngineInput::IsPress('X', this))
 	{
 		if (false == Shoot)
 		{
@@ -227,38 +227,38 @@ void BaseCharacter::ShootUpdate(float _Delta)
 
 	ShootBaseState();
 
-	if (true == GameEngineInput::IsFree('X'))
+	if (true == GameEngineInput::IsFree('X', this))
 	{
 		ChangeState(ECHARACTERSTATE::Idle);
 		return;
 	}
 
-	if(true == GameEngineInput::IsPress(VK_LEFT)
-		|| true == GameEngineInput::IsPress(VK_RIGHT))
+	if(true == GameEngineInput::IsPress(VK_LEFT, this)
+		|| true == GameEngineInput::IsPress(VK_RIGHT, this))
 	{
 		ChangeState(ECHARACTERSTATE::RunShoot);
 		return;
 	}
 
-	if (true == GameEngineInput::IsPress(VK_DOWN))
+	if (true == GameEngineInput::IsPress(VK_DOWN, this))
 	{
 		ChangeState(ECHARACTERSTATE::Duck);
 		return;
 	}
 
-	if (true == GameEngineInput::IsPress('C'))
+	if (true == GameEngineInput::IsPress('C', this))
 	{
 		ChangeState(ECHARACTERSTATE::AimShoot);
 		return;
 	}
 
-	if (true == GameEngineInput::IsDown('Z'))
+	if (true == GameEngineInput::IsDown('Z', this))
 	{
 		ChangeState(ECHARACTERSTATE::Jump);
 		return;
 	}
 
-	if (true == GameEngineInput::IsPress(VK_SHIFT))
+	if (true == GameEngineInput::IsPress(VK_SHIFT, this))
 	{
 		ChangeState(ECHARACTERSTATE::Dash);
 		return;
@@ -277,13 +277,13 @@ void BaseCharacter::AimUpdate(float _Delta)
 	// Gravity
 	ActorGravity(_Delta, Transform.GetWorldPosition());
 
-	if (true == GameEngineInput::IsFree('C'))
+	if (true == GameEngineInput::IsFree('C', this))
 	{
 		ChangeState(ECHARACTERSTATE::Idle);
 		return;
 	}
 
-	if (true == GameEngineInput::IsPress('X'))
+	if (true == GameEngineInput::IsPress('X', this))
 	{
 		ChangeState(ECHARACTERSTATE::AimShoot);
 		return;
@@ -304,25 +304,25 @@ void BaseCharacter::AimShootUpdate(float _Delta)
 
 	ShootAimState();
 
-	if (true == GameEngineInput::IsDown('Z'))
+	if (true == GameEngineInput::IsDown('Z', this))
 	{
 		ChangeState(ECHARACTERSTATE::Jump);
 		return;
 	}
 
-	if (true == GameEngineInput::IsFree('X'))
+	if (true == GameEngineInput::IsFree('X', this))
 	{
 		ChangeState(ECHARACTERSTATE::Aim);
 		return;
 	}
 
-	if (true == GameEngineInput::IsFree('C'))
+	if (true == GameEngineInput::IsFree('C', this))
 	{
 		ChangeState(ECHARACTERSTATE::Shoot);
 		return;
 	}
 
-	if (true == GameEngineInput::IsPress(VK_SHIFT))
+	if (true == GameEngineInput::IsPress(VK_SHIFT, this))
 	{
 		ChangeState(ECHARACTERSTATE::Dash);
 		return;
@@ -346,32 +346,32 @@ void BaseCharacter::RunShootUpdate(float _Delta)
 	// Move
 	CharacterMove(_Delta);
 
-	if (true == GameEngineInput::IsFree('X'))
+	if (true == GameEngineInput::IsFree('X', this))
 	{
 		ChangeState(ECHARACTERSTATE::Run);
 		return;
 	}
 
-	if (true == GameEngineInput::IsFree(VK_LEFT)
-		&& true == GameEngineInput::IsFree(VK_RIGHT))
+	if (true == GameEngineInput::IsFree(VK_LEFT, this)
+		&& true == GameEngineInput::IsFree(VK_RIGHT, this))
 	{
 		ChangeState(ECHARACTERSTATE::Shoot);
 		return;
 	}
 
-	if (true == GameEngineInput::IsDown('Z'))
+	if (true == GameEngineInput::IsDown('Z', this))
 	{
 		ChangeState(ECHARACTERSTATE::Jump);
 		return;
 	}
 
-	if (true == GameEngineInput::IsPress(VK_DOWN))
+	if (true == GameEngineInput::IsPress(VK_DOWN, this))
 	{
 		ChangeState(ECHARACTERSTATE::DuckShoot);
 		return;
 	}
 
-	if (true == GameEngineInput::IsPress(VK_SHIFT))
+	if (true == GameEngineInput::IsPress(VK_SHIFT, this))
 	{
 		ChangeState(ECHARACTERSTATE::Dash);
 		return;
@@ -392,13 +392,13 @@ void BaseCharacter::DuckShootUpdate(float _Delta)
 
 	ShootDuckState();
 
-	if (true == GameEngineInput::IsFree(VK_DOWN))
+	if (true == GameEngineInput::IsFree(VK_DOWN, this))
 	{
 		ChangeState(ECHARACTERSTATE::Shoot);
 		return;
 	}
 
-	if (true == GameEngineInput::IsFree('X'))
+	if (true == GameEngineInput::IsFree('X', this))
 	{
 		ChangeState(ECHARACTERSTATE::Duck);
 		return;

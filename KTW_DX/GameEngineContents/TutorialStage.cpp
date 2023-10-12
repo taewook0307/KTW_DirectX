@@ -10,6 +10,7 @@
 
 TutorialStage::TutorialStage()
 {
+	GameEngineInput::AddInputObject(this);
 }
 
 TutorialStage::~TutorialStage()
@@ -120,7 +121,7 @@ void TutorialStage::Update(float _Delta)
 {
 	TutorialLevelCameraMove();
 
-	if (true == GameEngineInput::IsDown(VK_ESCAPE))
+	if (true == GameEngineInput::IsDown(VK_ESCAPE, this))
 	{
 		GameEngineCore::ChangeLevel("MiniMapLevel");
 	}

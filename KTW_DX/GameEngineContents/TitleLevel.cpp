@@ -7,6 +7,7 @@
 
 TitleLevel::TitleLevel()
 {
+	GameEngineInput::AddInputObject(this);
 }
 
 TitleLevel::~TitleLevel()
@@ -66,7 +67,7 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void TitleLevel::Update(float _Delta)
 {
-	if (true == GameEngineInput::IsDown(VK_RETURN))
+	if (true == GameEngineInput::IsDown(VK_RETURN, this))
 	{
 		FadeEffect = CreateActor<FadeObject>(EUPDATEORDER::UI);
 		FadeEffect->SetFadeType();

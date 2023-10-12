@@ -17,6 +17,8 @@ StageLevel::~StageLevel()
 
 void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	GameEngineInput::AddInputObject(this);
+
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");

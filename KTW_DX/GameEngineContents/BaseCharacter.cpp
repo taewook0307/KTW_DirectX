@@ -9,6 +9,7 @@ BaseCharacter* BaseCharacter::MainCharacter = nullptr;
 BaseCharacter::BaseCharacter()
 {
 	MainCharacter = this;
+	GameEngineInput::AddInputObject(this);
 }
 
 BaseCharacter::~BaseCharacter()
@@ -67,7 +68,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetEndEvent("CupHead_Duck",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			if (true == GameEngineInput::IsPress(VK_DOWN))
+			if (true == GameEngineInput::IsPress(VK_DOWN, this))
 			{
 				ChangeAnimation("Duck_Idle");
 			}
@@ -216,17 +217,17 @@ void BaseCharacter::Update(float _Delta)
 		PlayerRenderer->RightFlip();
 	}
 
-	if (true == GameEngineInput::IsDown('V'))
+	if (true == GameEngineInput::IsDown('V', this))
 	{
 		ChangeState(ECHARACTERSTATE::SpecialAttack);
 	}
 
-	if (true == Cheat && true == GameEngineInput::IsPress('V'))
+	if (true == Cheat && true == GameEngineInput::IsPress('V', this))
 	{
 		ChangeState(ECHARACTERSTATE::SpecialAttack);
 	}
 
-	if (true == GameEngineInput::IsDown('P'))
+	if (true == GameEngineInput::IsDown('P', this))
 	{
 		Cheat = !Cheat;
 	}
@@ -296,12 +297,12 @@ void BaseCharacter::Update(float _Delta)
 
 void BaseCharacter::DirChange()
 {
-	if (true == GameEngineInput::IsDown(VK_LEFT) || true == GameEngineInput::IsPress(VK_LEFT))
+	if (true == GameEngineInput::IsDown(VK_LEFT, this) || true == GameEngineInput::IsPress(VK_LEFT, this))
 	{
 		Dir = EACTORDIR::Left;
 	}
 
-	if (true == GameEngineInput::IsDown(VK_RIGHT) || true == GameEngineInput::IsPress(VK_RIGHT))
+	if (true == GameEngineInput::IsDown(VK_RIGHT, this) || true == GameEngineInput::IsPress(VK_RIGHT, this))
 	{
 		Dir = EACTORDIR::Right;
 	}
@@ -313,32 +314,32 @@ void BaseCharacter::AimDirChange()
 {
 	ECHARACTERAIMDIR ChangeAimDir = ECHARACTERAIMDIR::Straight;
 
-	if (true == GameEngineInput::IsPress(VK_UP) && true == GameEngineInput::IsPress(VK_RIGHT)
-		|| true == GameEngineInput::IsPress(VK_UP) && true == GameEngineInput::IsPress(VK_LEFT))
+	if (true == GameEngineInput::IsPress(VK_UP, this) && true == GameEngineInput::IsPress(VK_RIGHT, this)
+		|| true == GameEngineInput::IsPress(VK_UP, this) && true == GameEngineInput::IsPress(VK_LEFT, this))
 	{
 		ChangeAimDir = ECHARACTERAIMDIR::StraightUp;
 	}
 
-	else if (true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsPress(VK_RIGHT)
-		|| true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsPress(VK_LEFT))
+	else if (true == GameEngineInput::IsPress(VK_DOWN, this) && true == GameEngineInput::IsPress(VK_RIGHT, this)
+		|| true == GameEngineInput::IsPress(VK_DOWN, this) && true == GameEngineInput::IsPress(VK_LEFT, this))
 	{
 		ChangeAimDir = ECHARACTERAIMDIR::StraightDown;
 	}
 
-	else if (true == GameEngineInput::IsDown(VK_LEFT) || true == GameEngineInput::IsPress(VK_LEFT)
-		|| true == GameEngineInput::IsDown(VK_RIGHT) || true == GameEngineInput::IsPress(VK_RIGHT))
+	else if (true == GameEngineInput::IsDown(VK_LEFT, this) || true == GameEngineInput::IsPress(VK_LEFT, this)
+		|| true == GameEngineInput::IsDown(VK_RIGHT, this) || true == GameEngineInput::IsPress(VK_RIGHT, this))
 	{
 		ChangeAimDir = ECHARACTERAIMDIR::Straight;
 	}
 
-	else if (true == GameEngineInput::IsDown(VK_UP)
-		|| true == GameEngineInput::IsPress(VK_UP))
+	else if (true == GameEngineInput::IsDown(VK_UP, this)
+		|| true == GameEngineInput::IsPress(VK_UP, this))
 	{
 		ChangeAimDir = ECHARACTERAIMDIR::Up;
 	}
 
-	else if (true == GameEngineInput::IsDown(VK_DOWN)
-		|| true == GameEngineInput::IsPress(VK_DOWN))
+	else if (true == GameEngineInput::IsDown(VK_DOWN, this)
+		|| true == GameEngineInput::IsPress(VK_DOWN, this))
 	{
 		ChangeAimDir = ECHARACTERAIMDIR::Down;
 	}

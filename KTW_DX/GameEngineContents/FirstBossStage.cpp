@@ -120,7 +120,7 @@ void FirstBossStage::Update(float _Delta)
 		Phase3Start = true;
 	}
 
-	if (true == GameEngineInput::IsDown(VK_ESCAPE))
+	if (true == GameEngineInput::IsDown(VK_ESCAPE, this))
 	{
 		GameEngineCore::ChangeLevel("MiniMapLevel");
 	}

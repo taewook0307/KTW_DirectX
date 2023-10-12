@@ -11,10 +11,10 @@ void MiniMapCharacter::IdleStart()
 void MiniMapCharacter::IdleUpdate(float _Delta)
 {
 	if (
-		true == GameEngineInput::IsPress(VK_LEFT)
-		|| true == GameEngineInput::IsPress(VK_RIGHT)
-		|| true == GameEngineInput::IsPress(VK_UP)
-		|| true == GameEngineInput::IsPress(VK_DOWN)
+		true == GameEngineInput::IsPress(VK_LEFT, this)
+		|| true == GameEngineInput::IsPress(VK_RIGHT, this)
+		|| true == GameEngineInput::IsPress(VK_UP, this)
+		|| true == GameEngineInput::IsPress(VK_DOWN, this)
 		)
 	{
 		ChangeState(EMINIMAPCHARACTERSTATE::Run);
@@ -34,22 +34,22 @@ void MiniMapCharacter::RunUpdate(float _Delta)
 	float4 MovePos = float4::ZERO;
 	float4 CheckPos = float4::ZERO;
 
-	if (GameEngineInput::IsPress(VK_UP))
+	if (GameEngineInput::IsPress(VK_UP, this))
 	{
 		MovePos += float4::UP * _Delta * Speed;
 	}
 
-	if (GameEngineInput::IsPress(VK_DOWN))
+	if (GameEngineInput::IsPress(VK_DOWN, this))
 	{
 		MovePos += float4::DOWN * _Delta * Speed;
 	}
 
-	if (GameEngineInput::IsPress(VK_LEFT))
+	if (GameEngineInput::IsPress(VK_LEFT, this))
 	{
 		MovePos += float4::LEFT * _Delta * Speed;
 	}
 
-	if (GameEngineInput::IsPress(VK_RIGHT))
+	if (GameEngineInput::IsPress(VK_RIGHT, this))
 	{
 		MovePos += float4::RIGHT * _Delta * Speed;
 	}

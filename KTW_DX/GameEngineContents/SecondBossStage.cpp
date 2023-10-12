@@ -95,7 +95,7 @@ void SecondBossStage::Update(float _Delta)
 {
 	StageLevel::Update(_Delta);
 
-	if (true == GameEngineInput::IsDown(VK_ESCAPE))
+	if (true == GameEngineInput::IsDown(VK_ESCAPE, this))
 	{
 		GameEngineCore::ChangeLevel("MiniMapLevel");
 	}

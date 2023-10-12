@@ -5,6 +5,7 @@
 
 MiniMapCharacter::MiniMapCharacter()
 {
+	GameEngineInput::AddInputObject(this);
 }
 
 MiniMapCharacter::~MiniMapCharacter()
@@ -71,47 +72,47 @@ void MiniMapCharacter::DirChange()
 {
 	ECHARACTERAIMDIR CheckMoveDir = ECHARACTERAIMDIR::None;
 
-	if (true == GameEngineInput::IsPress(VK_UP))
+	if (true == GameEngineInput::IsPress(VK_UP, this))
 	{
 		CheckMoveDir = ECHARACTERAIMDIR::Up;
 	}
 
-	if (true == GameEngineInput::IsPress(VK_DOWN))
+	if (true == GameEngineInput::IsPress(VK_DOWN, this))
 	{
 		CheckMoveDir = ECHARACTERAIMDIR::Down;
 	}
 
-	if (true == GameEngineInput::IsPress(VK_RIGHT))
+	if (true == GameEngineInput::IsPress(VK_RIGHT, this))
 	{
 		Dir = EACTORDIR::Right;
 		CheckMoveDir = ECHARACTERAIMDIR::Straight;
 	}
 
-	if (true == GameEngineInput::IsPress(VK_LEFT))
+	if (true == GameEngineInput::IsPress(VK_LEFT, this))
 	{
 		Dir = EACTORDIR::Left;
 		CheckMoveDir = ECHARACTERAIMDIR::Straight;
 	}
 
-	if (true == GameEngineInput::IsPress(VK_UP) && true == GameEngineInput::IsPress(VK_RIGHT))
+	if (true == GameEngineInput::IsPress(VK_UP, this) && true == GameEngineInput::IsPress(VK_RIGHT, this))
 	{
 		Dir = EACTORDIR::Right;
 		CheckMoveDir = ECHARACTERAIMDIR::StraightUp;
 	}
 
-	if (true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsPress(VK_RIGHT))
+	if (true == GameEngineInput::IsPress(VK_DOWN, this) && true == GameEngineInput::IsPress(VK_RIGHT, this))
 	{
 		Dir = EACTORDIR::Right;
 		CheckMoveDir = ECHARACTERAIMDIR::StraightDown;
 	}
 
-	if (true == GameEngineInput::IsPress(VK_UP) && true == GameEngineInput::IsPress(VK_LEFT))
+	if (true == GameEngineInput::IsPress(VK_UP, this) && true == GameEngineInput::IsPress(VK_LEFT, this))
 	{
 		Dir = EACTORDIR::Left;
 		CheckMoveDir = ECHARACTERAIMDIR::StraightUp;
 	}
 
-	if (true == GameEngineInput::IsPress(VK_DOWN) && true == GameEngineInput::IsPress(VK_LEFT))
+	if (true == GameEngineInput::IsPress(VK_DOWN, this) && true == GameEngineInput::IsPress(VK_LEFT, this))
 	{
 		Dir = EACTORDIR::Left;
 		CheckMoveDir = ECHARACTERAIMDIR::StraightDown;

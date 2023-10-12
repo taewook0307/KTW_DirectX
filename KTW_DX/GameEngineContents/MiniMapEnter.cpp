@@ -3,6 +3,7 @@
 
 MiniMapEnter::MiniMapEnter()
 {
+	GameEngineInput::AddInputObject(this);
 }
 
 MiniMapEnter::~MiniMapEnter()
@@ -19,7 +20,7 @@ void MiniMapEnter::Update(float _Delta)
 {
 	if (true == MiniMapEnterCollision->Collision(ECOLLISIONORDER::Player))
 	{
-		if (true == GameEngineInput::IsDown('Z') || true == GameEngineInput::IsDown(VK_RETURN))
+		if (true == GameEngineInput::IsDown('Z', this) || true == GameEngineInput::IsDown(VK_RETURN, this))
 		{
 			GameEngineCore::ChangeLevel(EnterLevel);
 		}

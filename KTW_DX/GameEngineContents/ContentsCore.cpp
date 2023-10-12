@@ -59,9 +59,11 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<FirstBossStage>("FirstBossStage");
 	GameEngineCore::CreateLevel<SecondBossStage>("SecondBossStage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
-	GameEngineCore::ChangeLevel("SecondBossStage");
+	GameEngineCore::ChangeLevel("FirstBossStage");
 
 	GameEngineLevel::OffDebug();
+
+	GameEngineInput::AddInputObject(this);
 }
 
 void ContentsCore::Update(float _Delta)
@@ -69,24 +71,24 @@ void ContentsCore::Update(float _Delta)
 	OutputDebugStringA(std::to_string(1.0f / _Delta).c_str());
 	OutputDebugStringA("\n");
 
-	if (true == GameEngineInput::IsDown('K'))
+	if (true == GameEngineInput::IsDown('K', this))
 	{
 		GameEngineLevel::IsDebug = !GameEngineLevel::IsDebug;
 	}
 
-	if (true == GameEngineInput::IsDown(VK_F1))
+	if (true == GameEngineInput::IsDown(VK_F1, this))
 	{
 		GameEngineCore::ChangeLevel("MiniMapLevel");
 	}
-	if (true == GameEngineInput::IsDown(VK_F2))
+	if (true == GameEngineInput::IsDown(VK_F2, this))
 	{
 		GameEngineCore::ChangeLevel("TutorialStage");
 	}
-	if (true == GameEngineInput::IsDown(VK_F3))
+	if (true == GameEngineInput::IsDown(VK_F3, this))
 	{
 		GameEngineCore::ChangeLevel("FirstBossStage");
 	}
-	if (true == GameEngineInput::IsDown(VK_F4))
+	if (true == GameEngineInput::IsDown(VK_F4, this))
 	{
 		GameEngineCore::ChangeLevel("SecondBossStage");
 	}
