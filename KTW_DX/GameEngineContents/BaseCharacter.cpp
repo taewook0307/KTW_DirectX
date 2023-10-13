@@ -186,7 +186,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->CreateAnimation("CupHead_Death", "Death", 0.1f);
 
 	PlayerRenderer->AutoSpriteSizeOn();
-	//PlayerRenderer->SetAutoScaleRatio(0.8f);
+	PlayerRenderer->SetAutoScaleRatio(0.9f);
 	PlayerRenderer->SetPivotType(PivotType::Bottom);
 
 	Dir = EACTORDIR::Right;

@@ -17,7 +17,7 @@ void ShipBoss::IdleUpdate(float _Delta)
 		return;
 	}
 
-	if (0.0f > IdleTimer && EBOSSPHASE::Phase3 != CurPhase)
+	if (0.0f > IdleTimer /*&& EBOSSPHASE::Phase3 != CurPhase*/)
 	{
 		IdleTimer = SHIPIDLETIMER;
 		ChangeState(ESHIPBOSSSTATE::Attack);

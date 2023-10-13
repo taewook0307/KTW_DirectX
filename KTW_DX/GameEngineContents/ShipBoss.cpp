@@ -29,7 +29,7 @@ void ShipBoss::Start()
 		}
 	);
 
-	ShipRenderer->CreateAnimation("Ship_Wince", "Ship_Wince", 0.1f, -1, -1, false);
+	ShipRenderer->CreateAnimation("Ship_Wince", "Ship_Wince", SHIPANIMATIONINTER, -1, -1, false);
 	ShipRenderer->SetEndEvent("Ship_Wince",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -38,7 +38,7 @@ void ShipBoss::Start()
 		}
 	);
 
-	ShipRenderer->CreateAnimation("Ship_Transform", "Ship_Transform", 0.1f, -1, -1, false);
+	ShipRenderer->CreateAnimation("Ship_Transform", "Ship_Transform", SHIPANIMATIONINTER, -1, -1, false);
 	ShipRenderer->SetFrameEvent("Ship_Transform", 3,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -55,9 +55,11 @@ void ShipBoss::Start()
 		}
 	);
 
-	ShipRenderer->CreateAnimation("Ship_Phase3_Idle", "Ship_Phase3_Idle", 0.1f);
+	ShipRenderer->CreateAnimation("Ship_Phase3_Idle", "Ship_Phase3_Idle", SHIPANIMATIONINTER);
 
-	ShipRenderer->CreateAnimation("Ship_Phase3_Charge", "Ship_Phase3_Charge", 0.1f, -1, -1, false);
+	ShipRenderer->CreateAnimation("Ship_Phase3_Attack", "Ship_Phase3_Attack", SHIPANIMATIONINTER);
+
+	ShipRenderer->CreateAnimation("Ship_Phase3_Charge", "Ship_Phase3_Charge", SHIPANIMATIONINTER, -1, -1, false);
 	ShipRenderer->SetEndEvent("Ship_Phase3_Charge",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -65,7 +67,7 @@ void ShipBoss::Start()
 			return;
 		}
 	);
-	ShipRenderer->CreateAnimation("Ship_Phase3_Beam", "Ship_Phase3_Beam", 0.1f);
+	ShipRenderer->CreateAnimation("Ship_Phase3_Beam", "Ship_Phase3_Beam", SHIPANIMATIONINTER);
 	ShipRenderer->SetEndEvent("Ship_Phase3_Beam",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -73,7 +75,7 @@ void ShipBoss::Start()
 			return;
 		}
 	);
-	ShipRenderer->CreateAnimation("Ship_Phase3_Death", "Ship_Phase3_Death", 0.1f);
+	ShipRenderer->CreateAnimation("Ship_Phase3_Death", "Ship_Phase3_Death", SHIPANIMATIONINTER);
 
 	ShipRenderer->AutoSpriteSizeOn();
 	ShipRenderer->SetPivotType(PivotType::RightBottom);
