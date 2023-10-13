@@ -53,7 +53,6 @@ protected:
 
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> ShipRenderer = nullptr;
-	std::shared_ptr<GameEngineSpriteRenderer> ShipPrevRenderer = nullptr;
 
 	void Start() override;
 	void Update(float _Delta) override;
