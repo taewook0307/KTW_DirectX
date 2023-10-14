@@ -1,6 +1,10 @@
 #pragma once
 
 #include "BaseBoss.h"
+
+#define PHASE1HP 400
+#define PHASE2HP 952
+
 #define PIRATEBOSSANIMATIONINTER 0.05f
 
 #define PIRATECOLLISIONSCALE { 390.0f, 250.0f }

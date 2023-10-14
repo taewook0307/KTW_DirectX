@@ -37,6 +37,13 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	}
 
 	{
+		GameEnginePath Path;
+		Path.MoveParentToExistsChild("Resources");
+		Path.MoveChild("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship\\pirate_boatMast.Png");
+		GameEngineSprite::CreateSingle(Path.GetFileName());
+	}
+
+	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
 		Dir.MoveChild("Resources\\Texture\\SecondBossStage\\Map");
@@ -56,8 +63,8 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 
-	PirateBossActor = CreateActor<PirateBoss>(EUPDATEORDER::Monster);
-	PirateBossActor->Transform.SetLocalPosition({ WinScale.X - 80.0f, -450.0f });
+	/*PirateBossActor = CreateActor<PirateBoss>(EUPDATEORDER::Monster);
+	PirateBossActor->Transform.SetLocalPosition({ WinScale.X - 80.0f, -450.0f });*/
 
 	ShipBossActor = CreateActor<ShipBoss>(EUPDATEORDER::Monster);
 	ShipBossActor->Transform.SetLocalPosition({ WinScale.X + 80.0f, -WinScale.Y });

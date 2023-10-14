@@ -280,13 +280,13 @@ void PirateBoss::CreatePirateBullet()
 
 void PirateBoss::PhaseChange()
 {
-	if (400 < HitCount && EBOSSPHASE::Phase1 == CurPhase)
+	if (PHASE1HP < HitCount && EBOSSPHASE::Phase1 == CurPhase)
 	{
 		CurPhase = EBOSSPHASE::Phase2;
 		return;
 	}
 
-	if (952 < HitCount && EBOSSPHASE::Phase2 == CurPhase)
+	if (PHASE2HP < HitCount && EBOSSPHASE::Phase2 == CurPhase)
 	{
 		CurPhase = EBOSSPHASE::Phase3;
 		ShipBoss::MainShip->CurPhase = EBOSSPHASE::Phase3;
