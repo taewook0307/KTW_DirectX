@@ -22,20 +22,20 @@ void ShipBoss::Start()
 	ShipRailRenderer->CreateAnimation("Ship_Rail", "Ship_Rail", SHIPANIMATIONINTER);
 	ShipRailRenderer->AutoSpriteSizeOn();
 	ShipRailRenderer->SetPivotType(PivotType::Bottom);
-	ShipRailRenderer->Transform.SetLocalPosition({ -100.0f, 390.0f });
+	ShipRailRenderer->Transform.SetLocalPosition(SHIPRAILPOS);
 	ShipRailRenderer->ChangeAnimation("Ship_Rail");
 
 	ShipSailRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
 	ShipSailRenderer->CreateAnimation("Ship_Sail", "Ship_Sail");
 	ShipSailRenderer->AutoSpriteSizeOn();
 	ShipSailRenderer->SetPivotType(PivotType::Bottom);
-	ShipSailRenderer->Transform.SetLocalPosition({ -50.0f, 500.0f });
+	ShipSailRenderer->Transform.SetLocalPosition(SHIPSAILPOS);
 	ShipSailRenderer->ChangeAnimation("Ship_Sail");
 
 	ShipMastRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PrevBoss);
 	ShipMastRenderer->SetSprite("pirate_boatMast.Png");
 	ShipMastRenderer->SetPivotType(PivotType::Bottom);
-	ShipMastRenderer->Transform.SetLocalPosition({ -100.0f, 400.0f });
+	ShipMastRenderer->Transform.SetLocalPosition(SHIPMASTPOS);
 
 	ShipRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
 	ShipRenderer->CreateAnimation("Ship_Idle", "Ship_Idle", SHIPANIMATIONINTER);

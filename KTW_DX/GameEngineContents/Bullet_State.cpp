@@ -68,25 +68,7 @@ void Bullet::MoveUpdate(float _Delta)
 
 	Transform.AddLocalPosition(MovePos);
 
-
-
-	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
-
-	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
-
-	float4 WinLeftPos = { CameraPos.X - WinHalfScale.X, CameraPos.Y + WinHalfScale.Y };
-	float4 WinRightPos = { CameraPos.X + WinHalfScale.X, CameraPos.Y - WinHalfScale.Y };
-
-	float4 BulletPos = Transform.GetWorldPosition();
-
-	if (BulletPos.X < WinLeftPos.X
-		|| BulletPos.X >= WinRightPos.X
-		|| BulletPos.Y > WinLeftPos.Y
-		|| BulletPos.Y <= WinRightPos.Y)
-	{
-		ChangeBulletState(EBULLETSTATE::Death);
-		return;
-	}
+	PosCheck();
 }
 
 void Bullet::DeathStart()

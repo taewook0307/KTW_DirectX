@@ -6,6 +6,10 @@
 #define SHIPIDLETIMER 7.0f
 #define CANNONATTACKCOUNT 3
 
+#define SHIPRAILPOS { -100.0f, 390.0f }
+#define SHIPSAILPOS { -50.0f, 500.0f }
+#define SHIPMASTPOS { -100.0f, 400.0f }
+
 class ShipBoss : public BaseBoss
 {
 	friend class PirateBoss;

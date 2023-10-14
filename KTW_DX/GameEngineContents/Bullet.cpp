@@ -142,6 +142,27 @@ void Bullet::ChangeBulletAnimation(std::string_view _State)
 	BulletRenderer->ChangeAnimation(AnimationName);
 }
 
+void Bullet::PosCheck()
+{
+	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
+
+	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
+
+	float4 WinLeftPos = { CameraPos.X - WinHalfScale.X, CameraPos.Y + WinHalfScale.Y };
+	float4 WinRightPos = { CameraPos.X + WinHalfScale.X, CameraPos.Y - WinHalfScale.Y };
+
+	float4 BulletPos = Transform.GetWorldPosition();
+
+	if (BulletPos.X < WinLeftPos.X - 50.0f
+		|| BulletPos.X >= WinRightPos.X + 50.0f
+		|| BulletPos.Y > WinLeftPos.Y - 50.0f
+		|| BulletPos.Y <= WinRightPos.Y + 50.0f)
+	{
+		Death();
+		return;
+	}
+}
+
 void Bullet::BulletHitSuccess(std::vector<std::shared_ptr<GameEngineCollision>> _Col)
 {
 	if (EBULLETSTATE::Move == CurState)
