@@ -132,10 +132,10 @@
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="CannonBallDust.h">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipCannon</Filter>
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipCannon</Filter>
     </ClInclude>
     <ClInclude Include="CannonBall.h">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipCannon</Filter>
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipCannon</Filter>
     </ClInclude>
     <ClInclude Include="Periscope.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
@@ -166,6 +166,12 @@
     </ClInclude>
     <ClInclude Include="DogFish_DeathEffect.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\DogFish</Filter>
+    </ClInclude>
+    <ClInclude Include="ShipBubble.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipBubble</Filter>
+    </ClInclude>
+    <ClInclude Include="ShipBeam.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipBeam</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -321,10 +327,10 @@
       <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="CannonBallDust.cpp">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipCannon</Filter>
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipCannon</Filter>
     </ClCompile>
     <ClCompile Include="CannonBall.cpp">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipCannon</Filter>
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipCannon</Filter>
     </ClCompile>
     <ClCompile Include="Periscope.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
@@ -370,6 +376,12 @@
     </ClCompile>
     <ClCompile Include="DogFish_DeathEffect.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\DogFish</Filter>
+    </ClCompile>
+    <ClCompile Include="ShipBubble.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipBubble</Filter>
+    </ClCompile>
+    <ClCompile Include="ShipBeam.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipBeam</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -475,9 +487,6 @@
     <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\Enemy">
       <UniqueIdentifier>{3e4030c6-4dc4-4b4a-a87c-76066d276ed4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\ShipCannon">
-      <UniqueIdentifier>{148e33fa-9262-4e46-8042-d02c642d8d97}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\Enemy\Barrel">
       <UniqueIdentifier>{c09082e7-7967-4893-9aca-765f2ecbe86b}</UniqueIdentifier>
     </Filter>
@@ -492,6 +501,18 @@
     </Filter>
     <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\Ship">
       <UniqueIdentifier>{58882584-3913-444d-8b9e-d45108b30505}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\ShipAttack">
+      <UniqueIdentifier>{302e30e9-cbf5-43fa-ace1-6e3f801811c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipCannon">
+      <UniqueIdentifier>{148e33fa-9262-4e46-8042-d02c642d8d97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipBubble">
+      <UniqueIdentifier>{4e8cc82b-93da-4def-b41f-5a41f4388d09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipBeam">
+      <UniqueIdentifier>{0a72068d-4ae0-486b-bd73-5bac0268b3a3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

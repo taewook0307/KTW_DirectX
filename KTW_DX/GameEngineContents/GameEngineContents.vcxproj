@@ -338,7 +338,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ShipBeam.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ShipBoss.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ShipBubble.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -571,11 +579,19 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Shark_State.cpp" />
+    <ClCompile Include="ShipBeam.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ShipBoss.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="ShipBoss_State.cpp" />
+    <ClCompile Include="ShipBubble.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="SpecialAttackDust.cpp">
       <SubType>
       </SubType>
