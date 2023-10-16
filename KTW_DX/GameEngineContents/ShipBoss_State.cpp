@@ -64,12 +64,36 @@ void ShipBoss::TransformStart()
 
 void ShipBoss::ChargeStart()
 {
-	ChangeAnimation("Charge");
+	ChangeAnimation("Charge_Start");
+}
+
+void ShipBoss::ChargeUpdate(float _Delta)
+{
+	if (0.0f > ChargeTimer)
+	{
+		ChargeTimer = SHIPCHARGETIMER;
+		ShipRenderer->ChangeAnimation("Ship_Phase3_Charge_End");
+		return;
+	}
+
+	ChargeTimer -= _Delta;
 }
 
 void ShipBoss::BeamStart()
 {
-	ChangeAnimation("Beam");
+	ChangeAnimation("Beam_Start");
+}
+
+void ShipBoss::BeamUpdate(float _Delta)
+{
+	if (0.0f > BeamTimer)
+	{
+		BeamTimer = SHIPBEAMTIMER;
+		ShipRenderer->ChangeAnimation("Ship_Phase3_Beam_End");
+		return;
+	}
+
+	BeamTimer -= _Delta;
 }
 
 void ShipBoss::DeathStart()

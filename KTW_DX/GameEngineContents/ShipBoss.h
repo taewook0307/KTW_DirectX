@@ -6,6 +6,8 @@
 
 #define SHIPANIMATIONINTER 0.05f
 #define SHIPIDLETIMER 7.0f
+#define SHIPCHARGETIMER 2.0f
+#define SHIPBEAMTIMER 3.0f
 #define CANNONATTACKCOUNT 3
 
 #define SHIPRAILPOS { -100.0f, 390.0f }
@@ -41,9 +43,13 @@ protected:
 
 	void TransformStart();
 
+	float ChargeTimer = SHIPCHARGETIMER;
 	void ChargeStart();
+	void ChargeUpdate(float _Delta);
 
+	float BeamTimer = SHIPBEAMTIMER;
 	void BeamStart();
+	void BeamUpdate(float _Delta);
 
 	void DeathStart();
 

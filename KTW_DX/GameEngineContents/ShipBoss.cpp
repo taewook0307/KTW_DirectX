@@ -19,7 +19,7 @@ ShipBoss::~ShipBoss()
 
 void ShipBoss::Start()
 {
-	//GameEngineInput::AddInputObject(this);
+	GameEngineInput::AddInputObject(this);
 
 	ShipRailRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
 	ShipRailRenderer->CreateAnimation("Ship_Rail", "Ship_Rail", SHIPANIMATIONINTER);
@@ -61,12 +61,12 @@ void ShipBoss::Start()
 	);
 
 	ShipRenderer->CreateAnimation("Ship_Transform", "Ship_Transform", SHIPANIMATIONINTER, -1, -1, false);
-	ShipRenderer->SetFrameEvent("Ship_Transform", 3,
+	/*ShipRenderer->SetFrameEvent("Ship_Transform", 3,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			PirateBoss::MainPirateBoss->ChangePhase3();
 		}
-	);
+	);*/
 	
 	ShipRenderer->SetEndEvent("Ship_Transform",
 		[=](GameEngineSpriteRenderer* _Renderer)
@@ -88,22 +88,44 @@ void ShipBoss::Start()
 		}
 	);
 
-	ShipRenderer->CreateAnimation("Ship_Phase3_Charge", "Ship_Phase3_Charge", SHIPANIMATIONINTER, -1, -1, false);
-	ShipRenderer->SetEndEvent("Ship_Phase3_Charge",
+	ShipRenderer->CreateAnimation("Ship_Phase3_Charge_Start", "Ship_Phase3_Charge", SHIPANIMATIONINTER, 0, 5, false);
+	ShipRenderer->SetEndEvent("Ship_Phase3_Charge_Start",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ShipRenderer->ChangeAnimation("Ship_Phase3_Charge");
+		}
+	);
+
+	ShipRenderer->CreateAnimation("Ship_Phase3_Charge", "Ship_Phase3_Charge", SHIPANIMATIONINTER, 6, 8, true);
+	ShipRenderer->CreateAnimation("Ship_Phase3_Charge_End", "Ship_Phase3_Charge", SHIPANIMATIONINTER, 9, -1, false);
+	ShipRenderer->SetEndEvent("Ship_Phase3_Charge_End",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			ChangeState(ESHIPBOSSSTATE::Beam);
 			return;
 		}
 	);
-	ShipRenderer->CreateAnimation("Ship_Phase3_Beam", "Ship_Phase3_Beam", SHIPANIMATIONINTER);
-	ShipRenderer->SetEndEvent("Ship_Phase3_Beam",
+
+	ShipRenderer->CreateAnimation("Ship_Phase3_Beam_Start", "Ship_Phase3_Beam", SHIPANIMATIONINTER, 0, 2, false);
+	ShipRenderer->SetEndEvent("Ship_Phase3_Beam_Start",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ShipRenderer->ChangeAnimation("Ship_Phase3_Beam");
+			return;
+		}
+	);
+
+	ShipRenderer->CreateAnimation("Ship_Phase3_Beam", "Ship_Phase3_Beam", SHIPANIMATIONINTER, 3, 4);
+
+	ShipRenderer->CreateAnimation("Ship_Phase3_Beam_End", "Ship_Phase3_Beam", SHIPANIMATIONINTER, 5, -1, false);
+	ShipRenderer->SetEndEvent("Ship_Phase3_Beam_End",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			ChangeState(ESHIPBOSSSTATE::Idle);
 			return;
 		}
 	);
+	
 	ShipRenderer->CreateAnimation("Ship_Phase3_Death", "Ship_Phase3_Death");
 
 	ShipRenderer->AutoSpriteSizeOn();
@@ -122,12 +144,18 @@ void ShipBoss::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 
-	/*if (true == GameEngineInput::IsDown('O', this))
+	if (true == GameEngineInput::IsDown('O', this))
 	{
 		ChangeState(ESHIPBOSSSTATE::Wince);
 		CurPhase = EBOSSPHASE::Phase3;
 		return;
-	}*/
+	}
+
+	if (true == GameEngineInput::IsDown('U', this))
+	{
+		ChangeState(ESHIPBOSSSTATE::Charge);
+		return;
+	}
 
 	if (PHASE3HP < HitCount && ESHIPBOSSSTATE::Death != CurState)
 	{
@@ -144,6 +172,10 @@ void ShipBoss::StateUpdate(float _Delta)
 		return IdleUpdate(_Delta);
 	case ESHIPBOSSSTATE::Attack:
 		return AttackUpdate(_Delta);
+	case ESHIPBOSSSTATE::Charge:
+		return ChargeUpdate(_Delta);
+	case ESHIPBOSSSTATE::Beam:
+		return BeamUpdate(_Delta);
 	default:
 		break;
 	}
