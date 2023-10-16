@@ -111,7 +111,7 @@ void ShipBoss::Start()
 	ShipRenderer->SetStartEvent("Ship_Phase3_Beam_Start",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			//CreateBeam();
+			CreateBeam();
 		}
 	);
 	ShipRenderer->SetEndEvent("Ship_Phase3_Beam_Start",
@@ -262,7 +262,7 @@ void ShipBoss::CreateBubble()
 void ShipBoss::CreateBeam()
 {
 	float4 ShipPos = Transform.GetWorldPosition();
-	float4 CreatePos = { ShipPos.X - 480.0f, ShipPos.Half().Y };
+	float4 CreatePos = { ShipPos.X - 200.0f, ShipPos.Half().Y };
 
 	std::shared_ptr<ShipBeam> CurBubble = GetLevel()->CreateActor<ShipBeam>(EUPDATEORDER::Bullet);
 	CurBubble->Transform.SetLocalPosition(CreatePos);

@@ -21,15 +21,9 @@ void ShipBeam::Start()
 		}
 	);
 	BeamRenderer->CreateAnimation("Ship_Beam", "Ship_Beam", 0.05f, 5, 6);
-	BeamRenderer->SetEndEvent("Ship_Beam",
-		[=](GameEngineSpriteRenderer* _Renderer)
-		{
-			BeamRenderer->ChangeAnimation("Ship_Beam_End");
-			return;
-		}
-	);
-	BeamRenderer->CreateAnimation("Ship_Beam_End", "Ship_Beam", 0.1f, 6, 0, false);
 
+	BeamRenderer->AutoSpriteSizeOn();
+	BeamRenderer->SetPivotType(PivotType::Right);
 	BeamRenderer->ChangeAnimation("Ship_Beam_Appear");
 }
 
