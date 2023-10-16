@@ -48,7 +48,7 @@ public:
 	}
 
 protected:
-	bool ParryActivation = false;
+	bool ParryActivation = true;
 	bool Parry = false;
 
 	void Start() override;

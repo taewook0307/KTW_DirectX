@@ -1,12 +1,12 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineActor.h>
+#include "ParryObject.h"
 
 #define PIRATEBULLETCOLLISIONSCALE { 34.0f, 28.0f }
 #define PIRATEBULLETCOLLISIONPOSITION { 17.0f, 0.0f }
 #define ADJUSTVALUE 38.0f
 
-class PirateBullet : public GameEngineActor
+class PirateBullet : public ParryObject
 {
 public:
 	// constrcuter destructer
@@ -28,6 +28,7 @@ protected:
 	void MoveStart();
 	void MoveUpdate(float _Delta);
 
+	virtual void HitCheck();
 	void DeathStart();
 
 	float Speed = 500.0f;
@@ -41,7 +42,7 @@ protected:
 	void Start() override;
 	void Update(float _Delta) override;
 
-private:
 	std::shared_ptr<GameEngineSpriteRenderer> BulletRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> BulletCollision = nullptr;
+private:
 };

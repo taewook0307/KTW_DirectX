@@ -68,8 +68,8 @@ void ContentsCore::Start()
 
 void ContentsCore::Update(float _Delta)
 {
-	OutputDebugStringA(std::to_string(1.0f / _Delta).c_str());
-	OutputDebugStringA("\n");
+	/*OutputDebugStringA(std::to_string(1.0f / _Delta).c_str());
+	OutputDebugStringA("\n");*/
 
 	if (true == GameEngineInput::IsDown('K', this))
 	{

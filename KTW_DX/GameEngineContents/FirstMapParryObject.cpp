@@ -18,11 +18,13 @@ void FirstMapParryObject::Start()
 	ParryRenderer->SetPivotType(PivotType::Bottom);
 
 	ParryCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::ParryObject);
+	ParryCollision->SetCollisionType(ColType::AABBBOX2D);
 
 	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("FirstBossParryObject");
-	float4 SpriteScale = Sprite->GetSpriteData(0).GetScale();
+	float4 SpriteScale = Sprite->GetSpriteData(3).GetScale();
 
 	ParryCollision->Transform.SetLocalScale(SpriteScale);
+	ParryCollision->Transform.SetLocalPosition({ 0.0f, SpriteScale.Half().Y });
 }
 
 void FirstMapParryObject::Update(float _Delta)

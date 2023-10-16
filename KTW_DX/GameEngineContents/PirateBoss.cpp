@@ -2,6 +2,7 @@
 #include "PirateBoss.h"
 
 #include "PirateBullet.h"
+#include "PirateBulletParry.h"
 #include "Shark.h"
 #include "Periscope.h"
 #include "Whistle_Effect.h"
@@ -262,7 +263,7 @@ void PirateBoss::ChangeAnimation(std::string_view _State)
 
 void PirateBoss::CreatePirateBullet()
 {
-	std::shared_ptr<PirateBullet> NewBullet = GetLevel()->CreateActor<PirateBullet>(EUPDATEORDER::Bullet);
+	std::shared_ptr<PirateBulletParry> NewBullet = GetLevel()->CreateActor<PirateBulletParry>(EUPDATEORDER::Bullet);
 	
 	if (nullptr == NewBullet)
 	{

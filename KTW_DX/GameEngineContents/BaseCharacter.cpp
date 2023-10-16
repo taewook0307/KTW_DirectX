@@ -206,6 +206,9 @@ void BaseCharacter::Start()
 
 void BaseCharacter::Update(float _Delta)
 {
+	OutputDebugStringA(std::to_string(Hp).c_str());
+	OutputDebugStringA("\n");
+
 	StateUpdate(_Delta);
 
 	if (EACTORDIR::Left == Dir)

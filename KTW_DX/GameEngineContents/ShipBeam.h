@@ -1,8 +1,8 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineActor.h>
+#include "ParryObject.h"
 
-class ShipBeam : public GameEngineActor
+class ShipBeam : public ParryObject
 {
 public:
 	// constrcuter destructer

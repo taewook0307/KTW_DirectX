@@ -66,11 +66,11 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	PirateBossActor = CreateActor<PirateBoss>(EUPDATEORDER::Monster);
 	PirateBossActor->Transform.SetLocalPosition({ WinScale.X - 80.0f, -450.0f });
 
-	ShipBossActor = CreateActor<ShipBoss>(EUPDATEORDER::Monster);
+	/*ShipBossActor = CreateActor<ShipBoss>(EUPDATEORDER::Monster);
 	ShipBossActor->Transform.SetLocalPosition({ WinScale.X + 80.0f, -WinScale.Y });
 
 	BarrelActor = CreateActor<Barrel>(EUPDATEORDER::Monster);
-	BarrelActor->Transform.SetLocalPosition({ WinScale.Half().X, -220.0f });
+	BarrelActor->Transform.SetLocalPosition({ WinScale.Half().X, -220.0f });*/
 
 	// 테스트용 맵
 	SecondStageMap = CreateActor<Map>(EUPDATEORDER::Map);

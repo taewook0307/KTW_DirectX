@@ -281,15 +281,17 @@ void FirstBoss::CreateParryObject()
 	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("FirstBoss_Phase2_Intro");
 	float4 SpriteScale = Sprite->GetSpriteData(29).GetScale();
 
-	float4 ParryObjectPos = { MonsterPos.X, (MonsterPos.Y + SpriteScale.Y) };
+	float4 ParryObjectPos = { MonsterPos.X, (MonsterPos.Y + SpriteScale.Y + 100.0f) };
 
 	AllParry[0]->Transform.SetLocalPosition(ParryObjectPos);
 
-	ParryObjectPos = { MonsterPos.X - 50.0f, (MonsterPos.Y + SpriteScale.Y) };
+	ParryObjectPos = { MonsterPos.X - 100.0f, (MonsterPos.Y + SpriteScale.Y) };
 	AllParry[1]->Transform.SetLocalPosition(ParryObjectPos);
+	AllParry[1]->Transform.SetLocalRotation({ 0.0f, 0.0f, -30.0f });
 
-	ParryObjectPos = { MonsterPos.X + 50.0f, (MonsterPos.Y + SpriteScale.Y) };
+	ParryObjectPos = { MonsterPos.X + 100.0f, (MonsterPos.Y + SpriteScale.Y) };
 	AllParry[2]->Transform.SetLocalPosition(ParryObjectPos);
+	AllParry[1]->Transform.SetLocalRotation({ 0.0f, 0.0f, 30.0f });
 }
 
 void FirstBoss::AllParryDeath()

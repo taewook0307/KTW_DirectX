@@ -173,6 +173,9 @@
     <ClInclude Include="ShipBeam.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipBeam</Filter>
     </ClInclude>
+    <ClInclude Include="PirateBulletParry.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -382,6 +385,9 @@
     </ClCompile>
     <ClCompile Include="ShipBeam.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipBeam</Filter>
+    </ClCompile>
+    <ClCompile Include="PirateBulletParry.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

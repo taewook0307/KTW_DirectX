@@ -39,11 +39,7 @@ void PirateBullet::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 
-	if (true == BulletCollision->Collision(ECOLLISIONORDER::Player) && EPIRATEBULLETSTATE::Death != CurState)
-	{
-		ChangeState(EPIRATEBULLETSTATE::Death);
-		return;
-	}
+	HitCheck();
 }
 
 void PirateBullet::ChangeState(EPIRATEBULLETSTATE _CurState)
@@ -86,4 +82,13 @@ void PirateBullet::ChangeAnimation(std::string_view _State)
 	State = _State;
 
 	BulletRenderer->ChangeAnimation(AnimationName);
+}
+
+void PirateBullet::HitCheck()
+{
+	if (true == BulletCollision->Collision(ECOLLISIONORDER::Player) && EPIRATEBULLETSTATE::Death != CurState)
+	{
+		ChangeState(EPIRATEBULLETSTATE::Death);
+		return;
+	}
 }
