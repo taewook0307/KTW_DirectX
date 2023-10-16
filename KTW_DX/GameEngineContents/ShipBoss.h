@@ -61,6 +61,8 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> ShipSailRenderer = nullptr;
 	std::shared_ptr<GameEngineSpriteRenderer> ShipMastRenderer = nullptr;
 
+	std::shared_ptr<GameEngineCollision> BodyCollision = nullptr;
+
 	void Start() override;
 	void Update(float _Delta) override;
 

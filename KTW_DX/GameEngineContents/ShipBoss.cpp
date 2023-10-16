@@ -18,14 +18,16 @@ ShipBoss::~ShipBoss()
 
 void ShipBoss::Start()
 {
-	ShipRailRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PrevBoss1);
+	GameEngineInput::AddInputObject(this);
+
+	ShipRailRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
 	ShipRailRenderer->CreateAnimation("Ship_Rail", "Ship_Rail", SHIPANIMATIONINTER);
 	ShipRailRenderer->AutoSpriteSizeOn();
 	ShipRailRenderer->SetPivotType(PivotType::Bottom);
 	ShipRailRenderer->Transform.SetLocalPosition(SHIPRAILPOS);
 	ShipRailRenderer->ChangeAnimation("Ship_Rail");
 
-	ShipSailRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
+	ShipSailRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PrevBoss1);
 	ShipSailRenderer->CreateAnimation("Ship_Sail", "Ship_Sail");
 	ShipSailRenderer->AutoSpriteSizeOn();
 	ShipSailRenderer->SetPivotType(PivotType::Bottom);
@@ -37,7 +39,7 @@ void ShipBoss::Start()
 	ShipMastRenderer->SetPivotType(PivotType::Bottom);
 	ShipMastRenderer->Transform.SetLocalPosition(SHIPMASTPOS);
 
-	ShipRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
+	ShipRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
 	ShipRenderer->CreateAnimation("Ship_Idle", "Ship_Idle", SHIPANIMATIONINTER);
 	ShipRenderer->CreateAnimation("Ship_Attack", "Ship_Attack", SHIPANIMATIONINTER);
 
@@ -106,11 +108,12 @@ void ShipBoss::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 
-	/*if (true == GameEngineInput::IsDown('O'))
+	if (true == GameEngineInput::IsDown('O', this))
 	{
-		ChangeState(ESHIPBOSSSTATE::Death);
+		ChangeState(ESHIPBOSSSTATE::Wince);
+		CurPhase = EBOSSPHASE::Phase3;
 		return;
-	}*/
+	}
 }
 
 void ShipBoss::StateUpdate(float _Delta)
