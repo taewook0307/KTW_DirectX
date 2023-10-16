@@ -22,7 +22,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	TutorialParry.resize(3);
 
 	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
-	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, -500 });
+	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, 0.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	// 리소스 Load
