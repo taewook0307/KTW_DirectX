@@ -5,6 +5,7 @@
 #include "CannonBall.h"
 #include "CannonBallDust.h"
 #include "ShipBubble.h"
+#include "ShipBeam.h"
 
 ShipBoss* ShipBoss::MainShip = nullptr;
 
@@ -107,6 +108,12 @@ void ShipBoss::Start()
 	);
 
 	ShipRenderer->CreateAnimation("Ship_Phase3_Beam_Start", "Ship_Phase3_Beam", SHIPANIMATIONINTER, 0, 2, false);
+	ShipRenderer->SetStartEvent("Ship_Phase3_Beam_Start",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			//CreateBeam();
+		}
+	);
 	ShipRenderer->SetEndEvent("Ship_Phase3_Beam_Start",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -249,5 +256,14 @@ void ShipBoss::CreateBubble()
 	float4 CreatePos = { ShipPos.X - 480.0f, ShipPos.Half().Y };
 
 	std::shared_ptr<ShipBubble> CurBubble = GetLevel()->CreateActor<ShipBubble>(EUPDATEORDER::Bullet);
+	CurBubble->Transform.SetLocalPosition(CreatePos);
+}
+
+void ShipBoss::CreateBeam()
+{
+	float4 ShipPos = Transform.GetWorldPosition();
+	float4 CreatePos = { ShipPos.X - 480.0f, ShipPos.Half().Y };
+
+	std::shared_ptr<ShipBeam> CurBubble = GetLevel()->CreateActor<ShipBeam>(EUPDATEORDER::Bullet);
 	CurBubble->Transform.SetLocalPosition(CreatePos);
 }

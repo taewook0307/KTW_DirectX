@@ -76,4 +76,5 @@ private:
 
 	void CreateCannonBall();
 	void CreateBubble();
+	void CreateBeam();
 };
