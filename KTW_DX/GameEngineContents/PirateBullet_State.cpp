@@ -37,10 +37,6 @@ void PirateBullet::MoveUpdate(float _Delta)
 
 void PirateBullet::DeathStart()
 {
-	ChangeAnimation("Death");
-}
-
-void PirateBullet::DeathUpdate(float _Delta)
-{
 	BulletCollision->Off();
+	ChangeAnimation("Death");
 }

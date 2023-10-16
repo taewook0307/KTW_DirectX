@@ -29,7 +29,6 @@ protected:
 	void MoveUpdate(float _Delta);
 
 	void DeathStart();
-	void DeathUpdate(float _Delta);
 
 	float Speed = 500.0f;
 	EPIRATEBULLETSTATE CurState = EPIRATEBULLETSTATE::None;

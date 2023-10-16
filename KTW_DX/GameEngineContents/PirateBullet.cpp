@@ -19,11 +19,12 @@ void PirateBullet::Start()
 	BulletRenderer->SetEndEvent("Pirate_Bullet_Yellow_Death",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			BulletRenderer = nullptr;
 			Death();
 		}
 	);
-	BulletRenderer->AutoSpriteSizeOn();
 	BulletRenderer->SetPivotType(PivotType::Left);
+	BulletRenderer->AutoSpriteSizeOn();
 
 	BulletCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
 	BulletCollision->Transform.SetLocalScale(PIRATEBULLETCOLLISIONSCALE);
@@ -38,13 +39,11 @@ void PirateBullet::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 
-	BulletCollision->Collision(ECOLLISIONORDER::Player,
-		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
-		{
-			ChangeState(EPIRATEBULLETSTATE::Death);
-			return;
-		}
-	);
+	if (true == BulletCollision->Collision(ECOLLISIONORDER::Player) && EPIRATEBULLETSTATE::Death != CurState)
+	{
+		ChangeState(EPIRATEBULLETSTATE::Death);
+		return;
+	}
 }
 
 void PirateBullet::ChangeState(EPIRATEBULLETSTATE _CurState)
@@ -73,8 +72,6 @@ void PirateBullet::StateUpdate(float _Delta)
 	{
 	case EPIRATEBULLETSTATE::Move:
 		return MoveUpdate(_Delta);
-	case EPIRATEBULLETSTATE::Death:
-		return DeathUpdate(_Delta);
 	default:
 		break;
 	}
