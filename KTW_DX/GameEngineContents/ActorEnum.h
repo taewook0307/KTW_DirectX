@@ -124,11 +124,12 @@ enum class ESHIPBOSSSTATE
 	Death
 };
 
-enum class EUVULABOSSSTATE
+enum class ESHIPBUBBLESTATE
 {
 	None,
-	Idle,
-	Shoot
+	Appear,
+	Move,
+	Pop
 };
 
 //Enemy

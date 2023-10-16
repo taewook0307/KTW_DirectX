@@ -4,6 +4,7 @@
 #include "PirateBoss.h"
 #include "CannonBall.h"
 #include "CannonBallDust.h"
+#include "ShipBubble.h"
 
 ShipBoss* ShipBoss::MainShip = nullptr;
 
@@ -60,12 +61,12 @@ void ShipBoss::Start()
 	);
 
 	ShipRenderer->CreateAnimation("Ship_Transform", "Ship_Transform", SHIPANIMATIONINTER, -1, -1, false);
-	ShipRenderer->SetFrameEvent("Ship_Transform", 3,
+	/*ShipRenderer->SetFrameEvent("Ship_Transform", 3,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			PirateBoss::MainPirateBoss->ChangePhase3();
 		}
-	);
+	);*/
 	
 	ShipRenderer->SetEndEvent("Ship_Transform",
 		[=](GameEngineSpriteRenderer* _Renderer)
@@ -79,6 +80,12 @@ void ShipBoss::Start()
 	ShipRenderer->CreateAnimation("Ship_Phase3_Idle", "Ship_Phase3_Idle", SHIPANIMATIONINTER);
 
 	ShipRenderer->CreateAnimation("Ship_Phase3_Attack", "Ship_Phase3_Attack", SHIPANIMATIONINTER);
+	ShipRenderer->SetFrameEvent("Ship_Phase3_Attack", 8,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			CreateBubble();
+		}
+	);
 
 	ShipRenderer->CreateAnimation("Ship_Phase3_Charge", "Ship_Phase3_Charge", SHIPANIMATIONINTER, -1, -1, false);
 	ShipRenderer->SetEndEvent("Ship_Phase3_Charge",
@@ -181,12 +188,21 @@ void ShipBoss::ChangeAnimation(std::string_view _State)
 
 void ShipBoss::CreateCannonBall()
 {
-	std::shared_ptr NewCannonBall = GetLevel()->CreateActor<CannonBall>(EUPDATEORDER::Bullet);
 	float4 ShipPos = Transform.GetWorldPosition();
 	float4 CreatePos = { ShipPos.X - 480.0f, ShipPos.Y + 90.0f };
 
+	std::shared_ptr NewCannonBall = GetLevel()->CreateActor<CannonBall>(EUPDATEORDER::Bullet);
 	NewCannonBall->Transform.SetLocalPosition(CreatePos);
 
 	std::shared_ptr Effect = GetLevel()->CreateActor<CannonBallDust>(EUPDATEORDER::Effect);
 	Effect->Transform.SetLocalPosition(CreatePos);
+}
+
+void ShipBoss::CreateBubble()
+{
+	float4 ShipPos = Transform.GetWorldPosition();
+	float4 CreatePos = { ShipPos.X - 480.0f, ShipPos.Half().Y };
+
+	std::shared_ptr<ShipBubble> CurBubble = GetLevel()->CreateActor<ShipBubble>(EUPDATEORDER::Bullet);
+	CurBubble->Transform.SetLocalPosition(CreatePos);
 }

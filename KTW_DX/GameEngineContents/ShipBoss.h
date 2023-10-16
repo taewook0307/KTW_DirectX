@@ -67,4 +67,5 @@ private:
 	void Update(float _Delta) override;
 
 	void CreateCannonBall();
+	void CreateBubble();
 };
