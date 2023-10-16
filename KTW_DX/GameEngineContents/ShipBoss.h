@@ -2,6 +2,8 @@
 
 #include "BaseBoss.h"
 
+#define PHASE3HP 448
+
 #define SHIPANIMATIONINTER 0.05f
 #define SHIPIDLETIMER 7.0f
 #define CANNONATTACKCOUNT 3

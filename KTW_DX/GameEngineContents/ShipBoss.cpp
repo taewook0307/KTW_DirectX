@@ -19,7 +19,7 @@ ShipBoss::~ShipBoss()
 
 void ShipBoss::Start()
 {
-	GameEngineInput::AddInputObject(this);
+	//GameEngineInput::AddInputObject(this);
 
 	ShipRailRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
 	ShipRailRenderer->CreateAnimation("Ship_Rail", "Ship_Rail", SHIPANIMATIONINTER);
@@ -61,17 +61,18 @@ void ShipBoss::Start()
 	);
 
 	ShipRenderer->CreateAnimation("Ship_Transform", "Ship_Transform", SHIPANIMATIONINTER, -1, -1, false);
-	/*ShipRenderer->SetFrameEvent("Ship_Transform", 3,
+	ShipRenderer->SetFrameEvent("Ship_Transform", 3,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			PirateBoss::MainPirateBoss->ChangePhase3();
 		}
-	);*/
+	);
 	
 	ShipRenderer->SetEndEvent("Ship_Transform",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			ChangeShip = true;
+			BodyCollision->On();
 			ChangeState(ESHIPBOSSSTATE::Idle);
 			return;
 		}
@@ -103,10 +104,16 @@ void ShipBoss::Start()
 			return;
 		}
 	);
-	ShipRenderer->CreateAnimation("Ship_Phase3_Death", "Ship_Phase3_Death", SHIPANIMATIONINTER);
+	ShipRenderer->CreateAnimation("Ship_Phase3_Death", "Ship_Phase3_Death");
 
 	ShipRenderer->AutoSpriteSizeOn();
 	ShipRenderer->SetPivotType(PivotType::RightBottom);
+
+	BodyCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossBody);
+	BodyCollision->Transform.SetLocalScale({ 70.0f, 90.0f });
+	BodyCollision->Transform.SetLocalPosition({ -155.0f, 380.0f });
+	BodyCollision->SetCollisionType(ColType::AABBBOX2D);
+	BodyCollision->Off();
 
 	ChangeState(ESHIPBOSSSTATE::Idle);
 }
@@ -115,10 +122,16 @@ void ShipBoss::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 
-	if (true == GameEngineInput::IsDown('O', this))
+	/*if (true == GameEngineInput::IsDown('O', this))
 	{
 		ChangeState(ESHIPBOSSSTATE::Wince);
 		CurPhase = EBOSSPHASE::Phase3;
+		return;
+	}*/
+
+	if (PHASE3HP < HitCount && ESHIPBOSSSTATE::Death != CurState)
+	{
+		ChangeState(ESHIPBOSSSTATE::Death);
 		return;
 	}
 }

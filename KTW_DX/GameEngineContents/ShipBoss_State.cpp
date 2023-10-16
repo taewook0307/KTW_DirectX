@@ -74,6 +74,7 @@ void ShipBoss::BeamStart()
 
 void ShipBoss::DeathStart()
 {
+	BodyCollision->Off();
 	StageLevel::StageClear();
 	ChangeAnimation("Death");
 }
