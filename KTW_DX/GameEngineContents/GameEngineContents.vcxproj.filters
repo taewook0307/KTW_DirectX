@@ -176,6 +176,9 @@
     <ClInclude Include="PirateBulletParry.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
     </ClInclude>
+    <ClInclude Include="TestStage.h">
+      <Filter>Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -388,6 +391,9 @@
     </ClCompile>
     <ClCompile Include="PirateBulletParry.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="TestStage.cpp">
+      <Filter>Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

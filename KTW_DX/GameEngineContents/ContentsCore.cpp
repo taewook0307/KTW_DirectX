@@ -13,6 +13,8 @@
 #include <GameEngineCore/GameEngineBlend.h>
 #include <GameEngineCore/GameEngineRenderTarget.h>
 
+#include "TestStage.h"
+
 ContentsCore::ContentsCore()
 {
 }
@@ -59,7 +61,8 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<FirstBossStage>("FirstBossStage");
 	GameEngineCore::CreateLevel<SecondBossStage>("SecondBossStage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
-	GameEngineCore::ChangeLevel("SecondBossStage");
+	GameEngineCore::CreateLevel<TestStage>("TestStage");
+	GameEngineCore::ChangeLevel("TestStage");
 
 	GameEngineLevel::OffDebug();
 
@@ -91,6 +94,10 @@ void ContentsCore::Update(float _Delta)
 	if (true == GameEngineInput::IsDown(VK_F4, this))
 	{
 		GameEngineCore::ChangeLevel("SecondBossStage");
+	}
+	if (true == GameEngineInput::IsDown(VK_F6, this))
+	{
+		GameEngineCore::ChangeLevel("TestStage");
 	}
 }
 
