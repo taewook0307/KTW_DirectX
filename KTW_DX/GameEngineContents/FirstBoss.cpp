@@ -31,7 +31,7 @@ void FirstBoss::Start()
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Move", "FirstBoss_Phase1_Move", 0.1f, 0, 2, false);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_MoveStay", "FirstBoss_Phase1_Move", 0.1f, 3, 7, false);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_MoveEnd", "FirstBoss_Phase1_Move", 0.1f, 8, 10, false);
-	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Attack", "FirstBoss_Phase1_Attack", 1.0f);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Attack", "FirstBoss_Phase1_Attack", 2.0f);
 	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 1, [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			FirstBossCollision->Off();
@@ -231,11 +231,16 @@ void FirstBoss::Start()
 		}
 	);
 
-	FirstBossRenderer->SetEndEvent("FirstBoss_Phase1_Attack",
-		[=](GameEngineSpriteRenderer* _Renderer)
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 15, [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			FirstBossCollision->On();
 			FirstBossAttackCollision->Off();
+		}
+	);
+
+	FirstBossRenderer->SetEndEvent("FirstBoss_Phase1_Attack",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
 			BounceCount = 0;
 			ChangeState(EBOSSSTATE::Idle);
 			return;
