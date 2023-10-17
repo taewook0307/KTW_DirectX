@@ -23,6 +23,8 @@ void PirateBullet::MoveStart()
 
 void PirateBullet::MoveUpdate(float _Delta)
 {
+	HitCheck();
+
 	if (false == DirVectorSet)
 	{
 		DirVector = PlayerPos - Transform.GetWorldPosition();

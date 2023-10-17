@@ -2,7 +2,7 @@
 #include "TestStage.h"
 
 #include "BaseCharacter.h"
-#include "ParryObject.h"
+#include "PirateBulletParry.h"
 #include "Map.h"
 
 TestStage::TestStage()
@@ -53,7 +53,7 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Tutorial\\Parry");
+		Dir.MoveChild("Resources\\Texture\\SecondBossStage\\SecondBoss\\Pirate_Bullet\\Pirate_Bullet_Pink");
 		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
 		for (size_t i = 0; i < Directorys.size(); i++)
@@ -66,8 +66,8 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
 
-	TestParry = CreateActor<ParryObject>(EUPDATEORDER::Map);
-	TestParry->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
+	TestParry = CreateActor<PirateBulletParry>(EUPDATEORDER::Bullet);
+	TestParry->Transform.SetLocalPosition({ 1280.0f, -360.0f });
 
 	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialMap.Png");
 	float4 SpriteHalfScale = Sprite->GetSpriteData(0).GetScale().Half();
@@ -103,16 +103,26 @@ void TestStage::Update(float _Delta)
 {
 	if (true == GameEngineInput::IsDown('R', this))
 	{
-		TestParry->ParryActive();
+		TestParry = CreateActor<PirateBulletParry>(EUPDATEORDER::Bullet);
+		TestParry->Transform.SetLocalPosition({ 1280.0f, -360.0f });
 	}
 
-	if (true == GameEngineInput::IsDown(VK_NUMPAD0, this))
+	if (0.0f > StopTimer)
 	{
+		StopTimer = 0.3f;
+		LevelStopToParry = false;
+		BaseCharacter::MainCharacter->ParrySuccessReset();
+		GameEngineCore::MainTime.SetAllTimeScale(1.0f);
+	}
+
+	if (true == BaseCharacter::MainCharacter->GetParrySuccess())
+	{
+		LevelStopToParry = true;
 		GameEngineCore::MainTime.SetAllTimeScale(0.0f);
 	}
 
-	if (true == GameEngineInput::IsDown(VK_NUMPAD1, this))
+	if (true == LevelStopToParry)
 	{
-		GameEngineCore::MainTime.SetAllTimeScale(1.0f);
+		StopTimer -= _Delta;
 	}
 }

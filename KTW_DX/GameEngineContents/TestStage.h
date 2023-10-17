@@ -20,6 +20,9 @@ public:
 protected:
 
 private:
+	bool LevelStopToParry = false;
+	float StopTimer = 0.3f;
+
 	std::shared_ptr<class BaseCharacter> Player = nullptr;
 	std::shared_ptr<class ParryObject> TestParry = nullptr;
 	std::shared_ptr<class Map> TestMap = nullptr;

@@ -261,13 +261,15 @@ void BaseCharacter::Update(float _Delta)
 	{
 		float4 ParryPos = float4::UP * JUMPPOWER * 0.7f;
 		SetGravityForce(ParryPos);
-		ParrySuccess = false;
 	}
 
 	PlayerCollision->Collision(ECOLLISIONORDER::BossBody,
 		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
 		{
-			if (ECHARACTERSTATE::Hit != CurState && false == NoDamage && false == Cheat)
+			if (ECHARACTERSTATE::Hit != CurState
+				&& false == NoDamage
+				&& false == ParrySuccess
+				&& false == Cheat)
 			{
 				ChangeState(ECHARACTERSTATE::Hit);
 				return;
@@ -278,7 +280,10 @@ void BaseCharacter::Update(float _Delta)
 	PlayerCollision->Collision(ECOLLISIONORDER::BossAttack,
 		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
 		{
-			if (ECHARACTERSTATE::Hit != CurState && false == NoDamage && false == Cheat)
+			if (ECHARACTERSTATE::Hit != CurState
+				&& false == NoDamage
+				&& false == ParrySuccess
+				&& false == Cheat)
 			{
 				ChangeState(ECHARACTERSTATE::Hit);
 				return;
@@ -289,7 +294,10 @@ void BaseCharacter::Update(float _Delta)
 	PlayerCollision->Collision(ECOLLISIONORDER::MonsterBody,
 		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
 		{
-			if (ECHARACTERSTATE::Hit != CurState && false == NoDamage && false == Cheat)
+			if (ECHARACTERSTATE::Hit != CurState
+				&& false == NoDamage
+				&& false == ParrySuccess
+				&& false == Cheat)
 			{
 				ChangeState(ECHARACTERSTATE::Hit);
 				return;

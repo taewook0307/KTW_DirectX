@@ -33,6 +33,16 @@ public:
 	BaseCharacter& operator=(const BaseCharacter& _Other) = delete;
 	BaseCharacter& operator=(BaseCharacter&& _Other) noexcept = delete;
 
+	bool GetParrySuccess() const
+	{
+		return ParrySuccess;
+	}
+
+	void ParrySuccessReset()
+	{
+		ParrySuccess = false;
+	}
+
 protected:
 	void DirChange();
 	void AimDirChange();

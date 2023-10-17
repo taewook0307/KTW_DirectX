@@ -38,8 +38,6 @@ void PirateBullet::Start()
 void PirateBullet::Update(float _Delta)
 {
 	StateUpdate(_Delta);
-
-	HitCheck();
 }
 
 void PirateBullet::ChangeState(EPIRATEBULLETSTATE _CurState)
