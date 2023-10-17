@@ -64,7 +64,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->CreateAnimation("CupHead_Aim_StraightDown", "Aim_StraightDown", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Aim_Up", "Aim_Up", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Aim_Down", "Aim_Down", CHARACTERANIMATIONINTER);
-	PlayerRenderer->CreateAnimation("CupHead_Duck", "Duck", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Duck", "Duck", CHARACTERANIMATIONINTER, -1, -1, false);
 	PlayerRenderer->SetEndEvent("CupHead_Duck",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -192,14 +192,14 @@ void BaseCharacter::Start()
 	Dir = EACTORDIR::Right;
 	AimDir = ECHARACTERAIMDIR::Straight;
 
-	std::shared_ptr<GameEngineSprite> CharacterSprite = GameEngineSprite::Find("Idle");
-	float4 CollisionScale = CharacterSprite->GetSpriteData(0).GetScale().Half();
-	float4 CollisionPosition = { 0.0f, CollisionScale.Half().Y};
+	//std::shared_ptr<GameEngineSprite> CharacterSprite = GameEngineSprite::Find("Idle");
+	//float4 CollisionScale = CharacterSprite->GetSpriteData(0).GetScale();
+	//float4 CollisionPosition = { 0.0f, CollisionScale.Half().Y};
 
 	PlayerCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::Player);
 	PlayerCollision->SetCollisionType(ColType::AABBBOX2D);
-	PlayerCollision->Transform.SetLocalScale(CollisionScale);
-	PlayerCollision->Transform.SetLocalPosition(CollisionPosition);
+	PlayerCollision->Transform.SetLocalScale(CHARACTERCOLLISIONSCALE);
+	PlayerCollision->Transform.SetLocalPosition(CHARACTERCOLLISIONPOS);
 
 	ChangeState(ECHARACTERSTATE::Intro);
 }

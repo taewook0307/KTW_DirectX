@@ -62,12 +62,15 @@ void ShipBoss::Start()
 	);
 
 	ShipRenderer->CreateAnimation("Ship_Transform", "Ship_Transform", SHIPANIMATIONINTER, -1, -1, false);
-	/*ShipRenderer->SetFrameEvent("Ship_Transform", 3,
+	ShipRenderer->SetFrameEvent("Ship_Transform", 3,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			PirateBoss::MainPirateBoss->ChangePhase3();
+			//PirateBoss::MainPirateBoss->ChangePhase3();
+			ShipRailRenderer->Death();
+			ShipSailRenderer->Death();
+			ShipMastRenderer->Death();
 		}
-	);*/
+	);
 	
 	ShipRenderer->SetEndEvent("Ship_Transform",
 		[=](GameEngineSpriteRenderer* _Renderer)

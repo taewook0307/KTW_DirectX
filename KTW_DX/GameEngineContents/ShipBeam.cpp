@@ -32,6 +32,11 @@ void ShipBeam::Start()
 	BeamRenderer->AutoSpriteSizeOn();
 	BeamRenderer->SetPivotType(PivotType::Right);
 	ChangeState(ESHIPBEAMSTATE::Appear);
+
+	AttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
+	AttackCollision->Transform.SetLocalScale({ 1280.0f, 260.0f });
+	AttackCollision->Transform.SetLocalPosition({ -640.0f, 0.0f });
+	AttackCollision->SetCollisionType(ColType::AABBBOX2D);
 }
 
 void ShipBeam::Update(float _Delta)
@@ -96,5 +101,6 @@ void ShipBeam::AppearUpdate(float _Delta)
 
 void ShipBeam::EndStart()
 {
+	AttackCollision->Off();
 	ChangeAnimation("End");
 }

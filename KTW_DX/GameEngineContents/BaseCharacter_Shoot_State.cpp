@@ -394,6 +394,8 @@ void BaseCharacter::DuckShootUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsFree(VK_DOWN, this))
 	{
+		PlayerCollision->Transform.SetLocalScale(CHARACTERCOLLISIONSCALE);
+		PlayerCollision->Transform.SetLocalPosition(CHARACTERCOLLISIONPOS);
 		ChangeState(ECHARACTERSTATE::Shoot);
 		return;
 	}

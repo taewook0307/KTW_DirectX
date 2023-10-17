@@ -314,6 +314,8 @@ void BaseCharacter::FallUpdate(float _Delta)
 
 void BaseCharacter::DuckStart()
 {
+	PlayerCollision->Transform.SetLocalScale(CHARACTERDUCKCOLLISIONSCALE);
+	PlayerCollision->Transform.SetLocalPosition(CHARACTERDUCKCOLLISIONPOS);
 	ChangeAnimation("Duck");
 }
 
@@ -341,6 +343,8 @@ void BaseCharacter::DuckUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsFree(VK_DOWN, this))
 	{
+		PlayerCollision->Transform.SetLocalScale(CHARACTERCOLLISIONSCALE);
+		PlayerCollision->Transform.SetLocalPosition(CHARACTERCOLLISIONPOS);
 		ChangeState(ECHARACTERSTATE::Idle);
 		return;
 	}
