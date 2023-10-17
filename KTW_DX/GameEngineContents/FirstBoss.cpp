@@ -32,9 +32,210 @@ void FirstBoss::Start()
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_MoveStay", "FirstBoss_Phase1_Move", 0.1f, 3, 7, false);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_MoveEnd", "FirstBoss_Phase1_Move", 0.1f, 8, 10, false);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Attack", "FirstBoss_Phase1_Attack", 1.0f);
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 1, [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			FirstBossCollision->Off();
+			FirstBossAttackCollision->On();
+			FirstBossAttackCollision->Transform.SetLocalScale(PHASE1BOSSATTACKCOLLISIONSCALE1);
+			if (EACTORDIR::Left == FirstBossDir)
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONLEFTPOSITION1);
+			}
+			else
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONRIGHTPOSITION1);
+			}
+		}
+	);
+
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 2, [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			FirstBossAttackCollision->Transform.SetLocalScale(PHASE1BOSSATTACKCOLLISIONSCALE2);
+			if (EACTORDIR::Left == FirstBossDir)
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONLEFTPOSITION2);
+			}
+			else
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONRIGHTPOSITION2);
+			}
+		}
+	);
+
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 3, [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			FirstBossAttackCollision->Transform.SetLocalScale(PHASE1BOSSATTACKCOLLISIONSCALE3);
+			if (EACTORDIR::Left == FirstBossDir)
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONLEFTPOSITION3);
+			}
+			else
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONRIGHTPOSITION3);
+			}
+		}
+	);
+
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 4, [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			FirstBossAttackCollision->Transform.SetLocalScale(PHASE1BOSSATTACKCOLLISIONSCALE4);
+			if (EACTORDIR::Left == FirstBossDir)
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONLEFTPOSITION4);
+			}
+			else
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONRIGHTPOSITION4);
+			}
+		}
+	);
+
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 5, [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			FirstBossAttackCollision->Transform.SetLocalScale(PHASE1BOSSATTACKCOLLISIONSCALE5);
+			if (EACTORDIR::Left == FirstBossDir)
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONLEFTPOSITION5);
+			}
+			else
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONRIGHTPOSITION5);
+			}
+		}
+	);
+
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 6, [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			FirstBossAttackCollision->Transform.SetLocalScale(PHASE1BOSSATTACKCOLLISIONSCALE6);
+			if (EACTORDIR::Left == FirstBossDir)
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONLEFTPOSITION6);
+			}
+			else
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONRIGHTPOSITION6);
+			}
+		}
+	);
+
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 7, [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			FirstBossAttackCollision->Transform.SetLocalScale(PHASE1BOSSATTACKCOLLISIONSCALE7);
+			if (EACTORDIR::Left == FirstBossDir)
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONLEFTPOSITION7);
+			}
+			else
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONRIGHTPOSITION7);
+			}
+		}
+	);
+
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 8, [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			FirstBossAttackCollision->Transform.SetLocalScale(PHASE1BOSSATTACKCOLLISIONSCALE8);
+
+			if (EACTORDIR::Left == FirstBossDir)
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONLEFTPOSITION8);
+			}
+			else
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONRIGHTPOSITION8);
+			}
+		}
+	);
+
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 9, [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			FirstBossAttackCollision->Transform.SetLocalScale(PHASE1BOSSATTACKCOLLISIONSCALE9);
+			if (EACTORDIR::Left == FirstBossDir)
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONLEFTPOSITION9);
+			}
+			else
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONRIGHTPOSITION9);
+			}
+		}
+	);
+
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 10, [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			FirstBossAttackCollision->Transform.SetLocalScale(PHASE1BOSSATTACKCOLLISIONSCALE10);
+			if (EACTORDIR::Left == FirstBossDir)
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONLEFTPOSITION10);
+			}
+			else
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONRIGHTPOSITION10);
+			}
+		}
+	);
+
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 11, [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			FirstBossAttackCollision->Transform.SetLocalScale(PHASE1BOSSATTACKCOLLISIONSCALE11);
+			if (EACTORDIR::Left == FirstBossDir)
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONLEFTPOSITION11);
+			}
+			else
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONRIGHTPOSITION11);
+			}
+		}
+	);
+
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 12, [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			FirstBossAttackCollision->Transform.SetLocalScale(PHASE1BOSSATTACKCOLLISIONSCALE12);
+			if (EACTORDIR::Left == FirstBossDir)
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONLEFTPOSITION12);
+			}
+			else
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONRIGHTPOSITION12);
+			}
+		}
+	);
+
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 13, [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			FirstBossAttackCollision->Transform.SetLocalScale(PHASE1BOSSATTACKCOLLISIONSCALE13);
+			if (EACTORDIR::Left == FirstBossDir)
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONLEFTPOSITION13);
+			}
+			else
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONRIGHTPOSITION13);
+			}
+		}
+	);
+
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack", 14, [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			FirstBossAttackCollision->Transform.SetLocalScale(PHASE1BOSSATTACKCOLLISIONSCALE14);
+			if (EACTORDIR::Left == FirstBossDir)
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONLEFTPOSITION14);
+			}
+			else
+			{
+				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONRIGHTPOSITION14);
+			}
+		}
+	);
+
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase1_Attack",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			FirstBossCollision->On();
+			FirstBossAttackCollision->Off();
 			BounceCount = 0;
 			ChangeState(EBOSSSTATE::Idle);
 			return;
@@ -238,6 +439,8 @@ void FirstBoss::PhaseChange()
 {
 	if (EBOSSPHASE::Phase1 == CurPhase && HitCount > PHASE1HP)
 	{
+		FirstBossCollision->On();
+		FirstBossAttackCollision->Off();
 		CurPhase = EBOSSPHASE::Phase2;
 		ChangeState(EBOSSSTATE::Intro);
 		HitCount = 0;
@@ -246,6 +449,7 @@ void FirstBoss::PhaseChange()
 
 	if (EBOSSPHASE::Phase2 == CurPhase && HitCount > PHASE2HP)
 	{
+		FirstBossAttackCollision->Off();
 		ChangeState(EBOSSSTATE::Death);
 		HitCount = 0;
 		BounceCount = 0;
