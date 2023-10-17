@@ -49,12 +49,12 @@ protected:
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
 	void Update(float _Delta) override;
 
-private:
 	void StageEnd(float _Delta);
+	void ParryUpdate(float _Delta);
+private:
 
 	bool LevelStopToParry = false;
 	float StopTimer = STOPTIMER;
-	void ParryUpdate(float _Delta);
 
 	bool ResultUI = false;
 };

@@ -31,6 +31,7 @@ private:
 
 	std::vector<std::shared_ptr<class ParryObject>> TutorialParry;
 
+	void TutorialParryObjectActive();
 	void TutorialLevelCameraMove();
 
 private:

@@ -119,7 +119,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 
 void TutorialStage::Update(float _Delta)
 {
-	StageLevel::Update(_Delta);
+	StageLevel::ParryUpdate(_Delta);
 
 	TutorialLevelCameraMove();
 
@@ -128,6 +128,54 @@ void TutorialStage::Update(float _Delta)
 		GameEngineCore::ChangeLevel("MiniMapLevel");
 	}
 
+	TutorialParryObjectActive();
+}
+
+void TutorialStage::LevelEnd(GameEngineLevel* _NextLevel)
+{
+	StageLevel::LevelEnd(_NextLevel);
+
+	if (nullptr != TutorialBackGround)
+	{
+		TutorialBackGround->Death();
+		TutorialBackGround = nullptr;
+	}
+
+	if (nullptr != TutorialBackGroundUpper)
+	{
+		TutorialBackGroundUpper->Death();
+		TutorialBackGroundUpper = nullptr;
+	}
+
+	if (nullptr != TutorialMap)
+	{
+		TutorialMap->Death();
+		TutorialMap = nullptr;
+	}
+
+	if (nullptr != TutorialExit)
+	{
+		TutorialExit->Death();
+		TutorialExit = nullptr;
+	}
+
+	for (size_t i = 0; i < TutorialParry.size(); i++)
+	{
+		if (nullptr != TutorialParry[i])
+		{
+			TutorialParry[i]->Death();
+			TutorialParry[i] = nullptr;
+		}
+	}
+
+	TutorialParry.clear();
+}
+
+
+
+
+void TutorialStage::TutorialParryObjectActive()
+{
 	size_t VectorSize = TutorialParry.size();
 
 	for (size_t i = 0; i < VectorSize; i++)
@@ -174,44 +222,4 @@ void TutorialStage::TutorialLevelCameraMove()
 	GetMainCamera()->Transform.SetLocalPosition(MovePos);
 	TutorialBackGround->Transform.SetLocalPosition(MovePos);
 	TutorialBackGroundUpper->Transform.SetLocalPosition(MovePos);
-}
-
-void TutorialStage::LevelEnd(GameEngineLevel* _NextLevel)
-{
-	StageLevel::LevelEnd(_NextLevel);
-
-	if (nullptr != TutorialBackGround)
-	{
-		TutorialBackGround->Death();
-		TutorialBackGround = nullptr;
-	}
-
-	if (nullptr != TutorialBackGroundUpper)
-	{
-		TutorialBackGroundUpper->Death();
-		TutorialBackGroundUpper = nullptr;
-	}
-
-	if (nullptr != TutorialMap)
-	{
-		TutorialMap->Death();
-		TutorialMap = nullptr;
-	}
-
-	if (nullptr != TutorialExit)
-	{
-		TutorialExit->Death();
-		TutorialExit = nullptr;
-	}
-
-	for (size_t i = 0; i < TutorialParry.size(); i++)
-	{
-		if (nullptr != TutorialParry[i])
-		{
-			TutorialParry[i]->Death();
-			TutorialParry[i] = nullptr;
-		}
-	}
-
-	TutorialParry.clear();
 }
