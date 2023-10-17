@@ -2,7 +2,7 @@
 #include "TestStage.h"
 
 #include "BaseCharacter.h"
-#include "PirateBulletParry.h"
+#include "ParryObject.h"
 #include "Map.h"
 
 TestStage::TestStage()
@@ -53,7 +53,7 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\SecondBossStage\\SecondBoss\\Pirate_Bullet\\Pirate_Bullet_Pink");
+		Dir.MoveChild("Resources\\Texture\\Tutorial\\Parry");
 		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
 		for (size_t i = 0; i < Directorys.size(); i++)
@@ -66,8 +66,8 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
 
-	TestParry = CreateActor<PirateBulletParry>(EUPDATEORDER::Bullet);
-	TestParry->Transform.SetLocalPosition({ 1280.0f, -360.0f });
+	TestParry = CreateActor<ParryObject>(EUPDATEORDER::Bullet);
+	TestParry->Transform.SetLocalPosition({ 640.0f, -360.0f });
 
 	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialMap.Png");
 	float4 SpriteHalfScale = Sprite->GetSpriteData(0).GetScale().Half();
@@ -103,8 +103,7 @@ void TestStage::Update(float _Delta)
 {
 	if (true == GameEngineInput::IsDown('R', this))
 	{
-		TestParry = CreateActor<PirateBulletParry>(EUPDATEORDER::Bullet);
-		TestParry->Transform.SetLocalPosition({ 1280.0f, -360.0f });
+		TestParry->ParryActive();
 	}
 
 	if (0.0f > StopTimer)

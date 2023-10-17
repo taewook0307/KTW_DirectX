@@ -119,6 +119,8 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 
 void TutorialStage::Update(float _Delta)
 {
+	StageLevel::Update(_Delta);
+
 	TutorialLevelCameraMove();
 
 	if (true == GameEngineInput::IsDown(VK_ESCAPE, this))
@@ -176,6 +178,8 @@ void TutorialStage::TutorialLevelCameraMove()
 
 void TutorialStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
+	StageLevel::LevelEnd(_NextLevel);
+
 	if (nullptr != TutorialBackGround)
 	{
 		TutorialBackGround->Death();
@@ -198,12 +202,6 @@ void TutorialStage::LevelEnd(GameEngineLevel* _NextLevel)
 	{
 		TutorialExit->Death();
 		TutorialExit = nullptr;
-	}
-
-	if (nullptr != Player)
-	{
-		Player->Death();
-		Player = nullptr;
 	}
 
 	for (size_t i = 0; i < TutorialParry.size(); i++)

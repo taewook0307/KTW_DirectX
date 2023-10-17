@@ -6,9 +6,9 @@
 #define PARRYPOS3 { 4296.0f, -320.f }
 #define EXITPOS { 6645.0f, -604.0f }
 
-#include <GameEngineCore/GameEngineLevel.h>
+#include "StageLevel.h"
 
-class TutorialStage : public GameEngineLevel
+class TutorialStage : public StageLevel
 {
 public:
 	// constrcuter destructer
@@ -28,7 +28,6 @@ private:
 	std::shared_ptr<class UpperObject> TutorialBackGroundUpper = nullptr;
 	std::shared_ptr<class Map> TutorialMap = nullptr;
 	std::shared_ptr<class MiniMapEnter> TutorialExit = nullptr;
-	std::shared_ptr<class BaseCharacter> Player = nullptr;
 
 	std::vector<std::shared_ptr<class ParryObject>> TutorialParry;
 
