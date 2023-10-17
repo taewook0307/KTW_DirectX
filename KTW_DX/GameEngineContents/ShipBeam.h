@@ -2,8 +2,11 @@
 
 #include "ParryObject.h"
 
+#define BEAMAPPEARTIMER 3.0f
+
 class ShipBeam : public ParryObject
 {
+	friend class ShipBoss;
 public:
 	// constrcuter destructer
 	ShipBeam();
@@ -18,6 +21,19 @@ public:
 protected:
 
 private:
+	float AppearTimer = BEAMAPPEARTIMER;
+	void AppearStart();
+	void AppearUpdate(float _Delta);
+	void EndStart();
+
+private:
+	std::string State = "";
+	ESHIPBEAMSTATE CurState = ESHIPBEAMSTATE::None;
+
+	void StateUpdate(float _Delta);
+	void ChangeState(ESHIPBEAMSTATE _CurState);
+	void ChangeAnimation(std::string_view _State);
+
 	std::shared_ptr<GameEngineSpriteRenderer> BeamRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> AttackCollision = nullptr;
 	std::shared_ptr<GameEngineCollision> ParryCollision = nullptr;

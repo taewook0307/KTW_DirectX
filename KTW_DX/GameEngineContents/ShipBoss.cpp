@@ -262,8 +262,8 @@ void ShipBoss::CreateBubble()
 void ShipBoss::CreateBeam()
 {
 	float4 ShipPos = Transform.GetWorldPosition();
-	float4 CreatePos = { ShipPos.X - 200.0f, ShipPos.Half().Y };
+	float4 CreatePos = { ShipPos.X - 150.0f, ShipPos.Half().Y - 30.0f };
 
-	std::shared_ptr<ShipBeam> CurBubble = GetLevel()->CreateActor<ShipBeam>(EUPDATEORDER::Bullet);
-	CurBubble->Transform.SetLocalPosition(CreatePos);
+	std::shared_ptr<ShipBeam> CurBeam = GetLevel()->CreateActor<ShipBeam>(EUPDATEORDER::Bullet);
+	CurBeam->Transform.SetLocalPosition(CreatePos);
 }

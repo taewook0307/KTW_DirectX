@@ -132,6 +132,13 @@ enum class ESHIPBUBBLESTATE
 	Pop
 };
 
+enum class ESHIPBEAMSTATE
+{
+	None,
+	Appear,
+	End
+};
+
 //Enemy
 enum class EBARRELSTATE
 {
