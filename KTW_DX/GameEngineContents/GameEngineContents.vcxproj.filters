@@ -38,9 +38,6 @@
     <ClInclude Include="ActorEnum.h">
       <Filter>Global\Enum</Filter>
     </ClInclude>
-    <ClInclude Include="ParryObject.h">
-      <Filter>Level\6. Tutorial\TutorialActor</Filter>
-    </ClInclude>
     <ClInclude Include="SelectMenu.h">
       <Filter>Level\3. Menu\MenuActor</Filter>
     </ClInclude>
@@ -179,6 +176,9 @@
     <ClInclude Include="TestStage.h">
       <Filter>Level</Filter>
     </ClInclude>
+    <ClInclude Include="ParryObject.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -211,9 +211,6 @@
     </ClCompile>
     <ClCompile Include="BaseActor.cpp">
       <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="ParryObject.cpp">
-      <Filter>Level\6. Tutorial\TutorialActor</Filter>
     </ClCompile>
     <ClCompile Include="SelectMenu.cpp">
       <Filter>Level\3. Menu\MenuActor</Filter>
@@ -395,6 +392,9 @@
     <ClCompile Include="TestStage.cpp">
       <Filter>Level</Filter>
     </ClCompile>
+    <ClCompile Include="ParryObject.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -447,9 +447,6 @@
     </Filter>
     <Filter Include="Level\5. Elder\ElderActor">
       <UniqueIdentifier>{70956535-5298-44a9-aa3e-478dcae14661}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Level\6. Tutorial\TutorialActor">
-      <UniqueIdentifier>{12e38051-8787-45c1-9205-4a2e9999aa56}</UniqueIdentifier>
     </Filter>
     <Filter Include="Level\7. MiniMap\MiniMapActor">
       <UniqueIdentifier>{489d1c94-3703-4799-9cac-db509789ec86}</UniqueIdentifier>

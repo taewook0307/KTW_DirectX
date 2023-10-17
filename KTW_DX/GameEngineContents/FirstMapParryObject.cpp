@@ -11,11 +11,11 @@ FirstMapParryObject::~FirstMapParryObject()
 
 void FirstMapParryObject::Start()
 {
-	ParryRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
-	ParryRenderer->CreateAnimation("FirstBossParryActive", "FirstBossParryObject", 0.1f, -1, -1, false);
+	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
+	Renderer->CreateAnimation("FirstBossParryActive", "FirstBossParryObject", 0.1f, -1, -1, false);
 
-	ParryRenderer->AutoSpriteSizeOn();
-	ParryRenderer->SetPivotType(PivotType::Bottom);
+	Renderer->AutoSpriteSizeOn();
+	Renderer->SetPivotType(PivotType::Bottom);
 
 	ParryCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::ParryObject);
 	ParryCollision->SetCollisionType(ColType::AABBBOX2D);
@@ -31,14 +31,14 @@ void FirstMapParryObject::Update(float _Delta)
 {
 	if (true == ParryActivation)
 	{
-		ParryRenderer->ChangeAnimation("FirstBossParryActive");
+		Renderer->ChangeAnimation("FirstBossParryActive");
 	}
 	else
 	{
-		if (nullptr != ParryRenderer)
+		if (nullptr != Renderer)
 		{
-			ParryRenderer->Death();
-			ParryRenderer = nullptr;
+			Renderer->Death();
+			Renderer = nullptr;
 		}
 		Death();
 	}

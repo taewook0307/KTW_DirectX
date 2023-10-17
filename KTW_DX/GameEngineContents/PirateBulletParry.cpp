@@ -13,18 +13,18 @@ PirateBulletParry::~PirateBulletParry()
 
 void PirateBulletParry::Start()
 {
-	BulletRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Bullet);
-	BulletRenderer->CreateAnimation("Pirate_Bullet_Pink_Move", "Pirate_Bullet_Pink_Move");
-	BulletRenderer->CreateAnimation("Pirate_Bullet_Pink_Death", "Pirate_Bullet_Pink_Death");
-	BulletRenderer->SetEndEvent("Pirate_Bullet_Pink_Death",
+	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Bullet);
+	Renderer->CreateAnimation("Pirate_Bullet_Pink_Move", "Pirate_Bullet_Pink_Move");
+	Renderer->CreateAnimation("Pirate_Bullet_Pink_Death", "Pirate_Bullet_Pink_Death");
+	Renderer->SetEndEvent("Pirate_Bullet_Pink_Death",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			BulletRenderer = nullptr;
+			Renderer = nullptr;
 			Death();
 		}
 	);
-	BulletRenderer->SetPivotType(PivotType::Left);
-	BulletRenderer->AutoSpriteSizeOn();
+	Renderer->SetPivotType(PivotType::Left);
+	Renderer->AutoSpriteSizeOn();
 
 	BulletCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
 	BulletCollision->Transform.SetLocalScale(PIRATEBULLETCOLLISIONSCALE);
@@ -52,7 +52,7 @@ void PirateBulletParry::ChangeAnimation(std::string_view _State)
 
 	State = _State;
 
-	BulletRenderer->ChangeAnimation(AnimationName);
+	Renderer->ChangeAnimation(AnimationName);
 }
 
 void PirateBulletParry::HitCheck()

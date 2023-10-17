@@ -11,26 +11,26 @@ ShipBeam::~ShipBeam()
 
 void ShipBeam::Start()
 {
-	BeamRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::BossEffect);
-	BeamRenderer->CreateAnimation("Ship_Beam_Appear", "Ship_Beam", 0.05f, 0, 4, false);
-	BeamRenderer->SetEndEvent("Ship_Beam_Appear",
+	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::BossEffect);
+	Renderer->CreateAnimation("Ship_Beam_Appear", "Ship_Beam", 0.05f, 0, 4, false);
+	Renderer->SetEndEvent("Ship_Beam_Appear",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			BeamRenderer->ChangeAnimation("Ship_Beam_Stay");
+			Renderer->ChangeAnimation("Ship_Beam_Stay");
 			return;
 		}
 	);
-	BeamRenderer->CreateAnimation("Ship_Beam_Stay", "Ship_Beam", 0.05f, 5, 6, true);
-	BeamRenderer->CreateAnimation("Ship_Beam_End", "Ship_Beam", 0.05f, 7, 10, false);
-	BeamRenderer->SetEndEvent("Ship_Beam_End",
+	Renderer->CreateAnimation("Ship_Beam_Stay", "Ship_Beam", 0.05f, 5, 6, true);
+	Renderer->CreateAnimation("Ship_Beam_End", "Ship_Beam", 0.05f, 7, 10, false);
+	Renderer->SetEndEvent("Ship_Beam_End",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			Death();
 		}
 	);
-	BeamRenderer->SetAutoScaleRatio(2.0f);
-	BeamRenderer->AutoSpriteSizeOn();
-	BeamRenderer->SetPivotType(PivotType::Right);
+	Renderer->SetAutoScaleRatio(2.0f);
+	Renderer->AutoSpriteSizeOn();
+	Renderer->SetPivotType(PivotType::Right);
 	ChangeState(ESHIPBEAMSTATE::Appear);
 
 	AttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
@@ -79,7 +79,7 @@ void ShipBeam::ChangeAnimation(std::string_view _State)
 	std::string AnimationName = "Ship_Beam_";
 	AnimationName += _State;
 	State = _State;
-	BeamRenderer->ChangeAnimation(AnimationName);
+	Renderer->ChangeAnimation(AnimationName);
 }
 
 void ShipBeam::AppearStart()

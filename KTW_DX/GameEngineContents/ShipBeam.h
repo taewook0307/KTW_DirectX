@@ -34,9 +34,7 @@ private:
 	void ChangeState(ESHIPBEAMSTATE _CurState);
 	void ChangeAnimation(std::string_view _State);
 
-	std::shared_ptr<GameEngineSpriteRenderer> BeamRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> AttackCollision = nullptr;
-	std::shared_ptr<GameEngineCollision> ParryCollision = nullptr;
 
 	void Start() override;
 	void Update(float _Delta) override;

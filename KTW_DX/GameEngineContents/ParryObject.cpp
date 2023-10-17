@@ -11,12 +11,12 @@ ParryObject::~ParryObject()
 
 void ParryObject::Start()
 {
-	ParryRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
-	ParryRenderer->CreateAnimation("ParryActive", "TutorialParryOn");
-	ParryRenderer->CreateAnimation("ParryInactive", "TutorialParryOff");
+	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
+	Renderer->CreateAnimation("ParryActive", "TutorialParryOn");
+	Renderer->CreateAnimation("ParryInactive", "TutorialParryOff");
 
-	ParryRenderer->ChangeAnimation("ParryActive");
-	ParryRenderer->AutoSpriteSizeOn();
+	Renderer->ChangeAnimation("ParryActive");
+	Renderer->AutoSpriteSizeOn();
 
 	ParryCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::ParryObject);
 	
@@ -30,10 +30,10 @@ void ParryObject::Update(float _Delta)
 {
 	if (true == ParryActivation)
 	{
-		ParryRenderer->ChangeAnimation("ParryActive");
+		Renderer->ChangeAnimation("ParryActive");
 	}
 	else
 	{
-		ParryRenderer->ChangeAnimation("ParryInactive");
+		Renderer->ChangeAnimation("ParryInactive");
 	}
 }
