@@ -105,4 +105,14 @@ void TestStage::Update(float _Delta)
 	{
 		TestParry->ParryActive();
 	}
+
+	if (true == GameEngineInput::IsDown(VK_NUMPAD0, this))
+	{
+		GameEngineCore::MainTime.SetAllTimeScale(0.0f);
+	}
+
+	if (true == GameEngineInput::IsDown(VK_NUMPAD1, this))
+	{
+		GameEngineCore::MainTime.SetAllTimeScale(1.0f);
+	}
 }
