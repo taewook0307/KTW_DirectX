@@ -31,7 +31,7 @@ void FirstBoss::Start()
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Move", "FirstBoss_Phase1_Move", 0.1f, 0, 2, false);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_MoveStay", "FirstBoss_Phase1_Move", 0.1f, 3, 7, false);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_MoveEnd", "FirstBoss_Phase1_Move", 0.1f, 8, 10, false);
-	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Attack", "FirstBoss_Phase1_Attack", 0.1f);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Attack", "FirstBoss_Phase1_Attack", 1.0f);
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase1_Attack",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -122,6 +122,8 @@ void FirstBoss::Start()
 	FirstBossAttackCollision->Off();
 
 	ChangeState(EBOSSSTATE::Intro);
+
+	GameEngineInput::AddInputObject(this);
 }
 
 void FirstBoss::Update(float _Delta)
@@ -130,7 +132,8 @@ void FirstBoss::Update(float _Delta)
 
 	PhaseChange();
 
-	if (5 <= BounceCount)
+	if (true == GameEngineInput::IsDown('L', this))
+	// if (5 <= BounceCount)
 	{
 		ChangeState(EBOSSSTATE::Attack);
 		return;

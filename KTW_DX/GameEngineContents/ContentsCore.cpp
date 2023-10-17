@@ -27,7 +27,7 @@ ContentsCore::~ContentsCore()
 
 void ContentsCore::Start()
 {
-	GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("LevelChangeTool");
+	// GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("LevelChangeTool");
 	
 	//{
 	//	D3D11_BLEND_DESC Desc = {};
@@ -66,7 +66,7 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<SecondBossStage>("SecondBossStage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
 	GameEngineCore::CreateLevel<TestStage>("TestStage");
-	GameEngineCore::ChangeLevel("SecondBossStage");
+	GameEngineCore::ChangeLevel("FirstBossStage");
 
 	GameEngineLevel::OffDebug();
 
