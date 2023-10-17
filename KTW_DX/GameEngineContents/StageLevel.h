@@ -3,6 +3,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 
 #define PHASEMOVETIMER 5.0f
+#define STOPTIMER 0.3f
 
 class StageLevel : public GameEngineLevel
 {
@@ -49,6 +50,12 @@ protected:
 	void Update(float _Delta) override;
 
 private:
+	void StageEnd(float _Delta);
+
+	bool LevelStopToParry = false;
+	float StopTimer = STOPTIMER;
+	void ParryUpdate(float _Delta);
+
 	bool ResultUI = false;
 };
 

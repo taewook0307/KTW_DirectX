@@ -56,6 +56,25 @@ void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void StageLevel::Update(float _Delta)
 {
+	StageEnd(_Delta);
+	ParryUpdate(_Delta);
+}
+
+void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
+{
+	ResultUI = false;
+	PhaseMoveTimer = PHASEMOVETIMER;
+	StageResult = ESTAGERESULT::None;
+
+	if (nullptr != Player)
+	{
+		Player->Death();
+		Player = nullptr;
+	}
+}
+
+void StageLevel::StageEnd(float _Delta)
+{
 	if (ESTAGERESULT::Success == StageResult && false == ResultUI)
 	{
 		CreateActor<StageClearUI>(EUPDATEORDER::UI);
@@ -79,15 +98,24 @@ void StageLevel::Update(float _Delta)
 	}
 }
 
-void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
+void StageLevel::ParryUpdate(float _Delta)
 {
-	ResultUI = false;
-	PhaseMoveTimer = PHASEMOVETIMER;
-	StageResult = ESTAGERESULT::None;
-
-	if (nullptr != Player)
+	if (0.0f > StopTimer)
 	{
-		Player->Death();
-		Player = nullptr;
+		StopTimer = STOPTIMER;
+		LevelStopToParry = false;
+		BaseCharacter::MainCharacter->ParrySuccessReset();
+		GameEngineCore::MainTime.SetAllTimeScale(1.0f);
+	}
+
+	if (true == BaseCharacter::MainCharacter->GetParrySuccess())
+	{
+		LevelStopToParry = true;
+		GameEngineCore::MainTime.SetAllTimeScale(0.0f);
+	}
+
+	if (true == LevelStopToParry)
+	{
+		StopTimer -= _Delta;
 	}
 }

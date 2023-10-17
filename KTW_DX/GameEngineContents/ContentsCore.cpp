@@ -62,7 +62,7 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<SecondBossStage>("SecondBossStage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
 	GameEngineCore::CreateLevel<TestStage>("TestStage");
-	GameEngineCore::ChangeLevel("TestStage");
+	GameEngineCore::ChangeLevel("SecondBossStage");
 
 	GameEngineLevel::OffDebug();
 
