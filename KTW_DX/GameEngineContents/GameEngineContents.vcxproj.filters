@@ -179,6 +179,9 @@
     <ClInclude Include="ParryObject.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="LevelChangeWindow.h">
+      <Filter>Global\Tool</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -395,6 +398,9 @@
     <ClCompile Include="ParryObject.cpp">
       <Filter>Global</Filter>
     </ClCompile>
+    <ClCompile Include="LevelChangeWindow.cpp">
+      <Filter>Global\Tool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -522,6 +528,9 @@
     </Filter>
     <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipBeam">
       <UniqueIdentifier>{0a72068d-4ae0-486b-bd73-5bac0268b3a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Tool">
+      <UniqueIdentifier>{3c209ce3-ce97-4c3a-bf09-1dccaa6ec8cc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

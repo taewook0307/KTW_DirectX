@@ -14,6 +14,8 @@
 #include <GameEngineCore/GameEngineRenderTarget.h>
 
 #include "TestStage.h"
+#include "LevelChangeWindow.h"
+#include <GameEngineCore/GameEngineGUI.h>
 
 ContentsCore::ContentsCore()
 {
@@ -25,6 +27,8 @@ ContentsCore::~ContentsCore()
 
 void ContentsCore::Start()
 {
+	GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("LevelChangeTool");
+	
 	//{
 	//	D3D11_BLEND_DESC Desc = {};
 	//	Desc.IndependentBlendEnable = false;
