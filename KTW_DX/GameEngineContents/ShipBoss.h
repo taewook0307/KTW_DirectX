@@ -62,7 +62,7 @@ protected:
 	std::string State = "";
 
 	bool ChangeShip = false;
-
+	bool AttackBeam = false;
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> ShipRenderer = nullptr;
 	std::shared_ptr<GameEngineSpriteRenderer> ShipRailRenderer = nullptr;

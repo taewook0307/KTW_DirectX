@@ -20,8 +20,27 @@ void ShipBoss::IdleUpdate(float _Delta)
 	if (0.0f > IdleTimer /*&& EBOSSPHASE::Phase3 != CurPhase*/)
 	{
 		IdleTimer = SHIPIDLETIMER;
-		ChangeState(ESHIPBOSSSTATE::Attack);
-		return;
+
+		if (EBOSSPHASE::Phase3 != CurPhase)
+		{
+			ChangeState(ESHIPBOSSSTATE::Attack);
+			return;
+		}
+		else
+		{
+			if (false == AttackBeam)
+			{
+				AttackBeam = true;
+				ChangeState(ESHIPBOSSSTATE::Attack);
+				return;
+			}
+			else
+			{
+				AttackBeam = false;
+				ChangeState(ESHIPBOSSSTATE::Charge);
+				return;
+			}
+		}
 	}
 
 	IdleTimer -= _Delta;
@@ -64,6 +83,7 @@ void ShipBoss::TransformStart()
 
 void ShipBoss::ChargeStart()
 {
+	BodyCollision->Off();
 	ChangeAnimation("Charge_Start");
 }
 

@@ -65,7 +65,7 @@ void ShipBoss::Start()
 	ShipRenderer->SetFrameEvent("Ship_Transform", 3,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			//PirateBoss::MainPirateBoss->ChangePhase3();
+			PirateBoss::MainPirateBoss->ChangePhase3();
 			ShipRailRenderer->Death();
 			ShipSailRenderer->Death();
 			ShipMastRenderer->Death();
@@ -105,6 +105,7 @@ void ShipBoss::Start()
 	ShipRenderer->SetEndEvent("Ship_Phase3_Charge_End",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			BodyCollision->On();
 			ChangeState(ESHIPBOSSSTATE::Beam);
 			return;
 		}
@@ -154,7 +155,7 @@ void ShipBoss::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 
-	if (true == GameEngineInput::IsDown('O', this))
+	/*if (true == GameEngineInput::IsDown('O', this))
 	{
 		ChangeState(ESHIPBOSSSTATE::Wince);
 		CurPhase = EBOSSPHASE::Phase3;
@@ -165,7 +166,7 @@ void ShipBoss::Update(float _Delta)
 	{
 		ChangeState(ESHIPBOSSSTATE::Charge);
 		return;
-	}
+	}*/
 
 	if (PHASE3HP < HitCount && ESHIPBOSSSTATE::Death != CurState)
 	{
