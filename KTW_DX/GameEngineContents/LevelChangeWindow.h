@@ -23,5 +23,6 @@ public:
 protected:
 
 private:
-	
+	std::vector<std::string> UILevelNames;
+	std::vector<std::string> StageLevelNames;
 };

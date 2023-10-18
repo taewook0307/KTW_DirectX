@@ -28,10 +28,7 @@ ContentsCore::~ContentsCore()
 }
 
 void ContentsCore::Start()
-{
-	GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
-	GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
-	
+{	
 	//{
 	//	D3D11_BLEND_DESC Desc = {};
 	//	Desc.IndependentBlendEnable = false;
@@ -64,14 +61,17 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<MenuLevel>("MenuLevel");
 	GameEngineCore::CreateLevel<IntroLevel>("IntroLevel");
 	GameEngineCore::CreateLevel<MiniMapLevel>("MiniMapLevel");
-	GameEngineCore::CreateLevel<TutorialStage>("TutorialStage");
-	GameEngineCore::CreateLevel<FirstBossStage>("FirstBossStage");
-	GameEngineCore::CreateLevel<SecondBossStage>("SecondBossStage");
+	GameEngineCore::CreateLevel<TutorialStage>("Tutorial_Stage");
+	GameEngineCore::CreateLevel<FirstBossStage>("FirstBoss_Stage");
+	GameEngineCore::CreateLevel<SecondBossStage>("SecondBoss_Stage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
-	GameEngineCore::CreateLevel<TestStage>("TestStage");
-	GameEngineCore::ChangeLevel("FirstBossStage");
+	GameEngineCore::CreateLevel<TestStage>("Test_Stage");
+	GameEngineCore::ChangeLevel("FirstBoss_Stage");
 
 	GameEngineLevel::OffDebug();
+
+	GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
+	GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
 
 	GameEngineInput::AddInputObject(this);
 }
