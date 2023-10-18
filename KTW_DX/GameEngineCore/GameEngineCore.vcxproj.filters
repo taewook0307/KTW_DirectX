@@ -137,6 +137,9 @@
     <ClCompile Include="imgui_widgets.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineState.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -284,6 +287,9 @@
     <ClInclude Include="imstb_truetype.h">
       <Filter>GUI</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineState.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -351,6 +357,9 @@
     </Filter>
     <Filter Include="GUI">
       <UniqueIdentifier>{0df49d5e-8a52-44bf-8206-79b62e20c92b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{1efd55aa-dd5b-49aa-935a-7c98117297ef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
