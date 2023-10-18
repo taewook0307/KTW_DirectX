@@ -173,9 +173,6 @@
     <ClInclude Include="ParryObject.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="LevelChangeWindow.h">
-      <Filter>Global\Tool</Filter>
-    </ClInclude>
     <ClInclude Include="FirstBossCollisionData.h">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClInclude>
@@ -186,7 +183,10 @@
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Parry</Filter>
     </ClInclude>
     <ClInclude Include="DebugWindow.h">
-      <Filter>Global\Tool</Filter>
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelChangeWindow.h">
+      <Filter>GUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -395,9 +395,6 @@
     <ClCompile Include="ParryObject.cpp">
       <Filter>Global</Filter>
     </ClCompile>
-    <ClCompile Include="LevelChangeWindow.cpp">
-      <Filter>Global\Tool</Filter>
-    </ClCompile>
     <ClCompile Include="FirstBossPhase3.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Phase3</Filter>
     </ClCompile>
@@ -408,7 +405,10 @@
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Parry</Filter>
     </ClCompile>
     <ClCompile Include="DebugWindow.cpp">
-      <Filter>Global\Tool</Filter>
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelChangeWindow.cpp">
+      <Filter>GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -538,14 +538,14 @@
     <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipBeam">
       <UniqueIdentifier>{0a72068d-4ae0-486b-bd73-5bac0268b3a3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Global\Tool">
-      <UniqueIdentifier>{3c209ce3-ce97-4c3a-bf09-1dccaa6ec8cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Level\8. FirstBossStage\FirstBossStageActor\Phase3">
       <UniqueIdentifier>{12ab8224-1101-4a3e-b75f-633a09eaa56c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Level\8. FirstBossStage\FirstBossStageActor\Parry">
       <UniqueIdentifier>{d88a1204-af80-4ea7-ad3b-eba5980fc66c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{a42c329b-54fe-4650-8850-da4dea117394}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

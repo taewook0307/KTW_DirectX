@@ -16,20 +16,12 @@ void LevelChangeWindow::Start()
 
 void LevelChangeWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 {
-	ImGui::Text("UI");
+	std::map<std::string, std::shared_ptr<GameEngineLevel>> Levels = GameEngineCore::GetAllLevel();
 
-	CreateLevelButton("LogoLevel");
-	CreateLevelButton("TitleLevel");
-	CreateLevelButton("MenuLevel");
-	CreateLevelButton("IntroLevel");
-	CreateLevelButton("OutroLevel");
-
-	ImGui::Text("Stage");
-
-	CreateLevelButton("MiniMapLevel");
-	CreateLevelButton("TutorialStage");
-	CreateLevelButton("FirstBossStage");
-	CreateLevelButton("SecondBossStage");
+	for (std::pair<const std::string, std::shared_ptr<GameEngineLevel>> CurLevel : Levels)
+	{
+		CreateLevelButton(CurLevel.first.c_str());
+	}
 }
 
 void LevelChangeWindow::CreateLevelButton(std::string_view _LevelName)
