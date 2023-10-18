@@ -38,6 +38,16 @@ public:
 		return ParrySuccess;
 	}
 
+	bool GetCheat() const
+	{
+		return Cheat;
+	}
+
+	void CheatSwitch()
+	{
+		Cheat = !Cheat;
+	}
+
 	void ParrySuccessReset()
 	{
 		ParrySuccess = false;

@@ -1,13 +1,13 @@
 ﻿#include "PreCompile.h"
 #include "LevelChangeWindow.h"
 
-//LevelChangeWindow::LevelChangeWindow()
-//{
-//}
-//
-//LevelChangeWindow::~LevelChangeWindow()
-//{
-//}
+LevelChangeWindow::LevelChangeWindow()
+{
+}
+
+LevelChangeWindow::~LevelChangeWindow()
+{
+}
 
 void LevelChangeWindow::Start()
 {
@@ -16,12 +16,6 @@ void LevelChangeWindow::Start()
 
 void LevelChangeWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 {
-	ImGui::Text("Debug");
-	if (ImGui::Button("Collision Switch"))
-	{
-		GameEngineLevel::IsDebug = !GameEngineLevel::IsDebug;
-	}
-
 	ImGui::Text("UI");
 
 	CreateLevelButton("LogoLevel");

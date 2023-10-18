@@ -14,6 +14,8 @@
 #include <GameEngineCore/GameEngineRenderTarget.h>
 
 #include "TestStage.h"
+
+#include "DebugWindow.h"
 #include "LevelChangeWindow.h"
 #include <GameEngineCore/GameEngineGUI.h>
 
@@ -27,7 +29,8 @@ ContentsCore::~ContentsCore()
 
 void ContentsCore::Start()
 {
-	//GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("LevelChangeTool");
+	GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
+	GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
 	
 	//{
 	//	D3D11_BLEND_DESC Desc = {};

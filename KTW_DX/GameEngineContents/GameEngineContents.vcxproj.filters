@@ -185,6 +185,9 @@
     <ClInclude Include="FirstMapParryObject.h">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Parry</Filter>
     </ClInclude>
+    <ClInclude Include="DebugWindow.h">
+      <Filter>Global\Tool</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -403,6 +406,9 @@
     </ClCompile>
     <ClCompile Include="FirstMapParryObject.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Parry</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugWindow.cpp">
+      <Filter>Global\Tool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
