@@ -46,7 +46,7 @@ PixelOutPut TextureShaderMask_VS(GameEngineVertex2D _Input)
     // _Input 0.5 0.5
     
     // 쉐이더 문법 모두 0인 자료형으로 초기화 하는것
-    PixelOutPut Result = (PixelOutPut) 0;
+    PixelOutPut Result = (PixelOutPut)0;
     
     // 내가 원하는 값을 이안에 넣어줄수 있어야 한다.
     
@@ -90,6 +90,12 @@ PixelOutPut TextureShaderMask_VS(GameEngineVertex2D _Input)
 
 // 우리 규칙
 
+cbuffer ColorData : register(b1)
+{
+    float4 PlusColor; // 최종색상에 더한다.
+    float4 MulColor; // 최종색상에 곱한다.
+};
+
 Texture2D DiffuseTex : register(t0);
 Texture2D MaskTex : register(t1);
 SamplerState DiffuseTexSampler : register(s0);
@@ -111,6 +117,9 @@ float4 TextureShaderMask_PS(PixelOutPut _Input) : SV_Target0
     {
         clip(-1);
     }
+    
+    Color += PlusColor;
+    Color *= MulColor;
     
     return Color;
 }
