@@ -64,7 +64,6 @@ private:
 
 	std::shared_ptr<GameEngineSpriteRenderer> FirstBossRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> FirstBossCollision = nullptr;
-	std::shared_ptr<GameEngineCollision> FirstBossUnDamageCollision = nullptr;
 	std::shared_ptr<GameEngineCollision> FirstBossAttackCollision = nullptr;
 
 	std::vector<float4> AttackCollisionScales;

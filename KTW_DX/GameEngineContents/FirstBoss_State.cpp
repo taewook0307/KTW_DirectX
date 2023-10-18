@@ -77,8 +77,6 @@ void FirstBoss::IdleStart()
 
 		FirstBossCollision->Transform.SetLocalScale(CollisionScale);
 		FirstBossCollision->Transform.SetLocalPosition(CollisionPosition);
-		FirstBossUnDamageCollision->Transform.SetLocalScale(CollisionScale);
-		FirstBossUnDamageCollision->Transform.SetLocalPosition(CollisionPosition);
 	}
 	ChangeAnimation("Idle");
 }
@@ -171,15 +169,13 @@ void FirstBoss::DeathStart()
 {
 	ChangeAnimation("Death");
 	Phase2End = true;
-	FirstBossCollision->Off();
-	FirstBossUnDamageCollision->On();
 }
 
 void FirstBoss::DeathUpdate(float _Delta)
 {
 	ActorGravity(_Delta, Transform.GetWorldPosition());
 
-	if (true == FirstBossUnDamageCollision->Collision(ECOLLISIONORDER::UnDamageBoss))
+	if (true == FirstBossCollision->Collision(ECOLLISIONORDER::UnDamageBoss))
 	{
 		ChangeState(EBOSSSTATE::Slime);
 		return;
@@ -189,7 +185,7 @@ void FirstBoss::DeathUpdate(float _Delta)
 void FirstBoss::SlimeStart()
 {
 	ChangeAnimation("Slime");
-	FirstBossUnDamageCollision->Off();
+	FirstBossCollision->Off();
 }
 
 void FirstBoss::SlimeUpdate(float _Delta)

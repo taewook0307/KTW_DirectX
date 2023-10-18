@@ -246,13 +246,6 @@ void FirstBoss::Start()
 	);
 
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_Intro", "FirstBoss_Phase2_Intro", 0.1f, 0, 28);
-	FirstBossRenderer->SetStartEvent("FirstBoss_Phase2_Intro",
-		[=](GameEngineSpriteRenderer* _Renderer)
-		{
-			FirstBossCollision->Off();
-			FirstBossUnDamageCollision->On();
-		}
-	);
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_Intro",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -266,8 +259,6 @@ void FirstBoss::Start()
 	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase2_IntroEnd", 33,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			FirstBossCollision->On();
-			FirstBossUnDamageCollision->Off();
 			AllParryDeath();
 		}
 	);
@@ -392,11 +383,6 @@ void FirstBoss::Start()
 
 	FirstBossCollision->Transform.SetLocalScale(CollisionScale);
 	FirstBossCollision->Transform.SetLocalPosition(CollisionPosition);
-
-	FirstBossUnDamageCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::UnDamageBoss);
-	FirstBossUnDamageCollision->Transform.SetLocalScale(CollisionScale);
-	FirstBossUnDamageCollision->Transform.SetLocalPosition(CollisionPosition);
-	FirstBossUnDamageCollision->Off();
 
 	float4 AttackCollisionScale = PHASE1ATTACKCOLLISIONSCALE;
 	FirstBossAttackCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
