@@ -80,9 +80,6 @@
     <ClInclude Include="FirstBoss.h">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClInclude>
-    <ClInclude Include="FirstBossPhase3.h">
-      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
-    </ClInclude>
     <ClInclude Include="FadeObject.h">
       <Filter>Global\Fade</Filter>
     </ClInclude>
@@ -109,9 +106,6 @@
     </ClInclude>
     <ClInclude Include="FirstBossPhase3Effect.h">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="FirstMapParryObject.h">
-      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClInclude>
     <ClInclude Include="PirateBullet.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
@@ -181,6 +175,15 @@
     </ClInclude>
     <ClInclude Include="LevelChangeWindow.h">
       <Filter>Global\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="FirstBossCollisionData.h">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
+    </ClInclude>
+    <ClInclude Include="FirstBossPhase3.h">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\Phase3</Filter>
+    </ClInclude>
+    <ClInclude Include="FirstMapParryObject.h">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\Parry</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -272,17 +275,11 @@
     <ClCompile Include="FirstBoss.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClCompile>
-    <ClCompile Include="FirstBossPhase3.cpp">
-      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
-    </ClCompile>
     <ClCompile Include="FadeObject.cpp">
       <Filter>Global\Fade</Filter>
     </ClCompile>
     <ClCompile Include="BaseBoss.cpp">
       <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="FirstBossPhase3_State.cpp">
-      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClCompile>
     <ClCompile Include="FirstBoss_State.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
@@ -310,9 +307,6 @@
     </ClCompile>
     <ClCompile Include="FirstBossPhase3Effect.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="FirstMapParryObject.cpp">
-      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClCompile>
     <ClCompile Include="PirateBullet.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\PirateBullet</Filter>
@@ -400,6 +394,15 @@
     </ClCompile>
     <ClCompile Include="LevelChangeWindow.cpp">
       <Filter>Global\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstBossPhase3.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\Phase3</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstBossPhase3_State.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\Phase3</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstMapParryObject.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\Parry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -531,6 +534,12 @@
     </Filter>
     <Filter Include="Global\Tool">
       <UniqueIdentifier>{3c209ce3-ce97-4c3a-bf09-1dccaa6ec8cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\8. FirstBossStage\FirstBossStageActor\Phase3">
+      <UniqueIdentifier>{12ab8224-1101-4a3e-b75f-633a09eaa56c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\8. FirstBossStage\FirstBossStageActor\Parry">
+      <UniqueIdentifier>{d88a1204-af80-4ea7-ad3b-eba5980fc66c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

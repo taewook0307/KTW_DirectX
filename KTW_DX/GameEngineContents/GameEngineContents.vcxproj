@@ -229,6 +229,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="FirstBossCollisionData.h" />
     <ClInclude Include="FirstBossMoveDust.h">
       <SubType>
       </SubType>

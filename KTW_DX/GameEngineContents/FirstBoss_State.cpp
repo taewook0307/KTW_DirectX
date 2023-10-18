@@ -2,6 +2,7 @@
 #include "FirstBoss.h"
 
 #include "Map.h"
+#include "FirstBossMoveDust.h"
 
 void FirstBoss::FirstBossMove(float4 _Delta)
 {
@@ -33,6 +34,17 @@ void FirstBoss::FirstBossMove(float4 _Delta)
 	}
 }
 
+void FirstBoss::CreateMoveDust()
+{
+	std::shared_ptr<FirstBossMoveDust> MoveEffect = GetLevel()->CreateActor<FirstBossMoveDust>(EUPDATEORDER::Effect);
+	float4 MonsterPos = Transform.GetWorldPosition();
+	MoveEffect->Transform.SetLocalPosition(MonsterPos);
+
+	if (EBOSSPHASE::Phase2 == CurPhase)
+	{
+		MoveEffect->ChangeEffectPhase2();
+	}
+}
 
 void FirstBoss::IntroStart()
 {

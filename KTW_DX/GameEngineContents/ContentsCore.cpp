@@ -27,7 +27,7 @@ ContentsCore::~ContentsCore()
 
 void ContentsCore::Start()
 {
-	// GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("LevelChangeTool");
+	GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("LevelChangeTool");
 	
 	//{
 	//	D3D11_BLEND_DESC Desc = {};

@@ -1,7 +1,7 @@
 ﻿#include "PreCompile.h"
 #include "FirstBoss.h"
+#include "FirstBossCollisionData.h"
 
-#include "FirstBossMoveDust.h"
 #include "FirstMapParryObject.h"
 
 FirstBoss::FirstBoss()
@@ -461,18 +461,6 @@ void FirstBoss::PhaseChange()
 	}
 
 	return;
-}
-
-void FirstBoss::CreateMoveDust()
-{
-	std::shared_ptr<FirstBossMoveDust> MoveEffect = GetLevel()->CreateActor<FirstBossMoveDust>(EUPDATEORDER::Effect);
-	float4 MonsterPos = Transform.GetWorldPosition();
-	MoveEffect->Transform.SetLocalPosition(MonsterPos);
-
-	if (EBOSSPHASE::Phase2 == CurPhase)
-	{
-		MoveEffect->ChangeEffectPhase2();
-	}
 }
 
 void FirstBoss::CreateParryObject()
