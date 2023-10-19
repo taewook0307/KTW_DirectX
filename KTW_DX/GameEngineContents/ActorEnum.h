@@ -181,3 +181,10 @@ enum class ESTAGERESULT
 	Success,
 	Fail
 };
+
+enum class EMINIMAPFLAG
+{
+	Appear,
+	Rise,
+	Stay
+};

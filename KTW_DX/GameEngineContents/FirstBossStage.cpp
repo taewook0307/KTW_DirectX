@@ -9,6 +9,7 @@
 #include "StageStartUI.h"
 #include "StageFailUI.h"
 #include "StageClearUI.h"
+#include "MiniMapLevel.h"
 
 FirstBossStage::FirstBossStage()
 {
@@ -106,10 +107,18 @@ void FirstBossStage::Update(float _Delta)
 	{
 		GameEngineCore::ChangeLevel("MiniMapLevel");
 	}
+
+	if (ESTAGERESULT::Success == StageResult)
+	{
+		MiniMapLevel::IsCreateStage1Flag();
+	}
 }
 
 void FirstBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
+	Phase3Timer = PHASE3TIMER;
+	Phase3Start = false;
+
 	StageLevel::LevelEnd(_NextLevel);
 
 	if (nullptr != StageMap)

@@ -4,8 +4,13 @@
 #include "Map.h"
 #include "UpperObject.h"
 #include "MiniMapEnter.h"
+#include "MiniMapFlag.h"
 #include "MiniMapCharacter.h"
 
+bool MiniMapLevel::Stage1Clear = false;
+bool MiniMapLevel::Stage2Clear = false;
+bool MiniMapLevel::CreateStage1Flag = false;
+bool MiniMapLevel::CreateStage2Flag = false;
 float4 MiniMapLevel::CharacterPos = CHARACTERSTARTPOS;
 
 MiniMapLevel::MiniMapLevel()
@@ -52,6 +57,18 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources\\Texture\\MiniMapLevel\\MiniMapFlag");
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
+	}
 
 	// 미니맵 생성
 	MiniMap = CreateActor<Map>(EUPDATEORDER::Map);
@@ -73,17 +90,24 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	TutorialEnter->SetEnterLevel("Tutorial_Stage");
 	TutorialEnter->SetCollisionScaleAndPosition(TUTORIALENTERCOLLISIONSCALE, TUTORIALENTERCOLLISIONSPOSITION);
 
-	FirstEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
-	FirstEnter->EnterAnimationInit("FirstBossMap_Enter_Ani", "FirstBossMapEnter");
-	FirstEnter->Transform.SetLocalPosition(FIRSTBOSSENTERPOS);
-	FirstEnter->SetEnterLevel("FirstBoss_Stage");
-	FirstEnter->SetCollisionScaleAndPosition(FIRSTBOSSENTERCOLLISIONSCALE, FIRSTBOSSENTERCOLLISIONSPOSITION);
+	FirstBossEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
+	FirstBossEnter->EnterAnimationInit("FirstBossMap_Enter_Ani", "FirstBossMapEnter");
+	FirstBossEnter->Transform.SetLocalPosition(FIRSTBOSSENTERPOS);
+	FirstBossEnter->SetEnterLevel("FirstBoss_Stage");
+	FirstBossEnter->SetCollisionScaleAndPosition(FIRSTBOSSENTERCOLLISIONSCALE, FIRSTBOSSENTERCOLLISIONSPOSITION);
 
-	SecondEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
-	SecondEnter->EnterAnimationInit("Tutorial_Enter_Ani", "SecondBossMapEnter");
-	SecondEnter->Transform.SetLocalPosition(SECONDBOSSENTERPOS);
-	SecondEnter->SetEnterLevel("SecondBoss_Stage");
-	SecondEnter->SetCollisionScaleAndPosition(SECONDBOSSENTERCOLLISIONSCALE);
+	SecondBossEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
+	SecondBossEnter->EnterAnimationInit("Tutorial_Enter_Ani", "SecondBossMapEnter");
+	SecondBossEnter->Transform.SetLocalPosition(SECONDBOSSENTERPOS);
+	SecondBossEnter->SetEnterLevel("SecondBoss_Stage");
+	SecondBossEnter->SetCollisionScaleAndPosition(SECONDBOSSENTERCOLLISIONSCALE);
+
+	if (true == Stage1Clear)
+	{
+		FirstBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
+		FirstBossFlag->Transform.SetLocalPosition(FIRSTBOSSENTERPOS);
+		FirstBossFlag->ChangeStayStateFlag();
+	}
 
 	// 캐릭터 생성
 	Character = CreateActor<MiniMapCharacter>(EUPDATEORDER::Player);
@@ -94,6 +118,13 @@ void MiniMapLevel::Update(float _Delta)
 {
 	float4 CharacterPos = Character->Transform.GetWorldPosition();
 	GetMainCamera()->Transform.SetLocalPosition(CharacterPos);
+
+	if (true == CreateStage1Flag && nullptr == FirstBossFlag)
+	{
+		Stage1Clear = true;
+		FirstBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
+		FirstBossFlag->Transform.SetLocalPosition(FIRSTBOSSENTERPOS);
+	}
 }
 
 void MiniMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
@@ -124,9 +155,21 @@ void MiniMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		TutorialEnter = nullptr;
 	}
 
-	if (nullptr != FirstEnter)
+	if (nullptr != FirstBossEnter)
 	{
-		FirstEnter->Death();
-		FirstEnter = nullptr;
+		FirstBossEnter->Death();
+		FirstBossEnter = nullptr;
+	}
+
+	if (nullptr != SecondBossEnter)
+	{
+		SecondBossEnter->Death();
+		SecondBossEnter = nullptr;
+	}
+
+	if (nullptr != FirstBossFlag)
+	{
+		FirstBossFlag->Death();
+		FirstBossFlag = nullptr;
 	}
 }

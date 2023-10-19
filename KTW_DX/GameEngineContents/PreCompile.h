@@ -14,5 +14,7 @@
 
 #include <GameEngineCore/GameEngineCollision.h>
 
+#include <GameEngineCore/GameEngineState.h>
+
 #include "CupHeadEnum.h"
 #include "ActorEnum.h"

@@ -28,6 +28,16 @@ public:
 	MiniMapLevel& operator=(const MiniMapLevel& _Other) = delete;
 	MiniMapLevel& operator=(MiniMapLevel&& _Other) noexcept = delete;
 
+	static void IsCreateStage1Flag()
+	{
+		CreateStage1Flag = true;
+	}
+
+	static void IsCreateStage2Flag()
+	{
+		CreateStage2Flag = true;
+	}
+
 protected:
 
 private:
@@ -36,12 +46,20 @@ private:
 	std::shared_ptr<class MiniMapCharacter> Character = nullptr;
 
 	std::shared_ptr<class MiniMapEnter> TutorialEnter = nullptr;
-	std::shared_ptr<class MiniMapEnter> FirstEnter = nullptr;
-	std::shared_ptr<class MiniMapEnter> SecondEnter = nullptr;
+	std::shared_ptr<class MiniMapEnter> FirstBossEnter = nullptr;
+	std::shared_ptr<class MiniMapEnter> SecondBossEnter = nullptr;
+
+	std::shared_ptr<class MiniMapFlag> FirstBossFlag = nullptr;
+	std::shared_ptr<class MiniMapFlag> SecondBossFlag = nullptr;
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
 	void Update(float _Delta) override;
 
 	static float4 CharacterPos;
+	static bool Stage1Clear;
+	static bool Stage2Clear;
+
+	static bool CreateStage1Flag;
+	static bool CreateStage2Flag;
 };

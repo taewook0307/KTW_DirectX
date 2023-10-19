@@ -188,6 +188,9 @@
     <ClInclude Include="ParryObject.h">
       <Filter>Global\Level</Filter>
     </ClInclude>
+    <ClInclude Include="MiniMapFlag.h">
+      <Filter>Level\7. MiniMap\MiniMapActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -409,6 +412,9 @@
     </ClCompile>
     <ClCompile Include="ParryObject.cpp">
       <Filter>Global\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMapFlag.cpp">
+      <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
