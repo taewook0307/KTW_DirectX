@@ -13,18 +13,17 @@ PirateBulletParry::~PirateBulletParry()
 
 void PirateBulletParry::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Bullet);
+	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PrevBoss5);
 	Renderer->CreateAnimation("Pirate_Bullet_Pink_Move", "Pirate_Bullet_Pink_Move");
 	Renderer->CreateAnimation("Pirate_Bullet_Pink_Death", "Pirate_Bullet_Pink_Death");
 	Renderer->SetEndEvent("Pirate_Bullet_Pink_Death",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			Renderer = nullptr;
 			Death();
 		}
 	);
-	Renderer->SetPivotType(PivotType::Left);
 	Renderer->AutoSpriteSizeOn();
+	Renderer->SetPivotType(PivotType::Left);
 
 	BulletCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
 	BulletCollision->Transform.SetLocalScale(PIRATEBULLETCOLLISIONSCALE);

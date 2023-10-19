@@ -13,7 +13,7 @@ PirateBullet::~PirateBullet()
 
 void PirateBullet::Start()
 {
-	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Bullet);
+	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PrevBoss5);
 	Renderer->CreateAnimation("Pirate_Bullet_Yellow_Move", "Pirate_Bullet_Yellow_Move");
 	Renderer->CreateAnimation("Pirate_Bullet_Yellow_Death", "Pirate_Bullet_Yellow_Death");
 	Renderer->SetEndEvent("Pirate_Bullet_Yellow_Death",

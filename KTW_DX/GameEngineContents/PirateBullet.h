@@ -4,7 +4,7 @@
 
 #define PIRATEBULLETCOLLISIONSCALE { 34.0f, 28.0f }
 #define PIRATEBULLETCOLLISIONPOSITION { 17.0f, 0.0f }
-#define ADJUSTVALUE 38.0f
+#define ADJUSTVALUE 45.0f
 
 class PirateBullet : public ParryObject
 {

@@ -64,11 +64,11 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<SecondBossStage>("SecondBoss_Stage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
 	GameEngineCore::CreateLevel<TestStage>("Test_Stage");
-	GameEngineCore::ChangeLevel("LogoLevel");
+	GameEngineCore::ChangeLevel("SecondBoss_Stage");
 
 	GameEngineLevel::OffDebug();
 
-	GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
+	// GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
 
 	GameEngineInput::AddInputObject(this);
 }
