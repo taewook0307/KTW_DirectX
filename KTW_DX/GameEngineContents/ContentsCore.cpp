@@ -89,15 +89,15 @@ void ContentsCore::Update(float _Delta)
 	}
 	if (true == GameEngineInput::IsDown(VK_F2, this))
 	{
-		GameEngineCore::ChangeLevel("TutorialStage");
+		GameEngineCore::ChangeLevel("Tutorial_Stage");
 	}
 	if (true == GameEngineInput::IsDown(VK_F3, this))
 	{
-		GameEngineCore::ChangeLevel("FirstBossStage");
+		GameEngineCore::ChangeLevel("FirstBoss_Stage");
 	}
 	if (true == GameEngineInput::IsDown(VK_F4, this))
 	{
-		GameEngineCore::ChangeLevel("SecondBossStage");
+		GameEngineCore::ChangeLevel("SecondBoss_Stage");
 	}
 	if (true == GameEngineInput::IsDown(VK_F6, this))
 	{
