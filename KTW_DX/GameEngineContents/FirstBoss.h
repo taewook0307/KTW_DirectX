@@ -7,6 +7,9 @@
 #define PHASE1HP 288
 #define PHASE2HP 540
 
+#define MINBOUNCECOUNT 3
+#define MAXBOUNCECOUNT 7
+
 #define MINJUMPPOWER 1300.0f
 #define MAXJUMPPOWER 2000.0f
 
@@ -43,6 +46,8 @@ public:
 		return Phase2End;
 	}
 
+	void ChangeAttackState();
+
 protected:
 
 private:
@@ -73,7 +78,7 @@ private:
 private:
 	float JumpPower = 1500.0f;
 	float Speed = 400.0f;
-	int BounceCount = 0;
+	int BounceCount = MINBOUNCECOUNT;
 
 	bool Phase2End = false;
 

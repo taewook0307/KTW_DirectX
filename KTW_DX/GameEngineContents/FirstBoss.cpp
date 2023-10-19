@@ -260,7 +260,6 @@ void FirstBoss::Start()
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase1_Attack_End",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			BounceCount = 0;
 			ChangeState(EBOSSSTATE::Idle);
 			return;
 		}
@@ -425,11 +424,14 @@ void FirstBoss::Start()
 
 void FirstBoss::Update(float _Delta)
 {
-	std::string JumpPowerString = "JumpPower : " + std::to_string(JumpPower);
+	/*std::string JumpPowerString = "JumpPower : " + std::to_string(JumpPower);
 	OutputDebugStringA(JumpPowerString.c_str());
 	OutputDebugStringA("\n");
 	std::string SpeedString = "Speed : " + std::to_string(Speed);
 	OutputDebugStringA(SpeedString.c_str());
+	OutputDebugStringA("\n");*/
+	std::string BounceCountString = "BounceCount : " + std::to_string(BounceCount);
+	OutputDebugStringA(BounceCountString.c_str());
 	OutputDebugStringA("\n");
 
 	if (EACTORDIR::Left == FirstBossDir)
@@ -446,10 +448,9 @@ void FirstBoss::Update(float _Delta)
 	PhaseChange();
 
 	// if (true == GameEngineInput::IsDown('L', this))
-	if (5 <= BounceCount)
+	if (0 >= BounceCount)
 	{
-		ChangeState(EBOSSSTATE::Attack);
-		return;
+		ChangeAttackState();
 	}
 }
 
@@ -562,7 +563,7 @@ void FirstBoss::PhaseChange()
 		CurPhase = EBOSSPHASE::Phase2;
 		ChangeState(EBOSSSTATE::Intro);
 		HitCount = 0;
-		BounceCount = 0;
+		BounceCount = MINBOUNCECOUNT;
 	}
 
 	if (EBOSSPHASE::Phase2 == CurPhase && HitCount > PHASE2HP)
@@ -570,7 +571,7 @@ void FirstBoss::PhaseChange()
 		FirstBossAttackCollision->Off();
 		ChangeState(EBOSSSTATE::Death);
 		HitCount = 0;
-		BounceCount = 0;
+		BounceCount = MINBOUNCECOUNT;
 	}
 
 	return;
@@ -614,4 +615,12 @@ void FirstBoss::AllParryDeath()
 	{
 		AllParry[i]->ParryInactive();
 	}
+}
+
+void FirstBoss::ChangeAttackState()
+{
+	GameEngineRandom Random;
+	BounceCount = Random.RandomInt(MINBOUNCECOUNT, MAXBOUNCECOUNT);
+	ChangeState(EBOSSSTATE::Attack);
+	return;
 }
