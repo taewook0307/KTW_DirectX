@@ -5,6 +5,7 @@
 #include "StageClearUI.h"
 #include "StageFailUI.h"
 #include "BaseCharacter.h"
+#include "DebugWindow.h"
 
 ESTAGERESULT StageLevel::StageResult = ESTAGERESULT::None;
 
@@ -18,6 +19,8 @@ StageLevel::~StageLevel()
 
 void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
+
 	GameEngineInput::AddInputObject(this);
 
 	{

@@ -15,9 +15,7 @@
 
 #include "TestStage.h"
 
-#include "DebugWindow.h"
 #include "LevelChangeWindow.h"
-#include <GameEngineCore/GameEngineGUI.h>
 
 ContentsCore::ContentsCore()
 {
@@ -66,12 +64,11 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<SecondBossStage>("SecondBoss_Stage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
 	GameEngineCore::CreateLevel<TestStage>("Test_Stage");
-	GameEngineCore::ChangeLevel("FirstBoss_Stage");
+	GameEngineCore::ChangeLevel("LogoLevel");
 
 	GameEngineLevel::OffDebug();
 
 	GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
-	GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
 
 	GameEngineInput::AddInputObject(this);
 }
