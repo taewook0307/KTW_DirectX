@@ -120,13 +120,6 @@ void FirstBoss::Start()
 		}
 	);
 
-	FirstBossRenderer->SetEndEvent("FirstBoss_Phase1_Attack_Ready", [=](GameEngineSpriteRenderer* _Renderer)
-		{
-			FirstBossRenderer->ChangeAnimation("FirstBoss_Phase1_Attack_Start");
-		}
-	);
-
-
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Attack_Start", "FirstBoss_Phase1_Attack", 0.1f, 7, 9, false);
 	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase1_Attack_Start", 7, [=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -198,11 +191,6 @@ void FirstBoss::Start()
 			{
 				FirstBossAttackCollision->Transform.SetLocalPosition(PHASE1BOSSATTACKCOLLISIONRIGHTPOSITION10);
 			}
-		}
-	);
-	FirstBossRenderer->SetEndEvent("FirstBoss_Phase1_Attack", [=](GameEngineSpriteRenderer* _Renderer)
-		{
-			FirstBossRenderer->ChangeAnimation("FirstBoss_Phase1_Attack_End");
 		}
 	);
 

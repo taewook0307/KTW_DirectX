@@ -5,6 +5,9 @@
 #define PHASE1HP 288
 #define PHASE2HP 540
 
+#define PHASE1ATTACKREADYTIMER 1.0f
+#define PHASE1ATTACKTIMER 2.0f
+
 #define PHASE2INTROTIMER 3.0f
 
 #define PHASE1BODYCOLLISIONSCALE { 180.0f, 180.0f }
@@ -43,6 +46,8 @@ private:
 	void MoveStart();
 	void MoveUpdate(float _Delta);
 
+	float Phase1AttackReadyTimer = PHASE1ATTACKREADYTIMER;
+	float Phase1AttackTimer = PHASE1ATTACKTIMER;
 	void AttackStart();
 	void AttackUpdate(float _Delta);
 
