@@ -75,6 +75,8 @@ private:
 	void Update(float _Delta) override;
 
 	void DirChange();
+	void DirCheckPrevAttack();
+
 	void PhaseChange();
 	void StateUpdate(float _Delta);
 	void ChangeState(EBOSSSTATE _CurState);

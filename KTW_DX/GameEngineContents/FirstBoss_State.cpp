@@ -158,6 +158,7 @@ void FirstBoss::MoveUpdate(float _Delta)
 void FirstBoss::AttackStart()
 {
 	ChangeAnimation("Attack");
+	DirCheckPrevAttack();
 }
 
 void FirstBoss::AttackUpdate(float _Delta)

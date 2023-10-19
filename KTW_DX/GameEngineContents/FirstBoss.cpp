@@ -3,6 +3,7 @@
 #include "FirstBossCollisionData.h"
 
 #include "FirstMapParryObject.h"
+#include "BaseCharacter.h"
 
 FirstBoss::FirstBoss()
 {
@@ -396,6 +397,15 @@ void FirstBoss::Start()
 
 void FirstBoss::Update(float _Delta)
 {
+	if (EACTORDIR::Left == FirstBossDir)
+	{
+		FirstBossRenderer->RightFlip();
+	}
+	else
+	{
+		FirstBossRenderer->LeftFlip();
+	}
+
 	StateUpdate(_Delta);
 
 	PhaseChange();
@@ -406,20 +416,26 @@ void FirstBoss::Update(float _Delta)
 		ChangeState(EBOSSSTATE::Attack);
 		return;
 	}
-
-	if (EACTORDIR::Left == FirstBossDir)
-	{
-		FirstBossRenderer->RightFlip();
-	}
-	else
-	{
-		FirstBossRenderer->LeftFlip();
-	}
 }
 
 void FirstBoss::DirChange()
 {
 	if (EACTORDIR::Left == FirstBossDir)
+	{
+		FirstBossDir = EACTORDIR::Right;
+	}
+	else
+	{
+		FirstBossDir = EACTORDIR::Left;
+	}
+}
+
+void FirstBoss::DirCheckPrevAttack()
+{
+	float CharacterPosX = BaseCharacter::MainCharacter->Transform.GetWorldPosition().X;
+	float PosX = Transform.GetWorldPosition().X;
+
+	if (PosX < CharacterPosX)
 	{
 		FirstBossDir = EACTORDIR::Right;
 	}
