@@ -129,6 +129,7 @@ void MiniMapLevel::Update(float _Delta)
 	if (true == CreateStage1Flag && nullptr == FirstBossFlag)
 	{
 		Stage1Clear = true;
+		Character->ChangeClearState();
 		FirstBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
 		FirstBossFlag->Transform.SetLocalPosition(FIRSTFLAGPOSITION);
 	}
@@ -136,6 +137,7 @@ void MiniMapLevel::Update(float _Delta)
 	if (true == CreateStage2Flag && nullptr == SecondBossFlag)
 	{
 		Stage2Clear = true;
+		Character->ChangeClearState();
 		SecondBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
 		SecondBossFlag->Transform.SetLocalPosition(SECONDFLAGPOSITION);
 	}

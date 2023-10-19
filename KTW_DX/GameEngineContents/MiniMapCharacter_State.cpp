@@ -17,7 +17,7 @@ void MiniMapCharacter::IdleUpdate(float _Delta)
 		|| true == GameEngineInput::IsPress(VK_DOWN, this)
 		)
 	{
-		ChangeState(EMINIMAPCHARACTERSTATE::Run);
+		MiniMapCharacterState.ChangeState(EMINIMAPCHARACTERSTATE::Run);
 		return;
 	}
 }
@@ -29,6 +29,8 @@ void MiniMapCharacter::RunStart()
 
 void MiniMapCharacter::RunUpdate(float _Delta)
 {
+	DirChange();
+
 	float Speed = 200.0f;
 
 	float4 MovePos = float4::ZERO;
@@ -98,7 +100,27 @@ void MiniMapCharacter::RunUpdate(float _Delta)
 
 	if (float4::ZERO == MovePos)
 	{
-		ChangeState(EMINIMAPCHARACTERSTATE::Idle);
+		MiniMapCharacterState.ChangeState(EMINIMAPCHARACTERSTATE::Idle);
+		return;
+	}
+}
+
+void MiniMapCharacter::ClearStart()
+{
+	ChangeAnimation("Clear");
+}
+
+void MiniMapCharacter::ClearUpdate(float _Delta)
+{
+	if (true == MiniCharacterRenderer->IsCurAnimationEnd())
+	{
+		--ClearLoopCount;
+	}
+
+	if (0 >= ClearLoopCount)
+	{
+		ClearLoopCount = CLEARLOOPCOUNT;
+		MiniMapCharacterState.ChangeState(EMINIMAPCHARACTERSTATE::Idle);
 		return;
 	}
 }

@@ -43,7 +43,8 @@ enum class EMINIMAPCHARACTERSTATE
 {
 	None,
 	Idle,
-	Run
+	Run,
+	Clear
 };
 
 // Bullet

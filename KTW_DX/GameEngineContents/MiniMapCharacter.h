@@ -4,6 +4,8 @@
 
 #define MINIMAPCHARACTERCOLLISIONSCALE { 60.0f, 90.0f }
 
+#define CLEARLOOPCOUNT 2
+
 class MiniMapCharacter : public BaseActor
 {
 public:
@@ -17,10 +19,10 @@ public:
 	MiniMapCharacter& operator=(const MiniMapCharacter& _Other) = delete;
 	MiniMapCharacter& operator=(MiniMapCharacter&& _Other) noexcept = delete;
 
+	void ChangeClearState();
+
 protected:
 	void DirChange();
-	void StateUpdate(float _Delta);
-	void ChangeState(EMINIMAPCHARACTERSTATE _CurState);
 	void ChangeAnimation(std::string_view _State);
 
 	void IdleStart();
@@ -28,6 +30,10 @@ protected:
 
 	void RunStart();
 	void RunUpdate(float _Delta);
+
+	int ClearLoopCount = CLEARLOOPCOUNT;
+	void ClearStart();
+	void ClearUpdate(float _Delta);
 
 protected:
 	EACTORDIR Dir = EACTORDIR::None;
@@ -38,6 +44,8 @@ protected:
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> MiniCharacterRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> MiniCharacterCollision = nullptr;
+
+	GameEngineState MiniMapCharacterState;
 
 	void Start() override;
 	void Update(float _Delta) override;

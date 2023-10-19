@@ -40,9 +40,57 @@ void MiniMapCharacter::Start()
 	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_Down", "MiniMap_Character.png", 0.1f, 62, 65);
 	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_Down", "MiniMap_Character.png", 0.05f, 66, 78);
 
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Clear", "MiniMap_Character.png", 0.1f, 80, 88);
+
 	MiniCharacterRenderer->AutoSpriteSizeOn();
 
-	ChangeState(EMINIMAPCHARACTERSTATE::Idle);
+	{
+		CreateStateParameter Para;
+		Para.Start = [=](GameEngineState* _State)
+			{
+				IdleStart();
+			};
+
+		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
+			{
+				IdleUpdate(_DeltaTime);
+			};
+		MiniMapCharacterState.CreateState(EMINIMAPCHARACTERSTATE::Idle, Para);
+	}
+
+	{
+		CreateStateParameter Para;
+		Para.Start = 
+			[=](GameEngineState* _State)
+			{
+				RunStart();
+			};
+
+		Para.Stay = 
+			[=](float _DeltaTime, GameEngineState* _Parent)
+			{
+				RunUpdate(_DeltaTime);
+			};
+
+		MiniMapCharacterState.CreateState(EMINIMAPCHARACTERSTATE::Run, Para);
+	}
+
+	{
+		CreateStateParameter Para;
+		Para.Start = 
+			[=](GameEngineState* _State)
+			{
+				ClearStart();
+			};
+
+		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
+			{
+				ClearUpdate(_DeltaTime);
+			};
+		MiniMapCharacterState.CreateState(EMINIMAPCHARACTERSTATE::Clear, Para);
+	}
+
+	MiniMapCharacterState.ChangeState(EMINIMAPCHARACTERSTATE::Idle);
 
 	float4 CollisionScale = MINIMAPCHARACTERCOLLISIONSCALE;
 	float4 CollisionPosition = { 0.0f, CollisionScale.Half().Y };
@@ -57,8 +105,6 @@ void MiniMapCharacter::Update(float _Delta)
 	float4 Pos = Transform.GetWorldPosition();
 	OutputDebugStringA(Pos.ToString("\n").c_str());
 
-	DirChange();
-
 	if (EACTORDIR::Left == Dir)
 	{
 		MiniCharacterRenderer->LeftFlip();
@@ -68,7 +114,7 @@ void MiniMapCharacter::Update(float _Delta)
 		MiniCharacterRenderer->RightFlip();
 	}
 
-	StateUpdate(_Delta);
+	MiniMapCharacterState.Update(_Delta);
 }
 
 void MiniMapCharacter::DirChange()
@@ -124,40 +170,7 @@ void MiniMapCharacter::DirChange()
 	if (CheckMoveDir != MoveDir && ECHARACTERAIMDIR::None != CheckMoveDir)
 	{
 		MoveDir = CheckMoveDir;
-		ChangeAnimation(State);
-	}
-}
-
-void MiniMapCharacter::ChangeState(EMINIMAPCHARACTERSTATE _CurState)
-{
-	if (_CurState != CurState)
-	{
-		switch (_CurState)
-		{
-		case EMINIMAPCHARACTERSTATE::Idle:
-			IdleStart();
-			break;
-		case EMINIMAPCHARACTERSTATE::Run:
-			RunStart();
-			break;
-		default:
-			break;
-		}
-	}
-
-	CurState = _CurState;
-}
-
-void MiniMapCharacter::StateUpdate(float _Delta)
-{
-	switch (CurState)
-	{
-	case EMINIMAPCHARACTERSTATE::Idle:
-		return IdleUpdate(_Delta);
-	case EMINIMAPCHARACTERSTATE::Run:
-		return RunUpdate(_Delta);
-	default:
-		break;
+		ChangeAnimation("Run");
 	}
 }
 
@@ -194,4 +207,10 @@ void MiniMapCharacter::ChangeAnimation(std::string_view _State)
 	State = _State;
 
 	MiniCharacterRenderer->ChangeAnimation(AnimationName);
+}
+
+void MiniMapCharacter::ChangeClearState()
+{
+	MiniMapCharacterState.ChangeState(EMINIMAPCHARACTERSTATE::Clear);
+	return;
 }
