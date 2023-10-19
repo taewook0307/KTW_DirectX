@@ -43,12 +43,12 @@ void BaseActor::ActorGravity(float _Delta, float4 _CheckPos)
 	}
 	else
 	{
-		float4 CheckPos = Transform.GetWorldPosition() + float4::UP;
+		float4 CheckPos = _CheckPos + float4::UP;
 		GameEngineColor UpColor = Map::MainMap->GetColor(CheckPos, FLOORCOLOR);
 
 		while (UpColor == FLOORCOLOR)
 		{
-			CheckPos = Transform.GetWorldPosition() + float4::UP;
+			CheckPos = CheckPos + float4::UP;
 			UpColor = Map::MainMap->GetColor(CheckPos, FLOORCOLOR);
 			Transform.AddLocalPosition(float4::UP);
 		}
