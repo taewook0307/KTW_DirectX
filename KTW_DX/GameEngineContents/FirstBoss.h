@@ -2,11 +2,14 @@
 
 #include "BaseBoss.h"
 
+#define FIRSTBOSSANIMATIONINTER 0.1f
+
 #define PHASE1HP 288
 #define PHASE2HP 540
 
 #define PHASE1ATTACKREADYTIMER 1.0f
 #define PHASE1ATTACKTIMER 2.0f
+#define PHASE2ATTACKTIMER 1.0f
 
 #define PHASE2INTROTIMER 3.0f
 
@@ -48,6 +51,7 @@ private:
 
 	float Phase1AttackReadyTimer = PHASE1ATTACKREADYTIMER;
 	float Phase1AttackTimer = PHASE1ATTACKTIMER;
+	float Phase2AttackTimer = PHASE2ATTACKTIMER;
 	void AttackStart();
 	void AttackUpdate(float _Delta);
 
