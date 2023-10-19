@@ -70,8 +70,8 @@ void ContentsCore::Start()
 
 	GameEngineLevel::OffDebug();
 
-	// GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
-	// GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
+	GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
+	GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
 
 	GameEngineInput::AddInputObject(this);
 }

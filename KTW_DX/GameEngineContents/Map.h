@@ -5,6 +5,7 @@
 class Map : public GameEngineActor
 {
 public:
+	friend class DebugWindow;
 	static Map* MainMap;
 
 	// constrcuter destructer

@@ -5,9 +5,6 @@
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
-    <ClInclude Include="LoadingObject.h">
-      <Filter>Global</Filter>
-    </ClInclude>
     <ClInclude Include="FirstBossStage.h">
       <Filter>Level\8. FirstBossStage</Filter>
     </ClInclude>
@@ -29,9 +26,6 @@
     <ClInclude Include="TutorialStage.h">
       <Filter>Level\6. Tutorial</Filter>
     </ClInclude>
-    <ClInclude Include="BaseActor.h">
-      <Filter>Global</Filter>
-    </ClInclude>
     <ClInclude Include="CupHeadEnum.h">
       <Filter>Global\Enum</Filter>
     </ClInclude>
@@ -48,16 +42,16 @@
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClInclude>
     <ClInclude Include="BaseCharacter.h">
-      <Filter>Global\Character</Filter>
+      <Filter>Global\Actor\Character</Filter>
     </ClInclude>
     <ClInclude Include="BackGround.h">
-      <Filter>Global\BackGround</Filter>
+      <Filter>Global\Actor\BackGround</Filter>
     </ClInclude>
     <ClInclude Include="UpperObject.h">
-      <Filter>Global\Map</Filter>
+      <Filter>Global\Actor\Map</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>Global\Map</Filter>
+      <Filter>Global\Actor\Map</Filter>
     </ClInclude>
     <ClInclude Include="OutroLevel.h">
       <Filter>Level\11. Outro</Filter>
@@ -72,34 +66,31 @@
       <Filter>Level\4. Intro\IntroActor</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
-      <Filter>Global\Bullet</Filter>
+      <Filter>Global\Actor\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="SpecialBullet.h">
-      <Filter>Global\Bullet</Filter>
+      <Filter>Global\Actor\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="FirstBoss.h">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClInclude>
     <ClInclude Include="FadeObject.h">
-      <Filter>Global\Fade</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseBoss.h">
-      <Filter>Global</Filter>
+      <Filter>Global\StageEffect\Fade</Filter>
     </ClInclude>
     <ClInclude Include="JumpDust.h">
-      <Filter>Global\Character\Effect</Filter>
+      <Filter>Global\Actor\Character\Effect</Filter>
     </ClInclude>
     <ClInclude Include="ParryEffect.h">
-      <Filter>Global\Character\Effect</Filter>
+      <Filter>Global\Actor\Character\Effect</Filter>
     </ClInclude>
     <ClInclude Include="DashDust.h">
-      <Filter>Global\Character\Effect</Filter>
+      <Filter>Global\Actor\Character\Effect</Filter>
     </ClInclude>
     <ClInclude Include="SpecialAttackDust.h">
-      <Filter>Global\Character\Effect</Filter>
+      <Filter>Global\Actor\Character\Effect</Filter>
     </ClInclude>
     <ClInclude Include="RunDust.h">
-      <Filter>Global\Character\Effect</Filter>
+      <Filter>Global\Actor\Character\Effect</Filter>
     </ClInclude>
     <ClInclude Include="FirstBossMoveDust.h">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Effect</Filter>
@@ -118,9 +109,6 @@
     </ClInclude>
     <ClInclude Include="StageStartUI.h">
       <Filter>Global\StageEffect</Filter>
-    </ClInclude>
-    <ClInclude Include="StageLevel.h">
-      <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="CannonBallDust.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipCannon</Filter>
@@ -170,8 +158,8 @@
     <ClInclude Include="TestStage.h">
       <Filter>Level</Filter>
     </ClInclude>
-    <ClInclude Include="ParryObject.h">
-      <Filter>Global</Filter>
+    <ClInclude Include="LevelChangeWindow.h">
+      <Filter>Global\Tool</Filter>
     </ClInclude>
     <ClInclude Include="FirstBossCollisionData.h">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
@@ -183,19 +171,28 @@
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Parry</Filter>
     </ClInclude>
     <ClInclude Include="DebugWindow.h">
-      <Filter>GUI</Filter>
+      <Filter>Global\Tool</Filter>
     </ClInclude>
-    <ClInclude Include="LevelChangeWindow.h">
-      <Filter>GUI</Filter>
+    <ClInclude Include="BaseActor.h">
+      <Filter>Global\Actor\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseBoss.h">
+      <Filter>Global\Actor\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingObject.h">
+      <Filter>Global\StageEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="StageLevel.h">
+      <Filter>Global\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="ParryObject.h">
+      <Filter>Global\Level</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadingObject.cpp">
-      <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="FirstBossStage.cpp">
       <Filter>Level\8. FirstBossStage</Filter>
@@ -218,9 +215,6 @@
     <ClCompile Include="TutorialStage.cpp">
       <Filter>Level\6. Tutorial</Filter>
     </ClCompile>
-    <ClCompile Include="BaseActor.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
     <ClCompile Include="SelectMenu.cpp">
       <Filter>Level\3. Menu\MenuActor</Filter>
     </ClCompile>
@@ -234,22 +228,22 @@
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClCompile>
     <ClCompile Include="BaseCharacter.cpp">
-      <Filter>Global\Character</Filter>
+      <Filter>Global\Actor\Character</Filter>
     </ClCompile>
     <ClCompile Include="BaseCharacter_Shoot_State.cpp">
-      <Filter>Global\Character</Filter>
+      <Filter>Global\Actor\Character</Filter>
     </ClCompile>
     <ClCompile Include="BaseCharacter_State.cpp">
-      <Filter>Global\Character</Filter>
+      <Filter>Global\Actor\Character</Filter>
     </ClCompile>
     <ClCompile Include="BackGround.cpp">
-      <Filter>Global\BackGround</Filter>
+      <Filter>Global\Actor\BackGround</Filter>
     </ClCompile>
     <ClCompile Include="UpperObject.cpp">
-      <Filter>Global\Map</Filter>
+      <Filter>Global\Actor\Map</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
-      <Filter>Global\Map</Filter>
+      <Filter>Global\Actor\Map</Filter>
     </ClCompile>
     <ClCompile Include="OutroLevel.cpp">
       <Filter>Level\11. Outro</Filter>
@@ -264,46 +258,43 @@
       <Filter>Level\4. Intro\IntroActor</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
-      <Filter>Global\Bullet</Filter>
+      <Filter>Global\Actor\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="Bullet_State.cpp">
-      <Filter>Global\Bullet</Filter>
+      <Filter>Global\Actor\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="SpecialBullet.cpp">
-      <Filter>Global\Bullet</Filter>
+      <Filter>Global\Actor\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="BaseCharacter_SpecialAttack.cpp">
-      <Filter>Global\Character</Filter>
+      <Filter>Global\Actor\Character</Filter>
     </ClCompile>
     <ClCompile Include="FirstBoss.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClCompile>
     <ClCompile Include="FadeObject.cpp">
-      <Filter>Global\Fade</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseBoss.cpp">
-      <Filter>Global</Filter>
+      <Filter>Global\StageEffect\Fade</Filter>
     </ClCompile>
     <ClCompile Include="FirstBoss_State.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClCompile>
     <ClCompile Include="Character_Effect.cpp">
-      <Filter>Global\Character</Filter>
+      <Filter>Global\Actor\Character</Filter>
     </ClCompile>
     <ClCompile Include="JumpDust.cpp">
-      <Filter>Global\Character\Effect</Filter>
+      <Filter>Global\Actor\Character\Effect</Filter>
     </ClCompile>
     <ClCompile Include="ParryEffect.cpp">
-      <Filter>Global\Character\Effect</Filter>
+      <Filter>Global\Actor\Character\Effect</Filter>
     </ClCompile>
     <ClCompile Include="DashDust.cpp">
-      <Filter>Global\Character\Effect</Filter>
+      <Filter>Global\Actor\Character\Effect</Filter>
     </ClCompile>
     <ClCompile Include="SpecialAttackDust.cpp">
-      <Filter>Global\Character\Effect</Filter>
+      <Filter>Global\Actor\Character\Effect</Filter>
     </ClCompile>
     <ClCompile Include="RunDust.cpp">
-      <Filter>Global\Character\Effect</Filter>
+      <Filter>Global\Actor\Character\Effect</Filter>
     </ClCompile>
     <ClCompile Include="FirstBossMoveDust.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Effect</Filter>
@@ -325,9 +316,6 @@
     </ClCompile>
     <ClCompile Include="StageStartUI.cpp">
       <Filter>Global\StageEffect</Filter>
-    </ClCompile>
-    <ClCompile Include="StageLevel.cpp">
-      <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="CannonBallDust.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipCannon</Filter>
@@ -392,8 +380,8 @@
     <ClCompile Include="TestStage.cpp">
       <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="ParryObject.cpp">
-      <Filter>Global</Filter>
+    <ClCompile Include="LevelChangeWindow.cpp">
+      <Filter>Global\Tool</Filter>
     </ClCompile>
     <ClCompile Include="FirstBossPhase3.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Phase3</Filter>
@@ -405,10 +393,22 @@
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Parry</Filter>
     </ClCompile>
     <ClCompile Include="DebugWindow.cpp">
-      <Filter>GUI</Filter>
+      <Filter>Global\Tool</Filter>
     </ClCompile>
-    <ClCompile Include="LevelChangeWindow.cpp">
-      <Filter>GUI</Filter>
+    <ClCompile Include="BaseActor.cpp">
+      <Filter>Global\Actor\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseBoss.cpp">
+      <Filter>Global\Actor\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingObject.cpp">
+      <Filter>Global\StageEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="StageLevel.cpp">
+      <Filter>Global\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="ParryObject.cpp">
+      <Filter>Global\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -481,24 +481,6 @@
     <Filter Include="Global\Enum">
       <UniqueIdentifier>{e41849ce-40a6-45be-b06d-ebd07d314e51}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Global\Character">
-      <UniqueIdentifier>{dc55b77e-ef78-429a-bf71-5aacf4954626}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Global\Map">
-      <UniqueIdentifier>{f79cbb9b-b5b9-46f0-bc4f-240ba8291fff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Global\BackGround">
-      <UniqueIdentifier>{14805544-157a-4d78-bea8-168b28b39a69}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Global\Bullet">
-      <UniqueIdentifier>{b8da8222-5c14-482a-bd6d-d2ab54344955}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Global\Fade">
-      <UniqueIdentifier>{ca99aac8-a100-4cb5-a35c-b2e81b25e082}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Global\Character\Effect">
-      <UniqueIdentifier>{0f0f7058-91de-441e-8d4e-8c8b8d97f705}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Level\8. FirstBossStage\FirstBossStageActor\Effect">
       <UniqueIdentifier>{dcf193ea-a223-4db2-85b2-c464f476879f}</UniqueIdentifier>
     </Filter>
@@ -538,14 +520,41 @@
     <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipBeam">
       <UniqueIdentifier>{0a72068d-4ae0-486b-bd73-5bac0268b3a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Global\Tool">
+      <UniqueIdentifier>{3c209ce3-ce97-4c3a-bf09-1dccaa6ec8cc}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Level\8. FirstBossStage\FirstBossStageActor\Phase3">
       <UniqueIdentifier>{12ab8224-1101-4a3e-b75f-633a09eaa56c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Level\8. FirstBossStage\FirstBossStageActor\Parry">
       <UniqueIdentifier>{d88a1204-af80-4ea7-ad3b-eba5980fc66c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GUI">
-      <UniqueIdentifier>{a42c329b-54fe-4650-8850-da4dea117394}</UniqueIdentifier>
+    <Filter Include="Global\Actor">
+      <UniqueIdentifier>{30335d94-4245-4619-9e5a-416187ee6bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Actor\BackGround">
+      <UniqueIdentifier>{14805544-157a-4d78-bea8-168b28b39a69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Actor\Bullet">
+      <UniqueIdentifier>{b8da8222-5c14-482a-bd6d-d2ab54344955}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Actor\Character">
+      <UniqueIdentifier>{dc55b77e-ef78-429a-bf71-5aacf4954626}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Actor\Character\Effect">
+      <UniqueIdentifier>{0f0f7058-91de-441e-8d4e-8c8b8d97f705}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Actor\Map">
+      <UniqueIdentifier>{f79cbb9b-b5b9-46f0-bc4f-240ba8291fff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Level">
+      <UniqueIdentifier>{c684b0bb-5050-419d-a16b-1c39ac567311}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\StageEffect\Fade">
+      <UniqueIdentifier>{ca99aac8-a100-4cb5-a35c-b2e81b25e082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Actor\Base">
+      <UniqueIdentifier>{1d75083e-48b9-4baa-8c4d-db90c94fa0fa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

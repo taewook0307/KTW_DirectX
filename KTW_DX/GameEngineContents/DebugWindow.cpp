@@ -2,6 +2,7 @@
 #include "DebugWindow.h"
 
 #include "BaseCharacter.h"
+#include "Map.h"
 
 DebugWindow::DebugWindow()
 {
@@ -25,6 +26,11 @@ void DebugWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 		GameEngineLevel::IsDebug = !GameEngineLevel::IsDebug;
 	}
 
+	if (ImGui::Button("Pixel Switch"))
+	{
+		Map::MainMap->RendererSwitch();
+	}
+
 	std::string IsCheat = "Cheat : ";
 
 	if (true == BaseCharacter::MainCharacter->GetCheat())
@@ -42,4 +48,6 @@ void DebugWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 	{
 		BaseCharacter::MainCharacter->CheatSwitch();
 	}
+
+
 }

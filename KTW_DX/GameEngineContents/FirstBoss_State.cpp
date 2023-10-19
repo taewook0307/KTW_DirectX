@@ -157,13 +157,18 @@ void FirstBoss::MoveUpdate(float _Delta)
 
 void FirstBoss::AttackStart()
 {
-	ChangeAnimation("Attack");
+	ChangeAnimation("Attack_Ready");
 	DirCheckPrevAttack();
 }
 
 void FirstBoss::AttackUpdate(float _Delta)
 {
 	ActorGravity(_Delta, Transform.GetWorldPosition());
+
+	int Check = FirstBossRenderer->GetCurIndex();
+
+	OutputDebugStringA(std::to_string(Check).c_str());
+	OutputDebugStringA("\n");
 }
 
 void FirstBoss::DeathStart()
