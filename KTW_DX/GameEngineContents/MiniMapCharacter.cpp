@@ -102,9 +102,6 @@ void MiniMapCharacter::Start()
 
 void MiniMapCharacter::Update(float _Delta)
 {
-	float4 Pos = Transform.GetWorldPosition();
-	OutputDebugStringA(Pos.ToString("\n").c_str());
-
 	if (EACTORDIR::Left == Dir)
 	{
 		MiniCharacterRenderer->LeftFlip();

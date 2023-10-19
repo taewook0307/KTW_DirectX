@@ -95,6 +95,10 @@ void FirstBoss::IdleUpdate(float _Delta)
 
 void FirstBoss::MoveStart()
 {
+	GameEngineRandom Random;
+	JumpPower = Random.RandomFloat(MINJUMPPOWER, MAXJUMPPOWER);
+	Speed = Random.RandomFloat(MINSPEED, MAXSPEED);
+
 	ChangeAnimation("Move");
 	SetGravityForce(float4::UP * JumpPower);
 }

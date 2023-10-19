@@ -19,7 +19,7 @@ void FirstBoss::Start()
 
 	FirstBossRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
 
-	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Intro", "FirstBoss_Phase1_Intro", 0.08f);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase1_Intro", "FirstBoss_Phase1_Intro", 0.08f, -1, -1, false);
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase1_Intro",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -266,7 +266,7 @@ void FirstBoss::Start()
 		}
 	);
 
-	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_Intro", "FirstBoss_Phase2_Intro", FIRSTBOSSANIMATIONINTER, 0, 28);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_Intro", "FirstBoss_Phase2_Intro", FIRSTBOSSANIMATIONINTER, 0, 28, false);
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_Intro",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -275,8 +275,8 @@ void FirstBoss::Start()
 		}
 	);
 
-	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_IntroStay", "FirstBoss_Phase2_Intro", FIRSTBOSSANIMATIONINTER, 29, 32);
-	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_IntroEnd", "FirstBoss_Phase2_Intro", FIRSTBOSSANIMATIONINTER, 33, 47);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_IntroStay", "FirstBoss_Phase2_Intro", FIRSTBOSSANIMATIONINTER, 29, 32, true);
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_IntroEnd", "FirstBoss_Phase2_Intro", FIRSTBOSSANIMATIONINTER, 33, 47, false);
 	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase2_IntroEnd", 33,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -425,6 +425,13 @@ void FirstBoss::Start()
 
 void FirstBoss::Update(float _Delta)
 {
+	std::string JumpPowerString = "JumpPower : " + std::to_string(JumpPower);
+	OutputDebugStringA(JumpPowerString.c_str());
+	OutputDebugStringA("\n");
+	std::string SpeedString = "Speed : " + std::to_string(Speed);
+	OutputDebugStringA(SpeedString.c_str());
+	OutputDebugStringA("\n");
+
 	if (EACTORDIR::Left == FirstBossDir)
 	{
 		FirstBossRenderer->RightFlip();
