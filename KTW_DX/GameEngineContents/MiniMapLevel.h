@@ -15,6 +15,9 @@
 
 #define CHARACTERSTARTPOS { 885.0f, -2208.0f }
 
+#define FIRSTFLAGPOSITION { 2225.0f, -2130.0f }
+#define SECONDFLAGPOSITION { 3840.0f, -2570.0f }
+
 class MiniMapLevel : public GameEngineLevel
 {
 public:

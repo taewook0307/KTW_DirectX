@@ -7,6 +7,7 @@
 #include "Barrel.h"
 
 #include "Map.h"
+#include "MiniMapLevel.h"
 
 SecondBossStage::SecondBossStage()
 {
@@ -88,6 +89,11 @@ void SecondBossStage::Update(float _Delta)
 	if (true == GameEngineInput::IsDown(VK_ESCAPE, this))
 	{
 		GameEngineCore::ChangeLevel("MiniMapLevel");
+	}
+
+	if (ESTAGERESULT::Success == StageResult)
+	{
+		MiniMapLevel::IsCreateStage2Flag();
 	}
 }
 

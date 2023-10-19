@@ -105,8 +105,15 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	if (true == Stage1Clear)
 	{
 		FirstBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
-		FirstBossFlag->Transform.SetLocalPosition(FIRSTBOSSENTERPOS);
+		FirstBossFlag->Transform.SetLocalPosition(FIRSTFLAGPOSITION);
 		FirstBossFlag->ChangeStayStateFlag();
+	}
+
+	if (true == Stage2Clear)
+	{
+		SecondBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
+		SecondBossFlag->Transform.SetLocalPosition(SECONDFLAGPOSITION);
+		SecondBossFlag->ChangeStayStateFlag();
 	}
 
 	// 캐릭터 생성
@@ -123,7 +130,14 @@ void MiniMapLevel::Update(float _Delta)
 	{
 		Stage1Clear = true;
 		FirstBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
-		FirstBossFlag->Transform.SetLocalPosition(FIRSTBOSSENTERPOS);
+		FirstBossFlag->Transform.SetLocalPosition(FIRSTFLAGPOSITION);
+	}
+
+	if (true == CreateStage2Flag && nullptr == SecondBossFlag)
+	{
+		Stage2Clear = true;
+		SecondBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
+		SecondBossFlag->Transform.SetLocalPosition(SECONDFLAGPOSITION);
 	}
 }
 
@@ -171,5 +185,11 @@ void MiniMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	{
 		FirstBossFlag->Death();
 		FirstBossFlag = nullptr;
+	}
+
+	if (nullptr != SecondBossFlag)
+	{
+		SecondBossFlag->Death();
+		SecondBossFlag = nullptr;
 	}
 }

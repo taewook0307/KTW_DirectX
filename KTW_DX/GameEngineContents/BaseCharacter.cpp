@@ -206,8 +206,8 @@ void BaseCharacter::Start()
 
 void BaseCharacter::Update(float _Delta)
 {
-	/*OutputDebugStringA(std::to_string(Hp).c_str());
-	OutputDebugStringA("\n");*/
+	float4 Pos = Transform.GetWorldPosition();
+	OutputDebugStringA(Pos.ToString("\n").c_str());
 
 	StateUpdate(_Delta);
 
