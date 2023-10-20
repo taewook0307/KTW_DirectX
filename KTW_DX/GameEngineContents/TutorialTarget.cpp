@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "TutorialTarget.h"
 
+#include "TargetExplosionEffect.h"
+
 TutorialTarget::TutorialTarget()
 {
 }
@@ -33,8 +35,18 @@ void TutorialTarget::Update(float _Delta)
 	OutputDebugStringA(std::to_string(HitCount).c_str());
 	OutputDebugStringA("\n");
 
-	if (HitCount > 15)
+	if (HitCount > 10)
 	{
+		CreateExplosionEffect();
 		Death();
 	}
+}
+
+void TutorialTarget::CreateExplosionEffect()
+{
+	std::shared_ptr<TargetExplosionEffect> Effect = GetLevel()->CreateActor<TargetExplosionEffect>(EUPDATEORDER::Effect);
+
+	float4 Pos = Transform.GetWorldPosition();
+
+	Effect->Transform.SetLocalPosition(Pos);
 }

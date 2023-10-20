@@ -76,9 +76,22 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 		GameEngineSprite::CreateFolder(Dir.GetStringPath());
 	}
 
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources\\Texture\\Tutorial\\TargetExplosion");
+
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
+	}
+
 	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
-	//Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
-	Player->Transform.SetLocalPosition({ 3400.0f, -605.0f });
+	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
 
 	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialMap.Png");
 	float4 SpriteHalfScale = Sprite->GetSpriteData(0).GetScale().Half();
@@ -163,6 +176,12 @@ void TutorialStage::LevelEnd(GameEngineLevel* _NextLevel)
 	{
 		TutorialMap->Death();
 		TutorialMap = nullptr;
+	}
+
+	if (nullptr != Target)
+	{
+		Target->Death();
+		Target = nullptr;
 	}
 
 	if (nullptr != TutorialExit)

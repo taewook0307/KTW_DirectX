@@ -22,6 +22,8 @@ public:
 protected:
 
 private:
+	void CreateExplosionEffect();
+
 	std::shared_ptr<GameEngineSpriteRenderer> BodyRenderer = nullptr;
 	std::shared_ptr<GameEngineSpriteRenderer> TargetRenderer = nullptr;
 
