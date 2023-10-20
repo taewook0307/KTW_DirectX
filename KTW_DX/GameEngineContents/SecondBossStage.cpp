@@ -23,44 +23,9 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, 0.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\SecondBossStage\\SecondBoss");
-		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
-
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			GameEngineDirectory& Dir = Directorys[i];
-
-			GameEngineSprite::CreateFolder(Dir.GetStringPath());
-		}
-	}
-
-	{
-		GameEnginePath Path;
-		Path.MoveParentToExistsChild("Resources");
-		Path.MoveChild("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship\\pirate_boatMast.Png");
-		GameEngineSprite::CreateSingle(Path.GetFileName());
-	}
-
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\SecondBossStage\\Map");
-		std::vector<GameEngineFile> Files = Dir.GetAllFile();
-
-		for (size_t i = 0; i < Files.size(); i++)
-		{
-			GameEngineFile& File = Files[i];
-
-			std::string PathCheck = File.GetStringPath();
-			std::string FileNameCheck = File.GetFileName();
-
-			GameEngineTexture::Load(File.GetStringPath());
-			GameEngineSprite::CreateSingle(File.GetFileName());
-		}
-	}
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss");
+	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship\\pirate_boatMast.Png");
+	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\SecondBossStage\\Map");
 
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 

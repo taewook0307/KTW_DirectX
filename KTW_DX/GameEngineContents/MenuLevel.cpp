@@ -17,20 +17,7 @@ void MenuLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	GameEngineInput::AddInputObject(this);
 
 	//리소스 Load
-	{
-		GameEngineDirectory MenuDir;
-		MenuDir.MoveParentToExistsChild("Resources");
-		MenuDir.MoveChild("Resources\\Texture\\MainMenu");
-		std::vector<GameEngineFile> AllFiles = MenuDir.GetAllFile();
-
-		for (size_t i = 0; i < AllFiles.size(); i++)
-		{
-			GameEngineFile& File = AllFiles[i];
-			GameEngineTexture::Load(File.GetStringPath());
-			std::string FileName = File.GetFileName();
-			GameEngineSprite::CreateSingle(FileName);
-		}
-	}
+	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\MainMenu");
 
 	Back = CreateActor<BackGround>(EUPDATEORDER::BackGround);
 	Back->BackGroundInit("MainMenu.png");

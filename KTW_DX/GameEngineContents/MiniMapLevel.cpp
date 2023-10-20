@@ -28,47 +28,10 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	// 리소스 Load
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\MiniMapLevel\\Map");
-		std::vector<GameEngineFile> Files = Dir.GetAllFile();
 
-		size_t FileSize = Files.size();
-
-		for (size_t i = 0; i < FileSize; i++)
-		{
-			GameEngineFile& File = Files[i];
-			GameEngineTexture::Load(File.GetStringPath());
-			GameEngineSprite::CreateSingle(File.GetFileName());
-		}
-	}
-
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\MiniMapLevel\\MiniMapEnter");
-		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
-
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			GameEngineDirectory& Dir = Directorys[i];
-			GameEngineSprite::CreateFolder(Dir.GetStringPath());
-		}
-	}
-
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\MiniMapLevel\\MiniMapFlag");
-		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
-
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			GameEngineDirectory& Dir = Directorys[i];
-			GameEngineSprite::CreateFolder(Dir.GetStringPath());
-		}
-	}
+	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\MiniMapLevel\\Map");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\MiniMapLevel\\MiniMapEnter");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\MiniMapLevel\\MiniMapFlag");
 
 	// 미니맵 생성
 	MiniMap = CreateActor<Map>(EUPDATEORDER::Map);

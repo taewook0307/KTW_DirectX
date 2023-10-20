@@ -185,9 +185,6 @@
     <ClInclude Include="StageLevel.h">
       <Filter>Global\Level</Filter>
     </ClInclude>
-    <ClInclude Include="ParryObject.h">
-      <Filter>Global\Level</Filter>
-    </ClInclude>
     <ClInclude Include="MiniMapFlag.h">
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClInclude>
@@ -195,6 +192,12 @@
       <Filter>Level\6. Tutorial\TutorialActor</Filter>
     </ClInclude>
     <ClInclude Include="TargetExplosionEffect.h">
+      <Filter>Level\6. Tutorial\TutorialActor</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsSpriteManager.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="ParryObject.h">
       <Filter>Level\6. Tutorial\TutorialActor</Filter>
     </ClInclude>
   </ItemGroup>
@@ -413,9 +416,6 @@
     <ClCompile Include="StageLevel.cpp">
       <Filter>Global\Level</Filter>
     </ClCompile>
-    <ClCompile Include="ParryObject.cpp">
-      <Filter>Global\Level</Filter>
-    </ClCompile>
     <ClCompile Include="MiniMapFlag.cpp">
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClCompile>
@@ -423,6 +423,12 @@
       <Filter>Level\6. Tutorial\TutorialActor</Filter>
     </ClCompile>
     <ClCompile Include="TargetExplosionEffect.cpp">
+      <Filter>Level\6. Tutorial\TutorialActor</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsSpriteManager.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="ParryObject.cpp">
       <Filter>Level\6. Tutorial\TutorialActor</Filter>
     </ClCompile>
   </ItemGroup>

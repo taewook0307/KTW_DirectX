@@ -23,33 +23,8 @@ void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	GameEngineInput::AddInputObject(this);
 
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Global\\StageEffect");
-		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
-
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			GameEngineDirectory& Dir = Directorys[i];
-
-			GameEngineSprite::CreateFolder(Dir.GetStringPath());
-		}
-	}
-
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Global\\Character");
-		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
-
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			GameEngineDirectory& Dir = Directorys[i];
-
-			GameEngineSprite::CreateFolder(Dir.GetStringPath());
-		}
-	}
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\StageEffect");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character");
 
 	CreateActor<StageStartUI>(EUPDATEORDER::UI);
 

@@ -13,17 +13,7 @@ OutroLevel::~OutroLevel()
 
 void OutroLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	GameEngineDirectory Dir;
-	Dir.MoveParentToExistsChild("Resources");
-	Dir.MoveChild("Resources\\Texture\\Outro");
-	std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
-
-	for (size_t i = 0; i < Directorys.size(); i++)
-	{
-		GameEngineDirectory& Dir = Directorys[i];
-
-		GameEngineSprite::CreateFolder(Dir.GetStringPath());
-	}
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Outro");
 
 	Outro = CreateActor<OutroBook>(EUPDATEORDER::BackGround);
 }

@@ -13,14 +13,10 @@ LogoLevel::~LogoLevel()
 
 void LogoLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	GetMainCamera()->Transform.SetLocalPosition({ 0, 0, -500 });
+	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, 0.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 	
-	GameEnginePath Path;
-	Path.MoveParentToExistsChild("Resources");
-	Path.MoveChild("Resources\\Texture\\Logo\\Logo.png");
-	GameEngineTexture::Load(Path.GetStringPath());
-
+	ContentsSpriteManager::ImageLoad("Resources\\Texture\\Logo\\Logo.png");
 	GameEngineSprite::CreateCut("Logo.png", 5, 20);
 
 	Logo = CreateActor<BackGround>(EUPDATEORDER::BackGround);

@@ -27,49 +27,11 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, 0.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap");
-		GameEngineSprite::CreateFolder(Dir.GetStringPath());
-	}
-
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\FirstBossStage\\Map\\FirstBossParryObject");
-		GameEngineSprite::CreateFolder(Dir.GetStringPath());
-	}
-
-	{
-		GameEnginePath Path;
-		Path.MoveParentToExistsChild("Resources");
-		Path.MoveChild("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBitMap.png");
-		GameEngineTexture::Load(Path.GetStringPath());
-		GameEngineSprite::CreateSingle("FirstBossBitMap.Png");
-	}
-
-	{
-		GameEnginePath Path;
-		Path.MoveParentToExistsChild("Resources");
-		Path.MoveChild("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap_Upper.png");
-		GameEngineTexture::Load(Path.GetStringPath());
-		GameEngineSprite::CreateSingle("FirstBossMap_Upper.Png");
-	}
-
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\FirstBossStage\\FirstBoss");
-		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
-
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			GameEngineDirectory& Dir = Directorys[i];
-
-			GameEngineSprite::CreateFolder(Dir.GetStringPath());
-		}
-	}
+	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap");
+	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\FirstBossStage\\Map\\FirstBossParryObject");
+	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBitMap.png");
+	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap_Upper.png");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\FirstBossStage\\FirstBoss");
 
 	Boss = CreateActor<FirstBoss>(EUPDATEORDER::Monster);
 	Boss->Transform.SetLocalPosition({ 1000.0f, -677.0f });
