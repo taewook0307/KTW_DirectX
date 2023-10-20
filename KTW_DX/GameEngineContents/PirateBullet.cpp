@@ -16,77 +16,104 @@ void PirateBullet::Start()
 	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::PrevBoss5);
 	Renderer->CreateAnimation("Pirate_Bullet_Yellow_Move", "Pirate_Bullet_Yellow_Move");
 	Renderer->CreateAnimation("Pirate_Bullet_Yellow_Death", "Pirate_Bullet_Yellow_Death");
-	Renderer->SetEndEvent("Pirate_Bullet_Yellow_Death",
-		[=](GameEngineSpriteRenderer* _Renderer)
-		{
-			Death();
-		}
-	);
-	Renderer->SetPivotType(PivotType::Left);
+
+	{
+		CreateStateParameter Para;
+
+		Para.Start =
+			[=](GameEngineState* _State)
+			{
+				Renderer->ChangeAnimation("Pirate_Bullet_Yellow_Move");
+			};
+
+		Para.Stay =
+			[=](float _Delta, GameEngineState* _State)
+			{
+				HitCheck();
+				PirateMove(_Delta);
+				CameraOutCheck();
+			};
+
+		PirateBulletState.CreateState(EPIRATEBULLETSTATE::Move, Para);
+	}
+
+	{
+		CreateStateParameter Para;
+
+		Para.Start =
+			[=](GameEngineState* _State)
+			{
+				BulletCollision->Off();
+				Renderer->ChangeAnimation("Pirate_Bullet_Yellow_Death");
+			};
+
+		Para.Stay =
+			[=](float _Delta, GameEngineState* _State)
+			{
+				if (true == Renderer->IsCurAnimationEnd())
+				{
+					Death();
+				}
+			};
+
+		PirateBulletState.CreateState(EPIRATEBULLETSTATE::Death, Para);
+	}
+
 	Renderer->AutoSpriteSizeOn();
+	Renderer->SetPivotType(PivotType::Left);
 
 	BulletCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
 	BulletCollision->Transform.SetLocalScale(PIRATEBULLETCOLLISIONSCALE);
 	BulletCollision->Transform.SetLocalPosition(PIRATEBULLETCOLLISIONPOSITION);
 
+	ParryCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::ParryObject);
+	ParryCollision->Transform.SetLocalScale(PIRATEBULLETCOLLISIONSCALE);
+	ParryCollision->Transform.SetLocalPosition(PIRATEBULLETCOLLISIONPOSITION);
+
 	float4 CharacterPos = BaseCharacter::MainCharacter->Transform.GetWorldPosition();
 	PlayerPos = { CharacterPos.X, CharacterPos.Y + ADJUSTVALUE };
-	ChangeState(EPIRATEBULLETSTATE::Move);
+	PirateBulletState.ChangeState(EPIRATEBULLETSTATE::Move);
 }
 
 void PirateBullet::Update(float _Delta)
 {
-	StateUpdate(_Delta);
+	PirateBulletState.Update(_Delta);
 }
 
-void PirateBullet::ChangeState(EPIRATEBULLETSTATE _CurState)
+void PirateBullet::PirateMove(float _Delta)
 {
-	if (_CurState != CurState)
+	if (false == DirVectorSet)
 	{
-		switch (_CurState)
-		{
-		case EPIRATEBULLETSTATE::Move:
-			MoveStart();
-			break;
-		case EPIRATEBULLETSTATE::Death:
-			DeathStart();
-			break;
-		default:
-			break;
-		}
-
-		CurState = _CurState;
+		DirVector = PlayerPos - Transform.GetWorldPosition();
+		DirVectorSet = true;
 	}
+
+	float4 MovePos = DirVector.NormalizeReturn() * _Delta * Speed;
+	Transform.AddLocalPosition(MovePos);
+
+	CameraOutCheck();
 }
 
-void PirateBullet::StateUpdate(float _Delta)
+void PirateBullet::CameraOutCheck()
 {
-	switch (CurState)
+	float4 BulletPos = Transform.GetWorldPosition();
+	float4 WinScale = GameEngineCore::MainWindow.GetScale();
+
+	if (-200.0f > BulletPos.X
+		|| WinScale.X + 200.0f < BulletPos.X
+		|| 200.0f < BulletPos.Y
+		|| -WinScale.Y - 200.0f > BulletPos.Y)
 	{
-	case EPIRATEBULLETSTATE::Move:
-		return MoveUpdate(_Delta);
-	default:
-		break;
+		PirateBulletState.ChangeState(EPIRATEBULLETSTATE::Death);
+		return;
 	}
-}
-
-void PirateBullet::ChangeAnimation(std::string_view _State)
-{
-	std::string AnimationName = "Pirate_Bullet_Yellow_";
-
-	AnimationName += _State;
-
-	State = _State;
-
-	Renderer->ChangeAnimation(AnimationName);
 }
 
 void PirateBullet::HitCheck()
 {
-	if (true == BulletCollision->Collision(ECOLLISIONORDER::Player)
-		&& EPIRATEBULLETSTATE::Death != CurState)
+	if (true == BulletCollision->Collision(ECOLLISIONORDER::Player))
 	{
-		ChangeState(EPIRATEBULLETSTATE::Death);
+		PirateBulletState.ChangeState(EPIRATEBULLETSTATE::Death);
 		return;
 	}
 }

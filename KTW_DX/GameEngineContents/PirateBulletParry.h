@@ -21,7 +21,5 @@ private:
 	void Start() override;
 	void Update(float _Delta) override;
 
-	void ChangeAnimation(std::string_view _State) override;
-
 	void HitCheck() override;
 };

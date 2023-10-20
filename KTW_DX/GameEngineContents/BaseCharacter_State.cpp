@@ -395,7 +395,8 @@ void BaseCharacter::ParryUpdate(float _Delta)
 			if (true == ParryActive)
 			{
 				ColParryOB->ParryInactive();
-				
+				ColParryOB->IsParry();
+
 				ParrySuccess = true;
 				float4 ParryPos = float4::UP * JUMPPOWER * 0.7f;
 				SetGravityForce(ParryPos);

@@ -52,6 +52,11 @@ public:
 	{
 		ParrySuccess = false;
 	}
+	
+	ECHARACTERSTATE GetCurState() const
+	{
+		return CurState;
+	}
 
 protected:
 	void DirChange();

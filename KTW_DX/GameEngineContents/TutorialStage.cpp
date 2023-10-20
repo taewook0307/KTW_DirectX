@@ -193,7 +193,7 @@ void TutorialStage::TutorialParryObjectActive()
 
 		if (false == CurParry->GetParryActivation() && true == CurParry->GetParry())
 		{
-			CurParry->ParryOff();
+			CurParry->ParryReset();
 			NextParry->ParryActive();
 		}
 	}
