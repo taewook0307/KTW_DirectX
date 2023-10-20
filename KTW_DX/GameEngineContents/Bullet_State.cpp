@@ -69,6 +69,7 @@ void Bullet::MoveUpdate(float _Delta)
 	Transform.AddLocalPosition(MovePos);
 
 	PosCheck();
+	ColCheck();
 }
 
 void Bullet::DeathStart()

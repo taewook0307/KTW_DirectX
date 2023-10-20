@@ -2,6 +2,7 @@
 #include "Bullet.h"
 
 #include "BaseBoss.h"
+#include "TutorialTarget.h"
 
 Bullet::Bullet()
 {
@@ -72,25 +73,7 @@ void Bullet::Update(float _Delta)
 		Transform.SetLocalRotation({ 0.0f, 0.0f, -45.0f });
 	}
 
-	BulletCollision->Collision(ECOLLISIONORDER::BossBody,
-		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
-		{
-			BulletHitSuccess(_Col);
-		}
-	);
-	BulletCollision->Collision(ECOLLISIONORDER::UnDamageBoss,
-		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
-		{
-			BulletHitSuccess(_Col);
-		}
-	);
-	BulletCollision->Collision(ECOLLISIONORDER::MonsterBody,
-		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
-		{
-			ChangeBulletState(EBULLETSTATE::Death);
-			return;
-		}
-	);
+	
 }
 
 void Bullet::ChangeBulletState(EBULLETSTATE _CurState)
@@ -182,4 +165,43 @@ void Bullet::BulletHitSuccess(std::vector<std::shared_ptr<GameEngineCollision>> 
 		ChangeBulletState(EBULLETSTATE::Death);
 		return;
 	}
+}
+
+void Bullet::ColCheck()
+{
+	BulletCollision->Collision(ECOLLISIONORDER::BossBody,
+		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
+		{
+			BulletHitSuccess(_Col);
+		}
+	);
+	BulletCollision->Collision(ECOLLISIONORDER::UnDamageBoss,
+		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
+		{
+			BulletHitSuccess(_Col);
+		}
+	);
+	BulletCollision->Collision(ECOLLISIONORDER::MonsterBody,
+		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
+		{
+			ChangeBulletState(EBULLETSTATE::Death);
+			return;
+		}
+	);
+
+	BulletCollision->Collision(ECOLLISIONORDER::TutorialTarget,
+		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
+		{
+			if (false == TargetHit)
+			{
+				std::shared_ptr<GameEngineCollision> CurCol = _Col[_Col.size() - 1];
+				GameEngineActor* ColMaster = CurCol->GetActor();
+				TutorialTarget* ColTarget = dynamic_cast<TutorialTarget*>(ColMaster);
+				ColTarget->PlusHitCount();
+				TargetHit = true;
+			}
+			ChangeBulletState(EBULLETSTATE::Death);
+			return;
+		}
+	);
 }

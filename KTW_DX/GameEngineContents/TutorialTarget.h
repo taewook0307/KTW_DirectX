@@ -7,6 +7,7 @@
 
 class TutorialTarget : public GameEngineActor
 {
+	friend class Bullet;
 public:
 	// constrcuter destructer
 	TutorialTarget();
@@ -26,6 +27,13 @@ private:
 
 	std::shared_ptr<GameEngineCollision> TargetCollision = nullptr;
 
+	int HitCount = 0;
+
 	void Start() override;
 	void Update(float _Delta) override;
+
+	void PlusHitCount()
+	{
+		++HitCount;
+	}
 };

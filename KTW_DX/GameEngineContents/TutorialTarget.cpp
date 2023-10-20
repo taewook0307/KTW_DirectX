@@ -23,12 +23,18 @@ void TutorialTarget::Start()
 	TargetRenderer->Transform.SetLocalPosition(TARGETRENDERERPOSITION);
 	TargetRenderer->ChangeAnimation("Target_Idle");
 
-	TargetCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::UnDamageBoss);
+	TargetCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::TutorialTarget);
 	TargetCollision->Transform.SetLocalScale(TARGETCOLLISIONSCALE);
 	TargetCollision->Transform.SetLocalPosition(TARGETRENDERERPOSITION);
 }
 
 void TutorialTarget::Update(float _Delta)
 {
+	OutputDebugStringA(std::to_string(HitCount).c_str());
+	OutputDebugStringA("\n");
 
+	if (HitCount > 15)
+	{
+		Death();
+	}
 }

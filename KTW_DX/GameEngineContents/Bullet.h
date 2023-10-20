@@ -58,5 +58,7 @@ protected:
 
 	void PosCheck();
 	void BulletHitSuccess(std::vector<std::shared_ptr<GameEngineCollision>> _Col);
+	void ColCheck();
+	bool TargetHit = false;
 private:
 };

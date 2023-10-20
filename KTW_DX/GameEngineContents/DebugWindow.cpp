@@ -48,6 +48,4 @@ void DebugWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 	{
 		BaseCharacter::MainCharacter->CheatSwitch();
 	}
-
-
 }
