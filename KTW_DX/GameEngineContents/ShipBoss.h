@@ -33,7 +33,7 @@ public:
 	ShipBoss& operator=(ShipBoss&& _Other) noexcept = delete;
 
 protected:
-	float IdleTimer = SHIPIDLETIMER;
+	float IdleTimer = PHASE1SHIPIDLETIMER;
 	void IdleStart();
 	void IdleUpdate(float _Delta);
 
