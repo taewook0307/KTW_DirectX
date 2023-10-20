@@ -3,10 +3,6 @@
 class ContentsSpriteManager
 {
 public:
-	// constrcuter destructer
-	ContentsSpriteManager();
-	~ContentsSpriteManager();
-
 	// delete Function
 	ContentsSpriteManager(const ContentsSpriteManager& _Other) = delete;
 	ContentsSpriteManager(ContentsSpriteManager&& _Other) noexcept = delete;
@@ -26,5 +22,7 @@ public:
 protected:
 
 private:
-
+	// constrcuter destructer
+	ContentsSpriteManager();
+	~ContentsSpriteManager();
 };
