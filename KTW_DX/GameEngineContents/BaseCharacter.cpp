@@ -207,6 +207,9 @@ void BaseCharacter::Start()
 
 void BaseCharacter::Update(float _Delta)
 {
+	float4 Pos = Transform.GetWorldPosition();
+	OutputDebugStringA(Pos.ToString("\n").c_str());
+
 	StateUpdate(_Delta);
 
 	if (EACTORDIR::Left == Dir)

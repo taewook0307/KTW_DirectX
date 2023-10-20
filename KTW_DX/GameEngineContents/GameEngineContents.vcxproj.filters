@@ -191,6 +191,9 @@
     <ClInclude Include="MiniMapFlag.h">
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClInclude>
+    <ClInclude Include="TutorialTarget.h">
+      <Filter>Level\6. Tutorial\TutorialActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -413,6 +416,9 @@
     <ClCompile Include="MiniMapFlag.cpp">
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClCompile>
+    <ClCompile Include="TutorialTarget.cpp">
+      <Filter>Level\6. Tutorial\TutorialActor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -558,6 +564,9 @@
     </Filter>
     <Filter Include="Global\Actor\Base">
       <UniqueIdentifier>{1d75083e-48b9-4baa-8c4d-db90c94fa0fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\6. Tutorial\TutorialActor">
+      <UniqueIdentifier>{bf72bf08-c471-4189-85fc-731322c15ae5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

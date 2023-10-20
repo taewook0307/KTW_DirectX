@@ -5,6 +5,7 @@
 #include "Map.h"
 #include "UpperObject.h"
 #include "BaseCharacter.h"
+#include "TutorialTarget.h"
 #include "MiniMapEnter.h"
 #include "ParryObject.h"
 
@@ -68,8 +69,16 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 		}
 	}
 
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("Resources");
+		Dir.MoveChild("Resources\\Texture\\Tutorial\\Target");
+		GameEngineSprite::CreateFolder(Dir.GetStringPath());
+	}
+
 	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
-	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
+	//Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
+	Player->Transform.SetLocalPosition({ 3400.0f, -605.0f });
 
 	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialMap.Png");
 	float4 SpriteHalfScale = Sprite->GetSpriteData(0).GetScale().Half();
@@ -86,6 +95,9 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	TutorialMap->MapInit("TutorialMap.Png");
 	TutorialMap->PixelMapInit("TutorialBitMap.Png");
 	TutorialMap->Transform.SetLocalPosition({ SpriteHalfScale.X, -SpriteHalfScale.Y });
+
+	Target = CreateActor<TutorialTarget>(EUPDATEORDER::Map);
+	Target->Transform.SetLocalPosition(TARGETPOS);
 
 	{
 		std::shared_ptr<ParryObject> Parry = CreateActor<ParryObject>(EUPDATEORDER::Map);
