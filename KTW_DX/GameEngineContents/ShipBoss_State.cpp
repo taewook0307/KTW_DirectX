@@ -12,7 +12,7 @@ void ShipBoss::IdleUpdate(float _Delta)
 {
 	if (EBOSSPHASE::Phase3 == CurPhase && false == ChangeShip)
 	{
-		IdleTimer = 1.5f;
+		IdleTimer = PHASE3SHIPIDLETIMER;
 		ChangeState(ESHIPBOSSSTATE::Wince);
 		return;
 	}
@@ -21,15 +21,15 @@ void ShipBoss::IdleUpdate(float _Delta)
 	{
 		if (EBOSSPHASE::Phase1 == CurPhase)
 		{
-			IdleTimer = SHIPIDLETIMER;
+			IdleTimer = PHASE1SHIPIDLETIMER;
 		}
 		else if (EBOSSPHASE::Phase2 == CurPhase)
 		{
-			IdleTimer = 2.0f;
+			IdleTimer = PHASE2SHIPIDLETIMER;
 		}
 		else
 		{
-			IdleTimer = 1.5f;
+			IdleTimer = PHASE3SHIPIDLETIMER;
 		}
 		
 
