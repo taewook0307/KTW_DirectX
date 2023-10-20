@@ -8,7 +8,7 @@
 #define SHIPIDLETIMER 7.0f
 #define SHIPCHARGETIMER 2.0f
 #define SHIPBEAMTIMER 3.0f
-#define CANNONATTACKCOUNT 3
+#define ATTACKCOUNT 3
 
 #define SHIPRAILPOS { -100.0f, 390.0f }
 #define SHIPSAILPOS { -50.0f, 500.0f }
@@ -35,7 +35,7 @@ protected:
 	void IdleStart();
 	void IdleUpdate(float _Delta);
 
-	int CannonAttackCount = CANNONATTACKCOUNT;
+	int AttackCount = ATTACKCOUNT;
 	void AttackStart();
 	void AttackUpdate(float _Delta);
 
@@ -62,7 +62,6 @@ protected:
 	std::string State = "";
 
 	bool ChangeShip = false;
-	bool AttackBeam = false;
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> ShipRenderer = nullptr;
 	std::shared_ptr<GameEngineSpriteRenderer> ShipRailRenderer = nullptr;

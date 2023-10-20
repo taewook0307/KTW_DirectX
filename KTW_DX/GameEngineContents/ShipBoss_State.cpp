@@ -12,14 +12,26 @@ void ShipBoss::IdleUpdate(float _Delta)
 {
 	if (EBOSSPHASE::Phase3 == CurPhase && false == ChangeShip)
 	{
-		IdleTimer = SHIPIDLETIMER;
+		IdleTimer = 1.5f;
 		ChangeState(ESHIPBOSSSTATE::Wince);
 		return;
 	}
 
-	if (0.0f > IdleTimer /*&& EBOSSPHASE::Phase3 != CurPhase*/)
+	if (0.0f > IdleTimer)
 	{
-		IdleTimer = SHIPIDLETIMER;
+		if (EBOSSPHASE::Phase1 == CurPhase)
+		{
+			IdleTimer = SHIPIDLETIMER;
+		}
+		else if (EBOSSPHASE::Phase2 == CurPhase)
+		{
+			IdleTimer = 2.0f;
+		}
+		else
+		{
+			IdleTimer = 1.5f;
+		}
+		
 
 		if (EBOSSPHASE::Phase3 != CurPhase)
 		{
@@ -28,15 +40,14 @@ void ShipBoss::IdleUpdate(float _Delta)
 		}
 		else
 		{
-			if (false == AttackBeam)
+			if (0 < AttackCount)
 			{
-				AttackBeam = true;
 				ChangeState(ESHIPBOSSSTATE::Attack);
 				return;
 			}
 			else
 			{
-				AttackBeam = false;
+				AttackCount = ATTACKCOUNT;
 				ChangeState(ESHIPBOSSSTATE::Charge);
 				return;
 			}
@@ -55,20 +66,14 @@ void ShipBoss::AttackUpdate(float _Delta)
 {
 	if (true == ShipRenderer->IsCurAnimationEnd())
 	{
-		--CannonAttackCount;
-	}
+		if (EBOSSPHASE::Phase3 == CurPhase && true == ShipRenderer->IsCurAnimation("Ship_Phase3_Attack"))
+		{
+			--AttackCount;
+		}
 
-	if (0 >= CannonAttackCount)
-	{
-		CannonAttackCount = CANNONATTACKCOUNT;
 		ChangeState(ESHIPBOSSSTATE::Idle);
 		return;
-	}
-	else
-	{
-		ChangeState(ESHIPBOSSSTATE::Attack);
-		return;
-	}
+	}	
 }
 
 void ShipBoss::WinceStart()

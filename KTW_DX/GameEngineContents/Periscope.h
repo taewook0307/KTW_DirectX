@@ -21,7 +21,7 @@ public:
 protected:
 
 private:
-	int SummonCount = 3;
+	int SummonCount = 4;
 	float SummonTimer = 0.0f;
 
 	bool SummonStart = false;

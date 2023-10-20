@@ -151,9 +151,8 @@ void PirateBoss::Start()
 	PirateRenderer->SetEndEvent("Pirate_Shoot",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			if (2 < ShootCount)
+			if (0 >= ShootCount)
 			{
-				ShootCount = 0;
 				PirateRenderer->ChangeAnimation("Pirate_Shoot_End");
 			}
 			else
@@ -263,7 +262,19 @@ void PirateBoss::ChangeAnimation(std::string_view _State)
 
 void PirateBoss::CreatePirateBullet()
 {
-	std::shared_ptr<PirateBulletParry> NewBullet = GetLevel()->CreateActor<PirateBulletParry>(EUPDATEORDER::Bullet);
+	GameEngineRandom Random;
+	int BulletType = Random.RandomInt(0, 1);
+
+	std::shared_ptr<PirateBullet> NewBullet = nullptr;
+
+	if (0 == BulletType)
+	{
+		NewBullet = GetLevel()->CreateActor<PirateBullet>(EUPDATEORDER::Bullet);
+	}
+	else
+	{
+		NewBullet = GetLevel()->CreateActor<PirateBulletParry>(EUPDATEORDER::Bullet);
+	}
 	
 	if (nullptr == NewBullet)
 	{
@@ -276,7 +287,7 @@ void PirateBoss::CreatePirateBullet()
 
 	NewBullet->Transform.SetLocalPosition(BulletPos);
 
-	++ShootCount;
+	--ShootCount;
 }
 
 void PirateBoss::PhaseChange()
@@ -284,6 +295,7 @@ void PirateBoss::PhaseChange()
 	if (PHASE1HP < HitCount && EBOSSPHASE::Phase1 == CurPhase)
 	{
 		CurPhase = EBOSSPHASE::Phase2;
+		ShipBoss::MainShip->CurPhase = EBOSSPHASE::Phase2;
 		return;
 	}
 

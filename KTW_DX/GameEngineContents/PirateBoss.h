@@ -5,6 +5,9 @@
 #define PHASE1HP 400
 #define PHASE2HP 952
 
+#define MINSHOOTCOUNT 3
+#define MAXSHOOTCOUNT 5
+
 #define PIRATEBOSSANIMATIONINTER 0.05f
 
 #define PIRATECOLLISIONSCALE { 390.0f, 250.0f }
@@ -82,5 +85,5 @@ private:
 	bool SummonScope = false;
 	void SummonEnemy();
 
-	int ShootCount = 0;
+	int ShootCount = 3;
 };

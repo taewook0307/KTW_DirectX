@@ -74,6 +74,9 @@ void PirateBoss::IdleUpdate(float _Delta)
 
 void PirateBoss::ShootStart()
 {
+	GameEngineRandom Random;
+	ShootCount = Random.RandomInt(MINSHOOTCOUNT, MAXSHOOTCOUNT);
+
 	ChangeAnimation("Shoot");
 }
 

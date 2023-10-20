@@ -153,20 +153,10 @@ void ShipBoss::Start()
 
 void ShipBoss::Update(float _Delta)
 {
+	OutputDebugStringA(std::to_string(AttackCount).c_str());
+	OutputDebugStringA("\n");
+
 	StateUpdate(_Delta);
-
-	/*if (true == GameEngineInput::IsDown('O', this))
-	{
-		ChangeState(ESHIPBOSSSTATE::Wince);
-		CurPhase = EBOSSPHASE::Phase3;
-		return;
-	}
-
-	if (true == GameEngineInput::IsDown('U', this))
-	{
-		ChangeState(ESHIPBOSSSTATE::Charge);
-		return;
-	}*/
 
 	if (PHASE3HP < HitCount && ESHIPBOSSSTATE::Death != CurState)
 	{

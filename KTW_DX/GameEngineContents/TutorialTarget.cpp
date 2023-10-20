@@ -40,9 +40,6 @@ void TutorialTarget::Start()
 
 void TutorialTarget::Update(float _Delta)
 {
-	OutputDebugStringA(std::to_string(HitCount).c_str());
-	OutputDebugStringA("\n");
-
 	if (HitCount > 10)
 	{
 		CreateExplosionEffect();
