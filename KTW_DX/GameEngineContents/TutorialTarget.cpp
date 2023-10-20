@@ -13,10 +13,16 @@ TutorialTarget::~TutorialTarget()
 
 void TutorialTarget::Start()
 {
-	BodyRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Map);
-	BodyRenderer->SetSprite("tutorial_pyramid_topper.Png");
-	BodyRenderer->AutoSpriteSizeOn();
-	BodyRenderer->SetAutoScaleRatio(0.8f);
+	MainRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Map);
+	MainRenderer->SetSprite("tutorial_pyramid_topper.Png");
+	MainRenderer->AutoSpriteSizeOn();
+	MainRenderer->SetAutoScaleRatio(0.8f);
+
+	MainCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::Obstacle);
+	std::shared_ptr<GameEngineSprite> MainRendererSprite = GameEngineSprite::Find("tutorial_pyramid_topper.Png");
+	float4 CollisionScale = MainRendererSprite->GetSpriteData(0).GetScale();
+	MainCollision->Transform.SetLocalScale(CollisionScale * 0.8f);
+	MainCollision->SetCollisionType(ColType::AABBBOX2D);
 
 	TargetRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperMap);
 	TargetRenderer->CreateAnimation("Target_Idle", "Target");
@@ -28,6 +34,8 @@ void TutorialTarget::Start()
 	TargetCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::TutorialTarget);
 	TargetCollision->Transform.SetLocalScale(TARGETCOLLISIONSCALE);
 	TargetCollision->Transform.SetLocalPosition(TARGETRENDERERPOSITION);
+
+
 }
 
 void TutorialTarget::Update(float _Delta)

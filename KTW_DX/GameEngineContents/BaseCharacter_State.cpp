@@ -23,9 +23,11 @@ void BaseCharacter::CharacterMove(float _Delta)
 		CheckPos = RIGHTCHECKPOS;
 	}
 
-	GameEngineColor MoveCheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition() + CheckPos, FLOORCOLOR);
+	float4 AfterMovePos = Transform.GetWorldPosition() + CheckPos;
 
-	if (FLOORCOLOR != MoveCheckColor)
+	GameEngineColor MoveCheckColor = Map::MainMap->GetColor(AfterMovePos, FLOORCOLOR);
+
+	if (FLOORCOLOR != MoveCheckColor && false == PlayerCollision->Collision(ECOLLISIONORDER::Obstacle, CheckPos))
 	{
 		Transform.AddLocalPosition(MovePos);
 	}

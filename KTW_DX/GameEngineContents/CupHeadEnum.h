@@ -66,6 +66,7 @@ enum class ECOLLISIONORDER
 	MonsterBody,
 	FieldEnter,
 	ParryObject,
+	Obstacle,
 	TutorialTarget,
 	Max
 };

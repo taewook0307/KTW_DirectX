@@ -24,9 +24,10 @@ protected:
 private:
 	void CreateExplosionEffect();
 
-	std::shared_ptr<GameEngineSpriteRenderer> BodyRenderer = nullptr;
+	std::shared_ptr<GameEngineSpriteRenderer> MainRenderer = nullptr;
 	std::shared_ptr<GameEngineSpriteRenderer> TargetRenderer = nullptr;
 
+	std::shared_ptr<GameEngineCollision> MainCollision = nullptr;
 	std::shared_ptr<GameEngineCollision> TargetCollision = nullptr;
 
 	int HitCount = 0;
