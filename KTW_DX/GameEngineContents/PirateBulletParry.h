@@ -24,6 +24,4 @@ private:
 	void ChangeAnimation(std::string_view _State) override;
 
 	void HitCheck() override;
-
-	std::shared_ptr<GameEngineCollision> ParryCollision = nullptr;
 };

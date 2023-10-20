@@ -31,25 +31,8 @@ public:
 		return ParryActivation;
 	}
 
-	// 캐릭터와 Parry를 성공했는지 여부
-	void ParryOn()
-	{
-		Parry = true;
-	}
-
-	void ParryOff()
-	{
-		Parry = false;
-	}
-
-	bool GetParry() const
-	{
-		return Parry;
-	}
-
 protected:
 	bool ParryActivation = true;
-	bool Parry = false;
 
 	void Start() override;
 	void Update(float _Delta) override;

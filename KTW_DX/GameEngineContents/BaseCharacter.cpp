@@ -19,7 +19,8 @@ BaseCharacter::~BaseCharacter()
 void BaseCharacter::Start()
 {
 	PlayerRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
-	PlayerRenderer->CreateAnimation("CupHead_Intro", "Intro_Flex", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Intro", "Intro_Regular", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Intro_Flex", "Intro_Flex", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Idle", "Idle", IDLEINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Run", "Run", CHARACTERANIMATIONINTER);
 	PlayerRenderer->SetFrameEvent("CupHead_Run", 1,
@@ -252,12 +253,6 @@ void BaseCharacter::Update(float _Delta)
 			NoDamage = false;
 			NoDamageTimer = NODAMAGETIMER;
 		}
-	}
-
-	if (true == ParrySuccess)
-	{
-		float4 ParryPos = float4::UP * JUMPPOWER * 0.7f;
-		SetGravityForce(ParryPos);
 	}
 
 	PlayerCollision->Collision(ECOLLISIONORDER::BossBody,

@@ -72,7 +72,18 @@ void BaseCharacter::ActorGravity(float _Delta, float4 _CheckPos)
 
 void BaseCharacter::IntroStart()
 {
-	ChangeAnimation("Intro");
+	GameEngineRandom Random;
+
+	int IntroType = Random.RandomInt(0, 1);
+
+	if (0 == IntroType)
+	{
+		ChangeAnimation("Intro");
+	}
+	else
+	{
+		ChangeAnimation("Intro_Flex");
+	}
 }
 
 void BaseCharacter::IntroUpdate(float _Delta)
@@ -384,8 +395,11 @@ void BaseCharacter::ParryUpdate(float _Delta)
 			if (true == ParryActive)
 			{
 				ColParryOB->ParryInactive();
-				ColParryOB->ParryOn();
+				
 				ParrySuccess = true;
+				float4 ParryPos = float4::UP * JUMPPOWER * 0.7f;
+				SetGravityForce(ParryPos);
+
 				CreateParryEffect();
 
 				ChangeState(ECHARACTERSTATE::Fall);

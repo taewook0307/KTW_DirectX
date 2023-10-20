@@ -19,7 +19,6 @@ void PirateBullet::Start()
 	Renderer->SetEndEvent("Pirate_Bullet_Yellow_Death",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			Renderer = nullptr;
 			Death();
 		}
 	);
@@ -84,7 +83,8 @@ void PirateBullet::ChangeAnimation(std::string_view _State)
 
 void PirateBullet::HitCheck()
 {
-	if (true == BulletCollision->Collision(ECOLLISIONORDER::Player) && EPIRATEBULLETSTATE::Death != CurState)
+	if (true == BulletCollision->Collision(ECOLLISIONORDER::Player)
+		&& EPIRATEBULLETSTATE::Death != CurState)
 	{
 		ChangeState(EPIRATEBULLETSTATE::Death);
 		return;
