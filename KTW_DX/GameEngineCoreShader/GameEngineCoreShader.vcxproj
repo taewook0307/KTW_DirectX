@@ -32,7 +32,6 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="RenderBase.fx" />
-    <FxCompile Include="TextureMaskShader.fx" />
     <FxCompile Include="TextureShader.fx" />
     <FxCompile Include="Transform.fx" />
   </ItemGroup>
