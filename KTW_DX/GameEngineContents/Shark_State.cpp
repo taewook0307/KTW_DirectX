@@ -9,7 +9,7 @@ void Shark::FinStart()
 	ChangeAnimation("Fin");
 	AttackCollision->Off();
 	SharkRenderer->SetAutoScaleRatio(0.7f);
-	SharkRenderer->SetRenderOrder(ERENDERORDER::PrevBoss);
+	SharkRenderer->SetRenderOrder(ERENDERORDER::PrevMap4);
 }
 void Shark::FinUpdate(float _Delta)
 {
