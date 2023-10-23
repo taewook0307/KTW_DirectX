@@ -162,6 +162,17 @@ void SecondBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 
 	Oceans.clear();
 
+	for (size_t i = 0; i < Clouds.size(); i++)
+	{
+		if (nullptr != Clouds[i])
+		{
+			Clouds[i]->Death();
+			Clouds[i] = nullptr;
+		}
+	}
+
+	Clouds.clear();
+
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Barrel");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\DogFish");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Pirate");
@@ -174,6 +185,7 @@ void SecondBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship_Beam");
 	ContentsSpriteManager::SingleSpriteRelease("pirate_boatMast.Png");
 	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\SecondBossStage\\Map");
+	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\SecondBossStage\\Map\\Sky");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\Map\\Water");
 
 }
