@@ -200,6 +200,9 @@
     <ClInclude Include="ParryObject.h">
       <Filter>Level\6. Tutorial\TutorialActor</Filter>
     </ClInclude>
+    <ClInclude Include="Ocean.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\BackGround</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -431,6 +434,9 @@
     <ClCompile Include="ParryObject.cpp">
       <Filter>Level\6. Tutorial\TutorialActor</Filter>
     </ClCompile>
+    <ClCompile Include="Ocean.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\BackGround</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -579,6 +585,9 @@
     </Filter>
     <Filter Include="Level\6. Tutorial\TutorialActor">
       <UniqueIdentifier>{bf72bf08-c471-4189-85fc-731322c15ae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\BackGround">
+      <UniqueIdentifier>{14a58fca-27b0-4de9-8d7a-27bbf17dead2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
