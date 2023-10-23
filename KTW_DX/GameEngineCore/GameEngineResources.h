@@ -45,7 +45,7 @@ public:
 
 		if (FindIter == NameRes.end())
 		{
-			MsgBoxAssert("존재하지도 않는 리소스를 지우려고 했습니다.");
+			MsgBoxAssert("존재하지도 않는 리소스를 지우려고 했습니다." + UpperName);
 			return;
 		}
 

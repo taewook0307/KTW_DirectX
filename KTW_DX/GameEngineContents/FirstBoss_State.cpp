@@ -96,6 +96,7 @@ void FirstBoss::IdleUpdate(float _Delta)
 void FirstBoss::MoveStart()
 {
 	GameEngineRandom Random;
+	Random.SetSeed(reinterpret_cast<long long>(this));
 	JumpPower = Random.RandomFloat(MINJUMPPOWER, MAXJUMPPOWER);
 	Speed = Random.RandomFloat(MINSPEED, MAXSPEED);
 

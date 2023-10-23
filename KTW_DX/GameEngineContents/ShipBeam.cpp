@@ -12,7 +12,7 @@ ShipBeam::~ShipBeam()
 void ShipBeam::Start()
 {
 	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::BossEffect);
-	Renderer->CreateAnimation("Ship_Beam_Appear", "Beam_Attack", 0.05f, 0, 4, false);
+	Renderer->CreateAnimation("Ship_Beam_Appear", "Ship_Beam", 0.05f, 0, 4, false);
 	Renderer->SetEndEvent("Ship_Beam_Appear",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -20,8 +20,8 @@ void ShipBeam::Start()
 			return;
 		}
 	);
-	Renderer->CreateAnimation("Ship_Beam_Stay", "Beam_Attack", 0.05f, 5, 6, true);
-	Renderer->CreateAnimation("Ship_Beam_End", "Beam_Attack", 0.05f, 7, 10, false);
+	Renderer->CreateAnimation("Ship_Beam_Stay", "Ship_Beam", 0.05f, 5, 6, true);
+	Renderer->CreateAnimation("Ship_Beam_End", "Ship_Beam", 0.05f, 7, 10, false);
 	Renderer->SetEndEvent("Ship_Beam_End",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{

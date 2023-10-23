@@ -75,6 +75,7 @@ void BaseCharacter::ActorGravity(float _Delta, float4 _CheckPos)
 void BaseCharacter::IntroStart()
 {
 	GameEngineRandom Random;
+	Random.SetSeed(reinterpret_cast<long long>(this));
 
 	int IntroType = Random.RandomInt(0, 1);
 
