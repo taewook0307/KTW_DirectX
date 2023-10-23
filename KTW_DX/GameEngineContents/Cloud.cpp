@@ -15,18 +15,18 @@ void Cloud::SetCloud(int _Order, std::string_view _ImageName)
 	CloudRenderer->SetSprite(_ImageName);
 	CloudRenderer->AutoSpriteSizeOn();
 	CloudRenderer->SetAutoScaleRatio(1.25f);
-	CloudRenderer->SetPivotType(PivotType::Bottom);
+	CloudRenderer->SetPivotType(PivotType::LeftBottom);
 }
 
 void Cloud::Update(float _Delta)
 {
 	float4 Pos = Transform.GetWorldPosition();
-	float4 ScaleHalf = CloudRenderer->GetImageTransform().GetWorldScale().Half();
+	float4 Scale = CloudRenderer->GetImageTransform().GetWorldScale();
 	
-	if (Pos.X <= -ScaleHalf.X)
+	if (Pos.X <= -Scale.X)
 	{
 		float4 WinScale = GameEngineCore::MainWindow.GetScale();
-		Transform.SetWorldPosition({ WinScale.X + ScaleHalf.X, Pos.Y });
+		Transform.SetWorldPosition({ WinScale.X, Pos.Y });
 	}
 
 	float4 MovePos = float4::LEFT * CloudSpeed * _Delta;
