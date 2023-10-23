@@ -14,7 +14,7 @@ CannonBall::~CannonBall()
 void CannonBall::Start()
 {
 	CannonBallRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Bullet);
-	CannonBallRenderer->CreateAnimation("Cannon_Move", "Ship_Cannon");
+	CannonBallRenderer->CreateAnimation("Cannon_Move", "Cannon_Move");
 	CannonBallRenderer->AutoSpriteSizeOn();
 	CannonBallRenderer->SetPivotType(PivotType::LeftBottom);
 
