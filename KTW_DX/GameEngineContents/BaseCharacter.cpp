@@ -256,6 +256,21 @@ void BaseCharacter::Update(float _Delta)
 			NoDamage = false;
 			NoDamageTimer = NODAMAGETIMER;
 		}
+
+		float Alpha = PlayerRenderer->GetColorData().MulColor.A;
+
+		if (Alpha == 1.0f)
+		{
+			PlayerRenderer->GetColorData().MulColor.A = 0.0f;
+		}
+		else
+		{
+			PlayerRenderer->GetColorData().MulColor.A = 1.0f;
+		}
+	}
+	else
+	{
+		PlayerRenderer->GetColorData().MulColor.A = 1.0f;
 	}
 
 	PlayerCollision->Collision(ECOLLISIONORDER::BossBody,
