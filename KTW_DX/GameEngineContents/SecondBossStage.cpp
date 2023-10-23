@@ -6,6 +6,7 @@
 
 #include "Barrel.h"
 
+#include "BackGround.h"
 #include "Map.h"
 #include "Ocean.h"
 #include "MiniMapLevel.h"
@@ -29,6 +30,7 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship\\pirate_boatMast.Png");
 	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\SecondBossStage\\Map");
+	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\SecondBossStage\\Map\\Sky");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\Map\\Water");
 
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
@@ -57,6 +59,12 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	Oceans[3] = CreateActor<Ocean>(EUPDATEORDER::BackGround);
 	Oceans[3]->SetOceanAnimation(ERENDERORDER::PrevMap3, "Water_D", "Water_D");
 	Oceans[3]->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScale.Y + 260.0f });
+
+	Sky = CreateActor<BackGround>(EUPDATEORDER::BackGround);
+	Sky->BackGroundInitAuto("pirate_clouds_D.png");
+	Sky->SetAutoScaleRatio(1.3f);
+	Sky->SetBackGroundRendererPivotType(PivotType::Top);
+	Sky->Transform.SetLocalPosition({ WinScaleHalf.X, 0.0f });
 
 	// 테스트용 맵
 	SecondStageMap = CreateActor<Map>(EUPDATEORDER::Map);

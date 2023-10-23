@@ -25,6 +25,17 @@ void BackGround::BackGroundInit(std::string_view _FileName, int _Order /*= 0*/)
 	BackGroundRenderer->SetImageScale(GameEngineCore::MainWindow.GetScale());
 }
 
+void BackGround::BackGroundInitAuto(std::string_view _FileName, int _Order /*= 0*/)
+{
+	BackGroundRenderer->SetSprite(_FileName, _Order);
+	BackGroundRenderer->AutoSpriteSizeOn();
+}
+
+void BackGround::SetAutoScaleRatio(float _Value)
+{
+	BackGroundRenderer->SetAutoScaleRatio(_Value);
+}
+
 void BackGround::AnimationInit(std::string_view _AnimationName, std::string_view _FileName, float _Inter /*= 0.1f*/, bool _Loop /*= true*/, bool _SizeFixWindow /*= true*/, unsigned int _Start /*= -1*/, unsigned int _End /*= -1*/)
 {
 	BackGroundRenderer->CreateAnimation(_AnimationName, _FileName, _Inter, _Start, _End, _Loop);

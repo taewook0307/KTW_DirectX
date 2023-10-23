@@ -23,6 +23,8 @@ private:
 	std::shared_ptr<class Barrel> BarrelActor = nullptr;
 	std::shared_ptr<class Map> SecondStageMap = nullptr;
 
+	std::shared_ptr<class BackGround> Sky = nullptr;
+
 	std::vector<std::shared_ptr<class Ocean>> Oceans;
 
 	bool Phase3Start = false;
