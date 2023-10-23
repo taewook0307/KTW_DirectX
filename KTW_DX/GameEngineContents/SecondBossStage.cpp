@@ -9,6 +9,7 @@
 #include "BackGround.h"
 #include "Map.h"
 #include "Ocean.h"
+#include "Cloud.h"
 #include "MiniMapLevel.h"
 
 SecondBossStage::SecondBossStage()
@@ -22,6 +23,7 @@ SecondBossStage::~SecondBossStage()
 void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	Oceans.resize(4);
+	Clouds.resize(6);
 
 	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, 0.0f });
@@ -74,6 +76,34 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	Sky->SetAutoScaleRatio(1.3f);
 	Sky->SetBackGroundRendererPivotType(PivotType::Top);
 	Sky->Transform.SetLocalPosition({ WinScaleHalf.X, 0.0f });
+
+	Clouds[0] = CreateActor<Cloud>(EUPDATEORDER::BackGround);
+	Clouds[0]->SetCloud(ERENDERORDER::PrevMap, "pirate_clouds_A.png");
+	Clouds[0]->Transform.SetLocalPosition({ 0.0f, -WinScaleHalf.Y});
+
+	Clouds[1] = CreateActor<Cloud>(EUPDATEORDER::BackGround);
+	Clouds[1]->SetCloud(ERENDERORDER::PrevMap, "pirate_clouds_A.png");
+	Clouds[1]->Transform.SetLocalPosition({ WinScale.X, -WinScaleHalf.Y });
+
+	Clouds[2] = CreateActor<Cloud>(EUPDATEORDER::BackGround);
+	Clouds[2]->SetCloud(ERENDERORDER::PrevMap1, "pirate_clouds_B.png");
+	Clouds[2]->Transform.SetLocalPosition({ 0.0f, -WinScaleHalf.Y - 90.0f });
+	Clouds[2]->SetCloudSpeed(400.0f);
+
+	Clouds[3] = CreateActor<Cloud>(EUPDATEORDER::BackGround);
+	Clouds[3]->SetCloud(ERENDERORDER::PrevMap1, "pirate_clouds_B.png");
+	Clouds[3]->Transform.SetLocalPosition({ WinScale.X, -WinScaleHalf.Y - 90.0f });
+	Clouds[3]->SetCloudSpeed(400.0f);
+
+	Clouds[4] = CreateActor<Cloud>(EUPDATEORDER::BackGround);
+	Clouds[4]->SetCloud(ERENDERORDER::PrevMap2, "pirate_clouds_C.png");
+	Clouds[4]->Transform.SetLocalPosition({ 0.0f, -WinScaleHalf.Y });
+	Clouds[4]->SetCloudSpeed(200.0f);
+
+	Clouds[5] = CreateActor<Cloud>(EUPDATEORDER::BackGround);
+	Clouds[5]->SetCloud(ERENDERORDER::PrevMap2, "pirate_clouds_C.png");
+	Clouds[5]->Transform.SetLocalPosition({ WinScale.X, -WinScaleHalf.Y });
+	Clouds[5]->SetCloudSpeed(200.0f);
 
 	// 테스트용 맵
 	SecondStageMap = CreateActor<Map>(EUPDATEORDER::Map);

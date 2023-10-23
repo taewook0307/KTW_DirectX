@@ -203,6 +203,9 @@
     <ClInclude Include="Ocean.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\BackGround</Filter>
     </ClInclude>
+    <ClInclude Include="Cloud.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\BackGround</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -435,6 +438,9 @@
       <Filter>Level\6. Tutorial\TutorialActor</Filter>
     </ClCompile>
     <ClCompile Include="Ocean.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Cloud.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\BackGround</Filter>
     </ClCompile>
   </ItemGroup>
