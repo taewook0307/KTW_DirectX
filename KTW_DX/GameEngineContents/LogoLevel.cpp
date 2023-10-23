@@ -40,6 +40,5 @@ void LogoLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		Logo = nullptr;
 	}
 
-	GameEngineSprite::Release("Logo.png");
-	GameEngineTexture::Release("Logo.png");
+	ContentsSpriteManager::SingleSpriteRelease("Logo.png");
 }

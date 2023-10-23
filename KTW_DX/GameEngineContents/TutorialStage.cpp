@@ -101,7 +101,11 @@ void TutorialStage::Update(float _Delta)
 
 void TutorialStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
-	StageLevel::LevelEnd(_NextLevel);
+	if (nullptr != Player)
+	{
+		Player->Death();
+		Player = nullptr;
+	}
 
 	if (nullptr != TutorialBackGround)
 	{
@@ -143,6 +147,12 @@ void TutorialStage::LevelEnd(GameEngineLevel* _NextLevel)
 	}
 
 	TutorialParry.clear();
+
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character");
+	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\Tutorial");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Tutorial\\Parry");
+	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\Tutorial\\Target");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Tutorial\\TargetExplosion");
 }
 
 

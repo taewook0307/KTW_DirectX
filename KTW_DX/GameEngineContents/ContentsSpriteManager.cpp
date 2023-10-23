@@ -32,11 +32,15 @@ void ContentsSpriteManager::CreateFolderSpriteAllDir(std::string_view _DirPath)
 	Dir.MoveChild(_DirPath);
 	std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
-	for (size_t i = 0; i < Directorys.size(); i++)
+	size_t DirSize = Directorys.size();
+
+	for (size_t i = 0; i < DirSize; i++)
 	{
 		GameEngineDirectory& Dir = Directorys[i];
 
-		GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		std::string DirPath = Dir.GetStringPath();
+
+		GameEngineSprite::CreateFolder(DirPath);
 	}
 }
 
@@ -56,14 +60,88 @@ void ContentsSpriteManager::CreateSingleSpriteDir(std::string_view _DirPath)
 	Dir.MoveChild(_DirPath);
 	std::vector<GameEngineFile> Files = Dir.GetAllFile();
 
-	for (size_t i = 0; i < Files.size(); i++)
+	size_t FileSize = Files.size();
+
+	for (size_t i = 0; i < FileSize; i++)
 	{
-		GameEngineFile& File = Files[i];
+		GameEngineFile& CurFile = Files[i];
 
-		std::string PathCheck = File.GetStringPath();
-		std::string FileNameCheck = File.GetFileName();
+		std::string FilePath = CurFile.GetStringPath();
+		std::string FileName = CurFile.GetFileName();
 
-		GameEngineTexture::Load(File.GetStringPath());
-		GameEngineSprite::CreateSingle(File.GetFileName());
+		GameEngineTexture::Load(FilePath);
+		GameEngineSprite::CreateSingle(FileName);
+	}
+}
+
+void ContentsSpriteManager::SingleSpriteRelease(std::string_view _ImageName)
+{
+	GameEngineTexture::Release(_ImageName);
+	GameEngineSprite::Release(_ImageName);
+}
+
+void ContentsSpriteManager::SingleSpriteInDirRelease(std::string_view _DirPath)
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToExistsChild("Resources");
+	Dir.MoveChild(_DirPath);
+	std::vector<GameEngineFile> Files = Dir.GetAllFile();
+
+	size_t FileSize = Files.size();
+
+	for (size_t i = 0; i < FileSize; i++)
+	{
+		GameEngineFile& CurFile = Files[i];
+		std::string FileName = CurFile.GetFileName();
+		GameEngineTexture::Release(FileName);
+		GameEngineSprite::Release(FileName);
+	}
+}
+
+void ContentsSpriteManager::FolderSpriteRelease(std::string_view _DirPath)
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToExistsChild("Resources");
+	Dir.MoveChild(_DirPath);
+	
+	std::string DirName = Dir.GetFileName();
+	GameEngineSprite::Release(DirName);
+
+	std::vector<GameEngineFile> Files = Dir.GetAllFile();
+	size_t FileSize = Files.size();
+
+	for (size_t i = 0; i < FileSize; i++)
+	{
+		GameEngineFile& CurFile = Files[i];
+		std::string FileName = CurFile.GetFileName();
+		GameEngineTexture::Release(FileName);
+	}
+}
+
+void ContentsSpriteManager::SpriteAndTextureInAllDirRelease(std::string_view _DirPath)
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToExistsChild("Resources");
+	Dir.MoveChild(_DirPath);
+	std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+	size_t DirSize = Directorys.size();
+
+	for (size_t i = 0; i < DirSize; i++)
+	{
+		GameEngineDirectory CurDirectory = Directorys[i];
+
+		std::string DirectoryName = CurDirectory.GetFileName();
+		GameEngineSprite::Release(DirectoryName);
+
+		std::vector<GameEngineFile> Files = CurDirectory.GetAllFile();
+		size_t FileSize = Files.size();
+
+		for (size_t i = 0; i < FileSize; i++)
+		{
+			GameEngineFile CurFile = Files[i];
+			std::string FileName = CurFile.GetFileName();
+			GameEngineTexture::Release(FileName);
+		}
 	}
 }

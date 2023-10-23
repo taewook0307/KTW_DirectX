@@ -26,31 +26,5 @@ void IntroLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		Intro = nullptr;
 	}
 
-	GameEngineDirectory Dir;
-	Dir.MoveParentToExistsChild("Resources");
-	Dir.MoveChild("Resources\\Texture\\Intro");
-	std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
-	{
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			GameEngineDirectory& Dir = Directorys[i];
-			std::string Check = Dir.GetFileName();
-			GameEngineSprite::Release(Dir.GetFileName());
-		}
-	}
-
-	{
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			GameEngineDirectory& Dir = Directorys[i];
-
-			std::vector<GameEngineFile> Files = Dir.GetAllFile();
-
-			for (size_t i = 0; i < Files.size(); i++)
-			{
-				std::string FileName = Files[i].GetFileName();
-				GameEngineTexture::Release(FileName);
-			}
-		}
-	}
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Intro");
 }

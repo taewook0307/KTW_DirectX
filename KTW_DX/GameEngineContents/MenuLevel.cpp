@@ -93,4 +93,6 @@ void MenuLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		ExitMenu->Death();
 		ExitMenu = nullptr;
 	}
+
+	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\MainMenu");
 }

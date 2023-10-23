@@ -107,23 +107,9 @@ void FirstBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 		BossPhase3 = nullptr;
 	}
 
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\FirstBossStage\\FirstBoss");
-		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
-
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			GameEngineDirectory& Dir = Directorys[i];
-
-			std::vector<GameEngineFile> Files = Dir.GetAllFile();
-
-			for (size_t i = 0; i < Files.size(); i++)
-			{
-				std::string FileName = Files[i].GetFileName();
-				GameEngineTexture::Release(FileName);
-			}
-		}
-	}
+	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap");
+	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\FirstBossStage\\Map\\FirstBossParryObject");
+	ContentsSpriteManager::SingleSpriteRelease("FirstBossBitMap.png");
+	ContentsSpriteManager::SingleSpriteRelease("FirstBossMap_Upper.png");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\FirstBossStage\\FirstBoss");
 }

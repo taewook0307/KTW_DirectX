@@ -157,4 +157,8 @@ void MiniMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		SecondBossFlag->Death();
 		SecondBossFlag = nullptr;
 	}
+
+	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\MiniMapLevel\\Map");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\MiniMapLevel\\MiniMapEnter");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\MiniMapLevel\\MiniMapFlag");
 }

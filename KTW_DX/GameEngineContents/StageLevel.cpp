@@ -49,6 +49,9 @@ void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		Player->Death();
 		Player = nullptr;
 	}
+
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\StageEffect");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character");
 }
 
 void StageLevel::StageEnd(float _Delta)

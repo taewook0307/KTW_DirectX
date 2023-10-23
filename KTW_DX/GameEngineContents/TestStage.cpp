@@ -86,4 +86,8 @@ void TestStage::Update(float _Delta)
 	{
 		StopTimer -= _Delta;
 	}
+
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character");
+	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\Tutorial");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Tutorial\\Parry");
 }

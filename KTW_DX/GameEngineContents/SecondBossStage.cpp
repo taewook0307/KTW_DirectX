@@ -83,4 +83,9 @@ void SecondBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 		BarrelActor->Death();
 		BarrelActor = nullptr;
 	}
+
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss");
+	ContentsSpriteManager::SingleSpriteRelease("pirate_boatMast.Png");
+	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\SecondBossStage\\Map");
+
 }

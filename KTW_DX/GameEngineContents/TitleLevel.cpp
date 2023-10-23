@@ -59,34 +59,6 @@ void TitleLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		TitleAnimation = nullptr;
 	}
 
-	{
-		GameEngineTexture::Release("Title_BackGround.Png");
-		GameEngineSprite::Release("Title_BackGround.Png");
-	}
-
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("Resources");
-		Dir.MoveChild("Resources\\Texture\\Title");
-
-		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
-
-		size_t DirSize = Directorys.size();
-
-		for (size_t i = 0; i < DirSize; i++)
-		{
-			GameEngineDirectory& Dir = Directorys[i];
-
-			GameEngineSprite::Release(Dir.GetFileName());
-
-			std::vector<GameEngineFile> Files = Dir.GetAllFile();
-
-			for (size_t i = 0; i < Files.size(); i++)
-			{
-				GameEngineFile File = Files[i];
-
-				GameEngineTexture::Release(File.GetFileName());
-			}
-		}
-	}
+	ContentsSpriteManager::SingleSpriteRelease("Title_BackGround.Png");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Title");
 }
