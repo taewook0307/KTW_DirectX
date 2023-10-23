@@ -32,6 +32,8 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\MiniMapLevel\\Map");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\MiniMapLevel\\MiniMapEnter");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\MiniMapLevel\\MiniMapFlag");
+	ContentsSpriteManager::ImageLoad("Resources\\Texture\\MiniMapLevel\\MiniMap_Character.png");
+	GameEngineSprite::CreateCut("MiniMap_Character.png", 10, 10);
 
 	// 미니맵 생성
 	MiniMap = CreateActor<Map>(EUPDATEORDER::Map);
@@ -161,4 +163,5 @@ void MiniMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\MiniMapLevel\\Map");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\MiniMapLevel\\MiniMapEnter");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\MiniMapLevel\\MiniMapFlag");
+	ContentsSpriteManager::SingleSpriteRelease("MiniMap_Character.png");
 }

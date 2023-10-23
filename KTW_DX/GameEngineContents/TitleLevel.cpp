@@ -61,4 +61,5 @@ void TitleLevel::LevelEnd(GameEngineLevel* _NextLevel)
 
 	ContentsSpriteManager::SingleSpriteRelease("Title_BackGround.Png");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Title");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Fade");
 }

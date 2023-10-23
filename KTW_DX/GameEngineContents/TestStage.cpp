@@ -21,7 +21,8 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, 0.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
 	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\Tutorial");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");
 
@@ -87,7 +88,8 @@ void TestStage::Update(float _Delta)
 		StopTimer -= _Delta;
 	}
 
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\CupHead");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\Bullet");
 	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\Tutorial");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Tutorial\\Parry");
 }

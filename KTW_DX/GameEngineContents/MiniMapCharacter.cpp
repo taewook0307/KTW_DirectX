@@ -14,16 +14,6 @@ MiniMapCharacter::~MiniMapCharacter()
 
 void MiniMapCharacter::Start()
 {
-	GameEnginePath Path;
-	Path.MoveParentToExistsChild("Resources");
-	Path.MoveChild("Resources\\Texture\\MiniMapLevel");
-
-	GameEngineFile File = Path.PlusFilePath("MiniMap_Character.png");
-
-	GameEngineTexture::Load(File.GetStringPath());
-
-	GameEngineSprite::CreateCut("MiniMap_Character.png", 10, 10);
-
 	MiniCharacterRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
 	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_Up", "MiniMap_Character.png", 0.1f, 0, 3);
 	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_Up", "MiniMap_Character.png", 0.05f, 4, 15);

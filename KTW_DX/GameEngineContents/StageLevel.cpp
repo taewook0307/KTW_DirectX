@@ -24,7 +24,8 @@ void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	GameEngineInput::AddInputObject(this);
 
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\StageEffect");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
 
 	CreateActor<StageStartUI>(EUPDATEORDER::UI);
 
@@ -51,7 +52,8 @@ void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	}
 
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\StageEffect");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\CupHead");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\Bullet");
 }
 
 void StageLevel::StageEnd(float _Delta)

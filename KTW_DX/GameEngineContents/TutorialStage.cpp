@@ -27,7 +27,8 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	// 리소스 Load
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
 	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\Tutorial");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");
 	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\Tutorial\\Target");
@@ -148,7 +149,8 @@ void TutorialStage::LevelEnd(GameEngineLevel* _NextLevel)
 
 	TutorialParry.clear();
 
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\CupHead");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\Bullet");
 	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\Tutorial");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Tutorial\\Parry");
 	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\Tutorial\\Target");
