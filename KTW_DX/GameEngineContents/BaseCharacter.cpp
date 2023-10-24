@@ -1,6 +1,7 @@
 ﻿#include "PreCompile.h"
 #include "BaseCharacter.h"
 
+#include "Map.h"
 #include "Bullet.h"
 #include "JumpDust.h"
 
@@ -209,7 +210,7 @@ void BaseCharacter::Update(float _Delta)
 {
 	/*float4 Pos = Transform.GetWorldPosition();
 	OutputDebugStringA(Pos.ToString("\n").c_str());*/
-
+	MapOut(_Delta);
 	StateUpdate(_Delta);
 
 	if (EACTORDIR::Left == Dir)
@@ -543,4 +544,20 @@ void BaseCharacter::ChangeAnimation(std::string_view _State)
 	State = _State;
 
 	PlayerRenderer->ChangeAnimation(AnimationName);
+}
+
+void BaseCharacter::MapOut(float _Delta)
+{
+	float4 Pos = Transform.GetWorldPosition();
+
+	GameEngineColor CheckColor = Map::MainMap->GetColor(Pos, FLOORCOLOR);
+
+	if (MAPOUTCOLOR == CheckColor
+		&& false == Cheat
+		&& false == NoDamage)
+	{
+		SetGravityForce(float4::UP * JUMPPOWER);
+		ChangeState(ECHARACTERSTATE::Hit);
+		return;
+	}
 }

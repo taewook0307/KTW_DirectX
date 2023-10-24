@@ -63,6 +63,7 @@ protected:
 	void AimDirChange();
 	void CharacterMove(float _Delta);
 	void ActorGravity(float _Delta, float4 _CheckPos) override;
+	void MapOut(float _Delta);
 
 	void CreateRunDust();
 	void CreateJumpDust();

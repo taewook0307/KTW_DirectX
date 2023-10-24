@@ -433,6 +433,8 @@ void BaseCharacter::HitStart()
 
 void BaseCharacter::HitUpdate(float _Delta)
 {
+	ActorGravity(_Delta, Transform.GetWorldPosition());
+
 	if (Hp <= 0)
 	{
 		ChangeState(ECHARACTERSTATE::Death);

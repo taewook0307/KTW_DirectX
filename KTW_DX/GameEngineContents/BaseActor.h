@@ -4,9 +4,10 @@
 
 #define GRAVITYFORCE 4000.0f
 
-#define EMPTYCOLOR GameEngineColor { 255, 255, 255, 255 }
-#define FLOORCOLOR GameEngineColor { 0, 0, 0, 255 }
-#define STOOLCOLOR GameEngineColor { 0, 0, 255, 255 }
+#define EMPTYCOLOR GameEngineColor::WHITE
+#define FLOORCOLOR GameEngineColor::BLACK
+#define STOOLCOLOR GameEngineColor::BLUE
+#define MAPOUTCOLOR GameEngineColor::RED
 
 class BaseActor : public GameEngineActor
 {
