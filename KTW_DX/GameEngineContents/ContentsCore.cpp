@@ -9,6 +9,7 @@
 #include "TutorialStage.h"
 #include "FirstBossStage.h"
 #include "SecondBossStage.h"
+#include "LastBossStage.h"
 #include "OutroLevel.h"
 #include <GameEngineCore/GameEngineBlend.h>
 #include <GameEngineCore/GameEngineRenderTarget.h>
@@ -64,9 +65,10 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<TutorialStage>("Tutorial_Stage");
 	GameEngineCore::CreateLevel<FirstBossStage>("FirstBoss_Stage");
 	GameEngineCore::CreateLevel<SecondBossStage>("SecondBoss_Stage");
+	GameEngineCore::CreateLevel<LastBossStage>("LastBoss_Stage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
 	GameEngineCore::CreateLevel<TestStage>("Test_Stage");
-	GameEngineCore::ChangeLevel("SecondBoss_Stage");
+	GameEngineCore::ChangeLevel("LastBoss_Stage");
 
 	GameEngineLevel::OffDebug();
 
