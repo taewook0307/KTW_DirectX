@@ -385,7 +385,6 @@ void FirstBoss::Start()
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_Attack_End",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			BounceCount = 0;
 			ChangeState(EBOSSSTATE::Idle);
 			return;
 		}
