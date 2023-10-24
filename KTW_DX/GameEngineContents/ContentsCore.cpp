@@ -52,6 +52,8 @@ void ContentsCore::Start()
 	//	Mat->SetBlendState("OverRay");
 	//}
 
+	GameEngineCore::GetBackBufferRenderTarget()->SetClearColor({ 0.0f, 0.0f, 0.0f, 1.0f });
+
 	GameEngineRenderTarget::IsDepth = false;
 
 	GameEngineCore::CreateLevel<LogoLevel>("LogoLevel");
@@ -64,7 +66,7 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<SecondBossStage>("SecondBoss_Stage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
 	GameEngineCore::CreateLevel<TestStage>("Test_Stage");
-	GameEngineCore::ChangeLevel("SecondBoss_Stage");
+	GameEngineCore::ChangeLevel("LogoLevel");
 
 	GameEngineLevel::OffDebug();
 
