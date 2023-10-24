@@ -380,6 +380,8 @@ void BaseCharacter::RunShootUpdate(float _Delta)
 
 void BaseCharacter::DuckShootStart()
 {
+	PlayerCollision->Transform.SetLocalScale(CHARACTERDUCKCOLLISIONSCALE);
+	PlayerCollision->Transform.SetLocalPosition(CHARACTERDUCKCOLLISIONPOS);
 	ChangeAnimation("DuckShoot");
 }
 
