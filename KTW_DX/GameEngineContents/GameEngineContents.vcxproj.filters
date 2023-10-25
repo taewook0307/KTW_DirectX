@@ -212,6 +212,9 @@
     <ClInclude Include="Devil.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
     </ClInclude>
+    <ClInclude Include="DevilChair.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -453,6 +456,9 @@
       <Filter>Level\10. LastBossStage</Filter>
     </ClCompile>
     <ClCompile Include="Devil.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
+    </ClCompile>
+    <ClCompile Include="DevilChair.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
     </ClCompile>
   </ItemGroup>

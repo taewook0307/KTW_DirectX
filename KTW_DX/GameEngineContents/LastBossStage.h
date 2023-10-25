@@ -23,6 +23,7 @@ private:
 private:
 	std::shared_ptr<class BackGround> StageBackGround = nullptr;
 	std::shared_ptr<class Map> StageMap = nullptr;
+	std::shared_ptr<class DevilChair> BossChair = nullptr;
 	std::shared_ptr<class Devil> Boss = nullptr;
 
 	void Start() override;

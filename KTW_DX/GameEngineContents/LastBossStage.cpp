@@ -3,6 +3,7 @@
 
 #include "BackGround.h"
 #include "Map.h"
+#include "DevilChair.h"
 #include "Devil.h"
 #include "BaseCharacter.h"
 
@@ -19,8 +20,9 @@ void LastBossStage::Start()
 	//StageLevel::Start();
 
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\BackGround\\LastStageBackGround.png");
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageMapTest.png");
+	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageMap.png");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
+	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageChair.png");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\Devil");
 
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("LastStagePixelMap.png");
@@ -34,12 +36,15 @@ void LastBossStage::Start()
 	StageBackGround->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Half().Y });
 
 	StageMap = CreateActor<Map>(EUPDATEORDER::Map);
-	StageMap->MapInit("LastStageMapTest.Png");
+	StageMap->MapInit("LastStageMap.Png");
 	StageMap->PixelMapInit("LastStagePixelMap.Png");
 	StageMap->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y });
 
+	BossChair = CreateActor<DevilChair>(EUPDATEORDER::Map);
+	BossChair->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Y + 80.0f });
+
 	Boss = CreateActor<Devil>(EUPDATEORDER::Monster);
-	Boss->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Y - 20.0f });
+	Boss->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Y });
 	
 	GameEngineInput::AddInputObject(this);
 }
