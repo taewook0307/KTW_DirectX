@@ -18,12 +18,25 @@ void Devil::Start()
 	{
 		CreateStateParameter Para;
 
-		Para.Start = [=](GameEngineState* _Parent)
+		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Intro"); };
+		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
 			{
-				DevilRenderer->ChangeAnimation("Devil_Intro");
+				if (true == DevilRenderer->IsCurAnimationEnd())
+				{
+					DevilState.ChangeState(EDEVILSTATE::Idle);
+				}
 			};
 
 		DevilState.CreateState(EDEVILSTATE::Intro, Para);
+	}
+
+	DevilRenderer->CreateAnimation("Devil_Idle", "Devil_Idle", 0.05f);
+	{
+		CreateStateParameter Para;
+
+		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Idle"); };
+
+		DevilState.CreateState(EDEVILSTATE::Idle, Para);
 	}
 
 	DevilState.ChangeState(EDEVILSTATE::Intro);

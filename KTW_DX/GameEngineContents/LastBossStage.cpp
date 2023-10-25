@@ -16,10 +16,10 @@ LastBossStage::~LastBossStage()
 
 void LastBossStage::Start()
 {
-	StageLevel::Start();
+	//StageLevel::Start();
 
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\BackGround\\LastStageBackGround.png");
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageMap.png");
+	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageMapTest.png");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\Devil");
 
@@ -34,12 +34,12 @@ void LastBossStage::Start()
 	StageBackGround->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Half().Y });
 
 	StageMap = CreateActor<Map>(EUPDATEORDER::Map);
-	StageMap->MapInit("LastStageMap.Png");
+	StageMap->MapInit("LastStageMapTest.Png");
 	StageMap->PixelMapInit("LastStagePixelMap.Png");
 	StageMap->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y });
 
 	Boss = CreateActor<Devil>(EUPDATEORDER::Monster);
-	Boss->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Y + 30.0f });
+	Boss->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Y - 20.0f });
 	
 	GameEngineInput::AddInputObject(this);
 }
