@@ -3,6 +3,7 @@
 
 #include "BackGround.h"
 #include "Map.h"
+#include "Devil.h"
 #include "BaseCharacter.h"
 
 LastBossStage::LastBossStage()
@@ -20,6 +21,7 @@ void LastBossStage::Start()
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\BackGround\\LastStageBackGround.png");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageMap.png");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\Devil");
 
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("LastStagePixelMap.png");
 	float4 MapScale = MapTexture->GetScale();
@@ -35,6 +37,9 @@ void LastBossStage::Start()
 	StageMap->MapInit("LastStageMap.Png");
 	StageMap->PixelMapInit("LastStagePixelMap.Png");
 	StageMap->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y });
+
+	Boss = CreateActor<Devil>(EUPDATEORDER::Monster);
+	Boss->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Y + 30.0f });
 	
 	GameEngineInput::AddInputObject(this);
 }

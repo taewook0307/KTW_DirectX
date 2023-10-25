@@ -140,6 +140,19 @@ enum class ESHIPBEAMSTATE
 	End
 };
 
+// Devil
+enum class EDEVILSTATE
+{
+	None,
+	Intro,
+	Idle,
+	Attack,
+	Ram,
+	Serpent,
+	Spider,
+	Death
+};
+
 //Enemy
 enum class EBARRELSTATE
 {

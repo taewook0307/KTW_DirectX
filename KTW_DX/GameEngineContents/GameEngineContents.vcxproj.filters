@@ -206,6 +206,12 @@
     <ClInclude Include="Cloud.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\BackGround</Filter>
     </ClInclude>
+    <ClInclude Include="LastBossStage.h">
+      <Filter>Level\10. LastBossStage</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -442,6 +448,12 @@
     </ClCompile>
     <ClCompile Include="Cloud.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="LastBossStage.cpp">
+      <Filter>Level\10. LastBossStage</Filter>
+    </ClCompile>
+    <ClCompile Include="Devil.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
