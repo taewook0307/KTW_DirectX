@@ -30,7 +30,7 @@ void Devil::Start()
 		DevilState.CreateState(EDEVILSTATE::Intro, Para);
 	}
 
-	DevilRenderer->CreateAnimation("Devil_Idle", "Devil_Idle", 1.0f);
+	DevilRenderer->CreateAnimation("Devil_Idle", "Devil_Idle", 0.1f);
 	{
 		CreateStateParameter Para;
 
