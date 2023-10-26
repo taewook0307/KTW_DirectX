@@ -68,11 +68,11 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<LastBossStage>("3.LastBoss_Stage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
 	GameEngineCore::CreateLevel<TestStage>("Test_Stage");
-	GameEngineCore::ChangeLevel("3.LastBoss_Stage");
+	GameEngineCore::ChangeLevel("MiniMapLevel");
 
 	GameEngineLevel::OffDebug();
 
-	//GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
+	GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
 
 	GameEngineInput::AddInputObject(this);
 }

@@ -19,7 +19,7 @@ StageLevel::~StageLevel()
 
 void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	//GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
+	GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
 
 	GameEngineInput::AddInputObject(this);
 
@@ -49,6 +49,8 @@ void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	{
 		Player->Death();
 		Player = nullptr;
+		BaseCharacter::MainCharacter->Death();
+		BaseCharacter::MainCharacter = nullptr;
 	}
 
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\StageEffect");

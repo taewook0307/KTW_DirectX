@@ -31,18 +31,21 @@ void DebugWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 		Map::MainMap->RendererSwitch();
 	}
 
-	std::string IsCheat = "Cheat : ";
-
-	if (true == BaseCharacter::MainCharacter->GetCheat())
+	if (nullptr != BaseCharacter::MainCharacter)
 	{
-		IsCheat += "On";
-	}
-	else
-	{
-		IsCheat += "Off";
-	}
+		std::string IsCheat = "Cheat : ";
 
-	ImGui::Text(IsCheat.c_str());
+		if (true == BaseCharacter::MainCharacter->GetCheat())
+		{
+			IsCheat += "On";
+		}
+		else
+		{
+			IsCheat += "Off";
+		}
+
+		ImGui::Text(IsCheat.c_str());
+	}
 
 	if (ImGui::Button("Cheat Switch"))
 	{
