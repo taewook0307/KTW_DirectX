@@ -175,6 +175,9 @@ public:
 	void SetEndEvent(std::string_view _AnimationName, std::function<void(GameEngineSpriteRenderer*)> _Function);
 	void SetFrameEvent(std::string_view _AnimationName, int _Frame, std::function<void(GameEngineSpriteRenderer*)> _Function);
 
+	// "EngineBaseWRAPSampler"
+	void SetSampler(std::string_view _Name);
+
 	void SetPivotValue(const float4& _Value)
 	{
 		Pivot = _Value;
