@@ -41,7 +41,7 @@ void Devil::Start()
 			{
 				if (true == GameEngineInput::IsDown('P', this))
 				{
-					DevilState.ChangeState(EDEVILSTATE::Ram);
+					DevilState.ChangeState(EDEVILSTATE::Spider);
 				}
 			};
 
@@ -62,6 +62,22 @@ void Devil::Start()
 			};
 
 		DevilState.CreateState(EDEVILSTATE::Ram, Para);
+	}
+
+	DevilRenderer->CreateAnimation("Devil_Spider", "Devil_Spider", 0.1f);
+	{
+		CreateStateParameter Para;
+
+		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Spider"); };
+		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
+			{
+				if (true == DevilRenderer->IsCurAnimationEnd())
+				{
+					DevilState.ChangeState(EDEVILSTATE::Idle);
+				}
+			};
+
+		DevilState.CreateState(EDEVILSTATE::Spider, Para);
 	}
 
 	DevilState.ChangeState(EDEVILSTATE::Intro);
