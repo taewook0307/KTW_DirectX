@@ -11,6 +11,8 @@ Devil::~Devil()
 
 void Devil::Start()
 {
+	GameEngineInput::AddInputObject(this);
+
 	DevilRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
 	DevilRenderer->AutoSpriteSizeOn();
 	DevilRenderer->SetPivotType(PivotType::Bottom);
@@ -35,8 +37,31 @@ void Devil::Start()
 		CreateStateParameter Para;
 
 		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Idle"); };
+		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
+			{
+				if (true == GameEngineInput::IsDown('P', this))
+				{
+					DevilState.ChangeState(EDEVILSTATE::Ram);
+				}
+			};
 
 		DevilState.CreateState(EDEVILSTATE::Idle, Para);
+	}
+
+	DevilRenderer->CreateAnimation("Devil_Ram", "Devil_Ram", 0.1f);
+	{
+		CreateStateParameter Para;
+
+		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Ram"); };
+		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
+			{
+				if (true == DevilRenderer->IsCurAnimationEnd())
+				{
+					DevilState.ChangeState(EDEVILSTATE::Idle);
+				}
+			};
+
+		DevilState.CreateState(EDEVILSTATE::Ram, Para);
 	}
 
 	DevilState.ChangeState(EDEVILSTATE::Intro);
