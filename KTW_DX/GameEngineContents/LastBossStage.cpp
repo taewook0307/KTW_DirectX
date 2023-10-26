@@ -15,10 +15,13 @@ LastBossStage::~LastBossStage()
 {
 }
 
-void LastBossStage::Start()
+void LastBossStage::Update(float _Delta)
 {
-	//StageLevel::Start();
+	// LastStageCameraMove(_Delta);
+}
 
+void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
+{
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\BackGround\\LastStageBackGround.png");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageMap.png");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
@@ -45,23 +48,45 @@ void LastBossStage::Start()
 
 	Boss = CreateActor<Devil>(EUPDATEORDER::Monster);
 	Boss->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Y });
-	
+
 	GameEngineInput::AddInputObject(this);
-}
 
-void LastBossStage::Update(float _Delta)
-{
-	// LastStageCameraMove(_Delta);
-}
-
-void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
-{
 	StageLevel::LevelStart(_PrevLevel);
 }
 
 void LastBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	StageLevel::LevelEnd(_NextLevel);
+
+	if (nullptr != StageBackGround)
+	{
+		StageBackGround->Death();
+		StageBackGround = nullptr;
+	}
+
+	if (nullptr != StageMap)
+	{
+		StageMap->Death();
+		StageMap = nullptr;
+	}
+
+	if (nullptr != BossChair)
+	{
+		BossChair->Death();
+		BossChair = nullptr;
+	}
+
+	if (nullptr != Boss)
+	{
+		Boss->Death();
+		Boss = nullptr;
+	}
+
+	ContentsSpriteManager::SingleSpriteRelease("LastStageBackGround.png");
+	ContentsSpriteManager::SingleSpriteRelease("LastStageMap.png");
+	ContentsSpriteManager::SingleSpriteRelease("LastStagePixelMap.png");
+	ContentsSpriteManager::SingleSpriteRelease("LastStageChair.png");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\Devil");
 }
 
 void LastBossStage::LastStageCameraMove(float _Delta)

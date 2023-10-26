@@ -26,7 +26,6 @@ private:
 	std::shared_ptr<class DevilChair> BossChair = nullptr;
 	std::shared_ptr<class Devil> Boss = nullptr;
 
-	void Start() override;
 	void Update(float _Delta) override;
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
