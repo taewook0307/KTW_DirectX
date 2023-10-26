@@ -26,7 +26,7 @@ void DebugWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 		GameEngineLevel::IsDebug = !GameEngineLevel::IsDebug;
 	}
 
-	if (ImGui::Button("Pixel Switch"))
+	if (ImGui::Button("Map Switch"))
 	{
 		Map::MainMap->RendererSwitch();
 	}

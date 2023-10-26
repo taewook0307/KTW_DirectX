@@ -52,19 +52,19 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	TutorialEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
 	TutorialEnter->EnterAnimationInit("Tutorial_Enter_Ani", "TutorialEnter");
 	TutorialEnter->Transform.SetLocalPosition(TUTORIALENTERPOS);
-	TutorialEnter->SetEnterLevel("Tutorial_Stage");
+	TutorialEnter->SetEnterLevel("0.Tutorial_Stage");
 	TutorialEnter->SetCollisionScaleAndPosition(TUTORIALENTERCOLLISIONSCALE, TUTORIALENTERCOLLISIONSPOSITION);
 
 	FirstBossEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
 	FirstBossEnter->EnterAnimationInit("FirstBossMap_Enter_Ani", "FirstBossMapEnter");
 	FirstBossEnter->Transform.SetLocalPosition(FIRSTBOSSENTERPOS);
-	FirstBossEnter->SetEnterLevel("FirstBoss_Stage");
+	FirstBossEnter->SetEnterLevel("1.FirstBoss_Stage");
 	FirstBossEnter->SetCollisionScaleAndPosition(FIRSTBOSSENTERCOLLISIONSCALE, FIRSTBOSSENTERCOLLISIONSPOSITION);
 
 	SecondBossEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
 	SecondBossEnter->EnterAnimationInit("Tutorial_Enter_Ani", "SecondBossMapEnter");
 	SecondBossEnter->Transform.SetLocalPosition(SECONDBOSSENTERPOS);
-	SecondBossEnter->SetEnterLevel("SecondBoss_Stage");
+	SecondBossEnter->SetEnterLevel("2.SecondBoss_Stage");
 	SecondBossEnter->SetCollisionScaleAndPosition(SECONDBOSSENTERCOLLISIONSCALE);
 
 	if (true == Stage1Clear)

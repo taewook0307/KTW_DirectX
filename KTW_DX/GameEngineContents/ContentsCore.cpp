@@ -62,17 +62,17 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<MenuLevel>("MenuLevel");
 	GameEngineCore::CreateLevel<IntroLevel>("IntroLevel");
 	GameEngineCore::CreateLevel<MiniMapLevel>("MiniMapLevel");
-	GameEngineCore::CreateLevel<TutorialStage>("Tutorial_Stage");
-	GameEngineCore::CreateLevel<FirstBossStage>("FirstBoss_Stage");
-	GameEngineCore::CreateLevel<SecondBossStage>("SecondBoss_Stage");
-	GameEngineCore::CreateLevel<LastBossStage>("LastBoss_Stage");
+	GameEngineCore::CreateLevel<TutorialStage>("0.Tutorial_Stage");
+	GameEngineCore::CreateLevel<FirstBossStage>("1.FirstBoss_Stage");
+	GameEngineCore::CreateLevel<SecondBossStage>("2.SecondBoss_Stage");
+	GameEngineCore::CreateLevel<LastBossStage>("3.LastBoss_Stage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
 	GameEngineCore::CreateLevel<TestStage>("Test_Stage");
-	GameEngineCore::ChangeLevel("LastBoss_Stage");
+	GameEngineCore::ChangeLevel("MiniMapLevel");
 
 	GameEngineLevel::OffDebug();
 
-	// GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
+	GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
 
 	GameEngineInput::AddInputObject(this);
 }
@@ -93,15 +93,19 @@ void ContentsCore::Update(float _Delta)
 	}
 	if (true == GameEngineInput::IsDown(VK_F2, this))
 	{
-		GameEngineCore::ChangeLevel("Tutorial_Stage");
+		GameEngineCore::ChangeLevel("0.Tutorial_Stage");
 	}
 	if (true == GameEngineInput::IsDown(VK_F3, this))
 	{
-		GameEngineCore::ChangeLevel("FirstBoss_Stage");
+		GameEngineCore::ChangeLevel("1.FirstBoss_Stage");
 	}
 	if (true == GameEngineInput::IsDown(VK_F4, this))
 	{
-		GameEngineCore::ChangeLevel("SecondBoss_Stage");
+		GameEngineCore::ChangeLevel("2.SecondBoss_Stage");
+	}
+	if (true == GameEngineInput::IsDown(VK_F5, this))
+	{
+		GameEngineCore::ChangeLevel("3.LastBoss_Stage");
 	}
 	if (true == GameEngineInput::IsDown(VK_F6, this))
 	{
