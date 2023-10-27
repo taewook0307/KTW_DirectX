@@ -215,6 +215,15 @@
     <ClInclude Include="DevilChair.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
     </ClInclude>
+    <ClInclude Include="Ram_Arm.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
+    </ClInclude>
+    <ClInclude Include="Ram_Arm_Right.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
+    </ClInclude>
+    <ClInclude Include="Ram_Arm_Left.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -461,6 +470,15 @@
     <ClCompile Include="DevilChair.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
     </ClCompile>
+    <ClCompile Include="Ram_Arm.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
+    </ClCompile>
+    <ClCompile Include="Ram_Arm_Right.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
+    </ClCompile>
+    <ClCompile Include="Ram_Arm_Left.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -612,6 +630,9 @@
     </Filter>
     <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\BackGround">
       <UniqueIdentifier>{14a58fca-27b0-4de9-8d7a-27bbf17dead2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\10. LastBossStage\LastBossStageActor\Ram_Arm">
+      <UniqueIdentifier>{71376339-a2a1-49fb-b8e6-235535cbe3d6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -153,6 +153,13 @@ enum class EDEVILSTATE
 	Death
 };
 
+enum class EDEVILARMSTATE
+{
+	Move,
+	Clap,
+	MoveBack
+};
+
 //Enemy
 enum class EBARRELSTATE
 {

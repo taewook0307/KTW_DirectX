@@ -3,6 +3,8 @@
 
 #include "BaseCharacter.h"
 #include "ParryObject.h"
+#include "Ram_Arm_Left.h"
+#include "Ram_Arm_Right.h"
 #include "Map.h"
 
 TestStage::TestStage()
@@ -21,29 +23,40 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, 0.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
+	/*ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
 	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\Tutorial");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");*/
 
-	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
+	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBitMap.png");
+	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\LastBossStage\\Devil\\Ram_Arm");
+
+	/*Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
 
 	TestParry = CreateActor<ParryObject>(EUPDATEORDER::Bullet);
 	TestParry->Transform.SetLocalPosition({ 640.0f, -360.0f });
 
 	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialMap.Png");
-	float4 SpriteHalfScale = Sprite->GetSpriteData(0).GetScale().Half();
+	float4 SpriteHalfScale = Sprite->GetSpriteData(0).GetScale().Half();*/
 
-	TestMap = CreateActor<Map>(EUPDATEORDER::Map);
-	TestMap->MapInit("TutorialMap.Png");
-	TestMap->PixelMapInit("TutorialBitMap.Png");
-	TestMap->Transform.SetLocalPosition({ SpriteHalfScale.X, -SpriteHalfScale.Y });
+	/*TestMap = CreateActor<Map>(EUPDATEORDER::Map);
+	TestMap->MapInit("FirstBossBitMap.Png");
+	TestMap->PixelMapInit("FirstBossBitMap.Png");
+	TestMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });*/
+
+	std::shared_ptr<Ram_Arm_Right> RightCheck = CreateActor<Ram_Arm_Right>(EUPDATEORDER::Monster);
+	RightCheck->Transform.SetLocalPosition({ 0.0f, -360.0f });
+
+	std::shared_ptr<Ram_Arm_Left> LeftCheck = CreateActor<Ram_Arm_Left>(EUPDATEORDER::Monster);
+	LeftCheck->Transform.SetLocalPosition({ 1280.0f, -360.0f });
 }
 
 void TestStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
-	if (nullptr != Player)
+	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\LastBossStage\\Devil\\Ram_Arm");
+
+	/*if (nullptr != Player)
 	{
 		Player->Death();
 		Player = nullptr;
@@ -60,11 +73,25 @@ void TestStage::LevelEnd(GameEngineLevel* _NextLevel)
 		TestMap->Death();
 		TestMap = nullptr;
 	}
+
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\CupHead");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\Bullet");
+	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\Tutorial");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Tutorial\\Parry");*/
 }
 
 void TestStage::Update(float _Delta)
 {
 	if (true == GameEngineInput::IsDown('R', this))
+	{
+		std::shared_ptr<Ram_Arm_Right> RightCheck = CreateActor<Ram_Arm_Right>(EUPDATEORDER::Monster);
+		RightCheck->Transform.SetLocalPosition({ 0.0f, -360.0f });
+
+		std::shared_ptr<Ram_Arm_Left> LeftCheck = CreateActor<Ram_Arm_Left>(EUPDATEORDER::Monster);
+		LeftCheck->Transform.SetLocalPosition({ 1280.0f, -360.0f });
+	}
+
+	/*if (true == GameEngineInput::IsDown('R', this))
 	{
 		TestParry->ParryActive();
 	}
@@ -86,10 +113,5 @@ void TestStage::Update(float _Delta)
 	if (true == LevelStopToParry)
 	{
 		StopTimer -= _Delta;
-	}
-
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\CupHead");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\Bullet");
-	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\Tutorial");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Tutorial\\Parry");
+	}*/
 }
