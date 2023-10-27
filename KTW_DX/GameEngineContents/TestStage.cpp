@@ -3,8 +3,9 @@
 
 #include "BaseCharacter.h"
 #include "ParryObject.h"
-#include "Ram_Arm_Left.h"
-#include "Ram_Arm_Right.h"
+//#include "Ram_Arm_Left.h"
+//#include "Ram_Arm_Right.h"
+#include "Spider_Head.h"
 #include "Map.h"
 
 TestStage::TestStage()
@@ -29,7 +30,7 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");*/
 
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBitMap.png");
-	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\LastBossStage\\Devil\\Ram_Arm");
+	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\LastBossStage\\Devil\\Spider_Head");
 
 	/*Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
@@ -45,16 +46,19 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	TestMap->PixelMapInit("FirstBossBitMap.Png");
 	TestMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });*/
 
-	std::shared_ptr<Ram_Arm_Right> RightCheck = CreateActor<Ram_Arm_Right>(EUPDATEORDER::Monster);
-	RightCheck->Transform.SetLocalPosition({ 0.0f, -360.0f });
+	/*std::shared_ptr<Ram_Arm_Right> RightCheck = CreateActor<Ram_Arm_Right>(EUPDATEORDER::Monster);
+	RightCheck->Transform.SetLocalPosition({ 0.0f, -360.0f });*/
 
-	std::shared_ptr<Ram_Arm_Left> LeftCheck = CreateActor<Ram_Arm_Left>(EUPDATEORDER::Monster);
-	LeftCheck->Transform.SetLocalPosition({ 1280.0f, -360.0f });
+	/*std::shared_ptr<Ram_Arm_Left> LeftCheck = CreateActor<Ram_Arm_Left>(EUPDATEORDER::Monster);
+	LeftCheck->Transform.SetLocalPosition({ 1280.0f, -360.0f });*/
+
+	std::shared_ptr<Spider_Head> Check = CreateActor<Spider_Head>(EUPDATEORDER::Monster);
+	Check->Transform.SetLocalPosition({ 640.0f, -720.0f });
 }
 
 void TestStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
-	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\LastBossStage\\Devil\\Ram_Arm");
+	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\LastBossStage\\Devil\\Spider_Head");
 
 	/*if (nullptr != Player)
 	{
@@ -82,14 +86,14 @@ void TestStage::LevelEnd(GameEngineLevel* _NextLevel)
 
 void TestStage::Update(float _Delta)
 {
-	if (true == GameEngineInput::IsDown('R', this))
+	/*if (true == GameEngineInput::IsDown('R', this))
 	{
 		std::shared_ptr<Ram_Arm_Right> RightCheck = CreateActor<Ram_Arm_Right>(EUPDATEORDER::Monster);
 		RightCheck->Transform.SetLocalPosition({ 0.0f, -360.0f });
 
 		std::shared_ptr<Ram_Arm_Left> LeftCheck = CreateActor<Ram_Arm_Left>(EUPDATEORDER::Monster);
 		LeftCheck->Transform.SetLocalPosition({ 1280.0f, -360.0f });
-	}
+	}*/
 
 	/*if (true == GameEngineInput::IsDown('R', this))
 	{

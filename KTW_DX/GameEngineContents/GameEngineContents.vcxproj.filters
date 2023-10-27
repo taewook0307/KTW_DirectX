@@ -224,6 +224,9 @@
     <ClInclude Include="Ram_Arm_Left.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
     </ClInclude>
+    <ClInclude Include="Spider_Head.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Spider_Head</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -479,6 +482,9 @@
     <ClCompile Include="Ram_Arm_Left.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
     </ClCompile>
+    <ClCompile Include="Spider_Head.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Spider_Head</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -633,6 +639,9 @@
     </Filter>
     <Filter Include="Level\10. LastBossStage\LastBossStageActor\Ram_Arm">
       <UniqueIdentifier>{71376339-a2a1-49fb-b8e6-235535cbe3d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\10. LastBossStage\LastBossStageActor\Spider_Head">
+      <UniqueIdentifier>{5832cf83-f6b1-4752-8811-8b982c0ae481}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
