@@ -29,8 +29,8 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\Tutorial");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");*/
 
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBitMap.png");
-	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\LastBossStage\\Devil\\Spider_Head");
+	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SpiderHead");
 
 	/*Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
@@ -41,10 +41,10 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialMap.Png");
 	float4 SpriteHalfScale = Sprite->GetSpriteData(0).GetScale().Half();*/
 
-	/*TestMap = CreateActor<Map>(EUPDATEORDER::Map);
-	TestMap->MapInit("FirstBossBitMap.Png");
-	TestMap->PixelMapInit("FirstBossBitMap.Png");
-	TestMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });*/
+	TestMap = CreateActor<Map>(EUPDATEORDER::Map);
+	TestMap->MapInit("LastStagePixelMap.Png");
+	TestMap->PixelMapInit("LastStagePixelMap.Png");
+	TestMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 
 	/*std::shared_ptr<Ram_Arm_Right> RightCheck = CreateActor<Ram_Arm_Right>(EUPDATEORDER::Monster);
 	RightCheck->Transform.SetLocalPosition({ 0.0f, -360.0f });*/
@@ -53,12 +53,12 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	LeftCheck->Transform.SetLocalPosition({ 1280.0f, -360.0f });*/
 
 	std::shared_ptr<Spider_Head> Check = CreateActor<Spider_Head>(EUPDATEORDER::Monster);
-	Check->Transform.SetLocalPosition({ 640.0f, -720.0f });
+	Check->Transform.SetLocalPosition({ 640.0f, -500.0f });
 }
 
 void TestStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
-	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\LastBossStage\\Devil\\Spider_Head");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\SpiderHead");
 
 	/*if (nullptr != Player)
 	{

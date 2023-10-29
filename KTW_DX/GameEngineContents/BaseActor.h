@@ -3,6 +3,7 @@
 #include <GameEngineCore/GameEngineActor.h>
 
 #define GRAVITYFORCE 4000.0f
+#define GRAVITYHALFFORCE GRAVITYFORCE * 0.5f
 
 #define EMPTYCOLOR GameEngineColor::WHITE
 #define FLOORCOLOR GameEngineColor::BLACK
@@ -23,12 +24,14 @@ public:
 	BaseActor& operator=(BaseActor&& _Other) noexcept = delete;
 
 	void GravityOn(float _Delta);
+	void GravityHalfOn(float _Delta);
 	void GravityReset();
 
 	void SetGravityForce(const float4& _Value);
 	float4 GetGravityForce();
 
 	virtual void ActorGravity(float _Delta, float4 _CheckPos);
+	void ActorHalfGravity(float _Delta, float4 _CheckPos);
 protected:
 
 private:

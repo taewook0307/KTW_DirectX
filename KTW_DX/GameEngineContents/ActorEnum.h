@@ -160,6 +160,15 @@ enum class EDEVILARMSTATE
 	MoveBack
 };
 
+enum class ESPIDERHEADSTATE
+{
+	JumpStart,
+	Jump,
+	JumpToFall,
+	Fall,
+	Land
+};
+
 //Enemy
 enum class EBARRELSTATE
 {

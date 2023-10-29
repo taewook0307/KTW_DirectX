@@ -27,6 +27,7 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageChair.png");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\Devil");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SpiderHead");
 
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("LastStagePixelMap.png");
 	float4 MapScale = MapTexture->GetScale();
@@ -87,6 +88,7 @@ void LastBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 	ContentsSpriteManager::SingleSpriteRelease("LastStagePixelMap.png");
 	ContentsSpriteManager::SingleSpriteRelease("LastStageChair.png");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\Devil");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\SpiderHead");
 }
 
 void LastBossStage::LastStageCameraMove(float _Delta)
