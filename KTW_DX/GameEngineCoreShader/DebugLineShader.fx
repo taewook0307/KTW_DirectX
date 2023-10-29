@@ -3,7 +3,7 @@
 struct GameEngineVertex2D
 {
     float4 POSITION : POSITION;
-    uint iInstance : SV_InstanceID;
+    uint iVertex : SV_VertexID;
 };
 
 
@@ -19,18 +19,14 @@ PixelOutPut DebugLine_VS(GameEngineVertex2D _Input)
     PixelOutPut Result = (PixelOutPut) 0;
     float4x4 ViewProjectionMatrix = ViewMatrix * ProjectionMatrix;
     
-    // Result.POSITION = mul(_Input.POSITION, ViewMatrix);
-    
-    Result.POSITION = _Input.POSITION;
-    
-    //if (_Input.iInstance == 0)
-    //{
-    //    Result.POSITION = mul(float4(200.0f, 200.0f, 0.0f, 1.0f), ViewProjectionMatrix);
-    //}
-    //else if (_Input.iInstance == 1)
-    //{
-    //    Result.POSITION = mul(float4(100.0f, 100.0f, 0.0f, 1.0f), ViewProjectionMatrix);
-    //}
+    if (_Input.iVertex == 0)
+    {
+        Result.POSITION = mul(Position, ViewProjectionMatrix);
+    }
+    else if (_Input.iVertex == 1)
+    {
+        Result.POSITION = mul(Scale, ViewProjectionMatrix);
+    }
     
     
     
