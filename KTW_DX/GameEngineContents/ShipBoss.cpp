@@ -137,7 +137,20 @@ void ShipBoss::Start()
 		}
 	);
 	
-	ShipRenderer->CreateAnimation("Ship_Phase3_Death", "Ship_Phase3_Death");
+	ShipRenderer->CreateAnimation("Ship_Phase3_Death", "Ship_Phase3_Death", 0.1f, 0, 8, false);
+	ShipRenderer->SetEndEvent("Ship_Phase3_Death",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ShipRenderer->ChangeAnimation("Ship_Phase3_Death_Reverse");
+		}
+	);
+	ShipRenderer->CreateAnimation("Ship_Phase3_Death_Reverse", "Ship_Phase3_Death", 0.1f, 8, 0, false);
+	ShipRenderer->SetEndEvent("Ship_Phase3_Death_Reverse",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ShipRenderer->ChangeAnimation("Ship_Phase3_Death");
+		}
+	);
 
 	ShipRenderer->AutoSpriteSizeOn();
 	ShipRenderer->SetPivotType(PivotType::RightBottom);
