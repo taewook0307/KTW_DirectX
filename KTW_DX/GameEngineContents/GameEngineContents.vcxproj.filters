@@ -658,5 +658,8 @@
     <Filter Include="Level\10. LastBossStage\LastBossStageActor\SummonDevil">
       <UniqueIdentifier>{c311dacd-e8c7-4725-bba5-7708a6b698e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\10. LastBossStage\LastBossStageActor\FireBall">
+      <UniqueIdentifier>{97816cfb-e313-4a31-8e62-5b4ce38e5371}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
