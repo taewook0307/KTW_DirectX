@@ -53,7 +53,7 @@ void TestActor::Start()
 		}
 	);
 	TridentRenderer->AutoSpriteSizeOn();
-	TridentRenderer->Transform.SetLocalPosition({ 20.0f, 350.0f });
+	TridentRenderer->Transform.SetLocalPosition({ 0.0f, 350.0f });
 	TridentRenderer->Off();
 
 	TestRenderer->ChangeAnimation("Devil_Attack");

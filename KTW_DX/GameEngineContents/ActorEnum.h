@@ -147,6 +147,8 @@ enum class EDEVILSTATE
 	Intro,
 	Idle,
 	Attack,
+	AttackStay,
+	AttackEnd,
 	Ram,
 	Serpent,
 	Spider,
