@@ -6,7 +6,8 @@
 //#include "Ram_Arm_Left.h"
 //#include "Ram_Arm_Right.h"
 //#include "Spider_Head.h"
-#include "SummonDevil.h"
+//#include "SummonDevil.h"
+#include "TestActor.h"
 #include "Map.h"
 
 TestStage::TestStage()
@@ -31,7 +32,8 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");*/
 
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SummonDevil");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\Devil");
+	// ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SummonDevil");
 
 	/*Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
@@ -53,13 +55,14 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	/*std::shared_ptr<Ram_Arm_Left> LeftCheck = CreateActor<Ram_Arm_Left>(EUPDATEORDER::Monster);
 	LeftCheck->Transform.SetLocalPosition({ 1280.0f, -360.0f });*/
 
-	std::shared_ptr<SummonDevil> Check = CreateActor<SummonDevil>(EUPDATEORDER::Monster);
-	Check->Transform.SetLocalPosition({ 640.0f, -500.0f });
+	std::shared_ptr<TestActor> Check = CreateActor<TestActor>(EUPDATEORDER::Monster);
+	Check->Transform.SetLocalPosition({ 640.0f, -720.0f });
 }
 
 void TestStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\SummonDevil");
+	//ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\SummonDevil");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\Devil");
 
 	/*if (nullptr != Player)
 	{

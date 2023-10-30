@@ -230,6 +230,9 @@
     <ClInclude Include="SummonDevil.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\SummonDevil</Filter>
     </ClInclude>
+    <ClInclude Include="TestActor.h">
+      <Filter>Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -490,6 +493,9 @@
     </ClCompile>
     <ClCompile Include="SummonDevil.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor\SummonDevil</Filter>
+    </ClCompile>
+    <ClCompile Include="TestActor.cpp">
+      <Filter>Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
