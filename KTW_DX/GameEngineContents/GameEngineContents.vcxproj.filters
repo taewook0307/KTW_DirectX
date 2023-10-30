@@ -227,6 +227,9 @@
     <ClInclude Include="Spider_Head.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Spider_Head</Filter>
     </ClInclude>
+    <ClInclude Include="SummonDevil.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\SummonDevil</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -485,6 +488,9 @@
     <ClCompile Include="Spider_Head.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Spider_Head</Filter>
     </ClCompile>
+    <ClCompile Include="SummonDevil.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\SummonDevil</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -642,6 +648,9 @@
     </Filter>
     <Filter Include="Level\10. LastBossStage\LastBossStageActor\Spider_Head">
       <UniqueIdentifier>{5832cf83-f6b1-4752-8811-8b982c0ae481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\10. LastBossStage\LastBossStageActor\SummonDevil">
+      <UniqueIdentifier>{c311dacd-e8c7-4725-bba5-7708a6b698e2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
