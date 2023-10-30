@@ -31,7 +31,7 @@ public:
 protected:
 
 private:
-	float CloudSpeed = 300.0f;
+	float CloudSpeed = 0.5f;
 
 	std::shared_ptr<GameEngineSpriteRenderer> CloudRenderer = nullptr;
 
