@@ -32,6 +32,7 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> TridentRenderer = nullptr;
 
 	GameEngineState DevilState;
+	bool SummonAttacker = false;
 
 	void Start() override;
 	void Update(float _Delta) override;

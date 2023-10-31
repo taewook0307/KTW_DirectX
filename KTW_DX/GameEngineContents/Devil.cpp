@@ -59,29 +59,37 @@ void Devil::Start()
 		CreateStateParameter Para;
 
 		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Idle"); };
-		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
+		/*Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
 			{
 				if (true == GameEngineInput::IsDown('P', this))
 				{
 					DevilState.ChangeState(EDEVILSTATE::Spider);
 					return;
 				}
-			};
+			};*/
 
 		DevilState.CreateState(EDEVILSTATE::Idle, Para);
 	}
 
-	DevilRenderer->CreateAnimation("Devil_Ram", "Devil_Ram", 0.1f);
+	DevilRenderer->CreateAnimation("Devil_Ram", "Devil_Ram", 0.1f, -1, -1, false);
+	DevilRenderer->CreateAnimation("Devil_Ram_Stay", "Devil_Ram", 0.1f, 29, 30, true);
+	DevilRenderer->CreateAnimation("Devil_Ram_End", "Devil_Ram", 0.1f, 30, 0, false);
+	DevilRenderer->SetEndEvent("Devil_Ram_End", [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			DevilState.ChangeState(EDEVILSTATE::Idle);
+			return;
+		}
+	);
 	{
 		CreateStateParameter Para;
 
 		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Ram"); };
 		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
 			{
-				if (true == DevilRenderer->IsCurAnimationEnd())
+				if (true == DevilRenderer->IsCurAnimationEnd() && true == DevilRenderer->IsCurAnimation("Devil_Ram"))
 				{
-					DevilState.ChangeState(EDEVILSTATE::Idle);
-					return;
+					DevilRenderer->ChangeAnimation("Devil_Ram_Stay");
+					CreateRamArm();
 				}
 			};
 
