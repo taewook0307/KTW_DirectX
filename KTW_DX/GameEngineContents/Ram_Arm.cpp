@@ -64,8 +64,8 @@ void Ram_Arm::Start()
 		ArmState.CreateState(EDEVILARMSTATE::MoveBack, Para);
 	}
 
-	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
-	MoveEndPoint = WinHalfScale.X + MOVEENDPOINTERROR;
+	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
+	MoveEndPoint = CameraPos.X + MOVEENDPOINTERROR;
 
 	ArmState.ChangeState(EDEVILARMSTATE::Move);
 }
@@ -81,8 +81,8 @@ void Ram_Arm::ChangeLeftDir()
 	ArmRenderer->SetPivotType(PivotType::Left);
 	ArmRenderer->LeftFlip();
 
-	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
-	MoveEndPoint = WinHalfScale.X - MOVEENDPOINTERROR;
+	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
+	MoveEndPoint = CameraPos.X - MOVEENDPOINTERROR;
 }
 
 void Ram_Arm::ArmMove(float _Delta, bool _Back /*= false*/)

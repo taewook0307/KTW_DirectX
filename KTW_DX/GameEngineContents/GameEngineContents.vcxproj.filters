@@ -209,17 +209,14 @@
     <ClInclude Include="LastBossStage.h">
       <Filter>Level\10. LastBossStage</Filter>
     </ClInclude>
-    <ClInclude Include="Devil.h">
-      <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
-    </ClInclude>
     <ClInclude Include="DevilChair.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
     </ClInclude>
     <ClInclude Include="Ram_Arm.h">
-      <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\Ram_Arm</Filter>
     </ClInclude>
     <ClInclude Include="Spider_Head.h">
-      <Filter>Level\10. LastBossStage\LastBossStageActor\Spider_Head</Filter>
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\Spider_Head</Filter>
     </ClInclude>
     <ClInclude Include="SummonDevil.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\SummonDevil</Filter>
@@ -228,7 +225,13 @@
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Serpent_Head.h">
-      <Filter>Level\10. LastBossStage\LastBossStageActor\Serpent_Head</Filter>
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\Serpent_Head</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="DevilSummonActor.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -470,17 +473,14 @@
     <ClCompile Include="LastBossStage.cpp">
       <Filter>Level\10. LastBossStage</Filter>
     </ClCompile>
-    <ClCompile Include="Devil.cpp">
-      <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
-    </ClCompile>
     <ClCompile Include="DevilChair.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
     </ClCompile>
     <ClCompile Include="Ram_Arm.cpp">
-      <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\Ram_Arm</Filter>
     </ClCompile>
     <ClCompile Include="Spider_Head.cpp">
-      <Filter>Level\10. LastBossStage\LastBossStageActor\Spider_Head</Filter>
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\Spider_Head</Filter>
     </ClCompile>
     <ClCompile Include="SummonDevil.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor\SummonDevil</Filter>
@@ -488,11 +488,17 @@
     <ClCompile Include="TestActor.cpp">
       <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="Devil_Attack.cpp">
-      <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
-    </ClCompile>
     <ClCompile Include="Serpent_Head.cpp">
-      <Filter>Level\10. LastBossStage\LastBossStageActor\Serpent_Head</Filter>
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\Serpent_Head</Filter>
+    </ClCompile>
+    <ClCompile Include="Devil.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil</Filter>
+    </ClCompile>
+    <ClCompile Include="Devil_Attack.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil</Filter>
+    </ClCompile>
+    <ClCompile Include="DevilSummonActor.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -646,20 +652,26 @@
     <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\BackGround">
       <UniqueIdentifier>{14a58fca-27b0-4de9-8d7a-27bbf17dead2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\10. LastBossStage\LastBossStageActor\Ram_Arm">
+    <Filter Include="Level\10. LastBossStage\LastBossStageActor\Devil">
+      <UniqueIdentifier>{8c9e17e0-1518-4a3e-a972-7d86fd18ed66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\10. LastBossStage\LastBossStageActor\Devil\Summon">
+      <UniqueIdentifier>{eff69df4-8ef3-4e60-b64e-df75064f7242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\10. LastBossStage\LastBossStageActor\Devil\Summon\FireBall">
+      <UniqueIdentifier>{97816cfb-e313-4a31-8e62-5b4ce38e5371}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\10. LastBossStage\LastBossStageActor\Devil\Summon\Ram_Arm">
       <UniqueIdentifier>{71376339-a2a1-49fb-b8e6-235535cbe3d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\10. LastBossStage\LastBossStageActor\Spider_Head">
+    <Filter Include="Level\10. LastBossStage\LastBossStageActor\Devil\Summon\Serpent_Head">
+      <UniqueIdentifier>{1d8e4f89-2de2-46d4-8dba-a8e52e4ab945}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\10. LastBossStage\LastBossStageActor\Devil\Summon\Spider_Head">
       <UniqueIdentifier>{5832cf83-f6b1-4752-8811-8b982c0ae481}</UniqueIdentifier>
     </Filter>
     <Filter Include="Level\10. LastBossStage\LastBossStageActor\SummonDevil">
       <UniqueIdentifier>{c311dacd-e8c7-4725-bba5-7708a6b698e2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Level\10. LastBossStage\LastBossStageActor\FireBall">
-      <UniqueIdentifier>{97816cfb-e313-4a31-8e62-5b4ce38e5371}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Level\10. LastBossStage\LastBossStageActor\Serpent_Head">
-      <UniqueIdentifier>{1d8e4f89-2de2-46d4-8dba-a8e52e4ab945}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

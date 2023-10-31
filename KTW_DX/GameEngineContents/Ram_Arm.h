@@ -1,9 +1,11 @@
 #pragma once
 
+#include "DevilSummonActor.h"
+
 #define RAMARMANIMATIONINTER 0.1f
 #define MOVEENDPOINTERROR 0.05f
 
-class Ram_Arm : public GameEngineActor
+class Ram_Arm : public DevilSummonActor
 {
 public:
 	// constrcuter destructer
@@ -16,7 +18,6 @@ public:
 	Ram_Arm& operator=(const Ram_Arm& _Other) = delete;
 	Ram_Arm& operator=(Ram_Arm&& _Other) noexcept = delete;
 
-	void ChangeLeftDir();
 
 protected:
 
@@ -34,4 +35,5 @@ private:
 	void ArmMove(float _Delta, bool _Back = false);
 	bool MoveEndCheck();
 	bool DeathPosCheck();
+	void ChangeLeftDir() override;
 };

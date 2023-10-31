@@ -94,15 +94,49 @@ void Devil::Start()
 
 				else if (true == DevilRenderer->IsCurAnimation("Devil_Ram_Stay"))
 				{
-					if (true == ArmDeathCheck())
+					if (true == SummonDeathCheck())
 					{
-						Arms.clear();
+						SummonActors.clear();
 						DevilRenderer->ChangeAnimation("Devil_Ram_End");
 					}
 				}
 			};
 
 		DevilState.CreateState(EDEVILSTATE::Ram, Para);
+	}
+
+	DevilRenderer->CreateAnimation("Devil_Serpent", "Devil_Serpent", 0.1f, 0, 29, false);
+	DevilRenderer->CreateAnimation("Devil_Serpent_Stay", "Devil_Serpent", 0.1f, 30, 34, true);
+	DevilRenderer->CreateAnimation("Devil_Serpent_End", "Devil_Serpent", 0.1f, 34, 0, false);
+	DevilRenderer->SetEndEvent("Devil_Serpent_End", [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			DevilState.ChangeState(EDEVILSTATE::Idle);
+			return;
+		}
+	);
+	{
+		CreateStateParameter Para;
+
+		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Serpent"); };
+		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
+			{
+				if (true == DevilRenderer->IsCurAnimationEnd() && true == DevilRenderer->IsCurAnimation("Devil_Serpent"))
+				{
+					DevilRenderer->ChangeAnimation("Devil_Serpent_Stay");
+					CreateSerpentHead();
+				}
+
+				else if (true == DevilRenderer->IsCurAnimation("Devil_Serpent_Stay"))
+				{
+					if (true == SummonDeathCheck())
+					{
+						SummonActors.clear();
+						DevilRenderer->ChangeAnimation("Devil_Serpent_End");
+					}
+				}
+			};
+
+		DevilState.CreateState(EDEVILSTATE::Serpent, Para);
 	}
 
 	DevilRenderer->CreateAnimation("Devil_Spider", "Devil_Spider", 0.1f);
@@ -120,23 +154,6 @@ void Devil::Start()
 			};
 
 		DevilState.CreateState(EDEVILSTATE::Spider, Para);
-	}
-
-	DevilRenderer->CreateAnimation("Devil_Serpent", "Devil_Serpent", 0.1f);
-	{
-		CreateStateParameter Para;
-
-		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Serpent"); };
-		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
-			{
-				if (true == DevilRenderer->IsCurAnimationEnd())
-				{
-					DevilState.ChangeState(EDEVILSTATE::Idle);
-					return;
-				}
-			};
-
-		DevilState.CreateState(EDEVILSTATE::Serpent, Para);
 	}
 
 	DevilRenderer->CreateAnimation("Devil_Attack", "Devil_Attack", 0.1f, -1, -1, false);

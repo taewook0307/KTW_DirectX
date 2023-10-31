@@ -23,8 +23,8 @@ private:
 	void CreateSerpentHead();
 	void CreateFireBall();
 
-	bool ArmDeathCheck();
-	std::vector<std::shared_ptr<class Ram_Arm>> Arms;
+	bool SummonDeathCheck();
+	std::vector<std::shared_ptr<class DevilSummonActor>> SummonActors;
 
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> DevilRenderer = nullptr;
@@ -35,7 +35,6 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> TridentRenderer = nullptr;
 
 	GameEngineState DevilState;
-	bool SummonAttacker = false;
 
 	void Start() override;
 	void Update(float _Delta) override;

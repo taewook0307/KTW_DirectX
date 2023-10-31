@@ -7,25 +7,45 @@
 
 void Devil::CreateRamArm()
 {
-	SummonAttacker = true;
-	Arms.resize(2);
+	SummonActors.resize(2);
 
 	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
 	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
 
-	Arms[0] = GetLevel()->CreateActor<Ram_Arm>(EUPDATEORDER::Monster);
-	Arms[0]->Transform.SetLocalPosition({ CameraPos.X - WinHalfScale.X, -600.0f });
+	SummonActors[0] = GetLevel()->CreateActor<Ram_Arm>(EUPDATEORDER::Monster);
+	SummonActors[0]->Transform.SetLocalPosition({ CameraPos.X - WinHalfScale.X, CameraPos.Y - WinHalfScale.Y + 70.0f });
 
-	Arms[1] = GetLevel()->CreateActor<Ram_Arm>(EUPDATEORDER::Monster);
-	Arms[1]->ChangeLeftDir();
-	Arms[1]->Transform.SetLocalPosition({ CameraPos.X + WinHalfScale.X, -600.0f });
+	SummonActors[1] = GetLevel()->CreateActor<Ram_Arm>(EUPDATEORDER::Monster);
+	SummonActors[1]->ChangeLeftDir();
+	SummonActors[1]->Transform.SetLocalPosition({ CameraPos.X + WinHalfScale.X, CameraPos.Y - WinHalfScale.Y + 70.0f });
 }
 
-bool Devil::ArmDeathCheck()
+void Devil::CreateSpiderHead()
 {
-	for (size_t i = 0; i < Arms.size(); i++)
+	
+}
+
+void Devil::CreateSerpentHead()
+{
+	SummonActors.resize(1);
+
+	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
+	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
+
+	SummonActors[0] = GetLevel()->CreateActor<Serpent_Head>(EUPDATEORDER::Monster);
+	SummonActors[0]->Transform.SetLocalPosition({ CameraPos.X - WinHalfScale.X, CameraPos.Y - WinHalfScale.Y });
+}
+
+void Devil::CreateFireBall()
+{
+	
+}
+
+bool Devil::SummonDeathCheck()
+{
+	for (size_t i = 0; i < SummonActors.size(); i++)
 	{
-		bool Check = Arms[i]->IsDeath();
+		bool Check = SummonActors[i]->IsDeath();
 
 		if (false == Check)
 		{
@@ -33,19 +53,4 @@ bool Devil::ArmDeathCheck()
 		}
 	}
 	return true;
-}
-
-void Devil::CreateSpiderHead()
-{
-	SummonAttacker = true;
-}
-
-void Devil::CreateSerpentHead()
-{
-	SummonAttacker = true;
-}
-
-void Devil::CreateFireBall()
-{
-	SummonAttacker = true;
 }

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "BaseBoss.h"
+#include "DevilSummonActor.h"
 
-class Spider_Head : public BaseBoss
+class Spider_Head : public DevilSummonActor
 {
 public:
 	// constrcuter destructer

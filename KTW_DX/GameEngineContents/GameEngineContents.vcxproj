@@ -229,6 +229,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="DevilSummonActor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Ram_Arm.h">
       <SubType>
       </SubType>
@@ -528,6 +532,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="DevilChair.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DevilSummonActor.cpp">
       <SubType>
       </SubType>
     </ClCompile>

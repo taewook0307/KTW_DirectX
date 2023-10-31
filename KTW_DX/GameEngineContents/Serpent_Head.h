@@ -1,10 +1,10 @@
 #pragma once
 
-#include "BaseBoss.h"
+#include "DevilSummonActor.h"
 
 #define SERPENTENDPOINTRATIO 0.25f
 
-class Serpent_Head : public BaseBoss
+class Serpent_Head : public DevilSummonActor
 {
 public:
 	// constrcuter destructer
@@ -17,7 +17,6 @@ public:
 	Serpent_Head& operator=(const Serpent_Head& _Other) = delete;
 	Serpent_Head& operator=(Serpent_Head&& _Other) noexcept = delete;
 
-	void ChangeLeftDir();
 
 protected:
 
@@ -34,4 +33,5 @@ private:
 
 	void SerpentMove(float _Delta);
 	bool MoveEndCheck();
+	void ChangeLeftDir() override;
 };
