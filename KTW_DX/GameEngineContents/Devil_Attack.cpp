@@ -22,7 +22,12 @@ void Devil::CreateRamArm()
 
 void Devil::CreateSpiderHead()
 {
-	
+	SummonActors.resize(1);
+
+	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
+
+	SummonActors[0] = GetLevel()->CreateActor<Spider_Head>(EUPDATEORDER::Monster);
+	SummonActors[0]->Transform.SetLocalPosition({ WinHalfScale.X, 0.0f });
 }
 
 void Devil::CreateSerpentHead()

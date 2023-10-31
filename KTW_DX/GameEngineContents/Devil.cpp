@@ -105,8 +105,8 @@ void Devil::Start()
 		DevilState.CreateState(EDEVILSTATE::Ram, Para);
 	}
 
-	DevilRenderer->CreateAnimation("Devil_Serpent", "Devil_Serpent", 0.1f, 0, 29, false);
-	DevilRenderer->CreateAnimation("Devil_Serpent_Stay", "Devil_Serpent", 0.1f, 30, 34, true);
+	DevilRenderer->CreateAnimation("Devil_Serpent", "Devil_Serpent", 0.1f, 0, 30, false);
+	DevilRenderer->CreateAnimation("Devil_Serpent_Stay", "Devil_Serpent", 0.1f, 31, 34, true);
 	DevilRenderer->CreateAnimation("Devil_Serpent_End", "Devil_Serpent", 0.1f, 34, 0, false);
 	DevilRenderer->SetEndEvent("Devil_Serpent_End", [=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -139,17 +139,28 @@ void Devil::Start()
 		DevilState.CreateState(EDEVILSTATE::Serpent, Para);
 	}
 
-	DevilRenderer->CreateAnimation("Devil_Spider", "Devil_Spider", 0.1f);
+	DevilRenderer->CreateAnimation("Devil_Spider", "Devil_Spider", 0.1f, -1, -1, false);
+	DevilRenderer->CreateAnimation("Devil_Spider_Stay", "Devil_Spider", 0.1f, 51, 65, true);
+	DevilRenderer->CreateAnimation("Devil_Spider_End", "Devil_Spider", 0.1f, 65, 0, false);
 	{
 		CreateStateParameter Para;
 
 		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Spider"); };
 		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
 			{
-				if (true == DevilRenderer->IsCurAnimationEnd())
+				if (true == DevilRenderer->IsCurAnimationEnd() && true == DevilRenderer->IsCurAnimation("Devil_Spider"))
 				{
-					DevilState.ChangeState(EDEVILSTATE::Idle);
-					return;
+					DevilRenderer->ChangeAnimation("Devil_Spider_Stay");
+					CreateSpiderHead();
+				}
+
+				else if (true == DevilRenderer->IsCurAnimation("Devil_Spider_Stay"))
+				{
+					if (true == SummonDeathCheck())
+					{
+						SummonActors.clear();
+						DevilRenderer->ChangeAnimation("Devil_Spider_End");
+					}
 				}
 			};
 
