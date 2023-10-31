@@ -3,11 +3,10 @@
 
 #include "BaseCharacter.h"
 #include "ParryObject.h"
-//#include "Ram_Arm_Left.h"
-//#include "Ram_Arm_Right.h"
 //#include "Spider_Head.h"
 //#include "SummonDevil.h"
-#include "Serpent_Head.h"
+//#include "Ram_Arm.h"
+//#include "Serpent_Head.h"
 #include "Devil.h"
 #include "TestActor.h"
 #include "Map.h"
@@ -57,12 +56,15 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	/*std::shared_ptr<Ram_Arm_Left> LeftCheck = CreateActor<Ram_Arm_Left>(EUPDATEORDER::Monster);
 	LeftCheck->Transform.SetLocalPosition({ 1280.0f, -360.0f });*/
 
-	/*std::shared_ptr<Devil> Check = CreateActor<Devil>(EUPDATEORDER::Monster);
-	Check->Transform.SetLocalPosition({ 640.0f, -720.0f });*/
+	std::shared_ptr<Devil> Check = CreateActor<Devil>(EUPDATEORDER::Monster);
+	Check->Transform.SetLocalPosition({ 640.0f, -720.0f });
 
-	std::shared_ptr<Serpent_Head> Check = CreateActor<Serpent_Head>(EUPDATEORDER::Monster);
-	Check->SetLeftDir();
-	Check->Transform.SetLocalPosition({ 1280.0f, -720.0f });
+	/*std::shared_ptr<Ram_Arm> RightCheck = CreateActor<Ram_Arm>(EUPDATEORDER::Monster);
+	RightCheck->Transform.SetLocalPosition({ 0.0f, -360.0f });
+
+	std::shared_ptr<Ram_Arm> Check = CreateActor<Ram_Arm>(EUPDATEORDER::Monster);
+	Check->ChangeLeftDir();
+	Check->Transform.SetLocalPosition({ 1280.0f, -360.0f });*/
 }
 
 void TestStage::LevelEnd(GameEngineLevel* _NextLevel)

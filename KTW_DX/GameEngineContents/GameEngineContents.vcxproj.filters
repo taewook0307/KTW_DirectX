@@ -218,12 +218,6 @@
     <ClInclude Include="Ram_Arm.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
     </ClInclude>
-    <ClInclude Include="Ram_Arm_Right.h">
-      <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
-    </ClInclude>
-    <ClInclude Include="Ram_Arm_Left.h">
-      <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
-    </ClInclude>
     <ClInclude Include="Spider_Head.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Spider_Head</Filter>
     </ClInclude>
@@ -483,12 +477,6 @@
       <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
     </ClCompile>
     <ClCompile Include="Ram_Arm.cpp">
-      <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
-    </ClCompile>
-    <ClCompile Include="Ram_Arm_Right.cpp">
-      <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
-    </ClCompile>
-    <ClCompile Include="Ram_Arm_Left.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Ram_Arm</Filter>
     </ClCompile>
     <ClCompile Include="Spider_Head.cpp">

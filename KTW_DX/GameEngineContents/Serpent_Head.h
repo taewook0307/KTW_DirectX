@@ -17,7 +17,7 @@ public:
 	Serpent_Head& operator=(const Serpent_Head& _Other) = delete;
 	Serpent_Head& operator=(Serpent_Head&& _Other) noexcept = delete;
 
-	void SetLeftDir();
+	void ChangeLeftDir();
 
 protected:
 

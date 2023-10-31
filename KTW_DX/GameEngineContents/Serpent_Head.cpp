@@ -59,7 +59,7 @@ void Serpent_Head::Update(float _Delta)
 	SerpentState.Update(_Delta);
 }
 
-void Serpent_Head::SetLeftDir()
+void Serpent_Head::ChangeLeftDir()
 {
 	SerpentDir = EACTORDIR::Left;
 	SerpentRenderer->SetPivotType(PivotType::LeftBottom);
