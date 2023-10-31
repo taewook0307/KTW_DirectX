@@ -20,9 +20,6 @@ protected:
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> TestRenderer = nullptr;
 
-	std::shared_ptr<GameEngineSpriteRenderer> HeadRenderer = nullptr;
-	std::shared_ptr<GameEngineSpriteRenderer> BodyRenderer = nullptr;
-	std::shared_ptr<GameEngineSpriteRenderer> TridentRenderer = nullptr;
-
 	void Start() override;
+	void Update(float _Delta) override;
 };
