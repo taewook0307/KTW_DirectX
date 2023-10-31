@@ -1,10 +1,6 @@
 ﻿#include "PreCompile.h"
 #include "Devil.h"
 
-#include "Ram_Arm_Left.h"
-#include "Ram_Arm_Right.h"
-#include "Spider_Head.h"
-
 Devil::Devil()
 {
 }

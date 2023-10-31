@@ -18,6 +18,12 @@ public:
 protected:
 
 private:
+	void CreateRamArm();
+	void CreateSpiderHead();
+	void CreateSerpentHead();
+	void CreateFireBall();
+
+private:
 	std::shared_ptr<GameEngineSpriteRenderer> DevilRenderer = nullptr;
 
 	std::shared_ptr<GameEngineSpriteRenderer> EyeRenderer = nullptr;

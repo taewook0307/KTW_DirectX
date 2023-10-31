@@ -497,6 +497,9 @@
     <ClCompile Include="TestActor.cpp">
       <Filter>Level</Filter>
     </ClCompile>
+    <ClCompile Include="Devil_Attack.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">

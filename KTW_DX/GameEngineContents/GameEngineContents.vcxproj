@@ -535,6 +535,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Devil_Attack.cpp" />
     <ClCompile Include="Ram_Arm.cpp">
       <SubType>
       </SubType>
