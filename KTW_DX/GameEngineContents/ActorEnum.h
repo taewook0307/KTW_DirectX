@@ -171,6 +171,12 @@ enum class ESPIDERHEADSTATE
 	Land
 };
 
+enum class ESERPENTSTATE
+{
+	Move,
+	Back
+};
+
 //Enemy
 enum class EBARRELSTATE
 {

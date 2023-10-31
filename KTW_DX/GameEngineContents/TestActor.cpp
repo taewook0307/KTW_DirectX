@@ -14,8 +14,8 @@ void TestActor::Start()
 	GameEngineInput::AddInputObject(this);
 
 	TestRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
-	TestRenderer->CreateAnimation("Serpent_Head", "Serpent_Head", 0.1f, -1, -1, false);
-	TestRenderer->SetPivotType(PivotType::LeftBottom);
+	TestRenderer->CreateAnimation("Serpent_Head", "Serpent_Head", 0.1f, 0, 23, true);
+	TestRenderer->SetPivotType(PivotType::RightBottom);
 	TestRenderer->AutoSpriteSizeOn();
 
 	TestRenderer->ChangeAnimation("Serpent_Head");

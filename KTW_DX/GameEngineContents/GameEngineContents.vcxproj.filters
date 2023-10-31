@@ -233,6 +233,9 @@
     <ClInclude Include="TestActor.h">
       <Filter>Level</Filter>
     </ClInclude>
+    <ClInclude Include="Serpent_Head.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Serpent_Head</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -500,6 +503,9 @@
     <ClCompile Include="Devil_Attack.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor</Filter>
     </ClCompile>
+    <ClCompile Include="Serpent_Head.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Serpent_Head</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -663,6 +669,9 @@
     </Filter>
     <Filter Include="Level\10. LastBossStage\LastBossStageActor\FireBall">
       <UniqueIdentifier>{97816cfb-e313-4a31-8e62-5b4ce38e5371}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\10. LastBossStage\LastBossStageActor\Serpent_Head">
+      <UniqueIdentifier>{1d8e4f89-2de2-46d4-8dba-a8e52e4ab945}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
