@@ -14,17 +14,17 @@ void TestActor::Start()
 	GameEngineInput::AddInputObject(this);
 
 	TestRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
-	TestRenderer->CreateAnimation("Devil_Serpent", "Devil_Serpent", 0.1f, -1, -1, false);
-	TestRenderer->SetPivotType(PivotType::Bottom);
+	TestRenderer->CreateAnimation("Intro_Eye", "Intro_Eye", 0.1f, -1, -1, false);
+	TestRenderer->SetPivotType(PivotType::Right);
 	TestRenderer->AutoSpriteSizeOn();
 
-	TestRenderer->ChangeAnimation("Devil_Serpent");
+	TestRenderer->ChangeAnimation("Intro_Eye");
 }
 
 void TestActor::Update(float _Delta)
 {
 	if (true == GameEngineInput::IsDown('P', this))
 	{
-		TestRenderer->ChangeAnimation("Devil_Serpent", true);
+		TestRenderer->ChangeAnimation("Intro_Eye", true);
 	}
 }

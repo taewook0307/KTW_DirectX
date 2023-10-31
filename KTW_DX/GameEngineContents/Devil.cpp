@@ -1,6 +1,10 @@
 ﻿#include "PreCompile.h"
 #include "Devil.h"
 
+#include "Ram_Arm_Left.h"
+#include "Ram_Arm_Right.h"
+#include "Spider_Head.h"
+
 Devil::Devil()
 {
 }
@@ -12,6 +16,17 @@ Devil::~Devil()
 void Devil::Start()
 {
 	GameEngineInput::AddInputObject(this);
+
+	EyeRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
+	EyeRenderer->CreateAnimation("Intro_Eye", "Intro_Eye", 0.1f, -1, -1, false);
+	EyeRenderer->SetEndEvent("Intro_Eye", [=](GameEngineSpriteRenderer* _Parent)
+		{
+			EyeRenderer->Off();
+		}
+	);
+	EyeRenderer->Transform.SetLocalPosition({ -85.0f, 230.0f });
+	EyeRenderer->AutoSpriteSizeOn();
+	EyeRenderer->Off();
 
 	BodyRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
 	BodyRenderer->CreateAnimation("Devil_Attack_Body", "Devil_Attack_Body");
@@ -42,16 +57,28 @@ void Devil::Start()
 	DevilRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
 	DevilRenderer->AutoSpriteSizeOn();
 	DevilRenderer->SetPivotType(PivotType::Bottom);
-	DevilRenderer->CreateAnimation("Devil_Intro", "Devil_Intro", 0.1f, -1, -1, false);
+	DevilRenderer->CreateAnimation("Devil_Intro_Loop", "Devil_Intro", 0.1f, 0, 2);
+	DevilRenderer->CreateAnimation("Devil_Intro", "Devil_Intro", 0.1f, 4, -1, false);
 	{
 		CreateStateParameter Para;
 
-		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Intro"); };
+		Para.Start = [=](GameEngineState* _Parent)
+			{
+				DevilRenderer->ChangeAnimation("Devil_Intro_Loop");
+				EyeRenderer->ChangeAnimation("Intro_Eye", true);
+				EyeRenderer->On();
+			};
 		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
 			{
-				if (true == DevilRenderer->IsCurAnimationEnd())
+				if (true == EyeRenderer->IsCurAnimationEnd())
+				{
+					DevilRenderer->ChangeAnimation("Devil_Intro");
+				}
+
+				if (true == DevilRenderer->IsCurAnimation("Devil_Intro") && true == DevilRenderer->IsCurAnimationEnd())
 				{
 					DevilState.ChangeState(EDEVILSTATE::Idle);
+					return;
 				}
 			};
 
@@ -68,6 +95,7 @@ void Devil::Start()
 				if (true == GameEngineInput::IsDown('P', this))
 				{
 					DevilState.ChangeState(EDEVILSTATE::Spider);
+					return;
 				}
 			};
 
@@ -84,6 +112,7 @@ void Devil::Start()
 				if (true == DevilRenderer->IsCurAnimationEnd())
 				{
 					DevilState.ChangeState(EDEVILSTATE::Idle);
+					return;
 				}
 			};
 
@@ -100,12 +129,29 @@ void Devil::Start()
 				if (true == DevilRenderer->IsCurAnimationEnd())
 				{
 					DevilState.ChangeState(EDEVILSTATE::Idle);
+					return;
 				}
 			};
 
 		DevilState.CreateState(EDEVILSTATE::Spider, Para);
 	}
 
+	DevilRenderer->CreateAnimation("Devil_Serpent", "Devil_Serpent", 0.1f);
+	{
+		CreateStateParameter Para;
+
+		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Serpent"); };
+		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
+			{
+				if (true == DevilRenderer->IsCurAnimationEnd())
+				{
+					DevilState.ChangeState(EDEVILSTATE::Idle);
+					return;
+				}
+			};
+
+		DevilState.CreateState(EDEVILSTATE::Serpent, Para);
+	}
 
 	DevilRenderer->CreateAnimation("Devil_Attack", "Devil_Attack", 0.1f, -1, -1, false);
 	{
@@ -180,8 +226,24 @@ void Devil::Update(float _Delta)
 {
 	DevilState.Update(_Delta);
 
-	if (true == GameEngineInput::IsDown('P', this))
+	if (true == GameEngineInput::IsDown('1', this))
+	{
+		DevilState.ChangeState(EDEVILSTATE::Ram);
+	}
+	if (true == GameEngineInput::IsDown('2', this))
+	{
+		DevilState.ChangeState(EDEVILSTATE::Serpent);
+	}
+	if (true == GameEngineInput::IsDown('3', this))
 	{
 		DevilState.ChangeState(EDEVILSTATE::Attack);
+	}
+	if (true == GameEngineInput::IsDown('4', this))
+	{
+		DevilState.ChangeState(EDEVILSTATE::Spider);
+	}
+	if (true == GameEngineInput::IsDown('5', this))
+	{
+		DevilState.ChangeState(EDEVILSTATE::Intro);
 	}
 }
