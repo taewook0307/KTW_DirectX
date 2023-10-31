@@ -8,13 +8,31 @@
 void Devil::CreateRamArm()
 {
 	SummonAttacker = true;
+	Arms.resize(2);
 
-	std::shared_ptr<Ram_Arm> RightCheck = GetLevel()->CreateActor<Ram_Arm>(EUPDATEORDER::Monster);
-	RightCheck->Transform.SetLocalPosition({ 0.0f, -500.0f });
+	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
+	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
 
-	std::shared_ptr<Ram_Arm> LeftCheck = GetLevel()->CreateActor<Ram_Arm>(EUPDATEORDER::Monster);
-	LeftCheck->ChangeLeftDir();
-	LeftCheck->Transform.SetLocalPosition({ 1280.0f, -500.0f });
+	Arms[0] = GetLevel()->CreateActor<Ram_Arm>(EUPDATEORDER::Monster);
+	Arms[0]->Transform.SetLocalPosition({ CameraPos.X - WinHalfScale.X, -600.0f });
+
+	Arms[1] = GetLevel()->CreateActor<Ram_Arm>(EUPDATEORDER::Monster);
+	Arms[1]->ChangeLeftDir();
+	Arms[1]->Transform.SetLocalPosition({ CameraPos.X + WinHalfScale.X, -600.0f });
+}
+
+bool Devil::ArmDeathCheck()
+{
+	for (size_t i = 0; i < Arms.size(); i++)
+	{
+		bool Check = Arms[i]->IsDeath();
+
+		if (false == Check)
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
 void Devil::CreateSpiderHead()

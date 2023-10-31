@@ -23,6 +23,9 @@ private:
 	void CreateSerpentHead();
 	void CreateFireBall();
 
+	bool ArmDeathCheck();
+	std::vector<std::shared_ptr<class Ram_Arm>> Arms;
+
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> DevilRenderer = nullptr;
 

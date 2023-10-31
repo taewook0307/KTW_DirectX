@@ -91,6 +91,15 @@ void Devil::Start()
 					DevilRenderer->ChangeAnimation("Devil_Ram_Stay");
 					CreateRamArm();
 				}
+
+				else if (true == DevilRenderer->IsCurAnimation("Devil_Ram_Stay"))
+				{
+					if (true == ArmDeathCheck())
+					{
+						Arms.clear();
+						DevilRenderer->ChangeAnimation("Devil_Ram_End");
+					}
+				}
 			};
 
 		DevilState.CreateState(EDEVILSTATE::Ram, Para);
