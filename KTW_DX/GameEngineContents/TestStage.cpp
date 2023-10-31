@@ -56,11 +56,11 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	/*std::shared_ptr<Ram_Arm_Left> LeftCheck = CreateActor<Ram_Arm_Left>(EUPDATEORDER::Monster);
 	LeftCheck->Transform.SetLocalPosition({ 1280.0f, -360.0f });*/
 
-	/*std::shared_ptr<Devil> Check = CreateActor<Devil>(EUPDATEORDER::Monster);
-	Check->Transform.SetLocalPosition({ 640.0f, -720.0f });*/
+	std::shared_ptr<Devil> Check = CreateActor<Devil>(EUPDATEORDER::Monster);
+	Check->Transform.SetLocalPosition({ 640.0f, -720.0f });
 
-	std::shared_ptr<TestActor> Check = CreateActor<TestActor>(EUPDATEORDER::Monster);
-	Check->Transform.SetLocalPosition({ -500.0f, -700.0f });
+	/*std::shared_ptr<TestActor> Check = CreateActor<TestActor>(EUPDATEORDER::Monster);
+	Check->Transform.SetLocalPosition({ -500.0f, -700.0f });*/
 }
 
 void TestStage::LevelEnd(GameEngineLevel* _NextLevel)

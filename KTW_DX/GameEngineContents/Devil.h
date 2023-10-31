@@ -27,12 +27,17 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> DevilRenderer = nullptr;
 
 	std::shared_ptr<GameEngineSpriteRenderer> EyeRenderer = nullptr;
-	std::shared_ptr<GameEngineSpriteRenderer> HeadRenderer = nullptr;
 	std::shared_ptr<GameEngineSpriteRenderer> BodyRenderer = nullptr;
+	std::shared_ptr<GameEngineSpriteRenderer> HeadRenderer = nullptr;
 	std::shared_ptr<GameEngineSpriteRenderer> TridentRenderer = nullptr;
+
+	GameEngineState DevilState;
 
 	void Start() override;
 	void Update(float _Delta) override;
 
-	GameEngineState DevilState;
+	void EyeRendererSetting();
+	void BodyRendererSetting();
+	void HeadRendererSetting();
+	void TridentRendererSetting();
 };

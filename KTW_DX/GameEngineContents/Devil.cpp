@@ -13,48 +13,21 @@ void Devil::Start()
 {
 	GameEngineInput::AddInputObject(this);
 
-	EyeRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
-	EyeRenderer->CreateAnimation("Intro_Eye", "Intro_Eye", 0.1f, -1, -1, false);
-	EyeRenderer->SetEndEvent("Intro_Eye", [=](GameEngineSpriteRenderer* _Parent)
-		{
-			EyeRenderer->Off();
-		}
-	);
-	EyeRenderer->Transform.SetLocalPosition({ -85.0f, 230.0f });
-	EyeRenderer->AutoSpriteSizeOn();
-	EyeRenderer->Off();
-
-	BodyRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
-	BodyRenderer->CreateAnimation("Devil_Attack_Body", "Devil_Attack_Body");
-	BodyRenderer->AutoSpriteSizeOn();
-	BodyRenderer->SetPivotType(PivotType::Bottom);
-	BodyRenderer->Off();
-
-	HeadRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
-	HeadRenderer->CreateAnimation("Devil_Attack_Head", "Devil_Attack_Head");
-	HeadRenderer->AutoSpriteSizeOn();
-	HeadRenderer->SetPivotType(PivotType::Bottom);
-	HeadRenderer->Off();
-
-	TridentRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
-	TridentRenderer->CreateAnimation("Devil_Attack_Trident", "Devil_Attack_Trident", 0.1f, -1, -1, false);
-	TridentRenderer->SetEndEvent("Devil_Attack_Trident", [=](GameEngineSpriteRenderer* _Parent)
-		{
-			TridentRenderer->Off();
-			HeadRenderer->Off();
-			BodyRenderer->Off();
-			DevilRenderer->On();
-		}
-	);
-	TridentRenderer->AutoSpriteSizeOn();
-	TridentRenderer->Transform.SetLocalPosition({ 0.0f, 350.0f });
-	TridentRenderer->Off();
-
+	EyeRendererSetting();
+	BodyRendererSetting();
+	HeadRendererSetting();
+	TridentRendererSetting();
+	
 	DevilRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
 	DevilRenderer->AutoSpriteSizeOn();
 	DevilRenderer->SetPivotType(PivotType::Bottom);
 	DevilRenderer->CreateAnimation("Devil_Intro_Loop", "Devil_Intro", 0.1f, 0, 2);
-	DevilRenderer->CreateAnimation("Devil_Intro", "Devil_Intro", 0.1f, 4, -1, false);
+	DevilRenderer->CreateAnimation("Devil_Intro", "Devil_Intro", 0.1f, 3, -1, false);
+	DevilRenderer->SetFrameEvent("Devil_Intro", 4, [=](GameEngineSpriteRenderer* _State)
+		{
+			EyeRenderer->Off();
+		}
+	);
 	{
 		CreateStateParameter Para;
 
@@ -242,4 +215,48 @@ void Devil::Update(float _Delta)
 	{
 		DevilState.ChangeState(EDEVILSTATE::Intro);
 	}
+}
+
+void Devil::EyeRendererSetting()
+{
+	EyeRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
+	EyeRenderer->CreateAnimation("Intro_Eye", "Intro_Eye", 0.1f, -1, -1, false);
+	EyeRenderer->Transform.SetLocalPosition({ -85.0f, 230.0f });
+	EyeRenderer->AutoSpriteSizeOn();
+	EyeRenderer->Off();
+}
+
+void Devil::BodyRendererSetting()
+{
+	BodyRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
+	BodyRenderer->CreateAnimation("Devil_Attack_Body", "Devil_Attack_Body");
+	BodyRenderer->AutoSpriteSizeOn();
+	BodyRenderer->SetPivotType(PivotType::Bottom);
+	BodyRenderer->Off();
+}
+
+void Devil::HeadRendererSetting()
+{
+	HeadRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
+	HeadRenderer->CreateAnimation("Devil_Attack_Head", "Devil_Attack_Head");
+	HeadRenderer->AutoSpriteSizeOn();
+	HeadRenderer->SetPivotType(PivotType::Bottom);
+	HeadRenderer->Off();
+}
+
+void Devil::TridentRendererSetting()
+{
+	TridentRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
+	TridentRenderer->CreateAnimation("Devil_Attack_Trident", "Devil_Attack_Trident", 0.1f, -1, -1, false);
+	TridentRenderer->SetEndEvent("Devil_Attack_Trident", [=](GameEngineSpriteRenderer* _Parent)
+		{
+			TridentRenderer->Off();
+			HeadRenderer->Off();
+			BodyRenderer->Off();
+			DevilRenderer->On();
+		}
+	);
+	TridentRenderer->AutoSpriteSizeOn();
+	TridentRenderer->Transform.SetLocalPosition({ 0.0f, 350.0f });
+	TridentRenderer->Off();
 }
