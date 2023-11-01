@@ -26,6 +26,9 @@ private:
 	bool SummonDeathCheck();
 	std::vector<std::shared_ptr<class DevilSummonActor>> SummonActors;
 
+	EACTORDIR SerpentDir = EACTORDIR::Left;
+	void ChangeSerpentDir();
+
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> DevilRenderer = nullptr;
 

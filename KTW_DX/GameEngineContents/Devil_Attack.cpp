@@ -39,6 +39,12 @@ void Devil::CreateSerpentHead()
 
 	SummonActors[0] = GetLevel()->CreateActor<Serpent_Head>(EUPDATEORDER::Monster);
 	SummonActors[0]->Transform.SetLocalPosition({ CameraPos.X - WinHalfScale.X, CameraPos.Y - WinHalfScale.Y });
+
+	if (EACTORDIR::Right == SerpentDir)
+	{
+		SummonActors[0]->ChangeLeftDir();
+		SummonActors[0]->Transform.SetLocalPosition({ CameraPos.X + WinHalfScale.X, CameraPos.Y - WinHalfScale.Y });
+	}
 }
 
 void Devil::CreateFireBall()

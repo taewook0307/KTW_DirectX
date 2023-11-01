@@ -105,11 +105,60 @@ void Devil::Start()
 		DevilState.CreateState(EDEVILSTATE::Ram, Para);
 	}
 
-	DevilRenderer->CreateAnimation("Devil_Serpent", "Devil_Serpent", 0.1f, 0, 30, false);
-	DevilRenderer->CreateAnimation("Devil_Serpent_Stay", "Devil_Serpent", 0.1f, 31, 34, true);
-	DevilRenderer->CreateAnimation("Devil_Serpent_End", "Devil_Serpent", 0.1f, 34, 0, false);
+	DevilRenderer->CreateAnimation("Devil_Serpent", "Devil_Serpent", 0.1f, -1, -1, false);
+	DevilRenderer->SetEndEvent("Devil_Serpent", [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			if (EACTORDIR::Left == SerpentDir)
+			{
+				DevilRenderer->ChangeAnimation("Devil_Serpent_Left");
+			}
+			else
+			{
+				DevilRenderer->ChangeAnimation("Devil_Serpent_Right");
+			}
+		}
+	);
+
+	DevilRenderer->CreateAnimation("Devil_Serpent_Left", "Devil_Serpent_Left", 0.1f, 0, 0, false);
+	DevilRenderer->SetEndEvent("Devil_Serpent_Left", [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			if (EACTORDIR::Left == SerpentDir)
+			{
+				DevilRenderer->ChangeAnimation("Devil_Serpent_Stay_Left");
+				CreateSerpentHead();
+			}
+		}
+	);
+	DevilRenderer->CreateAnimation("Devil_Serpent_Stay_Left", "Devil_Serpent_Left", 0.1f, 1, 4, true);
+
+	DevilRenderer->CreateAnimation("Devil_Serpent_Right", "Devil_Serpent_Right", 0.1f, 0, 0, false);
+	DevilRenderer->SetEndEvent("Devil_Serpent_Right", [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			if (EACTORDIR::Right == SerpentDir)
+			{
+				DevilRenderer->ChangeAnimation("Devil_Serpent_Stay_Right");
+				CreateSerpentHead();
+			}
+		}
+	);
+	DevilRenderer->CreateAnimation("Devil_Serpent_Stay_Right", "Devil_Serpent_Right", 0.1f, 1, 4, true);
+
+	DevilRenderer->CreateAnimation("Devil_Serpent_End_Left", "Devil_Serpent_Left", 0.1f, 4, 0, false);
+	DevilRenderer->SetEndEvent("Devil_Serpent_End_Left", [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			DevilRenderer->ChangeAnimation("Devil_Serpent_End");
+		}
+	);
+	DevilRenderer->CreateAnimation("Devil_Serpent_End_Right", "Devil_Serpent_Right", 0.1f, 4, 0, false);
+	DevilRenderer->SetEndEvent("Devil_Serpent_End_Right", [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			DevilRenderer->ChangeAnimation("Devil_Serpent_End");
+		}
+	);
+	DevilRenderer->CreateAnimation("Devil_Serpent_End", "Devil_Serpent", 0.1f, 29, 0, false);
 	DevilRenderer->SetEndEvent("Devil_Serpent_End", [=](GameEngineSpriteRenderer* _Renderer)
 		{
+			ChangeSerpentDir();
 			DevilState.ChangeState(EDEVILSTATE::Idle);
 			return;
 		}
@@ -120,18 +169,21 @@ void Devil::Start()
 		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Serpent"); };
 		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
 			{
-				if (true == DevilRenderer->IsCurAnimationEnd() && true == DevilRenderer->IsCurAnimation("Devil_Serpent"))
-				{
-					DevilRenderer->ChangeAnimation("Devil_Serpent_Stay");
-					CreateSerpentHead();
-				}
-
-				else if (true == DevilRenderer->IsCurAnimation("Devil_Serpent_Stay"))
+				if (true == DevilRenderer->IsCurAnimation("Devil_Serpent_Stay_Left"))
 				{
 					if (true == SummonDeathCheck())
 					{
 						SummonActors.clear();
-						DevilRenderer->ChangeAnimation("Devil_Serpent_End");
+						DevilRenderer->ChangeAnimation("Devil_Serpent_End_Left");
+					}
+				}
+
+				if (true == DevilRenderer->IsCurAnimation("Devil_Serpent_Stay_Right"))
+				{
+					if (true == SummonDeathCheck())
+					{
+						SummonActors.clear();
+						DevilRenderer->ChangeAnimation("Devil_Serpent_End_Right");
 					}
 				}
 			};
@@ -233,7 +285,7 @@ void Devil::Start()
 		DevilState.CreateState(EDEVILSTATE::AttackEnd, Para);
 	}
 
-	DevilState.ChangeState(EDEVILSTATE::Intro);
+	DevilState.ChangeState(EDEVILSTATE::Idle);
 }
 
 void Devil::Update(float _Delta)
@@ -304,4 +356,16 @@ void Devil::TridentRendererSetting()
 	TridentRenderer->AutoSpriteSizeOn();
 	TridentRenderer->Transform.SetLocalPosition({ 0.0f, 350.0f });
 	TridentRenderer->Off();
+}
+
+void Devil::ChangeSerpentDir()
+{
+	if (EACTORDIR::Left == SerpentDir)
+	{
+		SerpentDir = EACTORDIR::Right;
+	}
+	else
+	{
+		SerpentDir = EACTORDIR::Left;
+	}
 }

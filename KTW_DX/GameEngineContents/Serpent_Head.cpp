@@ -48,8 +48,10 @@ void Serpent_Head::Start()
 	SerpentRenderer->SetPivotType(PivotType::RightBottom);
 	SerpentRenderer->AutoSpriteSizeOn();
 
+	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
-	MoveEndPoint = WinScale.X - (WinScale.X * SERPENTENDPOINTRATIO);
+
+	MoveEndPoint = CameraPos.X + (WinScale.X * SERPENTENDPOINTRATIO);
 
 	SerpentState.ChangeState(ESERPENTSTATE::Move);
 }
@@ -65,8 +67,10 @@ void Serpent_Head::ChangeLeftDir()
 	SerpentRenderer->SetPivotType(PivotType::LeftBottom);
 	SerpentRenderer->LeftFlip();
 
+	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
-	MoveEndPoint = WinScale.X * SERPENTENDPOINTRATIO;
+
+	MoveEndPoint = CameraPos.X - (WinScale.X * SERPENTENDPOINTRATIO);
 }
 
 void Serpent_Head::SerpentMove(float _Delta)
