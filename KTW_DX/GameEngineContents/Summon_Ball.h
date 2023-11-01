@@ -1,6 +1,8 @@
 #pragma once
 
-class Summon_Ball
+#include "SummonAttackObject.h"
+
+class Summon_Ball : public SummonAttackObject
 {
 public:
 	// constrcuter destructer
@@ -16,5 +18,10 @@ public:
 protected:
 
 private:
+	std::shared_ptr<GameEngineSpriteRenderer> BallRenderer = nullptr;
 
+	GameEngineState BallState;
+
+	void Start() override;
+	void Update(float _Delta) override;
 };

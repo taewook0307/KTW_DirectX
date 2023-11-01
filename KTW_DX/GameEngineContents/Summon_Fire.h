@@ -1,8 +1,8 @@
 #pragma once
 
-#include "DevilSummonActor.h"
+#include "SummonAttackObject.h"
 
-class Summon_Fire : public DevilSummonActor
+class Summon_Fire : public SummonAttackObject
 {
 public:
 	// constrcuter destructer
@@ -18,5 +18,13 @@ public:
 protected:
 
 private:
+	float Speed = 500.0f;
+	float4 DirPos = float4::ZERO;
 
+	std::shared_ptr<GameEngineSpriteRenderer> FireRenderer = nullptr;
+
+	GameEngineState FireState;
+
+	void Start() override;
+	void Update(float _Delta);
 };

@@ -221,9 +221,6 @@
     <ClInclude Include="SummonDevil.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\SummonDevil</Filter>
     </ClInclude>
-    <ClInclude Include="TestActor.h">
-      <Filter>Level</Filter>
-    </ClInclude>
     <ClInclude Include="Serpent_Head.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\Serpent_Head</Filter>
     </ClInclude>
@@ -237,6 +234,12 @@
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
     </ClInclude>
     <ClInclude Include="Summon_Fire.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="SummonAttacker_Effect.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="SummonAttackObject.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
     </ClInclude>
   </ItemGroup>
@@ -491,9 +494,6 @@
     <ClCompile Include="SummonDevil.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor\SummonDevil</Filter>
     </ClCompile>
-    <ClCompile Include="TestActor.cpp">
-      <Filter>Level</Filter>
-    </ClCompile>
     <ClCompile Include="Serpent_Head.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\Serpent_Head</Filter>
     </ClCompile>
@@ -510,6 +510,12 @@
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
     </ClCompile>
     <ClCompile Include="Summon_Fire.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="SummonAttacker_Effect.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="SummonAttackObject.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
     </ClCompile>
   </ItemGroup>

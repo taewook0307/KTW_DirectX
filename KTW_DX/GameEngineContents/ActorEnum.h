@@ -177,6 +177,13 @@ enum class ESERPENTSTATE
 	Back
 };
 
+enum class ESUMMONATTACKOBJECTSTATE
+{
+	Spawn,
+	Idle,
+	Move
+};
+
 //Enemy
 enum class EBARRELSTATE
 {
