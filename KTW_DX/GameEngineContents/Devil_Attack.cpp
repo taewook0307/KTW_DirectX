@@ -38,12 +38,12 @@ void Devil::CreateSerpentHead()
 	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
 
 	SummonActors[0] = GetLevel()->CreateActor<Serpent_Head>(EUPDATEORDER::Monster);
-	SummonActors[0]->Transform.SetLocalPosition({ CameraPos.X - WinHalfScale.X, CameraPos.Y - WinHalfScale.Y });
+	SummonActors[0]->Transform.SetLocalPosition({ CameraPos.X - WinHalfScale.X, CameraPos.Y - WinHalfScale.Y - 50.0f });
 
 	if (EACTORDIR::Right == SerpentDir)
 	{
 		SummonActors[0]->ChangeLeftDir();
-		SummonActors[0]->Transform.SetLocalPosition({ CameraPos.X + WinHalfScale.X, CameraPos.Y - WinHalfScale.Y });
+		SummonActors[0]->Transform.SetLocalPosition({ CameraPos.X + WinHalfScale.X, CameraPos.Y - WinHalfScale.Y - 50.0f });
 	}
 }
 

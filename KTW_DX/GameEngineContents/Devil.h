@@ -1,5 +1,7 @@
 #pragma once
 
+#define DEVILANIMATIONINTER 0.05f
+
 #include "BaseBoss.h"
 
 class Devil : public BaseBoss

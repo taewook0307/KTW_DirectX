@@ -33,7 +33,7 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	float4 MapScale = MapTexture->GetScale();
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 
-	GetMainCamera()->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y });
+	GetMainCamera()->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Half().Y });
 
 	StageBackGround = CreateActor<BackGround>(EUPDATEORDER::BackGround);
 	StageBackGround->BackGroundInit("LastStageBackGround.png");

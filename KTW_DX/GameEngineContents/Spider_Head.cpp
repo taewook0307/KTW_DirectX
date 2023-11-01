@@ -129,11 +129,11 @@ void Spider_Head::Update(float _Delta)
 	if (800.0f < GravityForceY)
 	{
 		float4 Pos = Transform.GetWorldPosition() + float4{ 0.0f, 80.0f };
-		ActorGravity(_Delta, Pos, 700.0f);
+		ActorGravity(_Delta, Pos, 800.0f);
 	}
 	else if (-200.0f < GravityForceY)
 	{
-		ActorGravity(_Delta, Transform.GetWorldPosition(), 700.0f);
+		ActorGravity(_Delta, Transform.GetWorldPosition(), 800.0f);
 	}
 	else
 	{

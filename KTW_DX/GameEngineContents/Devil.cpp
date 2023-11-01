@@ -21,8 +21,8 @@ void Devil::Start()
 	DevilRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
 	DevilRenderer->AutoSpriteSizeOn();
 	DevilRenderer->SetPivotType(PivotType::Bottom);
-	DevilRenderer->CreateAnimation("Devil_Intro_Loop", "Devil_Intro", 0.1f, 0, 2);
-	DevilRenderer->CreateAnimation("Devil_Intro", "Devil_Intro", 0.1f, 3, -1, false);
+	DevilRenderer->CreateAnimation("Devil_Intro_Loop", "Devil_Intro", DEVILANIMATIONINTER, 0, 2);
+	DevilRenderer->CreateAnimation("Devil_Intro", "Devil_Intro", DEVILANIMATIONINTER, 3, -1, false);
 	DevilRenderer->SetFrameEvent("Devil_Intro", 4, [=](GameEngineSpriteRenderer* _State)
 		{
 			EyeRenderer->Off();
@@ -54,7 +54,7 @@ void Devil::Start()
 		DevilState.CreateState(EDEVILSTATE::Intro, Para);
 	}
 
-	DevilRenderer->CreateAnimation("Devil_Idle", "Devil_Idle", 0.05f);
+	DevilRenderer->CreateAnimation("Devil_Idle", "Devil_Idle", DEVILANIMATIONINTER);
 	{
 		CreateStateParameter Para;
 
@@ -71,15 +71,15 @@ void Devil::Start()
 		DevilState.CreateState(EDEVILSTATE::Idle, Para);
 	}
 
-	DevilRenderer->CreateAnimation("Devil_Ram", "Devil_Ram", 0.1f, -1, -1, false);
+	DevilRenderer->CreateAnimation("Devil_Ram", "Devil_Ram", DEVILANIMATIONINTER, -1, -1, false);
 	DevilRenderer->SetEndEvent("Devil_Ram", [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			DevilRenderer->ChangeAnimation("Devil_Ram_Stay");
 			CreateRamArm();
 		}
 	);
-	DevilRenderer->CreateAnimation("Devil_Ram_Stay", "Devil_Ram", 0.1f, 29, 30, true);
-	DevilRenderer->CreateAnimation("Devil_Ram_End", "Devil_Ram", 0.1f, 30, 0, false);
+	DevilRenderer->CreateAnimation("Devil_Ram_Stay", "Devil_Ram", DEVILANIMATIONINTER, 29, 30, true);
+	DevilRenderer->CreateAnimation("Devil_Ram_End", "Devil_Ram", DEVILANIMATIONINTER, 30, 0, false);
 	DevilRenderer->SetEndEvent("Devil_Ram_End", [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			DevilState.ChangeState(EDEVILSTATE::Idle);
@@ -105,7 +105,7 @@ void Devil::Start()
 		DevilState.CreateState(EDEVILSTATE::Ram, Para);
 	}
 
-	DevilRenderer->CreateAnimation("Devil_Serpent", "Devil_Serpent", 0.1f, -1, -1, false);
+	DevilRenderer->CreateAnimation("Devil_Serpent", "Devil_Serpent", DEVILANIMATIONINTER, -1, -1, false);
 	DevilRenderer->SetEndEvent("Devil_Serpent", [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			if (EACTORDIR::Left == SerpentDir)
@@ -119,7 +119,7 @@ void Devil::Start()
 		}
 	);
 
-	DevilRenderer->CreateAnimation("Devil_Serpent_Left", "Devil_Serpent_Left", 0.1f, 0, 0, false);
+	DevilRenderer->CreateAnimation("Devil_Serpent_Left", "Devil_Serpent_Left", DEVILANIMATIONINTER, 0, 0, false);
 	DevilRenderer->SetEndEvent("Devil_Serpent_Left", [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			if (EACTORDIR::Left == SerpentDir)
@@ -129,9 +129,9 @@ void Devil::Start()
 			}
 		}
 	);
-	DevilRenderer->CreateAnimation("Devil_Serpent_Stay_Left", "Devil_Serpent_Left", 0.1f, 1, 4, true);
+	DevilRenderer->CreateAnimation("Devil_Serpent_Stay_Left", "Devil_Serpent_Left", DEVILANIMATIONINTER, 1, 4, true);
 
-	DevilRenderer->CreateAnimation("Devil_Serpent_Right", "Devil_Serpent_Right", 0.1f, 0, 0, false);
+	DevilRenderer->CreateAnimation("Devil_Serpent_Right", "Devil_Serpent_Right", DEVILANIMATIONINTER, 0, 0, false);
 	DevilRenderer->SetEndEvent("Devil_Serpent_Right", [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			if (EACTORDIR::Right == SerpentDir)
@@ -141,21 +141,21 @@ void Devil::Start()
 			}
 		}
 	);
-	DevilRenderer->CreateAnimation("Devil_Serpent_Stay_Right", "Devil_Serpent_Right", 0.1f, 1, 4, true);
+	DevilRenderer->CreateAnimation("Devil_Serpent_Stay_Right", "Devil_Serpent_Right", DEVILANIMATIONINTER, 1, 4, true);
 
-	DevilRenderer->CreateAnimation("Devil_Serpent_End_Left", "Devil_Serpent_Left", 0.1f, 4, 0, false);
+	DevilRenderer->CreateAnimation("Devil_Serpent_End_Left", "Devil_Serpent_Left", DEVILANIMATIONINTER, 4, 0, false);
 	DevilRenderer->SetEndEvent("Devil_Serpent_End_Left", [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			DevilRenderer->ChangeAnimation("Devil_Serpent_End");
 		}
 	);
-	DevilRenderer->CreateAnimation("Devil_Serpent_End_Right", "Devil_Serpent_Right", 0.1f, 4, 0, false);
+	DevilRenderer->CreateAnimation("Devil_Serpent_End_Right", "Devil_Serpent_Right", DEVILANIMATIONINTER, 4, 0, false);
 	DevilRenderer->SetEndEvent("Devil_Serpent_End_Right", [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			DevilRenderer->ChangeAnimation("Devil_Serpent_End");
 		}
 	);
-	DevilRenderer->CreateAnimation("Devil_Serpent_End", "Devil_Serpent", 0.1f, 29, 0, false);
+	DevilRenderer->CreateAnimation("Devil_Serpent_End", "Devil_Serpent", DEVILANIMATIONINTER, 29, 0, false);
 	DevilRenderer->SetEndEvent("Devil_Serpent_End", [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			ChangeSerpentDir();
@@ -191,15 +191,15 @@ void Devil::Start()
 		DevilState.CreateState(EDEVILSTATE::Serpent, Para);
 	}
 
-	DevilRenderer->CreateAnimation("Devil_Spider", "Devil_Spider", 0.1f, -1, -1, false);
+	DevilRenderer->CreateAnimation("Devil_Spider", "Devil_Spider", DEVILANIMATIONINTER, -1, -1, false);
 	DevilRenderer->SetEndEvent("Devil_Spider", [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			DevilRenderer->ChangeAnimation("Devil_Spider_Stay");
 			CreateSpiderHead();
 		}
 	);
-	DevilRenderer->CreateAnimation("Devil_Spider_Stay", "Devil_Spider", 0.1f, 51, 65, true);
-	DevilRenderer->CreateAnimation("Devil_Spider_End", "Devil_Spider", 0.1f, 65, 0, false);
+	DevilRenderer->CreateAnimation("Devil_Spider_Stay", "Devil_Spider", DEVILANIMATIONINTER, 51, 65, true);
+	DevilRenderer->CreateAnimation("Devil_Spider_End", "Devil_Spider", DEVILANIMATIONINTER, 65, 0, false);
 	DevilRenderer->SetEndEvent("Devil_Spider_End", [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			DevilState.ChangeState(EDEVILSTATE::Idle);
@@ -225,7 +225,7 @@ void Devil::Start()
 		DevilState.CreateState(EDEVILSTATE::Spider, Para);
 	}
 
-	DevilRenderer->CreateAnimation("Devil_Attack", "Devil_Attack", 0.1f, -1, -1, false);
+	DevilRenderer->CreateAnimation("Devil_Attack", "Devil_Attack", DEVILANIMATIONINTER, -1, -1, false);
 	{
 		CreateStateParameter Para;
 
@@ -268,7 +268,7 @@ void Devil::Start()
 		DevilState.CreateState(EDEVILSTATE::AttackStay, Para);
 	}
 
-	DevilRenderer->CreateAnimation("Devil_Attack_End", "Devil_Attack", 0.1f, 7, 0, false);
+	DevilRenderer->CreateAnimation("Devil_Attack_End", "Devil_Attack", DEVILANIMATIONINTER, 7, 0, false);
 	{
 		CreateStateParameter Para;
 
@@ -323,7 +323,7 @@ void Devil::Update(float _Delta)
 void Devil::EyeRendererSetting()
 {
 	EyeRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
-	EyeRenderer->CreateAnimation("Intro_Eye", "Intro_Eye", 0.1f, -1, -1, false);
+	EyeRenderer->CreateAnimation("Intro_Eye", "Intro_Eye", DEVILANIMATIONINTER, -1, -1, false);
 	EyeRenderer->Transform.SetLocalPosition({ -85.0f, 230.0f });
 	EyeRenderer->AutoSpriteSizeOn();
 	EyeRenderer->Off();
@@ -332,7 +332,7 @@ void Devil::EyeRendererSetting()
 void Devil::BodyRendererSetting()
 {
 	BodyRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
-	BodyRenderer->CreateAnimation("Devil_Attack_Body", "Devil_Attack_Body");
+	BodyRenderer->CreateAnimation("Devil_Attack_Body", "Devil_Attack_Body", DEVILANIMATIONINTER);
 	BodyRenderer->AutoSpriteSizeOn();
 	BodyRenderer->SetPivotType(PivotType::Bottom);
 	BodyRenderer->Off();
@@ -341,7 +341,7 @@ void Devil::BodyRendererSetting()
 void Devil::HeadRendererSetting()
 {
 	HeadRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
-	HeadRenderer->CreateAnimation("Devil_Attack_Head", "Devil_Attack_Head");
+	HeadRenderer->CreateAnimation("Devil_Attack_Head", "Devil_Attack_Head", DEVILANIMATIONINTER);
 	HeadRenderer->AutoSpriteSizeOn();
 	HeadRenderer->SetPivotType(PivotType::Bottom);
 	HeadRenderer->Off();
@@ -350,7 +350,7 @@ void Devil::HeadRendererSetting()
 void Devil::TridentRendererSetting()
 {
 	TridentRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
-	TridentRenderer->CreateAnimation("Devil_Attack_Trident", "Devil_Attack_Trident", 0.1f, -1, -1, false);
+	TridentRenderer->CreateAnimation("Devil_Attack_Trident", "Devil_Attack_Trident", DEVILANIMATIONINTER, -1, -1, false);
 	TridentRenderer->SetEndEvent("Devil_Attack_Trident", [=](GameEngineSpriteRenderer* _Parent)
 		{
 			TridentRenderer->Off();
