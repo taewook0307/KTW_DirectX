@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "Summon_Fire.h"
 
+#include "BaseCharacter.h"
+
 Summon_Fire::Summon_Fire()
 {
 }
@@ -41,6 +43,26 @@ void Summon_Fire::Start()
 		Para.Start = [=](GameEngineState* _Parent) { FireRenderer->ChangeAnimation("Fire_Idle"); };
 		FireState.CreateState(ESUMMONATTACKOBJECTSTATE::Idle, Para);
 	}
+
+	{
+		CreateStateParameter Para;
+		Para.Start = [=](GameEngineState* _Parent) { DirPosSetting(); };
+		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
+			{
+				if (true == CameraOutCheck())
+				{
+					Death();
+					return;
+				}
+
+				if (float4::ZERO != DirPos)
+				{
+					Transform.AddLocalPosition(DirPos * _DeltaTime * Speed);
+				}
+			};
+		FireState.CreateState(ESUMMONATTACKOBJECTSTATE::Move, Para);
+	}
+
 	FireRenderer->AutoSpriteSizeOn();
 
 	FireState.ChangeState(ESUMMONATTACKOBJECTSTATE::Spawn);
@@ -49,4 +71,37 @@ void Summon_Fire::Start()
 void Summon_Fire::Update(float _Delta)
 {
 	FireState.Update(_Delta);
+}
+
+void Summon_Fire::DirPosSetting()
+{
+	float4 CharacterPos = BaseCharacter::MainCharacter->Transform.GetWorldPosition();
+	float4 Pos = Transform.GetWorldPosition();
+
+	float4 Dir = CharacterPos - Pos;
+
+	DirPos = Dir.NormalizeReturn();
+}
+
+bool Summon_Fire::CameraOutCheck()
+{
+	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
+	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
+
+	float MinX = CameraPos.X - WinHalfScale.X;
+	float MaxX = CameraPos.X + WinHalfScale.X;
+	float MinY = CameraPos.Y + WinHalfScale.Y;
+	float MaxY = CameraPos.Y - WinHalfScale.Y;
+
+	float4 Pos = Transform.GetWorldPosition();
+
+	if (MinX > Pos.X
+		|| MaxX < Pos.X
+		|| MinY < Pos.Y
+		|| MaxY > Pos.Y)
+	{
+		return true;
+	}
+
+	return false;
 }

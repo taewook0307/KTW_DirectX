@@ -21,8 +21,8 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	GameEngineInput::AddInputObject(this);
 
-	//ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
-	//ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
 	/*ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\Tutorial");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");*/
 
@@ -38,8 +38,8 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -MapScale.Y + WinScaleHalf.Y, 0.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
-	/*Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
-	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);*/
+	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
+	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
 
 	/*TestParry = CreateActor<ParryObject>(EUPDATEORDER::Bullet);
 	TestParry->Transform.SetLocalPosition({ 640.0f, -360.0f });
@@ -52,8 +52,8 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	TestMap->PixelMapInit("LastStagePixelMap.Png");
 	TestMap->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y});
 
-	std::shared_ptr<Summon_Ball> BallCheck = CreateActor<Summon_Ball>(EUPDATEORDER::Monster);
-	BallCheck->Transform.SetLocalPosition({ 540.0f, -380.0f });
+	/*std::shared_ptr<Summon_Ball> BallCheck = CreateActor<Summon_Ball>(EUPDATEORDER::Monster);
+	BallCheck->Transform.SetLocalPosition({ 540.0f, -380.0f });*/
 
 	std::shared_ptr<Summon_Fire> FireCheck = CreateActor<Summon_Fire>(EUPDATEORDER::Monster);
 	FireCheck->Transform.SetLocalPosition({ 740.0f, -380.0f });
@@ -72,6 +72,8 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 void TestStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\FireBall");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\CupHead");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\Bullet");
 	//ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\Devil");
 
 	/*if (nullptr != Player)
