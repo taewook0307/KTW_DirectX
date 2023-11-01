@@ -27,7 +27,7 @@ void Spider_Head::Start()
 			};
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
 			{
-				GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
+				GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), GameEngineColor::WHITE);
 
 				if (FLOORCOLOR == CheckColor)
 				{
@@ -61,7 +61,7 @@ void Spider_Head::Start()
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent)
 			{
-				SetGravityForce(float4::UP * 1000.0f);
+				SetGravityForce(float4::UP * JumpPower);
 				SpiderRenderer->ChangeAnimation("SpiderHead_Jump");
 			};
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
@@ -87,7 +87,7 @@ void Spider_Head::Start()
 			};
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
 			{
-				GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
+				GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), GameEngineColor::WHITE);
 
 				if (FLOORCOLOR == CheckColor)
 				{
@@ -126,18 +126,14 @@ void Spider_Head::Update(float _Delta)
 
 	float GravityForceY = GetGravityForce().Y;
 
-	if (800.0f < GravityForceY)
+	if (0.0f < GravityForceY)
 	{
 		float4 Pos = Transform.GetWorldPosition() + float4{ 0.0f, 80.0f };
-		ActorGravity(_Delta, Pos, 800.0f);
-	}
-	else if (-200.0f < GravityForceY)
-	{
-		ActorGravity(_Delta, Transform.GetWorldPosition(), 800.0f);
+		ActorGravity(_Delta, Pos, 800.0f, GameEngineColor::WHITE);
 	}
 	else
 	{
-		ActorGravity(_Delta, Transform.GetWorldPosition(), 2000.0f);
+		ActorGravity(_Delta, Transform.GetWorldPosition(), 800.0f, GameEngineColor::WHITE);
 	}
 }
 

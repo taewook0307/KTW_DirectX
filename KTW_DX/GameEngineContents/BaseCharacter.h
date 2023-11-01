@@ -62,7 +62,7 @@ protected:
 	void DirChange();
 	void AimDirChange();
 	void CharacterMove(float _Delta);
-	void ActorGravity(float _Delta, float4 _CheckPos, float _Force = 4000.0f) override;
+	void ActorGravity(float _Delta, float4 _CheckPos, float _Force = 4000.0f, const GameEngineColor& _DefaultColor = GameEngineColor::BLACK) override;
 	void MapOut(float _Delta);
 
 	void CreateRunDust();

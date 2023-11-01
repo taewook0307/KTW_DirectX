@@ -33,9 +33,9 @@ float4 BaseActor::GetGravityForce()
 	return GravityForce;
 }
 
-void BaseActor::ActorGravity(float _Delta, float4 _CheckPos, float _Force /*= 4000.0f*/)
+void BaseActor::ActorGravity(float _Delta, float4 _CheckPos, float _Force /*= 4000.0f*/, const GameEngineColor& _DefaultColor /*= GameEngineColor::BLACK*/)
 {
-	GameEngineColor CheckColor = Map::MainMap->GetColor(_CheckPos, FLOORCOLOR);
+	GameEngineColor CheckColor = Map::MainMap->GetColor(_CheckPos, _DefaultColor);
 
 	if (FLOORCOLOR != CheckColor && STOOLCOLOR != CheckColor)
 	{
@@ -44,12 +44,12 @@ void BaseActor::ActorGravity(float _Delta, float4 _CheckPos, float _Force /*= 40
 	else
 	{
 		float4 CheckPos = _CheckPos + float4::UP;
-		GameEngineColor UpColor = Map::MainMap->GetColor(CheckPos, FLOORCOLOR);
+		GameEngineColor UpColor = Map::MainMap->GetColor(CheckPos, _DefaultColor);
 
 		while (UpColor == FLOORCOLOR)
 		{
 			CheckPos = CheckPos + float4::UP;
-			UpColor = Map::MainMap->GetColor(CheckPos, FLOORCOLOR);
+			UpColor = Map::MainMap->GetColor(CheckPos, _DefaultColor);
 			Transform.AddLocalPosition(float4::UP);
 		}
 

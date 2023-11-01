@@ -29,7 +29,7 @@ public:
 	void SetGravityForce(const float4& _Value);
 	float4 GetGravityForce();
 
-	virtual void ActorGravity(float _Delta, float4 _CheckPos, float _Force = 4000.0f);
+	virtual void ActorGravity(float _Delta, float4 _CheckPos, float _Force = 4000.0f, const GameEngineColor& _DefaultColor = GameEngineColor::BLACK);
 	void ActorHalfGravity(float _Delta, float4 _CheckPos);
 protected:
 

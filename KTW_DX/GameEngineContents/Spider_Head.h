@@ -18,6 +18,7 @@ public:
 protected:
 
 private:
+	float JumpPower = 1500.0f;
 	int LandCount = 0;
 	void LandCountCheck();
 
