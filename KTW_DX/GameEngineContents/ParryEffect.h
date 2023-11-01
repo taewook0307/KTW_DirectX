@@ -2,8 +2,6 @@
 
 #define PARRYEFFECTANIMATIONINTER 0.05f
 
-#include <GameEngineCore/GameEngineActor.h>
-
 class ParryEffect : public GameEngineActor
 {
 public:

@@ -2,8 +2,6 @@
 
 #define BOOKANIMATIONINTER 0.03f
 
-#include <GameEngineCore/GameEngineActor.h>
-
 class IntroBook : public GameEngineActor
 {
 public:

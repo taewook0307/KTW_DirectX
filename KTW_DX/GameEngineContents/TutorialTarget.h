@@ -1,7 +1,5 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineActor.h>
-
 #define TARGETRENDERERPOSITION { 0.0f, 95.0f }
 #define TARGETCOLLISIONSCALE { 60.0f, 60.0f }
 

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineActor.h>
-
 #define GRAVITYFORCE 4000.0f
 #define GRAVITYHALFFORCE GRAVITYFORCE * 0.5f
 

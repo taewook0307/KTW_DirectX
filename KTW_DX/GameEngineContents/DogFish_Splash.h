@@ -1,7 +1,5 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineActor.h>
-
 class DogFish_Splash : public GameEngineActor
 {
 public:

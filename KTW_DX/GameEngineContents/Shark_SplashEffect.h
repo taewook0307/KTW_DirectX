@@ -1,7 +1,5 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineActor.h>
-
 class Shark_SplashEffect : public GameEngineActor
 {
 public:

@@ -3,8 +3,6 @@
 #define BULLETRATIO 0.8f
 #define BULLETANIMATIONINTER 0.02f
 
-#include <GameEngineCore/GameEngineActor.h>
-
 class Bullet : public GameEngineActor
 {
 public:

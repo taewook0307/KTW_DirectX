@@ -2,8 +2,6 @@
 
 #define FADEANIMATIONINTER 0.05f
 
-#include <GameEngineCore/GameEngineActor.h>
-
 class FadeObject : public GameEngineActor
 {
 public:

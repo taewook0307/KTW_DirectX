@@ -1,6 +1,4 @@
 #pragma once
-#include <GameEngineCore/GameEngineObject.h>
-#include <GameEngineCore/GameEngineCore.h>
 
 // Ό³Έν :
 class ContentsCore : public GameEngineObject

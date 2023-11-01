@@ -1,7 +1,5 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineActor.h>
-
 class StageFailUI : public GameEngineActor
 {
 public:

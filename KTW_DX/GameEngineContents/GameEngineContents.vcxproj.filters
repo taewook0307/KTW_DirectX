@@ -233,6 +233,12 @@
     <ClInclude Include="DevilSummonActor.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon</Filter>
     </ClInclude>
+    <ClInclude Include="Summon_Ball.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="Summon_Fire.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -500,6 +506,12 @@
     <ClCompile Include="DevilSummonActor.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon</Filter>
     </ClCompile>
+    <ClCompile Include="Summon_Ball.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="Summon_Fire.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -658,9 +670,6 @@
     <Filter Include="Level\10. LastBossStage\LastBossStageActor\Devil\Summon">
       <UniqueIdentifier>{eff69df4-8ef3-4e60-b64e-df75064f7242}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\10. LastBossStage\LastBossStageActor\Devil\Summon\FireBall">
-      <UniqueIdentifier>{97816cfb-e313-4a31-8e62-5b4ce38e5371}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Level\10. LastBossStage\LastBossStageActor\Devil\Summon\Ram_Arm">
       <UniqueIdentifier>{71376339-a2a1-49fb-b8e6-235535cbe3d6}</UniqueIdentifier>
     </Filter>
@@ -672,6 +681,9 @@
     </Filter>
     <Filter Include="Level\10. LastBossStage\LastBossStageActor\SummonDevil">
       <UniqueIdentifier>{c311dacd-e8c7-4725-bba5-7708a6b698e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack">
+      <UniqueIdentifier>{97816cfb-e313-4a31-8e62-5b4ce38e5371}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

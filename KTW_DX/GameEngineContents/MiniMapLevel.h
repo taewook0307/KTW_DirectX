@@ -1,7 +1,5 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineLevel.h>
-
 #define TUTORIALENTERPOS { 800.0f, -2200.0f }
 #define TUTORIALENTERCOLLISIONSCALE { 270.0f, 240.0f }
 #define TUTORIALENTERCOLLISIONSPOSITION { 0.0f, 240.0f }

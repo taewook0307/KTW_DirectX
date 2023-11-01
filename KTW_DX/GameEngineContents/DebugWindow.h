@@ -1,7 +1,5 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineGUI.h>
-
 class DebugWindow : public GameEngineGUIWindow
 {
 public:

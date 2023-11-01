@@ -1,7 +1,5 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineActor.h>
-
 #define SHIPBUBBLERENDERERPOS { 180.0f, 0.0f }
 #define SHIPBUBBLECOLLISIONSCALE { 90.0f, 90.0f }
 

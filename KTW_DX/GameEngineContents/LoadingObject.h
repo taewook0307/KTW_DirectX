@@ -1,7 +1,5 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineActor.h>
-
 class LoadingObject : public GameEngineActor
 {
 public:

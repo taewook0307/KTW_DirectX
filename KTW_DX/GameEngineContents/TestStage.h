@@ -1,7 +1,5 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineLevel.h>
-
 #define PLAYERSTARTPOS { 230.0f, - 605.0f }
 
 class TestStage : public GameEngineLevel

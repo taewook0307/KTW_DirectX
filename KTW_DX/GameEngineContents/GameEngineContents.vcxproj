@@ -435,6 +435,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Summon_Ball.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Summon_Fire.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TargetExplosionEffect.h">
       <SubType>
       </SubType>
@@ -750,6 +758,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="SummonDevil.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Summon_Ball.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Summon_Fire.cpp">
       <SubType>
       </SubType>
     </ClCompile>

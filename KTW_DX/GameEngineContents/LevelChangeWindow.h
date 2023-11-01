@@ -1,7 +1,5 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineGUI.h>
-
 class LevelChangeWindow : public GameEngineGUIWindow
 {
 public:

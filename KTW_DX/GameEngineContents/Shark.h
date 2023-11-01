@@ -1,7 +1,5 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineActor.h>
-
 #define SHARKANMATIONINTER 0.05f
 #define SHARKBITEANIMATIONINTER 0.03f
 
