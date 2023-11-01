@@ -2,6 +2,7 @@
 #include "Spider_Head.h"
 
 #include "Map.h"
+#include "BaseCharacter.h"
 
 Spider_Head::Spider_Head()
 {
@@ -37,7 +38,7 @@ void Spider_Head::Start()
 		SpiderState.CreateState(ESPIDERHEADSTATE::Fall, Para);
 	}
 
-	SpiderRenderer->CreateAnimation("SpiderHead_JumpStart", "SpiderHead_JumpStart");
+	SpiderRenderer->CreateAnimation("SpiderHead_JumpStart", "SpiderHead_JumpStart", 0.1f, -1, -1, false);
 	{
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent)
@@ -60,7 +61,7 @@ void Spider_Head::Start()
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent)
 			{
-				SetGravityForce(float4::UP * 2000.0f);
+				SetGravityForce(float4::UP * 1000.0f);
 				SpiderRenderer->ChangeAnimation("SpiderHead_Jump");
 			};
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
@@ -76,29 +77,33 @@ void Spider_Head::Start()
 		SpiderState.CreateState(ESPIDERHEADSTATE::Jump, Para);
 	}
 
-	SpiderRenderer->CreateAnimation("SpiderHead_JumpToFall", "SpiderHead_JumpToFall");
+	SpiderRenderer->CreateAnimation("SpiderHead_JumpToFall", "SpiderHead_JumpToFall", 0.1f, -1, -1, false);
 	{
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent)
 			{
+				LandCountCheck();
 				SpiderRenderer->ChangeAnimation("SpiderHead_JumpToFall");
 			};
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
 			{
-				if (true == SpiderRenderer->IsCurAnimationEnd())
+				GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
+
+				if (FLOORCOLOR == CheckColor)
 				{
-					SpiderState.ChangeState(ESPIDERHEADSTATE::Fall);
+					SpiderState.ChangeState(ESPIDERHEADSTATE::Land);
 					return;
 				}
 			};
 		SpiderState.CreateState(ESPIDERHEADSTATE::JumpToFall, Para);
 	}
 
-	SpiderRenderer->CreateAnimation("SpiderHead_Land", "SpiderHead_Land");
+	SpiderRenderer->CreateAnimation("SpiderHead_Land", "SpiderHead_Land", 0.1f, -1, -1, false);
 	{
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent)
 			{
+				++LandCount;
 				SpiderRenderer->ChangeAnimation("SpiderHead_Land");
 			};
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
@@ -119,13 +124,34 @@ void Spider_Head::Update(float _Delta)
 {
 	SpiderState.Update(_Delta);
 
-	if (1800.0f < GetGravityForce().Y)
+	float GravityForceY = GetGravityForce().Y;
+
+	if (800.0f < GravityForceY)
 	{
 		float4 Pos = Transform.GetWorldPosition() + float4{ 0.0f, 80.0f };
-		ActorHalfGravity(_Delta, Pos);
+		ActorGravity(_Delta, Pos, 700.0f);
+	}
+	else if (-200.0f < GravityForceY)
+	{
+		ActorGravity(_Delta, Transform.GetWorldPosition(), 700.0f);
 	}
 	else
 	{
-		ActorGravity(_Delta, Transform.GetWorldPosition());
+		ActorGravity(_Delta, Transform.GetWorldPosition(), 2000.0f);
+	}
+}
+
+void Spider_Head::LandCountCheck()
+{
+	if (LandCount >= 3)
+	{
+		Death();
+	}
+	else
+	{
+		float4 CharacterPos = BaseCharacter::MainCharacter->Transform.GetWorldPosition();
+		float4 Pos = Transform.GetWorldPosition();
+
+		Transform.SetWorldPosition({ CharacterPos.X, Pos.Y });
 	}
 }

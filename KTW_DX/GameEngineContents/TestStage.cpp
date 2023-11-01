@@ -20,23 +20,27 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	GameEngineInput::AddInputObject(this);
 
-	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
-	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, 0.0f });
-	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
-
-	/*ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
-	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\Tutorial");
+	/*ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\Tutorial");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");*/
 
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\Devil");
-	// ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SummonDevil");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SpiderHead");
 
-	/*Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
+	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
+
+	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("LastStagePixelMap.png");
+	float4 MapScale = MapTexture->GetScale();
+
+	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -MapScale.Y + WinScaleHalf.Y, 0.0f });
+	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
+
+	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
 
-	TestParry = CreateActor<ParryObject>(EUPDATEORDER::Bullet);
+	/*TestParry = CreateActor<ParryObject>(EUPDATEORDER::Bullet);
 	TestParry->Transform.SetLocalPosition({ 640.0f, -360.0f });
 
 	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialMap.Png");
@@ -45,13 +49,13 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	TestMap = CreateActor<Map>(EUPDATEORDER::Map);
 	TestMap->MapInit("LastStagePixelMap.Png");
 	TestMap->PixelMapInit("LastStagePixelMap.Png");
-	TestMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
+	TestMap->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y});
 
 	std::shared_ptr<Devil> Check = CreateActor<Devil>(EUPDATEORDER::Monster);
 	Check->Transform.SetLocalPosition({ 640.0f, -720.0f });
 
 	/*std::shared_ptr<Spider_Head> RightCheck = CreateActor<Spider_Head>(EUPDATEORDER::Monster);
-	RightCheck->Transform.SetLocalPosition({ 0.0f, -720.0f });*/
+	RightCheck->Transform.SetLocalPosition({ 640.0f, 0.0f });*/
 
 	/*std::shared_ptr<Ram_Arm> Check = CreateActor<Ram_Arm>(EUPDATEORDER::Monster);
 	Check->ChangeLeftDir();
@@ -60,8 +64,8 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 
 void TestStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
-	//ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\SummonDevil");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\Devil");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\SpiderHead");
+	//ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\Devil");
 
 	/*if (nullptr != Player)
 	{

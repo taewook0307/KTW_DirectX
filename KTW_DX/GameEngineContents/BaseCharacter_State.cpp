@@ -33,7 +33,7 @@ void BaseCharacter::CharacterMove(float _Delta)
 	}
 }
 
-void BaseCharacter::ActorGravity(float _Delta, float4 _CheckPos)
+void BaseCharacter::ActorGravity(float _Delta, float4 _CheckPos, float _Force /*= 4000.0f*/)
 {
 	GameEngineColor CheckColor = Map::MainMap->GetColor(_CheckPos, FLOORCOLOR);
 
@@ -41,7 +41,7 @@ void BaseCharacter::ActorGravity(float _Delta, float4 _CheckPos)
 	{
 		if (FLOORCOLOR != CheckColor && STOOLCOLOR != CheckColor)
 		{
-			GravityOn(_Delta);
+			GravityOn(_Delta, _Force);
 		}
 		else
 		{

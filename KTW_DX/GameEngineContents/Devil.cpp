@@ -72,6 +72,12 @@ void Devil::Start()
 	}
 
 	DevilRenderer->CreateAnimation("Devil_Ram", "Devil_Ram", 0.1f, -1, -1, false);
+	DevilRenderer->SetEndEvent("Devil_Ram", [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			DevilRenderer->ChangeAnimation("Devil_Ram_Stay");
+			CreateRamArm();
+		}
+	);
 	DevilRenderer->CreateAnimation("Devil_Ram_Stay", "Devil_Ram", 0.1f, 29, 30, true);
 	DevilRenderer->CreateAnimation("Devil_Ram_End", "Devil_Ram", 0.1f, 30, 0, false);
 	DevilRenderer->SetEndEvent("Devil_Ram_End", [=](GameEngineSpriteRenderer* _Renderer)
@@ -86,13 +92,7 @@ void Devil::Start()
 		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Ram"); };
 		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
 			{
-				if (true == DevilRenderer->IsCurAnimationEnd() && true == DevilRenderer->IsCurAnimation("Devil_Ram"))
-				{
-					DevilRenderer->ChangeAnimation("Devil_Ram_Stay");
-					CreateRamArm();
-				}
-
-				else if (true == DevilRenderer->IsCurAnimation("Devil_Ram_Stay"))
+				if (true == DevilRenderer->IsCurAnimation("Devil_Ram_Stay"))
 				{
 					if (true == SummonDeathCheck())
 					{
@@ -192,21 +192,27 @@ void Devil::Start()
 	}
 
 	DevilRenderer->CreateAnimation("Devil_Spider", "Devil_Spider", 0.1f, -1, -1, false);
+	DevilRenderer->SetEndEvent("Devil_Spider", [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			DevilRenderer->ChangeAnimation("Devil_Spider_Stay");
+			CreateSpiderHead();
+		}
+	);
 	DevilRenderer->CreateAnimation("Devil_Spider_Stay", "Devil_Spider", 0.1f, 51, 65, true);
 	DevilRenderer->CreateAnimation("Devil_Spider_End", "Devil_Spider", 0.1f, 65, 0, false);
+	DevilRenderer->SetEndEvent("Devil_Spider_End", [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			DevilState.ChangeState(EDEVILSTATE::Idle);
+			return;
+		}
+	);
 	{
 		CreateStateParameter Para;
 
 		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Spider"); };
 		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
 			{
-				if (true == DevilRenderer->IsCurAnimationEnd() && true == DevilRenderer->IsCurAnimation("Devil_Spider"))
-				{
-					DevilRenderer->ChangeAnimation("Devil_Spider_Stay");
-					CreateSpiderHead();
-				}
-
-				else if (true == DevilRenderer->IsCurAnimation("Devil_Spider_Stay"))
+				if (true == DevilRenderer->IsCurAnimation("Devil_Spider_Stay"))
 				{
 					if (true == SummonDeathCheck())
 					{

@@ -18,6 +18,9 @@ public:
 protected:
 
 private:
+	int LandCount = 0;
+	void LandCountCheck();
+
 	std::shared_ptr<GameEngineSpriteRenderer> SpiderRenderer = nullptr;
 	GameEngineState SpiderState;
 

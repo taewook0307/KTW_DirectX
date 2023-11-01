@@ -23,14 +23,13 @@ public:
 	BaseActor& operator=(const BaseActor& _Other) = delete;
 	BaseActor& operator=(BaseActor&& _Other) noexcept = delete;
 
-	void GravityOn(float _Delta);
-	void GravityHalfOn(float _Delta);
+	void GravityOn(float _Delta, float _Force = 4000.0f);
 	void GravityReset();
 
 	void SetGravityForce(const float4& _Value);
 	float4 GetGravityForce();
 
-	virtual void ActorGravity(float _Delta, float4 _CheckPos);
+	virtual void ActorGravity(float _Delta, float4 _CheckPos, float _Force = 4000.0f);
 	void ActorHalfGravity(float _Delta, float4 _CheckPos);
 protected:
 
