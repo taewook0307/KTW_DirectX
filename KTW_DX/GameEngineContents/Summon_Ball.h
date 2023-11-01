@@ -18,10 +18,17 @@ public:
 protected:
 
 private:
+	float Speed = 500.0f;
+	float4 DirPos = float4::ZERO;
+
 	std::shared_ptr<GameEngineSpriteRenderer> BallRenderer = nullptr;
 
 	GameEngineState BallState;
 
 	void Start() override;
 	void Update(float _Delta) override;
+
+	void DirPosSetting();
+	void ChangeDirPos();
+	void BallMove(float _Delta);
 };

@@ -52,11 +52,11 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	TestMap->PixelMapInit("LastStagePixelMap.Png");
 	TestMap->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y});
 
-	/*std::shared_ptr<Summon_Ball> BallCheck = CreateActor<Summon_Ball>(EUPDATEORDER::Monster);
-	BallCheck->Transform.SetLocalPosition({ 540.0f, -380.0f });*/
+	std::shared_ptr<Summon_Ball> BallCheck = CreateActor<Summon_Ball>(EUPDATEORDER::Monster);
+	BallCheck->Transform.SetLocalPosition({ 540.0f, -380.0f });
 
-	std::shared_ptr<Summon_Fire> FireCheck = CreateActor<Summon_Fire>(EUPDATEORDER::Monster);
-	FireCheck->Transform.SetLocalPosition({ 740.0f, -380.0f });
+	/*std::shared_ptr<Summon_Fire> FireCheck = CreateActor<Summon_Fire>(EUPDATEORDER::Monster);
+	FireCheck->Transform.SetLocalPosition({ 740.0f, -380.0f });*/
 
 	/*std::shared_ptr<Devil> Check = CreateActor<Devil>(EUPDATEORDER::Monster);
 	Check->Transform.SetLocalPosition({ 640.0f, -720.0f });*/

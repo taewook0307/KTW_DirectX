@@ -18,6 +18,7 @@ public:
 protected:
 	void CreateSummonEffect(const float4& _Pos);
 
+	bool CameraOutCheck();
 private:
 
 };

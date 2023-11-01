@@ -30,5 +30,4 @@ private:
 
 	void DirPosSetting();
 
-	bool CameraOutCheck();
 };
