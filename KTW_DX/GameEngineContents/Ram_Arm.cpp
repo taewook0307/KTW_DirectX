@@ -68,8 +68,8 @@ void Ram_Arm::Start()
 	MoveEndPoint = CameraPos.X + MOVEENDPOINTERROR;
 
 	ArmCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
-	ArmCollision->Transform.SetLocalPosition(RAMARMCOLLISIONPOSITIONRIGHT);
 	ArmCollision->Transform.SetLocalScale(RAMARMCOLLISIONSCALE);
+	ArmCollision->Transform.SetLocalPosition(RAMARMCOLLISIONPOSITIONRIGHT);
 	ArmCollision->SetCollisionType(ColType::AABBBOX2D);
 
 	ArmState.ChangeState(EDEVILARMSTATE::Move);

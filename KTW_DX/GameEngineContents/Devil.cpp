@@ -319,12 +319,17 @@ void Devil::Start()
 		DevilState.CreateState(EDEVILSTATE::AttackEnd, Para);
 	}
 
+	DevilCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossBody);
+	DevilCollision->Transform.SetLocalScale(DEVILCOLLISIONSCALE);
+	DevilCollision->Transform.SetLocalPosition(DEVILCOLLISIONPOSITION);
+
 	DevilState.ChangeState(EDEVILSTATE::Idle);
 }
 
 void Devil::Update(float _Delta)
 {
 	DevilState.Update(_Delta);
+	HitCountCheck();
 
 	if (true == GameEngineInput::IsDown('1', this))
 	{
@@ -401,5 +406,13 @@ void Devil::ChangeSerpentDir()
 	else
 	{
 		SerpentDir = EACTORDIR::Left;
+	}
+}
+
+void Devil::HitCountCheck()
+{
+	if (735 < HitCount)
+	{
+		//Death();
 	}
 }

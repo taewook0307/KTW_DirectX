@@ -1,6 +1,8 @@
 #pragma once
 
 #define DEVILANIMATIONINTER 0.05f
+#define DEVILCOLLISIONSCALE { 130.0f, 130.0f }
+#define DEVILCOLLISIONPOSITION { 0.0f, 450.0f }
 
 #include "BaseBoss.h"
 
@@ -22,6 +24,8 @@ protected:
 private:
 	void CreateRamArm();
 	void CreateSpiderHead();
+
+	bool SummonAttackBall = false;
 	void CreateSerpentHead();
 
 	bool AllChangeMove = false;
@@ -41,10 +45,11 @@ private:
 	EACTORDIR SerpentDir = EACTORDIR::Left;
 	void ChangeSerpentDir();
 
-	bool SummonAttackBall = false;
+	void HitCountCheck();
 
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> DevilRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> DevilCollision = nullptr;
 
 	std::shared_ptr<GameEngineSpriteRenderer> EyeRenderer = nullptr;
 	std::shared_ptr<GameEngineSpriteRenderer> BodyRenderer = nullptr;
