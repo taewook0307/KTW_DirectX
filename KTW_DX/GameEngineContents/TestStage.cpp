@@ -28,7 +28,7 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageMap.png");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
-	// ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\Devil");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\Devil");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\FireBall");
 
 	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
@@ -53,14 +53,14 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	TestMap->PixelMapInit("LastStagePixelMap.Png");
 	TestMap->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y});
 
-	std::shared_ptr<Summon_Ball> BallCheck = CreateActor<Summon_Ball>(EUPDATEORDER::Monster);
-	BallCheck->Transform.SetLocalPosition({ 540.0f, -380.0f });
+	/*std::shared_ptr<Summon_Ball> BallCheck = CreateActor<Summon_Ball>(EUPDATEORDER::Monster);
+	BallCheck->Transform.SetLocalPosition({ 540.0f, -380.0f });*/
 
 	/*std::shared_ptr<Summon_Fire> FireCheck = CreateActor<Summon_Fire>(EUPDATEORDER::Monster);
 	FireCheck->Transform.SetLocalPosition({ 740.0f, -380.0f });*/
 
-	/*std::shared_ptr<Devil> Check = CreateActor<Devil>(EUPDATEORDER::Monster);
-	Check->Transform.SetLocalPosition({ 640.0f, -720.0f });*/
+	std::shared_ptr<Devil> Check = CreateActor<Devil>(EUPDATEORDER::Monster);
+	Check->Transform.SetLocalPosition({ 640.0f, -720.0f });
 
 	/*std::shared_ptr<Spider_Head> RightCheck = CreateActor<Spider_Head>(EUPDATEORDER::Monster);
 	RightCheck->Transform.SetLocalPosition({ 640.0f, 0.0f });*/
@@ -75,7 +75,7 @@ void TestStage::LevelEnd(GameEngineLevel* _NextLevel)
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\FireBall");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\CupHead");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\Bullet");
-	//ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\Devil");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\Devil");
 
 	/*if (nullptr != Player)
 	{

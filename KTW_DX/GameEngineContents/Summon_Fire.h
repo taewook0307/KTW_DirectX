@@ -29,5 +29,5 @@ private:
 	void Update(float _Delta);
 
 	void DirPosSetting();
-
+	void ChangeStateReq() override;
 };

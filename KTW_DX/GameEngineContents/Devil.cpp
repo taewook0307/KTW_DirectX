@@ -260,6 +260,15 @@ void Devil::Start()
 			{
 				if (true == TridentRenderer->IsCurAnimationEnd())
 				{
+					if (true == SummonAttackBall)
+					{
+						CreateBall();
+					}
+					else
+					{
+						CreateFire();
+					}
+
 					DevilState.ChangeState(EDEVILSTATE::AttackEnd);
 					return;
 				}
@@ -269,6 +278,11 @@ void Devil::Start()
 	}
 
 	DevilRenderer->CreateAnimation("Devil_Attack_End", "Devil_Attack", DEVILANIMATIONINTER, 7, 0, false);
+	DevilRenderer->SetEndEvent("Devil_Attack_End", [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			DevilRenderer->ChangeAnimation("Devil_Idle");
+		}
+	);
 	{
 		CreateStateParameter Para;
 
@@ -279,12 +293,26 @@ void Devil::Start()
 				BodyRenderer->Off();
 				DevilRenderer->On();
 			};
-		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
+		Para.Stay = [&](float _DeltaTime, GameEngineState* _Parent)
 			{
-				if (true == DevilRenderer->IsCurAnimationEnd())
+				if (true == DevilRenderer->IsCurAnimation("Devil_Idle"))
 				{
-					DevilState.ChangeState(EDEVILSTATE::Idle);
-					return;
+					if (true == SummonDeathCheck())
+					{
+						SummonAttackBall = !SummonAttackBall;
+						SummonActors.clear();
+						DevilState.ChangeState(EDEVILSTATE::Idle);
+						return;
+					}
+
+					if (true == SummonAttackBall)
+					{
+						BallMoveReq(_DeltaTime);
+					}
+					else
+					{
+						FireMoveReq(_DeltaTime);
+					}
 				}
 			};
 

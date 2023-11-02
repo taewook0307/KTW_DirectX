@@ -19,7 +19,7 @@ StageLevel::~StageLevel()
 
 void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	//GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
+	GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
 
 	GameEngineInput::AddInputObject(this);
 

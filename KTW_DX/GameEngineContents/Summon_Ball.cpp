@@ -56,37 +56,26 @@ void Summon_Ball::Start()
 	BallRenderer->AutoSpriteSizeOn();
 
 	BallState.ChangeState(ESUMMONATTACKOBJECTSTATE::Spawn);
-
-	GameEngineInput::AddInputObject(this);
 }
 
 void Summon_Ball::Update(float _Delta)
 {
 	BallState.Update(_Delta);
-
-	if (true == GameEngineInput::IsDown('P', this))
-	{
-		BallState.ChangeState(ESUMMONATTACKOBJECTSTATE::Move);
-		return;
-	}
 }
 
 void Summon_Ball::BallMove(float _Delta)
 {
 	float4 MovePos = DirPos * Speed * _Delta;
 
-	float4 CheckPos = MovePos + Transform.GetWorldPosition() + DirPos;
+	float4 CheckPos = Transform.GetWorldPosition() + DirPos;
 
-	if (true == CameraOutCheck(CheckPos))
+	if (Count > 5)
 	{
-		if (Count > 2)
-		{
-			Death();
-		}
-		else
-		{
-			ChangeDirPos(CheckPos);
-		}
+		Death();
+	}
+	else if (true == CameraOutCheck(CheckPos))
+	{
+		ChangeDirPos(CheckPos);
 	}
 	else
 	{
@@ -103,11 +92,12 @@ void Summon_Ball::DirPosSetting()
 	float4 Dir = float4::GetUnitVectorFromDeg(RandomDeg);
 	
 	DirPos = Dir.NormalizeReturn();
-	DirPos = float4::LEFT + float4::DOWN;
 }
 
 void Summon_Ball::ChangeDirPos(const float4& _Pos)
 {
+	++Count;
+
 	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
 	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
 
@@ -121,12 +111,10 @@ void Summon_Ball::ChangeDirPos(const float4& _Pos)
 	if (Pos.X < MinX)
 	{
 		DirPos.X *= -1;
-		++Count;
 	}
 	else if (Pos.X > MaxX)
 	{
 		DirPos.X *= -1;
-		++Count;
 	}
 	else if (Pos.Y > MinY)
 	{
@@ -141,4 +129,9 @@ void Summon_Ball::ChangeDirPos(const float4& _Pos)
 		return;
 	}
 	return;
+}
+
+void Summon_Ball::ChangeStateReq()
+{
+	BallState.ChangeState(ESUMMONATTACKOBJECTSTATE::Move);
 }

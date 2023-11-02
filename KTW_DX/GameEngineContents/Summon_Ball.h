@@ -33,4 +33,7 @@ private:
 	void DirPosSetting();
 	void ChangeDirPos(const float4& _Pos);
 	void BallMove(float _Delta);
+
+	void ChangeStateReq() override;
+
 };

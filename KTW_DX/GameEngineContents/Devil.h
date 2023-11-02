@@ -23,13 +23,23 @@ private:
 	void CreateRamArm();
 	void CreateSpiderHead();
 	void CreateSerpentHead();
-	void CreateFireBall();
+
+	int FireIndex = 0;
+	float FireMoveTimer = 1.0f;
+	void CreateFire();
+	void FireMoveReq(float _Delta);
+
+	float BallMoveTimer = 1.0f;
+	void CreateBall();
+	void BallMoveReq(float _Delta);
 
 	bool SummonDeathCheck();
 	std::vector<std::shared_ptr<class DevilSummonActor>> SummonActors;
 
 	EACTORDIR SerpentDir = EACTORDIR::Left;
 	void ChangeSerpentDir();
+
+	bool SummonAttackBall = false;
 
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> DevilRenderer = nullptr;

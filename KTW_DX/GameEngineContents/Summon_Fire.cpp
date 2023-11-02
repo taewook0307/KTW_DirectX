@@ -82,3 +82,8 @@ void Summon_Fire::DirPosSetting()
 
 	DirPos = Dir.NormalizeReturn();
 }
+
+void Summon_Fire::ChangeStateReq()
+{
+	FireState.ChangeState(ESUMMONATTACKOBJECTSTATE::Move);
+}

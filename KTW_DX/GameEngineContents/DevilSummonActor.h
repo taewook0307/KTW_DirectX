@@ -16,6 +16,8 @@ public:
 	DevilSummonActor& operator=(DevilSummonActor&& _Other) noexcept = delete;
 
 	virtual void ChangeLeftDir() {}
+
+	virtual void ChangeStateReq() {}
 protected:
 
 private:
