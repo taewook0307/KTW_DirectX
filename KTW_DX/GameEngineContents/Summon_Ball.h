@@ -21,6 +21,8 @@ private:
 	float Speed = 500.0f;
 	float4 DirPos = float4::ZERO;
 
+	int Count = 0;
+
 	std::shared_ptr<GameEngineSpriteRenderer> BallRenderer = nullptr;
 
 	GameEngineState BallState;
@@ -29,6 +31,6 @@ private:
 	void Update(float _Delta) override;
 
 	void DirPosSetting();
-	void ChangeDirPos();
+	void ChangeDirPos(const float4& _Pos);
 	void BallMove(float _Delta);
 };

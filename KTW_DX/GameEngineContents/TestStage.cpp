@@ -26,6 +26,7 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	/*ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\Tutorial");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");*/
 
+	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageMap.png");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
 	// ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\Devil");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\FireBall");
@@ -48,7 +49,7 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	float4 SpriteHalfScale = Sprite->GetSpriteData(0).GetScale().Half();*/
 
 	TestMap = CreateActor<Map>(EUPDATEORDER::Map);
-	TestMap->MapInit("LastStagePixelMap.Png");
+	TestMap->MapInit("LastStageMap.Png");
 	TestMap->PixelMapInit("LastStagePixelMap.Png");
 	TestMap->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y});
 

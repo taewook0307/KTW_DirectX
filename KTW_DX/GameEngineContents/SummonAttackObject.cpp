@@ -17,7 +17,7 @@ void SummonAttackObject::CreateSummonEffect(const float4& _Pos)
 	Effect->Transform.SetLocalPosition(_Pos);
 }
 
-bool SummonAttackObject::CameraOutCheck()
+bool SummonAttackObject::CameraOutCheck(const float4& _Pos)
 {
 	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
 	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
@@ -27,7 +27,7 @@ bool SummonAttackObject::CameraOutCheck()
 	float MinY = CameraPos.Y + WinHalfScale.Y;
 	float MaxY = CameraPos.Y - WinHalfScale.Y;
 
-	float4 Pos = Transform.GetWorldPosition();
+	float4 Pos = _Pos;
 
 	if (MinX > Pos.X
 		|| MaxX < Pos.X
@@ -38,4 +38,10 @@ bool SummonAttackObject::CameraOutCheck()
 	}
 
 	return false;
+}
+
+bool SummonAttackObject::CameraOutCheck()
+{
+	float4 Pos = Transform.GetWorldPosition();
+	return CameraOutCheck(Pos);
 }

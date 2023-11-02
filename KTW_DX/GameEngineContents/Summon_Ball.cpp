@@ -77,17 +77,21 @@ void Summon_Ball::BallMove(float _Delta)
 
 	float4 CheckPos = MovePos + Transform.GetWorldPosition() + DirPos;
 
-	GameEngineColor CheckColor = Map::MainMap->GetColor(CheckPos, FLOORCOLOR);
-
-	if (FLOORCOLOR == CheckColor || true == CameraOutCheck())
+	if (true == CameraOutCheck(CheckPos))
 	{
-		ChangeDirPos();
+		if (Count > 2)
+		{
+			Death();
+		}
+		else
+		{
+			ChangeDirPos(CheckPos);
+		}
 	}
 	else
 	{
 		Transform.AddLocalPosition(MovePos);
 	}
-	// 벽에 부딪히면 반사각으로 Dirpos전환
 }
 
 void Summon_Ball::DirPosSetting()
@@ -102,7 +106,7 @@ void Summon_Ball::DirPosSetting()
 	DirPos = float4::LEFT + float4::DOWN;
 }
 
-void Summon_Ball::ChangeDirPos()
+void Summon_Ball::ChangeDirPos(const float4& _Pos)
 {
 	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
 	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
@@ -112,27 +116,29 @@ void Summon_Ball::ChangeDirPos()
 	float MinY = CameraPos.Y + WinHalfScale.Y;
 	float MaxY = CameraPos.Y - WinHalfScale.Y;
 
-	float4 Pos = Transform.GetWorldPosition();
+	float4 Pos = _Pos;
 
-	float4 StandardVector = float4::ZERO;
-
-	if (fabsf(MinX - Pos.X) < 10.0f
-		|| MinX > Pos.X)
+	if (Pos.X < MinX)
 	{
-		DirPos.X *= -1.0f;
+		DirPos.X *= -1;
+		++Count;
 	}
-	else if (fabsf(MaxX - Pos.X) < 10.0f
-		|| MaxX < Pos.X)
+	else if (Pos.X > MaxX)
 	{
-		DirPos.X *= -1.0f;
+		DirPos.X *= -1;
+		++Count;
 	}
-	/*else if (fabsf(MaxY - Pos.Y) < 10.0f
-		|| MaxY < Pos.Y)
+	else if (Pos.Y > MinY)
 	{
-		DirPos.Y *= -1.0f;
-	}*/
+		DirPos.Y *= -1;
+	}
+	else if (Pos.Y < MaxY)
+	{
+		DirPos.Y *= -1;
+	}
 	else
 	{
-		DirPos.Y *= -1.0f;
+		return;
 	}
+	return;
 }
