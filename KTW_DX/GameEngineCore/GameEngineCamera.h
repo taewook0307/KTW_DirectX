@@ -9,6 +9,8 @@
 // Ό³Έν :
 class GameEngineCamera : public GameEngineActor
 {
+	static std::shared_ptr<class GameEngineRenderTarget> AllRenderTarget;
+
 	friend class GameEngineRenderer;
 	friend class GameEngineActor;
 	friend class GameEngineLevel;
@@ -130,6 +132,8 @@ private:
 
 	std::set<int> ZSortMap;
 	std::set<int> YSortMap;
+
+	std::shared_ptr<class GameEngineRenderTarget> CameraTarget;
 
 	void CameraUpdate(float _DeltaTime);
 };

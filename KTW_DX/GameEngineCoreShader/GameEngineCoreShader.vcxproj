@@ -33,6 +33,7 @@
     </FxCompile>
     <FxCompile Include="DebugLineShader.fx" />
     <FxCompile Include="RenderBase.fx" />
+    <FxCompile Include="TargetMerge.fx" />
     <FxCompile Include="TextureShader.fx" />
     <FxCompile Include="Transform.fx" />
   </ItemGroup>

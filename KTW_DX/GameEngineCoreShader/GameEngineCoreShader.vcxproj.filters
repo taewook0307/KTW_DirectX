@@ -17,6 +17,9 @@
     <FxCompile Include="DebugLineShader.fx">
       <Filter>Debug</Filter>
     </FxCompile>
+    <FxCompile Include="TargetMerge.fx">
+      <Filter>Target</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header">
@@ -27,6 +30,9 @@
     </Filter>
     <Filter Include="Debug">
       <UniqueIdentifier>{db2bb517-8a6b-4922-b210-2bf82b91160e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Target">
+      <UniqueIdentifier>{3db9f9b6-a05b-4876-9349-b18f42b1af3e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -47,7 +47,7 @@ PixelOutPut TextureShader_VS(GameEngineVertex2D _Input)
     // _Input 0.5 0.5
     
     // 쉐이더 문법 모두 0인 자료형으로 초기화 하는것
-    PixelOutPut Result = (PixelOutPut)0;
+    PixelOutPut Result = (PixelOutPut) 0;
     
     // 내가 원하는 값을 이안에 넣어줄수 있어야 한다.
     
@@ -110,6 +110,19 @@ Texture2D DiffuseTex : register(t0);
 Texture2D MaskTex : register(t1);
 SamplerState DiffuseTexSampler : register(s0);
 
+struct PixelOut
+{
+    float4 Color0 : SV_Target0;
+    float4 Color1 : SV_Target1;
+    float4 Color2 : SV_Target2;
+};
+
+// SV_Target0
+// SV_Target1
+// SV_Target2
+// SV_Target3
+// SV_Target4
+
 float4 TextureShader_PS(PixelOutPut _Input) : SV_Target0
 {
 
@@ -145,7 +158,7 @@ float4 TextureShader_PS(PixelOutPut _Input) : SV_Target0
     
     if (IsMask == 1 && MaskTex[ScreenPos].r <= 0.0f)
     {
-         clip(-1);
+        clip(-1);
     }
     
     if (0.0f >= Color.a)
