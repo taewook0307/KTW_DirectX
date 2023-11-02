@@ -83,6 +83,31 @@ void StageLevel::StageEnd(float _Delta)
 	}
 }
 
+void StageLevel::LastLevelEnd(float _Delta)
+{
+	if (ESTAGERESULT::Success == StageResult && false == ResultUI)
+	{
+		CreateActor<StageClearUI>(EUPDATEORDER::UI);
+		ResultUI = true;
+	}
+
+	if (ESTAGERESULT::Fail == StageResult && false == ResultUI)
+	{
+		CreateActor<StageFailUI>(EUPDATEORDER::UI);
+		ResultUI = true;
+	}
+
+	if (ESTAGERESULT::None != StageResult)
+	{
+		PhaseMoveTimer -= _Delta;
+	}
+
+	if (PhaseMoveTimer < 0.0f)
+	{
+		GameEngineCore::ChangeLevel("OutroLevel");
+	}
+}
+
 void StageLevel::ParryUpdate(float _Delta)
 {
 	if (0.0f > StopTimer)

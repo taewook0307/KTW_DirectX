@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "Devil.h"
 
+#include "StageLevel.h"
+
 Devil::Devil()
 {
 }
@@ -319,6 +321,24 @@ void Devil::Start()
 		DevilState.CreateState(EDEVILSTATE::AttackEnd, Para);
 	}
 
+	DevilRenderer->CreateAnimation("Devil_Death", "Devil_Death", DEVILANIMATIONINTER, -1, -1, false);
+	DevilRenderer->CreateAnimation("Devil_Death_Stay", "Devil_Death", DEVILANIMATIONINTER, 35, 37, true);
+	DevilRenderer->SetEndEvent("Devil_Death",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			DevilRenderer->ChangeAnimation("Devil_Death_Stay");
+		}
+	);
+	{
+		CreateStateParameter Para;
+		Para.Start = [=](GameEngineState* _Parent)
+			{
+				DevilRenderer->ChangeAnimation("Devil_Death");
+				DevilCollision->Off();
+			};
+		DevilState.CreateState(EDEVILSTATE::Death, Para);
+	}
+
 	DevilCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossBody);
 	DevilCollision->Transform.SetLocalScale(DEVILCOLLISIONSCALE);
 	DevilCollision->Transform.SetLocalPosition(DEVILCOLLISIONPOSITION);
@@ -411,8 +431,9 @@ void Devil::ChangeSerpentDir()
 
 void Devil::HitCountCheck()
 {
-	if (735 < HitCount)
+	if (735 < HitCount && false == DevilRenderer->IsCurAnimation("Devil_Death_Stay"))
 	{
-		//Death();
+		StageLevel::StageClear();
+		DevilState.ChangeState(EDEVILSTATE::Death);
 	}
 }

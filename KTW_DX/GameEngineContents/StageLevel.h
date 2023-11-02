@@ -45,6 +45,9 @@ protected:
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
+
+	void LastLevelEnd(float _Delta);
+
 	void Update(float _Delta) override;
 
 	void StageEnd(float _Delta);

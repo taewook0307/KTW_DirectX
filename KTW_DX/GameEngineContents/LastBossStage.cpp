@@ -17,7 +17,7 @@ LastBossStage::~LastBossStage()
 
 void LastBossStage::Update(float _Delta)
 {
-	// LastStageCameraMove(_Delta);
+	StageLevel::LastLevelEnd(_Delta);
 }
 
 void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
