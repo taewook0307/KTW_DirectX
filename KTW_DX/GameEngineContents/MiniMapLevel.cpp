@@ -23,12 +23,7 @@ MiniMapLevel::~MiniMapLevel()
 
 void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
-	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, 0.0f });
-	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
-
 	// 리소스 Load
-
 	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\MiniMapLevel\\Map");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\MiniMapLevel\\MiniMapEnter");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\MiniMapLevel\\MiniMapFlag");
@@ -41,12 +36,13 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	MiniMap->PixelMapInit("CupHead_MiniMap_BitMap.png");
 
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("CupHead_MiniMap.png");
-	float4 MapTextureHalfScale = MapTexture->GetScale().Half();
-	MiniMap->Transform.SetLocalPosition({ MapTextureHalfScale.X, -MapTextureHalfScale.Y });
+	MapScale = MapTexture->GetScale();
+	float4 MapHalfScale = MapScale.Half();
+	MiniMap->Transform.SetLocalPosition({ MapHalfScale.X, -MapHalfScale.Y });
 
 	MiniMapUpper = CreateActor<UpperObject>(EUPDATEORDER::Map);
 	MiniMapUpper->UpperObjectInit("CupHead_MiniMap_Upper.png", 0, false);
-	MiniMapUpper->Transform.SetLocalPosition({ MapTextureHalfScale.X, -MapTextureHalfScale.Y });
+	MiniMapUpper->Transform.SetLocalPosition({ MapHalfScale.X, -MapHalfScale.Y });
 
 	// 플레이 입구 생성
 	TutorialEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
@@ -84,12 +80,14 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	// 캐릭터 생성
 	Character = CreateActor<MiniMapCharacter>(EUPDATEORDER::Player);
 	Character->Transform.SetLocalPosition(CharacterPos);
+
+	GetMainCamera()->Transform.SetLocalPosition(Character->Transform.GetWorldPosition());
 }
 
 void MiniMapLevel::Update(float _Delta)
 {
-	float4 CharacterPos = Character->Transform.GetWorldPosition();
-	GetMainCamera()->Transform.SetLocalPosition(CharacterPos);
+	float4 CameraSettingPos = CalCameraPos(Character->Transform.GetWorldPosition());
+	GetMainCamera()->Transform.SetLocalPosition(CameraSettingPos);
 
 	if (true == CreateStage1Flag && nullptr == FirstBossFlag)
 	{
@@ -164,4 +162,37 @@ void MiniMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\MiniMapLevel\\MiniMapEnter");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\MiniMapLevel\\MiniMapFlag");
 	ContentsSpriteManager::SingleSpriteRelease("MiniMap_Character.png");
+}
+
+float4 MiniMapLevel::CalCameraPos(const float4& _SetPos)
+{
+	float4 SettingPos = _SetPos;
+	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
+
+	float SetLeft = SettingPos.X - WinScaleHalf.X;
+	float SetRight = SettingPos.X + WinScaleHalf.X;
+	float SetTop = SettingPos.Y + WinScaleHalf.Y;
+	float SetBot = SettingPos.Y - WinScaleHalf.Y;
+
+	if (0.0f > SetLeft)
+	{
+		SettingPos.X = WinScaleHalf.X;
+	}
+
+	if (MapScale.X < SetRight)
+	{
+		SettingPos.X = MapScale.X - WinScaleHalf.X;
+	}
+
+	if (0.0f < SetTop)
+	{
+		SettingPos.Y = -WinScaleHalf.Y;
+	}
+
+	if (-MapScale.Y > SetBot)
+	{
+		SettingPos.Y = WinScaleHalf.Y - MapScale.Y;
+	}
+
+	return SettingPos;
 }

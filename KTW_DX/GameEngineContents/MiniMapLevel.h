@@ -42,6 +42,9 @@ public:
 protected:
 
 private:
+	float4 MapScale = float4::ZERO;
+	float4 CalCameraPos(const float4& _SetPos);
+
 	std::shared_ptr<class Map> MiniMap = nullptr;
 	std::shared_ptr<class UpperObject> MiniMapUpper = nullptr;
 	std::shared_ptr<class MiniMapCharacter> Character = nullptr;
