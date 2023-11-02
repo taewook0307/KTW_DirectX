@@ -2,6 +2,9 @@
 
 #include "DevilSummonActor.h"
 
+#define SPIDERCOLLISIONSCALE { 240.0f, 140.0f }
+#define SPIDERCOLLISIONPOSITION { 0.0f, 110.0f }
+
 class Spider_Head : public DevilSummonActor
 {
 public:
@@ -23,6 +26,7 @@ private:
 	void LandCountCheck();
 
 	std::shared_ptr<GameEngineSpriteRenderer> SpiderRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> SpiderCollision = nullptr;
 	GameEngineState SpiderState;
 
 	void Start() override;

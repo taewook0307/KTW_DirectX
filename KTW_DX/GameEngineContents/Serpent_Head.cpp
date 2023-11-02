@@ -34,7 +34,11 @@ void Serpent_Head::Start()
 	SerpentRenderer->CreateAnimation("Serpent_Head_Back", "Serpent_Head", 0.1f, 24, -1, false);
 	{
 		CreateStateParameter Para;
-		Para.Start = [=](GameEngineState* _Parent) { SerpentRenderer->ChangeAnimation("Serpent_Head_Back"); };
+		Para.Start = [=](GameEngineState* _Parent)
+			{
+				SerpentRenderer->ChangeAnimation("Serpent_Head_Back");
+				SerpentCollision->Off();
+			};
 		Para.Stay = [&](float _DeltaTime, GameEngineState* _Parent)
 			{
 				if (true == SerpentRenderer->IsCurAnimationEnd())
@@ -52,6 +56,11 @@ void Serpent_Head::Start()
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 
 	MoveEndPoint = CameraPos.X + (WinScale.X * SERPENTENDPOINTRATIO);
+
+	SerpentCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
+	SerpentCollision->Transform.SetLocalScale(SERPENTCOLLISIONSCALE);
+	SerpentCollision->Transform.SetLocalPosition(SERPENTCOLLISIONPOSISIONRIGHT);
+	SerpentCollision->SetCollisionType(ColType::AABBBOX2D);
 
 	SerpentState.ChangeState(ESERPENTSTATE::Move);
 }
@@ -71,6 +80,8 @@ void Serpent_Head::ChangeLeftDir()
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 
 	MoveEndPoint = CameraPos.X - (WinScale.X * SERPENTENDPOINTRATIO);
+
+	SerpentCollision->Transform.SetLocalPosition(SERPENTCOLLISIONPOSISIONLEFT);
 }
 
 void Serpent_Head::SerpentMove(float _Delta)

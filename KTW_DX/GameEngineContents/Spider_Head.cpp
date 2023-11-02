@@ -117,6 +117,11 @@ void Spider_Head::Start()
 		SpiderState.CreateState(ESPIDERHEADSTATE::Land, Para);
 	}
 
+	SpiderCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
+	SpiderCollision->Transform.SetLocalScale(SPIDERCOLLISIONSCALE);
+	SpiderCollision->Transform.SetLocalPosition(SPIDERCOLLISIONPOSITION);
+	SpiderCollision->SetCollisionType(ColType::AABBBOX2D);
+
 	SpiderState.ChangeState(ESPIDERHEADSTATE::Fall);
 }
 

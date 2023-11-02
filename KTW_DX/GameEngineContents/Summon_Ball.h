@@ -2,6 +2,8 @@
 
 #include "SummonAttackObject.h"
 
+#define BALLCOLLISIONSCALE { 75.0f, 75.0f }
+
 class Summon_Ball : public SummonAttackObject
 {
 public:
@@ -24,6 +26,7 @@ private:
 	int Count = 0;
 
 	std::shared_ptr<GameEngineSpriteRenderer> BallRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> BallCollision = nullptr;
 
 	GameEngineState BallState;
 

@@ -2,6 +2,8 @@
 
 #include "SummonAttackObject.h"
 
+#define FIRECOLLISIONSCALE { 65.0f, 65.0f }
+
 class Summon_Fire : public SummonAttackObject
 {
 public:
@@ -22,6 +24,7 @@ private:
 	float4 DirPos = float4::ZERO;
 
 	std::shared_ptr<GameEngineSpriteRenderer> FireRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> FireCollision = nullptr;
 
 	GameEngineState FireState;
 

@@ -65,6 +65,9 @@ void Summon_Fire::Start()
 
 	FireRenderer->AutoSpriteSizeOn();
 
+	FireCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
+	FireCollision->Transform.SetLocalScale(FIRECOLLISIONSCALE);
+
 	FireState.ChangeState(ESUMMONATTACKOBJECTSTATE::Spawn);
 }
 

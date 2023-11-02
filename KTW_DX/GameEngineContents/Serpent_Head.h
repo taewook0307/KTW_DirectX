@@ -4,6 +4,10 @@
 
 #define SERPENTENDPOINTRATIO 0.25f
 
+#define SERPENTCOLLISIONSCALE { 1500.0f, 370.0f }
+#define SERPENTCOLLISIONPOSISIONRIGHT { -960.0f, 280.0f }
+#define SERPENTCOLLISIONPOSISIONLEFT { 960.0f, 280.0f }
+
 class Serpent_Head : public DevilSummonActor
 {
 public:
@@ -27,6 +31,7 @@ private:
 
 	GameEngineState SerpentState;
 	std::shared_ptr<GameEngineSpriteRenderer> SerpentRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> SerpentCollision = nullptr;
 
 	void Start() override;
 	void Update(float _Delta) override;

@@ -55,6 +55,9 @@ void Summon_Ball::Start()
 
 	BallRenderer->AutoSpriteSizeOn();
 
+	BallCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
+	BallCollision->Transform.SetLocalScale(BALLCOLLISIONSCALE);
+
 	BallState.ChangeState(ESUMMONATTACKOBJECTSTATE::Spawn);
 }
 

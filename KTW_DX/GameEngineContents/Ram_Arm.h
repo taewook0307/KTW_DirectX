@@ -5,6 +5,10 @@
 #define RAMARMANIMATIONINTER 0.1f
 #define MOVEENDPOINTERROR 0.05f
 
+#define RAMARMCOLLISIONSCALE { 950.0f, 80.0f }
+#define RAMARMCOLLISIONPOSITIONRIGHT { -475.0f, 0.0f }
+#define RAMARMCOLLISIONPOSITIONLEFT { 475.0f, 0.0f }
+
 class Ram_Arm : public DevilSummonActor
 {
 public:
@@ -23,11 +27,12 @@ protected:
 
 private:
 	EACTORDIR ArmDir = EACTORDIR::Right;
-	float Speed = 1000.0f;
+	float Speed = 2000.0f;
 	float MoveEndPoint = 0.0f;
 
 	GameEngineState ArmState;
 	std::shared_ptr<GameEngineSpriteRenderer> ArmRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> ArmCollision = nullptr;
 
 	void Start() override;
 	void Update(float _Delta) override;

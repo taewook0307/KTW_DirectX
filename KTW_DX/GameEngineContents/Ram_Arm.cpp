@@ -67,6 +67,11 @@ void Ram_Arm::Start()
 	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
 	MoveEndPoint = CameraPos.X + MOVEENDPOINTERROR;
 
+	ArmCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
+	ArmCollision->Transform.SetLocalPosition(RAMARMCOLLISIONPOSITIONRIGHT);
+	ArmCollision->Transform.SetLocalScale(RAMARMCOLLISIONSCALE);
+	ArmCollision->SetCollisionType(ColType::AABBBOX2D);
+
 	ArmState.ChangeState(EDEVILARMSTATE::Move);
 }
 
@@ -83,6 +88,8 @@ void Ram_Arm::ChangeLeftDir()
 
 	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
 	MoveEndPoint = CameraPos.X - MOVEENDPOINTERROR;
+
+	ArmCollision->Transform.SetLocalPosition(RAMARMCOLLISIONPOSITIONLEFT);
 }
 
 void Ram_Arm::ArmMove(float _Delta, bool _Back /*= false*/)
