@@ -24,6 +24,8 @@ private:
 	void CreateSpiderHead();
 	void CreateSerpentHead();
 
+	bool AllChangeMove = false;
+
 	int FireIndex = 0;
 	float FireMoveTimer = 1.0f;
 	void CreateFire();

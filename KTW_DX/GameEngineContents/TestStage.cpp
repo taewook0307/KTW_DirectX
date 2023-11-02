@@ -59,8 +59,22 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	/*std::shared_ptr<Summon_Fire> FireCheck = CreateActor<Summon_Fire>(EUPDATEORDER::Monster);
 	FireCheck->Transform.SetLocalPosition({ 740.0f, -380.0f });*/
 
-	std::shared_ptr<Devil> Check = CreateActor<Devil>(EUPDATEORDER::Monster);
-	Check->Transform.SetLocalPosition({ 640.0f, -720.0f });
+	/*std::shared_ptr<Devil> Check = CreateActor<Devil>(EUPDATEORDER::Monster);
+	Check->Transform.SetLocalPosition({ 640.0f, -720.0f });*/
+	
+	float4 DevilPos = { WinScaleHalf.X, -MapScale.Y + WinScaleHalf.Y };
+
+	std::shared_ptr<Summon_Ball> Check = CreateActor<Summon_Ball>(EUPDATEORDER::Bullet);
+	Check->Transform.SetLocalPosition(DevilPos + float4{ 0.0f, 0.0f });
+
+	std::shared_ptr<Summon_Ball> Check1 = CreateActor<Summon_Ball>(EUPDATEORDER::Bullet);
+	Check1->Transform.SetLocalPosition(DevilPos + float4{ -200.0f, 300.0f });
+
+	std::shared_ptr<Summon_Ball> Check2 = CreateActor<Summon_Ball>(EUPDATEORDER::Bullet);
+	Check2->Transform.SetLocalPosition(DevilPos + float4{ 200.0f, 300.0f });
+
+	std::shared_ptr<Summon_Ball> Check3 = CreateActor<Summon_Ball>(EUPDATEORDER::Bullet);
+	Check3->Transform.SetLocalPosition(DevilPos + float4{ 0.0f, 120.0f });
 
 	/*std::shared_ptr<Spider_Head> RightCheck = CreateActor<Spider_Head>(EUPDATEORDER::Monster);
 	RightCheck->Transform.SetLocalPosition({ 640.0f, 0.0f });*/

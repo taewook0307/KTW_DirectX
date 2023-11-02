@@ -51,6 +51,7 @@ void Devil::CreateSerpentHead()
 
 void Devil::CreateFire()
 {
+	AllChangeMove = false;
 	FireMoveTimer = 1.0f;
 	FireIndex = 0;
 
@@ -79,6 +80,7 @@ void Devil::CreateFire()
 
 void Devil::CreateBall()
 {
+	AllChangeMove = false;
 	SummonActors.resize(4);
 
 	float4 DevilPos = Transform.GetWorldPosition();
@@ -98,8 +100,14 @@ void Devil::CreateBall()
 
 void Devil::FireMoveReq(float _Delta)
 {
+	if (true == AllChangeMove)
+	{
+		return;
+	}
+
 	if (FireIndex >= SummonActors.size())
 	{
+		AllChangeMove = true;
 		return;
 	}
 
@@ -115,6 +123,11 @@ void Devil::FireMoveReq(float _Delta)
 
 void Devil::BallMoveReq(float _Delta)
 {
+	if (true == AllChangeMove)
+	{
+		return;
+	}
+
 	if (0.0f > BallMoveTimer)
 	{
 		BallMoveTimer = 1.0f;
@@ -122,6 +135,7 @@ void Devil::BallMoveReq(float _Delta)
 		{
 			SummonActors[i]->ChangeStateReq();
 		}
+		AllChangeMove = true;
 	}
 
 	BallMoveTimer -= _Delta;

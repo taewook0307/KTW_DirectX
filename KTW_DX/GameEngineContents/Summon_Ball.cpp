@@ -67,7 +67,7 @@ void Summon_Ball::BallMove(float _Delta)
 {
 	float4 MovePos = DirPos * Speed * _Delta;
 
-	float4 CheckPos = Transform.GetWorldPosition() + DirPos;
+	float4 CheckPos = Transform.GetWorldPosition() + (DirPos * 20.0f);
 
 	if (Count > 5)
 	{
