@@ -5,6 +5,7 @@
 #include "UpperObject.h"
 #include "MiniMapEnter.h"
 #include "MiniMapFlag.h"
+#include "MiniMapPortal.h"
 #include "MiniMapCharacter.h"
 
 bool MiniMapLevel::Stage1Clear = false;
@@ -27,8 +28,8 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\MiniMapLevel\\Map");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\MiniMapLevel\\MiniMapEnter");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\MiniMapLevel\\MiniMapFlag");
-	ContentsSpriteManager::ImageLoad("Resources\\Texture\\MiniMapLevel\\MiniMap_Character.png");
-	GameEngineSprite::CreateCut("MiniMap_Character.png", 10, 10);
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\MiniMapLevel\\MiniMapPortal");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\MiniMapLevel\\MiniMapCharacter");
 
 	// 미니맵 생성
 	MiniMap = CreateActor<Map>(EUPDATEORDER::Map);
@@ -82,12 +83,20 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	Character->Transform.SetLocalPosition(CharacterPos);
 
 	GetMainCamera()->Transform.SetLocalPosition(Character->Transform.GetWorldPosition());
+
+	GameEngineInput::AddInputObject(this);
 }
 
 void MiniMapLevel::Update(float _Delta)
 {
 	float4 CameraSettingPos = CalCameraPos(Character->Transform.GetWorldPosition());
 	GetMainCamera()->Transform.SetLocalPosition(CameraSettingPos);
+
+	if (true == GameEngineInput::IsDown('P', this))
+	{
+		IslandPortal = CreateActor<MiniMapPortal>(EUPDATEORDER::Map);
+		IslandPortal->Transform.SetLocalPosition({ 3700.0f, -2100.0f });
+	}
 
 	if (true == CreateStage1Flag && nullptr == FirstBossFlag)
 	{
@@ -161,7 +170,8 @@ void MiniMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\MiniMapLevel\\Map");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\MiniMapLevel\\MiniMapEnter");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\MiniMapLevel\\MiniMapFlag");
-	ContentsSpriteManager::SingleSpriteRelease("MiniMap_Character.png");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\MiniMapLevel\\MiniMapPortal");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\MiniMapLevel\\MiniMapCharacter");
 }
 
 float4 MiniMapLevel::CalCameraPos(const float4& _SetPos)

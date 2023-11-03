@@ -68,5 +68,6 @@ enum class ECOLLISIONORDER
 	ParryObject,
 	Obstacle,
 	TutorialTarget,
+	Portal,
 	Max
 };

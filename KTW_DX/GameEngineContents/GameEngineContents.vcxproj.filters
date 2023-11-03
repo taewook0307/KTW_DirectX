@@ -242,6 +242,9 @@
     <ClInclude Include="SummonAttackObject.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
     </ClInclude>
+    <ClInclude Include="MiniMapPortal.h">
+      <Filter>Level\7. MiniMap\MiniMapActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -517,6 +520,9 @@
     </ClCompile>
     <ClCompile Include="SummonAttackObject.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMapPortal.cpp">
+      <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

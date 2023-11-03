@@ -15,24 +15,25 @@ MiniMapCharacter::~MiniMapCharacter()
 void MiniMapCharacter::Start()
 {
 	MiniCharacterRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_Up", "MiniMap_Character.png", 0.1f, 0, 3);
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_Up", "MiniMap_Character.png", 0.05f, 4, 15);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_Up", "MiniMapCharacter_Idle_Up", 0.1f, -1, -1);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_Up", "MiniMapCharacter_Run_Up", 0.05f, -1, -1);
 
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_StraightUp", "MiniMap_Character.png", 0.1f, 16, 18);
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_StraightUp", "MiniMap_Character.png", 0.05f, 19, 30);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_StraightUp", "MiniMapCharacter_Idle_StraightUp", 0.1f, -1, -1);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_StraightUp", "MiniMapCharacter_Run_StraightUp", 0.05f, -1, -1);
 
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_Straight", "MiniMap_Character.png", 0.1f, 31, 34);
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_Straight", "MiniMap_Character.png", 0.05f, 35, 45);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_Straight", "MiniMapCharacter_Idle_Straight", 0.1f, -1, -1);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_Straight", "MiniMapCharacter_Run_Straight", 0.05f, -1, -1);
 
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_StraightDown", "MiniMap_Character.png", 0.1f, 46, 49);
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_StraightDown", "MiniMap_Character.png", 0.05f, 50, 61);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_StraightDown", "MiniMapCharacter_Idle_StraightDown", 0.1f, -1, -1);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_StraightDown", "MiniMapCharacter_Run_StraightDown", 0.05f, -1, -1);
 
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_Down", "MiniMap_Character.png", 0.1f, 62, 65);
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_Down", "MiniMap_Character.png", 0.05f, 66, 78);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_Down", "MiniMapCharacter_Idle_Down", 0.1f, -1, -1);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_Down", "MiniMapCharacter_Run_Down", 0.05f, -1, -1);
 
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Clear", "MiniMap_Character.png", 0.1f, 80, 88);
+	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Clear", "MiniMapCharacter_Win", 0.1f, -1, -1);
 
 	MiniCharacterRenderer->AutoSpriteSizeOn();
+	MiniCharacterRenderer->SetPivotType(PivotType::Bottom);
 
 	{
 		CreateStateParameter Para;
@@ -92,6 +93,9 @@ void MiniMapCharacter::Start()
 
 void MiniMapCharacter::Update(float _Delta)
 {
+	float4 Pos = Transform.GetWorldPosition();
+	OutputDebugStringA(Pos.ToString().c_str());
+
 	if (EACTORDIR::Left == Dir)
 	{
 		MiniCharacterRenderer->LeftFlip();

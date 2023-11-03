@@ -56,6 +56,9 @@ private:
 	std::shared_ptr<class MiniMapFlag> FirstBossFlag = nullptr;
 	std::shared_ptr<class MiniMapFlag> SecondBossFlag = nullptr;
 
+	std::shared_ptr<class MiniMapPortal> IslandPortal = nullptr;
+	std::shared_ptr<class MiniMapPortal> DevilIslandPortal = nullptr;
+
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
 	void Update(float _Delta) override;
