@@ -21,6 +21,11 @@ public:
 
 	void ChangeClearState();
 
+	bool GetAnimationEnd(std::string_view _AnimationName)
+	{
+		return MiniCharacterRenderer->IsCurAnimation(_AnimationName) && MiniCharacterRenderer->IsCurAnimationEnd();
+	}
+
 protected:
 	void DirChange();
 	void ChangeAnimation(std::string_view _State);
@@ -54,6 +59,5 @@ private:
 	void Start() override;
 	void Update(float _Delta) override;
 
-	void PortalMove();
 	void PortalEventParaSetting();
 };

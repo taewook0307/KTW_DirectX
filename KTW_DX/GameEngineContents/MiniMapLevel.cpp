@@ -12,7 +12,7 @@ bool MiniMapLevel::Stage1Clear = false;
 bool MiniMapLevel::Stage2Clear = false;
 bool MiniMapLevel::CreateStage1Flag = false;
 bool MiniMapLevel::CreateStage2Flag = false;
-float4 MiniMapLevel::CharacterPos = CHARACTERSTARTPOS;
+float4 MiniMapLevel::CharacterSavePos = CHARACTERSTARTPOS;
 
 MiniMapLevel::MiniMapLevel()
 {
@@ -80,53 +80,115 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	// 캐릭터 생성
 	Character = CreateActor<MiniMapCharacter>(EUPDATEORDER::Player);
-	// Character->Transform.SetLocalPosition(CharacterPos);
+	// Character->Transform.SetLocalPosition(CharacterSavePos);
 	Character->Transform.SetLocalPosition({3540.0f, -2180.0f});
 
 	GetMainCamera()->Transform.SetLocalPosition(Character->Transform.GetWorldPosition());
+
+	{
+		CreateStateParameter Para;
+		Para.Stay = [&](float _DeltaTime, GameEngineState* _Parent)
+			{
+				float4 CameraSettingPos = CalCameraPos(Character->Transform.GetWorldPosition());
+				GetMainCamera()->Transform.SetLocalPosition(CameraSettingPos);
+
+				if (true == CreateStage1Flag && nullptr == FirstBossFlag)
+				{
+					Stage1Clear = true;
+					Character->ChangeClearState();
+					FirstBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
+					FirstBossFlag->Transform.SetLocalPosition(FIRSTFLAGPOSITION);
+				}
+
+				if (true == CreateStage2Flag && nullptr == SecondBossFlag)
+				{
+					Stage2Clear = true;
+					Character->ChangeClearState();
+					SecondBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
+					SecondBossFlag->Transform.SetLocalPosition(SECONDFLAGPOSITION);
+				}
+
+				if (true == Stage1Clear && true == Stage2Clear && nullptr == IslandPortal && nullptr == DevilIslandPortal)
+				{
+					MiniMapState.ChangeState(EWORLDMAPSTATE::IslandPortalCreate);
+				}
+			};
+
+		MiniMapState.CreateState(EWORLDMAPSTATE::Idle, Para);
+	}
+
+	{
+		CreateStateParameter Para;
+		Para.Stay = [&](float _DeltaTime, GameEngineState* _Parent)
+			{
+				IslandPortalSpawn(_DeltaTime);
+
+				if (true == IslandPortalAnimationEndCheck())
+				{
+					MiniMapState.ChangeState(EWORLDMAPSTATE::DevilIslandPortalCreate);
+				}
+			};
+
+		MiniMapState.CreateState(EWORLDMAPSTATE::IslandPortalCreate, Para);
+	}
+
+	{
+		CreateStateParameter Para;
+		Para.Stay = [&](float _DeltaTime, GameEngineState* _Parent)
+			{
+				DevilIslandPortalSpawn(_DeltaTime);
+
+				if (true == DevilIslandPortalAnimationEndCheck())
+				{
+					MiniMapState.ChangeState(EWORLDMAPSTATE::ToIdle);
+				}
+			};
+
+		MiniMapState.CreateState(EWORLDMAPSTATE::DevilIslandPortalCreate, Para);
+	}
+
+	{
+		CreateStateParameter Para;
+		Para.Stay = [&](float _DeltaTime, GameEngineState* _Parent)
+			{
+				if (true == CameraMoveToCharacterPos(_DeltaTime))
+				{
+					MiniMapState.ChangeState(EWORLDMAPSTATE::Idle);
+				}
+			};
+
+		MiniMapState.CreateState(EWORLDMAPSTATE::ToIdle, Para);
+	}
+
+	MiniMapState.ChangeState(EWORLDMAPSTATE::Idle);
 
 	GameEngineInput::AddInputObject(this);
 }
 
 void MiniMapLevel::Update(float _Delta)
 {
-	float4 CameraSettingPos = CalCameraPos(Character->Transform.GetWorldPosition());
-	GetMainCamera()->Transform.SetLocalPosition(CameraSettingPos);
+	MiniMapState.Update(_Delta);
 
 	if (true == GameEngineInput::IsDown('0', this))
-	{
-		IslandPortal = CreateActor<MiniMapPortal>(EUPDATEORDER::Map);
-		IslandPortal->Transform.SetLocalPosition({ 3700.0f, -2100.0f });
-	}
-
-	if (true == GameEngineInput::IsDown('9', this))
-	{
-		DevilIslandPortal = CreateActor<MiniMapPortal>(EUPDATEORDER::Map);
-		DevilIslandPortal->Transform.SetLocalPosition({ 5110.0f, -1260.0f });
-		IslandPortal->SetDestination(DevilIslandPortal->Transform.GetLocalPosition());
-		DevilIslandPortal->SetDestination(IslandPortal->Transform.GetLocalPosition());
-	}
-
-	if (true == CreateStage1Flag && nullptr == FirstBossFlag)
-	{
-		Stage1Clear = true;
-		Character->ChangeClearState();
-		FirstBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
-		FirstBossFlag->Transform.SetLocalPosition(FIRSTFLAGPOSITION);
-	}
-
-	if (true == CreateStage2Flag && nullptr == SecondBossFlag)
 	{
 		Stage2Clear = true;
 		Character->ChangeClearState();
 		SecondBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
 		SecondBossFlag->Transform.SetLocalPosition(SECONDFLAGPOSITION);
 	}
+
+	if (true == GameEngineInput::IsDown('9', this))
+	{
+		Stage1Clear = true;
+		Character->ChangeClearState();
+		FirstBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
+		FirstBossFlag->Transform.SetLocalPosition(FIRSTFLAGPOSITION);
+	}
 }
 
 void MiniMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
-	CharacterPos = Character->Transform.GetWorldPosition();
+	CharacterSavePos = Character->Transform.GetWorldPosition();
 
 	if (nullptr != MiniMap)
 	{
@@ -226,4 +288,97 @@ float4 MiniMapLevel::CalCameraPos(const float4& _SetPos)
 	}
 
 	return SettingPos;
+}
+
+void MiniMapLevel::IslandPortalSpawn(float _Delta)
+{
+	if (nullptr != IslandPortal)
+	{
+		return;
+	}
+
+	float4 CameraPos = GetMainCamera()->Transform.GetWorldPosition();
+	float4 PortalPos = ISLANDPORTALPOS;
+
+	float4 MovePos = PortalPos - CameraPos;
+
+	if (nullptr == IslandPortal)
+	{
+		if (MovePos.Size() < 3.0f)
+		{
+			IslandPortal = CreateActor<MiniMapPortal>(EUPDATEORDER::Map);
+			IslandPortal->Transform.SetLocalPosition(ISLANDPORTALPOS);
+		}
+		else
+		{
+			MovePos.Normalize();
+			GetMainCamera()->Transform.AddLocalPosition(MovePos * _Delta * CameraMoveSpeed);
+		}
+	}
+}
+
+bool MiniMapLevel::IslandPortalAnimationEndCheck()
+{
+	if (nullptr != IslandPortal && true == IslandPortal->PortalRenderer->IsCurAnimation("Portal_Idle"))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+void MiniMapLevel::DevilIslandPortalSpawn(float _Delta)
+{
+	if (nullptr != DevilIslandPortal)
+	{
+		return;
+	}
+
+	float4 CameraPos = GetMainCamera()->Transform.GetWorldPosition();
+	float4 PortalPos = DEVILISLANDPORTALPOS;
+
+	float4 MovePos = PortalPos - CameraPos;
+
+	if (nullptr != IslandPortal)
+	{
+		if (MovePos.Size() < 3.0f)
+		{
+			DevilIslandPortal = CreateActor<MiniMapPortal>(EUPDATEORDER::Map);
+			DevilIslandPortal->Transform.SetLocalPosition(DEVILISLANDPORTALPOS);
+			IslandPortal->SetDestination(DevilIslandPortal->Transform.GetLocalPosition());
+			DevilIslandPortal->SetDestination(IslandPortal->Transform.GetLocalPosition());
+		}
+		else
+		{
+			MovePos.Normalize();
+			GetMainCamera()->Transform.AddLocalPosition(MovePos * _Delta * CameraMoveSpeed);
+		}
+	}
+}
+
+bool MiniMapLevel::DevilIslandPortalAnimationEndCheck()
+{
+	if (nullptr != DevilIslandPortal && true == DevilIslandPortal->PortalRenderer->IsCurAnimation("Portal_Idle"))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool MiniMapLevel::CameraMoveToCharacterPos(float _Delta)
+{
+	float4 CameraPos = GetMainCamera()->Transform.GetWorldPosition();
+	float4 CharacterPos = Character->Transform.GetWorldPosition();
+
+	float4 MovePos = CharacterPos - CameraPos;
+
+	if (MovePos.Size() < 3.0f)
+	{
+		return true;
+	}
+
+	MovePos.Normalize();
+	GetMainCamera()->Transform.AddLocalPosition(MovePos * _Delta * CameraMoveSpeed);
+	return false;
 }

@@ -16,6 +16,9 @@
 #define FIRSTFLAGPOSITION { 2225.0f, -2130.0f }
 #define SECONDFLAGPOSITION { 3840.0f, -2570.0f }
 
+#define ISLANDPORTALPOS { 3700.0f, -2100.0f }
+#define DEVILISLANDPORTALPOS { 5110.0f, -1260.0f }
+
 class MiniMapLevel : public GameEngineLevel
 {
 public:
@@ -63,10 +66,21 @@ private:
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
 	void Update(float _Delta) override;
 
-	static float4 CharacterPos;
+	static float4 CharacterSavePos;
 	static bool Stage1Clear;
 	static bool Stage2Clear;
 
 	static bool CreateStage1Flag;
 	static bool CreateStage2Flag;
+
+	float CameraMoveSpeed = 500.0f;
+	bool IslandPortalAnimationEndCheck();
+	void IslandPortalSpawn(float _Delta);
+
+	bool DevilIslandPortalAnimationEndCheck();
+	void DevilIslandPortalSpawn(float _Delta);
+
+	bool CameraMoveToCharacterPos(float _Delta);
+
+	GameEngineState MiniMapState;
 };

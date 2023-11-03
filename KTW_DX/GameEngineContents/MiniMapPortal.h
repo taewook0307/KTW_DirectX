@@ -4,6 +4,7 @@
 
 class MiniMapPortal : public GameEngineActor
 {
+	friend class MiniMapLevel;
 public:
 	// constrcuter destructer
 	MiniMapPortal();

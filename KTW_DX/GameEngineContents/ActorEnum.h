@@ -7,6 +7,15 @@ enum class EACTORDIR
 	Right
 };
 
+// WorldMap
+enum class EWORLDMAPSTATE
+{
+	Idle,
+	IslandPortalCreate,
+	DevilIslandPortalCreate,
+	ToIdle
+};
+
 // Character
 enum class ECHARACTERAIMDIR
 {
