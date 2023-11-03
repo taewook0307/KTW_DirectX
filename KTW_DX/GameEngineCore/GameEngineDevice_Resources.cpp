@@ -17,7 +17,7 @@
 #include "GameEngineDepthStencil.h"
 #include "GameEngineMaterial.h"
 #include "GameEngineFont.h"
-#include "GameEngineRenderTarget.h"
+#include "GAMEENGINERENDERTARGET.H"
 
 void GameEngineDevice::ResourcesInit()
 {
@@ -547,6 +547,15 @@ void GameEngineDevice::ResourcesInit()
 		Mat->SetDepthState("AlwaysDepth");
 		Mat->SetRasterizer("EngineRasterizer");
 	}
+
+	{
+		std::shared_ptr<GameEngineMaterial> Mat = GameEngineMaterial::Create("FadePostEffect");
+		Mat->SetVertexShader("FadePostEffect_VS");
+		Mat->SetPixelShader("FadePostEffect_PS");
+		Mat->SetDepthState("AlwaysDepth");
+		Mat->SetRasterizer("EngineRasterizer");
+	}
+
 
 
 	GameEngineRenderTarget::MergeRenderUnitInit();
