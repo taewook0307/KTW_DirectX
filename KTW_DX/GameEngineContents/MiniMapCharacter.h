@@ -41,6 +41,10 @@ protected:
 	EMINIMAPCHARACTERSTATE CurState = EMINIMAPCHARACTERSTATE::None;
 	std::string State = "";
 
+	class MiniMapPortal* PrevPortal = nullptr;
+	class MiniMapPortal* CurPortal = nullptr;
+	EventParameter PortalPara;
+
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> MiniCharacterRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> MiniCharacterCollision = nullptr;
@@ -51,5 +55,5 @@ private:
 	void Update(float _Delta) override;
 
 	void PortalMove();
-	void PortalCollisionEventSetting();
+	void PortalEventParaSetting();
 };

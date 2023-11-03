@@ -348,6 +348,9 @@ void Devil::Start()
 
 void Devil::Update(float _Delta)
 {
+	std::string Check = std::to_string(HitCount) + "\n";
+	OutputDebugStringA(Check.c_str());
+
 	DevilState.Update(_Delta);
 	HitCountCheck();
 

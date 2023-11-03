@@ -72,8 +72,6 @@ void Bullet::Update(float _Delta)
 	{
 		Transform.SetLocalRotation({ 0.0f, 0.0f, -45.0f });
 	}
-
-	
 }
 
 void Bullet::ChangeBulletState(EBULLETSTATE _CurState)

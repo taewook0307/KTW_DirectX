@@ -90,6 +90,7 @@ void MiniMapCharacter::Start()
 	MiniCharacterCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::Player);
 	MiniCharacterCollision->Transform.SetLocalScale(CollisionScale);
 	MiniCharacterCollision->Transform.SetLocalPosition(CollisionPosition);
+	PortalEventParaSetting();
 }
 
 void MiniMapCharacter::Update(float _Delta)
@@ -106,7 +107,7 @@ void MiniMapCharacter::Update(float _Delta)
 		MiniCharacterRenderer->RightFlip();
 	}
 
-	PortalMove();
+	MiniCharacterCollision->CollisionEvent(ECOLLISIONORDER::Portal, PortalPara);
 
 	MiniMapCharacterState.Update(_Delta);
 }
@@ -209,16 +210,18 @@ void MiniMapCharacter::ChangeClearState()
 	return;
 }
 
-void MiniMapCharacter::PortalMove()
+void MiniMapCharacter::PortalEventParaSetting()
 {
-	MiniCharacterCollision->Collision(ECOLLISIONORDER::Portal,
-		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
+	PortalPara.Enter = [&](GameEngineCollision* _This, GameEngineCollision* _Collisions)
 		{
-			if (true == GameEngineInput::IsDown('Z', this))
-			{
-				GameEngineActor* ColMaster = _ColVector[_ColVector.size() - 1]->GetActor();
-				MiniMapPortal* CurPortal = dynamic_cast<MiniMapPortal*>(ColMaster);
+			GameEngineActor* Other = _Collisions->GetActor();
+			CurPortal = dynamic_cast<MiniMapPortal*>(Other);
+		};
 
+	PortalPara.Stay = [&](GameEngineCollision* _This, GameEngineCollision* _Collisions)
+		{
+			if (nullptr == PrevPortal)
+			{
 				if (nullptr == CurPortal)
 				{
 					MsgBoxAssert("포탈이 아닙니다");
@@ -227,13 +230,26 @@ void MiniMapCharacter::PortalMove()
 
 				float4 Pos = CurPortal->GetDestination();
 
-				Transform.SetLocalPosition(Pos);
+				GameEngineActor* Character = _This->GetActor();
+				Character->Transform.SetLocalPosition(Pos);
+				PrevPortal = CurPortal;
 			}
-		}
-	);
-}
+			else if (PrevPortal == CurPortal)
+			{
+				if (nullptr == CurPortal)
+				{
+					MsgBoxAssert("포탈이 아닙니다");
+					return;
+				}
 
-void MiniMapCharacter::PortalCollisionEventSetting()
-{
+				float4 Pos = CurPortal->GetDestination();
 
+				GameEngineActor* Character = _This->GetActor();
+				Character->Transform.SetLocalPosition(Pos);
+			}
+		};
+	PortalPara.Exit = [&](GameEngineCollision* _This, GameEngineCollision* _Collisions)
+		{
+			PrevPortal = CurPortal;
+		};
 }
