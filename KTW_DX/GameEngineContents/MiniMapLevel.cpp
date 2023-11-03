@@ -7,6 +7,7 @@
 #include "MiniMapFlag.h"
 #include "MiniMapPortal.h"
 #include "MiniMapCharacter.h"
+#include "Trigger.h"
 
 bool MiniMapLevel::Stage1Clear = false;
 bool MiniMapLevel::Stage2Clear = false;
@@ -64,6 +65,9 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	SecondBossEnter->SetEnterLevel("2.SecondBoss_Stage");
 	SecondBossEnter->SetCollisionScaleAndPosition(SECONDBOSSENTERCOLLISIONSCALE);
 
+	LastBossEnter = CreateActor<Trigger>(EUPDATEORDER::Map);
+	LastBossEnter->TriggerInit(ECOLLISIONORDER::Trigger, LASTBOSSENTERSCALE, LASTBOSSENTERPOSITION);
+
 	if (true == Stage1Clear)
 	{
 		FirstBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
@@ -80,8 +84,8 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	// 캐릭터 생성
 	Character = CreateActor<MiniMapCharacter>(EUPDATEORDER::Player);
-	// Character->Transform.SetLocalPosition(CharacterSavePos);
-	Character->Transform.SetLocalPosition({3540.0f, -2180.0f});
+	Character->Transform.SetLocalPosition(CharacterSavePos);
+	// Character->Transform.SetLocalPosition({5580.0f, -900.0f});
 
 	GetMainCamera()->Transform.SetLocalPosition(Character->Transform.GetWorldPosition());
 
@@ -226,6 +230,12 @@ void MiniMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		SecondBossEnter = nullptr;
 	}
 
+	if (nullptr != LastBossEnter)
+	{
+		LastBossEnter->Death();
+		LastBossEnter = nullptr;
+	}
+
 	if (nullptr != FirstBossFlag)
 	{
 		FirstBossFlag->Death();
@@ -304,7 +314,7 @@ void MiniMapLevel::IslandPortalSpawn(float _Delta)
 
 	if (nullptr == IslandPortal)
 	{
-		if (MovePos.Size() < 3.0f)
+		if (MovePos.Size() < 5.0f)
 		{
 			IslandPortal = CreateActor<MiniMapPortal>(EUPDATEORDER::Map);
 			IslandPortal->Transform.SetLocalPosition(ISLANDPORTALPOS);
@@ -341,7 +351,7 @@ void MiniMapLevel::DevilIslandPortalSpawn(float _Delta)
 
 	if (nullptr != IslandPortal)
 	{
-		if (MovePos.Size() < 3.0f)
+		if (MovePos.Size() < 5.0f)
 		{
 			DevilIslandPortal = CreateActor<MiniMapPortal>(EUPDATEORDER::Map);
 			DevilIslandPortal->Transform.SetLocalPosition(DEVILISLANDPORTALPOS);
@@ -373,7 +383,7 @@ bool MiniMapLevel::CameraMoveToCharacterPos(float _Delta)
 
 	float4 MovePos = CharacterPos - CameraPos;
 
-	if (MovePos.Size() < 3.0f)
+	if (MovePos.Size() < 5.0f)
 	{
 		return true;
 	}

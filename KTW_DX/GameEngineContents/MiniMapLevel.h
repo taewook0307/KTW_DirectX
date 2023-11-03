@@ -19,6 +19,9 @@
 #define ISLANDPORTALPOS { 3700.0f, -2100.0f }
 #define DEVILISLANDPORTALPOS { 5110.0f, -1260.0f }
 
+#define LASTBOSSENTERSCALE { 50.0f, 50.0f }
+#define LASTBOSSENTERPOSITION { 5750.0f, -600.0f }
+
 class MiniMapLevel : public GameEngineLevel
 {
 public:
@@ -55,6 +58,7 @@ private:
 	std::shared_ptr<class MiniMapEnter> TutorialEnter = nullptr;
 	std::shared_ptr<class MiniMapEnter> FirstBossEnter = nullptr;
 	std::shared_ptr<class MiniMapEnter> SecondBossEnter = nullptr;
+	std::shared_ptr<class Trigger> LastBossEnter = nullptr;
 
 	std::shared_ptr<class MiniMapFlag> FirstBossFlag = nullptr;
 	std::shared_ptr<class MiniMapFlag> SecondBossFlag = nullptr;

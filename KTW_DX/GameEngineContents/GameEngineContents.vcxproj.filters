@@ -245,6 +245,9 @@
     <ClInclude Include="MiniMapPortal.h">
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClInclude>
+    <ClInclude Include="Trigger.h">
+      <Filter>Global\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -523,6 +526,9 @@
     </ClCompile>
     <ClCompile Include="MiniMapPortal.cpp">
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
+    </ClCompile>
+    <ClCompile Include="Trigger.cpp">
+      <Filter>Global\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

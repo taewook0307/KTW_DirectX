@@ -98,6 +98,11 @@ void MiniMapCharacter::Update(float _Delta)
 	float4 Pos = Transform.GetWorldPosition();
 	OutputDebugStringA(Pos.ToString().c_str());
 
+	if (true == MiniCharacterCollision->Collision(ECOLLISIONORDER::Trigger))
+	{
+		GameEngineCore::ChangeLevel("3.LastBoss_Stage");
+	}
+
 	if (EACTORDIR::Left == Dir)
 	{
 		MiniCharacterRenderer->LeftFlip();

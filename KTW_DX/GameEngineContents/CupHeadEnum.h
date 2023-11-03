@@ -69,5 +69,6 @@ enum class ECOLLISIONORDER
 	Obstacle,
 	TutorialTarget,
 	Portal,
+	Trigger,
 	Max
 };
