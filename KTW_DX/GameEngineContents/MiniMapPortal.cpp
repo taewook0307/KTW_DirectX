@@ -26,6 +26,7 @@ void MiniMapPortal::Start()
 
 	PortalCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::Portal);
 	PortalCollision->Transform.SetLocalScale(PORTALCOLLISIONSCALE);
+	PortalCollision->SetCollisionType(ColType::AABBBOX2D);
 
 	PortalRenderer->ChangeAnimation("Portal_Create");
 }

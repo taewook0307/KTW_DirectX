@@ -80,7 +80,8 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	// 캐릭터 생성
 	Character = CreateActor<MiniMapCharacter>(EUPDATEORDER::Player);
-	Character->Transform.SetLocalPosition(CharacterPos);
+	// Character->Transform.SetLocalPosition(CharacterPos);
+	Character->Transform.SetLocalPosition({3540.0f, -2180.0f});
 
 	GetMainCamera()->Transform.SetLocalPosition(Character->Transform.GetWorldPosition());
 
@@ -92,10 +93,18 @@ void MiniMapLevel::Update(float _Delta)
 	float4 CameraSettingPos = CalCameraPos(Character->Transform.GetWorldPosition());
 	GetMainCamera()->Transform.SetLocalPosition(CameraSettingPos);
 
-	if (true == GameEngineInput::IsDown('P', this))
+	if (true == GameEngineInput::IsDown('0', this))
 	{
 		IslandPortal = CreateActor<MiniMapPortal>(EUPDATEORDER::Map);
 		IslandPortal->Transform.SetLocalPosition({ 3700.0f, -2100.0f });
+	}
+
+	if (true == GameEngineInput::IsDown('9', this))
+	{
+		DevilIslandPortal = CreateActor<MiniMapPortal>(EUPDATEORDER::Map);
+		DevilIslandPortal->Transform.SetLocalPosition({ 5110.0f, -1260.0f });
+		IslandPortal->SetDestination(DevilIslandPortal->Transform.GetLocalPosition());
+		DevilIslandPortal->SetDestination(IslandPortal->Transform.GetLocalPosition());
 	}
 
 	if (true == CreateStage1Flag && nullptr == FirstBossFlag)
@@ -165,6 +174,18 @@ void MiniMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	{
 		SecondBossFlag->Death();
 		SecondBossFlag = nullptr;
+	}
+
+	if (nullptr != IslandPortal)
+	{
+		IslandPortal->Death();
+		IslandPortal = nullptr;
+	}
+
+	if (nullptr != DevilIslandPortal)
+	{
+		DevilIslandPortal->Death();
+		DevilIslandPortal = nullptr;
 	}
 
 	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\MiniMapLevel\\Map");

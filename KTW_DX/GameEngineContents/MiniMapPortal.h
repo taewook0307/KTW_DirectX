@@ -15,15 +15,26 @@ public:
 	MiniMapPortal& operator=(const MiniMapPortal& _Other) = delete;
 	MiniMapPortal& operator=(MiniMapPortal&& _Other) noexcept = delete;
 
-protected:
+	float4 GetDestination()
+	{
+		return Destination;
+	}
 
-private:
-	void SetDestination(std::shared_ptr<MiniMapPortal> _Destination)
+	void SetDestination(const float4& _Destination)
 	{
 		Destination = _Destination;
 	}
 
-	std::shared_ptr<MiniMapPortal> Destination = nullptr;
+	void DestinationReset()
+	{
+		Destination = float4::ZERO;
+	}
+
+protected:
+
+private:
+
+	float4 Destination = float4::ZERO;
 
 	std::shared_ptr<GameEngineSpriteRenderer> PortalRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> PortalCollision = nullptr;

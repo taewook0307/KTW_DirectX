@@ -2,6 +2,7 @@
 #include "MiniMapCharacter.h"
 
 #include "Map.h"
+#include "MiniMapPortal.h"
 
 MiniMapCharacter::MiniMapCharacter()
 {
@@ -105,6 +106,8 @@ void MiniMapCharacter::Update(float _Delta)
 		MiniCharacterRenderer->RightFlip();
 	}
 
+	PortalMove();
+
 	MiniMapCharacterState.Update(_Delta);
 }
 
@@ -204,4 +207,33 @@ void MiniMapCharacter::ChangeClearState()
 {
 	MiniMapCharacterState.ChangeState(EMINIMAPCHARACTERSTATE::Clear);
 	return;
+}
+
+void MiniMapCharacter::PortalMove()
+{
+	MiniCharacterCollision->Collision(ECOLLISIONORDER::Portal,
+		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
+		{
+			if (true == GameEngineInput::IsDown('Z', this))
+			{
+				GameEngineActor* ColMaster = _ColVector[_ColVector.size() - 1]->GetActor();
+				MiniMapPortal* CurPortal = dynamic_cast<MiniMapPortal*>(ColMaster);
+
+				if (nullptr == CurPortal)
+				{
+					MsgBoxAssert("포탈이 아닙니다");
+					return;
+				}
+
+				float4 Pos = CurPortal->GetDestination();
+
+				Transform.SetLocalPosition(Pos);
+			}
+		}
+	);
+}
+
+void MiniMapCharacter::PortalCollisionEventSetting()
+{
+
 }
