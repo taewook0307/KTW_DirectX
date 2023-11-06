@@ -47,7 +47,7 @@ PixelOutPut TextureShader_VS(GameEngineVertex2D _Input)
     // _Input 0.5 0.5
     
     // 쉐이더 문법 모두 0인 자료형으로 초기화 하는것
-    PixelOutPut Result = (PixelOutPut) 0;
+    PixelOutPut Result = (PixelOutPut)0;
     
     // 내가 원하는 값을 이안에 넣어줄수 있어야 한다.
     
@@ -114,7 +114,12 @@ struct PixelOut
 {
     float4 Color0 : SV_Target0;
     float4 Color1 : SV_Target1;
-    float4 Color2 : SV_Target2;
+    float4 Color2 : SV_Target1;
+    float4 Color3 : SV_Target1;
+    float4 Color4 : SV_Target1;
+    float4 Color5 : SV_Target1;
+    float4 Color6 : SV_Target1;
+    float4 Color7 : SV_Target1;
 };
 
 // SV_Target0
@@ -123,9 +128,9 @@ struct PixelOut
 // SV_Target3
 // SV_Target4
 
-float4 TextureShader_PS(PixelOutPut _Input) : SV_Target0
+PixelOut TextureShader_PS(PixelOutPut _Input) : SV_Target0
 {
-
+    PixelOut Result = (PixelOut)0.0f;
     
     float4 Color = DiffuseTex.Sample(DiffuseTexSampler, _Input.TEXCOORD.xy);
     // 블랜드라는 작업을 해줘야 한다.
@@ -158,7 +163,7 @@ float4 TextureShader_PS(PixelOutPut _Input) : SV_Target0
     
     if (IsMask == 1 && MaskTex[ScreenPos].r <= 0.0f)
     {
-        clip(-1);
+         clip(-1);
     }
     
     if (0.0f >= Color.a)
@@ -175,5 +180,22 @@ float4 TextureShader_PS(PixelOutPut _Input) : SV_Target0
     Color += PlusColor;
     Color *= MulColor;
     
-    return Color;
+    if (0 < Target0)
+    {
+        Result.Color0 = Color;
+    }
+    if (0 < Target1)
+    {
+        Result.Color1 = Color;
+    }
+    if (0 < Target2)
+    {
+        Result.Color2 = Color;
+    }
+    if (0 < Target3)
+    {
+        Result.Color3 = Color;
+    }
+    
+    return Result;
 }
