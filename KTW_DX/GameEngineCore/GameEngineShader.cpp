@@ -58,15 +58,6 @@ void GameEngineShader::ShaderResCheck()
 
 bool GameEngineShader::AutoCompile(GameEngineFile& _File)
 {
-	// 쉐이더 파일안에 나나 여러분들일것이다.
-	// 쉐이더를 짜다보면 다양한 종류의 쉐이더가 있을수 있다를 거장하고.
-	// 우리만의 네이밍 규칙을 기반으로
-	// 어떤 쉐이더가 들어있는지 이해하고 파악된 쉐이더 함수들을 자동 쉐이더로 만들어주는 함수에요.
-
-	// 규칙은 일단 기본적으로 _VS <= 버텍스 쉐이더 함수다를 명확하게 표현하는 함수다를 표현하는 이름이어야 한다.
-	// 코딩 스텐다드 부터.
-
-	// 이 파일의 경로로 
 	_File.Open(FileOpenType::Read, FileDataType::Text);
 
 	GameEngineSerializer Ser;
@@ -74,8 +65,6 @@ bool GameEngineShader::AutoCompile(GameEngineFile& _File)
 
 	std::string_view ShaderCode = Ser.GetStringView();
 
-	// 파일을 다 읽어왔고
-	// 내부에 어떤 쉐이더가 있는지 분석하기 시작할 것이다.
 	{
 		// find 앞에서 부터 뒤져서 바이트 위치를 알려줍니다.
 		size_t EntryIndex = ShaderCode.find("_VS(");

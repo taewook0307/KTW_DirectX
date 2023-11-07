@@ -233,6 +233,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="OldFilm.h" />
     <ClInclude Include="WorldMapPortal.h">
       <SubType>
       </SubType>
@@ -560,6 +561,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Devil_Attack.cpp" />
+    <ClCompile Include="OldFilm.cpp" />
     <ClCompile Include="WorldMapPortal.cpp">
       <SubType>
       </SubType>

@@ -8,6 +8,7 @@
 #include "TutorialTarget.h"
 #include "WorldMapEnter.h"
 #include "ParryObject.h"
+#include "OldFilm.h"
 
 TutorialStage::TutorialStage()
 {
@@ -16,6 +17,11 @@ TutorialStage::TutorialStage()
 
 TutorialStage::~TutorialStage()
 {
+}
+
+void TutorialStage::Start()
+{
+	//GetLevelRenderTarget()->CreateEffect<OldFilm>();
 }
 
 void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)

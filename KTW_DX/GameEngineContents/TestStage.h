@@ -25,6 +25,7 @@ private:
 	std::shared_ptr<class ParryObject> TestParry = nullptr;
 	std::shared_ptr<class Map> TestMap = nullptr;
 
+	void Start() override;
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
 	void Update(float _Delta) override;

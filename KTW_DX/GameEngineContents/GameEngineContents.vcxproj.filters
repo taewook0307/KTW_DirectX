@@ -248,6 +248,9 @@
     <ClInclude Include="Trigger.h">
       <Filter>Global\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="OldFilm.h">
+      <Filter>Global\PostEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -530,6 +533,9 @@
     <ClCompile Include="Trigger.cpp">
       <Filter>Global\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="OldFilm.cpp">
+      <Filter>Global\PostEffect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -702,6 +708,9 @@
     </Filter>
     <Filter Include="Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack">
       <UniqueIdentifier>{97816cfb-e313-4a31-8e62-5b4ce38e5371}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\PostEffect">
+      <UniqueIdentifier>{d4ee4d0c-23e3-4960-be3f-fa0ea200bcd5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -26,8 +26,30 @@ ContentsCore::~ContentsCore()
 {
 }
 
-void ContentsCore::Start()
-{	
+void ContentsCore::ContentsResourcesInit()
+{
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("GameEngineContentsShader");
+		Dir.MoveChild("GameEngineContentsShader");
+		std::vector<GameEngineFile> Files = Dir.GetAllFile({ ".fx" });
+
+		for (size_t i = 0; i < Files.size(); i++)
+		{
+			GameEngineFile& File = Files[i];
+			GameEngineShader::AutoCompile(File);
+		}
+	}
+
+	{
+		std::shared_ptr<GameEngineMaterial> Mat = GameEngineMaterial::Create("OldFilm");
+		Mat->SetVertexShader("OldFilm_VS");
+		Mat->SetPixelShader("OldFilm_PS");
+		Mat->SetDepthState("AlwaysDepth");
+	}
+
+	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\OldFilm");
+
 	//{
 	//	D3D11_BLEND_DESC Desc = {};
 	//	Desc.IndependentBlendEnable = false;
@@ -52,6 +74,11 @@ void ContentsCore::Start()
 	//	Mat->SetPixelShader("TextureShader_PS");
 	//	Mat->SetBlendState("OverRay");
 	//}
+}
+
+void ContentsCore::Start()
+{	
+	ContentsResourcesInit();
 
 	GameEngineCore::GetBackBufferRenderTarget()->SetClearColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 
@@ -68,7 +95,7 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<LastBossStage>("3.LastBoss_Stage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
 	GameEngineCore::CreateLevel<TestStage>("Test_Stage");
-	GameEngineCore::ChangeLevel("LogoLevel");
+	GameEngineCore::ChangeLevel("Test_Stage");
 
 	GameEngineLevel::OffDebug();
 

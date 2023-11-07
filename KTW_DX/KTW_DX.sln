@@ -43,6 +43,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngineContents", "GameE
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngineCoreShader", "GameEngineCoreShader\GameEngineCoreShader.vcxproj", "{C56CD06E-C0E4-4D37-AA65-47B43A7E53F8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngineContentsShader", "GameEngineContentsShader\GameEngineContentsShader.vcxproj", "{851DB522-D11C-4F7F-A3AC-7904BB503EE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -99,6 +101,14 @@ Global
 		{C56CD06E-C0E4-4D37-AA65-47B43A7E53F8}.Release|x64.Build.0 = Release|x64
 		{C56CD06E-C0E4-4D37-AA65-47B43A7E53F8}.Release|x86.ActiveCfg = Release|Win32
 		{C56CD06E-C0E4-4D37-AA65-47B43A7E53F8}.Release|x86.Build.0 = Release|Win32
+		{851DB522-D11C-4F7F-A3AC-7904BB503EE3}.Debug|x64.ActiveCfg = Debug|x64
+		{851DB522-D11C-4F7F-A3AC-7904BB503EE3}.Debug|x64.Build.0 = Debug|x64
+		{851DB522-D11C-4F7F-A3AC-7904BB503EE3}.Debug|x86.ActiveCfg = Debug|Win32
+		{851DB522-D11C-4F7F-A3AC-7904BB503EE3}.Debug|x86.Build.0 = Debug|Win32
+		{851DB522-D11C-4F7F-A3AC-7904BB503EE3}.Release|x64.ActiveCfg = Release|x64
+		{851DB522-D11C-4F7F-A3AC-7904BB503EE3}.Release|x64.Build.0 = Release|x64
+		{851DB522-D11C-4F7F-A3AC-7904BB503EE3}.Release|x86.ActiveCfg = Release|Win32
+		{851DB522-D11C-4F7F-A3AC-7904BB503EE3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +120,7 @@ Global
 		{0CA30656-90BB-4DAF-93D4-5AF7B30D61C8} = {D8748F38-D370-4E28-9FA6-90C07E2372D7}
 		{B09782F6-CFED-4966-8CE2-561799F0AEEF} = {0107D843-E19A-47E4-ACC4-879F384CCFF2}
 		{C56CD06E-C0E4-4D37-AA65-47B43A7E53F8} = {D8748F38-D370-4E28-9FA6-90C07E2372D7}
+		{851DB522-D11C-4F7F-A3AC-7904BB503EE3} = {0107D843-E19A-47E4-ACC4-879F384CCFF2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4D64C171-7485-4ECD-89B3-B96B502DAA97}

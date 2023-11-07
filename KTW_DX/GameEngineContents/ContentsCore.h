@@ -36,6 +36,6 @@ protected:
 
 
 private:
-
+	void ContentsResourcesInit();
 };
 
