@@ -77,6 +77,7 @@ private:
 	static bool CreateStage1Flag;
 	static bool CreateStage2Flag;
 
+	static bool PortalSpawnDone;
 	float CameraMoveSpeed = 500.0f;
 	bool IslandPortalAnimationEndCheck();
 	void IslandPortalSpawn(float _Delta);

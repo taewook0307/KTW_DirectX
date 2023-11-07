@@ -13,6 +13,7 @@ bool MiniMapLevel::Stage1Clear = false;
 bool MiniMapLevel::Stage2Clear = false;
 bool MiniMapLevel::CreateStage1Flag = false;
 bool MiniMapLevel::CreateStage2Flag = false;
+bool MiniMapLevel::PortalSpawnDone = false;
 float4 MiniMapLevel::CharacterSavePos = CHARACTERSTARTPOS;
 
 MiniMapLevel::MiniMapLevel()
@@ -80,6 +81,18 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		SecondBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
 		SecondBossFlag->Transform.SetLocalPosition(SECONDFLAGPOSITION);
 		SecondBossFlag->ChangeStayStateFlag();
+	}
+
+	// 
+	if (true == PortalSpawnDone)
+	{
+		IslandPortal = CreateActor<MiniMapPortal>(EUPDATEORDER::Map);
+		IslandPortal->Transform.SetLocalPosition(ISLANDPORTALPOS);
+
+		DevilIslandPortal = CreateActor<MiniMapPortal>(EUPDATEORDER::Map);
+		DevilIslandPortal->Transform.SetLocalPosition(DEVILISLANDPORTALPOS);
+		IslandPortal->SetDestination(DevilIslandPortal->Transform.GetLocalPosition());
+		DevilIslandPortal->SetDestination(IslandPortal->Transform.GetLocalPosition());
 	}
 
 	// 캐릭터 생성
@@ -357,6 +370,7 @@ void MiniMapLevel::DevilIslandPortalSpawn(float _Delta)
 			DevilIslandPortal->Transform.SetLocalPosition(DEVILISLANDPORTALPOS);
 			IslandPortal->SetDestination(DevilIslandPortal->Transform.GetLocalPosition());
 			DevilIslandPortal->SetDestination(IslandPortal->Transform.GetLocalPosition());
+			PortalSpawnDone = true;
 		}
 		else
 		{
