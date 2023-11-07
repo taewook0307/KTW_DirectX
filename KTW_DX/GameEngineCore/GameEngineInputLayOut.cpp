@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineInputLayOut.h"
 #include "GameEngineVertexShader.h"
 #include "GameEngineVertexBuffer.h"
@@ -249,18 +249,18 @@ UINT GameEngineInputLayOutInfo::FormatSize(DXGI_FORMAT _Format)
 		break;
 	}
 
-	MsgBoxAssert("ì²˜ë¦¬í• ìˆ˜ ì—†ëŠ” í¬ë§·ì„ ì‚¬ìš©í–ˆìŠµë‹ˆë‹¤.");
+	MsgBoxAssert("Ã³¸®ÇÒ¼ö ¾ø´Â Æ÷¸ËÀ» »ç¿ëÇß½À´Ï´Ù.");
 	return -1;
 }
 
 void GameEngineInputLayOutInfo::AddInputLayOutDesc(
-	LPCSTR _SemanticName, // ë‚´ê°€ í¬ì§€ì…˜ì´ë‹¤ ë‚´ê°€ ì»¬ëŸ¬ë‹¤. = "POSITION"
-	DXGI_FORMAT _Format, // ë‚´ê°€ në°”ì´íŠ¸ ì§œë¦¬ ì •ë³´ë‹¤ ìžë£Œí˜• = DXGI_FORMAT::R32G32 32
+	LPCSTR _SemanticName, // ³»°¡ Æ÷Áö¼ÇÀÌ´Ù ³»°¡ ÄÃ·¯´Ù. = "POSITION"
+	DXGI_FORMAT _Format, // ³»°¡ n¹ÙÀÌÆ® Â¥¸® Á¤º¸´Ù ÀÚ·áÇü = DXGI_FORMAT::R32G32 32
 	UINT _SemanticIndex/* = 0*/, // POSTION0
-	UINT _AlignedByteOffset /*= -1*/, // 0ë²ˆì§¸ ë°”ì´íŠ¸ë¶€í„° 
-	D3D11_INPUT_CLASSIFICATION _InputSlotClass /*= D3D11_INPUT_PER_VERTEX_DATA*/, // ë²„í…ìŠ¤ ë°ì´í„°ê°€ ì¸ìŠ¤í„´ì‹± ë°ì´í„°ë‹¤ ë¼ëŠ”ê±¸ í‘œí˜„
-	UINT _InputSlot /*= 0*/, // nê°œì˜ ë²„í…ìŠ¤ ë²„í¼ë¥¼ ì„¸íŒ…í• ë•Œ në²ˆì§¸ ë²„í…ìŠ¤ ë²„í¼ì˜ ì¸í’‹ ë ˆì´ì•„ì›ƒì´ë‹¤ ë¼ëŠ”ê±¸ í‘œí˜„í•˜ëŠ”ê²ƒ
-	UINT _InstanceDataStepRate /*= 0*/ // ë‚˜ì¤‘ì— ë‚˜ì¤‘ì— ì¸ìŠ¤í„´ì‹±ì´ë¼ëŠ” êµ¬ì¡°ë¥¼ ë°°ìš¸ë•Œ ì“¸ë•Œê°€ ìžˆì„ê²ƒì´ë‹¤.
+	UINT _AlignedByteOffset /*= -1*/, // 0¹øÂ° ¹ÙÀÌÆ®ºÎÅÍ 
+	D3D11_INPUT_CLASSIFICATION _InputSlotClass /*= D3D11_INPUT_PER_VERTEX_DATA*/, // ¹öÅØ½º µ¥ÀÌÅÍ°¡ ÀÎ½ºÅÏ½Ì µ¥ÀÌÅÍ´Ù ¶ó´Â°É Ç¥Çö
+	UINT _InputSlot /*= 0*/, // n°³ÀÇ ¹öÅØ½º ¹öÆÛ¸¦ ¼¼ÆÃÇÒ¶§ n¹øÂ° ¹öÅØ½º ¹öÆÛÀÇ ÀÎÇ² ·¹ÀÌ¾Æ¿ôÀÌ´Ù ¶ó´Â°É Ç¥ÇöÇÏ´Â°Í
+	UINT _InstanceDataStepRate /*= 0*/ // ³ªÁß¿¡ ³ªÁß¿¡ ÀÎ½ºÅÏ½ÌÀÌ¶ó´Â ±¸Á¶¸¦ ¹è¿ï¶§ ¾µ¶§°¡ ÀÖÀ»°ÍÀÌ´Ù.
 )
 {
 	D3D11_INPUT_ELEMENT_DESC Desc;
@@ -272,12 +272,12 @@ void GameEngineInputLayOutInfo::AddInputLayOutDesc(
 	Desc.InputSlotClass = _InputSlotClass;
 	Desc.InstanceDataStepRate = _InstanceDataStepRate;
 
-	// í¬ê¸°
+	// Å©±â
 	if (-1 == _AlignedByteOffset)
 	{
 		Desc.AlignedByteOffset = Offset;
-		// ìžë™ê³„ì‚°í•˜ë¼ëŠ” ì˜ë¯¸ë¡œ ë°›ì•„ë“¤ì¸ë‹¤.
-
+		// ÀÚµ¿°è»êÇÏ¶ó´Â ÀÇ¹Ì·Î ¹Þ¾ÆµéÀÎ´Ù.
+		
 	}
 	else {
 		Desc.AlignedByteOffset = _AlignedByteOffset;
@@ -288,11 +288,11 @@ void GameEngineInputLayOutInfo::AddInputLayOutDesc(
 	Infos.push_back(Desc);
 }
 
-GameEngineInputLayOut::GameEngineInputLayOut()
+GameEngineInputLayOut::GameEngineInputLayOut() 
 {
 }
 
-GameEngineInputLayOut::~GameEngineInputLayOut()
+GameEngineInputLayOut::~GameEngineInputLayOut() 
 {
 	if (nullptr != LayOut)
 	{
@@ -317,7 +317,7 @@ void GameEngineInputLayOut::ResCreate(
 
 	if (nullptr == LayOut)
 	{
-		MsgBoxAssert("ë ˆì´ì•„ì›ƒ ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("·¹ÀÌ¾Æ¿ô »ý¼º¿¡ ½ÇÆÐÇß½À´Ï´Ù.");
 	}
 
 }
@@ -326,9 +326,9 @@ void GameEngineInputLayOut::Setting()
 {
 	if (nullptr == LayOut)
 	{
-		MsgBoxAssert("ë§Œë“¤ì–´ì§€ì§€ë„ ì•Šì€ ë²„í…ìŠ¤ ë²„í¼ë¥¼ ì„¸íŒ…í•  ìˆ˜ëŠ” ì—†ìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¸¸µé¾îÁöÁöµµ ¾ÊÀº ¹öÅØ½º ¹öÆÛ¸¦ ¼¼ÆÃÇÒ ¼ö´Â ¾ø½À´Ï´Ù.");
 	}
 
-	// ë²„í…ìŠ¤ë²„í¼ë¥¼ ì—¬ëŸ¬ê°œ ë„£ì–´ì¤„ìˆ˜ ìžˆë‹¤.
+	// ¹öÅØ½º¹öÆÛ¸¦ ¿©·¯°³ ³Ö¾îÁÙ¼ö ÀÖ´Ù.
 	GameEngineCore::GetContext()->IASetInputLayout(LayOut);
 }

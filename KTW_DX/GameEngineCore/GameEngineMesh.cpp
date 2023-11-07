@@ -1,12 +1,12 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineMesh.h"
 
 
-GameEngineMesh::GameEngineMesh()
+GameEngineMesh::GameEngineMesh() 
 {
 }
 
-GameEngineMesh::~GameEngineMesh()
+GameEngineMesh::~GameEngineMesh() 
 {
 }
 
@@ -14,7 +14,7 @@ void GameEngineMesh::InputAssembler1()
 {
 	if (nullptr == VertexBufferPtr)
 	{
-		MsgBoxAssert("ë§¤ì‰¬ê°€ ì„¸íŒ…ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¸Å½¬°¡ ¼¼ÆÃµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.");
 		return;
 	}
 
@@ -27,7 +27,7 @@ void GameEngineMesh::InputAssembler2()
 {
 	if (nullptr == IndexBufferPtr)
 	{
-		MsgBoxAssert("ë§¤ì‰¬ê°€ ì„¸íŒ…ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¸Å½¬°¡ ¼¼ÆÃµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.");
 		return;
 	}
 

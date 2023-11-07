@@ -59,7 +59,7 @@ public:
 		return std::dynamic_pointer_cast<WindowType>(FindGUIWindow(_Name));
 	}
 
-	static std::shared_ptr<GameEngineGUIWindow> FindGUIWindow(std::string_view _Name)
+	static std::shared_ptr<GameEngineGUIWindow> FindGUIWindow(std::string_view _Name) 
 	{
 		std::string UpperName = GameEngineString::ToUpperReturn(_Name.data());
 

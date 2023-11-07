@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineRenderer.h"
 #include "GameEngineLevel.h"
 #include "GameEngineActor.h"
@@ -18,21 +18,21 @@
 #include "GameEngineBlend.h"
 #include "GameEngineConstantBuffer.h"
 
-GameEngineRenderer::GameEngineRenderer()
+GameEngineRenderer::GameEngineRenderer() 
 {
 }
 
-GameEngineRenderer::~GameEngineRenderer()
+GameEngineRenderer::~GameEngineRenderer() 
 {
 }
 
-// ì¹´ë©”ë¼ ë‚´ë¶€ì—ì„œì˜ ìˆœì„œ ë³€ê²½
+// Ä«¸Ş¶ó ³»ºÎ¿¡¼­ÀÇ ¼ø¼­ º¯°æ
 void GameEngineRenderer::SetRenderOrder(int _Order)
 {
 
 	if (nullptr == Camera)
 	{
-		MsgBoxAssert("ì¹´ë©”ë¼ê°€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ëœë”ëŸ¬ ì…ë‹ˆë‹¤. ì¹´ë©”ë¼ë¶€í„° ì§€ì •í•´ì£¼ì„¸ìš”.");
+		MsgBoxAssert("Ä«¸Ş¶ó°¡ Á¸ÀçÇÏÁö ¾Ê´Â ·£´õ·¯ ÀÔ´Ï´Ù. Ä«¸Ş¶óºÎÅÍ ÁöÁ¤ÇØÁÖ¼¼¿ä.");
 		return;
 	}
 
@@ -42,7 +42,7 @@ void GameEngineRenderer::SetRenderOrder(int _Order)
 
 }
 
-// ë‚  ë°”ë¼ë³´ëŠ” ì¹´ë©”ë¼ ë³€ê²½
+// ³¯ ¹Ù¶óº¸´Â Ä«¸Ş¶ó º¯°æ
 void GameEngineRenderer::SetCameraOrder(int _Order)
 {
 	SetViewCameraSelect(_Order);
@@ -61,7 +61,7 @@ void GameEngineRenderer::SetViewCameraSelect(int _Order)
 
 	if (nullptr == FindCamera)
 	{
-		MsgBoxAssert("ì¹´ë©”ë¼ê°€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ”ë° ëœë”ëŸ¬ë¥¼ ë„£ìœ¼ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Ä«¸Ş¶ó°¡ Á¸ÀçÇÏÁö ¾Ê´Âµ¥ ·£´õ·¯¸¦ ³ÖÀ¸·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
@@ -96,14 +96,14 @@ std::shared_ptr<GameEngineRenderUnit> GameEngineRenderer::CreateAndFindRenderUni
 {
 	Units.resize(_Index + 1);
 
-	// ìˆìœ¼ë©´
+	// ÀÖÀ¸¸é
 	if (nullptr != Units[_Index])
 	{
-		//ë¦¬í„´
+		//¸®ÅÏ
 		return Units[_Index];
 	}
 
-	// ì—†ìœ¼ë©´ ë§Œë“ ë‹¤.
+	// ¾øÀ¸¸é ¸¸µç´Ù.
 	Units[_Index] = std::make_shared<GameEngineRenderUnit>();
 	Units[_Index]->SetParentRenderer(this);
 	return Units[_Index];

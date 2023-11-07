@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineGUI.h"
 #include "imgui.h"
 #include "imgui_impl_win32.h"
@@ -18,11 +18,11 @@ void GameEngineGUIWindow::End()
 std::map<std::string, std::shared_ptr<GameEngineGUIWindow>> GameEngineGUI::GUIWindows;
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-GameEngineGUI::GameEngineGUI()
+GameEngineGUI::GameEngineGUI() 
 {
 }
 
-GameEngineGUI::~GameEngineGUI()
+GameEngineGUI::~GameEngineGUI() 
 {
 }
 
@@ -32,7 +32,7 @@ void GameEngineGUI::Start()
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO();
+    ImGuiIO& io = ImGui::GetIO(); 
     (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
@@ -77,7 +77,7 @@ void GameEngineGUI::WindowInit(GameEngineGUIWindow* _NewWindow)
 {
     if (nullptr == _NewWindow)
     {
-        MsgBoxAssert("ìœˆë„ìš° ìƒì„±ì— ì‹¤íŒ¨í–‡ìŠµë‹ˆë‹¤.");
+        MsgBoxAssert("À©µµ¿ì »ý¼º¿¡ ½ÇÆÐÇÞ½À´Ï´Ù.");
     }
 
     _NewWindow->Start();

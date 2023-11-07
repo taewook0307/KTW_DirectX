@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineTexture.h"
 #include "GameEngineCore.h"
 
@@ -17,11 +17,11 @@ const GameEngineColor GameEngineColor::AQUA = { 0, 255, 255, 255 };
 const GameEngineColor GameEngineColor::BLACK = { 0, 0, 0, 255 };
 const GameEngineColor GameEngineColor::WHITE = { 255, 255, 255, 255 };
 
-GameEngineTexture::GameEngineTexture()
+GameEngineTexture::GameEngineTexture() 
 {
 }
 
-GameEngineTexture::~GameEngineTexture()
+GameEngineTexture::~GameEngineTexture() 
 {
 	if (nullptr != DSV)
 	{
@@ -57,23 +57,23 @@ void GameEngineTexture::CreateRenderTargetView()
 
 	if (nullptr == Texture2D)
 	{
-		MsgBoxAssert("ë§Œë“¤ì–´ì§€ì§€ ì•Šì€ í…ìŠ¤ì²˜ë¡œ ëœë”íƒ€ê²Ÿë·°ë¥¼ ìƒì„±í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¸¸µé¾îÁöÁö ¾ÊÀº ÅØ½ºÃ³·Î ·£´õÅ¸°Ùºä¸¦ »ı¼ºÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
-	// ì´ë¯¸ì§€ë¥¼ ìˆ˜ì •í• ìˆ˜ ìˆëŠ” ê¶Œí•œì„ 'ë§Œë“ ë‹¤'
+	// ÀÌ¹ÌÁö¸¦ ¼öÁ¤ÇÒ¼ö ÀÖ´Â ±ÇÇÑÀ» '¸¸µç´Ù'
 
 	HRESULT Result = GameEngineCore::GetDevice()->CreateRenderTargetView(Texture2D, nullptr, &RTV);
 
 	if (S_OK != Result)
 	{
-		MsgBoxAssert("ëœë”íƒ€ê²Ÿë·° ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("·£´õÅ¸°Ùºä »ı¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
 		return;
 	}
 
 }
 
-// ì‰ì´ë” ì„¸íŒ…ìš©
+// ½¦ÀÌ´õ ¼¼ÆÃ¿ë
 void GameEngineTexture::CreateShaderResourceView()
 {
 	if (nullptr != SRV)
@@ -83,23 +83,23 @@ void GameEngineTexture::CreateShaderResourceView()
 
 	if (nullptr == Texture2D)
 	{
-		MsgBoxAssert("ë§Œë“¤ì–´ì§€ì§€ ì•Šì€ í…ìŠ¤ì²˜ë¡œ ì‰ì´ë” ë¦¬ì†ŒìŠ¤ ë·° ìƒì„±í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¸¸µé¾îÁöÁö ¾ÊÀº ÅØ½ºÃ³·Î ½¦ÀÌ´õ ¸®¼Ò½º ºä »ı¼ºÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
-	// ì´ë¯¸ì§€ë¥¼ ìˆ˜ì •í• ìˆ˜ ìˆëŠ” ê¶Œí•œì„ 'ë§Œë“ ë‹¤'
+	// ÀÌ¹ÌÁö¸¦ ¼öÁ¤ÇÒ¼ö ÀÖ´Â ±ÇÇÑÀ» '¸¸µç´Ù'
 
 	HRESULT Result = GameEngineCore::GetDevice()->CreateShaderResourceView(Texture2D, nullptr, &SRV);
 
 	if (S_OK != Result)
 	{
-		MsgBoxAssert("ì‰ì´ë” ë¦¬ì†ŒìŠ¤ ë·° ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("½¦ÀÌ´õ ¸®¼Ò½º ºä »ı¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
 		return;
 	}
 
 }
 
-// ê¹Šë²„ê±° ì„¸íŒ…ìš©
+// ±í¹ö°Å ¼¼ÆÃ¿ë
 void GameEngineTexture::CreateDepthStencilView()
 {
 	if (nullptr != DSV)
@@ -109,26 +109,26 @@ void GameEngineTexture::CreateDepthStencilView()
 
 	if (nullptr == Texture2D)
 	{
-		MsgBoxAssert("ë§Œë“¤ì–´ì§€ì§€ ì•Šì€ í…ìŠ¤ì²˜ë¡œ ì‰ì´ë” ë¦¬ì†ŒìŠ¤ ë·° ìƒì„±í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¸¸µé¾îÁöÁö ¾ÊÀº ÅØ½ºÃ³·Î ½¦ÀÌ´õ ¸®¼Ò½º ºä »ı¼ºÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
-	// ì´ë¯¸ì§€ë¥¼ ìˆ˜ì •í• ìˆ˜ ìˆëŠ” ê¶Œí•œì„ 'ë§Œë“ ë‹¤'
+	// ÀÌ¹ÌÁö¸¦ ¼öÁ¤ÇÒ¼ö ÀÖ´Â ±ÇÇÑÀ» '¸¸µç´Ù'
 
 	HRESULT Result = GameEngineCore::GetDevice()->CreateDepthStencilView(Texture2D, nullptr, &DSV);
 
 	if (S_OK != Result)
 	{
-		MsgBoxAssert("ì‰ì´ë” ë¦¬ì†ŒìŠ¤ ë·° ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("½¦ÀÌ´õ ¸®¼Ò½º ºä »ı¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
 		return;
 	}
 }
 
 void GameEngineTexture::ResLoad(std::string_view _Path)
 {
-	// íŒ©í† ë¦¬ë‹ˆ ì–´ëí„°ë‹ˆ 
+	// ÆÑÅä¸®´Ï ¾îµªÅÍ´Ï 
 
-	// png ë° ë‹¤ìˆ˜ì˜ ì´ë¯¸ì§€ë¥¼ ë¡œë“œ ê°€ëŠ¥í•œ í•¨ìˆ˜ 
+	// png ¹× ´Ù¼öÀÇ ÀÌ¹ÌÁö¸¦ ·Îµå °¡´ÉÇÑ ÇÔ¼ö 
 
 	GameEnginePath NewPath = _Path;
 
@@ -136,39 +136,39 @@ void GameEngineTexture::ResLoad(std::string_view _Path)
 
 	std::wstring wPath = GameEngineString::AnsiToUnicode(_Path);
 
-	// ê·¸ë˜í”½ 
+	// ±×·¡ÇÈ 
 	if (Ext == ".DDS")
 	{
 		if (S_OK != DirectX::LoadFromDDSFile(wPath.c_str(), DirectX::DDS_FLAGS_NONE, &Data, Image))
 		{
-			MsgBoxAssert("í…ìŠ¤ì²˜ ë¡œë“œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤." + std::string(_Path.data()));
+			MsgBoxAssert("ÅØ½ºÃ³ ·Îµå¿¡ ½ÇÆĞÇß½À´Ï´Ù." + std::string(_Path.data()));
 		}
 	}
 	else if (Ext == ".TGA")
 	{
 		if (S_OK != DirectX::LoadFromTGAFile(wPath.c_str(), DirectX::TGA_FLAGS_NONE, &Data, Image))
 		{
-			MsgBoxAssert("í…ìŠ¤ì²˜ ë¡œë“œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤." + std::string(_Path.data()));
+			MsgBoxAssert("ÅØ½ºÃ³ ·Îµå¿¡ ½ÇÆĞÇß½À´Ï´Ù." + std::string(_Path.data()));
 		}
-
+		
 	}
-	else if (S_OK != DirectX::LoadFromWICFile(wPath.c_str(), DirectX::WIC_FLAGS_NONE, &Data, Image))
+	else if(S_OK != DirectX::LoadFromWICFile(wPath.c_str(), DirectX::WIC_FLAGS_NONE, &Data, Image))
 	{
-		MsgBoxAssert("í…ìŠ¤ì²˜ ë¡œë“œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤." + std::string(_Path.data()));
+		MsgBoxAssert("ÅØ½ºÃ³ ·Îµå¿¡ ½ÇÆĞÇß½À´Ï´Ù." + std::string(_Path.data()));
 	}
 
-	// ë¡œë“œì˜ ëª©ì ì€ ì‰ì´ë” ì„¸íŒ… ê¶Œí•œì„ ì–»ì–´ì˜¤ëŠ”ê²ƒì´ ìµœì¢…ì ì¸ ëª©ì ì¸ê²ƒì´ë‹¤
-	// ì´ê²ƒë„ ë¼ì´ë¸ŒëŸ¬ë¦¬ í•¨ìˆ˜
+	// ·ÎµåÀÇ ¸ñÀûÀº ½¦ÀÌ´õ ¼¼ÆÃ ±ÇÇÑÀ» ¾ò¾î¿À´Â°ÍÀÌ ÃÖÁ¾ÀûÀÎ ¸ñÀûÀÎ°ÍÀÌ´Ù
+	// ÀÌ°Íµµ ¶óÀÌºê·¯¸® ÇÔ¼ö
 	if (S_OK != DirectX::CreateShaderResourceView
 	(
 		GameEngineCore::GetDevice(),
 		Image.GetImages(),
-		Image.GetImageCount(), // ì´ë¯¸ì§€ê°€ ê²¹ì³ìˆì„ìˆ˜ ìˆë‹¤.
+		Image.GetImageCount(), // ÀÌ¹ÌÁö°¡ °ãÃÄÀÖÀ»¼ö ÀÖ´Ù.
 		Image.GetMetadata(),
 		&SRV
 	))
 	{
-		MsgBoxAssert("í…ìŠ¤ì²˜ ë¡œë“œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤." + std::string(_Path.data()));
+		MsgBoxAssert("ÅØ½ºÃ³ ·Îµå¿¡ ½ÇÆĞÇß½À´Ï´Ù." + std::string(_Path.data()));
 	}
 
 	Desc.Width = static_cast<UINT>(Data.width);
@@ -207,7 +207,7 @@ void GameEngineTexture::ResCreate(ID3D11Texture2D* _Res)
 	int a = 0;
 }
 
-void GameEngineTexture::ResCreate(const D3D11_TEXTURE2D_DESC& _Desc)
+void GameEngineTexture::ResCreate(const D3D11_TEXTURE2D_DESC& _Desc) 
 {
 	Desc = _Desc;
 
@@ -258,7 +258,7 @@ GameEngineColor GameEngineTexture::GetColor(unsigned int _X, unsigned int _Y, Ga
 	DXGI_FORMAT Fmt = Image.GetMetadata().format;
 
 
-	// ì²«ë²ˆì§¸ ì£¼ì†Œë¥¼ 1ë°”ì´íŠ¸ ìë£Œí˜•ìœ¼ë¡œ ì¤¬ë‹¤.
+	// Ã¹¹øÂ° ÁÖ¼Ò¸¦ 1¹ÙÀÌÆ® ÀÚ·áÇüÀ¸·Î Áá´Ù.
 	unsigned char* Ptr = Image.GetPixels();
 
 	switch (Fmt)
@@ -289,7 +289,7 @@ GameEngineColor GameEngineTexture::GetColor(unsigned int _X, unsigned int _Y, Ga
 		return ResultColor;
 	}
 	default:
-		MsgBoxAssert("ìƒ‰ê¹”ì„ ì²˜ë¦¬í•˜ëŠ” í•¨ìˆ˜ë¥¼ ë§Œë“¤ì§€ ì—†ëŠ” í¬ë§·ì…ë‹ˆë‹¤");
+		MsgBoxAssert("»ö±òÀ» Ã³¸®ÇÏ´Â ÇÔ¼ö¸¦ ¸¸µéÁö ¾ø´Â Æ÷¸ËÀÔ´Ï´Ù");
 		break;
 	}
 

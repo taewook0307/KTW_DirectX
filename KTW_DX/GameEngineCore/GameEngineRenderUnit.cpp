@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineRenderUnit.h"
 #include "GameEngineMesh.h"
 #include "GameEngineInputLayOut.h"
@@ -10,11 +10,11 @@
 #include "GameEngineRenderer.H"
 
 
-GameEngineRenderUnit::GameEngineRenderUnit()
+GameEngineRenderUnit::GameEngineRenderUnit() 
 {
 }
 
-GameEngineRenderUnit::~GameEngineRenderUnit()
+GameEngineRenderUnit::~GameEngineRenderUnit() 
 {
 }
 
@@ -24,9 +24,9 @@ void GameEngineRenderUnit::SetText(const std::string& _Font, const std::string& 
 
 	if (nullptr == Font)
 	{
-		MsgBoxAssert("ë¡œë“œí•˜ì§€ ì•ŠëŠ” í°íŠ¸ë¥¼ ì‚¬ìš©í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("·ÎµåÇÏÁö ¾Ê´Â ÆùÆ®¸¦ »ç¿ëÇÏ·Á°í Çß½À´Ï´Ù.");
 	}
-
+	
 
 	FontText = _Text;
 	FontScale = _Scale;
@@ -38,7 +38,7 @@ void GameEngineRenderUnit::SetTextColor(const float4& _Color /*= float4::RED*/)
 {
 	if (nullptr == Font)
 	{
-		MsgBoxAssert("ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” í°íŠ¸ë¥¼ ì°¸ì¡°í•˜ë ¤ í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ÆùÆ®¸¦ ÂüÁ¶ÇÏ·Á Çß½À´Ï´Ù.");
 		return;
 	}
 
@@ -49,7 +49,7 @@ void GameEngineRenderUnit::SetTextAlpha(float _AlphaValue /*= 0.0f*/)
 {
 	if (nullptr == Font)
 	{
-		MsgBoxAssert("ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” í°íŠ¸ë¥¼ ì°¸ì¡°í•˜ë ¤ í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ÆùÆ®¸¦ ÂüÁ¶ÇÏ·Á Çß½À´Ï´Ù.");
 		return;
 	}
 
@@ -109,7 +109,7 @@ void GameEngineRenderUnit::SetMesh(std::string_view _Name)
 
 	if (nullptr == Mesh)
 	{
-		MsgBoxAssert("ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ë§¤ì‰¬ë¥¼ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ¸Å½¬¸¦ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 	}
 
 	if (nullptr == LayOut && nullptr != Material)
@@ -128,7 +128,7 @@ void GameEngineRenderUnit::SetMaterial(std::string_view _Name)
 
 	if (nullptr == Material)
 	{
-		MsgBoxAssert("ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ë§¤ì‰¬ë¥¼ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ¸Å½¬¸¦ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 	}
 
 	if (nullptr == LayOut && nullptr != Mesh)
@@ -137,16 +137,16 @@ void GameEngineRenderUnit::SetMaterial(std::string_view _Name)
 		LayOut->ResCreate(Mesh->GetVertexBuffer(), Material->GetVertexShader());
 	}
 
-	// ë²„í…ìŠ¤ ì‰ì´ë”ì™€ í”½ì…€ì‰ì´ë”ê°€ ë‹¤ ë“¤ì–´ìžˆëŠ” ìƒíƒœë‹¤.
+	// ¹öÅØ½º ½¦ÀÌ´õ¿Í ÇÈ¼¿½¦ÀÌ´õ°¡ ´Ù µé¾îÀÖ´Â »óÅÂ´Ù.
 
-	// ëžœë”ëŸ¬ì˜ ì‰ì´ë” ë¦¬ì†ŒìŠ¤ í—¬í¼ì—
-	// ë²„í…ìŠ¤ì™€ í”½ì…€ì‰ì´ë”ì˜ ë¦¬ì†ŒìŠ¤ì •ë³´ë“¤ì„ ë³µì‚¬ ë°›ìŠµë‹ˆë‹¤.
+	// ·£´õ·¯ÀÇ ½¦ÀÌ´õ ¸®¼Ò½º ÇïÆÛ¿¡
+	// ¹öÅØ½º¿Í ÇÈ¼¿½¦ÀÌ´õÀÇ ¸®¼Ò½ºÁ¤º¸µéÀ» º¹»ç ¹Þ½À´Ï´Ù.
 	ShaderResHelper.ShaderResCopy(Material->GetVertexShader().get());
 	ShaderResHelper.ShaderResCopy(Material->GetPixelShader().get());
 
-	// ì´ê±¸ íšŒì‚¬ì˜ ì•½ì†.
+	// ÀÌ°É È¸»çÀÇ ¾à¼Ó.
 
-	if (nullptr != ParentRenderer
+	if (nullptr != ParentRenderer 
 		&& ShaderResHelper.IsConstantBuffer("TransformData"))
 	{
 		const TransformData& Data = ParentRenderer->Transform.GetConstTransformDataRef();

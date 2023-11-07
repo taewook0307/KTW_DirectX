@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineShaderResHelper.h"
 #include "GameEngineShader.h"
 
@@ -7,7 +7,7 @@ void GameEngineConstantBufferSetter::Setting()
 {
 	if (nullptr == CPUDataPtr)
 	{
-		MsgBoxAssert(Name + "ìƒìˆ˜ë²„í¼ë¥¼ ì„¸íŒ…í•´ì£¼ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+		MsgBoxAssert(Name + "»ó¼ö¹öÆÛ¸¦ ¼¼ÆÃÇØÁÖÁö ¾Ê¾Ò½À´Ï´Ù.");
 	}
 
 	ShaderType Type = ParentShader->GetShaderType();
@@ -23,7 +23,7 @@ void GameEngineConstantBufferSetter::Setting()
 		Res->PSSetting(BindPoint);
 		break;
 	default:
-		MsgBoxAssert("ì²˜ë¦¬í• ìˆ˜ ì—†ëŠ” ì‰ì´ë” ì„¸íŒ… ìœ í˜•ì…ë‹ˆë‹¤.");
+		MsgBoxAssert("Ã³¸®ÇÒ¼ö ¾ø´Â ½¦ÀÌ´õ ¼¼ÆÃ À¯ÇüÀÔ´Ï´Ù.");
 		break;
 	}
 
@@ -47,7 +47,7 @@ void GameEngineTextureSetter::Setting()
 		Res->PSSetting(BindPoint);
 		break;
 	default:
-		MsgBoxAssert("ì²˜ë¦¬í• ìˆ˜ ì—†ëŠ” ì‰ì´ë” ì„¸íŒ… ìœ í˜•ì…ë‹ˆë‹¤.");
+		MsgBoxAssert("Ã³¸®ÇÒ¼ö ¾ø´Â ½¦ÀÌ´õ ¼¼ÆÃ À¯ÇüÀÔ´Ï´Ù.");
 		break;
 	}
 
@@ -66,7 +66,7 @@ void GameEngineTextureSetter::Reset()
 		Res->PSReset(BindPoint);
 		break;
 	default:
-		MsgBoxAssert("ì²˜ë¦¬í• ìˆ˜ ì—†ëŠ” ì‰ì´ë” ì„¸íŒ… ìœ í˜•ì…ë‹ˆë‹¤.");
+		MsgBoxAssert("Ã³¸®ÇÒ¼ö ¾ø´Â ½¦ÀÌ´õ ¼¼ÆÃ À¯ÇüÀÔ´Ï´Ù.");
 		break;
 	}
 }
@@ -84,7 +84,7 @@ void GameEngineSamplerSetter::Setting()
 		Res->PSSetting(BindPoint);
 		break;
 	default:
-		MsgBoxAssert("ì²˜ë¦¬í• ìˆ˜ ì—†ëŠ” ì‰ì´ë” ì„¸íŒ… ìœ í˜•ì…ë‹ˆë‹¤.");
+		MsgBoxAssert("Ã³¸®ÇÒ¼ö ¾ø´Â ½¦ÀÌ´õ ¼¼ÆÃ À¯ÇüÀÔ´Ï´Ù.");
 		break;
 	}
 
@@ -110,41 +110,41 @@ void GameEngineShaderResHelper::ShaderResCheck(std::string _FunctionName, GameEn
 {
 	if (nullptr == _CompileCode)
 	{
-		MsgBoxAssert("ì»´íŒŒì¼ ë˜ì§€ ì•Šì€ ì½”ë“œë¡œëŠ” ì‰ì´ë”ì˜ ë¦¬ì†ŒìŠ¤ë¥¼ ì¡°ì‚¬í• ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("ÄÄÆÄÀÏ µÇÁö ¾ÊÀº ÄÚµå·Î´Â ½¦ÀÌ´õÀÇ ¸®¼Ò½º¸¦ Á¶»çÇÒ¼ö°¡ ¾ø½À´Ï´Ù.");
 		return;
 	}
 
 	ID3DBlob* BinaryCode = _CompileCode;
 
-	// ë¦¬í”Œë ‰ì…˜ì„ í†µí•´ì„œ ì–»ì–´ë‚´ëŠ” ê²ƒì€ ì½”ë“œ ê·¸ìì²´ì˜ ì •ë³´ë¥¼ ì˜ë¯¸í•œë‹¤.
-	// í´ë˜ìŠ¤ ê°œìˆ˜
-	// í•¨ìˆ˜
-	// í´ë˜ìŠ¤ì˜ íƒ€ì…
-	// ìƒì†ì€ ë°›ì•˜ëŠë‹ˆ? 
+	// ¸®ÇÃ·º¼ÇÀ» ÅëÇØ¼­ ¾ò¾î³»´Â °ÍÀº ÄÚµå ±×ÀÚÃ¼ÀÇ Á¤º¸¸¦ ÀÇ¹ÌÇÑ´Ù.
+	// Å¬·¡½º °³¼ö
+	// ÇÔ¼ö
+	// Å¬·¡½ºÀÇ Å¸ÀÔ
+	// »ó¼ÓÀº ¹Ş¾Ò´À´Ï? 
 	ID3D11ShaderReflection* CompileInfo = nullptr;
 
 	if (S_OK != D3DReflect(BinaryCode->GetBufferPointer(), BinaryCode->GetBufferSize(), IID_ID3D11ShaderReflection, reinterpret_cast<void**>(&CompileInfo)))
 	{
-		MsgBoxAssert("ì‰ì´ë” ì •ë³´ìˆ˜ì§‘ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("½¦ÀÌ´õ Á¤º¸¼öÁı¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
 		return;
 	}
 
 	D3D11_SHADER_DESC Info;
 
 	// Info
-	// ì—”ì§„ => ë”¸ê¹
-	// ì—”ì§„ì—ëŠ” ì´ë¯¸ ê°–ì¶°ì§„ ë°ë‹¤ê°€ + ë…¸ë“œê°€ ëœë‹¤. ì–¸ë¦¬ì–¼ ê°™ì€ ê²½ìš°ì—ëŠ” 
+	// ¿£Áø => µş±ï
+	// ¿£Áø¿¡´Â ÀÌ¹Ì °®ÃçÁø µ¥´Ù°¡ + ³ëµå°¡ µÈ´Ù. ¾ğ¸®¾ó °°Àº °æ¿ì¿¡´Â 
 	CompileInfo->GetDesc(&Info);
 
 	D3D11_SHADER_INPUT_BIND_DESC ResDesc;
 	// setTexture("MyTexture", "aaaa.png");
 
 
-	// í…ìŠ¤ì²˜ ì‰ì´ë” ìƒ˜í”„ëŸ¬ ë‹¤ í•©ì³ì„œ ëª‡ê°œëƒ?
+	// ÅØ½ºÃ³ ½¦ÀÌ´õ »ùÇÁ·¯ ´Ù ÇÕÃÄ¼­ ¸î°³³Ä?
 	for (UINT i = 0; i < Info.BoundResources; i++)
 	{
-		// í…ìŠ¤ì²˜ë¥¼ 10ê°œì¼ë‹¤ 10
-		// í…ìŠ¤ì²˜ 2ê°œ ìƒìˆ˜ë²„í¼ 3ê°œì¼ë‹¤. 
+		// ÅØ½ºÃ³¸¦ 10°³½è´Ù 10
+		// ÅØ½ºÃ³ 2°³ »ó¼ö¹öÆÛ 3°³½è´Ù. 
 		CompileInfo->GetResourceBindingDesc(i, &ResDesc);
 
 		std::string UpperName = GameEngineString::ToUpperReturn(ResDesc.Name);
@@ -188,7 +188,7 @@ void GameEngineShaderResHelper::ShaderResCheck(std::string _FunctionName, GameEn
 			D3D11_SHADER_BUFFER_DESC BufferDesc;
 			BufferInfo->GetDesc(&BufferDesc);
 
-			// ë‹¹ì—°íˆ ìƒìˆ˜ë²„í¼ë¥¼ ë§Œë“¤ì–´ì•¼ í•©ë‹ˆë‹¤.
+			// ´ç¿¬È÷ »ó¼ö¹öÆÛ¸¦ ¸¸µé¾î¾ß ÇÕ´Ï´Ù.
 			std::shared_ptr<GameEngineConstantBuffer> CBuffer = GameEngineConstantBuffer::CreateAndFind(BufferDesc.Size, UpperName, BufferDesc);
 
 			_FunctionName;
@@ -223,7 +223,7 @@ void GameEngineShaderResHelper::ShaderResCheck(std::string _FunctionName, GameEn
 			//std::shared_ptr<GameEngineSampler> Res
 			//	= GameEngineSampler::Find("EngineBaseSampler");
 
-			// ì´ë…€ì„ì€ ì„¸íŒ… í•´ì£¼ì§€ ì•Šìœ¼ë©´ í„°ì§„ë‹¤.
+			// ÀÌ³à¼®Àº ¼¼ÆÃ ÇØÁÖÁö ¾ÊÀ¸¸é ÅÍÁø´Ù.
 			_FunctionName;
 			GameEngineSamplerSetter NewSetter;
 			NewSetter.ParentShader = _Shader;
@@ -263,7 +263,7 @@ void GameEngineShaderResHelper::ShaderResCopy(GameEngineShader* _Shader)
 		SamplerSetters.insert(std::make_pair(Pair.first, Pair.second));
 	}
 
-	// ê¸°ë³¸ ìƒ˜í”ŒëŸ¬ë¡œ ì„¸íŒ…í•´ì¤˜ì•¼í•  ë…€ì„ë“¤ì´ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
+	// ±âº» »ùÇÃ·¯·Î ¼¼ÆÃÇØÁà¾ßÇÒ ³à¼®µéÀÌ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
 	for (std::pair<const std::string, GameEngineTextureSetter>& Pair : OtherTextureSetters)
 	{
 		std::string SamplerName = Pair.first + "SAMPLER";
@@ -283,7 +283,7 @@ void GameEngineShaderResHelper::AllShaderResourcesSetting()
 	{
 		if (nullptr == Pair.second.Res)
 		{
-			MsgBoxAssert(std::string(Pair.first) + "ë¼ëŠ” ìƒ˜í”ŒëŸ¬ê°€ ì„¸íŒ…ì´ ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+			MsgBoxAssert(std::string(Pair.first) + "¶ó´Â »ùÇÃ·¯°¡ ¼¼ÆÃÀÌ µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
 			return;
 		}
 
@@ -294,7 +294,7 @@ void GameEngineShaderResHelper::AllShaderResourcesSetting()
 	{
 		if (nullptr == Pair.second.Res)
 		{
-			MsgBoxAssert(std::string(Pair.first) + "ë¼ëŠ” ìƒ˜í”ŒëŸ¬ê°€ ì„¸íŒ…ì´ ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+			MsgBoxAssert(std::string(Pair.first) + "¶ó´Â »ùÇÃ·¯°¡ ¼¼ÆÃÀÌ µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
 			return;
 		}
 
@@ -305,7 +305,7 @@ void GameEngineShaderResHelper::AllShaderResourcesSetting()
 	{
 		if (nullptr == Pair.second.Res)
 		{
-			MsgBoxAssert(std::string(Pair.first) + "ë¼ëŠ” ìƒ˜í”ŒëŸ¬ê°€ ì„¸íŒ…ì´ ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+			MsgBoxAssert(std::string(Pair.first) + "¶ó´Â »ùÇÃ·¯°¡ ¼¼ÆÃÀÌ µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
 			return;
 		}
 
@@ -320,7 +320,7 @@ void GameEngineShaderResHelper::AllShaderResourcesReset()
 	//{
 	//	if (nullptr == Pair.second.Res)
 	//	{
-	//		MsgBoxAssert(std::string(Pair.first) + "ë¼ëŠ” ìƒ˜í”ŒëŸ¬ê°€ ì„¸íŒ…ì´ ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+	//		MsgBoxAssert(std::string(Pair.first) + "¶ó´Â »ùÇÃ·¯°¡ ¼¼ÆÃÀÌ µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
 	//		return;
 	//	}
 
@@ -331,7 +331,7 @@ void GameEngineShaderResHelper::AllShaderResourcesReset()
 	{
 		if (nullptr == Pair.second.Res)
 		{
-			MsgBoxAssert(std::string(Pair.first) + "ë¼ëŠ” ìƒ˜í”ŒëŸ¬ê°€ ì„¸íŒ…ì´ ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+			MsgBoxAssert(std::string(Pair.first) + "¶ó´Â »ùÇÃ·¯°¡ ¼¼ÆÃÀÌ µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
 			return;
 		}
 
@@ -342,7 +342,7 @@ void GameEngineShaderResHelper::AllShaderResourcesReset()
 	//{
 	//	if (nullptr == Pair.second.Res)
 	//	{
-	//		MsgBoxAssert(std::string(Pair.first) + "ë¼ëŠ” ìƒ˜í”ŒëŸ¬ê°€ ì„¸íŒ…ì´ ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+	//		MsgBoxAssert(std::string(Pair.first) + "¶ó´Â »ùÇÃ·¯°¡ ¼¼ÆÃÀÌ µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
 	//		return;
 	//	}
 
@@ -355,13 +355,13 @@ void GameEngineShaderResHelper::SetConstantBufferLink(std::string_view _Name, co
 {
 	if (false == IsConstantBuffer(_Name))
 	{
-		MsgBoxAssert(std::string(_Name) + "ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ìƒìˆ˜ë²„í¼ì— ë§í¬ë¥¼ ê±¸ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert(std::string(_Name) + "Á¸ÀçÇÏÁö ¾Ê´Â »ó¼ö¹öÆÛ¿¡ ¸µÅ©¸¦ °É·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
 	std::string UpperString = GameEngineString::ToUpperReturn(_Name);
 
-	// ì¤‘ë³µë˜ëŠ” ì´ë¦„ì˜ ì‹œì‘ ì´í„°ë ˆì´í„°ì™€ ë ì´í„°ë ˆì´í„°ë¥¼ ì°¾ëŠ”ë²•
+	// Áßº¹µÇ´Â ÀÌ¸§ÀÇ ½ÃÀÛ ÀÌÅÍ·¹ÀÌÅÍ¿Í ³¡ ÀÌÅÍ·¹ÀÌÅÍ¸¦ Ã£´Â¹ı
 	std::multimap<std::string, GameEngineConstantBufferSetter>::iterator NameStariter
 		= ConstantBufferSetters.lower_bound(UpperString);
 	std::multimap<std::string, GameEngineConstantBufferSetter>::iterator NameEnditer
@@ -372,7 +372,7 @@ void GameEngineShaderResHelper::SetConstantBufferLink(std::string_view _Name, co
 		GameEngineConstantBufferSetter& Setter = NameStariter->second;
 		if (Setter.DataSize != _Size)
 		{
-			MsgBoxAssert(NameStariter->first + "ìƒìˆ˜ë²„í¼ì— í¬ê¸°ê°€ ë‹¤ë¥¸ ë°ì´í„°ë¥¼ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+			MsgBoxAssert(NameStariter->first + "»ó¼ö¹öÆÛ¿¡ Å©±â°¡ ´Ù¸¥ µ¥ÀÌÅÍ¸¦ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 		}
 
 		Setter.CPUDataPtr = _Data;
@@ -386,7 +386,7 @@ void GameEngineShaderResHelper::SetTexture(std::string_view _Name, std::string_v
 	std::shared_ptr<GameEngineTexture> Tex = GameEngineTexture::Find(_TextureName);
 	if (nullptr == Tex)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” í…ìŠ¤ì²˜ ì…ë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ÅØ½ºÃ³ ÀÔ´Ï´Ù.");
 	}
 
 	SetTexture(_Name, Tex);
@@ -396,13 +396,13 @@ void GameEngineShaderResHelper::SetTexture(std::string_view _Name, std::shared_p
 {
 	if (false == IsTexture(_Name))
 	{
-		MsgBoxAssert(std::string(_Name) + "ì¡´ì¬í•˜ì§€ ì•ŠëŠ” í…ìŠ¤í„° ì„¸íŒ…ì— ë§í¬ë¥¼ ê±¸ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert(std::string(_Name) + "Á¸ÀçÇÏÁö ¾Ê´Â ÅØ½ºÅÍ ¼¼ÆÃ¿¡ ¸µÅ©¸¦ °É·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
 	std::string UpperString = GameEngineString::ToUpperReturn(_Name);
 
-	// ì¤‘ë³µë˜ëŠ” ì´ë¦„ì˜ ì‹œì‘ ì´í„°ë ˆì´í„°ì™€ ë ì´í„°ë ˆì´í„°ë¥¼ ì°¾ëŠ”ë²•
+	// Áßº¹µÇ´Â ÀÌ¸§ÀÇ ½ÃÀÛ ÀÌÅÍ·¹ÀÌÅÍ¿Í ³¡ ÀÌÅÍ·¹ÀÌÅÍ¸¦ Ã£´Â¹ı
 	std::multimap<std::string, GameEngineTextureSetter>::iterator NameStariter
 		= TextureSetters.lower_bound(UpperString);
 	std::multimap<std::string, GameEngineTextureSetter>::iterator NameEnditer
@@ -439,13 +439,13 @@ void GameEngineShaderResHelper::SetSampler(std::string_view _Name, std::shared_p
 {
 	if (false == IsSampler(_Name))
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ìƒìˆ˜ë²„í¼ì— ë§í¬ë¥¼ ê±¸ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â »ó¼ö¹öÆÛ¿¡ ¸µÅ©¸¦ °É·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
 	std::string UpperString = GameEngineString::ToUpperReturn(_Name);
 
-	// ì¤‘ë³µë˜ëŠ” ì´ë¦„ì˜ ì‹œì‘ ì´í„°ë ˆì´í„°ì™€ ë ì´í„°ë ˆì´í„°ë¥¼ ì°¾ëŠ”ë²•
+	// Áßº¹µÇ´Â ÀÌ¸§ÀÇ ½ÃÀÛ ÀÌÅÍ·¹ÀÌÅÍ¿Í ³¡ ÀÌÅÍ·¹ÀÌÅÍ¸¦ Ã£´Â¹ı
 	std::multimap<std::string, GameEngineSamplerSetter>::iterator NameStariter
 		= SamplerSetters.lower_bound(UpperString);
 	std::multimap<std::string, GameEngineSamplerSetter>::iterator NameEnditer

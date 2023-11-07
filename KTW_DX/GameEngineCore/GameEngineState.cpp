@@ -1,2 +1,2 @@
-﻿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineState.h"

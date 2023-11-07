@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineCamera.h"
 #include "GameEngineLevel.h"
 #include "GameEngineRenderer.h"
@@ -10,11 +10,11 @@
 float GameEngineCamera::FreeRotSpeed = 180.0f;
 float GameEngineCamera::FreeSpeed = 200.0f;
 
-GameEngineCamera::GameEngineCamera()
+GameEngineCamera::GameEngineCamera() 
 {
 }
 
-GameEngineCamera::~GameEngineCamera()
+GameEngineCamera::~GameEngineCamera() 
 {
 }
 
@@ -28,7 +28,7 @@ void GameEngineCamera::Start()
 
 	if (nullptr == Level)
 	{
-		MsgBoxAssert("Levelì´ nullptrì…ë‹ˆë‹¤");
+		MsgBoxAssert("LevelÀÌ nullptrÀÔ´Ï´Ù");
 		return;
 	}
 
@@ -36,7 +36,7 @@ void GameEngineCamera::Start()
 
 	if (nullptr == AllRenderTarget)
 	{
-		// ì´ë…€ì„ì´ ê¹Šì´ ë²„í¼ë„ ê°€ì§‘ë‹ˆë‹¤.
+		// ÀÌ³à¼®ÀÌ ±íÀÌ ¹öÆÛµµ °¡Áı´Ï´Ù.
 		AllRenderTarget = GameEngineRenderTarget::Create();
 		AllRenderTarget->AddNewTexture(DXGI_FORMAT_R8G8B8A8_UNORM, WindowScale, float4::ZERONULL);
 		AllRenderTarget->AddNewTexture(DXGI_FORMAT_R8G8B8A8_UNORM, WindowScale, float4::ZERONULL);
@@ -49,7 +49,7 @@ void GameEngineCamera::Start()
 		AllRenderTarget->CreateDepthTexture();
 	}
 
-	// ì´ê±´ ìµœì¢… íƒ€ê²Ÿì¼ ë¿ì…ë‹ˆë‹¤.
+	// ÀÌ°Ç ÃÖÁ¾ Å¸°ÙÀÏ »ÓÀÔ´Ï´Ù.
 	/*CameraTarget = GameEngineRenderTarget::Create();
 	CameraTarget->AddNewTexture(DXGI_FORMAT_R32G32B32A32_FLOAT, WindowScale, float4::ZERONULL);*/
 
@@ -128,7 +128,7 @@ void GameEngineCamera::Update(float _Delta)
 	{
 		float4 Dir = ScreenMouseDirNormal;
 
-		Transform.AddWorldRotation({ -Dir.Y, -Dir.X });
+		Transform.AddWorldRotation({ -Dir.Y, -Dir.X});
 	}
 
 }
@@ -139,7 +139,7 @@ void GameEngineCamera::SetCameraOrder(int _Order)
 
 	if (nullptr == Level)
 	{
-		MsgBoxAssert("Levelì´ nullptrì…ë‹ˆë‹¤");
+		MsgBoxAssert("LevelÀÌ nullptrÀÔ´Ï´Ù");
 		return;
 	}
 
@@ -155,7 +155,7 @@ void GameEngineCamera::Render(float _DeltaTime)
 {
 	CameraUpdate(_DeltaTime);
 
-	//  ëœë”ëŸ¬ê°€ ì—†ìœ¼ë©´ continue;
+	//  ·£´õ·¯°¡ ¾øÀ¸¸é continue;
 	if (true == Renderers.empty())
 	{
 		return;
@@ -186,7 +186,7 @@ void GameEngineCamera::Render(float _DeltaTime)
 				});
 		}
 
-		for (std::shared_ptr<class GameEngineRenderer>& Renderer : RendererList)
+		for (std::shared_ptr<class GameEngineRenderer> & Renderer : RendererList)
 		{
 			if (false == Renderer->IsUpdate())
 			{
@@ -198,7 +198,7 @@ void GameEngineCamera::Render(float _DeltaTime)
 		}
 	}
 
-	// ê¸°ì¡´ì— ê·¸ë ¤ì§„ê±¸ ì‹¹ë‹¤ ì§€ìš°ê³  ë³µì‚¬
+	// ±âÁ¸¿¡ ±×·ÁÁø°É ½Ï´Ù Áö¿ì°í º¹»ç
 	// CameraTarget->Copy(0, AllRenderTarget, 0);
 
 	AllRenderTarget->PostEffect(_DeltaTime);
@@ -213,7 +213,7 @@ void GameEngineCamera::AllReleaseCheck()
 		return;
 	}
 
-	// ë“¤ê³ ìˆëŠ” ë…€ì„ë“¤ì€ ì „ë¶€ë‹¤ ì•¡í„°ê² ì§€ë§Œ
+	// µé°íÀÖ´Â ³à¼®µéÀº ÀüºÎ´Ù ¾×ÅÍ°ÚÁö¸¸
 	for (std::pair<const int, std::list<std::shared_ptr<GameEngineRenderer>>>& _Pair : Renderers)
 	{
 		std::list<std::shared_ptr<GameEngineRenderer>>& Group = _Pair.second;
@@ -237,11 +237,11 @@ void GameEngineCamera::AllReleaseCheck()
 
 float4 GameEngineCamera::GetWorldMousePos2D()
 {
-	// ì›”ë“œë¼ê³  í•˜ëŠ” ì„¸ìƒì€ í™”ë©´ê³¼ ê´€ë ¨ì´ ì—†ì—ˆë‹¤.
-	// ê·¸ëŸ°ë° ê´€ë ¨ìˆê²Œ ëë‹¤.
-
-	// ë‚˜ëˆ„ê¸°
-	// ë¡œì»¬ => ì›”ë“œ(í¬ìì´ê³µë¶€) => ë·° => í”„ë¡œì ì…˜ => ë·°í¬íŠ¸(ìŠ¤í¬ë¦°ì¢Œí‘œ)
+	// ¿ùµå¶ó°í ÇÏ´Â ¼¼»óÀº È­¸é°ú °ü·ÃÀÌ ¾ø¾ú´Ù.
+	// ±×·±µ¥ °ü·ÃÀÖ°Ô µÆ´Ù.
+	
+	// ³ª´©±â
+	// ·ÎÄÃ => ¿ùµå(Å©ÀÚÀÌ°øºÎ) => ºä => ÇÁ·ÎÁ§¼Ç => ºäÆ÷Æ®(½ºÅ©¸°ÁÂÇ¥)
 
 	float4x4 ViewPort;
 
@@ -249,13 +249,13 @@ float4 GameEngineCamera::GetWorldMousePos2D()
 
 	float4 Scale = GameEngineCore::MainWindow.GetScale();
 	ViewPort.ViewPort(Scale.X, Scale.Y, 0, 0);
-	// ìŠ¤í¬ë¦° => í”„ë¡œì ì…˜ìœ¼ë¡œ ì´ë™
+	// ½ºÅ©¸° => ÇÁ·ÎÁ§¼ÇÀ¸·Î ÀÌµ¿
 	MousePos *= ViewPort.InverseReturn();
 
-	// í”„ë¡œì ì…˜ => ë·°ë¡œ ì´ë™
+	// ÇÁ·ÎÁ§¼Ç => ºä·Î ÀÌµ¿
 	MousePos *= Transform.GetConstTransformDataRef().ProjectionMatrix.InverseReturn();
 
-	// ë·° => ì›”ë“œë¡œ
+	// ºä => ¿ùµå·Î
 	MousePos *= Transform.GetConstTransformDataRef().ViewMatrix.InverseReturn();
 
 	return MousePos;
@@ -285,11 +285,11 @@ void GameEngineCamera::CameraUpdate(float _DeltaTime)
 
 	if (true == IsFreeCameraValue)
 	{
-		// ììœ¨í–‰ë™ ì¹´ë©”ë¼ë¡œ í–‰ë™
+		// ÀÚÀ²Çàµ¿ Ä«¸Ş¶ó·Î Çàµ¿
 	}
 	else if (nullptr != Target)
 	{
-		// ë‚´ê°€ ë”°ë¼ë‹¤ë‹ˆëŠ” ë…€ì„ì´ ìˆë‹¤ë©´
+		// ³»°¡ µû¶ó´Ù´Ï´Â ³à¼®ÀÌ ÀÖ´Ù¸é
 		Transform.SetWorldPosition(Target->GetWorldPosition() + Pivot);
 	}
 

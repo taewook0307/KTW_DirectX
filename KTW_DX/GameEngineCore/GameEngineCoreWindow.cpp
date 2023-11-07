@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineCoreWindow.h"
 
 // ImageShot
@@ -20,11 +20,11 @@ void GameEngineImageShotWindow::OnGUI(class GameEngineLevel* _Level, float _Delt
 // Core
 std::map<int, NameRenderTarget> GameEngineCoreWindow::DebugRenderTarget;
 
-GameEngineCoreWindow::GameEngineCoreWindow()
+GameEngineCoreWindow::GameEngineCoreWindow() 
 {
 }
 
-GameEngineCoreWindow::~GameEngineCoreWindow()
+GameEngineCoreWindow::~GameEngineCoreWindow() 
 {
 }
 
@@ -38,7 +38,7 @@ void GameEngineCoreWindow::OnGUI(class GameEngineLevel* _Level, float _DeltaTime
 	for (std::pair<int, NameRenderTarget> RenderTargetPair : DebugRenderTarget)
 	{
 		std::string Name = RenderTargetPair.second.Name;
-		// íŠ¸ë¦¬ë…¸ë“œë¼ëŠ” Imgui ê¸°ëŠ¥ì„ ì‚¬ìš©í• ê²ƒì´ë‹¤.
+		// Æ®¸®³ëµå¶ó´Â Imgui ±â´ÉÀ» »ç¿ëÇÒ°ÍÀÌ´Ù.
 		if (true == ImGui::TreeNodeEx(Name.c_str(), 0))
 		{
 			std::shared_ptr<GameEngineRenderTarget> RenderTarget = RenderTargetPair.second.RenderTarget;

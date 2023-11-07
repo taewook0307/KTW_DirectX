@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineTransform.h"
 
 // int ArrColFunction[7][7];
@@ -8,17 +8,17 @@ std::function<bool(const CollisionParameter& _Data)> ArrColFunction[static_cast<
 class InitColFunction
 {
 public:
-	InitColFunction()
+	InitColFunction() 
 	{
 		for (size_t Left = 0; Left < static_cast<size_t>(ColType::MAX); Left++)
 		{
 			for (size_t Right = 0; Right < static_cast<size_t>(ColType::MAX); Right++)
 			{
 				ArrColFunction[Left][Right] = [](const CollisionParameter& _Data)
-					{
-						MsgBoxAssert("ì•„ì§ ì²˜ë¦¬ë˜ì§€ ì•Šì€ í•¨ìˆ˜ì…ë‹ˆë‹¤.");
-						return false;
-					};
+				{
+					MsgBoxAssert("¾ÆÁ÷ Ã³¸®µÇÁö ¾ÊÀº ÇÔ¼öÀÔ´Ï´Ù.");
+					return false;
+				};
 			}
 		}
 
@@ -74,13 +74,13 @@ public:
 			};
 
 		ArrColFunction[static_cast<int>(ColType::AABBBOX2D)][static_cast<int>(ColType::AABBBOX2D)] = [](const CollisionParameter& _Data)
-			{
-				DirectX::BoundingBox Left = _Data.Left.AABB;
-				Left.Center.z = 0.0f;
-				DirectX::BoundingBox Right = _Data.Right.AABB;
-				Right.Center.z = 0.0f;
-				return Left.Intersects(Right);
-			};
+		{
+			DirectX::BoundingBox Left = _Data.Left.AABB;
+			Left.Center.z = 0.0f;
+			DirectX::BoundingBox Right = _Data.Right.AABB;
+			Right.Center.z = 0.0f;
+			return Left.Intersects(Right);
+		};
 
 		ArrColFunction[static_cast<int>(ColType::AABBBOX2D)][static_cast<int>(ColType::SPHERE2D)] = [](const CollisionParameter& _Data)
 			{
@@ -160,11 +160,11 @@ public:
 
 InitColFunction Inst;
 
-GameEngineTransform::GameEngineTransform()
+GameEngineTransform::GameEngineTransform() 
 {
 }
 
-GameEngineTransform::~GameEngineTransform()
+GameEngineTransform::~GameEngineTransform() 
 {
 }
 
@@ -176,30 +176,30 @@ void GameEngineTransform::TransformUpdate()
 	// world local
 
 	// postion
-	// ë¶€ëª¨
+	// ºÎ¸ğ
 	// 100, 100
-	// ë‚˜ë„
+	// ³ªµµ
 	// 100, 100
-	// ë‚˜ì˜ local 100, 100
-	// ë‚˜ì˜ World 200, 200
+	// ³ªÀÇ local 100, 100
+	// ³ªÀÇ World 200, 200
 	// 
-	// setworldpostion(300, 300) ì§€ê¸ˆ ë‚´ê°€ ì–´ë””ì— ìˆê±´.
-	// ë‚˜ì˜ ìœ„ì¹˜ê°€ 300, 300ìœ¼ë¡œ ê³ ì •ëœë‹¤ëŠ” ê²ƒì´ë„¤ìš”?
-
-	// ë‹¨ìˆœí•˜ê²Œ ìƒê°í•´ë³´ë©´ ë¶€ëª¨ì˜ ìœ„ì¹˜ì—ì„œ ë‚˜ì˜ ìœ„ì¹˜ë¥¼ ë¹¼ë©´
-	// íšŒì „í•˜ê³  
+	// setworldpostion(300, 300) Áö±İ ³»°¡ ¾îµğ¿¡ ÀÖ°Ç.
+	// ³ªÀÇ À§Ä¡°¡ 300, 300À¸·Î °íÁ¤µÈ´Ù´Â °ÍÀÌ³×¿ä?
+	
+	// ´Ü¼øÇÏ°Ô »ı°¢ÇØº¸¸é ºÎ¸ğÀÇ À§Ä¡¿¡¼­ ³ªÀÇ À§Ä¡¸¦ »©¸é
+	// È¸ÀüÇÏ°í 
 
 	if (nullptr != Parent)
 	{
 		TransData.ParentMatrix = Parent->TransData.WorldMatrix;
 		TransData.WorldMatrix = TransData.WorldMatrix * TransData.ParentMatrix;
 
-		// ë‚˜ëŠ” ë¶€ëª¨ì˜ í–‰ë ¬ì„ ê³±í•´ì„œ ë‚˜ì˜ í–‰ë ¬ì´ ë‚˜ì˜¤ê²Œ ë˜ì—ˆë‹¤.
-		// ê¸°ì¡´ì˜ ìš”ì†Œë“¤ì€ ìœ ì§€í•˜
+		// ³ª´Â ºÎ¸ğÀÇ Çà·ÄÀ» °öÇØ¼­ ³ªÀÇ Çà·ÄÀÌ ³ª¿À°Ô µÇ¾ú´Ù.
+		// ±âÁ¸ÀÇ ¿ä¼ÒµéÀº À¯ÁöÇÏ
 
 		if (true == AbsoluteScale || true == AbsoluteRotation || true == AbsolutePosition)
 		{
-			// ìˆ˜ì¹˜ë¥¼ ê³ ì •ì‹œí‚¤ë¼ëŠ” ëª…ë ¹ì´ ë‚´ë ¤ì™”ë‹¤.
+			// ¼öÄ¡¸¦ °íÁ¤½ÃÅ°¶ó´Â ¸í·ÉÀÌ ³»·Á¿Ô´Ù.
 			float4 WScale, WRotation, WPosition;
 			float4 LScale, LRotation, LPosition;
 
@@ -207,12 +207,12 @@ void GameEngineTransform::TransformUpdate()
 
 			if (true == AbsoluteScale)
 			{
-				WScale = TransData.Scale;
+				WScale = TransData.Scale; 
 			}
 
 			if (true == AbsoluteRotation)
 			{
-				WRotation = TransData.Rotation.EulerDegToQuaternion();
+				WRotation = TransData.Rotation.EulerDegToQuaternion(); 
 			}
 
 			if (true == AbsolutePosition)
@@ -225,7 +225,7 @@ void GameEngineTransform::TransformUpdate()
 		}
 	}
 
-	// ë‚´ë¶€ì—ì„œ ë””ì»´í¬ì¦ˆë¥¼ í•´ì£¼ê¸° ë•Œë¬¸ì—
+	// ³»ºÎ¿¡¼­ µğÄÄÆ÷Áî¸¦ ÇØÁÖ±â ¶§¹®¿¡
 	TransData.WorldMatrix.Decompose(TransData.WorldScale, TransData.WorldQuaternion, TransData.WorldPosition);
 	TransData.WorldRotation = TransData.WorldQuaternion.QuaternionToEulerDeg();
 
@@ -233,11 +233,11 @@ void GameEngineTransform::TransformUpdate()
 	TransData.LocalRotation = TransData.LocalQuaternion.QuaternionToEulerDeg();
 
 
-	// ë°˜ì§€ë¦„ 
+	// ¹İÁö¸§ 
 	ColData.OBB.Extents = TransData.WorldScale.ToABS().Half().Float3;
 	ColData.OBB.Center = TransData.WorldPosition.Float3;
 	ColData.OBB.Orientation = TransData.WorldQuaternion.Float4;
-	// íŠ¸ëœìŠ¤í¼ë„ ì—…ë°ì´íŠ¸ê°€ ë˜ì—ˆìœ¼ë¯€ë¡œ
+	// Æ®·£½ºÆûµµ ¾÷µ¥ÀÌÆ®°¡ µÇ¾úÀ¸¹Ç·Î
 
 
 	CalChilds();

@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineLevel.h"
 #include "GameEngineCore.h"
 #include "GameEngineActor.h"
@@ -9,7 +9,7 @@
 
 bool GameEngineLevel::IsDebug = true;
 
-GameEngineLevel::GameEngineLevel()
+GameEngineLevel::GameEngineLevel() 
 {
 	// Main
 	{
@@ -34,11 +34,11 @@ std::shared_ptr<GameEngineCamera> GameEngineLevel::CreateCamera(int _Order, int 
 	return NewCamera;
 }
 
-GameEngineLevel::~GameEngineLevel()
+GameEngineLevel::~GameEngineLevel() 
 {
 }
 
-void GameEngineLevel::Start()
+void GameEngineLevel::Start() 
 {
 }
 
@@ -76,14 +76,14 @@ void GameEngineLevel::Render(float _Delta)
 			continue;
 		}
 
-		// ë ˆí¼ëŸ°ìŠ¤ë¡œ ë°›ëŠ”ë‹¤.
+		// ·¹ÆÛ·±½º·Î ¹Ş´Â´Ù.
 		std::shared_ptr<GameEngineCamera>& Camera = CameraPair.second;
 		Camera->Render(_Delta);
 	}
 
-	// post processë¼ëŠ”ê²ƒì„ ë³´ì—¬ì¤„ê²ƒì¸ë°.
+	// post process¶ó´Â°ÍÀ» º¸¿©ÁÙ°ÍÀÎµ¥.
 
-	// ë­”ê°€ 
+	// ¹º°¡ 
 	LevelRenderTarget->PostEffect(_Delta);
 
 	GameEngineCore::GetBackBufferRenderTarget()->Copy(0, LevelRenderTarget, 0);
@@ -93,19 +93,19 @@ void GameEngineLevel::Render(float _Delta)
 		GameEngineCore::GetBackBufferRenderTarget()->Setting();
 
 		GameEngineDebug::GameEngineDebugCore::DebugRender();
-		// ëª¬ê°€ë¥¼ í•œë‹¤.
+		// ¸ó°¡¸¦ ÇÑ´Ù.
 	}
 }
 
 void GameEngineLevel::Release()
 {
-	// MsgBoxAssert("ì¹˜ëª…ì ì¸ ë²„ê·¸ë¥¼ ë°œê²¬í•˜ì…¨êµ°ìš” íŒ€ì¥ë‹˜í•œí…Œ ì—°ë½í•˜ì„¸ìš”. ì‚¬ìˆ˜ ê±°ì¹ í•„ìš” ì—†ìŠµë‹ˆë‹¤. ì—°ë½ xxx ë²ˆí˜¸");
-	MsgBoxAssert("ë ˆë²¨ì€ ì—”ì§„ ê·œì¹™ìƒ ì‚­ì œí• ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+	// MsgBoxAssert("Ä¡¸íÀûÀÎ ¹ö±×¸¦ ¹ß°ßÇÏ¼Ì±º¿ä ÆÀÀå´ÔÇÑÅ× ¿¬¶ôÇÏ¼¼¿ä. »ç¼ö °ÅÄ¥ÇÊ¿ä ¾ø½À´Ï´Ù. ¿¬¶ô xxx ¹øÈ£");
+	MsgBoxAssert("·¹º§Àº ¿£Áø ±ÔÄ¢»ó »èÁ¦ÇÒ¼ö ¾ø½À´Ï´Ù.");
 }
 
 void GameEngineLevel::AllReleaseCheck()
 {
-	// ë ˆë²¨ì€ ì§€ì›Œì§ˆì¼ì´ ì—†ê¸° ë•Œë¬¸ì— ìŠ¤ìŠ¤ë¡œì˜ releaseëŠ” í˜¸ì¶œí•˜ì§€ ì•ŠëŠ”ë‹¤.
+	// ·¹º§Àº Áö¿öÁúÀÏÀÌ ¾ø±â ¶§¹®¿¡ ½º½º·ÎÀÇ release´Â È£ÃâÇÏÁö ¾Ê´Â´Ù.
 	for (std::pair<const int, std::shared_ptr<class GameEngineCamera>>& Pair : Cameras)
 	{
 		if (nullptr == Pair.second)
@@ -127,7 +127,7 @@ void GameEngineLevel::AllReleaseCheck()
 	}
 
 
-	// ë“¤ê³ ìˆëŠ” ë…€ì„ë“¤ì€ ì „ë¶€ë‹¤ ì•¡í„°ê² ì§€ë§Œ
+	// µé°íÀÖ´Â ³à¼®µéÀº ÀüºÎ´Ù ¾×ÅÍ°ÚÁö¸¸
 	for (std::pair<const int, std::list<std::shared_ptr<GameEngineObject>>>& _Pair : Childs)
 	{
 		std::list<std::shared_ptr<GameEngineObject>>& Group = _Pair.second;
@@ -161,7 +161,7 @@ void GameEngineLevel::PushCollision(std::shared_ptr<class GameEngineCollision> _
 {
 	if (nullptr == _Collision)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì½œë¦¬ì „ì„ ì‚¬ìš©í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â Äİ¸®ÀüÀ» »ç¿ëÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 

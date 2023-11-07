@@ -1,11 +1,11 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineIndexBuffer.h"
 
-GameEngineIndexBuffer::GameEngineIndexBuffer()
+GameEngineIndexBuffer::GameEngineIndexBuffer() 
 {
 }
 
-GameEngineIndexBuffer::~GameEngineIndexBuffer()
+GameEngineIndexBuffer::~GameEngineIndexBuffer() 
 {
 }
 
@@ -14,12 +14,12 @@ void GameEngineIndexBuffer::ResCreate(const void* _Data, size_t _IndexCount)
 {
 	IndexCount = static_cast<UINT>(_IndexCount);
 
-	// ë²„í¼ëŠ” ë°©ê¸ˆì „ì— ë§í–ˆë“¯ì´ 
-	// ë¬´ìŠ¨ ìš©ë„ë¡œ ì“¸ê±°ì•¼?
+	// ¹öÆÛ´Â ¹æ±İÀü¿¡ ¸»ÇßµíÀÌ 
+	// ¹«½¼ ¿ëµµ·Î ¾µ°Å¾ß?
 	BufferInfo.BindFlags = D3D11_BIND_INDEX_BUFFER;
 	BufferInfo.ByteWidth = static_cast<UINT>(IndexSize * IndexCount);
 
-	// ì•ˆë°”ê¿ˆ
+	// ¾È¹Ù²Ş
 	BufferInfo.CPUAccessFlags = 0;
 	BufferInfo.Usage = D3D11_USAGE_DEFAULT;
 
@@ -28,7 +28,7 @@ void GameEngineIndexBuffer::ResCreate(const void* _Data, size_t _IndexCount)
 
 	if (S_OK != GameEngineCore::GetDevice()->CreateBuffer(&BufferInfo, &Data, &Buffer))
 	{
-		MsgBoxAssert("ë²„í…ìŠ¤ ë²„í¼ ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¹öÅØ½º ¹öÆÛ »ı¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
 		return;
 	}
 }
@@ -39,10 +39,10 @@ void GameEngineIndexBuffer::Setting()
 
 	if (nullptr == Buffer)
 	{
-		MsgBoxAssert("ë§Œë“¤ì–´ì§€ì§€ë„ ì•Šì€ ë²„í…ìŠ¤ ë²„í¼ë¥¼ ì„¸íŒ…í•  ìˆ˜ëŠ” ì—†ìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¸¸µé¾îÁöÁöµµ ¾ÊÀº ¹öÅØ½º ¹öÆÛ¸¦ ¼¼ÆÃÇÒ ¼ö´Â ¾ø½À´Ï´Ù.");
 	}
 
 
-	// ë²„í…ìŠ¤ë²„í¼ë¥¼ ì—¬ëŸ¬ê°œ ë„£ì–´ì¤„ìˆ˜ ìˆë‹¤.
+	// ¹öÅØ½º¹öÆÛ¸¦ ¿©·¯°³ ³Ö¾îÁÙ¼ö ÀÖ´Ù.
 	GameEngineCore::GetContext()->IASetIndexBuffer(Buffer, Format, Offset);
 }

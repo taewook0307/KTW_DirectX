@@ -1,11 +1,11 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineShader.h"
 
-GameEngineShader::GameEngineShader()
+GameEngineShader::GameEngineShader() 
 {
 }
 
-GameEngineShader::~GameEngineShader()
+GameEngineShader::~GameEngineShader() 
 {
 }
 
@@ -17,7 +17,7 @@ void GameEngineShader::CreateVersion(ShaderType _Type, UINT _VersionHigh, UINT _
 	{
 	case ShaderType::None:
 	{
-		MsgBoxAssert("ì‰ì´ë” íƒ€ì…ì´ ì˜ëª»ë“¤ì–´ì™”ìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("½¦ÀÌ´õ Å¸ÀÔÀÌ Àß¸øµé¾î¿Ô½À´Ï´Ù.");
 		break;
 	}
 	case ShaderType::Vertex:
@@ -31,7 +31,7 @@ void GameEngineShader::CreateVersion(ShaderType _Type, UINT _VersionHigh, UINT _
 		break;
 	case ShaderType::Max:
 	{
-		MsgBoxAssert("ì‰ì´ë” íƒ€ì…ì´ ì˜ëª»ë“¤ì–´ì™”ìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("½¦ÀÌ´õ Å¸ÀÔÀÌ Àß¸øµé¾î¿Ô½À´Ï´Ù.");
 		break;
 	}
 	default:
@@ -52,12 +52,21 @@ void GameEngineShader::ShaderResCheck()
 	ResHelper.ShaderResCheck(EntryName, this, BinaryCode);
 }
 
-// ë¶€ëª¨ê°€ ìì‹í´ë˜ìŠ¤ë¥¼ ì•Œê³  ìˆëŠ” ê²½ìš°ë¼ ì¡°ê¸ˆ ì„ ìƒë‹˜ íƒ€ì…
+// ºÎ¸ğ°¡ ÀÚ½ÄÅ¬·¡½º¸¦ ¾Ë°í ÀÖ´Â °æ¿ì¶ó Á¶±İ ¼±»ı´Ô Å¸ÀÔ
 #include "GameEngineVertexShader.h"
 #include "GameEnginePixelShader.h"
 
 bool GameEngineShader::AutoCompile(GameEngineFile& _File)
 {
+	// ½¦ÀÌ´õ ÆÄÀÏ¾È¿¡ ³ª³ª ¿©·¯ºĞµéÀÏ°ÍÀÌ´Ù.
+	// ½¦ÀÌ´õ¸¦ Â¥´Ùº¸¸é ´Ù¾çÇÑ Á¾·ùÀÇ ½¦ÀÌ´õ°¡ ÀÖÀ»¼ö ÀÖ´Ù¸¦ °ÅÀåÇÏ°í.
+	// ¿ì¸®¸¸ÀÇ ³×ÀÌ¹Ö ±ÔÄ¢À» ±â¹İÀ¸·Î
+	// ¾î¶² ½¦ÀÌ´õ°¡ µé¾îÀÖ´ÂÁö ÀÌÇØÇÏ°í ÆÄ¾ÇµÈ ½¦ÀÌ´õ ÇÔ¼öµéÀ» ÀÚµ¿ ½¦ÀÌ´õ·Î ¸¸µé¾îÁÖ´Â ÇÔ¼ö¿¡¿ä.
+
+	// ±ÔÄ¢Àº ÀÏ´Ü ±âº»ÀûÀ¸·Î _VS <= ¹öÅØ½º ½¦ÀÌ´õ ÇÔ¼ö´Ù¸¦ ¸íÈ®ÇÏ°Ô Ç¥ÇöÇÏ´Â ÇÔ¼ö´Ù¸¦ Ç¥ÇöÇÏ´Â ÀÌ¸§ÀÌ¾î¾ß ÇÑ´Ù.
+	// ÄÚµù ½ºÅÙ´Ùµå ºÎÅÍ.
+
+	// ÀÌ ÆÄÀÏÀÇ °æ·Î·Î 
 	_File.Open(FileOpenType::Read, FileDataType::Text);
 
 	GameEngineSerializer Ser;
@@ -65,30 +74,32 @@ bool GameEngineShader::AutoCompile(GameEngineFile& _File)
 
 	std::string_view ShaderCode = Ser.GetStringView();
 
+	// ÆÄÀÏÀ» ´Ù ÀĞ¾î¿Ô°í
+	// ³»ºÎ¿¡ ¾î¶² ½¦ÀÌ´õ°¡ ÀÖ´ÂÁö ºĞ¼®ÇÏ±â ½ÃÀÛÇÒ °ÍÀÌ´Ù.
 	{
-		// find ì•ì—ì„œ ë¶€í„° ë’¤ì ¸ì„œ ë°”ì´íŠ¸ ìœ„ì¹˜ë¥¼ ì•Œë ¤ì¤ë‹ˆë‹¤.
+		// find ¾Õ¿¡¼­ ºÎÅÍ µÚÁ®¼­ ¹ÙÀÌÆ® À§Ä¡¸¦ ¾Ë·ÁÁİ´Ï´Ù.
 		size_t EntryIndex = ShaderCode.find("_VS(");
-		// ëª»ì°¾ì•˜ì„ë•Œ ë‚˜ì˜µë‹ˆë‹¤.
+		// ¸øÃ£¾ÒÀ»¶§ ³ª¿É´Ï´Ù.
 		if (EntryIndex != std::string::npos)
 		{
-			// ë‚´ê°€ ì§€ì •í•œ ìœ„ì¹˜ì—ì„œë¶€í„° ì•ìœ¼ë¡œ ì°¾ê¸° ì•„ì„œ 
+			// ³»°¡ ÁöÁ¤ÇÑ À§Ä¡¿¡¼­ºÎÅÍ ¾ÕÀ¸·Î Ã£±â ¾Æ¼­ 
 			size_t FirstIndex = ShaderCode.find_last_of(" ", EntryIndex);
 			std::string_view EntryName = ShaderCode.substr(FirstIndex + 1, EntryIndex - FirstIndex + 2);
 
 			GameEngineVertexShader::Load(_File.GetStringPath(), EntryName);
 
-			// ColorShader.fx í”½ì…€ì‰ì´ë”ê°€ ìˆì„ìˆ˜ ìˆë‹¤.
+			// ColorShader.fx ÇÈ¼¿½¦ÀÌ´õ°¡ ÀÖÀ»¼ö ÀÖ´Ù.
 
 		}
 	}
 
 	{
-		// find ì•ì—ì„œ ë¶€í„° ë’¤ì ¸ì„œ ë°”ì´íŠ¸ ìœ„ì¹˜ë¥¼ ì•Œë ¤ì¤ë‹ˆë‹¤.
+		// find ¾Õ¿¡¼­ ºÎÅÍ µÚÁ®¼­ ¹ÙÀÌÆ® À§Ä¡¸¦ ¾Ë·ÁÁİ´Ï´Ù.
 		size_t EntryIndex = ShaderCode.find("_GS(");
-		// ëª»ì°¾ì•˜ì„ë•Œ ë‚˜ì˜µë‹ˆë‹¤.
+		// ¸øÃ£¾ÒÀ»¶§ ³ª¿É´Ï´Ù.
 		if (EntryIndex != std::string::npos)
 		{
-			// ë‚´ê°€ ì§€ì •í•œ ìœ„ì¹˜ì—ì„œë¶€í„° ì•ìœ¼ë¡œ ì°¾ê¸° ì•„ì„œ 
+			// ³»°¡ ÁöÁ¤ÇÑ À§Ä¡¿¡¼­ºÎÅÍ ¾ÕÀ¸·Î Ã£±â ¾Æ¼­ 
 			size_t FirstIndex = ShaderCode.find_last_of(" ", EntryIndex);
 			std::string_view EntryName = ShaderCode.substr(FirstIndex + 1, EntryIndex - FirstIndex + 2);
 
@@ -98,12 +109,12 @@ bool GameEngineShader::AutoCompile(GameEngineFile& _File)
 	}
 
 	{
-		// find ì•ì—ì„œ ë¶€í„° ë’¤ì ¸ì„œ ë°”ì´íŠ¸ ìœ„ì¹˜ë¥¼ ì•Œë ¤ì¤ë‹ˆë‹¤.
+		// find ¾Õ¿¡¼­ ºÎÅÍ µÚÁ®¼­ ¹ÙÀÌÆ® À§Ä¡¸¦ ¾Ë·ÁÁİ´Ï´Ù.
 		size_t EntryIndex = ShaderCode.find("_PS(");
-		// ëª»ì°¾ì•˜ì„ë•Œ ë‚˜ì˜µë‹ˆë‹¤.
+		// ¸øÃ£¾ÒÀ»¶§ ³ª¿É´Ï´Ù.
 		if (EntryIndex != std::string::npos)
 		{
-			// ë‚´ê°€ ì§€ì •í•œ ìœ„ì¹˜ì—ì„œë¶€í„° ì•ìœ¼ë¡œ ì°¾ê¸° ì•„ì„œ 
+			// ³»°¡ ÁöÁ¤ÇÑ À§Ä¡¿¡¼­ºÎÅÍ ¾ÕÀ¸·Î Ã£±â ¾Æ¼­ 
 			size_t FirstIndex = ShaderCode.find_last_of(" ", EntryIndex);
 			std::string_view EntryName = ShaderCode.substr(FirstIndex + 1, EntryIndex - FirstIndex + 2);
 			GameEnginePixelShader::Load(_File.GetStringPath(), EntryName);

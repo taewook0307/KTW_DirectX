@@ -48,7 +48,7 @@ public:
 		ZoomValue += _Value;
 	}
 
-	bool IsFreeCamera()
+	bool IsFreeCamera() 
 	{
 		return IsFreeCameraValue;
 	}
@@ -77,7 +77,7 @@ public:
 		ZSortMap.insert(static_cast<int>(_SortOrder));
 	}
 
-	void SetZSort(int _SortOrder)
+	void SetZSort(int _SortOrder) 
 	{
 		ZSortMap.insert(_SortOrder);
 	}
@@ -107,8 +107,8 @@ protected:
 
 	void AllReleaseCheck() override;
 
-
-
+	
+	
 
 private:
 	float4 Pivot = float4::ZERO;

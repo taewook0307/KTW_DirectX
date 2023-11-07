@@ -1,13 +1,13 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineSampler.h"
 
 std::map<D3D11_FILTER, std::map<D3D11_TEXTURE_ADDRESS_MODE, std::shared_ptr<GameEngineSampler>>> GameEngineSampler::OptionSamplers;
 
-GameEngineSampler::GameEngineSampler()
+GameEngineSampler::GameEngineSampler() 
 {
 }
 
-GameEngineSampler::~GameEngineSampler()
+GameEngineSampler::~GameEngineSampler() 
 {
 	if (nullptr != State)
 	{
@@ -21,7 +21,7 @@ void GameEngineSampler::ResCreate(const D3D11_SAMPLER_DESC& _Desc)
 	Desc = _Desc;
 	if (S_OK != GameEngineCore::GetDevice()->CreateSamplerState(&_Desc, &State))
 	{
-		MsgBoxAssert("ìƒ˜í”ŒëŸ¬ ì„¸íŒ…ì„ ë§Œë“œëŠ”ë° ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("»ùÇÃ·¯ ¼¼ÆÃÀ» ¸¸µå´Âµ¥ ½ÇÆĞÇß½À´Ï´Ù.");
 	}
 }
 

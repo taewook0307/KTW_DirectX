@@ -1,13 +1,13 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineConstantBuffer.h"
 
 std::map<int, std::map<std::string, std::shared_ptr<GameEngineConstantBuffer>>> GameEngineConstantBuffer::ConstantBuffers;
 
-GameEngineConstantBuffer::GameEngineConstantBuffer()
+GameEngineConstantBuffer::GameEngineConstantBuffer() 
 {
 }
 
-GameEngineConstantBuffer::~GameEngineConstantBuffer()
+GameEngineConstantBuffer::~GameEngineConstantBuffer() 
 {
 }
 
@@ -16,14 +16,14 @@ void GameEngineConstantBuffer::ResCreate(int _ByteSize)
 	BufferInfo.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	BufferInfo.ByteWidth = _ByteSize;
 
-	// ì•ˆë°”ê¿ˆ
+	// ¾È¹Ù²Þ
 	BufferInfo.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
 	BufferInfo.Usage = D3D11_USAGE_DYNAMIC;
 
-	//                                                                 ì´ˆê¸°í™”
+	//                                                                 ÃÊ±âÈ­
 	if (S_OK != GameEngineCore::GetDevice()->CreateBuffer(&BufferInfo, nullptr, &Buffer))
 	{
-		MsgBoxAssert("ë²„í…ìŠ¤ ë²„í¼ ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¹öÅØ½º ¹öÆÛ »ý¼º¿¡ ½ÇÆÐÇß½À´Ï´Ù.");
 		return;
 	}
 }
@@ -32,7 +32,7 @@ void GameEngineConstantBuffer::VSSetting(UINT _Slot)
 {
 	if (nullptr == Buffer)
 	{
-		MsgBoxAssert(std::string(GetName()) + "ë§Œë“¤ì–´ì§€ì§€ ì•Šì€ ìƒìˆ˜ë²„í¼ë¥¼ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert(std::string(GetName()) + "¸¸µé¾îÁöÁö ¾ÊÀº »ó¼ö¹öÆÛ¸¦ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 	}
 
 	GameEngineCore::GetContext()->VSSetConstantBuffers(_Slot, 1, &Buffer);
@@ -42,7 +42,7 @@ void GameEngineConstantBuffer::PSSetting(UINT _Slot)
 {
 	if (nullptr == Buffer)
 	{
-		MsgBoxAssert(std::string(GetName()) + "ë§Œë“¤ì–´ì§€ì§€ ì•Šì€ ìƒìˆ˜ë²„í¼ë¥¼ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert(std::string(GetName()) + "¸¸µé¾îÁöÁö ¾ÊÀº »ó¼ö¹öÆÛ¸¦ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 	}
 
 	GameEngineCore::GetContext()->PSSetConstantBuffers(_Slot, 1, &Buffer);
@@ -53,48 +53,48 @@ void GameEngineConstantBuffer::ChangeData(const void* _Data, UINT _Size)
 	if (nullptr == _Data)
 	{
 		std::string Name = GetName().data();
-		MsgBoxAssert(Name + "nullptrì¸ ë°ì´í„°ë¥¼ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert(Name + "nullptrÀÎ µ¥ÀÌÅÍ¸¦ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
-	// í¬ê¸°ê°€ ë‹¤ë¥¸
+	// Å©±â°¡ ´Ù¸¥
 	if (_Size != BufferInfo.ByteWidth)
 	{
 		std::string Name = GetName().data();
-		MsgBoxAssert(Name + "í¬ê¸°ê°€ ë‹¤ë¥¸ ë°ì´í„°ë¡œ ìƒìˆ˜ë²„í¼ë¥¼ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert(Name + "Å©±â°¡ ´Ù¸¥ µ¥ÀÌÅÍ·Î »ó¼ö¹öÆÛ¸¦ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
 	D3D11_MAPPED_SUBRESOURCE Data = {};
 
-	// ê·¸ëž˜í”½ì¹´ë“œëŠ” ì´ˆê³ ì†ìœ¼ë¡œ ëžœë”ë§ ì—°ì‚°ì„ 
-	// ë³‘ë ¬ì ìœ¼ë¡œ ì‹¤í–‰í•œë‹¤.
-	// ê·¸ëŸ¬ë¯€ë¡œ ë°ì´í„°ë¥¼ CPUì—ì„œ ë°ì´í„°ë¥¼ ë³€ê²½í•œë‹¤ëŠ” ê²ƒì€
-	// ê·¸ëž˜í”½ì¹´ë“œì—ê²Œ ì˜ˆì•½í•˜ëŠ” í˜•íƒœê°€ ë©ë‹ˆë‹¤.
-	// ê·¸ë¦¬ê³  ê·¸ëŸ° ì˜ˆì•½ ëŒ€ë¶€ë¶„ì€ ê·¸ëž˜í”½ì¹´ë“œë¥¼ ëŠë¦¬ê²Œ ë§Œë“­ë‹ˆë‹¤.
-	// ìž ê¹ ê·¸ë¦¬ëŠ”ê±° ë©ˆì¶°ë´ ê·¸ë¦¬ëŠ”ë° í•„ìš”í•œ ë°ì´í„°ë¥¼ ìƒˆë¡œ ê°€ì ¸ì™”ì–´
-	// ìµœëŒ€í•œ 1ë²ˆì— ì„¸íŒ…í•˜ëŠ” êµ¬ì¡°ê°€ ìµœê³ ë‹¤.
-	// mapì„ í˜¸ì¶œí•˜ëŠ” íšŸìˆ˜ê°€ ë¬¸ì œë‹¤.
-	// ë²¡í„°ê°€ ëª¨ë“  ìžë£Œêµ¬ì¡°ì¤‘ì—ì„œ ê°€ìž¥ ë¹ ë¥¸ ì´ìœ ë„ ì—¬ê¸°ì— ìžˆìŠµë‹ˆë‹¤.
-	// í•˜ì§€ë§Œ ê·¸ëŸ°êµ¬ì¡°ë¥¼ ì§œë©´ íŽ¸ì˜ì„±ì— ë¬¸ì œê°€ ìƒê¸°ê¸° ë•Œë¬¸ì— ê·¸ëƒ¥ ë§Žì´ í• ê²ë‹ˆë‹¤.
-
-	// ì´ ë²„í¼ë¥¼ ìž ê¹ ì“°ì§€ë§ˆ ìž ê¶ˆ ë°ì´í„° ë³€ê²½í• ê±°ì•¼.
+	// ±×·¡ÇÈÄ«µå´Â ÃÊ°í¼ÓÀ¸·Î ·£´õ¸µ ¿¬»êÀ» 
+	// º´·ÄÀûÀ¸·Î ½ÇÇàÇÑ´Ù.
+	// ±×·¯¹Ç·Î µ¥ÀÌÅÍ¸¦ CPU¿¡¼­ µ¥ÀÌÅÍ¸¦ º¯°æÇÑ´Ù´Â °ÍÀº
+	// ±×·¡ÇÈÄ«µå¿¡°Ô ¿¹¾àÇÏ´Â ÇüÅÂ°¡ µË´Ï´Ù.
+	// ±×¸®°í ±×·± ¿¹¾à ´ëºÎºÐÀº ±×·¡ÇÈÄ«µå¸¦ ´À¸®°Ô ¸¸µì´Ï´Ù.
+	// Àá±ñ ±×¸®´Â°Å ¸ØÃçºÁ ±×¸®´Âµ¥ ÇÊ¿äÇÑ µ¥ÀÌÅÍ¸¦ »õ·Î °¡Á®¿Ô¾î
+	// ÃÖ´ëÇÑ 1¹ø¿¡ ¼¼ÆÃÇÏ´Â ±¸Á¶°¡ ÃÖ°í´Ù.
+	// mapÀ» È£ÃâÇÏ´Â È½¼ö°¡ ¹®Á¦´Ù.
+	// º¤ÅÍ°¡ ¸ðµç ÀÚ·á±¸Á¶Áß¿¡¼­ °¡Àå ºü¸¥ ÀÌÀ¯µµ ¿©±â¿¡ ÀÖ½À´Ï´Ù.
+	// ÇÏÁö¸¸ ±×·±±¸Á¶¸¦ Â¥¸é ÆíÀÇ¼º¿¡ ¹®Á¦°¡ »ý±â±â ¶§¹®¿¡ ±×³É ¸¹ÀÌ ÇÒ°Ì´Ï´Ù.
+	
+	// ÀÌ ¹öÆÛ¸¦ Àá±ñ ¾²Áö¸¶ Àá±Å µ¥ÀÌÅÍ º¯°æÇÒ°Å¾ß.
 	GameEngineCore::GetContext()->Map(Buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &Data);
 
-	// ê·¸ëž˜í”½ì¹´ë“œì— ì§ì ‘ ìŠ¬ìˆ˜ìžˆëŠ” ì£¼ì†Œê°’ì„ ë‹´ì•„ì¤ë‹ˆë‹¤.
+	// ±×·¡ÇÈÄ«µå¿¡ Á÷Á¢ ½½¼öÀÖ´Â ÁÖ¼Ò°ªÀ» ´ã¾ÆÁÝ´Ï´Ù.
 	// Data
 
 	if (Data.pData == nullptr)
 	{
 		std::string Name = Name;
-		MsgBoxAssert(Name + "ë²„í¼ ìˆ˜ì • ê¶Œí•œì„ ì–»ì–´ë‚´ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert(Name + "¹öÆÛ ¼öÁ¤ ±ÇÇÑÀ» ¾ò¾î³»Áö ¸øÇß½À´Ï´Ù.");
 		return;
 	}
 
 	memcpy_s(Data.pData, BufferInfo.ByteWidth, _Data, BufferInfo.ByteWidth);
+	
 
 
-
-	// ë‹¤ì¼ì–´.
+	// ´Ù½è¾î.
 	GameEngineCore::GetContext()->Unmap(Buffer, 0);
 }

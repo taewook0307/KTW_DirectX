@@ -11,10 +11,10 @@
     <FxCompile Include="TextureShader.fx">
       <Filter>2D</Filter>
     </FxCompile>
-    <FxCompile Include="DebugColorShader.fx">
+    <FxCompile Include="DebugLineShader.fx">
       <Filter>Debug</Filter>
     </FxCompile>
-    <FxCompile Include="DebugLineShader.fx">
+    <FxCompile Include="DebugColorShader.fx">
       <Filter>Debug</Filter>
     </FxCompile>
     <FxCompile Include="TargetMerge.fx">
@@ -26,19 +26,24 @@
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header">
-      <UniqueIdentifier>{0b5a6258-b4e1-4ac3-b72f-d13f6e2ee75a}</UniqueIdentifier>
+      <UniqueIdentifier>{806f3772-18af-4880-9af2-25ccec71527d}</UniqueIdentifier>
     </Filter>
     <Filter Include="2D">
-      <UniqueIdentifier>{d0bfa3e7-cd8e-466c-8a72-eb0f887802e7}</UniqueIdentifier>
+      <UniqueIdentifier>{d6e2eb2a-2117-40bb-86a2-11e222bd0694}</UniqueIdentifier>
     </Filter>
     <Filter Include="Debug">
-      <UniqueIdentifier>{db2bb517-8a6b-4922-b210-2bf82b91160e}</UniqueIdentifier>
+      <UniqueIdentifier>{6303286d-9b75-49d2-bcb8-5249c2651a38}</UniqueIdentifier>
     </Filter>
     <Filter Include="Target">
-      <UniqueIdentifier>{3db9f9b6-a05b-4876-9349-b18f42b1af3e}</UniqueIdentifier>
+      <UniqueIdentifier>{0324b8c6-c4c0-4fe2-bf48-9023b6d52cf2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Effect">
-      <UniqueIdentifier>{e0d29def-a1ae-4b00-979d-e58c5461d922}</UniqueIdentifier>
+      <UniqueIdentifier>{ce1e9f9d-d554-4b67-b29c-13e5632a98aa}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="47기 쉐이더 규칙.txt">
+      <Filter>Header</Filter>
+    </Text>
   </ItemGroup>
 </Project>

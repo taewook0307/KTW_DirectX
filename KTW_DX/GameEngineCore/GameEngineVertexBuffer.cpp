@@ -1,11 +1,11 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineVertexBuffer.h"
 
-GameEngineVertexBuffer::GameEngineVertexBuffer()
+GameEngineVertexBuffer::GameEngineVertexBuffer() 
 {
 }
 
-GameEngineVertexBuffer::~GameEngineVertexBuffer()
+GameEngineVertexBuffer::~GameEngineVertexBuffer() 
 {
 }
 
@@ -17,18 +17,18 @@ void GameEngineVertexBuffer::ResCreate(const void* _Data, size_t _VertexSize, si
 	D3D11_SUBRESOURCE_DATA Data;
 	Data.pSysMem = _Data;
 
-	// ë²„í¼ëŠ” ë°©ê¸ˆì „ì— ë§í–ˆë“¯ì´ 
-	// ë¬´ìŠ¨ ìš©ë„ë¡œ ì“¸ê±°ì•¼?
+	// ¹öÆÛ´Â ¹æ±İÀü¿¡ ¸»ÇßµíÀÌ 
+	// ¹«½¼ ¿ëµµ·Î ¾µ°Å¾ß?
 	BufferInfo.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	BufferInfo.ByteWidth = static_cast<UINT>(VertexSize * VertexCount);
 
-	// ì•ˆë°”ê¿ˆ
+	// ¾È¹Ù²Ş
 	BufferInfo.CPUAccessFlags = 0;
 	BufferInfo.Usage = D3D11_USAGE_DEFAULT;
 
 	if (S_OK != GameEngineCore::GetDevice()->CreateBuffer(&BufferInfo, &Data, &Buffer))
 	{
-		MsgBoxAssert("ë²„í…ìŠ¤ ë²„í¼ ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¹öÅØ½º ¹öÆÛ »ı¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
 		return;
 	}
 }
@@ -39,10 +39,10 @@ void GameEngineVertexBuffer::Setting()
 
 	if (nullptr == Buffer)
 	{
-		MsgBoxAssert("ë§Œë“¤ì–´ì§€ì§€ë„ ì•Šì€ ë²„í…ìŠ¤ ë²„í¼ë¥¼ ì„¸íŒ…í•  ìˆ˜ëŠ” ì—†ìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¸¸µé¾îÁöÁöµµ ¾ÊÀº ¹öÅØ½º ¹öÆÛ¸¦ ¼¼ÆÃÇÒ ¼ö´Â ¾ø½À´Ï´Ù.");
 	}
 
 
-	// ë²„í…ìŠ¤ë²„í¼ë¥¼ ì—¬ëŸ¬ê°œ ë„£ì–´ì¤„ìˆ˜ ìˆë‹¤.
+	// ¹öÅØ½º¹öÆÛ¸¦ ¿©·¯°³ ³Ö¾îÁÙ¼ö ÀÖ´Ù.
 	GameEngineCore::GetContext()->IASetVertexBuffers(0, 1, &Buffer, &VertexSize, &Offset);
 }

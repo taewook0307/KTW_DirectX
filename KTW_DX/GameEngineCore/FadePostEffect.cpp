@@ -1,12 +1,12 @@
-﻿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "FadePostEffect.h"
 
-FadePostEffect::FadePostEffect()
+FadePostEffect::FadePostEffect() 
 {
 	// EffectUnit.SetMesh("fullrect");
 }
 
-FadePostEffect::~FadePostEffect()
+FadePostEffect::~FadePostEffect() 
 {
 }
 

@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineSpriteRenderer.h"
 #include "GameEngineTexture.h"
 #include "GameEngineSampler.h"
@@ -112,7 +112,7 @@ void GameEngineSpriteRenderer::Start()
 
 }
 
-// Update Orderì— ì˜í–¥ì„ ë°›ëŠ”ë‹¤.
+// Update Order¿¡ ¿µÇâÀ» ¹Þ´Â´Ù.
 void GameEngineSpriteRenderer::Update(float _Delta)
 {
 	if (nullptr != CurFrameAnimations)
@@ -175,11 +175,24 @@ void GameEngineSpriteRenderer::SetSprite(std::string_view _Name, unsigned int in
 
 	if (nullptr == Sprite)
 	{
-		MsgBoxAssert("ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ìŠ¤í”„ë¼ì´íŠ¸ë¥¼ ì‚¬ìš©í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ½ºÇÁ¶óÀÌÆ®¸¦ »ç¿ëÇÏ·Á°í Çß½À´Ï´Ù.");
 	}
 
 	CurSprite = Sprite->GetSpriteData(index);
 	SetImageScale(CurSprite.GetScale() * AutoScaleRatio);
+}
+
+
+void GameEngineSpriteRenderer::ChangeCurSprite(int _Index /*= 0*/)
+{
+	CurFrameAnimations = nullptr;
+
+	if (nullptr == Sprite)
+	{
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ½ºÇÁ¶óÀÌÆ®¸¦ »ç¿ëÇÏ·Á°í Çß½À´Ï´Ù.");
+	}
+
+	CurSprite = Sprite->GetSpriteData(_Index);
 }
 
 void GameEngineSpriteRenderer::CreateAnimation(
@@ -196,14 +209,14 @@ void GameEngineSpriteRenderer::CreateAnimation(
 	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find(SpriteName);
 	if (nullptr == Sprite)
 	{
-		MsgBoxAssert("ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ìŠ¤í”„ë¼ì´íŠ¸ë¡œ ì• ë‹ˆë©”ì´ì…˜ì„ ë§Œë“¤ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ½ºÇÁ¶óÀÌÆ®·Î ¾Ö´Ï¸ÞÀÌ¼ÇÀ» ¸¸µé·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
 	std::string UpperName = GameEngineString::ToUpperReturn(_AnimationName);
 	if (true == FrameAnimations.contains(UpperName))
 	{
-		MsgBoxAssert("ì´ë¯¸ ì¡´ìž¬í•˜ëŠ” ì• ë‹ˆë©”ì´ì…˜ì„ ë˜ ë§Œë“¤ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("ÀÌ¹Ì Á¸ÀçÇÏ´Â ¾Ö´Ï¸ÞÀÌ¼ÇÀ» ¶Ç ¸¸µé·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
@@ -279,7 +292,7 @@ void GameEngineSpriteRenderer::ChangeAnimation(std::string_view _AnimationName, 
 
 	if (FindIter == FrameAnimations.end())
 	{
-		MsgBoxAssert("ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ì• ë‹ˆë©”ì´ì…˜ìœ¼ë¡œ ì²´ì¸ì§€í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ¾Ö´Ï¸ÞÀÌ¼ÇÀ¸·Î Ã¼ÀÎÁöÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
@@ -321,7 +334,7 @@ void GameEngineSpriteRenderer::SetFrameEvent(std::string_view _AnimationName, in
 
 	if (nullptr == Animation)
 	{
-		MsgBoxAssert("ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ì• ë‹ˆë©”ì´ì…˜ì— ì´ë²¤íŠ¸ë¥¼ ë§Œë“¤ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ¾Ö´Ï¸ÞÀÌ¼Ç¿¡ ÀÌº¥Æ®¸¦ ¸¸µé·Á°í Çß½À´Ï´Ù.");
 	}
 
 	Animation->FrameEventFunction[_Frame] = _Function;
@@ -337,7 +350,7 @@ void GameEngineSpriteRenderer::SetStartEvent(std::string_view _AnimationName, st
 
 	if (nullptr == Animation)
 	{
-		MsgBoxAssert("ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ì• ë‹ˆë©”ì´ì…˜ì— ì´ë²¤íŠ¸ë¥¼ ë§Œë“¤ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ¾Ö´Ï¸ÞÀÌ¼Ç¿¡ ÀÌº¥Æ®¸¦ ¸¸µé·Á°í Çß½À´Ï´Ù.");
 	}
 
 	Animation->FrameEventFunction[Animation->Index[0]] = _Function;
@@ -353,7 +366,7 @@ void GameEngineSpriteRenderer::SetEndEvent(std::string_view _AnimationName, std:
 
 	if (nullptr == Animation)
 	{
-		MsgBoxAssert("ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ì• ë‹ˆë©”ì´ì…˜ì— ì´ë²¤íŠ¸ë¥¼ ë§Œë“¤ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ¾Ö´Ï¸ÞÀÌ¼Ç¿¡ ÀÌº¥Æ®¸¦ ¸¸µé·Á°í Çß½À´Ï´Ù.");
 	}
 
 	Animation->EndEvent = _Function;
@@ -377,7 +390,7 @@ void GameEngineSpriteRenderer::SetFrameChangeFunction(std::string_view _Animatio
 
 	if (nullptr == Animation)
 	{
-		MsgBoxAssert("ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ì• ë‹ˆë©”ì´ì…˜ì— ì´ë²¤íŠ¸ë¥¼ ë§Œë“¤ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ¾Ö´Ï¸ÞÀÌ¼Ç¿¡ ÀÌº¥Æ®¸¦ ¸¸µé·Á°í Çß½À´Ï´Ù.");
 	}
 
 	Animation->FrameChangeFunction = _Function;

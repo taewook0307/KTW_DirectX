@@ -87,7 +87,7 @@ public:
 		CurState->Event.Stay(_DeltaTime, this);
 	}
 
-	float GetStateTime()
+	float GetStateTime() 
 	{
 		return StateTime;
 	}

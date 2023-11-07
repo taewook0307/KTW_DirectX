@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineFont.h"
 
 IFW1Factory* GameEngineFont::Factory = nullptr;
@@ -15,8 +15,8 @@ public:
 	{
 		if (nullptr != GameEngineFont::Factory)
 		{
-			// ë‹¤ì‹œ ì‚¬ìš©í• ë•Œ ë¹„ì–´ìˆë‹¤ëŠ”ê²ƒì„ ì•Œë ¤ì£¼ê¸° ìœ„í•´ì„œ
-			// í”„ë¡œê·¸ë¨ì´ ì¢…ë£Œë ë•Œ ë˜ëŠ”ê²ƒ.
+			// ´Ù½Ã »ç¿ëÇÒ¶§ ºñ¾îÀÖ´Ù´Â°ÍÀ» ¾Ë·ÁÁÖ±â À§ÇØ¼­
+			// ÇÁ·Î±×·¥ÀÌ Á¾·áµÉ¶§ µÇ´Â°Í.
 			GameEngineFont::Factory->Release();
 			GameEngineFont::Factory = nullptr;
 		}
@@ -25,11 +25,11 @@ public:
 
 FontFactoryCreator InitFont;
 
-GameEngineFont::GameEngineFont()
+GameEngineFont::GameEngineFont() 
 {
 }
 
-GameEngineFont::~GameEngineFont()
+GameEngineFont::~GameEngineFont() 
 {
 	if (nullptr != Font)
 	{
@@ -42,12 +42,12 @@ GameEngineFont::~GameEngineFont()
 
 void GameEngineFont::ResLoad(const std::string_view& _Path)
 {
-	// ë¸”ëœë“œ ì¶”ê°€ê°€ í•„ìš”í•˜ë‹¤.
+	// ºí·£µå Ãß°¡°¡ ÇÊ¿äÇÏ´Ù.
 
 	std::wstring WPath = GameEngineString::AnsiToUnicode(_Path);
 
 	D3D11_BLEND_DESC blendDesc = { 0, };
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < 4; ++i) 
 	{
 		blendDesc.RenderTarget[i].BlendEnable = true;
 		blendDesc.RenderTarget[i].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
@@ -61,12 +61,12 @@ void GameEngineFont::ResLoad(const std::string_view& _Path)
 
 	if (S_OK != GameEngineFont::Factory->CreateFontWrapper(GameEngineCore::GetDevice(), WPath.c_str(), blendDesc, &Font))
 	{
-		MsgBoxAssert("í°íŠ¸ ìƒì„± ì‹¤íŒ¨");
+		MsgBoxAssert("ÆùÆ® »ı¼º ½ÇÆĞ");
 		return;
 	}
 }
 
-void GameEngineFont::FontDraw(const std::string& _Text, float _FontScale, const float4& _Pos, const float4& _Color, FW1_TEXT_FLAG _Flag)
+void GameEngineFont::FontDraw(const std::string& _Text, float _FontScale,const float4& _Pos, const float4& _Color, FW1_TEXT_FLAG _Flag)
 {
 	std::wstring Text = GameEngineString::AnsiToUnicode(_Text);
 

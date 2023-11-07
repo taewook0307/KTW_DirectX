@@ -1,9 +1,9 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineDebugCore.h"
 #include "GameEngineRenderUnit.h"
 #include "GameEngineLevel.h"
 
-class GameEngineDebugInfo
+class GameEngineDebugInfo 
 {
 public:
 	float4 Color = float4::RED;
@@ -19,7 +19,7 @@ GameEngineLevel* GameEngineDebug::GameEngineDebugCore::CurLevel = nullptr;
 
 void GameEngineDebug::GameEngineDebugCore::DebugInit()
 {
-	// ì´ë…€ì„ ê°œìˆ˜ 1ê°œê°€ ë­”ê°€ë¥¼ 1ê°œ ê·¸ë¦´ìˆ˜ ìˆë‹¤.
+	// ÀÌ³à¼® °³¼ö 1°³°¡ ¹º°¡¸¦ 1°³ ±×¸±¼ö ÀÖ´Ù.
 	DebugUnit.resize(100);
 }
 
@@ -34,12 +34,12 @@ void GameEngineDebug::GameEngineDebugCore::DebugRender()
 	DebugUnit.clear();
 }
 
-void GameEngineDebug::DrawBox2D(const GameEngineTransform& _Trans, float4 _Color, GameEngineCamera* _Camera)
+void GameEngineDebug::DrawBox2D(const GameEngineTransform& _Trans, float4 _Color , GameEngineCamera* _Camera)
 {
 	GameEngineDebug::DrawBox2D(_Trans.GetWorldScale(), _Trans.GetWorldRotationEuler(), _Trans.GetWorldPosition(), _Color, _Camera);
 }
 
-void GameEngineDebug::DrawBox2D(float4 _Scale, float4 _Rot, float4 _Pos, float4 _Color, GameEngineCamera* _Camera)
+void GameEngineDebug::DrawBox2D(float4 _Scale, float4 _Rot, float4 _Pos, float4 _Color , GameEngineCamera* _Camera)
 {
 	GameEngineDebug::DrawMesh("Rect", _Scale, _Rot, _Pos, _Color, _Camera);
 }

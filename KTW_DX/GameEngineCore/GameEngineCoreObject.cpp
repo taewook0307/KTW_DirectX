@@ -1,19 +1,19 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineCoreObject.h"
 #include "GameEngineLevel.h"
 #include "GameEngineActor.h"
 
-GameEngineCoreObject::GameEngineCoreObject()
+GameEngineCoreObject::GameEngineCoreObject() 
 {
 }
 
-GameEngineCoreObject::~GameEngineCoreObject()
+GameEngineCoreObject::~GameEngineCoreObject() 
 {
 }
 
 GameEngineLevel* GameEngineCoreObject::GetLevel()
 {
-	GameEngineObject* Parent = GetParentObject();
+	GameEngineObject* Parent = GetParentObject(); 
 
 	while (nullptr != Parent)
 	{
@@ -26,7 +26,7 @@ GameEngineLevel* GameEngineCoreObject::GetLevel()
 		Parent = Parent->GetParentObject();
 	}
 
-	MsgBoxAssert("ë ˆë²¨ì„ ë°œê²¬í• ìˆ˜ ì—†ì—ˆìŠµë‹ˆë‹¤.");
+	MsgBoxAssert("·¹º§À» ¹ß°ßÇÒ¼ö ¾ø¾ú½À´Ï´Ù.");
 
 	return nullptr;
 }
@@ -46,7 +46,7 @@ GameEngineActor* GameEngineCoreObject::GetActor()
 		Parent = Parent->GetParentObject();
 	}
 
-	MsgBoxAssert("ì•¡í„°ë¥¼ ë°œê²¬í• ìˆ˜ ì—†ì—ˆìŠµë‹ˆë‹¤.");
+	MsgBoxAssert("¾×ÅÍ¸¦ ¹ß°ßÇÒ¼ö ¾ø¾ú½À´Ï´Ù.");
 
 	return nullptr;
 }

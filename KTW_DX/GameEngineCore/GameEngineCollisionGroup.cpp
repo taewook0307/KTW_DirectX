@@ -1,12 +1,12 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineCollisionGroup.h"
 #include "GameEngineCollision.h"
 
-GameEngineCollisionGroup::GameEngineCollisionGroup()
+GameEngineCollisionGroup::GameEngineCollisionGroup() 
 {
 }
 
-GameEngineCollisionGroup::~GameEngineCollisionGroup()
+GameEngineCollisionGroup::~GameEngineCollisionGroup() 
 {
 }
 
@@ -17,7 +17,7 @@ void GameEngineCollisionGroup::AllReleaseCheck()
 	std::list<std::shared_ptr<class GameEngineCollision>>::iterator StartIter = Collisions.begin();
 	std::list<std::shared_ptr<class GameEngineCollision>>::iterator EndIter = Collisions.end();
 
-	for (; StartIter != EndIter; )
+	for ( ; StartIter != EndIter; )
 	{
 		if (false == (*StartIter)->IsDeath())
 		{
@@ -102,9 +102,9 @@ bool GameEngineCollisionGroup::Collision(std::shared_ptr<GameEngineCollision> _C
 	}
 
 
-	// static ì§€ì—­ë³€ìˆ˜ë¡œ ë§Œë“¤ë©´
-	// std::list Nodes deleteë¥¼ í•œë‹¤.
-	// ì“°ë ˆë“œë‚˜ ì´ëŸ°ê²ƒì—ì„œ ìœ„í—˜í•˜ì§€ë§Œ
+	// static Áö¿ªº¯¼ö·Î ¸¸µé¸é
+	// std::list Nodes delete¸¦ ÇÑ´Ù.
+	// ¾²·¹µå³ª ÀÌ·±°Í¿¡¼­ À§ÇèÇÏÁö¸¸
 	static std::vector<std::shared_ptr<GameEngineCollision>> ResultCollision;
 	ResultCollision.clear();
 
@@ -209,7 +209,7 @@ bool GameEngineCollisionGroup::CollisionEvent(std::shared_ptr<GameEngineCollisio
 			continue;
 		}
 
-		// ì• ëŠ” ì¶©ëŒì„ ë‚˜ë‘ ì•ˆí–ˆë„¤.
+		// ¾Ö´Â Ãæµ¹À» ³ª¶û ¾ÈÇß³×.
 		if (true == _Collision->Others.contains(Collision))
 		{
 			if (_Event.Exit)
@@ -223,8 +223,8 @@ bool GameEngineCollisionGroup::CollisionEvent(std::shared_ptr<GameEngineCollisio
 
 	if (0 != ResultCollision.size())
 	{
-		// ResultCollision ë‚˜ë‘ ì¶©ëŒí•œ ì• ë“¤.
-
+		// ResultCollision ³ª¶û Ãæµ¹ÇÑ ¾Öµé.
+		
 		for (size_t i = 0; i < ResultCollision.size(); i++)
 		{
 			std::shared_ptr<GameEngineCollision> Other = ResultCollision[i];
@@ -237,7 +237,7 @@ bool GameEngineCollisionGroup::CollisionEvent(std::shared_ptr<GameEngineCollisio
 
 				_Collision->Others.insert(Other);
 			}
-			else
+			else 
 			{
 				if (_Event.Stay)
 				{
@@ -256,7 +256,7 @@ void GameEngineCollisionGroup::PushCollision(std::shared_ptr<GameEngineCollision
 {
 	if (nullptr == _Collision)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì½œë¦¬ì „ì„ ì‚¬ìš©í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â Äİ¸®ÀüÀ» »ç¿ëÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 

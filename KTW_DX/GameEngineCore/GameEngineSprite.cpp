@@ -1,30 +1,30 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineSprite.h"
 
 float4 SpriteData::GetScale()
 {
-	return Texture->GetScale() * float4(SpritePivot.Scale2DX, SpritePivot.Scale2DY, 1.0f, 0.0f);
+	return Texture->GetScale() * float4( SpritePivot.Scale2DX, SpritePivot.Scale2DY, 1.0f, 0.0f);
 }
 
-GameEngineSprite::GameEngineSprite()
+GameEngineSprite::GameEngineSprite() 
 {
 }
 
-GameEngineSprite::~GameEngineSprite()
+GameEngineSprite::~GameEngineSprite() 
 {
 }
 
-// ì´ë¯¸ì§€ê°€ 1ì¥ ìˆëŠ”ë° ê·¸ ì´ë¯¸ì§€ë¥¼ ì˜ë¼ì„œ ëœë”ë§í•˜ëŠ” 
+// ÀÌ¹ÌÁö°¡ 1Àå ÀÖ´Âµ¥ ±× ÀÌ¹ÌÁö¸¦ Àß¶ó¼­ ·£´õ¸µÇÏ´Â 
 void GameEngineSprite::ResCreateCut(std::string_view _Name, unsigned int _X, unsigned int _Y)
 {
-	// ê¸°ë³¸ìƒì„±ìê°€ ìˆëŠ” ìë£Œí˜•ì€ ë‚´ë¶€ì—ì„œ ë§Œë“ ë‹¤.
+	// ±âº»»ı¼ºÀÚ°¡ ÀÖ´Â ÀÚ·áÇüÀº ³»ºÎ¿¡¼­ ¸¸µç´Ù.
 	// std::vector
 
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find(_Name);
 
 	if (nullptr == Texture)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” í…ìŠ¤ì²˜ë¡œ ìŠ¤í”„ë¼ì´íŠ¸ë¥¼ ë§Œë“¤ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ÅØ½ºÃ³·Î ½ºÇÁ¶óÀÌÆ®¸¦ ¸¸µé·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
@@ -49,7 +49,7 @@ void GameEngineSprite::ResCreateCut(std::string_view _Name, unsigned int _X, uns
 		Start.Pos2DX = 0.0f;
 		Start.Pos2DY += Start.Scale2DY;
 	}
-
+	
 
 	// GameEngineTexture::Find(_Name);
 
@@ -60,7 +60,7 @@ SpriteData GameEngineSprite::GetSpriteData(unsigned int _Index)
 {
 	if (_Index >= SpriteDatas.size())
 	{
-		MsgBoxAssert("ì¸ë±ìŠ¤ë¥¼ ì˜¤ë²„í•´ì„œ ìŠ¤í”„ë¼ì´íŠ¸ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¤ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("ÀÎµ¦½º¸¦ ¿À¹öÇØ¼­ ½ºÇÁ¶óÀÌÆ® µ¥ÀÌÅÍ¸¦ °¡Á®¿À·Á°í Çß½À´Ï´Ù.");
 		return SpriteData();
 	}
 

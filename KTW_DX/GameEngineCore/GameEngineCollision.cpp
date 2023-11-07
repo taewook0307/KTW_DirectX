@@ -1,14 +1,14 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineCollision.h"
 #include "GameEngineActor.h"
 #include "GameEngineLevel.h"
 #include "GameEngineCollisionGroup.h"
 
-GameEngineCollision::GameEngineCollision()
+GameEngineCollision::GameEngineCollision() 
 {
 }
 
-GameEngineCollision::~GameEngineCollision()
+GameEngineCollision::~GameEngineCollision() 
 {
 }
 
@@ -72,7 +72,7 @@ bool GameEngineCollision::CollisionLineEvent(int _Order, float4 _EndLine, const 
 	{
 		std::shared_ptr<GameEngineCollision> OtherCol = *Start;
 
-		// ì—¬ê¸°ì„œ í„°ì§ˆê²ƒì´ë‹¤.
+		// ¿©±â¼­ ÅÍÁú°ÍÀÌ´Ù.
 		if (false == OtherCol->IsDeath())
 		{
 			++Start;
@@ -82,7 +82,7 @@ bool GameEngineCollision::CollisionLineEvent(int _Order, float4 _EndLine, const 
 		Start = Others.erase(Start);
 	}
 
-	// ë¼ì¸ì€ ë‚˜ì˜ extentsë¥¼ endë¡œ ëŒë¦¬ê³  ë“¤ì–´ê°„ë‹¤.
+	// ¶óÀÎÀº ³ªÀÇ extents¸¦ end·Î µ¹¸®°í µé¾î°£´Ù.
 	Transform.ColData.OBB.Extents = _EndLine.Float3;
 
 	return OtherGroup->CollisionEvent(GetDynamic_Cast_This<GameEngineCollision>(), _Event);
@@ -103,7 +103,7 @@ bool GameEngineCollision::CollisionEvent(int _Order, const EventParameter& _Even
 	{
 		std::shared_ptr<GameEngineCollision> OtherCol = *Start;
 
-		// ì—¬ê¸°ì„œ í„°ì§ˆê²ƒì´ë‹¤.
+		// ¿©±â¼­ ÅÍÁú°ÍÀÌ´Ù.
 		if (false == OtherCol->IsDeath())
 		{
 			++Start;
@@ -119,8 +119,8 @@ bool GameEngineCollision::CollisionEvent(int _Order, const EventParameter& _Even
 
 void GameEngineCollision::Release()
 {
-	// ë‚´ê°€ ì§€ê¸ˆ ì‚¬ë¼ì§ˆê²ƒì¸ë°. ì˜ˆì „ì— ë‚˜ë‘ ì¶©ëŒí–ˆë˜ ì¶©ëŒì²´ë“¤ì—ê²Œ
-	// ë‚´ê°€ ì£½ìœ¼ë‹ˆ ë‚  êµ³ì´ ë“¤ê³  ìˆì„ í•„ìš”ê°€ ì—†ë‹¤.
+	// ³»°¡ Áö±İ »ç¶óÁú°ÍÀÎµ¥. ¿¹Àü¿¡ ³ª¶û Ãæµ¹Çß´ø Ãæµ¹Ã¼µé¿¡°Ô
+	// ³»°¡ Á×À¸´Ï ³¯ ±»ÀÌ µé°í ÀÖÀ» ÇÊ¿ä°¡ ¾ø´Ù.
 	//for (std::shared_ptr<GameEngineCollision> Collision : Others)
 	//{
 	//	Collision->Others.erase(GetDynamic_Cast_This<GameEngineCollision>());
@@ -129,7 +129,7 @@ void GameEngineCollision::Release()
 
 void GameEngineCollision::Update(float _Delta)
 {
-	// í•¨ìˆ˜ëŠ” í˜¸ì¶œë˜ëŠ”ê²ƒ ë§Œìœ¼ë¡œ ì´ë¯¸ ì²˜ë¦¬ë¥¼ í•œê²ë‹ˆë‹¤.
+	// ÇÔ¼ö´Â È£ÃâµÇ´Â°Í ¸¸À¸·Î ÀÌ¹Ì Ã³¸®¸¦ ÇÑ°Ì´Ï´Ù.
 	if (true == GameEngineLevel::IsDebug)
 	{
 		switch (CollisionType)

@@ -1,11 +1,11 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineObject.h"
 
-GameEngineObject::GameEngineObject()
+GameEngineObject::GameEngineObject() 
 {
 }
 
-GameEngineObject::~GameEngineObject()
+GameEngineObject::~GameEngineObject() 
 {
 }
 
@@ -16,7 +16,7 @@ void GameEngineObject::AllLevelStart(class GameEngineLevel* _PrevLevel)
 {
 	LevelStart(_PrevLevel);
 
-	// ë“¤ê³ ìˆëŠ” ë…€ì„ë“¤ì€ ì „ë¶€ë‹¤ ì•¡í„°ê² ì§€ë§Œ
+	// µé°íÀÖ´Â ³à¼®µéÀº ÀüºÎ´Ù ¾×ÅÍ°ÚÁö¸¸
 	for (std::pair<const int, std::list<std::shared_ptr<GameEngineObject>>>& _Pair : Childs)
 	{
 		std::list<std::shared_ptr<GameEngineObject>>& Group = _Pair.second;
@@ -34,7 +34,7 @@ void GameEngineObject::AllLevelEnd(class GameEngineLevel* _NextLevel)
 {
 	LevelEnd(_NextLevel);
 
-	// ë“¤ê³ ìˆëŠ” ë…€ì„ë“¤ì€ ì „ë¶€ë‹¤ ì•¡í„°ê² ì§€ë§Œ
+	// µé°íÀÖ´Â ³à¼®µéÀº ÀüºÎ´Ù ¾×ÅÍ°ÚÁö¸¸
 	for (std::pair<const int, std::list<std::shared_ptr<GameEngineObject>>>& _Pair : Childs)
 	{
 		std::list<std::shared_ptr<GameEngineObject>>& Group = _Pair.second;
@@ -56,7 +56,7 @@ void GameEngineObject::AllRelease()
 	for (std::pair<const int, std::list<std::shared_ptr<GameEngineObject>>>& _Pair : Childs)
 	{
 		std::list<std::shared_ptr<GameEngineObject>>& Group = _Pair.second;
-		for (std::shared_ptr<GameEngineObject> Object : Group)
+		for ( std::shared_ptr<GameEngineObject> Object : Group)
 		{
 			Object->IsDeathValue = true;
 			Object->Parent = nullptr;
@@ -74,7 +74,7 @@ void GameEngineObject::AllReleaseCheck()
 		return;
 	}
 
-	// ë“¤ê³ ìˆëŠ” ë…€ì„ë“¤ì€ ì „ë¶€ë‹¤ ì•¡í„°ê² ì§€ë§Œ
+	// µé°íÀÖ´Â ³à¼®µéÀº ÀüºÎ´Ù ¾×ÅÍ°ÚÁö¸¸
 	for (std::pair<const int, std::list<std::shared_ptr<GameEngineObject>>>& _Pair : Childs)
 	{
 		std::list<std::shared_ptr<GameEngineObject>>& Group = _Pair.second;
@@ -101,7 +101,7 @@ void GameEngineObject::AllUpdate(float _Delta)
 {
 	Update(_Delta);
 
-	// ë“¤ê³ ìˆëŠ” ë…€ì„ë“¤ì€ ì „ë¶€ë‹¤ ì•¡í„°ê² ì§€ë§Œ
+	// µé°íÀÖ´Â ³à¼®µéÀº ÀüºÎ´Ù ¾×ÅÍ°ÚÁö¸¸
 	for (std::pair<const int, std::list<std::shared_ptr<GameEngineObject>>>& _Pair : Childs)
 	{
 		std::list<std::shared_ptr<GameEngineObject>>& Group = _Pair.second;

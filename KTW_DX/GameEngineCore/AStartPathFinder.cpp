@@ -1,11 +1,11 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "AStartPathFinder.h"
 
-AStartPathFinder::AStartPathFinder()
+AStartPathFinder::AStartPathFinder() 
 {
 }
 
-AStartPathFinder::~AStartPathFinder()
+AStartPathFinder::~AStartPathFinder() 
 {
 }
 
@@ -19,7 +19,7 @@ std::shared_ptr<PathFindNode> AStartPathFinder::CreateNode(PathFindNode* _Parent
 
 	std::shared_ptr<PathFindNode> NewNode = std::make_shared<PathFindNode>();
 
-	// ë„ì‘ì§€ì ê¹Œì§€ì˜ ê±°ë¦¬ ê³„ì‚°
+	// µµÀÛÁöÁ¡±îÁöÀÇ °Å¸® °è»ê
 	NewNode->H = _Start.Distance(_End);
 	NewNode->G = 0.0f;
 
@@ -33,19 +33,19 @@ std::shared_ptr<PathFindNode> AStartPathFinder::CreateNode(PathFindNode* _Parent
 	NewNode->Index = _Start;
 	OpenIndex.insert(NewNode->Index.Key);
 
-	OpenList.insert(std::make_pair(NewNode->F, NewNode));
+	OpenList.insert(std::make_pair(NewNode->F,NewNode));
 	return NewNode;
 }
 
 std::list<PathPoint> AStartPathFinder::PathFind(PathPoint _Start, PathPoint _End)
 {
-	// í•˜ê¸°ì „ì— í–‰ì•¼í•œë‹¤.
+	// ÇÏ±âÀü¿¡ Çà¾ßÇÑ´Ù.
 
 	//return std::vector<PathPoint>();
-	// ì˜¤í”ˆ ë¦¬ìŠ¤íŠ¸ì— ì±„ì›Œì¡Œë‹¤.
+	// ¿ÀÇÂ ¸®½ºÆ®¿¡ Ã¤¿öÁ³´Ù.
 	CreateNode(nullptr, _Start, _End);
 
-	// ì°¾ëŠ” íšŸìˆ˜ë¥¼ ì œí•œí• ê±°ëƒ.
+	// Ã£´Â È½¼ö¸¦ Á¦ÇÑÇÒ°Å³Ä.
 	int Count = 0;
 
 	PathPoint ArrDir[8] = {
@@ -77,7 +77,7 @@ std::list<PathPoint> AStartPathFinder::PathFind(PathPoint _Start, PathPoint _End
 
 			if (nullptr == IsBlockCallBack)
 			{
-				MsgBoxAssert("ê¸¸ì°¾ê¸° íŒë‹¨ìš© ì½œë°±ì„ ë„£ì–´ì£¼ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤");
+				MsgBoxAssert("±æÃ£±â ÆÇ´Ü¿ë Äİ¹éÀ» ³Ö¾îÁÖÁö ¾Ê¾Ò½À´Ï´Ù");
 			}
 
 			if (true == IsBlockCallBack(FindIndex))

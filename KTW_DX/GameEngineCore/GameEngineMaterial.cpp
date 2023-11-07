@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineMaterial.h"
 #include "GameEngineVertexShader.h"
 #include "GameEnginePixelShader.h"
@@ -22,7 +22,7 @@ void GameEngineMaterial::VertexShader()
 {
 	if (nullptr == VertexShaderPtr)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë²„í…ìŠ¤ ì‰ì´ë”ë¥¼ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ¹öÅØ½º ½¦ÀÌ´õ¸¦ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 	}
 
 	VertexShaderPtr->Setting();
@@ -32,7 +32,7 @@ void GameEngineMaterial::Rasterizer()
 {
 	if (nullptr == RasterizerPtr)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë ˆìŠ¤í„° ë¼ì´ì €ë¥¼ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ·¹½ºÅÍ ¶óÀÌÀú¸¦ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 	}
 
 	RasterizerPtr->Setting();
@@ -42,7 +42,7 @@ void GameEngineMaterial::PixelShader()
 {
 	if (nullptr == PixelShaderPtr)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë ˆìŠ¤í„° ë¼ì´ì €ë¥¼ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ·¹½ºÅÍ ¶óÀÌÀú¸¦ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 	}
 
 	PixelShaderPtr->Setting();
@@ -52,7 +52,7 @@ void GameEngineMaterial::Blend()
 {
 	if (nullptr == BlendStatePtr)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë ˆìŠ¤í„° ë¼ì´ì €ë¥¼ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ·¹½ºÅÍ ¶óÀÌÀú¸¦ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 	}
 
 	BlendStatePtr->Setting();
@@ -68,51 +68,51 @@ void GameEngineMaterial::DepthStencil()
 
 	if (nullptr == DepthStencilPtr)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê¹Šì´ ì²´í¬ ì„¸íŒ…ì„ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ±íÀÌ Ã¼Å© ¼¼ÆÃÀ» ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 	}
 
 	DepthStencilPtr->Setting();
 }
 
-void GameEngineMaterial::SetVertexShader(const std::string_view& _Value)
+void GameEngineMaterial::SetVertexShader(const std::string_view& _Value) 
 {
 	VertexShaderPtr = GameEngineVertexShader::Find(_Value);
 
 	if (nullptr == VertexShaderPtr)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë²„í…ìŠ¤ ì‰ì´ë”ë¥¼ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ¹öÅØ½º ½¦ÀÌ´õ¸¦ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 	}
 }
 
-void GameEngineMaterial::SetRasterizer(const std::string_view& _Value)
+void GameEngineMaterial::SetRasterizer(const std::string_view& _Value) 
 {
 	RasterizerPtr = GameEngineRasterizer::Find(_Value);
 
 	if (nullptr == RasterizerPtr)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë ˆìŠ¤í„° ë¼ì´ì €ë¥¼ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ·¹½ºÅÍ ¶óÀÌÀú¸¦ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 }
 
-void GameEngineMaterial::SetPixelShader(const std::string_view& _Value)
+void GameEngineMaterial::SetPixelShader(const std::string_view& _Value) 
 {
 	PixelShaderPtr = GameEnginePixelShader::Find(_Value);
 
 	if (nullptr == PixelShaderPtr)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” í”½ì…€ì‰ì´ë”ë¥¼ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ÇÈ¼¿½¦ÀÌ´õ¸¦ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 }
 
-void GameEngineMaterial::SetBlendState(const std::string_view& _Value)
+void GameEngineMaterial::SetBlendState(const std::string_view& _Value) 
 {
 	BlendStatePtr = GameEngineBlend::Find(_Value);
 
 	if (nullptr == BlendStatePtr)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë¸”ëœë“œë¥¼ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ºí·£µå¸¦ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 }
@@ -123,7 +123,7 @@ void GameEngineMaterial::SetDepthState(const std::string_view& _Value)
 
 	if (nullptr == DepthStencilPtr)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê¹Šì´ë²„í¼ ì„¸íŒ…ì„ ì‚¬ìš©í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ±íÀÌ¹öÆÛ ¼¼ÆÃÀ» »ç¿ëÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 }

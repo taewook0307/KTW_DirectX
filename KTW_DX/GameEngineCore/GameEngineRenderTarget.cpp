@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineRenderTarget.h"
 #include "GameEngineCore.h"
 
@@ -8,7 +8,7 @@ GameEngineRenderUnit GameEngineRenderTarget::MergeUnit;
 
 void GameEngineRenderTarget::RenderTargetReset()
 {
-	ID3D11RenderTargetView* ArrRenderTarget[MAX_RENDER_TARGET_SETTING_COUNT] = { nullptr, };
+	ID3D11RenderTargetView* ArrRenderTarget[MAX_RENDER_TARGET_SETTING_COUNT] = {nullptr,};
 
 	GameEngineCore::GetContext()->OMSetRenderTargets(MAX_RENDER_TARGET_SETTING_COUNT, ArrRenderTarget, nullptr);
 	// GameEngineCore::GetContext()->RSSetViewports(static_cast<UINT>(ViewPorts.size()), &ViewPorts[0]);
@@ -20,16 +20,16 @@ void GameEngineRenderTarget::MergeRenderUnitInit()
 	GameEngineRenderTarget::MergeUnit.SetMaterial("TargetMerge");
 };
 
-GameEngineRenderTarget::GameEngineRenderTarget()
+GameEngineRenderTarget::GameEngineRenderTarget() 
 {
 }
 
-GameEngineRenderTarget::~GameEngineRenderTarget()
+GameEngineRenderTarget::~GameEngineRenderTarget() 
 {
 }
 
 
-// ë‹¤ì´ë ‰íŠ¸ì—ì„œ ë¬´ìŠ¨ì¼ì„ í•˜ê±´ ìš°ë¦¬ëŠ” ê²°êµ­ deviceì™€ ì»¨í…ìŠ¤íŠ¸ì—
+// ´ÙÀÌ·ºÆ®¿¡¼­ ¹«½¼ÀÏÀ» ÇÏ°Ç ¿ì¸®´Â °á±¹ device¿Í ÄÁÅØ½ºÆ®¿¡
 void GameEngineRenderTarget::Clear()
 {
 	for (size_t i = 0; i < RTV.size(); i++)
@@ -49,9 +49,9 @@ void GameEngineRenderTarget::Setting()
 {
 	ID3D11DepthStencilView* DSV = DepthTexture != nullptr ? DepthTexture->GetDSV() : nullptr;
 
-	if (0 >= RTV.size())
+	if (0 >=  RTV.size())
 	{
-		MsgBoxAssert("ë§Œë“¤ì–´ì§€ì§€ ì•Šì€ ëœë”íƒ€ê²Ÿì„ ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¸¸µé¾îÁöÁö ¾ÊÀº ·£´õÅ¸°ÙÀ» ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
@@ -60,7 +60,7 @@ void GameEngineRenderTarget::Setting()
 		DSV = nullptr;
 	}
 
-	// 8ê°œ ì´ìƒ ë„£ìœ¼ë©´ í„°ì§„ë‹¤.
+	// 8°³ ÀÌ»ó ³ÖÀ¸¸é ÅÍÁø´Ù.
 	GameEngineCore::GetContext()->OMSetRenderTargets(static_cast<UINT>(RTV.size()), &RTV[0], DSV);
 	GameEngineCore::GetContext()->RSSetViewports(static_cast<UINT>(ViewPorts.size()), &ViewPorts[0]);
 }
@@ -75,12 +75,12 @@ void GameEngineRenderTarget::AddNewTexture(DXGI_FORMAT _Format, float4 _Scale, f
 	Desc.SampleDesc.Count = 1;
 	Desc.SampleDesc.Quality = 0;
 	Desc.MipLevels = 1;
-	// ë””í´íŠ¸
-	// ì´ í…ìŠ¤ì²˜ì˜ ë©”ëª¨ë¦¬ë¥¼ ê·¸ë˜í”½ì¹´ë“œê°€ ê°€ì§€ê²Œ í•´ë¼.
+	// µğÆúÆ®
+	// ÀÌ ÅØ½ºÃ³ÀÇ ¸Ş¸ğ¸®¸¦ ±×·¡ÇÈÄ«µå°¡ °¡Áö°Ô ÇØ¶ó.
 	Desc.Usage = D3D11_USAGE_DEFAULT;
 	Desc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_RENDER_TARGET | D3D11_BIND_FLAG::D3D11_BIND_SHADER_RESOURCE;
-	// ìš©ë„ ëœë”íƒ€ê²Ÿìœ¼ë¡œ ì‚¬ìš©í•˜ê¸° ìœ„í•´ì„œ ë§Œë“ ë‹¤.
-	// D3D11_BIND_SHADER_RESOURCE í…ìŠ¤ì²˜ë¡œ ì‰ì´ë”ì— ì„¸íŒ…í• ìˆ˜ ìˆê²Œ í•˜ê¸° ìœ„í•´ì„œ ë§Œë“ ë‹¤.
+	// ¿ëµµ ·£´õÅ¸°ÙÀ¸·Î »ç¿ëÇÏ±â À§ÇØ¼­ ¸¸µç´Ù.
+	// D3D11_BIND_SHADER_RESOURCE ÅØ½ºÃ³·Î ½¦ÀÌ´õ¿¡ ¼¼ÆÃÇÒ¼ö ÀÖ°Ô ÇÏ±â À§ÇØ¼­ ¸¸µç´Ù.
 
 	std::shared_ptr<GameEngineTexture> Tex = GameEngineTexture::Create(Desc);
 
@@ -93,7 +93,7 @@ void GameEngineRenderTarget::AddNewTexture(std::shared_ptr<GameEngineTexture> _T
 
 	Textures.push_back(Tex);
 
-	// ë·°í¬íŠ¸ë„ ìƒì„±
+	// ºäÆ÷Æ®µµ »ı¼º
 	D3D11_VIEWPORT ViewPortData;
 	ViewPortData.TopLeftX = 0;
 	ViewPortData.TopLeftY = 0;
@@ -111,25 +111,25 @@ void GameEngineRenderTarget::AddNewTexture(std::shared_ptr<GameEngineTexture> _T
 
 void GameEngineRenderTarget::CreateDepthTexture(int _Index/* = 0*/)
 {
-	// í…ìŠ¤ì²˜ë¥¼ ì§ì ‘ ë§Œë“œëŠ” ì²«ë²ˆì§¸ ì‘ì—…
-	D3D11_TEXTURE2D_DESC Desc = { 0, };
+	// ÅØ½ºÃ³¸¦ Á÷Á¢ ¸¸µå´Â Ã¹¹øÂ° ÀÛ¾÷
+	D3D11_TEXTURE2D_DESC Desc = {0,};
 
-	// í…ìŠ¤ì²˜ë¥¼ 3ì°¨ì›ìœ¼ë¡œ ë§Œë“¤ê²ƒì´ëƒì¸ë°.
+	// ÅØ½ºÃ³¸¦ 3Â÷¿øÀ¸·Î ¸¸µé°ÍÀÌ³ÄÀÎµ¥.
 	Desc.ArraySize = 1;
 
 	Desc.Width = Textures[_Index]->GetScale().uiX();
 	Desc.Height = Textures[_Index]->GetScale().uiY();
 
-	// 0~ë¶€í„° 1ì‚¬ì´ì˜ floatì´ê¸° ë•Œë¬¸ì—. 
-	// 1ë°”ì´íŠ¸ë¥¼ ë‚¨ê¸°ê³  24ë¹„íŠ¸ floatì„ ë§Œë“­ë‹ˆë‹¤.
-	// ë‚¨ì€ 8ë¹„íŠ¸ë¥¼ ìŠ¤í…ì‹¤ì´ë¼ëŠ” ê²ƒìœ¼ë¡œ ì‚¬ìš©í•˜ëŠ”ë° ë‚´ì¼ ì„¤ëª…ë“œë¦¬ê² ìŠµë‹ˆë‹¤.
+	// 0~ºÎÅÍ 1»çÀÌÀÇ floatÀÌ±â ¶§¹®¿¡. 
+	// 1¹ÙÀÌÆ®¸¦ ³²±â°í 24ºñÆ® floatÀ» ¸¸µì´Ï´Ù.
+	// ³²Àº 8ºñÆ®¸¦ ½ºÅÙ½ÇÀÌ¶ó´Â °ÍÀ¸·Î »ç¿ëÇÏ´Âµ¥ ³»ÀÏ ¼³¸íµå¸®°Ú½À´Ï´Ù.
 	Desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
 
 	Desc.SampleDesc.Count = 1;
 	Desc.SampleDesc.Quality = 0;
 
 	Desc.MipLevels = 1;
-	// ê·¸ë˜í”½ì¹´ë“œì— ë„£ì–´ë†”ë¼.
+	// ±×·¡ÇÈÄ«µå¿¡ ³Ö¾î³ö¶ó.
 	Desc.Usage = D3D11_USAGE_DEFAULT;
 
 	Desc.CPUAccessFlags = 0;

@@ -1,11 +1,11 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineRasterizer.h"
 
-GameEngineRasterizer::GameEngineRasterizer()
+GameEngineRasterizer::GameEngineRasterizer() 
 {
 }
 
-GameEngineRasterizer::~GameEngineRasterizer()
+GameEngineRasterizer::~GameEngineRasterizer() 
 {
 	if (nullptr != State)
 	{
@@ -19,7 +19,7 @@ void GameEngineRasterizer::ResCreate(const D3D11_RASTERIZER_DESC& _Desc)
 	Desc = _Desc;
 	if (S_OK != GameEngineCore::GetDevice()->CreateRasterizerState(&_Desc, &State))
 	{
-		MsgBoxAssert("ë ˆìŠ¤í„°ë¼ì´ì € ì„¸íŒ…ì„ ë§Œë“œëŠ”ë° ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("·¹½ºÅÍ¶óÀÌÀú ¼¼ÆÃÀ» ¸¸µå´Âµ¥ ½ÇÆÐÇß½À´Ï´Ù.");
 	}
 }
 
@@ -27,7 +27,7 @@ void GameEngineRasterizer::Setting()
 {
 	if (nullptr == State)
 	{
-		MsgBoxAssert("ë ˆìŠ¤í„° ë¼ì´ì € ì„¸íŒ…ì´ ì¡´ìž¬í•˜ì§€ ì•ŸëŠ”ë° ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("·¹½ºÅÍ ¶óÀÌÀú ¼¼ÆÃÀÌ Á¸ÀçÇÏÁö Û´Âµ¥ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 	}
 
 	GameEngineCore::GetContext()->RSSetState(State);

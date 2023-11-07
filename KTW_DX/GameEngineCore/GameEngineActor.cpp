@@ -1,20 +1,20 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineActor.h"
 #include "GameEngineLevel.h"
 #include "GameEngineComponent.h"
 
-GameEngineActor::GameEngineActor()
+GameEngineActor::GameEngineActor() 
 {
 }
 
-GameEngineActor::~GameEngineActor()
+GameEngineActor::~GameEngineActor() 
 {
 }
 
 
 GameEngineLevel* GameEngineActor::GetLevel()
 {
-	// ë‚˜ì¤‘ì— ë¬¸ì œê°€ ë ê±°ë¼ê³  í•œê²ë‹ˆë‹¤.
+	// ³ªÁß¿¡ ¹®Á¦°¡ µÉ°Å¶ó°í ÇÑ°Ì´Ï´Ù.
 
 	return GetParent<GameEngineLevel>();
 }

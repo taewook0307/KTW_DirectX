@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineTileMap.h"
 #include "GameEngineTransform.h"
 #include "GameEngineConstantBuffer.h"
@@ -49,12 +49,12 @@ void GameEngineTileMap::SetTileIndex(const SetTileParameterIndex& _Parameter)
 {
 	if (Tiles.size() <= _Parameter.Y)
 	{
-		MsgBoxAssert("íƒ€ì¼ ì¸ë±ìŠ¤ë¥¼ Y ì˜¤ë²„í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Å¸ÀÏ ÀÎµ¦½º¸¦ Y ¿À¹öÇß½À´Ï´Ù.");
 	}
 
 	if (Tiles[_Parameter.Y].size() <= _Parameter.X)
 	{
-		MsgBoxAssert("íƒ€ì¼ ì¸ë±ìŠ¤ë¥¼ X ì˜¤ë²„í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Å¸ÀÏ ÀÎµ¦½º¸¦ X ¿À¹öÇß½À´Ï´Ù.");
 	}
 
 	Tile& CurTile = Tiles[_Parameter.Y][_Parameter.X];
@@ -153,7 +153,7 @@ void GameEngineTileMap::Render(GameEngineCamera* _Camera, float _Delta)
 
 			Data.Scale = TileData.TileScale;
 
-			Data.LocalCalculation(); // ë¡œì»¬ ì›”ë“œ ìƒì„±
+			Data.LocalCalculation(); // ·ÎÄÃ ¿ùµå »ý¼º
 
 			Data.ParentMatrix = Transform.GetConstTransformDataRef().WorldMatrix;
 			Data.WorldMatrix = Data.LocalWorldMatrix * Data.ParentMatrix;

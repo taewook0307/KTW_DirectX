@@ -44,7 +44,7 @@ void TestStage::LevelStart(GameEngineLevel* _PrevLevel)
 	float4 MapScale = MapTexture->GetScale();*/
 
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, 0.0f, 1.0f });
-	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Perspective);
+	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	/*Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);*/

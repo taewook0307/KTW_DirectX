@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineDevice.h"
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include "GameEngineTexture.h"
@@ -10,11 +10,11 @@
 #pragma comment(lib, "DXGI")
 
 
-GameEngineDevice::GameEngineDevice()
+GameEngineDevice::GameEngineDevice() 
 {
 }
 
-GameEngineDevice::~GameEngineDevice()
+GameEngineDevice::~GameEngineDevice() 
 {
 	if (nullptr != SwapChain)
 	{
@@ -40,9 +40,9 @@ void GameEngineDevice::Initiallize(const GameEngineWindow& _Window)
 {
 	if (nullptr == _Window.GetHWND())
 	{
-		MsgBoxAssert("ìœˆë„ìš°ê°€ ë§Œë“¤ì–´ì§€ì§€ ì•Šì•˜ëŠ”ë° ë””ë°”ì´ìŠ¤ë¥¼ ì´ˆê¸°í™” í• ìˆ˜ëŠ” ì—†ìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("À©µµ¿ì°¡ ¸¸µé¾îÁöÁö ¾Ê¾Ò´Âµ¥ µğ¹ÙÀÌ½º¸¦ ÃÊ±âÈ­ ÇÒ¼ö´Â ¾ø½À´Ï´Ù.");
 		return;
-	}
+	} 
 
 	int iFlag = 0;
 
@@ -50,37 +50,37 @@ void GameEngineDevice::Initiallize(const GameEngineWindow& _Window)
 	iFlag = D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
-	// ë‹¤ì´ë ‰íŠ¸x ë²„ì „ ëª‡ê¹Œì§€ì›í•´ë¥¼ ì•Œì•„ë‚´ê¸° ìœ„í•œ ë³€ìˆ˜.
+	// ´ÙÀÌ·ºÆ®x ¹öÀü ¸î±îÁö¿øÇØ¸¦ ¾Ë¾Æ³»±â À§ÇÑ º¯¼ö.
 	D3D_FEATURE_LEVEL Level = D3D_FEATURE_LEVEL_11_0;
 
-	// ê·¸ë˜í”½ì¹´ë“œì˜ ê¸°ë³¸ì •ë³´ë¥¼ ì•Œë ¤ì£¼ê³  ì œì–´í• ìˆ˜ ìˆëŠ” ì¸í„°í˜ì´ìŠ¤.
+	// ±×·¡ÇÈÄ«µåÀÇ ±âº»Á¤º¸¸¦ ¾Ë·ÁÁÖ°í Á¦¾îÇÒ¼ö ÀÖ´Â ÀÎÅÍÆäÀÌ½º.
 	IDXGIAdapter* Adapter = GetHighPerformanceAdapter();
 
 	if (nullptr == Adapter)
 	{
 		Adapter->Release();
-		MsgBoxAssert("ê·¸ë˜í”½ì¹´ë“œê°€ ì—†ëŠ” ì»´í“¨í„°ì…ë‹ˆë‹¤.");
+		MsgBoxAssert("±×·¡ÇÈÄ«µå°¡ ¾ø´Â ÄÄÇ»ÅÍÀÔ´Ï´Ù.");
 		return;
 	}
 
-	// D11ë””ë°”ì´ìŠ¤ëŠ” ê·¸ë˜í”½ì¹´ë“œ ëœë”ë§ ë©”ëª¨ë¦¬ë¥¼ ì œì–´í• ìˆ˜ ìˆëŠ” ì¸í„°í˜ì´ìŠ¤ì…ë‹ˆë‹¤.
-	// ìµœì¤‘ìš” ì¸í„°í˜ì´ìŠ¤ => ë©”ëª¨ë¦¬ 
+	// D11µğ¹ÙÀÌ½º´Â ±×·¡ÇÈÄ«µå ·£´õ¸µ ¸Ş¸ğ¸®¸¦ Á¦¾îÇÒ¼ö ÀÖ´Â ÀÎÅÍÆäÀÌ½ºÀÔ´Ï´Ù.
+	// ÃÖÁß¿ä ÀÎÅÍÆäÀÌ½º => ¸Ş¸ğ¸® 
 
-	// ì´ ì¥ì¹˜ì˜ IDXGIAdapter* Adapter
-	// ë©”ëª¨ë¦¬ì— ì ‘ê·¼í•˜ëŠ” ê¶Œí•œê³¼ ID3D11Device* Device
-	// ê·¸ë¦¼ì„ ê·¸ë¦´ìˆ˜ ìˆëŠ” ê¶Œí•œì„ ë§Œë“¤ì–´ì¤˜. ID3D11DeviceContext* Context
+	// ÀÌ ÀåÄ¡ÀÇ IDXGIAdapter* Adapter
+	// ¸Ş¸ğ¸®¿¡ Á¢±ÙÇÏ´Â ±ÇÇÑ°ú ID3D11Device* Device
+	// ±×¸²À» ±×¸±¼ö ÀÖ´Â ±ÇÇÑÀ» ¸¸µé¾îÁà. ID3D11DeviceContext* Context
 
-	// 0ë„£ìœ¼ë©´ ê¸°ë³¸ìœ¼ë¡œ í•´ì¤˜.
+	// 0³ÖÀ¸¸é ±âº»À¸·Î ÇØÁà.
 
 	HRESULT Result = D3D11CreateDevice(
-		Adapter, // ì¥ì¹˜ <= 
-		D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_UNKNOWN, // ì´ ì¥ì¹˜ì˜ í•˜ë“œì›¨ì–´ë¡œ ë§Œë“¤ì–´ë‹¬ë¼ì¸ë°.
-		nullptr, // ë­”ì§€ëª¨ë¦„
-		iFlag, // ì´ˆê¸°í™” ì˜µì…˜
-		nullptr, // ì‚¬ìš©í• ìˆ˜ ìˆëŠ” í™ì²˜ë ˆë²¨
-		0, // ê·¸ì¤‘ì—ì„œ ë‚´ê°€ ì›í•˜ëŠ” í™ì²˜ë ˆë²¨ í• ìˆ˜ ìˆëŠ” 
-		D3D11_SDK_VERSION, // ì§€ê¸ˆ ìœˆë„ìš° ë²„ì „ìœ¼ë¡œ í•´ì¤˜.
-		&Device,
+		Adapter, // ÀåÄ¡ <= 
+		D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_UNKNOWN, // ÀÌ ÀåÄ¡ÀÇ ÇÏµå¿ş¾î·Î ¸¸µé¾î´Ş¶óÀÎµ¥.
+		nullptr, // ¹ºÁö¸ğ¸§
+		iFlag, // ÃÊ±âÈ­ ¿É¼Ç
+		nullptr, // »ç¿ëÇÒ¼ö ÀÖ´Â ÆåÃ³·¹º§
+		0, // ±×Áß¿¡¼­ ³»°¡ ¿øÇÏ´Â ÆåÃ³·¹º§ ÇÒ¼ö ÀÖ´Â 
+		D3D11_SDK_VERSION, // Áö±İ À©µµ¿ì ¹öÀüÀ¸·Î ÇØÁà.
+		&Device, 
 		&Level,
 		&Context
 	);
@@ -93,32 +93,32 @@ void GameEngineDevice::Initiallize(const GameEngineWindow& _Window)
 
 	if (S_OK != Result)
 	{
-		MsgBoxAssert("ë””ë°”ì´ìŠ¤ ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("µğ¹ÙÀÌ½º »ı¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
 		return;
 	}
 
 	if (D3D_FEATURE_LEVEL_11_0 != Level)
 	{
-		MsgBoxAssert("ë‹¤ì´ë ‰íŠ¸ 11ì„ ì§€ì›í•˜ì§€ ì•ŠëŠ” ê·¸ë˜í”½ì¹´ë“œ ì…ë‹ˆë‹¤.");
+		MsgBoxAssert("´ÙÀÌ·ºÆ® 11À» Áö¿øÇÏÁö ¾Ê´Â ±×·¡ÇÈÄ«µå ÀÔ´Ï´Ù.");
 		return;
 	}
 
-	// ë©€í‹° ì“°ë ˆë“œë¥¼ ì‚¬ìš©í•˜ëŠ” ëª¨ë“œë¡œ ë³€ê²½
+	// ¸ÖÆ¼ ¾²·¹µå¸¦ »ç¿ëÇÏ´Â ¸ğµå·Î º¯°æ
 	Result = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
 
 	if (0 == Result)
 	{
-		MsgBoxAssert("ë©€í‹°ì“°ë ˆë“œ ëª¨ë“œë¡œ ê·¸ë˜í”½ì¹´ë“œë¥¼ ì´ìš©í• ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¸ÖÆ¼¾²·¹µå ¸ğµå·Î ±×·¡ÇÈÄ«µå¸¦ ÀÌ¿ëÇÒ¼ö ¾ø½À´Ï´Ù.");
 		return;
 	}
 
-	// ì´ëŸ¬ê³ ë‚˜ë©´
-	// ëœë”ë§ ì´ë¼ê³  í•˜ëŠ”ê±´ ë°”ë€ì ì´ ì—†ë‹¤.
-	// ë‹¤ì´ë ‰íŠ¸ 3Dë‚˜ winAPIë‚˜ ë‹¤ë¥¼ê²Œ ì—†ë‹¤.
+	// ÀÌ·¯°í³ª¸é
+	// ·£´õ¸µ ÀÌ¶ó°í ÇÏ´Â°Ç ¹Ù²ïÀûÀÌ ¾ø´Ù.
+	// ´ÙÀÌ·ºÆ® 3D³ª winAPI³ª ´Ù¸¦°Ô ¾ø´Ù.
 
-	// ì•„ì˜ˆ í™”ë©´ì— ì¶œë ¥ì„ ìœ„í•œ ë”ë¸”ë²„í¼ë§ê¹Œì§€ ì§€ì›í•˜ëŠ” í™”ë©´ì¶œë ¥ìš© ì´ë¯¸ì§€ + ë”ë¸”ë²„í¼ë§ ì¸í„°í˜ì´ìŠ¤ë¥¼ 
-	// ëª¨ë‹ˆí„°ì— ì¶œë ¥í•˜ëŠ” ê¸°ëŠ¥ ìì²´ë¥¼ ì§€ì›í•©ë‹ˆë‹¤.
-	// ê·¸ê±¸ ìŠ¤ì™‘ì²´ì¸ì´ë¼ê³  í•œë‹¤.
+	// ¾Æ¿¹ È­¸é¿¡ Ãâ·ÂÀ» À§ÇÑ ´õºí¹öÆÛ¸µ±îÁö Áö¿øÇÏ´Â È­¸éÃâ·Â¿ë ÀÌ¹ÌÁö + ´õºí¹öÆÛ¸µ ÀÎÅÍÆäÀÌ½º¸¦ 
+	// ¸ğ´ÏÅÍ¿¡ Ãâ·ÂÇÏ´Â ±â´É ÀÚÃ¼¸¦ Áö¿øÇÕ´Ï´Ù.
+	// ±×°É ½º¿ÒÃ¼ÀÎÀÌ¶ó°í ÇÑ´Ù.
 
 	Window = &_Window;
 
@@ -132,20 +132,20 @@ IDXGIAdapter* GameEngineDevice::GetHighPerformanceAdapter()
 	IDXGIFactory* Factory = nullptr;
 	IDXGIAdapter* Adapter = nullptr;
 
-	// ìš´ì˜ì²´ì œì—ê²Œë¶€íƒí•´ì„œ í•˜ë“œì›¨ì–´ ê´€ë ¨ ê¸°ëŠ¥ì„ ì´ìš©í• ìˆ˜ ìˆëŠ”
-	// IDXGIFactoryë¥¼ ì–»ì–´ì˜¤ëŠ” ê²ƒ.
-	// ë‚´ê°€ ì´í•´í• ìˆ˜ ì—†ëŠ” ì˜ì—­ì˜ í•¨ìˆ˜
+	// ¿î¿µÃ¼Á¦¿¡°ÔºÎÅ¹ÇØ¼­ ÇÏµå¿ş¾î °ü·Ã ±â´ÉÀ» ÀÌ¿ëÇÒ¼ö ÀÖ´Â
+	// IDXGIFactory¸¦ ¾ò¾î¿À´Â °Í.
+	// ³»°¡ ÀÌÇØÇÒ¼ö ¾ø´Â ¿µ¿ªÀÇ ÇÔ¼ö
 	HRESULT HR = CreateDXGIFactory(__uuidof(IDXGIFactory), reinterpret_cast<void**>(&Factory));
 
 	if (nullptr == Factory)
 	{
-		MsgBoxAssert("ê·¸ë˜í”½ ì¹´ë“œì—ì„œ íŒ©í† ë¦¬ ì¸í„°í˜ì´ìŠ¤ë¥¼ ìƒì„±í•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("±×·¡ÇÈ Ä«µå¿¡¼­ ÆÑÅä¸® ÀÎÅÍÆäÀÌ½º¸¦ »ı¼ºÇÏÁö ¸øÇß½À´Ï´Ù.");
 		return nullptr;
 	}
 
 	SIZE_T VideoMemory = 0;
 
-	for (UINT Index = 0;; ++Index)
+	for (UINT Index = 0 ;; ++Index)
 	{
 		IDXGIAdapter* CurAdapter = nullptr;
 
@@ -161,12 +161,12 @@ IDXGIAdapter* GameEngineDevice::GetHighPerformanceAdapter()
 
 		if (VideoMemory <= Desc.DedicatedVideoMemory)
 		{
-			// ë” í° ë¹„ë””ì˜¤ ë©”ëª¨ë¦¬.
+			// ´õ Å« ºñµğ¿À ¸Ş¸ğ¸®.
 			VideoMemory = Desc.DedicatedVideoMemory;
 
 			if (nullptr != Adapter)
 			{
-				// ë‚´ë¶€ì— ìˆëŠ” ë©”ëª¨ë¦¬ë¥¼ ì •ë¦¬í•´ì¤€ë‹¤.
+				// ³»ºÎ¿¡ ÀÖ´Â ¸Ş¸ğ¸®¸¦ Á¤¸®ÇØÁØ´Ù.
 				Adapter->Release();
 			}
 
@@ -178,131 +178,131 @@ IDXGIAdapter* GameEngineDevice::GetHighPerformanceAdapter()
 	}
 
 	Factory->Release();
-	return Adapter;
+ 	return Adapter;
 }
 
 void GameEngineDevice::CreateSwapChain()
 {
-	// ìŠ¤ì™‘ì²´ì¸ 
+	// ½º¿ÒÃ¼ÀÎ 
 	float4 WindowScale = Window->GetScale();
 
-	// _DESC <= ì´ë¯¸
-	// TEXTURE_DESC <= ì´ë¯¸ì§€ì˜ í¬ê¸° ì´ë¯¸ì§€ì˜ í¬ë§· ì´ë¯¸ì§€ì˜ êµ¬ì¡°ì²´
+	// _DESC <= ÀÌ¹Ì
+	// TEXTURE_DESC <= ÀÌ¹ÌÁöÀÇ Å©±â ÀÌ¹ÌÁöÀÇ Æ÷¸Ë ÀÌ¹ÌÁöÀÇ ±¸Á¶Ã¼
 
 
-	DXGI_SWAP_CHAIN_DESC ScInfo = { 0, };
+	DXGI_SWAP_CHAIN_DESC ScInfo = {0,};
 
-	// ë”ë¸”ë²„í¼ë§
+	// ´õºí¹öÆÛ¸µ
 	ScInfo.BufferCount = 2;
 	ScInfo.BufferDesc.Width = WindowScale.iX();
 	ScInfo.BufferDesc.Height = WindowScale.iY();
 	ScInfo.OutputWindow = Window->GetHWND();
 
-	// ìµœì†Œì£¼ì‚¬ìœ¨
+	// ÃÖ¼ÒÁÖ»çÀ²
 	ScInfo.BufferDesc.RefreshRate.Denominator = 1;
 	ScInfo.BufferDesc.RefreshRate.Numerator = 60;
 
 	// R8G8B8A8
-	// ì ìƒ‰ í‘œí˜„í•˜ëŠ”ë° 8ë¹„íŠ¸.
-	// ë…¹ìƒ‰ í‘œí˜„í•˜ëŠ”ë° 8ë¹„íŠ¸.
-	// ì²­ìƒ‰ í‘œí˜„í•˜ëŠ”ë° 8ë¹„íŠ¸.
-	// ì•ŒíŒŒ í‘œí˜„í•˜ëŠ”ë° 8ë¹„íŠ¸.
-	// 4ë°”ì´íŠ¸
-	// ì´ìƒ‰ìƒì—ëŠ” ë³´í†µ í° ì˜ë¯¸ê°€ ì—†ë‹¤.
-	// ìš°ë¦¬ê°€ 32ë°”ì´íŠ¸ì§œë¦¬ ìƒ‰ìƒìœ¼ë¡œ í•´ë´ì•¼.
-	// HDRì´ ì•„ë‹ˆë©´ ì´ê±¸ ë‚´ê°€ë´ 
+	// Àû»ö Ç¥ÇöÇÏ´Âµ¥ 8ºñÆ®.
+	// ³ì»ö Ç¥ÇöÇÏ´Âµ¥ 8ºñÆ®.
+	// Ã»»ö Ç¥ÇöÇÏ´Âµ¥ 8ºñÆ®.
+	// ¾ËÆÄ Ç¥ÇöÇÏ´Âµ¥ 8ºñÆ®.
+	// 4¹ÙÀÌÆ®
+	// ÀÌ»ö»ó¿¡´Â º¸Åë Å« ÀÇ¹Ì°¡ ¾ø´Ù.
+	// ¿ì¸®°¡ 32¹ÙÀÌÆ®Â¥¸® »ö»óÀ¸·Î ÇØºÁ¾ß.
+	// HDRÀÌ ¾Æ´Ï¸é ÀÌ°É ³»°¡ºÁ 
 	ScInfo.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	// ëª¨ë‹ˆë‹ˆí„°ë¥¼ ê·¸ë¦´ë•Œ ì–´ë–¤ í”½ì…€ë¶€í„° ê°±ì‹ í• ê±°ëƒ.
+	// ¸ğ´Ï´ÏÅÍ¸¦ ±×¸±¶§ ¾î¶² ÇÈ¼¿ºÎÅÍ °»½ÅÇÒ°Å³Ä.
 	ScInfo.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 	ScInfo.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
 
-	// ë¬´ìŠ¨ìš©ë„ë¡œ ì“¸ê±°ì—ìš” ì´ ìŠ¤ì™‘ì²´ì¸
-	// DXGI_USAGE_RENDER_TARGET_OUTPUT <= í™”ë©´ì— ë³´ì´ê²Œ í•´ì£¼ì„¸ìš”.
-	// ì‰ì´ë”ì—ì„œ ì“¸ìˆ˜ ìˆê²Œ í•´ì£¼ì„¸ìš”. <= ì•„ë¬´ë„ ì•ˆì”€.
+	// ¹«½¼¿ëµµ·Î ¾µ°Å¿¡¿ä ÀÌ ½º¿ÒÃ¼ÀÎ
+	// DXGI_USAGE_RENDER_TARGET_OUTPUT <= È­¸é¿¡ º¸ÀÌ°Ô ÇØÁÖ¼¼¿ä.
+	// ½¦ÀÌ´õ¿¡¼­ ¾µ¼ö ÀÖ°Ô ÇØÁÖ¼¼¿ä. <= ¾Æ¹«µµ ¾È¾¸.
 	ScInfo.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT | DXGI_USAGE_SHADER_INPUT;
 
-	// ì´ë…€ì„ì„ ì‰ì´ë”ì—ì„œ ì‚¬ìš©í• ë•Œ
-	// ì‰ì´ë”ì—ì„œ ì´ê±¸ ì‚¬ìš©í•˜ë©´ ì´ ìƒ˜í”Œë§ í€„ë¦¬í‹°ê°€ ì¤‘ìš”í•´ì§€ëŠ”ë°
-	// ì´ë…€ì„ì€ ì‰ì´ë”ì—ì„œ ì‚¬ìš©ë˜ëŠ” ë…€ì„ì´ ì•„ë‹ˆê¸° ë•Œë¬¸ì— ë”ë”ë”ë”ë”ë”ë”ìš± ì¤‘ìš”í•˜ì§€ ì•Šë‹¤.
+	// ÀÌ³à¼®À» ½¦ÀÌ´õ¿¡¼­ »ç¿ëÇÒ¶§
+	// ½¦ÀÌ´õ¿¡¼­ ÀÌ°É »ç¿ëÇÏ¸é ÀÌ »ùÇÃ¸µ Ä÷¸®Æ¼°¡ Áß¿äÇØÁö´Âµ¥
+	// ÀÌ³à¼®Àº ½¦ÀÌ´õ¿¡¼­ »ç¿ëµÇ´Â ³à¼®ÀÌ ¾Æ´Ï±â ¶§¹®¿¡ ´õ´õ´õ´õ´õ´õ´õ¿í Áß¿äÇÏÁö ¾Ê´Ù.
 
-	// ê·¸ ê°œìˆ˜ë‹¹ í€„ë¦¬í‹°
+	// ±× °³¼ö´ç Ä÷¸®Æ¼
 	ScInfo.SampleDesc.Quality = 0;
-	// ì ê°œìˆ˜
+	// Á¡°³¼ö
 	ScInfo.SampleDesc.Count = 1;
 
 	// ScInfo.BufferCount = 2;
-	// êµì²´ìˆœì„œì™€ ë°©ì‹ì„ ì •ì˜í•©ë‹ˆë‹¤.
+	// ±³Ã¼¼ø¼­¿Í ¹æ½ÄÀ» Á¤ÀÇÇÕ´Ï´Ù.
 	ScInfo.SwapEffect = DXGI_SWAP_EFFECT::DXGI_SWAP_EFFECT_FLIP_DISCARD;
 
-	// ê¸°ì–µì•ˆë‚¨.
+	// ±â¾ï¾È³².
 	ScInfo.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
-	// ì „ì²´í™”ë©´ì´ëƒ ì•„ë‹ˆëƒ.
-	// ë‹¹ì—°íˆ ê·¸ë˜í”½í”„ë ˆì„ì´ ë” ë¹¨ë¼ì ¸ì•¼ í•©ë‹ˆë‹¤.
+	// ÀüÃ¼È­¸éÀÌ³Ä ¾Æ´Ï³Ä.
+	// ´ç¿¬È÷ ±×·¡ÇÈÇÁ·¹ÀÓÀÌ ´õ »¡¶óÁ®¾ß ÇÕ´Ï´Ù.
 	ScInfo.Windowed = true;
 
-	// ìŠ¤ì™‘ì²´ì¸ì„ ë§Œë“¤ì–´ ë‚´ê¸° ìœ„í•´ì„œëŠ” _Deviceê°€ í•„ìš”í•˜ë‹¤.
+	// ½º¿ÒÃ¼ÀÎÀ» ¸¸µé¾î ³»±â À§ÇØ¼­´Â _Device°¡ ÇÊ¿äÇÏ´Ù.
 	IDXGIDevice* pD = nullptr;
 	IDXGIAdapter* pA = nullptr;
 	IDXGIFactory* pF = nullptr;
 
-	// ë‹¤ì´ë ‰íŠ¸ ë¼ì´ë¸ŒëŸ¬ë¥¼ ì‚¬ìš©í•˜ëŠ” ê°ì²´ë“¤ì„ ë§Œë“¤ë©´ ê·¸ ê°ì²´ë“¤ì€ ìì‹ ì„ ì±…ì„ì§€ê³  ìˆëŠ”
-	// ì¥ì¹˜ì™€ ìì‹ ì„ ë§Œë“œëŠ”ë° ì‚¬ìš©ëœ ê°ì²´ë“¤ì„ ê°€ì§€ê³  ìˆìŠµë‹ˆë‹¤.
+	// ´ÙÀÌ·ºÆ® ¶óÀÌºê·¯¸¦ »ç¿ëÇÏ´Â °´Ã¼µéÀ» ¸¸µé¸é ±× °´Ã¼µéÀº ÀÚ½ÅÀ» Ã¥ÀÓÁö°í ÀÖ´Â
+	// ÀåÄ¡¿Í ÀÚ½ÅÀ» ¸¸µå´Âµ¥ »ç¿ëµÈ °´Ã¼µéÀ» °¡Áö°í ÀÖ½À´Ï´Ù.
 	Device->QueryInterface(__uuidof(IDXGIDevice), reinterpret_cast<void**>(&pD));
 	if (nullptr == pD)
 	{
-		MsgBoxAssert("ë””ë°”ì´ìŠ¤ ì¶”ì¶œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("µğ¹ÙÀÌ½º ÃßÃâ¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
 		return;
 	}
 
 	pD->GetParent(__uuidof(IDXGIAdapter), reinterpret_cast<void**>(&pA));
 	if (nullptr == pD)
 	{
-		MsgBoxAssert("ì–´ëí„° ì¶”ì¶œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¾îµªÅÍ ÃßÃâ¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
 	}
 
 	pA->GetParent(__uuidof(IDXGIFactory), reinterpret_cast<void**>(&pF));
 	if (nullptr == pF)
 	{
-		MsgBoxAssert("íŒ©í† ë¦¬ ì¶”ì¶œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("ÆÑÅä¸® ÃßÃâ¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
 	}
 
-	// ì´ ì¥ì¹˜ì™€ ê´€ë ¨ëœ ìš”ì†Œë“¤ì„ ë§Œë“¤ìˆ˜ ìˆëŠ” ê¸°ëŠ¥ì„ ê°€ì§€ê³  ìˆë‹¤.
+	// ÀÌ ÀåÄ¡¿Í °ü·ÃµÈ ¿ä¼ÒµéÀ» ¸¸µé¼ö ÀÖ´Â ±â´ÉÀ» °¡Áö°í ÀÖ´Ù.
 	pF->CreateSwapChain(Device, &ScInfo, &SwapChain);
 
 	pF->Release();
 	pA->Release();
 	pD->Release();
 
-	// ë°°ì—´ë¡œ ë³´ê³  ìˆë‹¤ëŠ”ê²ƒì„ ì•Œìˆ˜ê°€ ìˆë‹¤.
+	// ¹è¿­·Î º¸°í ÀÖ´Ù´Â°ÍÀ» ¾Ë¼ö°¡ ÀÖ´Ù.
 
 	ID3D11Texture2D* DXBackBufferTexture = nullptr;
 	if (S_OK != SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&DXBackBufferTexture)))
 	{
-		MsgBoxAssert("ë°±ë²„í¼ í…ìŠ¤ì²˜ë¥¼ ì–»ì–´ì˜¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¹é¹öÆÛ ÅØ½ºÃ³¸¦ ¾ò¾î¿ÀÁö ¸øÇß½À´Ï´Ù.");
 	}
 
-	// ë‹¤ì´ë ‰íŠ¸xëŠ” ë¬´ì–¸ê°€ ê·¸ë¦´ìˆ˜ ìˆëŠ” ê¶Œí•œì„ 
+	// ´ÙÀÌ·ºÆ®x´Â ¹«¾ğ°¡ ±×¸±¼ö ÀÖ´Â ±ÇÇÑÀ» 
 	// 
-
-	// í…ìŠ¤ì²˜ë¡œëŠ” ì•ˆë©ë‹ˆë‹¤.
+	
+	// ÅØ½ºÃ³·Î´Â ¾ÈµË´Ï´Ù.
 	BackBufferTexture = GameEngineTexture::Create(DXBackBufferTexture);
 
-	// ì—¬ê¸°ì— ê·¸ë ¤ì§„ê²ƒë§Œ í…ìŠ¤ì²˜ì— ë‚˜ì˜µë‹ˆë‹¤.
-	// Apië¡œ ì¹˜ë©´ Windowì—ì„œ ì§ì ‘ ì–»ì–´ì˜¨ HDCì…ë‹ˆë‹¤.
+	// ¿©±â¿¡ ±×·ÁÁø°Í¸¸ ÅØ½ºÃ³¿¡ ³ª¿É´Ï´Ù.
+	// Api·Î Ä¡¸é Window¿¡¼­ Á÷Á¢ ¾ò¾î¿Â HDCÀÔ´Ï´Ù.
 	BackBufferRenderTarget = GameEngineRenderTarget::Create(BackBufferTexture);
 
 	BackBufferRenderTarget->CreateDepthTexture();
 
 
-	// í…ìŠ¤ì²˜ëŠ” ëœë”íƒ€ê²Ÿì´ ì•„ë‹ˆì•¼.
-	// ëœë”íƒ€ê²Ÿì„ ë§Œë“¤ì–´ì•¼ í•œë‹¤.
+	// ÅØ½ºÃ³´Â ·£´õÅ¸°ÙÀÌ ¾Æ´Ï¾ß.
+	// ·£´õÅ¸°ÙÀ» ¸¸µé¾î¾ß ÇÑ´Ù.
 
 	// BackBufferTexture->Release();
 
-	// ìŠ¤ì™‘ì²´ì¸ì´ì§€ í…ìŠ¤ì²˜ê°€ ì•„ë‹ˆë‹¤.
-	// ë­”ê°€ë¥¼ ê·¸ë¦¬ë ¤ë©´ í…ìŠ¤ì²˜ê°€ ì¡´ì¬í•´ì•¼ í•˜ëŠ”ë°.
-	// ê·¸ í…ìŠ¤ì²˜ë¥¼ 
+	// ½º¿ÒÃ¼ÀÎÀÌÁö ÅØ½ºÃ³°¡ ¾Æ´Ï´Ù.
+	// ¹º°¡¸¦ ±×¸®·Á¸é ÅØ½ºÃ³°¡ Á¸ÀçÇØ¾ß ÇÏ´Âµ¥.
+	// ±× ÅØ½ºÃ³¸¦ 
 }
 
 void GameEngineDevice::RenderStart()
@@ -312,10 +312,10 @@ void GameEngineDevice::RenderStart()
 		return;
 	}
 
-	// ë„í™”ì§€ë¥¼ í•œë²ˆ ì‹¹ ì§€ì›Œìš”.
+	// µµÈ­Áö¸¦ ÇÑ¹ø ½Ï Áö¿ö¿ä.
 	BackBufferRenderTarget->Clear();
 
-	// ì´ ë„í™”ì§€ë¥¼ ì„¸íŒ…í•©ë‹ˆë‹¤.
+	// ÀÌ µµÈ­Áö¸¦ ¼¼ÆÃÇÕ´Ï´Ù.
 	BackBufferRenderTarget->Setting();
 }
 
@@ -326,11 +326,11 @@ void GameEngineDevice::RenderEnd()
 		return;
 	}
 
-	// ìŠ¤ì™‘ì²´ì¸ì— ì—°ê²°ëœ í…ìŠ¤ì²˜ì— ê·¸ë ¤ì ¸ìˆëŠ” ìƒ‰ìƒì„ í™”ë©´ì— ì¶œë ¥í•˜ë¼ëŠ”ê²ƒ.
-	HRESULT Result = SwapChain->Present(0, 0);
+	// ½º¿ÒÃ¼ÀÎ¿¡ ¿¬°áµÈ ÅØ½ºÃ³¿¡ ±×·ÁÁ®ÀÖ´Â »ö»óÀ» È­¸é¿¡ Ãâ·ÂÇÏ¶ó´Â°Í.
+	HRESULT Result =  SwapChain->Present(0, 0);
 	if (Result == DXGI_ERROR_DEVICE_REMOVED || Result == DXGI_ERROR_DEVICE_RESET)
 	{
-		MsgBoxAssert("ì „ì²´í™”ë©´ì—ì„œ ì°½ëª¨ë“œë¡œ ë³€ê²½í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("ÀüÃ¼È­¸é¿¡¼­ Ã¢¸ğµå·Î º¯°æÇß½À´Ï´Ù.");
 		return;
 	}
 }

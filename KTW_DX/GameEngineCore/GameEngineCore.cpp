@@ -1,4 +1,4 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEngineCore.h"
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineDebug.h>
@@ -16,21 +16,21 @@ std::map<std::string, std::shared_ptr<GameEngineLevel>> GameEngineCore::AllLevel
 
 
 
-GameEngineCore::GameEngineCore()
+GameEngineCore::GameEngineCore() 
 {
 }
 
-GameEngineCore::~GameEngineCore()
+GameEngineCore::~GameEngineCore() 
 {
 }
 
-void GameEngineCore::Start()
+void GameEngineCore::Start() 
 {
 	GameEngineGUI::Start();
 	CoreObject->Start();
 }
 
-void GameEngineCore::Update()
+void GameEngineCore::Update() 
 {
 
 
@@ -93,7 +93,7 @@ void GameEngineCore::Update()
 	CurLevel->AllReleaseCheck();
 }
 
-void GameEngineCore::Release()
+void GameEngineCore::Release() 
 {
 	CoreObject->Release();
 	GameEngineGUI::Release();
@@ -102,17 +102,17 @@ void GameEngineCore::Release()
 
 void GameEngineCore::EngineProcess(HINSTANCE _Inst, const std::string& _WindowName, float4 _Pos, float4 _Size)
 {
-	// ë¦­ì²´í¬ í•´ì£¼ê³ 
+	// ¸¯Ã¼Å© ÇØÁÖ°í
 	GameEngineDebug::LeakCheck();
 
-	// ìœˆë„ìš° ë§Œë“¤ê³ 
+	// À©µµ¿ì ¸¸µé°í
 	MainWindow.Open(_WindowName, _Inst);
 	MainWindow.SetPosAndScale(_Pos, _Size);
 
-	// 3D ë””ë°”ì´ìŠ¤ë¥¼ ê·¸ ìœˆë„ìš°ë¥¼ ê¸°ë°˜ìœ¼ë¡œ ë§Œë“ ë‹¤.
+	// 3D µğ¹ÙÀÌ½º¸¦ ±× À©µµ¿ì¸¦ ±â¹İÀ¸·Î ¸¸µç´Ù.
 	MainDevice.Initiallize(MainWindow);
 
-	// ì‹œê°„ì´ë‚˜ íƒ€ì„
+	// ½Ã°£ÀÌ³ª Å¸ÀÓ
 	GameEngineWindow::MessageLoop(_Inst, Start, Update, Release);
 }
 

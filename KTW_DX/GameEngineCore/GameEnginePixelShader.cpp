@@ -1,11 +1,11 @@
-ï»¿#include "PreCompile.h"
+#include "PreCompile.h"
 #include "GameEnginePixelShader.h"
 
-GameEnginePixelShader::GameEnginePixelShader()
+GameEnginePixelShader::GameEnginePixelShader() 
 {
 }
 
-GameEnginePixelShader::~GameEnginePixelShader()
+GameEnginePixelShader::~GameEnginePixelShader() 
 {
 	if (nullptr != ShaderPtr)
 	{
@@ -15,9 +15,9 @@ GameEnginePixelShader::~GameEnginePixelShader()
 }
 
 void GameEnginePixelShader::ShaderLoad(
-	std::string_view _Path,
-	std::string_view _EntryPoint,
-	UINT _VersionHigh,
+	std::string_view _Path, 
+	std::string_view _EntryPoint, 
+	UINT _VersionHigh, 
 	UINT _VersionLow)
 {
 	std::wstring UniPath = GameEngineString::AnsiToUnicode(_Path);
@@ -29,8 +29,8 @@ void GameEnginePixelShader::ShaderLoad(
 	int Flag = 0;
 
 #ifdef _DEBUG
-	// 11ë²„ì „ì´ ì—†ë‹¤.
-	// ì—ëŸ¬ 
+	// 11¹öÀüÀÌ ¾ø´Ù.
+	// ¿¡·¯ 
 	Flag = D3D10_SHADER_DEBUG;
 #endif
 
@@ -38,22 +38,22 @@ void GameEnginePixelShader::ShaderLoad(
 	//"float4 Value; \
 	// float4 Pos; ";
 
-	// ì¶”í›„ ìƒìˆ˜ë²„í¼ ê³µë¶€í•˜ë©´ì„œ ê¼­ ë¬¼ì–´ë³´ì„¸ìš”
+	// ÃßÈÄ »ó¼ö¹öÆÛ °øºÎÇÏ¸é¼­ ²À ¹°¾îº¸¼¼¿ä
 	Flag |= D3DCOMPILE_PACK_MATRIX_ROW_MAJOR;
 
 	// std::string*
 	ID3DBlob* Error = nullptr;
 
-	// ì‰ì´ë”ë¥¼ ì»´íŒŒì¼ í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤.
+	// ½¦ÀÌ´õ¸¦ ÄÄÆÄÀÏ ÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù.
 	// 
 	HRESULT Result = D3DCompileFromFile(
-		UniPath.c_str(), // ê²½ë¡œ
-		nullptr, // ì‰ì´ë”ì—ì„œ ì‚¬ìš©í•  ë§¤í¬ë¡œ ë§¤í¬ë¡œëŠ” ì•ˆì”ë‹ˆë‹¤.
-		D3D_COMPILE_STANDARD_FILE_INCLUDE, // ë‚´ë¶€ì—ì„œ ì‚¬ìš©í•œ #include ê·¸ëƒ¥ ê² ë‹¤. ë‚´ê°€ ì§ì ‘ ì•ˆë„£ì–´ì¤€ë‹¤.
+		UniPath.c_str(), // °æ·Î
+		nullptr, // ½¦ÀÌ´õ¿¡¼­ »ç¿ëÇÒ ¸ÅÅ©·Î ¸ÅÅ©·Î´Â ¾È¾¹´Ï´Ù.
+		D3D_COMPILE_STANDARD_FILE_INCLUDE, // ³»ºÎ¿¡¼­ »ç¿ëÇÑ #include ±×³É °Ú´Ù. ³»°¡ Á÷Á¢ ¾È³Ö¾îÁØ´Ù.
 		EntryName.c_str(), // "ColorShader_VS"
 		Version.c_str(), // "vs_5_0"
 		Flag,
-		0, // ë­”ì§€ ëª¨ë¦„.
+		0, // ¹ºÁö ¸ğ¸§.
 		&BinaryCode,
 		&Error);
 
@@ -73,7 +73,7 @@ void GameEnginePixelShader::ShaderLoad(
 
 	if (S_OK != Result)
 	{
-		MsgBoxAssert("ë²„í…ìŠ¤ ì‰ì´ë” ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("¹öÅØ½º ½¦ÀÌ´õ »ı¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
 	}
 
 	ShaderResCheck();
