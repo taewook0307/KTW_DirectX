@@ -233,7 +233,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MiniMapPortal.h">
+    <ClInclude Include="WorldMapPortal.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -318,19 +318,19 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MiniMapCharacter.h">
+    <ClInclude Include="WorldMapCharacter.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MiniMapEnter.h">
+    <ClInclude Include="WorldMapEnter.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MiniMapFlag.h">
+    <ClInclude Include="WorldMapFlag.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MiniMapLevel.h">
+    <ClInclude Include="WorldMapLevel.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -560,7 +560,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Devil_Attack.cpp" />
-    <ClCompile Include="MiniMapPortal.cpp">
+    <ClCompile Include="WorldMapPortal.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -647,20 +647,20 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="MiniMapCharacter.cpp">
+    <ClCompile Include="WorldMapCharacter.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="MiniMapCharacter_State.cpp" />
-    <ClCompile Include="MiniMapEnter.cpp">
+    <ClCompile Include="WorldMapCharacter_State.cpp" />
+    <ClCompile Include="WorldMapEnter.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="MiniMapFlag.cpp">
+    <ClCompile Include="WorldMapFlag.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="MiniMapLevel.cpp">
+    <ClCompile Include="WorldMapLevel.cpp">
       <SubType>
       </SubType>
     </ClCompile>

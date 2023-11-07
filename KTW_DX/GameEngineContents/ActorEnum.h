@@ -48,7 +48,7 @@ enum class ECHARACTERSTATE
 	Death
 };
 
-enum class EMINIMAPCHARACTERSTATE
+enum class EWORLDMAPCHARACTERSTATE
 {
 	None,
 	Idle,
@@ -236,7 +236,7 @@ enum class ESTAGERESULT
 	Fail
 };
 
-enum class EMINIMAPFLAG
+enum class EWorldMapFlag
 {
 	Appear,
 	Rise,

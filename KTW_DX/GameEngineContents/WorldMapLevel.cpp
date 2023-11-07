@@ -1,66 +1,66 @@
 ﻿#include "PreCompile.h"
-#include "MiniMapLevel.h"
+#include "WorldMapLevel.h"
 
 #include "Map.h"
 #include "UpperObject.h"
-#include "MiniMapEnter.h"
-#include "MiniMapFlag.h"
-#include "MiniMapPortal.h"
-#include "MiniMapCharacter.h"
+#include "WorldMapEnter.h"
+#include "WorldMapFlag.h"
+#include "WorldMapPortal.h"
+#include "WorldMapCharacter.h"
 #include "Trigger.h"
 
-bool MiniMapLevel::Stage1Clear = false;
-bool MiniMapLevel::Stage2Clear = false;
-bool MiniMapLevel::CreateStage1Flag = false;
-bool MiniMapLevel::CreateStage2Flag = false;
-bool MiniMapLevel::PortalSpawnDone = false;
-float4 MiniMapLevel::CharacterSavePos = CHARACTERSTARTPOS;
+bool WorldMapLevel::Stage1Clear = false;
+bool WorldMapLevel::Stage2Clear = false;
+bool WorldMapLevel::CreateStage1Flag = false;
+bool WorldMapLevel::CreateStage2Flag = false;
+bool WorldMapLevel::PortalSpawnDone = false;
+float4 WorldMapLevel::CharacterSavePos = CHARACTERSTARTPOS;
 
-MiniMapLevel::MiniMapLevel()
+WorldMapLevel::WorldMapLevel()
 {
 }
 
-MiniMapLevel::~MiniMapLevel()
+WorldMapLevel::~WorldMapLevel()
 {
 }
 
-void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
+void WorldMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	// 리소스 Load
-	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\MiniMapLevel\\Map");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\MiniMapLevel\\MiniMapEnter");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\MiniMapLevel\\MiniMapFlag");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\MiniMapLevel\\MiniMapPortal");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\MiniMapLevel\\MiniMapCharacter");
+	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\WorldMapLevel\\Map");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapEnter");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapFlag");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapPortal");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapCharacter");
 
 	// 미니맵 생성
-	MiniMap = CreateActor<Map>(EUPDATEORDER::Map);
-	MiniMap->MapInit("CupHead_MiniMap.png");
-	MiniMap->PixelMapInit("CupHead_MiniMap_BitMap.png");
+	WorldMap = CreateActor<Map>(EUPDATEORDER::Map);
+	WorldMap->MapInit("CupHead_WorldMap.png");
+	WorldMap->PixelMapInit("CupHead_WorldMap_BitMap.png");
 
-	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("CupHead_MiniMap.png");
+	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("CupHead_WorldMap.png");
 	MapScale = MapTexture->GetScale();
 	float4 MapHalfScale = MapScale.Half();
-	MiniMap->Transform.SetLocalPosition({ MapHalfScale.X, -MapHalfScale.Y });
+	WorldMap->Transform.SetLocalPosition({ MapHalfScale.X, -MapHalfScale.Y });
 
-	MiniMapUpper = CreateActor<UpperObject>(EUPDATEORDER::Map);
-	MiniMapUpper->UpperObjectInit("CupHead_MiniMap_Upper.png", 0, false);
-	MiniMapUpper->Transform.SetLocalPosition({ MapHalfScale.X, -MapHalfScale.Y });
+	WorldMapUpper = CreateActor<UpperObject>(EUPDATEORDER::Map);
+	WorldMapUpper->UpperObjectInit("CupHead_WorldMap_Upper.png", 0, false);
+	WorldMapUpper->Transform.SetLocalPosition({ MapHalfScale.X, -MapHalfScale.Y });
 
 	// 플레이 입구 생성
-	TutorialEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
+	TutorialEnter = CreateActor<WorldMapEnter>(EUPDATEORDER::Map);
 	TutorialEnter->EnterAnimationInit("Tutorial_Enter_Ani", "TutorialEnter");
 	TutorialEnter->Transform.SetLocalPosition(TUTORIALENTERPOS);
 	TutorialEnter->SetEnterLevel("0.Tutorial_Stage");
 	TutorialEnter->SetCollisionScaleAndPosition(TUTORIALENTERCOLLISIONSCALE, TUTORIALENTERCOLLISIONSPOSITION);
 
-	FirstBossEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
+	FirstBossEnter = CreateActor<WorldMapEnter>(EUPDATEORDER::Map);
 	FirstBossEnter->EnterAnimationInit("FirstBossMap_Enter_Ani", "FirstBossMapEnter");
 	FirstBossEnter->Transform.SetLocalPosition(FIRSTBOSSENTERPOS);
 	FirstBossEnter->SetEnterLevel("1.FirstBoss_Stage");
 	FirstBossEnter->SetCollisionScaleAndPosition(FIRSTBOSSENTERCOLLISIONSCALE, FIRSTBOSSENTERCOLLISIONSPOSITION);
 
-	SecondBossEnter = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
+	SecondBossEnter = CreateActor<WorldMapEnter>(EUPDATEORDER::Map);
 	SecondBossEnter->EnterAnimationInit("Tutorial_Enter_Ani", "SecondBossMapEnter");
 	SecondBossEnter->Transform.SetLocalPosition(SECONDBOSSENTERPOS);
 	SecondBossEnter->SetEnterLevel("2.SecondBoss_Stage");
@@ -71,14 +71,14 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	if (true == Stage1Clear)
 	{
-		FirstBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
+		FirstBossFlag = CreateActor<WorldMapFlag>(EUPDATEORDER::Map);
 		FirstBossFlag->Transform.SetLocalPosition(FIRSTFLAGPOSITION);
 		FirstBossFlag->ChangeStayStateFlag();
 	}
 
 	if (true == Stage2Clear)
 	{
-		SecondBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
+		SecondBossFlag = CreateActor<WorldMapFlag>(EUPDATEORDER::Map);
 		SecondBossFlag->Transform.SetLocalPosition(SECONDFLAGPOSITION);
 		SecondBossFlag->ChangeStayStateFlag();
 	}
@@ -86,17 +86,17 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	// 
 	if (true == PortalSpawnDone)
 	{
-		IslandPortal = CreateActor<MiniMapPortal>(EUPDATEORDER::Map);
+		IslandPortal = CreateActor<WorldMapPortal>(EUPDATEORDER::Map);
 		IslandPortal->Transform.SetLocalPosition(ISLANDPORTALPOS);
 
-		DevilIslandPortal = CreateActor<MiniMapPortal>(EUPDATEORDER::Map);
+		DevilIslandPortal = CreateActor<WorldMapPortal>(EUPDATEORDER::Map);
 		DevilIslandPortal->Transform.SetLocalPosition(DEVILISLANDPORTALPOS);
 		IslandPortal->SetDestination(DevilIslandPortal->Transform.GetLocalPosition());
 		DevilIslandPortal->SetDestination(IslandPortal->Transform.GetLocalPosition());
 	}
 
 	// 캐릭터 생성
-	Character = CreateActor<MiniMapCharacter>(EUPDATEORDER::Player);
+	Character = CreateActor<WorldMapCharacter>(EUPDATEORDER::Player);
 	Character->Transform.SetLocalPosition(CharacterSavePos);
 	// Character->Transform.SetLocalPosition({5580.0f, -900.0f});
 
@@ -113,7 +113,7 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 				{
 					Stage1Clear = true;
 					Character->ChangeClearState();
-					FirstBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
+					FirstBossFlag = CreateActor<WorldMapFlag>(EUPDATEORDER::Map);
 					FirstBossFlag->Transform.SetLocalPosition(FIRSTFLAGPOSITION);
 				}
 
@@ -121,7 +121,7 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 				{
 					Stage2Clear = true;
 					Character->ChangeClearState();
-					SecondBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
+					SecondBossFlag = CreateActor<WorldMapFlag>(EUPDATEORDER::Map);
 					SecondBossFlag->Transform.SetLocalPosition(SECONDFLAGPOSITION);
 				}
 
@@ -132,11 +132,11 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 					&& nullptr == IslandPortal
 					&& nullptr == DevilIslandPortal)
 				{
-					MiniMapState.ChangeState(EWORLDMAPSTATE::IslandPortalCreate);
+					WorldMapState.ChangeState(EWORLDMAPSTATE::IslandPortalCreate);
 				}
 			};
 
-		MiniMapState.CreateState(EWORLDMAPSTATE::Idle, Para);
+		WorldMapState.CreateState(EWORLDMAPSTATE::Idle, Para);
 	}
 
 	{
@@ -147,11 +147,11 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 				if (true == IslandPortalAnimationEndCheck())
 				{
-					MiniMapState.ChangeState(EWORLDMAPSTATE::DevilIslandPortalCreate);
+					WorldMapState.ChangeState(EWORLDMAPSTATE::DevilIslandPortalCreate);
 				}
 			};
 
-		MiniMapState.CreateState(EWORLDMAPSTATE::IslandPortalCreate, Para);
+		WorldMapState.CreateState(EWORLDMAPSTATE::IslandPortalCreate, Para);
 	}
 
 	{
@@ -162,11 +162,11 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 				if (true == DevilIslandPortalAnimationEndCheck())
 				{
-					MiniMapState.ChangeState(EWORLDMAPSTATE::ToIdle);
+					WorldMapState.ChangeState(EWORLDMAPSTATE::ToIdle);
 				}
 			};
 
-		MiniMapState.CreateState(EWORLDMAPSTATE::DevilIslandPortalCreate, Para);
+		WorldMapState.CreateState(EWORLDMAPSTATE::DevilIslandPortalCreate, Para);
 	}
 
 	{
@@ -175,27 +175,27 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 			{
 				if (true == CameraMoveToCharacterPos(_DeltaTime))
 				{
-					MiniMapState.ChangeState(EWORLDMAPSTATE::Idle);
+					WorldMapState.ChangeState(EWORLDMAPSTATE::Idle);
 				}
 			};
 
-		MiniMapState.CreateState(EWORLDMAPSTATE::ToIdle, Para);
+		WorldMapState.CreateState(EWORLDMAPSTATE::ToIdle, Para);
 	}
 
-	MiniMapState.ChangeState(EWORLDMAPSTATE::Idle);
+	WorldMapState.ChangeState(EWORLDMAPSTATE::Idle);
 
 	GameEngineInput::AddInputObject(this);
 }
 
-void MiniMapLevel::Update(float _Delta)
+void WorldMapLevel::Update(float _Delta)
 {
-	MiniMapState.Update(_Delta);
+	WorldMapState.Update(_Delta);
 
 	if (true == GameEngineInput::IsDown('0', this))
 	{
 		Stage2Clear = true;
 		Character->ChangeClearState();
-		SecondBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
+		SecondBossFlag = CreateActor<WorldMapFlag>(EUPDATEORDER::Map);
 		SecondBossFlag->Transform.SetLocalPosition(SECONDFLAGPOSITION);
 	}
 
@@ -203,25 +203,25 @@ void MiniMapLevel::Update(float _Delta)
 	{
 		Stage1Clear = true;
 		Character->ChangeClearState();
-		FirstBossFlag = CreateActor<MiniMapFlag>(EUPDATEORDER::Map);
+		FirstBossFlag = CreateActor<WorldMapFlag>(EUPDATEORDER::Map);
 		FirstBossFlag->Transform.SetLocalPosition(FIRSTFLAGPOSITION);
 	}
 }
 
-void MiniMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
+void WorldMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	CharacterSavePos = Character->Transform.GetWorldPosition();
 
-	if (nullptr != MiniMap)
+	if (nullptr != WorldMap)
 	{
-		MiniMap->Death();
-		MiniMap = nullptr;
+		WorldMap->Death();
+		WorldMap = nullptr;
 	}
 
-	if (nullptr != MiniMapUpper)
+	if (nullptr != WorldMapUpper)
 	{
-		MiniMapUpper->Death();
-		MiniMapUpper = nullptr;
+		WorldMapUpper->Death();
+		WorldMapUpper = nullptr;
 	}
 
 	if (nullptr != Character)
@@ -278,14 +278,14 @@ void MiniMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		DevilIslandPortal = nullptr;
 	}
 
-	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\MiniMapLevel\\Map");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\MiniMapLevel\\MiniMapEnter");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\MiniMapLevel\\MiniMapFlag");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\MiniMapLevel\\MiniMapPortal");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\MiniMapLevel\\MiniMapCharacter");
+	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\WorldMapLevel\\Map");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\WorldMapLevel\\WorldMapEnter");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\WorldMapLevel\\WorldMapFlag");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\WorldMapLevel\\WorldMapPortal");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\WorldMapLevel\\WorldMapCharacter");
 }
 
-float4 MiniMapLevel::CalCameraPos(const float4& _SetPos)
+float4 WorldMapLevel::CalCameraPos(const float4& _SetPos)
 {
 	float4 SettingPos = _SetPos;
 	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
@@ -318,7 +318,7 @@ float4 MiniMapLevel::CalCameraPos(const float4& _SetPos)
 	return SettingPos;
 }
 
-void MiniMapLevel::IslandPortalSpawn(float _Delta)
+void WorldMapLevel::IslandPortalSpawn(float _Delta)
 {
 	if (nullptr != IslandPortal)
 	{
@@ -334,7 +334,7 @@ void MiniMapLevel::IslandPortalSpawn(float _Delta)
 	{
 		if (MovePos.Size() < 5.0f)
 		{
-			IslandPortal = CreateActor<MiniMapPortal>(EUPDATEORDER::Map);
+			IslandPortal = CreateActor<WorldMapPortal>(EUPDATEORDER::Map);
 			IslandPortal->Transform.SetLocalPosition(ISLANDPORTALPOS);
 		}
 		else
@@ -345,9 +345,9 @@ void MiniMapLevel::IslandPortalSpawn(float _Delta)
 	}
 }
 
-bool MiniMapLevel::IslandPortalAnimationEndCheck()
+bool WorldMapLevel::IslandPortalAnimationEndCheck()
 {
-	if (nullptr != IslandPortal && true == IslandPortal->PortalRenderer->IsCurAnimation("Portal_Idle"))
+	if (nullptr != IslandPortal && true == IslandPortal->IsCurAnimation("Portal_Idle"))
 	{
 		return true;
 	}
@@ -355,7 +355,7 @@ bool MiniMapLevel::IslandPortalAnimationEndCheck()
 	return false;
 }
 
-void MiniMapLevel::DevilIslandPortalSpawn(float _Delta)
+void WorldMapLevel::DevilIslandPortalSpawn(float _Delta)
 {
 	if (nullptr != DevilIslandPortal)
 	{
@@ -371,7 +371,7 @@ void MiniMapLevel::DevilIslandPortalSpawn(float _Delta)
 	{
 		if (MovePos.Size() < 5.0f)
 		{
-			DevilIslandPortal = CreateActor<MiniMapPortal>(EUPDATEORDER::Map);
+			DevilIslandPortal = CreateActor<WorldMapPortal>(EUPDATEORDER::Map);
 			DevilIslandPortal->Transform.SetLocalPosition(DEVILISLANDPORTALPOS);
 			IslandPortal->SetDestination(DevilIslandPortal->Transform.GetLocalPosition());
 			DevilIslandPortal->SetDestination(IslandPortal->Transform.GetLocalPosition());
@@ -385,9 +385,9 @@ void MiniMapLevel::DevilIslandPortalSpawn(float _Delta)
 	}
 }
 
-bool MiniMapLevel::DevilIslandPortalAnimationEndCheck()
+bool WorldMapLevel::DevilIslandPortalAnimationEndCheck()
 {
-	if (nullptr != DevilIslandPortal && true == DevilIslandPortal->PortalRenderer->IsCurAnimation("Portal_Idle"))
+	if (nullptr != DevilIslandPortal && true == DevilIslandPortal->IsCurAnimation("Portal_Idle"))
 	{
 		return true;
 	}
@@ -395,7 +395,7 @@ bool MiniMapLevel::DevilIslandPortalAnimationEndCheck()
 	return false;
 }
 
-bool MiniMapLevel::CameraMoveToCharacterPos(float _Delta)
+bool WorldMapLevel::CameraMoveToCharacterPos(float _Delta)
 {
 	float4 CameraPos = GetMainCamera()->Transform.GetWorldPosition();
 	float4 CharacterPos = Character->Transform.GetWorldPosition();

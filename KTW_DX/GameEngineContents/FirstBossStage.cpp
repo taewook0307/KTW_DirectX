@@ -9,7 +9,7 @@
 #include "StageStartUI.h"
 #include "StageFailUI.h"
 #include "StageClearUI.h"
-#include "MiniMapLevel.h"
+#include "WorldMapLevel.h"
 
 FirstBossStage::FirstBossStage()
 {
@@ -67,12 +67,12 @@ void FirstBossStage::Update(float _Delta)
 
 	if (true == GameEngineInput::IsDown(VK_ESCAPE, this))
 	{
-		GameEngineCore::ChangeLevel("MiniMapLevel");
+		GameEngineCore::ChangeLevel("WorldMapLevel");
 	}
 
 	if (ESTAGERESULT::Success == StageResult)
 	{
-		MiniMapLevel::IsCreateStage1Flag();
+		WorldMapLevel::IsCreateStage1Flag();
 	}
 }
 

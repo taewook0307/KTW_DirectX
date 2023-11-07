@@ -22,18 +22,18 @@
 #define LASTBOSSENTERSCALE { 50.0f, 50.0f }
 #define LASTBOSSENTERPOSITION { 5750.0f, -600.0f }
 
-class MiniMapLevel : public GameEngineLevel
+class WorldMapLevel : public GameEngineLevel
 {
 public:
 	// constrcuter destructer
-	MiniMapLevel();
-	~MiniMapLevel();
+	WorldMapLevel();
+	~WorldMapLevel();
 
 	// delete Function
-	MiniMapLevel(const MiniMapLevel& _Other) = delete;
-	MiniMapLevel(MiniMapLevel&& _Other) noexcept = delete;
-	MiniMapLevel& operator=(const MiniMapLevel& _Other) = delete;
-	MiniMapLevel& operator=(MiniMapLevel&& _Other) noexcept = delete;
+	WorldMapLevel(const WorldMapLevel& _Other) = delete;
+	WorldMapLevel(WorldMapLevel&& _Other) noexcept = delete;
+	WorldMapLevel& operator=(const WorldMapLevel& _Other) = delete;
+	WorldMapLevel& operator=(WorldMapLevel&& _Other) noexcept = delete;
 
 	static void IsCreateStage1Flag()
 	{
@@ -51,20 +51,20 @@ private:
 	float4 MapScale = float4::ZERO;
 	float4 CalCameraPos(const float4& _SetPos);
 
-	std::shared_ptr<class Map> MiniMap = nullptr;
-	std::shared_ptr<class UpperObject> MiniMapUpper = nullptr;
-	std::shared_ptr<class MiniMapCharacter> Character = nullptr;
+	std::shared_ptr<class Map> WorldMap = nullptr;
+	std::shared_ptr<class UpperObject> WorldMapUpper = nullptr;
+	std::shared_ptr<class WorldMapCharacter> Character = nullptr;
 
-	std::shared_ptr<class MiniMapEnter> TutorialEnter = nullptr;
-	std::shared_ptr<class MiniMapEnter> FirstBossEnter = nullptr;
-	std::shared_ptr<class MiniMapEnter> SecondBossEnter = nullptr;
+	std::shared_ptr<class WorldMapEnter> TutorialEnter = nullptr;
+	std::shared_ptr<class WorldMapEnter> FirstBossEnter = nullptr;
+	std::shared_ptr<class WorldMapEnter> SecondBossEnter = nullptr;
 	std::shared_ptr<class Trigger> LastBossEnter = nullptr;
 
-	std::shared_ptr<class MiniMapFlag> FirstBossFlag = nullptr;
-	std::shared_ptr<class MiniMapFlag> SecondBossFlag = nullptr;
+	std::shared_ptr<class WorldMapFlag> FirstBossFlag = nullptr;
+	std::shared_ptr<class WorldMapFlag> SecondBossFlag = nullptr;
 
-	std::shared_ptr<class MiniMapPortal> IslandPortal = nullptr;
-	std::shared_ptr<class MiniMapPortal> DevilIslandPortal = nullptr;
+	std::shared_ptr<class WorldMapPortal> IslandPortal = nullptr;
+	std::shared_ptr<class WorldMapPortal> DevilIslandPortal = nullptr;
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
@@ -87,5 +87,5 @@ private:
 
 	bool CameraMoveToCharacterPos(float _Delta);
 
-	GameEngineState MiniMapState;
+	GameEngineState WorldMapState;
 };

@@ -10,7 +10,7 @@
 #include "Map.h"
 #include "Ocean.h"
 #include "Cloud.h"
-#include "MiniMapLevel.h"
+#include "WorldMapLevel.h"
 
 SecondBossStage::SecondBossStage()
 {
@@ -107,12 +107,12 @@ void SecondBossStage::Update(float _Delta)
 
 	if (true == GameEngineInput::IsDown(VK_ESCAPE, this))
 	{
-		GameEngineCore::ChangeLevel("MiniMapLevel");
+		GameEngineCore::ChangeLevel("WorldMapLevel");
 	}
 
 	if (ESTAGERESULT::Success == StageResult)
 	{
-		MiniMapLevel::IsCreateStage2Flag();
+		WorldMapLevel::IsCreateStage2Flag();
 	}
 }
 

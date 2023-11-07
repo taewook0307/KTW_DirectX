@@ -29,7 +29,7 @@ private:
 	std::shared_ptr<class UpperObject> TutorialBackGroundUpper = nullptr;
 	std::shared_ptr<class Map> TutorialMap = nullptr;
 	std::shared_ptr<class TutorialTarget> Target = nullptr;
-	std::shared_ptr<class MiniMapEnter> TutorialExit = nullptr;
+	std::shared_ptr<class WorldMapEnter> TutorialExit = nullptr;
 
 	std::vector<std::shared_ptr<class ParryObject>> TutorialParry;
 

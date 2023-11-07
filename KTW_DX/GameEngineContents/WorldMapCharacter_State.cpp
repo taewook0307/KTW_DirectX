@@ -1,14 +1,14 @@
 #include "PreCompile.h"
-#include "MiniMapCharacter.h"
+#include "WorldMapCharacter.h"
 
 #include "Map.h"
 
-void MiniMapCharacter::IdleStart()
+void WorldMapCharacter::IdleStart()
 {
 	ChangeAnimation("Idle");
 }
 
-void MiniMapCharacter::IdleUpdate(float _Delta)
+void WorldMapCharacter::IdleUpdate(float _Delta)
 {
 	if (
 		true == GameEngineInput::IsPress(VK_LEFT, this)
@@ -17,17 +17,17 @@ void MiniMapCharacter::IdleUpdate(float _Delta)
 		|| true == GameEngineInput::IsPress(VK_DOWN, this)
 		)
 	{
-		MiniMapCharacterState.ChangeState(EMINIMAPCHARACTERSTATE::Run);
+		WorldMapCharacterState.ChangeState(EWORLDMAPCHARACTERSTATE::Run);
 		return;
 	}
 }
 
-void MiniMapCharacter::RunStart()
+void WorldMapCharacter::RunStart()
 {
 	ChangeAnimation("Run");
 }
 
-void MiniMapCharacter::RunUpdate(float _Delta)
+void WorldMapCharacter::RunUpdate(float _Delta)
 {
 	DirChange();
 
@@ -100,19 +100,19 @@ void MiniMapCharacter::RunUpdate(float _Delta)
 
 	if (float4::ZERO == MovePos)
 	{
-		MiniMapCharacterState.ChangeState(EMINIMAPCHARACTERSTATE::Idle);
+		WorldMapCharacterState.ChangeState(EWORLDMAPCHARACTERSTATE::Idle);
 		return;
 	}
 }
 
-void MiniMapCharacter::ClearStart()
+void WorldMapCharacter::ClearStart()
 {
 	ChangeAnimation("Clear");
 }
 
-void MiniMapCharacter::ClearUpdate(float _Delta)
+void WorldMapCharacter::ClearUpdate(float _Delta)
 {
-	if (true == MiniCharacterRenderer->IsCurAnimationEnd())
+	if (true == WorldCharacterRenderer->IsCurAnimationEnd())
 	{
 		--ClearLoopCount;
 	}
@@ -120,7 +120,7 @@ void MiniMapCharacter::ClearUpdate(float _Delta)
 	if (0 >= ClearLoopCount)
 	{
 		ClearLoopCount = CLEARLOOPCOUNT;
-		MiniMapCharacterState.ChangeState(EMINIMAPCHARACTERSTATE::Idle);
+		WorldMapCharacterState.ChangeState(EWORLDMAPCHARACTERSTATE::Idle);
 		return;
 	}
 }

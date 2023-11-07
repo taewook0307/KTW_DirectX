@@ -5,7 +5,7 @@
 #include "TitleLevel.h"
 #include "MenuLevel.h"
 #include "IntroLevel.h"
-#include "MiniMapLevel.h"
+#include "WorldMapLevel.h"
 #include "TutorialStage.h"
 #include "FirstBossStage.h"
 #include "SecondBossStage.h"
@@ -61,7 +61,7 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
 	GameEngineCore::CreateLevel<MenuLevel>("MenuLevel");
 	GameEngineCore::CreateLevel<IntroLevel>("IntroLevel");
-	GameEngineCore::CreateLevel<MiniMapLevel>("MiniMapLevel");
+	GameEngineCore::CreateLevel<WorldMapLevel>("WorldMapLevel");
 	GameEngineCore::CreateLevel<TutorialStage>("0.Tutorial_Stage");
 	GameEngineCore::CreateLevel<FirstBossStage>("1.FirstBoss_Stage");
 	GameEngineCore::CreateLevel<SecondBossStage>("2.SecondBoss_Stage");

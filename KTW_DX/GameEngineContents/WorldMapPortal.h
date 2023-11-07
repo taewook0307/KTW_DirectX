@@ -2,19 +2,18 @@
 
 #define PORTALCOLLISIONSCALE { 35.0f, 72.0f }
 
-class MiniMapPortal : public GameEngineActor
+class WorldMapPortal : public GameEngineActor
 {
-	friend class MiniMapLevel;
 public:
 	// constrcuter destructer
-	MiniMapPortal();
-	~MiniMapPortal();
+	WorldMapPortal();
+	~WorldMapPortal();
 
 	// delete Function
-	MiniMapPortal(const MiniMapPortal& _Other) = delete;
-	MiniMapPortal(MiniMapPortal&& _Other) noexcept = delete;
-	MiniMapPortal& operator=(const MiniMapPortal& _Other) = delete;
-	MiniMapPortal& operator=(MiniMapPortal&& _Other) noexcept = delete;
+	WorldMapPortal(const WorldMapPortal& _Other) = delete;
+	WorldMapPortal(WorldMapPortal&& _Other) noexcept = delete;
+	WorldMapPortal& operator=(const WorldMapPortal& _Other) = delete;
+	WorldMapPortal& operator=(WorldMapPortal&& _Other) noexcept = delete;
 
 	float4 GetDestination()
 	{
@@ -29,6 +28,11 @@ public:
 	void DestinationReset()
 	{
 		Destination = float4::ZERO;
+	}
+
+	bool IsCurAnimation(std::string_view _AnimationName)
+	{
+		return PortalRenderer->IsCurAnimation(_AnimationName);
 	}
 
 protected:

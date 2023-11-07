@@ -1,17 +1,17 @@
 #pragma once
 
-class MiniMapEnter : public GameEngineActor
+class WorldMapEnter : public GameEngineActor
 {
 public:
 	// constrcuter destructer
-	MiniMapEnter();
-	~MiniMapEnter();
+	WorldMapEnter();
+	~WorldMapEnter();
 
 	// delete Function
-	MiniMapEnter(const MiniMapEnter& _Other) = delete;
-	MiniMapEnter(MiniMapEnter&& _Other) noexcept = delete;
-	MiniMapEnter& operator=(const MiniMapEnter& _Other) = delete;
-	MiniMapEnter& operator=(MiniMapEnter&& _Other) noexcept = delete;
+	WorldMapEnter(const WorldMapEnter& _Other) = delete;
+	WorldMapEnter(WorldMapEnter&& _Other) noexcept = delete;
+	WorldMapEnter& operator=(const WorldMapEnter& _Other) = delete;
+	WorldMapEnter& operator=(WorldMapEnter&& _Other) noexcept = delete;
 
 	void EnterAnimationInit(std::string_view _AnimationName, std::string_view _SpriteName);
 	void EnterSpriteInit(std::string_view _FileName, int _Order = 0);
@@ -26,8 +26,8 @@ public:
 protected:
 
 private:
-	std::shared_ptr<GameEngineSpriteRenderer> MiniMapEnterRenderer = nullptr;
-	std::shared_ptr<GameEngineCollision> MiniMapEnterCollision = nullptr;
+	std::shared_ptr<GameEngineSpriteRenderer> WorldMapEnterRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> WorldMapEnterCollision = nullptr;
 	std::string EnterLevel = "";
 
 	void Start() override;

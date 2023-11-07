@@ -14,7 +14,7 @@
     <ClInclude Include="MenuLevel.h">
       <Filter>Level\3. Menu</Filter>
     </ClInclude>
-    <ClInclude Include="MiniMapLevel.h">
+    <ClInclude Include="WorldMapLevel.h">
       <Filter>Level\7. MiniMap</Filter>
     </ClInclude>
     <ClInclude Include="SecondBossStage.h">
@@ -35,10 +35,10 @@
     <ClInclude Include="SelectMenu.h">
       <Filter>Level\3. Menu\MenuActor</Filter>
     </ClInclude>
-    <ClInclude Include="MiniMapEnter.h">
+    <ClInclude Include="WorldMapEnter.h">
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClInclude>
-    <ClInclude Include="MiniMapCharacter.h">
+    <ClInclude Include="WorldMapCharacter.h">
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClInclude>
     <ClInclude Include="BaseCharacter.h">
@@ -185,7 +185,7 @@
     <ClInclude Include="StageLevel.h">
       <Filter>Global\Level</Filter>
     </ClInclude>
-    <ClInclude Include="MiniMapFlag.h">
+    <ClInclude Include="WorldMapFlag.h">
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClInclude>
     <ClInclude Include="TutorialTarget.h">
@@ -242,7 +242,7 @@
     <ClInclude Include="SummonAttackObject.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
     </ClInclude>
-    <ClInclude Include="MiniMapPortal.h">
+    <ClInclude Include="WorldMapPortal.h">
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClInclude>
     <ClInclude Include="Trigger.h">
@@ -263,7 +263,7 @@
     <ClCompile Include="MenuLevel.cpp">
       <Filter>Level\3. Menu</Filter>
     </ClCompile>
-    <ClCompile Include="MiniMapLevel.cpp">
+    <ClCompile Include="WorldMapLevel.cpp">
       <Filter>Level\7. MiniMap</Filter>
     </ClCompile>
     <ClCompile Include="SecondBossStage.cpp">
@@ -278,13 +278,13 @@
     <ClCompile Include="SelectMenu.cpp">
       <Filter>Level\3. Menu\MenuActor</Filter>
     </ClCompile>
-    <ClCompile Include="MiniMapEnter.cpp">
+    <ClCompile Include="WorldMapEnter.cpp">
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClCompile>
-    <ClCompile Include="MiniMapCharacter_State.cpp">
+    <ClCompile Include="WorldMapCharacter_State.cpp">
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClCompile>
-    <ClCompile Include="MiniMapCharacter.cpp">
+    <ClCompile Include="WorldMapCharacter.cpp">
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClCompile>
     <ClCompile Include="BaseCharacter.cpp">
@@ -464,7 +464,7 @@
     <ClCompile Include="StageLevel.cpp">
       <Filter>Global\Level</Filter>
     </ClCompile>
-    <ClCompile Include="MiniMapFlag.cpp">
+    <ClCompile Include="WorldMapFlag.cpp">
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClCompile>
     <ClCompile Include="TutorialTarget.cpp">
@@ -524,7 +524,7 @@
     <ClCompile Include="SummonAttackObject.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
     </ClCompile>
-    <ClCompile Include="MiniMapPortal.cpp">
+    <ClCompile Include="WorldMapPortal.cpp">
       <Filter>Level\7. MiniMap\MiniMapActor</Filter>
     </ClCompile>
     <ClCompile Include="Trigger.cpp">

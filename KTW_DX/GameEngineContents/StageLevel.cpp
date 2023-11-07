@@ -79,7 +79,7 @@ void StageLevel::StageEnd(float _Delta)
 
 	if (PhaseMoveTimer < 0.0f)
 	{
-		GameEngineCore::ChangeLevel("MiniMapLevel");
+		GameEngineCore::ChangeLevel("WorldMapLevel");
 	}
 }
 

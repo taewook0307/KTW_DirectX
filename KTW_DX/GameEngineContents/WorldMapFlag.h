@@ -1,21 +1,21 @@
 #pragma once
 
-class MiniMapFlag : public GameEngineActor
+class WorldMapFlag : public GameEngineActor
 {
 public:
 	// constrcuter destructer
-	MiniMapFlag();
-	~MiniMapFlag();
+	WorldMapFlag();
+	~WorldMapFlag();
 
 	// delete Function
-	MiniMapFlag(const MiniMapFlag& _Other) = delete;
-	MiniMapFlag(MiniMapFlag&& _Other) noexcept = delete;
-	MiniMapFlag& operator=(const MiniMapFlag& _Other) = delete;
-	MiniMapFlag& operator=(MiniMapFlag&& _Other) noexcept = delete;
+	WorldMapFlag(const WorldMapFlag& _Other) = delete;
+	WorldMapFlag(WorldMapFlag&& _Other) noexcept = delete;
+	WorldMapFlag& operator=(const WorldMapFlag& _Other) = delete;
+	WorldMapFlag& operator=(WorldMapFlag&& _Other) noexcept = delete;
 
 	void ChangeStayStateFlag()
 	{
-		FlagState.ChangeState(EMINIMAPFLAG::Stay);
+		FlagState.ChangeState(EWorldMapFlag::Stay);
 		return;
 	}
 

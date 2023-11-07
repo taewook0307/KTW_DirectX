@@ -6,7 +6,7 @@
 #include "UpperObject.h"
 #include "BaseCharacter.h"
 #include "TutorialTarget.h"
-#include "MiniMapEnter.h"
+#include "WorldMapEnter.h"
 #include "ParryObject.h"
 
 TutorialStage::TutorialStage()
@@ -80,9 +80,9 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 		TutorialParry[2] = Parry;
 	}
 	
-	TutorialExit = CreateActor<MiniMapEnter>(EUPDATEORDER::Map);
+	TutorialExit = CreateActor<WorldMapEnter>(EUPDATEORDER::Map);
 	TutorialExit->EnterSpriteInit("Tutorial_Exit.png");
-	TutorialExit->SetEnterLevel("MiniMapLevel");
+	TutorialExit->SetEnterLevel("WorldMapLevel");
 	TutorialExit->Transform.SetLocalPosition(EXITPOS);
 }
 
@@ -94,7 +94,7 @@ void TutorialStage::Update(float _Delta)
 
 	if (true == GameEngineInput::IsDown(VK_ESCAPE, this))
 	{
-		GameEngineCore::ChangeLevel("MiniMapLevel");
+		GameEngineCore::ChangeLevel("WorldMapLevel");
 	}
 
 	TutorialParryObjectActive();

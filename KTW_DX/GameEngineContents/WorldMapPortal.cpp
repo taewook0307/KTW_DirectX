@@ -1,15 +1,15 @@
 ﻿#include "PreCompile.h"
-#include "MiniMapPortal.h"
+#include "WorldMapPortal.h"
 
-MiniMapPortal::MiniMapPortal()
+WorldMapPortal::WorldMapPortal()
 {
 }
 
-MiniMapPortal::~MiniMapPortal()
+WorldMapPortal::~WorldMapPortal()
 {
 }
 
-void MiniMapPortal::Start()
+void WorldMapPortal::Start()
 {
 	PortalRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Map);
 	PortalRenderer->CreateAnimation("Portal_Create", "Portal_Create", 0.1f, -1, -1, false);

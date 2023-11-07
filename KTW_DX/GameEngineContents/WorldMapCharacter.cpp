@@ -1,40 +1,40 @@
 ﻿#include "PreCompile.h"
-#include "MiniMapCharacter.h"
+#include "WorldMapCharacter.h"
 
 #include "Map.h"
-#include "MiniMapPortal.h"
+#include "WorldMapPortal.h"
 
-MiniMapCharacter::MiniMapCharacter()
+WorldMapCharacter::WorldMapCharacter()
 {
 	GameEngineInput::AddInputObject(this);
 }
 
-MiniMapCharacter::~MiniMapCharacter()
+WorldMapCharacter::~WorldMapCharacter()
 {
 }
 
-void MiniMapCharacter::Start()
+void WorldMapCharacter::Start()
 {
-	MiniCharacterRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_Up", "MiniMapCharacter_Idle_Up", 0.1f, -1, -1);
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_Up", "MiniMapCharacter_Run_Up", 0.05f, -1, -1);
+	WorldCharacterRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
+	WorldCharacterRenderer->CreateAnimation("WorldCharacter_Idle_Up", "WorldMapCharacter_Idle_Up", 0.1f, -1, -1);
+	WorldCharacterRenderer->CreateAnimation("WorldCharacter_Run_Up", "WorldMapCharacter_Run_Up", 0.05f, -1, -1);
 
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_StraightUp", "MiniMapCharacter_Idle_StraightUp", 0.1f, -1, -1);
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_StraightUp", "MiniMapCharacter_Run_StraightUp", 0.05f, -1, -1);
+	WorldCharacterRenderer->CreateAnimation("WorldCharacter_Idle_StraightUp", "WorldMapCharacter_Idle_StraightUp", 0.1f, -1, -1);
+	WorldCharacterRenderer->CreateAnimation("WorldCharacter_Run_StraightUp", "WorldMapCharacter_Run_StraightUp", 0.05f, -1, -1);
 
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_Straight", "MiniMapCharacter_Idle_Straight", 0.1f, -1, -1);
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_Straight", "MiniMapCharacter_Run_Straight", 0.05f, -1, -1);
+	WorldCharacterRenderer->CreateAnimation("WorldCharacter_Idle_Straight", "WorldMapCharacter_Idle_Straight", 0.1f, -1, -1);
+	WorldCharacterRenderer->CreateAnimation("WorldCharacter_Run_Straight", "WorldMapCharacter_Run_Straight", 0.05f, -1, -1);
 
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_StraightDown", "MiniMapCharacter_Idle_StraightDown", 0.1f, -1, -1);
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_StraightDown", "MiniMapCharacter_Run_StraightDown", 0.05f, -1, -1);
+	WorldCharacterRenderer->CreateAnimation("WorldCharacter_Idle_StraightDown", "WorldMapCharacter_Idle_StraightDown", 0.1f, -1, -1);
+	WorldCharacterRenderer->CreateAnimation("WorldCharacter_Run_StraightDown", "WorldMapCharacter_Run_StraightDown", 0.05f, -1, -1);
 
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Idle_Down", "MiniMapCharacter_Idle_Down", 0.1f, -1, -1);
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Run_Down", "MiniMapCharacter_Run_Down", 0.05f, -1, -1);
+	WorldCharacterRenderer->CreateAnimation("WorldCharacter_Idle_Down", "WorldMapCharacter_Idle_Down", 0.1f, -1, -1);
+	WorldCharacterRenderer->CreateAnimation("WorldCharacter_Run_Down", "WorldMapCharacter_Run_Down", 0.05f, -1, -1);
 
-	MiniCharacterRenderer->CreateAnimation("MiniCharacter_Clear", "MiniMapCharacter_Win", 0.1f, -1, -1);
-
-	MiniCharacterRenderer->AutoSpriteSizeOn();
-	MiniCharacterRenderer->SetPivotType(PivotType::Bottom);
+	WorldCharacterRenderer->CreateAnimation("WorldCharacter_Clear", "WorldMapCharacter_Win", 0.1f, -1, -1);
+																 
+	WorldCharacterRenderer->AutoSpriteSizeOn();
+	WorldCharacterRenderer->SetPivotType(PivotType::Bottom);
 
 	{
 		CreateStateParameter Para;
@@ -47,7 +47,7 @@ void MiniMapCharacter::Start()
 			{
 				IdleUpdate(_DeltaTime);
 			};
-		MiniMapCharacterState.CreateState(EMINIMAPCHARACTERSTATE::Idle, Para);
+		WorldMapCharacterState.CreateState(EWORLDMAPCHARACTERSTATE::Idle, Para);
 	}
 
 	{
@@ -64,7 +64,7 @@ void MiniMapCharacter::Start()
 				RunUpdate(_DeltaTime);
 			};
 
-		MiniMapCharacterState.CreateState(EMINIMAPCHARACTERSTATE::Run, Para);
+		WorldMapCharacterState.CreateState(EWORLDMAPCHARACTERSTATE::Run, Para);
 	}
 
 	{
@@ -79,45 +79,45 @@ void MiniMapCharacter::Start()
 			{
 				ClearUpdate(_DeltaTime);
 			};
-		MiniMapCharacterState.CreateState(EMINIMAPCHARACTERSTATE::Clear, Para);
+		WorldMapCharacterState.CreateState(EWORLDMAPCHARACTERSTATE::Clear, Para);
 	}
 
-	MiniMapCharacterState.ChangeState(EMINIMAPCHARACTERSTATE::Idle);
+	WorldMapCharacterState.ChangeState(EWORLDMAPCHARACTERSTATE::Idle);
 
 	float4 CollisionScale = MINIMAPCHARACTERCOLLISIONSCALE;
 	float4 CollisionPosition = { 0.0f, CollisionScale.Half().Y };
 
-	MiniCharacterCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::Player);
-	MiniCharacterCollision->Transform.SetLocalScale(CollisionScale);
-	MiniCharacterCollision->Transform.SetLocalPosition(CollisionPosition);
+	WorldCharacterCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::Player);
+	WorldCharacterCollision->Transform.SetLocalScale(CollisionScale);
+	WorldCharacterCollision->Transform.SetLocalPosition(CollisionPosition);
 	PortalEventParaSetting();
 }
 
-void MiniMapCharacter::Update(float _Delta)
+void WorldMapCharacter::Update(float _Delta)
 {
 	float4 Pos = Transform.GetWorldPosition();
 	OutputDebugStringA(Pos.ToString().c_str());
 
-	if (true == MiniCharacterCollision->Collision(ECOLLISIONORDER::Trigger))
+	if (true == WorldCharacterCollision->Collision(ECOLLISIONORDER::Trigger))
 	{
 		GameEngineCore::ChangeLevel("3.LastBoss_Stage");
 	}
 
 	if (EACTORDIR::Left == Dir)
 	{
-		MiniCharacterRenderer->LeftFlip();
+		WorldCharacterRenderer->LeftFlip();
 	}
 	else
 	{
-		MiniCharacterRenderer->RightFlip();
+		WorldCharacterRenderer->RightFlip();
 	}
 
-	MiniCharacterCollision->CollisionEvent(ECOLLISIONORDER::Portal, PortalPara);
+	WorldCharacterCollision->CollisionEvent(ECOLLISIONORDER::Portal, PortalPara);
 
-	MiniMapCharacterState.Update(_Delta);
+	WorldMapCharacterState.Update(_Delta);
 }
 
-void MiniMapCharacter::DirChange()
+void WorldMapCharacter::DirChange()
 {
 	ECHARACTERAIMDIR CheckMoveDir = ECHARACTERAIMDIR::None;
 
@@ -174,9 +174,9 @@ void MiniMapCharacter::DirChange()
 	}
 }
 
-void MiniMapCharacter::ChangeAnimation(std::string_view _State)
+void WorldMapCharacter::ChangeAnimation(std::string_view _State)
 {
-	std::string AnimationName = "MiniCharacter_";
+	std::string AnimationName = "WorldCharacter_";
 
 	AnimationName += _State;
 
@@ -206,21 +206,21 @@ void MiniMapCharacter::ChangeAnimation(std::string_view _State)
 
 	State = _State;
 
-	MiniCharacterRenderer->ChangeAnimation(AnimationName);
+	WorldCharacterRenderer->ChangeAnimation(AnimationName);
 }
 
-void MiniMapCharacter::ChangeClearState()
+void WorldMapCharacter::ChangeClearState()
 {
-	MiniMapCharacterState.ChangeState(EMINIMAPCHARACTERSTATE::Clear);
+	WorldMapCharacterState.ChangeState(EWORLDMAPCHARACTERSTATE::Clear);
 	return;
 }
 
-void MiniMapCharacter::PortalEventParaSetting()
+void WorldMapCharacter::PortalEventParaSetting()
 {
 	PortalPara.Enter = [&](GameEngineCollision* _This, GameEngineCollision* _Collisions)
 		{
 			GameEngineActor* Other = _Collisions->GetActor();
-			CurPortal = dynamic_cast<MiniMapPortal*>(Other);
+			CurPortal = dynamic_cast<WorldMapPortal*>(Other);
 		};
 
 	PortalPara.Stay = [&](GameEngineCollision* _This, GameEngineCollision* _Collisions)

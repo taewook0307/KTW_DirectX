@@ -1,15 +1,15 @@
 ﻿#include "PreCompile.h"
-#include "MiniMapFlag.h"
+#include "WorldMapFlag.h"
 
-MiniMapFlag::MiniMapFlag()
+WorldMapFlag::WorldMapFlag()
 {
 }
 
-MiniMapFlag::~MiniMapFlag()
+WorldMapFlag::~WorldMapFlag()
 {
 }
 
-void MiniMapFlag::Start()
+void WorldMapFlag::Start()
 {
 	FlagRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperMap);
 	FlagRenderer->CreateAnimation("Flag_Appear", "Flag_Appear", 0.1f, -1, -1, false);
@@ -27,11 +27,11 @@ void MiniMapFlag::Start()
 			{
 				if (true == FlagRenderer->IsCurAnimationEnd())
 				{
-					FlagState.ChangeState(EMINIMAPFLAG::Rise);
+					FlagState.ChangeState(EWorldMapFlag::Rise);
 					return;
 				}
 			};
-		FlagState.CreateState(EMINIMAPFLAG::Appear, Para);
+		FlagState.CreateState(EWorldMapFlag::Appear, Para);
 	}
 
 	// Rise State
@@ -43,24 +43,24 @@ void MiniMapFlag::Start()
 			{
 				if (true == FlagRenderer->IsCurAnimationEnd())
 				{
-					FlagState.ChangeState(EMINIMAPFLAG::Stay);
+					FlagState.ChangeState(EWorldMapFlag::Stay);
 					return;
 				}
 			};
-		FlagState.CreateState(EMINIMAPFLAG::Rise, Para);
+		FlagState.CreateState(EWorldMapFlag::Rise, Para);
 	}
 
 	// Stay State
 	{
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _State) { FlagRenderer->ChangeAnimation("Flag_Stay"); };
-		FlagState.CreateState(EMINIMAPFLAG::Stay, Para);
+		FlagState.CreateState(EWorldMapFlag::Stay, Para);
 	}
 
-	FlagState.ChangeState(EMINIMAPFLAG::Appear);
+	FlagState.ChangeState(EWorldMapFlag::Appear);
 }
 
-void MiniMapFlag::Update(float _Delta)
+void WorldMapFlag::Update(float _Delta)
 {
 	FlagState.Update(_Delta);
 }
