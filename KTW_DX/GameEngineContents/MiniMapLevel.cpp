@@ -125,7 +125,12 @@ void MiniMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 					SecondBossFlag->Transform.SetLocalPosition(SECONDFLAGPOSITION);
 				}
 
-				if (true == Stage1Clear && true == Stage2Clear && nullptr == IslandPortal && nullptr == DevilIslandPortal)
+				if (true == Stage1Clear
+					&& true == FirstBossFlag->IsCurAnimation("Flag_Stay")
+					&& true == Stage2Clear
+					&& true == SecondBossFlag->IsCurAnimation("Flag_Stay")
+					&& nullptr == IslandPortal
+					&& nullptr == DevilIslandPortal)
 				{
 					MiniMapState.ChangeState(EWORLDMAPSTATE::IslandPortalCreate);
 				}

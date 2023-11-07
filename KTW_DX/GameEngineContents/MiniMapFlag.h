@@ -19,6 +19,11 @@ public:
 		return;
 	}
 
+	bool IsCurAnimation(std::string_view _AnimationName)
+	{
+		return FlagRenderer->IsCurAnimation(_AnimationName);
+	}
+
 protected:
 
 private:
