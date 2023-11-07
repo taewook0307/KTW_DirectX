@@ -1,6 +1,8 @@
 #pragma once
 
-class OutroLevel : public GameEngineLevel
+#include "BaseLevel.h"
+
+class OutroLevel : public BaseLevel
 {
 public:
 	// constrcuter destructer

@@ -1,6 +1,6 @@
 ﻿#include "PreCompile.h"
 #include "OldFilm.h"
-#include <GameEngineCore/GAMEENGINECORE.H>
+#include <GameEngineCore/GameEngineCore.h>
 
 OldFilm::OldFilm()
 {
@@ -12,10 +12,6 @@ OldFilm::~OldFilm()
 
 void OldFilm::Start()
 {
-	std::shared_ptr<GameEngineLevel> CurLevel = GameEngineCore::GetCurLevel();
-
-	std::shared_ptr<GameEngineCamera> CurCamera = GameEngineCore::GetCurLevel()->GetMainCamera();
-
 	std::shared_ptr<GameEngineRenderTarget> Target = GameEngineCore::GetCurLevel()->GetMainCamera()->GetCameraAllRenderTarget();
 
 	if (nullptr != Target)
@@ -25,15 +21,16 @@ void OldFilm::Start()
 
 	EffectUnit.SetMesh("fullrect");
 	EffectUnit.SetMaterial("OldFilm");
+
 	FilmSprite = GameEngineSprite::Find("OldFilm");
-	EffectUnit.ShaderResHelper.SetSampler("FilmTexSampler", "POINT");
+
+	EffectUnit.ShaderResHelper.SetSampler("Tex0Sampler", "POINT");
 }
 
 void OldFilm::EffectProcess(float _DeltaTime)
 {
 	ResultTarget->Setting();
-
-	EffectUnit.ShaderResHelper.SetTexture("FilmTex", FilmSprite->GetSpriteData(CurIndex).Texture);
+	EffectUnit.ShaderResHelper.SetTexture("Tex0", FilmSprite->GetSpriteData(CurIndex).Texture);
 
 	++CurIndex;
 

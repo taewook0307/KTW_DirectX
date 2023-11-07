@@ -3,7 +3,9 @@
 #define PHASEMOVETIMER 5.0f
 #define STOPTIMER 0.3f
 
-class StageLevel : public GameEngineLevel
+#include "BaseLevel.h"
+
+class StageLevel : public BaseLevel
 {
 public:
 	// constrcuter destructer

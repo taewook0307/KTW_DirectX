@@ -1,5 +1,8 @@
 #pragma once
 
+#include <GameEngineCore/GameEngineRenderTarget.h>
+
+// Ό³Έν :
 class OldFilm : public Effect
 {
 public:
@@ -20,5 +23,6 @@ private:
 	void EffectProcess(float _DeltaTime) override;
 
 	unsigned int CurIndex = 0;
+
 	std::shared_ptr<GameEngineSprite> FilmSprite;
 };

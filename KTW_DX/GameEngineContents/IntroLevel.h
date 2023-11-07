@@ -1,6 +1,8 @@
 #pragma once
 
-class IntroLevel : public GameEngineLevel
+#include "BaseLevel.h"
+
+class IntroLevel : public BaseLevel
 {
 public:
 	// constrcuter destructer

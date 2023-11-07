@@ -19,11 +19,6 @@ TutorialStage::~TutorialStage()
 {
 }
 
-void TutorialStage::Start()
-{
-	//GetLevelRenderTarget()->CreateEffect<OldFilm>();
-}
-
 void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	TutorialParry.resize(3);

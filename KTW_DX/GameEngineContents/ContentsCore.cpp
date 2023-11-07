@@ -14,9 +14,8 @@
 #include <GameEngineCore/GameEngineBlend.h>
 #include <GameEngineCore/GameEngineRenderTarget.h>
 
-#include "TestStage.h"
-
 #include "LevelChangeWindow.h"
+#include <GameEngineCore/GameEngineCoreWindow.h>
 
 ContentsCore::ContentsCore()
 {
@@ -30,12 +29,13 @@ void ContentsCore::ContentsResourcesInit()
 {
 	{
 		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("GameEngineContentsShader");
+		Dir.MoveParentToExistsChild("Resources");
 		Dir.MoveChild("GameEngineContentsShader");
 		std::vector<GameEngineFile> Files = Dir.GetAllFile({ ".fx" });
 
 		for (size_t i = 0; i < Files.size(); i++)
 		{
+			// 구조적으로 잘 이해하고 있는지를 자신이 명확하게 인지하기 위해서
 			GameEngineFile& File = Files[i];
 			GameEngineShader::AutoCompile(File);
 		}
@@ -94,14 +94,14 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<SecondBossStage>("2.SecondBoss_Stage");
 	GameEngineCore::CreateLevel<LastBossStage>("3.LastBoss_Stage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
-	GameEngineCore::CreateLevel<TestStage>("Test_Stage");
-	GameEngineCore::ChangeLevel("Test_Stage");
+	GameEngineCore::ChangeLevel("0.Tutorial_Stage");
 
 	GameEngineLevel::OffDebug();
 
-	//GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
-
 	GameEngineInput::AddInputObject(this);
+
+	//GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
+	//GameEngineGUI::CreateGUIWindow<GameEngineCoreWindow>("GameEngineCoreWindow");
 }
 
 void ContentsCore::Update(float _Delta)

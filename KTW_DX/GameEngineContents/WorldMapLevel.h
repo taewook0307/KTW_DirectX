@@ -22,7 +22,9 @@
 #define LASTBOSSENTERSCALE { 50.0f, 50.0f }
 #define LASTBOSSENTERPOSITION { 5750.0f, -600.0f }
 
-class WorldMapLevel : public GameEngineLevel
+#include "BaseLevel.h"
+
+class WorldMapLevel : public BaseLevel
 {
 public:
 	// constrcuter destructer

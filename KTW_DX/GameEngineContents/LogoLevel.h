@@ -1,6 +1,8 @@
 #pragma once
 
-class LogoLevel : public GameEngineLevel
+#include "BaseLevel.h"
+
+class LogoLevel : public BaseLevel
 {
 public:
 	// constrcuter destructer

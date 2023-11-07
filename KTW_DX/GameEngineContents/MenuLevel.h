@@ -1,6 +1,8 @@
 #pragma once
 
-class MenuLevel : public GameEngineLevel
+#include "BaseLevel.h"
+
+class MenuLevel : public BaseLevel
 {
 public:
 	// constrcuter destructer
