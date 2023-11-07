@@ -59,8 +59,32 @@ void Summon_Fire::Start()
 				{
 					Transform.AddLocalPosition(DirPos * _DeltaTime * Speed);
 				}
+
+				if (true == FireCollision->Collision(ECOLLISIONORDER::Player))
+				{
+					FireState.ChangeState(ESUMMONATTACKOBJECTSTATE::Death);
+					return;
+				}
 			};
 		FireState.CreateState(ESUMMONATTACKOBJECTSTATE::Move, Para);
+	}
+
+	FireRenderer->CreateAnimation("Fire_Death", "DevilAttacker_Death", 0.1f, -1, -1, false);
+	{
+		CreateStateParameter Para;
+		Para.Start = [=](GameEngineState* _Parent)
+			{
+				FireCollision->Off();
+				FireRenderer->ChangeAnimation("Fire_Death");
+			};
+		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
+			{
+				if (true == FireRenderer->IsCurAnimationEnd())
+				{
+					Death();
+				}
+			};
+		FireState.CreateState(ESUMMONATTACKOBJECTSTATE::Death, Para);
 	}
 
 	FireRenderer->AutoSpriteSizeOn();

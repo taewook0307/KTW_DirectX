@@ -35,6 +35,7 @@ void Devil::Start()
 
 		Para.Start = [=](GameEngineState* _Parent)
 			{
+				DevilCollision->Off();
 				DevilRenderer->ChangeAnimation("Devil_Intro_Loop");
 				EyeRenderer->ChangeAnimation("Intro_Eye", true);
 				EyeRenderer->On();
@@ -52,7 +53,10 @@ void Devil::Start()
 					return;
 				}
 			};
-
+		Para.End = [=](GameEngineState* _Parent)
+			{
+				DevilCollision->On();
+			};
 		DevilState.CreateState(EDEVILSTATE::Intro, Para);
 	}
 
@@ -144,6 +148,11 @@ void Devil::Start()
 	}
 
 	DevilRenderer->CreateAnimation("Devil_Serpent", "Devil_Serpent", DEVILANIMATIONINTER, -1, -1, false);
+	DevilRenderer->SetStartEvent("Devil_Serpent", [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			DevilCollision->Off();
+		}
+	);
 	DevilRenderer->SetEndEvent("Devil_Serpent", [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			if (EACTORDIR::Left == SerpentDir)
@@ -196,6 +205,7 @@ void Devil::Start()
 	DevilRenderer->CreateAnimation("Devil_Serpent_End", "Devil_Serpent", DEVILANIMATIONINTER, 29, 0, false);
 	DevilRenderer->SetEndEvent("Devil_Serpent_End", [=](GameEngineSpriteRenderer* _Renderer)
 		{
+			DevilCollision->On();
 			ChangeSerpentDir();
 			DevilState.ChangeState(EDEVILSTATE::Idle);
 			return;
@@ -230,6 +240,11 @@ void Devil::Start()
 	}
 
 	DevilRenderer->CreateAnimation("Devil_Spider", "Devil_Spider", DEVILANIMATIONINTER, -1, -1, false);
+	DevilRenderer->SetStartEvent("Devil_Spider", [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			DevilCollision->Off();
+		}
+	);
 	DevilRenderer->SetEndEvent("Devil_Spider", [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			DevilRenderer->ChangeAnimation("Devil_Spider_Stay");
@@ -240,6 +255,7 @@ void Devil::Start()
 	DevilRenderer->CreateAnimation("Devil_Spider_End", "Devil_Spider", DEVILANIMATIONINTER, 65, 0, false);
 	DevilRenderer->SetEndEvent("Devil_Spider_End", [=](GameEngineSpriteRenderer* _Renderer)
 		{
+			DevilCollision->On();
 			DevilState.ChangeState(EDEVILSTATE::Idle);
 			return;
 		}
@@ -379,7 +395,7 @@ void Devil::Start()
 	DevilCollision->Transform.SetLocalScale(DEVILCOLLISIONSCALE);
 	DevilCollision->Transform.SetLocalPosition(DEVILCOLLISIONPOSITION);
 
-	DevilState.ChangeState(EDEVILSTATE::Idle);
+	DevilState.ChangeState(EDEVILSTATE::Intro);
 }
 
 void Devil::Update(float _Delta)

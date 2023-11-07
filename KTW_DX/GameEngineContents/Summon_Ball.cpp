@@ -49,8 +49,32 @@ void Summon_Ball::Start()
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
 			{
 				BallMove(_DeltaTime);
+
+				if (true == BallCollision->Collision(ECOLLISIONORDER::Player))
+				{
+					BallState.ChangeState(ESUMMONATTACKOBJECTSTATE::Death);
+					return;
+				}
 			};
 		BallState.CreateState(ESUMMONATTACKOBJECTSTATE::Move, Para);
+	}
+
+	BallRenderer->CreateAnimation("Ball_Death", "DevilAttacker_Death", 0.1f, -1, -1, false);
+	{
+		CreateStateParameter Para;
+		Para.Start = [=](GameEngineState* _Parent)
+			{
+				BallCollision->Off();
+				BallRenderer->ChangeAnimation("Ball_Death");
+			};
+		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
+			{
+				if (true == BallRenderer->IsCurAnimationEnd())
+				{
+					Death();
+				}
+			};
+		BallState.CreateState(ESUMMONATTACKOBJECTSTATE::Death, Para);
 	}
 
 	BallRenderer->AutoSpriteSizeOn();

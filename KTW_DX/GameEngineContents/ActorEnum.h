@@ -190,7 +190,8 @@ enum class ESUMMONATTACKOBJECTSTATE
 {
 	Spawn,
 	Idle,
-	Move
+	Move,
+	Death
 };
 
 //Enemy
