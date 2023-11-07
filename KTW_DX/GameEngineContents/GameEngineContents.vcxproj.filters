@@ -251,6 +251,9 @@
     <ClInclude Include="BaseLevel.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="TestLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -535,6 +538,9 @@
     </ClCompile>
     <ClCompile Include="BaseLevel.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="TestLevel.cpp">
+      <Filter>Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

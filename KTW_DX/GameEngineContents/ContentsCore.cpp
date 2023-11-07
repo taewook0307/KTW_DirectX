@@ -14,6 +14,8 @@
 #include <GameEngineCore/GameEngineBlend.h>
 #include <GameEngineCore/GameEngineRenderTarget.h>
 
+#include "TestLevel.h"
+
 #include "LevelChangeWindow.h"
 #include <GameEngineCore/GameEngineCoreWindow.h>
 
@@ -94,7 +96,8 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<SecondBossStage>("2.SecondBoss_Stage");
 	GameEngineCore::CreateLevel<LastBossStage>("3.LastBoss_Stage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
-	GameEngineCore::ChangeLevel("3.LastBoss_Stage");
+	GameEngineCore::CreateLevel<TestLevel>("TestLevel");
+	GameEngineCore::ChangeLevel("TestLevel");
 
 	GameEngineLevel::OffDebug();
 
