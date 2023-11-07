@@ -24,13 +24,13 @@ void OldFilm::Start()
 
 	FilmSprite = GameEngineSprite::Find("OldFilm");
 
-	EffectUnit.ShaderResHelper.SetSampler("Tex0Sampler", "POINT");
+	EffectUnit.ShaderResHelper.SetSampler("FilmTexSampler", "POINT");
 }
 
 void OldFilm::EffectProcess(float _DeltaTime)
 {
 	ResultTarget->Setting();
-	EffectUnit.ShaderResHelper.SetTexture("Tex0", FilmSprite->GetSpriteData(CurIndex).Texture);
+	EffectUnit.ShaderResHelper.SetTexture("FilmTex", FilmSprite->GetSpriteData(CurIndex).Texture);
 
 	++CurIndex;
 

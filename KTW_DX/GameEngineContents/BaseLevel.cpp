@@ -13,5 +13,5 @@ BaseLevel::~BaseLevel()
 
 void BaseLevel::Start()
 {
-	GetLevelRenderTarget()->CreateEffect<OldFilm>();
+	GetMainCamera()->GetCameraAllRenderTarget()->CreateEffect<OldFilm>();
 }
