@@ -4,6 +4,8 @@
 #include "BackGround.h"
 #include "SelectMenu.h"
 
+#include <GameEngineCore/FadePostEffect.h>
+
 MenuLevel::MenuLevel()
 {
 }
@@ -50,6 +52,7 @@ void MenuLevel::Update(float _Delta)
 	if (EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown(VK_RETURN, this)
 		|| EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown('Z', this))
 	{
+		// GetLevelRenderTarget()->CreateEffect<FadePostEffect>();
 		GameEngineCore::ChangeLevel("IntroLevel");
 	}
 

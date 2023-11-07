@@ -3,6 +3,7 @@
 #define DEVILANIMATIONINTER 0.05f
 #define DEVILCOLLISIONSCALE { 130.0f, 130.0f }
 #define DEVILCOLLISIONPOSITION { 0.0f, 450.0f }
+#define IDLETIMER 2.0f
 
 #include "BaseBoss.h"
 
@@ -24,29 +25,29 @@ protected:
 private:
 	void CreateRamArm();
 	void CreateSpiderHead();
+	void CreateSerpentHead();
+	void CreateFire();
+	void CreateBall();
+
+	bool SummonDeathCheck();
+	std::vector<std::shared_ptr<class DevilSummonActor>> SummonActors;
 
 	bool SummonAttackBall = false;
-	void CreateSerpentHead();
 
 	bool AllChangeMove = false;
 
 	int FireIndex = 0;
-	float FireMoveTimer = 1.0f;
-	void CreateFire();
 	void FireMoveReq(float _Delta);
-
-	float BallMoveTimer = 1.0f;
-	void CreateBall();
 	void BallMoveReq(float _Delta);
-
-	bool SummonDeathCheck();
-	std::vector<std::shared_ptr<class DevilSummonActor>> SummonActors;
 
 	EACTORDIR SerpentDir = EACTORDIR::Left;
 	void ChangeSerpentDir();
 
 	void HitCountCheck();
 
+	float IdleTimer = IDLETIMER;
+	float FireMoveTimer = 1.0f;
+	float BallMoveTimer = 1.0f;
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> DevilRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> DevilCollision = nullptr;

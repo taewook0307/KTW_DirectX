@@ -27,7 +27,6 @@ void LogoLevel::Update(float _Delta)
 {
 	if (true == Logo->AnimationEndCheck())
 	{
-		Logo->BackGroundDeath();
 		GameEngineCore::ChangeLevel("TitleLevel");
 	}
 }

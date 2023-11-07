@@ -21,7 +21,7 @@ void FadeObject::SetFadeType(bool _FadeIn)
 
 	if (true == _FadeIn)
 	{
-		FadeRenderer->CreateAnimation("Fade_In", "FadeIn", FADEANIMATIONINTER, -1, -1, false);
+		FadeRenderer->CreateAnimation("Fade_In", "FadeOut", FADEANIMATIONINTER, 16, 0, false);
 		FadeRenderer->ChangeAnimation("Fade_In");
 	}
 	else

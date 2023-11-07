@@ -60,9 +60,3 @@ void BackGround::SetBackGroundRendererPivotType(PivotType _Pivot)
 {
 	BackGroundRenderer->SetPivotType(_Pivot);
 }
-
-void BackGround::BackGroundDeath()
-{
-	BackGroundRenderer = nullptr;
-	Death();
-}

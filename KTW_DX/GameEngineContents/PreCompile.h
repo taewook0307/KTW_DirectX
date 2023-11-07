@@ -16,6 +16,8 @@
 
 #include <GameEngineCore/GameEngineState.h>
 
+#include <GameEngineCore/GameEngineRenderTarget.h>
+
 #include "ContentsSpriteManager.h"
 #include "CupHeadEnum.h"
 #include "ActorEnum.h"

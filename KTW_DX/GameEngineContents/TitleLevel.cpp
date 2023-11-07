@@ -31,7 +31,8 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void TitleLevel::Update(float _Delta)
 {
-	if (true == GameEngineInput::IsDown(VK_RETURN, this))
+	if (true == GameEngineInput::IsDown(VK_RETURN, this)
+		|| true == GameEngineInput::IsDown('Z', this))
 	{
 		FadeEffect = CreateActor<FadeObject>(EUPDATEORDER::UI);
 		FadeEffect->SetFadeType();
@@ -39,8 +40,6 @@ void TitleLevel::Update(float _Delta)
 
 	if (nullptr != FadeEffect && true == FadeEffect->GetFadeAnimationEnd())
 	{
-		TitleBackGround->BackGroundDeath();
-		TitleAnimation->BackGroundDeath();
 		GameEngineCore::ChangeLevel("MenuLevel");
 	}
 }
@@ -57,6 +56,12 @@ void TitleLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	{
 		TitleAnimation->Death();
 		TitleAnimation = nullptr;
+	}
+
+	if (nullptr != FadeEffect)
+	{
+		FadeEffect->Death();
+		FadeEffect = nullptr;
 	}
 
 	ContentsSpriteManager::SingleSpriteRelease("Title_BackGround.Png");

@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "IntroBook.h"
 
+#include <GameEngineCore/FadePostEffect.h>
+
 IntroBook::IntroBook()
 {
 }
@@ -107,13 +109,24 @@ void IntroBook::Start()
 	BookRenderer->SetEndEvent("StoryPage_11",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			BookRenderer = nullptr;
+			// std::shared_ptr<FadePostEffect> Effect = GetLevel()->GetLevelRenderTarget()->CreateEffect<FadePostEffect>();
 			Death();
-			GameEngineCore::ChangeLevel("MiniMapLevel");
+			GameEngineCore::ChangeLevel("0.Tutorial_Stage");
 		}
 	);
 
 	BookRenderer->ChangeAnimation("StoryPage_1");
 
 	BookRenderer->SetImageScale(GameEngineCore::MainWindow.GetScale());
+
+	GameEngineInput::AddInputObject(this);
+}
+
+void IntroBook::Update(float _Delta)
+{
+	if (true == GameEngineInput::IsDown(VK_F1, this))
+	{
+		Death();
+		GameEngineCore::ChangeLevel("0.Tutorial_Stage");
+	}
 }

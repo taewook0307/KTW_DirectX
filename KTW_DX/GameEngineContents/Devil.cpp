@@ -61,14 +61,50 @@ void Devil::Start()
 		CreateStateParameter Para;
 
 		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Idle"); };
-		/*Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
+		Para.Stay = [&](float _DeltaTime, GameEngineState* _Parent)
 			{
-				if (true == GameEngineInput::IsDown('P', this))
+				if (IdleTimer < 0.0f)
 				{
-					DevilState.ChangeState(EDEVILSTATE::Spider);
-					return;
+					IdleTimer = IDLETIMER;
+
+					GameEngineRandom Random;
+					unsigned int Time = static_cast<unsigned int>(time(NULL));
+					Random.SetSeed(static_cast<long long>(Time));
+
+					int Pattern = Random.RandomInt(0, 3);
+
+					switch (Pattern)
+					{
+						case 0:
+						{
+							DevilState.ChangeState(EDEVILSTATE::Ram);
+							break;
+						}
+						case 1:
+						{
+							DevilState.ChangeState(EDEVILSTATE::Serpent);
+							break;
+						}
+						case 2:
+						{
+							DevilState.ChangeState(EDEVILSTATE::Spider);
+							break;
+						}
+						case 3:
+						{
+							DevilState.ChangeState(EDEVILSTATE::Attack);
+							break;
+						}
+						default:
+						{
+							MsgBoxAssert("악마가 상태변화에 실패했습니다");
+							return;
+						}
+					}
 				}
-			};*/
+
+				IdleTimer -= _DeltaTime;
+			};
 
 		DevilState.CreateState(EDEVILSTATE::Idle, Para);
 	}
