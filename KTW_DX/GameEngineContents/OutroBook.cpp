@@ -85,7 +85,7 @@ void OutroBook::Start()
 
 void OutroBook::Update(float _Delta)
 {
-	if (true == GameEngineInput::IsDown(VK_F1, this))
+	if (true == GameEngineInput::IsDown(VK_RETURN, this))
 	{
 		Death();
 		GameEngineCore::ChangeLevel("MenuLevel");

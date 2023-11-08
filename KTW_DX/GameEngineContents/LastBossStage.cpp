@@ -18,6 +18,11 @@ LastBossStage::~LastBossStage()
 
 void LastBossStage::Update(float _Delta)
 {
+	if (true == GameEngineInput::IsDown(VK_RETURN, this))
+	{
+		StageLevel::StageClear();
+	}
+
 	StageLevel::LastLevelEnd(_Delta);
 
 	if (0.0f > SummonTimer)
@@ -61,9 +66,9 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	Boss = CreateActor<Devil>(EUPDATEORDER::Monster);
 	Boss->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Y });
 
-	GameEngineInput::AddInputObject(this);
-
 	StageLevel::LevelStart(_PrevLevel);
+
+	GameEngineInput::AddInputObject(this);
 }
 
 void LastBossStage::LevelEnd(GameEngineLevel* _NextLevel)

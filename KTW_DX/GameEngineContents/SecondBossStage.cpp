@@ -99,10 +99,17 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	SecondStageMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 
 	StageLevel::LevelStart(_PrevLevel);
+
+	GameEngineInput::AddInputObject(this);
 }
 
 void SecondBossStage::Update(float _Delta)
 {
+	if (true == GameEngineInput::IsDown(VK_RETURN, this))
+	{
+		StageLevel::StageClear();
+	}
+
 	StageLevel::Update(_Delta);
 
 	if (true == GameEngineInput::IsDown(VK_ESCAPE, this))

@@ -93,7 +93,8 @@ void TutorialStage::Update(float _Delta)
 
 	TutorialLevelCameraMove();
 
-	if (true == GameEngineInput::IsDown(VK_ESCAPE, this))
+	if (true == GameEngineInput::IsDown(VK_ESCAPE, this)
+		|| true == GameEngineInput::IsDown(VK_RETURN, this))
 	{
 		GameEngineCore::ChangeLevel("WorldMapLevel");
 	}
