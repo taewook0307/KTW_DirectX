@@ -48,7 +48,7 @@ public:
 		ZoomValue += _Value;
 	}
 
-	bool IsFreeCamera() 
+	bool IsFreeCamera()
 	{
 		return IsFreeCameraValue;
 	}
@@ -77,7 +77,7 @@ public:
 		ZSortMap.insert(static_cast<int>(_SortOrder));
 	}
 
-	void SetZSort(int _SortOrder) 
+	void SetZSort(int _SortOrder)
 	{
 		ZSortMap.insert(_SortOrder);
 	}
@@ -98,6 +98,16 @@ public:
 		return AllRenderTarget;
 	}
 
+	void SetFar(float _Far)
+	{
+		Far = _Far;
+	}
+
+	void SetNear(float _Near)
+	{
+		Near = _Near;
+	}
+
 protected:
 	void Start() override;
 
@@ -107,8 +117,8 @@ protected:
 
 	void AllReleaseCheck() override;
 
-	
-	
+
+
 
 private:
 	float4 Pivot = float4::ZERO;
@@ -116,7 +126,7 @@ private:
 
 	EPROJECTIONTYPE ProjectionType = EPROJECTIONTYPE::Orthographic;
 	float Far = 10000.0f;
-	float Near = 0.1f;
+	float Near = 10.0f;
 	float FOV = 60.0f;
 	float ZoomValue = 0.0f;
 

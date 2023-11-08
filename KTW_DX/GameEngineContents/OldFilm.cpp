@@ -49,6 +49,7 @@ void OldFilm::EffectProcess(float _DeltaTime)
 	}
 
 	EffectUnit.Render();
+	EffectUnit.ShaderResHelper.AllShaderResourcesReset();
 
 	GameEngineRenderTarget::RenderTargetReset();
 }

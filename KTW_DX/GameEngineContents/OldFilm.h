@@ -43,5 +43,5 @@ private:
 
 	std::shared_ptr<GameEngineSprite> FilmSprite;
 
-	class OldFilmData OldFilmDataValue;
+	OldFilmData OldFilmDataValue;
 };
