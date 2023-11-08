@@ -22,6 +22,8 @@
 #define LASTBOSSENTERSCALE { 50.0f, 50.0f }
 #define LASTBOSSENTERPOSITION { 5750.0f, -600.0f }
 
+#define LASTSTAGESPAWNPOSITiON { 5670.0f, -740.0f }
+
 #include "BaseLevel.h"
 
 class WorldMapLevel : public BaseLevel

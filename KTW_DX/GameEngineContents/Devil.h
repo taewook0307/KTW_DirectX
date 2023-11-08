@@ -9,6 +9,7 @@
 
 class Devil : public BaseBoss
 {
+	friend class LastBossStage;
 public:
 	// constrcuter destructer
 	Devil();
@@ -30,6 +31,7 @@ private:
 	void CreateBall();
 
 	bool SummonDeathCheck();
+	void AllSummonDeath();
 	std::vector<std::shared_ptr<class DevilSummonActor>> SummonActors;
 
 	bool SummonAttackBall = false;

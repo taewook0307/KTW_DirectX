@@ -102,9 +102,13 @@ void StageLevel::LastLevelEnd(float _Delta)
 		PhaseMoveTimer -= _Delta;
 	}
 
-	if (PhaseMoveTimer < 0.0f)
+	if (PhaseMoveTimer < 0.0f && ESTAGERESULT::Success == StageResult)
 	{
 		GameEngineCore::ChangeLevel("OutroLevel");
+	}
+	else if(PhaseMoveTimer < 0.0f && ESTAGERESULT::Fail == StageResult)
+	{
+		GameEngineCore::ChangeLevel("WorldMapLevel");
 	}
 }
 

@@ -379,6 +379,8 @@ void Devil::Start()
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			DevilRenderer->ChangeAnimation("Devil_Death_Stay");
+
+			AllSummonDeath();
 		}
 	);
 	{

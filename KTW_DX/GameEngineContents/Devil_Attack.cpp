@@ -7,8 +7,21 @@
 #include "Summon_Fire.h"
 #include "Summon_Ball.h"
 
+
+void Devil::AllSummonDeath()
+{
+	for (size_t i = 0; i < SummonActors.size(); i++)
+	{
+		SummonActors[i]->Death();
+	}
+
+	SummonActors.clear();
+}
+
 void Devil::CreateRamArm()
 {
+	AllSummonDeath();
+
 	SummonActors.resize(2);
 
 	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
@@ -24,6 +37,8 @@ void Devil::CreateRamArm()
 
 void Devil::CreateSpiderHead()
 {
+	AllSummonDeath();
+
 	SummonActors.resize(1);
 
 	float4 WinHalfScale = GameEngineCore::MainWindow.GetScale().Half();
@@ -34,6 +49,8 @@ void Devil::CreateSpiderHead()
 
 void Devil::CreateSerpentHead()
 {
+	AllSummonDeath();
+
 	SummonActors.resize(1);
 
 	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
@@ -51,6 +68,8 @@ void Devil::CreateSerpentHead()
 
 void Devil::CreateFire()
 {
+	AllSummonDeath();
+
 	AllChangeMove = false;
 	FireMoveTimer = 1.0f;
 	FireIndex = 0;
@@ -80,6 +99,8 @@ void Devil::CreateFire()
 
 void Devil::CreateBall()
 {
+	AllSummonDeath();
+
 	AllChangeMove = false;
 	SummonActors.resize(4);
 
