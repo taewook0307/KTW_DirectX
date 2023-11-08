@@ -124,6 +124,7 @@ void IntroBook::Start()
 
 void IntroBook::Update(float _Delta)
 {
+	// 확인용
 	if (true == GameEngineInput::IsDown(VK_F1, this))
 	{
 		Death();

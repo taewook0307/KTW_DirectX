@@ -21,4 +21,5 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> BookRenderer = nullptr;
 
 	void Start() override;
+	void Update(float _Delta) override;
 };

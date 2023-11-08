@@ -71,7 +71,6 @@ void OutroBook::Start()
 	BookRenderer->SetEndEvent("StoryPage_18",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			BookRenderer = nullptr;
 			Death();
 			GameEngineCore::ChangeLevel("MenuLevel");
 		}
@@ -80,4 +79,15 @@ void OutroBook::Start()
 	BookRenderer->ChangeAnimation("StoryPage_12");
 
 	BookRenderer->SetImageScale(GameEngineCore::MainWindow.GetScale());
+
+	GameEngineInput::AddInputObject(this);
+}
+
+void OutroBook::Update(float _Delta)
+{
+	if (true == GameEngineInput::IsDown(VK_F1, this))
+	{
+		Death();
+		GameEngineCore::ChangeLevel("MenuLevel");
+	}
 }
