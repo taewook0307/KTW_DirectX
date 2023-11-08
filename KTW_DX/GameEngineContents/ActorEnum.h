@@ -223,6 +223,15 @@ enum class EDOGFISHSTATE
 	Death
 };
 
+enum class ESUMMONDEVILSTATE
+{
+	Intro,
+	Appear,
+	Move,
+	ComeBack,
+	Death
+};
+
 // etc
 enum class EMAINMENUSELECT
 {

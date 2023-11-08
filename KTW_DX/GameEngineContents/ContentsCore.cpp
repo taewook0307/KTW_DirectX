@@ -97,7 +97,7 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<LastBossStage>("3.LastBoss_Stage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
 	GameEngineCore::CreateLevel<TestLevel>("TestLevel");
-	GameEngineCore::ChangeLevel("LogoLevel");
+	GameEngineCore::ChangeLevel("TestLevel");
 
 	GameEngineLevel::OffDebug();
 
@@ -117,10 +117,6 @@ void ContentsCore::Update(float _Delta)
 		GameEngineLevel::IsDebug = !GameEngineLevel::IsDebug;
 	}
 
-	/*if (true == GameEngineInput::IsDown(VK_F1, this))
-	{
-		GameEngineCore::ChangeLevel("MiniMapLevel");
-	}
 	if (true == GameEngineInput::IsDown(VK_F2, this))
 	{
 		GameEngineCore::ChangeLevel("0.Tutorial_Stage");
@@ -140,7 +136,7 @@ void ContentsCore::Update(float _Delta)
 	if (true == GameEngineInput::IsDown(VK_F6, this))
 	{
 		GameEngineCore::ChangeLevel("Test_Stage");
-	}*/
+	}
 }
 
 void ContentsCore::Release()

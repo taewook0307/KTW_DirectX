@@ -29,6 +29,7 @@ void TestLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	std::shared_ptr<SummonDevil> Check = CreateActor<SummonDevil>(EUPDATEORDER::Monster);
 	Check->Transform.SetLocalPosition({ 530.0f, -610.0f });
+	//Check->SetStartDirRight();
 }
 
 void TestLevel::Update(float _Delta)
