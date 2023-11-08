@@ -1,6 +1,12 @@
 #pragma once
 
-class SummonDevil : public GameEngineActor
+#include "BaseActor.h"
+
+#define SUMMONDEVILCOLLISIONSCALE { 125.0f, 150.0f }
+#define SUMMONDEVILCOLLISIONPOSITIONLEFT { 180.0f, 90.0f }
+#define SUMMONDEVILCOLLISIONPOSITIONRIGHT { -180.0f, 90.0f }
+
+class SummonDevil : public BaseActor
 {
 public:
 	// constrcuter destructer
@@ -22,6 +28,7 @@ private:
 	EACTORDIR Dir = EACTORDIR::Left;
 
 	std::shared_ptr<GameEngineSpriteRenderer> SummonDevilRenderer = nullptr;
+	std::shared_ptr<GameEngineCollision> SummonDevilCollision = nullptr;
 	GameEngineState SummonDevilState;
 
 	void Start() override;
@@ -31,4 +38,5 @@ private:
 	bool CameraOutCheck();
 
 	void SummonDevilMove(float _Delta);
+	void PosSetting();
 };

@@ -2,6 +2,8 @@
 
 #include "StageLevel.h"
 
+#define SUMMONTIMER 5.0f
+
 class LastBossStage : public StageLevel
 {
 public:
@@ -18,7 +20,7 @@ public:
 protected:
 
 private:
-	void LastStageCameraMove(float _Delta);
+	//void LastStageCameraMove(float _Delta);
 
 private:
 	std::shared_ptr<class BackGround> StageBackGround = nullptr;
@@ -29,4 +31,8 @@ private:
 	void Update(float _Delta) override;
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
+
+	float SummonTimer = SUMMONTIMER;
+	EACTORDIR SummonDir = EACTORDIR::Left;
+	void CreateSummonDevil();
 };

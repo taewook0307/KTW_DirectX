@@ -5,6 +5,7 @@
 #include "Map.h"
 #include "DevilChair.h"
 #include "Devil.h"
+#include "SummonDevil.h"
 #include "BaseCharacter.h"
 
 LastBossStage::LastBossStage()
@@ -18,6 +19,14 @@ LastBossStage::~LastBossStage()
 void LastBossStage::Update(float _Delta)
 {
 	StageLevel::LastLevelEnd(_Delta);
+
+	if (0.0f > SummonTimer)
+	{
+		CreateSummonDevil();
+		SummonTimer = SUMMONTIMER;
+	}
+
+	SummonTimer -= _Delta;
 }
 
 void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
@@ -28,6 +37,7 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageChair.png");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\Devil");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SpiderHead");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SummonDevil");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\FireBall");
 
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("LastStagePixelMap.png");
@@ -93,24 +103,45 @@ void LastBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\FireBall");
 }
 
-void LastBossStage::LastStageCameraMove(float _Delta)
+void LastBossStage::CreateSummonDevil()
 {
-	float4 CameraPos = GetMainCamera()->Transform.GetWorldPosition();
-	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("LastStagePixelMap.png");
 	float4 MapScale = MapTexture->GetScale();
+	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 
-	float MovableValue = MapScale.X - WinScale.X;
-	float CameraMinPosX = MapScale.Half().X - MovableValue / 2.0f;
-	float CameraMaxPosX = MapScale.Half().X + MovableValue / 2.0f;
+	std::shared_ptr<SummonDevil> LittleDevil = CreateActor<SummonDevil>(EUPDATEORDER::Monster);
 
-	float4 CharacterPos = Player->Transform.GetWorldPosition();
-
-	float Ratio = MovableValue / MapScale.X;
-
-	float CameraPosX = CharacterPos.X * Ratio;
-
-	CameraPos.X = CameraPosX;
-
-	GetMainCamera()->Transform.SetLocalPosition(CameraPos);
+	if (EACTORDIR::Left == SummonDir)
+	{
+		LittleDevil->Transform.SetLocalPosition({ MapScale.Half().X - 180.0f, -WinScale.Y + 150.0f });
+		SummonDir = EACTORDIR::Right;
+	}
+	else
+	{
+		LittleDevil->SetStartDirRight();
+		LittleDevil->Transform.SetLocalPosition({ MapScale.Half().X + 180.0f, -WinScale.Y + 150.0f });
+		SummonDir = EACTORDIR::Left;
+	}
 }
+
+//void LastBossStage::LastStageCameraMove(float _Delta)
+//{
+//	float4 CameraPos = GetMainCamera()->Transform.GetWorldPosition();
+//	float4 WinScale = GameEngineCore::MainWindow.GetScale();
+//	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("LastStagePixelMap.png");
+//	float4 MapScale = MapTexture->GetScale();
+//
+//	float MovableValue = MapScale.X - WinScale.X;
+//	float CameraMinPosX = MapScale.Half().X - MovableValue / 2.0f;
+//	float CameraMaxPosX = MapScale.Half().X + MovableValue / 2.0f;
+//
+//	float4 CharacterPos = Player->Transform.GetWorldPosition();
+//
+//	float Ratio = MovableValue / MapScale.X;
+//
+//	float CameraPosX = CharacterPos.X * Ratio;
+//
+//	CameraPos.X = CameraPosX;
+//
+//	GetMainCamera()->Transform.SetLocalPosition(CameraPos);
+//}

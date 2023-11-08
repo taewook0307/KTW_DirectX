@@ -210,6 +210,7 @@ void BaseCharacter::Update(float _Delta)
 {
 	/*float4 Pos = Transform.GetWorldPosition();
 	OutputDebugStringA(Pos.ToString("\n").c_str());*/
+
 	MapOut(_Delta);
 	StateUpdate(_Delta);
 

@@ -1,6 +1,9 @@
 ﻿#include "PreCompile.h"
 #include "SummonDevil.h"
 
+#include "Map.h"
+#include "BaseCharacter.h"
+
 SummonDevil::SummonDevil()
 {
 }
@@ -67,23 +70,28 @@ void SummonDevil::Start()
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent)
 			{
+				SummonDevilRenderer->SetRenderOrder(ERENDERORDER::UpperBoss);
 				SummonDevilRenderer->SetAutoScaleRatio(1.0f);
+				SummonDevilCollision->On();
+				PosSetting();
 
 				if (EACTORDIR::Left == Dir)
 				{
 					SummonDevilRenderer->RightFlip();
+					SummonDevilCollision->Transform.SetLocalPosition(SUMMONDEVILCOLLISIONPOSITIONRIGHT);
 				}
 				else
 				{
 					SummonDevilRenderer->LeftFlip();
+					SummonDevilCollision->Transform.SetLocalPosition(SUMMONDEVILCOLLISIONPOSITIONLEFT);
 				}
+
 				
-				// 콜리전 on
 			};
-		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
+		Para.Stay = [&](float _DeltaTime, GameEngineState* _Parent)
 			{
 				SummonDevilMove(_DeltaTime);
-
+				
 				if (true == CameraOutCheck())
 				{
 					Death();
@@ -91,6 +99,11 @@ void SummonDevil::Start()
 			};
 		SummonDevilState.CreateState(ESUMMONDEVILSTATE::ComeBack, Para);
 	}
+
+	SummonDevilCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
+	SummonDevilCollision->SetCollisionType(ColType::AABBBOX2D);
+	SummonDevilCollision->Transform.SetLocalScale(SUMMONDEVILCOLLISIONSCALE);
+	SummonDevilCollision->Off();
 
 	SummonDevilState.ChangeState(ESUMMONDEVILSTATE::Intro);
 
@@ -159,4 +172,11 @@ void SummonDevil::SetStartDirRight()
 	Dir = EACTORDIR::Right;
 	SummonDevilRenderer->SetPivotType(PivotType::LeftBottom);
 	SummonDevilRenderer->LeftFlip();
+}
+
+void SummonDevil::PosSetting()
+{
+	float4 Pos = Transform.GetWorldPosition();
+
+	Transform.SetWorldPosition({ Pos.X, -670.0f });
 }

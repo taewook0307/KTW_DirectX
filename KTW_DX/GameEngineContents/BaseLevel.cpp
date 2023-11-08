@@ -16,5 +16,4 @@ void BaseLevel::Start()
 {
 	GetMainCamera()->GetCameraAllRenderTarget()->CreateEffect<OldFilm>();
 	GetMainCamera()->GetCameraAllRenderTarget()->CreateEffect<BlurPostEffect>();
-	GetMainCamera()->GetCameraAllRenderTarget()->CreateEffect<BlurPostEffect>();
 }
