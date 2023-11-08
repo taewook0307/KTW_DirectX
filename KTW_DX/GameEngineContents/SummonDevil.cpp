@@ -14,6 +14,12 @@ SummonDevil::~SummonDevil()
 
 void SummonDevil::Start()
 {
+	SummonDevilEffectRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss1);
+	SummonDevilEffectRenderer->CreateAnimation("SummonDevil_Death_Effect", "SummonDevil_Death_Effect", 0.1f, -1, -1, false);
+	SummonDevilEffectRenderer->AutoSpriteSizeOn();
+	SummonDevilEffectRenderer->ChangeAnimation("SummonDevil_Death_Effect");
+	SummonDevilEffectRenderer->Off();
+
 	SummonDevilRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperMap1);
 	SummonDevilRenderer->AutoSpriteSizeOn();
 	SummonDevilRenderer->SetAutoScaleRatio(0.7f);
@@ -79,11 +85,13 @@ void SummonDevil::Start()
 				{
 					SummonDevilRenderer->RightFlip();
 					SummonDevilCollision->Transform.SetLocalPosition(SUMMONDEVILCOLLISIONPOSITIONRIGHT);
+					SummonDevilEffectRenderer->Transform.SetLocalPosition(SUMMONDEVILCOLLISIONPOSITIONRIGHT);
 				}
 				else
 				{
 					SummonDevilRenderer->LeftFlip();
 					SummonDevilCollision->Transform.SetLocalPosition(SUMMONDEVILCOLLISIONPOSITIONLEFT);
+					SummonDevilEffectRenderer->Transform.SetLocalPosition(SUMMONDEVILCOLLISIONPOSITIONLEFT);
 				}
 
 				
@@ -92,12 +100,36 @@ void SummonDevil::Start()
 			{
 				SummonDevilMove(_DeltaTime);
 				
+				HitCheck();
+
 				if (true == CameraOutCheck())
 				{
 					Death();
 				}
 			};
 		SummonDevilState.CreateState(ESUMMONDEVILSTATE::ComeBack, Para);
+	}
+
+	SummonDevilRenderer->CreateAnimation("SummonDevil_Death", "SummonDevil_Death", 0.1f, -1, -1, false);
+	
+	{
+		CreateStateParameter Para;
+		Para.Start = [=](GameEngineState* _Parent)
+			{
+				SummonDevilCollision->Off();
+				SummonDevilEffectRenderer->On();
+				SummonDevilRenderer->ChangeAnimation("SummonDevil_Death");
+			};
+
+		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
+			{
+				if (true == SummonDevilRenderer->IsCurAnimationEnd())
+				{
+					Death();
+				}
+			};
+
+		SummonDevilState.CreateState(ESUMMONDEVILSTATE::Death, Para);
 	}
 
 	SummonDevilCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::MonsterBody);
@@ -179,4 +211,13 @@ void SummonDevil::PosSetting()
 	float4 Pos = Transform.GetWorldPosition();
 
 	Transform.SetWorldPosition({ Pos.X, -670.0f });
+}
+
+void SummonDevil::HitCheck()
+{
+	if (true == SummonDevilCollision->Collision(ECOLLISIONORDER::Bullet))
+	{
+		SummonDevilState.ChangeState(ESUMMONDEVILSTATE::Death);
+		return;
+	}
 }

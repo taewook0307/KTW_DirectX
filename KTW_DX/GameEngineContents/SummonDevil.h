@@ -28,6 +28,7 @@ private:
 	EACTORDIR Dir = EACTORDIR::Left;
 
 	std::shared_ptr<GameEngineSpriteRenderer> SummonDevilRenderer = nullptr;
+	std::shared_ptr<GameEngineSpriteRenderer> SummonDevilEffectRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> SummonDevilCollision = nullptr;
 	GameEngineState SummonDevilState;
 
@@ -39,4 +40,6 @@ private:
 
 	void SummonDevilMove(float _Delta);
 	void PosSetting();
+
+	void HitCheck();
 };
