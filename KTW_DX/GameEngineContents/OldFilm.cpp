@@ -25,6 +25,7 @@ void OldFilm::Start()
 	FilmSprite = GameEngineSprite::Find("OldFilm");
 
 	EffectUnit.ShaderResHelper.SetSampler("FilmTexSampler", "POINT");
+	EffectUnit.ShaderResHelper.SetConstantBufferLink("OldFilmData", OldFilmDataValue);
 }
 
 void OldFilm::EffectProcess(float _DeltaTime)
@@ -32,7 +33,15 @@ void OldFilm::EffectProcess(float _DeltaTime)
 	ResultTarget->Setting();
 	EffectUnit.ShaderResHelper.SetTexture("FilmTex", FilmSprite->GetSpriteData(CurIndex).Texture);
 
-	++CurIndex;
+	if (0.0f > Frame)
+	{
+		++CurIndex;
+		Frame = 0.05f;
+	}
+	else
+	{
+		Frame -= _DeltaTime;
+	}
 
 	if (CurIndex >= FilmSprite->GetSpriteCount())
 	{

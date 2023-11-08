@@ -23,6 +23,14 @@ PixelOutPut OldFilm_VS(GameEngineVertex2D _Input)
     return Result;
 }
 
+cbuffer OldFilmData : register(b1)
+{
+    float MulValue;
+    float Temp;
+    float Temp1;
+    float Temp2;
+};
+
 Texture2D FilmTex : register(t0);
 SamplerState FilmTexSampler : register(s0);
 
@@ -30,7 +38,7 @@ float4 OldFilm_PS(PixelOutPut _Input) : SV_Target0
 {
     float4 Color = FilmTex.Sample(FilmTexSampler, _Input.TEXCOORD.xy);
     
-    Color.x = (1.0f - Color.x) * 20.0f;
+    Color.x = (1.0f - Color.x) * MulValue;
     Color.yzw = Color.x;
     
     return Color;
