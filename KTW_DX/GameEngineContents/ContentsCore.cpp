@@ -103,7 +103,7 @@ void ContentsCore::Start()
 
 	GameEngineInput::AddInputObject(this);
 
-	//GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
+	GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
 	//GameEngineGUI::CreateGUIWindow<GameEngineCoreWindow>("GameEngineCoreWindow");
 }
 
@@ -117,25 +117,22 @@ void ContentsCore::Update(float _Delta)
 		GameEngineLevel::IsDebug = !GameEngineLevel::IsDebug;
 	}
 
-	if (true == GameEngineInput::IsDown(VK_F2, this))
-	{
-		GameEngineCore::ChangeLevel("0.Tutorial_Stage");
-	}
-	if (true == GameEngineInput::IsDown(VK_F3, this))
+	if (true == GameEngineInput::IsDown(VK_F1, this))
 	{
 		GameEngineCore::ChangeLevel("1.FirstBoss_Stage");
 	}
-	if (true == GameEngineInput::IsDown(VK_F4, this))
+	if (true == GameEngineInput::IsDown(VK_F2, this))
 	{
 		GameEngineCore::ChangeLevel("2.SecondBoss_Stage");
 	}
-	if (true == GameEngineInput::IsDown(VK_F5, this))
+	if (true == GameEngineInput::IsDown(VK_F3, this))
 	{
 		GameEngineCore::ChangeLevel("3.LastBoss_Stage");
 	}
-	if (true == GameEngineInput::IsDown(VK_F6, this))
+
+	if (true == GameEngineInput::IsDown(VK_F4, this))
 	{
-		GameEngineCore::ChangeLevel("Test_Stage");
+		GameEngineCore::ChangeLevel("0.Tutorial_Stage");
 	}
 }
 

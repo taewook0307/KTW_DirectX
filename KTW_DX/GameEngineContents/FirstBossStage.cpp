@@ -3,7 +3,12 @@
 #include "ContentsCore.h"
 
 #include "FirstBoss.h"
+#include "FirstBossMoveDust.h"
+#include "FirstMapParryObject.h"
+
 #include "FirstBossPhase3.h"
+#include "FirstBossPhase3Effect.h"
+
 #include "Map.h"
 #include "UpperObject.h"
 #include "StageStartUI.h"
@@ -89,6 +94,10 @@ void FirstBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 	Phase3Start = false;
 
 	StageLevel::LevelEnd(_NextLevel);
+
+	AllRemainActorDeath<FirstMapParryObject>(EUPDATEORDER::Effect);
+	AllRemainActorDeath<FirstBossMoveDust>(EUPDATEORDER::Effect);
+	AllRemainActorDeath<FirstBossPhase3Effect>(EUPDATEORDER::Effect);
 
 	if (nullptr != StageMap)
 	{

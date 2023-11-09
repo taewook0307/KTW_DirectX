@@ -36,7 +36,7 @@ void Periscope::Update(float _Delta)
 		std::shared_ptr<DogFish> NewDogFish = GetLevel()->CreateActor<DogFish>(EUPDATEORDER::Monster);
 		NewDogFish->Transform.SetLocalPosition(SUMMONPOS);
 
-		std::shared_ptr<DogFish_Splash> Effect = GetLevel()->CreateActor<DogFish_Splash>(EUPDATEORDER::Monster);
+		std::shared_ptr<DogFish_Splash> Effect = GetLevel()->CreateActor<DogFish_Splash>(EUPDATEORDER::Effect);
 		Effect->Transform.SetLocalPosition(SUMMONPOS);
 
 		SummonTimer = SUMMONTIMER;

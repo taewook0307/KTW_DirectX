@@ -2,7 +2,21 @@
 #include "SecondBossStage.h"
 
 #include "PirateBoss.h"
+#include "Whistle_Effect.h"
+#include "PirateBullet.h"
+#include "PirateBulletParry.h"
+#include "Shark.h"
+#include "Shark_SplashEffect.h"
+#include "Periscope.h"
+#include "DogFish.h"
+#include "DogFish_DeathEffect.h"
+#include "DogFish_Splash.h"
+
 #include "ShipBoss.h"
+#include "ShipBeam.h"
+#include "ShipBubble.h"
+#include "CannonBall.h"
+#include "CannonBallDust.h"
 
 #include "Barrel.h"
 
@@ -126,6 +140,21 @@ void SecondBossStage::Update(float _Delta)
 void SecondBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	StageLevel::LevelEnd(_NextLevel);
+
+	AllRemainActorDeath<PirateBullet>(EUPDATEORDER::Bullet);
+	AllRemainActorDeath<PirateBulletParry>(EUPDATEORDER::Bullet);
+	AllRemainActorDeath<Whistle_Effect>(EUPDATEORDER::Effect);
+	AllRemainActorDeath<Shark>(EUPDATEORDER::Monster);
+	AllRemainActorDeath<Shark_SplashEffect>(EUPDATEORDER::Effect);
+	AllRemainActorDeath<Periscope>(EUPDATEORDER::Monster);
+	AllRemainActorDeath<DogFish>(EUPDATEORDER::Monster);
+	AllRemainActorDeath<DogFish_Splash>(EUPDATEORDER::Effect);
+	AllRemainActorDeath<DogFish_DeathEffect>(EUPDATEORDER::Effect);
+
+	AllRemainActorDeath<CannonBall>(EUPDATEORDER::Bullet);
+	AllRemainActorDeath<CannonBallDust>(EUPDATEORDER::Effect);
+	AllRemainActorDeath<ShipBubble>(EUPDATEORDER::Bullet);
+	AllRemainActorDeath<ShipBeam>(EUPDATEORDER::Bullet);
 
 	if (nullptr != PirateBossActor)
 	{

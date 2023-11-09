@@ -417,8 +417,6 @@ void FirstBoss::Start()
 	FirstBossAttackCollision->Off();
 
 	ChangeState(EBOSSSTATE::Intro);
-
-	// GameEngineInput::AddInputObject(this);
 }
 
 void FirstBoss::Update(float _Delta)
@@ -446,7 +444,6 @@ void FirstBoss::Update(float _Delta)
 
 	PhaseChange();
 
-	// if (true == GameEngineInput::IsDown('L', this))
 	if (0 >= BounceCount)
 	{
 		ChangeAttackState();

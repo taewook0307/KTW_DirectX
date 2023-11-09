@@ -16,26 +16,10 @@ LastBossStage::~LastBossStage()
 {
 }
 
-void LastBossStage::Update(float _Delta)
-{
-	if (true == GameEngineInput::IsDown(VK_RETURN, this))
-	{
-		StageLevel::StageClear();
-	}
-
-	StageLevel::LastLevelEnd(_Delta);
-
-	if (0.0f > SummonTimer)
-	{
-		CreateSummonDevil();
-		SummonTimer = SUMMONTIMER;
-	}
-
-	SummonTimer -= _Delta;
-}
-
 void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	EACTORDIR SummonDir = EACTORDIR::Left;
+
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\BackGround\\LastStageBackGround.png");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageMap.png");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
@@ -71,11 +55,30 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	GameEngineInput::AddInputObject(this);
 }
 
+void LastBossStage::Update(float _Delta)
+{
+	if (true == GameEngineInput::IsDown(VK_RETURN, this))
+	{
+		StageLevel::StageClear();
+	}
+
+	StageLevel::LastLevelEnd(_Delta);
+
+	if (0.0f > SummonTimer)
+	{
+		CreateSummonDevil();
+		SummonTimer = SUMMONTIMER;
+	}
+
+	SummonTimer -= _Delta;
+}
+
 void LastBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	StageLevel::LevelEnd(_NextLevel);
 
 	Boss->AllSummonDeath();
+	AllRemainActorDeath<SummonDevil>(EUPDATEORDER::Monster);
 
 	if (nullptr != StageBackGround)
 	{

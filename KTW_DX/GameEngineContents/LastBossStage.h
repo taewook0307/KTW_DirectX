@@ -31,5 +31,6 @@ private:
 
 	float SummonTimer = SUMMONTIMER;
 	EACTORDIR SummonDir = EACTORDIR::Left;
+
 	void CreateSummonDevil();
 };

@@ -54,8 +54,24 @@ protected:
 
 	void StageEnd(float _Delta);
 	void ParryUpdate(float _Delta);
-private:
 
+	template<typename ActorType, typename EnumType>
+	void AllRemainActorDeath(EnumType _UpdateOrder)
+	{
+		std::vector<std::shared_ptr<ActorType>> RemainActors = GetObjectGroupConvert<ActorType>(_UpdateOrder);
+
+		if (0 == RemainActors.size())
+		{
+			return;
+		}
+
+		for (size_t i = 0; i < RemainActors.size(); i++)
+		{
+			RemainActors[i]->Death();
+		}
+	}
+
+private:
 	bool LevelStopToParry = false;
 	float StopTimer = STOPTIMER;
 

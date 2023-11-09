@@ -19,7 +19,7 @@ StageLevel::~StageLevel()
 
 void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	//GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
+	GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
 
 	GameEngineInput::AddInputObject(this);
 
@@ -44,6 +44,10 @@ void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	ResultUI = false;
 	PhaseMoveTimer = PHASEMOVETIMER;
 	StageResult = ESTAGERESULT::None;
+
+	AllRemainActorDeath<StageStartUI>(EUPDATEORDER::UI);
+	AllRemainActorDeath<StageClearUI>(EUPDATEORDER::UI);
+	AllRemainActorDeath<StageFailUI>(EUPDATEORDER::UI);
 
 	if (nullptr != Player)
 	{

@@ -116,9 +116,6 @@
     <ClInclude Include="CannonBall.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipCannon</Filter>
     </ClInclude>
-    <ClInclude Include="Periscope.h">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Barrel.h">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Barrel</Filter>
     </ClInclude>
@@ -254,6 +251,9 @@
     <ClInclude Include="TestLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
+    <ClInclude Include="Periscope.h">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Periscope</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -385,9 +385,6 @@
     </ClCompile>
     <ClCompile Include="CannonBall.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\ShipAttack\ShipCannon</Filter>
-    </ClCompile>
-    <ClCompile Include="Periscope.cpp">
-      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Barrel_State.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Barrel</Filter>
@@ -541,6 +538,9 @@
     </ClCompile>
     <ClCompile Include="TestLevel.cpp">
       <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Periscope.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Enemy\Periscope</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -717,6 +717,9 @@
     </Filter>
     <Filter Include="Global\PostEffect">
       <UniqueIdentifier>{d4ee4d0c-23e3-4960-be3f-fa0ea200bcd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\9. SecondBossStage\SecondBossStageActor\Enemy\Periscope">
+      <UniqueIdentifier>{9ec232a2-40d9-44c1-8554-042ea678350b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
