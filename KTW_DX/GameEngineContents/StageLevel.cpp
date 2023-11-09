@@ -1,6 +1,7 @@
 ﻿#include "PreCompile.h"
 #include "StageLevel.h"
 
+#include "FadeObject.h"
 #include "StageStartUI.h"
 #include "StageClearUI.h"
 #include "StageFailUI.h"
@@ -15,6 +16,8 @@
 #include "HpMarker.h"
 
 #include "DebugWindow.h"
+
+#include <GameEngineCore/FadePostEffect.h>
 
 ESTAGERESULT StageLevel::StageResult = ESTAGERESULT::None;
 
@@ -35,6 +38,9 @@ void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\UI\\HpMarker");
 
+	std::shared_ptr<FadeObject> FadeEffect = CreateActor<FadeObject>(EUPDATEORDER::UI);
+	FadeEffect->SetFadeType(true);
+	
 	CreateActor<StageStartUI>(EUPDATEORDER::UI);
 
 	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
@@ -52,10 +58,6 @@ void StageLevel::Update(float _Delta)
 
 void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
-	ResultUI = false;
-	PhaseMoveTimer = PHASEMOVETIMER;
-	StageResult = ESTAGERESULT::None;
-
 	AllRemainActorDeath<StageStartUI>(EUPDATEORDER::UI);
 	AllRemainActorDeath<StageClearUI>(EUPDATEORDER::UI);
 	AllRemainActorDeath<StageFailUI>(EUPDATEORDER::UI);
@@ -106,6 +108,22 @@ void StageLevel::StageEnd(float _Delta)
 
 	if (PhaseMoveTimer < 0.0f)
 	{
+		ResultUI = false;
+		PhaseMoveTimer = PHASEMOVETIMER;
+		StageResult = ESTAGERESULT::None;
+		IsFade = true;
+		GetLevelRenderTarget()->CreateEffect<FadePostEffect>();
+	}
+
+	if (true == IsFade)
+	{
+		LevelChangeTimer -= _Delta;
+	}
+
+	if (0.0f > LevelChangeTimer)
+	{
+		IsFade = false;
+		LevelChangeTimer = 3.0f;
 		GameEngineCore::ChangeLevel("WorldMapLevel");
 	}
 }

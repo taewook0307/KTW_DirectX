@@ -31,4 +31,7 @@ private:
 	void Update(float _Delta) override;
 
 	void MenuChange();
+
+	bool IsFade = false;
+	float LevelChangeTimer = 3.0f;
 };

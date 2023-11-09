@@ -28,6 +28,7 @@ protected:
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> WorldMapEnterRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> WorldMapEnterCollision = nullptr;
+	std::shared_ptr<class FadeObject> FadeEffect = nullptr;
 	std::string EnterLevel = "";
 
 	void Start() override;

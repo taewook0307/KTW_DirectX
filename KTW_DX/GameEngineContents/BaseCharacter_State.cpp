@@ -282,9 +282,11 @@ void BaseCharacter::DashUpdate(float _Delta)
 		CheckPos = LEFTCHECKPOS;
 	}
 
-	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition() + CheckPos, FLOORCOLOR);
+	float4 AfterMovePos = Transform.GetWorldPosition() + CheckPos;
 
-	if (CheckColor != FLOORCOLOR)
+	GameEngineColor CheckColor = Map::MainMap->GetColor(AfterMovePos, FLOORCOLOR);
+
+	if (CheckColor != FLOORCOLOR && false == PlayerCollision->Collision(ECOLLISIONORDER::Obstacle, CheckPos))
 	{
 		Transform.AddLocalPosition(MovePos);
 	}

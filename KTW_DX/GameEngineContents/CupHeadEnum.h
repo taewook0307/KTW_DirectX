@@ -50,7 +50,6 @@ enum class ERENDERORDER
 	UpperPlayer,
 
 	Bullet,
-	Fade,
 	UI,
 	Max
 };

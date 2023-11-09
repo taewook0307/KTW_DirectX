@@ -3,7 +3,8 @@
 
 #include "BackGround.h"
 #include "SelectMenu.h"
-#include "FadeObject.h"
+
+#include <GameEngineCore/FadePostEffect.h>
 
 MenuLevel::MenuLevel()
 {
@@ -51,12 +52,19 @@ void MenuLevel::Update(float _Delta)
 	if (EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown(VK_RETURN, this)
 		|| EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown('Z', this))
 	{
-		FadeEffect = CreateActor<FadeObject>(EUPDATEORDER::Effect);
-		FadeEffect->SetFadeType();
+		GetLevelRenderTarget()->CreateEffect<FadePostEffect>();
+		IsFade = true;
 	}
 
-	if (nullptr != FadeEffect && true == FadeEffect->GetFadeAnimationEnd())
+	if (true == IsFade)
 	{
+		LevelChangeTimer -= _Delta;
+	}
+
+	if (0.0f > LevelChangeTimer)
+	{
+		LevelChangeTimer = 3.0f;
+		IsFade = false;
 		GameEngineCore::ChangeLevel("IntroLevel");
 	}
 

@@ -9,6 +9,7 @@
 #include "WorldMapEnter.h"
 #include "ParryObject.h"
 #include "OldFilm.h"
+#include "FadeObject.h"
 
 TutorialStage::TutorialStage()
 {
@@ -34,6 +35,9 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");
 	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\Tutorial\\Target");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\TargetExplosion");
+
+	std::shared_ptr<FadeObject> FadeEffect = CreateActor<FadeObject>(EUPDATEORDER::UI);
+	FadeEffect->SetFadeType(true);
 
 	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
@@ -104,6 +108,8 @@ void TutorialStage::Update(float _Delta)
 
 void TutorialStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
+	AllRemainActorDeath<FadeObject>(EUPDATEORDER::UI);
+
 	if (nullptr != Player)
 	{
 		Player->Death();

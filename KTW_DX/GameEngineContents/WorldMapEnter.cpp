@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "WorldMapEnter.h"
 
+#include "FadeObject.h"
+
 WorldMapEnter::WorldMapEnter()
 {
 	GameEngineInput::AddInputObject(this);
@@ -22,8 +24,14 @@ void WorldMapEnter::Update(float _Delta)
 	{
 		if (true == GameEngineInput::IsDown('Z', this) || true == GameEngineInput::IsDown(VK_RETURN, this))
 		{
-			GameEngineCore::ChangeLevel(EnterLevel);
+			FadeEffect = GetLevel()->CreateActor<FadeObject>(EUPDATEORDER::UI);
+			FadeEffect->SetFadeType();
 		}
+	}
+
+	if (nullptr != FadeEffect && true == FadeEffect->GetFadeAnimationEnd())
+	{
+		GameEngineCore::ChangeLevel(EnterLevel);
 	}
 }
 

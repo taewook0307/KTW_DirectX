@@ -8,6 +8,7 @@
 #include "WorldMapPortal.h"
 #include "WorldMapCharacter.h"
 #include "Trigger.h"
+#include "FadeObject.h"
 
 bool WorldMapLevel::Stage1Clear = false;
 bool WorldMapLevel::Stage2Clear = false;
@@ -211,6 +212,8 @@ void WorldMapLevel::Update(float _Delta)
 void WorldMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	CharacterSavePos = Character->Transform.GetWorldPosition();
+
+	AllRemainActorDeath<FadeObject>(EUPDATEORDER::UI);
 
 	if (nullptr != WorldMap)
 	{
