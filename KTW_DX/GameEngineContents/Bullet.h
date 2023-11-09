@@ -55,7 +55,7 @@ protected:
 	int Att = 4;
 
 	void PosCheck();
-	void BulletHitSuccess(std::vector<std::shared_ptr<GameEngineCollision>> _Col);
+	void BulletHitSuccess(std::vector<GameEngineCollision*> _Col);
 	void ColCheck();
 	bool TargetHit = false;
 private:

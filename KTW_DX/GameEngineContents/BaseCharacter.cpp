@@ -276,7 +276,7 @@ void BaseCharacter::Update(float _Delta)
 	}
 
 	PlayerCollision->Collision(ECOLLISIONORDER::BossBody,
-		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
+		[=](std::vector<GameEngineCollision*>& _ColVector)
 		{
 			if (ECHARACTERSTATE::Hit != CurState
 				&& false == NoDamage
@@ -290,7 +290,7 @@ void BaseCharacter::Update(float _Delta)
 	);
 
 	PlayerCollision->Collision(ECOLLISIONORDER::BossAttack,
-		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
+		[=](std::vector<GameEngineCollision*>& _ColVector)
 		{
 			if (ECHARACTERSTATE::Hit != CurState
 				&& false == NoDamage
@@ -304,7 +304,7 @@ void BaseCharacter::Update(float _Delta)
 	);
 
 	PlayerCollision->Collision(ECOLLISIONORDER::MonsterBody,
-		[=](std::vector<std::shared_ptr<GameEngineCollision>>& _ColVector)
+		[=](std::vector<GameEngineCollision*>& _ColVector)
 		{
 			if (ECHARACTERSTATE::Hit != CurState
 				&& false == NoDamage

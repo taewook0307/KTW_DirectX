@@ -144,11 +144,11 @@ void Bullet::PosCheck()
 	}
 }
 
-void Bullet::BulletHitSuccess(std::vector<std::shared_ptr<GameEngineCollision>> _Col)
+void Bullet::BulletHitSuccess(std::vector<GameEngineCollision*> _Col)
 {
 	if (EBULLETSTATE::Move == CurState)
 	{
-		std::shared_ptr<GameEngineCollision> CurCollision = _Col[_Col.size() - 1];
+		GameEngineCollision* CurCollision = _Col[_Col.size() - 1];
 		GameEngineActor* ColMaster = CurCollision->GetActor();
 		BaseBoss* ColBoss = dynamic_cast<BaseBoss*>(ColMaster);
 
@@ -168,19 +168,19 @@ void Bullet::BulletHitSuccess(std::vector<std::shared_ptr<GameEngineCollision>> 
 void Bullet::ColCheck()
 {
 	BulletCollision->Collision(ECOLLISIONORDER::BossBody,
-		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
+		[=](std::vector<GameEngineCollision*> _Col)
 		{
 			BulletHitSuccess(_Col);
 		}
 	);
 	BulletCollision->Collision(ECOLLISIONORDER::UnDamageBoss,
-		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
+		[=](std::vector<GameEngineCollision*> _Col)
 		{
 			BulletHitSuccess(_Col);
 		}
 	);
 	BulletCollision->Collision(ECOLLISIONORDER::MonsterBody,
-		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
+		[=](std::vector<GameEngineCollision*> _Col)
 		{
 			ChangeBulletState(EBULLETSTATE::Death);
 			return;
@@ -188,11 +188,11 @@ void Bullet::ColCheck()
 	);
 
 	BulletCollision->Collision(ECOLLISIONORDER::TutorialTarget,
-		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
+		[=](std::vector<GameEngineCollision*> _Col)
 		{
 			if (false == TargetHit)
 			{
-				std::shared_ptr<GameEngineCollision> CurCol = _Col[_Col.size() - 1];
+				GameEngineCollision* CurCol = _Col[_Col.size() - 1];
 				GameEngineActor* ColMaster = CurCol->GetActor();
 				TutorialTarget* ColTarget = dynamic_cast<TutorialTarget*>(ColMaster);
 				ColTarget->PlusHitCount();

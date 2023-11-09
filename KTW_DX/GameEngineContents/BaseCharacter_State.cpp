@@ -388,9 +388,9 @@ void BaseCharacter::ParryUpdate(float _Delta)
 
 	
 	PlayerCollision->Collision(ECOLLISIONORDER::ParryObject,
-		[=](std::vector<std::shared_ptr<GameEngineCollision>> _Col)
+		[=](std::vector<GameEngineCollision*> _Col)
 		{
-			std::shared_ptr<GameEngineCollision> CurCollision = _Col[_Col.size() - 1];
+			GameEngineCollision* CurCollision = _Col[_Col.size() - 1];
 			GameEngineActor* ColMaster = CurCollision->GetActor();
 			ParryObject* ColParryOB = dynamic_cast<ParryObject*>(ColMaster);
 
