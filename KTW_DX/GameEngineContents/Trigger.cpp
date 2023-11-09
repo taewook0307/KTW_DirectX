@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "Trigger.h"
 
+#include "FadeObject.h"
+
 Trigger::Trigger()
 {
 }
@@ -16,4 +18,21 @@ void Trigger::TriggerInit(int _Order, const float4& _Scale /*= float4::ONE*/, co
 	TriggerCollision->Transform.SetLocalScale(_Scale);
 	TriggerCollision->Transform.SetLocalRotation(_Rotation);
 	TriggerCollision->Transform.SetLocalPosition(_Position);
+}
+
+void Trigger::Update(float _Delta)
+{
+	if (nullptr != TriggerCollision)
+	{
+		if (true == TriggerCollision->Collision(ECOLLISIONORDER::Player) && nullptr == FadeEffect)
+		{
+			FadeEffect = GetLevel()->CreateActor<FadeObject>(EUPDATEORDER::UI);
+			FadeEffect->SetFadeType();
+		}
+		
+		if (nullptr != FadeEffect && true == FadeEffect->GetFadeAnimationEnd())
+		{
+			GameEngineCore::ChangeLevel("3.LastBoss_Stage");
+		}
+	}
 }

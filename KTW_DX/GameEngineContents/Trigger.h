@@ -25,4 +25,7 @@ protected:
 
 private:
 	std::shared_ptr<GameEngineCollision> TriggerCollision = nullptr;
+	std::shared_ptr<class FadeObject> FadeEffect = nullptr;
+
+	void Update(float _Delta) override;
 };

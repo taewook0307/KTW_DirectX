@@ -97,7 +97,7 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<LastBossStage>("3.LastBoss_Stage");
 	GameEngineCore::CreateLevel<OutroLevel>("OutroLevel");
 	GameEngineCore::CreateLevel<TestLevel>("TestLevel");
-	GameEngineCore::ChangeLevel("LogoLevel");
+	GameEngineCore::ChangeLevel("WorldMapLevel");
 
 	GameEngineLevel::OffDebug();
 

@@ -4,6 +4,8 @@
 #include "Map.h"
 #include "WorldMapPortal.h"
 
+#include "FadeObject.h"
+
 WorldMapCharacter::WorldMapCharacter()
 {
 	GameEngineInput::AddInputObject(this);
@@ -97,11 +99,6 @@ void WorldMapCharacter::Update(float _Delta)
 {
 	float4 Pos = Transform.GetWorldPosition();
 	OutputDebugStringA(Pos.ToString().c_str());
-
-	if (true == WorldCharacterCollision->Collision(ECOLLISIONORDER::Trigger))
-	{
-		GameEngineCore::ChangeLevel("3.LastBoss_Stage");
-	}
 
 	if (EACTORDIR::Left == Dir)
 	{
