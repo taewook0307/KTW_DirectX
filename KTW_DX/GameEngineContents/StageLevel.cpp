@@ -4,7 +4,16 @@
 #include "StageStartUI.h"
 #include "StageClearUI.h"
 #include "StageFailUI.h"
+
 #include "BaseCharacter.h"
+#include "RunDust.h"
+#include "JumpDust.h"
+#include "DashDust.h"
+#include "ParryEffect.h"
+#include "SpecialAttackDust.h"
+
+#include "HpMarker.h"
+
 #include "DebugWindow.h"
 
 ESTAGERESULT StageLevel::StageResult = ESTAGERESULT::None;
@@ -19,18 +28,20 @@ StageLevel::~StageLevel()
 
 void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
-
-	GameEngineInput::AddInputObject(this);
+	//GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
 
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\StageEffect");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\UI\\HpMarker");
 
 	CreateActor<StageStartUI>(EUPDATEORDER::UI);
 
 	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition({ 230.0f, -677.0f });
+
+	HpUI = CreateActor<HpMarker>(EUPDATEORDER::UI);
+	HpUI->Transform.SetLocalPosition(HPUIPOSITION);
 }
 
 void StageLevel::Update(float _Delta)
@@ -48,6 +59,11 @@ void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	AllRemainActorDeath<StageStartUI>(EUPDATEORDER::UI);
 	AllRemainActorDeath<StageClearUI>(EUPDATEORDER::UI);
 	AllRemainActorDeath<StageFailUI>(EUPDATEORDER::UI);
+	AllRemainActorDeath<RunDust>(EUPDATEORDER::Effect);
+	AllRemainActorDeath<JumpDust>(EUPDATEORDER::Effect);
+	AllRemainActorDeath<DashDust>(EUPDATEORDER::Effect);
+	AllRemainActorDeath<ParryEffect>(EUPDATEORDER::Effect);
+	AllRemainActorDeath<SpecialAttackDust>(EUPDATEORDER::Effect);
 
 	if (nullptr != Player)
 	{
@@ -57,9 +73,16 @@ void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		BaseCharacter::MainCharacter = nullptr;
 	}
 
+	if (nullptr != HpUI)
+	{
+		HpUI->Death();
+		HpUI = nullptr;
+	}
+
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\StageEffect");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\CupHead");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\Bullet");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\UI\\HpMarker");
 }
 
 void StageLevel::StageEnd(float _Delta)

@@ -3,6 +3,8 @@
 #define PHASEMOVETIMER 5.0f
 #define STOPTIMER 0.3f
 
+#define HPUIPOSITION { -590.0f, -350.0f }
+
 #include "BaseLevel.h"
 
 class StageLevel : public BaseLevel
@@ -44,6 +46,7 @@ protected:
 	float PhaseMoveTimer = PHASEMOVETIMER;
 
 	std::shared_ptr<class BaseCharacter> Player = nullptr;
+	std::shared_ptr<class HpMarker> HpUI = nullptr;
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;

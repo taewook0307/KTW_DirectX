@@ -58,6 +58,11 @@ public:
 		return CurState;
 	}
 
+	inline int GetHp() const
+	{
+		return Hp;
+	}
+
 protected:
 	void DirChange();
 	void AimDirChange();
