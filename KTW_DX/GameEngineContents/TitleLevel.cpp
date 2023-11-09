@@ -18,7 +18,6 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\Title\\TitleAnimation");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\Title\\Title_BackGround.Png");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Fade");
 
 	TitleBackGround = CreateActor<BackGround>(EUPDATEORDER::BackGround);
 	TitleBackGround->BackGroundInit("Title_BackGround.Png");
@@ -66,5 +65,4 @@ void TitleLevel::LevelEnd(GameEngineLevel* _NextLevel)
 
 	ContentsSpriteManager::SingleSpriteRelease("Title_BackGround.Png");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Title");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Fade");
 }

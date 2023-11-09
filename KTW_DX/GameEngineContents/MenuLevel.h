@@ -22,6 +22,7 @@ private:
 
 	std::shared_ptr<class SelectMenu> StartMenu = nullptr;
 	std::shared_ptr<class SelectMenu> ExitMenu = nullptr;
+	std::shared_ptr<class FadeObject> FadeEffect = nullptr;
 
 	EMAINMENUSELECT CurSelect = EMAINMENUSELECT::Start;
 

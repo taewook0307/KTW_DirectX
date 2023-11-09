@@ -11,7 +11,7 @@ FadeObject::~FadeObject()
 
 void FadeObject::Start()
 {
-	FadeRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Fade);
+	FadeRenderer = CreateComponent<GameEngineUIRenderer>(ERENDERORDER::UI);
 }
 
 void FadeObject::SetFadeType(bool _FadeIn)

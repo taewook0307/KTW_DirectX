@@ -25,7 +25,7 @@ public:
 protected:
 
 private:
-	std::shared_ptr<GameEngineSpriteRenderer> FadeRenderer = nullptr;
+	std::shared_ptr<GameEngineUIRenderer> FadeRenderer = nullptr;
 
 	void Start() override;
 };
