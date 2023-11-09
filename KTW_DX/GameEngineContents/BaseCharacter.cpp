@@ -213,6 +213,8 @@ void BaseCharacter::Update(float _Delta)
 
 	MapOut(_Delta);
 	StateUpdate(_Delta);
+	PlusSpecialAttackCount();
+	ChangeSpecialAttackState();
 
 	if (EACTORDIR::Left == Dir)
 	{
@@ -221,16 +223,6 @@ void BaseCharacter::Update(float _Delta)
 	else
 	{
 		PlayerRenderer->RightFlip();
-	}
-
-	if (true == GameEngineInput::IsDown('V', this))
-	{
-		ChangeState(ECHARACTERSTATE::SpecialAttack);
-	}
-
-	if (true == Cheat && true == GameEngineInput::IsPress('V', this))
-	{
-		ChangeState(ECHARACTERSTATE::SpecialAttack);
 	}
 
 	if (true == GameEngineInput::IsDown('P', this))
@@ -560,5 +552,38 @@ void BaseCharacter::MapOut(float _Delta)
 		SetGravityForce(float4::UP * JUMPPOWER);
 		ChangeState(ECHARACTERSTATE::Hit);
 		return;
+	}
+}
+
+void BaseCharacter::PlusSpecialAttackCount()
+{
+	if (SpecialAttackCount == 5)
+	{
+		return;
+	}
+
+	if (100 < HitSuccess)
+	{
+		++SpecialAttackCount;
+		HitSuccess = 0;
+	}
+}
+
+void BaseCharacter::ChangeSpecialAttackState()
+{
+	if (true == Cheat)
+	{
+		if (true == GameEngineInput::IsDown('V', this)
+			|| true == GameEngineInput::IsPress('V', this))
+		{
+			ChangeState(ECHARACTERSTATE::SpecialAttack);
+		}
+	}
+	else
+	{
+		if (true == GameEngineInput::IsDown('V', this) && 0 < SpecialAttackCount)
+		{
+			ChangeState(ECHARACTERSTATE::SpecialAttack);
+		}
 	}
 }

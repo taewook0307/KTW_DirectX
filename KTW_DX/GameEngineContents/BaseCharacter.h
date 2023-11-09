@@ -20,6 +20,7 @@
 
 class BaseCharacter : public BaseActor
 {
+	friend class Bullet;
 public:
 	static BaseCharacter* MainCharacter;
 
@@ -75,6 +76,7 @@ protected:
 	void CreateDashDust(EACTORDIR _DustDir);
 	void CreateParryEffect();
 	void CreateSpecialDust(EDIRECTION8 _DustDirection);
+
 protected:
 	void StateUpdate(float _Delta);
 	void ChangeState(ECHARACTERSTATE _CurState);
@@ -141,11 +143,29 @@ protected:
 	float Speed = SPEED;
 	float DashSpeed = Speed * 2.0f;
 
+	unsigned int HitSuccess = 0;
+	
+	inline void PlusHitSuccess()
+	{
+		++HitSuccess;
+	}
+
+	inline void PlusHitSuccessTutorial()
+	{
+		HitSuccess += 10;
+	}
+
+	unsigned int SpecialAttackCount = 0;
+
+	void PlusSpecialAttackCount();
+
 	void ShootBaseState();
 	void ShootAimState();
 	void ShootRunState();
 	void ShootDuckState();
 	void SpecialShootState();
+
+	void ChangeSpecialAttackState();
 
 	float ShootTimer = SHOOTTIMER;
 	bool Shoot = false;
@@ -158,6 +178,7 @@ protected:
 	bool ParrySuccess = false;
 
 	bool Cheat = true;
+
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> PlayerRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> PlayerCollision = nullptr;

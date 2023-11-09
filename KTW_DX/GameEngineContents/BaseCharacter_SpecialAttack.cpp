@@ -75,6 +75,11 @@ void BaseCharacter::SpecialShootState()
 	}
 
 	NewBullet->Transform.SetLocalPosition(NewBulletPos);
+
+	if (false == Cheat)
+	{
+		--SpecialAttackCount;
+	}
 }
 
 void BaseCharacter::SpecialAttackStart()

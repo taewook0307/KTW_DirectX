@@ -34,6 +34,7 @@ void BaseCharacter::CreateParryEffect()
 	std::shared_ptr<ParryEffect> Parry = GetLevel()->CreateActor<ParryEffect>(EUPDATEORDER::Effect);
 	float4 Pos = Transform.GetWorldPosition();
 	Parry->Transform.SetLocalPosition(Pos);
+	++SpecialAttackCount;
 }
 
 void BaseCharacter::CreateSpecialDust(EDIRECTION8 _DustDirection)

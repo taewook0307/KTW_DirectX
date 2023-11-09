@@ -2,6 +2,7 @@
 #include "Bullet.h"
 
 #include "BaseBoss.h"
+#include "BaseCharacter.h"
 #include "TutorialTarget.h"
 
 Bullet::Bullet()
@@ -157,6 +158,7 @@ void Bullet::BulletHitSuccess(std::vector<GameEngineCollision*> _Col)
 			for (int i = 0; i < Att; ++i)
 			{
 				ColBoss->PlusHitCount();
+				BaseCharacter::MainCharacter->PlusHitSuccess();
 			}
 		}
 
@@ -196,6 +198,7 @@ void Bullet::ColCheck()
 				GameEngineActor* ColMaster = CurCol->GetActor();
 				TutorialTarget* ColTarget = dynamic_cast<TutorialTarget*>(ColMaster);
 				ColTarget->PlusHitCount();
+				BaseCharacter::MainCharacter->PlusHitSuccessTutorial();
 				TargetHit = true;
 			}
 			ChangeBulletState(EBULLETSTATE::Death);
