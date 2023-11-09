@@ -35,7 +35,7 @@ void LevelChangeWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 {
 	std::map<std::string, std::shared_ptr<GameEngineLevel>> Levels = GameEngineCore::GetAllLevel();
 
-	ImGui::Text("UI");
+	ImGui::Text("etc");
 
 	for (size_t i = 0; i < UILevelNames.size(); i++)
 	{
