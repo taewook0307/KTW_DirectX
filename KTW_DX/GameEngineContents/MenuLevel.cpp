@@ -52,7 +52,7 @@ void MenuLevel::Update(float _Delta)
 	if (EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown(VK_RETURN, this)
 		|| EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown('Z', this))
 	{
-		GetLevelRenderTarget()->CreateEffect<FadePostEffect>();
+		FadeEffect = GetLevelRenderTarget()->CreateEffect<FadePostEffect>();
 		IsFade = true;
 	}
 
@@ -107,6 +107,12 @@ void MenuLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	{
 		ExitMenu->Death();
 		ExitMenu = nullptr;
+	}
+
+	if (nullptr != FadeEffect)
+	{
+		FadeEffect->Death();
+		FadeEffect = nullptr;
 	}
 
 	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\MainMenu");
