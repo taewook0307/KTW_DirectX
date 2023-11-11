@@ -14,6 +14,7 @@
 #include "SpecialAttackDust.h"
 
 #include "HpMarker.h"
+#include "Card.h"
 
 #include "DebugWindow.h"
 
@@ -37,6 +38,7 @@ void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\UI\\HpMarker");
+	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\UI\\Card");
 
 	std::shared_ptr<FadeObject> FadeEffect = CreateActor<FadeObject>(EUPDATEORDER::UI);
 	FadeEffect->SetFadeType(true);
@@ -48,6 +50,9 @@ void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	HpUI = CreateActor<HpMarker>(EUPDATEORDER::UI);
 	HpUI->Transform.SetLocalPosition(HPUIPOSITION);
+
+	std::shared_ptr<Card> Check = CreateActor<Card>(EUPDATEORDER::UI);
+	Check->Transform.SetLocalPosition({ -520.0f, -350.0f });
 }
 
 void StageLevel::Update(float _Delta)
@@ -85,6 +90,7 @@ void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\CupHead");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\Bullet");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\UI\\HpMarker");
+	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\Global\\UI\\Card");
 }
 
 void StageLevel::StageEnd(float _Delta)
