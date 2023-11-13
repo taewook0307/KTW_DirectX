@@ -20,7 +20,6 @@ void HpMarker::Start()
 	HpRenderer->CreateAnimation("Hp_0", "Hp_0");
 
 	HpRenderer->AutoSpriteSizeOn();
-	HpRenderer->SetPivotType(PivotType::Bottom);
 
 	HpRenderer->ChangeAnimation("Hp_3");
 }

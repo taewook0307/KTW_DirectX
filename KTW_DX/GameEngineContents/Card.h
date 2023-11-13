@@ -16,6 +16,8 @@ public:
 protected:
 
 private:
+	float4 TextureScale = float4::ZERO;
+
 	std::shared_ptr<GameEngineUIRenderer> CardRenderer = nullptr;
 
 	void Start() override;

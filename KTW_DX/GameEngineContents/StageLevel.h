@@ -3,7 +3,7 @@
 #define PHASEMOVETIMER 5.0f
 #define STOPTIMER 0.3f
 
-#define HPUIPOSITION { -590.0f, -350.0f }
+#define HPUIPOSITION { -570.0f, -335.0f }
 
 #include "BaseLevel.h"
 

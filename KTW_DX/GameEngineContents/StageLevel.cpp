@@ -52,7 +52,7 @@ void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	HpUI->Transform.SetLocalPosition(HPUIPOSITION);
 
 	std::shared_ptr<Card> Check = CreateActor<Card>(EUPDATEORDER::UI);
-	Check->Transform.SetLocalPosition({ -520.0f, -350.0f });
+	Check->Transform.SetLocalPosition({ -510.0f, -300.0f });
 }
 
 void StageLevel::Update(float _Delta)

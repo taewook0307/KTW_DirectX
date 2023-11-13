@@ -1,8 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "TestLevel.h"
 
-#include "SummonDevil.h"
-#include "DevilChair.h"
+#include "Card.h"
+#include "Map.h"
 
 TestLevel::TestLevel()
 {
@@ -14,7 +14,7 @@ TestLevel::~TestLevel()
 
 void TestLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SummonDevil");
+	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\UI\\Card");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageChair.png");
 
@@ -22,14 +22,15 @@ void TestLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	float4 MapScale = MapTexture->GetScale();
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 
-	GetMainCamera()->Transform.SetLocalPosition({ 640.0f, -380.0f });
+	GetMainCamera()->Transform.SetLocalPosition({ MapScale.Half().X, -(MapScale.Y - WinScale.Half().Y) });
 
-	std::shared_ptr<DevilChair> BossChair = CreateActor<DevilChair>(EUPDATEORDER::Map);
-	BossChair->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Y + 80.0f });
+	std::shared_ptr<Map> TempMap = CreateActor<Map>(EUPDATEORDER::Map);
+	TempMap->MapInit("LastStagePixelMap.png");
+	TempMap->PixelMapInit("LastStagePixelMap.png");
+	TempMap->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y });
 
-	std::shared_ptr<SummonDevil> Check = CreateActor<SummonDevil>(EUPDATEORDER::Monster);
-	Check->Transform.SetLocalPosition({ 530.0f, -610.0f });
-	//Check->SetStartDirRight();
+	std::shared_ptr<Card> Check = CreateActor<Card>(EUPDATEORDER::UI);
+	Check->Transform.SetLocalPosition({ 0.0f, 0.0f });
 }
 
 void TestLevel::Update(float _Delta)
@@ -39,5 +40,5 @@ void TestLevel::Update(float _Delta)
 
 void TestLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\SummonDevil");
+	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\Global\\UI\\Card");
 }
