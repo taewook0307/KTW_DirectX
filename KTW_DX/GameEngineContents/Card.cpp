@@ -1,6 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "Card.h"
 
+#include "BaseCharacter.h"
+
 Card::Card()
 {
 }
@@ -31,7 +33,7 @@ void Card::Start()
 	std::shared_ptr<GameEngineTexture> CardTexture = GameEngineTexture::Find("hud_ch_card_flip_0001.png");
 	TextureScale = CardTexture.get()->GetScale();
 
-	CardRenderer->SetImageScale({ TextureScale.X, 0.0f, 0.0f, 1.0f });
+	CardRenderer->SetImageScale({ TextureScale.X, 0.0f, 1.0f, 1.0f });
 	CardRenderer->RenderBaseInfoValue.VertexUVMul.Y = 0.0f;
 
 	GameEngineInput::AddInputObject(this);
@@ -39,19 +41,29 @@ void Card::Start()
 
 void Card::Update(float _Delta)
 {
-	float4 Check = CardRenderer->GetImageTransform().GetLocalPosition();
-	
-	OutputDebugStringA(Check.ToString().c_str());
+	CardCharge();
+}
 
-	if (true == GameEngineInput::IsDown('9', this))
+void Card::CardCharge()
+{
+	CurHitCount = BaseCharacter::MainCharacter->GetHitSuccess();
+
+	if (PrevHitCount == CurHitCount)
+	{
+		return;
+	}
+
+	unsigned int LoopCount = CurHitCount - PrevHitCount;
+
+	for (unsigned int i = 0; i < LoopCount; i++)
 	{
 		float4 Scale = CardRenderer->GetImageTransform().GetLocalScale();
 
-		float Check = fabs(Scale.Y);
+		float ScaleYValue = fabs(Scale.Y);
 
-		if (Check < TextureScale.Y)
+		if (ScaleYValue < TextureScale.Y)
 		{
-			float Plus = TextureScale.Y / 10.0f;
+			float Plus = TextureScale.Y / 100.0f;
 			CardRenderer->AddImageScale({ 0.0f, Plus, 0.0f, 0.0f });
 		}
 		else
@@ -62,7 +74,7 @@ void Card::Update(float _Delta)
 
 		if (1.0f > CardRenderer->RenderBaseInfoValue.VertexUVMul.Y)
 		{
-			CardRenderer->RenderBaseInfoValue.VertexUVMul.Y += 0.1f;
+			CardRenderer->RenderBaseInfoValue.VertexUVMul.Y += 0.01f;
 		}
 		else
 		{
@@ -70,9 +82,5 @@ void Card::Update(float _Delta)
 		}
 	}
 
-	if (true == GameEngineInput::IsDown('R', this))
-	{
-		CardRenderer->SetImageScale({ TextureScale.X, 0.0f });
-		CardRenderer->RenderBaseInfoValue.VertexUVMul.Y = 0.0f;
-	}
+	PrevHitCount = CurHitCount;
 }

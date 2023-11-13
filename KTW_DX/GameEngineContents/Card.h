@@ -22,5 +22,9 @@ private:
 
 	void Start() override;
 	void Update(float _Delta) override;
+
+	unsigned int CurHitCount = 0;
+	unsigned int PrevHitCount = 0;
+	void CardCharge();
 };
 

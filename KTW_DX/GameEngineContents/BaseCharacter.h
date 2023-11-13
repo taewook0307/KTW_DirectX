@@ -64,6 +64,11 @@ public:
 		return Hp;
 	}
 
+	inline unsigned int GetHitSuccess() const
+	{
+		return HitSuccess;
+	}
+
 protected:
 	void DirChange();
 	void AimDirChange();
