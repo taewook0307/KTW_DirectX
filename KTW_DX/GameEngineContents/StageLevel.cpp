@@ -51,14 +51,33 @@ void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	HpUI = CreateActor<HpMarker>(EUPDATEORDER::UI);
 	HpUI->Transform.SetLocalPosition(HPUIPOSITION);
 
-	std::shared_ptr<Card> Check = CreateActor<Card>(EUPDATEORDER::UI);
-	Check->Transform.SetLocalPosition({ -510.0f, -350.0f });
+	AllCardUI.resize(5);
+
+	AllCardUI[0] = CreateActor<Card>(EUPDATEORDER::UI);
+	AllCardUI[0]->Transform.SetLocalPosition({-510.0f, -350.0f});
+
+	AllCardUI[1] = CreateActor<Card>(EUPDATEORDER::UI);
+	AllCardUI[1]->Transform.SetLocalPosition({ -490.0f, -350.0f });
+	AllCardUI[1]->SetHitSuccessFirstValue(100);
+
+	AllCardUI[2] = CreateActor<Card>(EUPDATEORDER::UI);
+	AllCardUI[2]->Transform.SetLocalPosition({ -470.0f, -350.0f });
+	AllCardUI[2]->SetHitSuccessFirstValue(200);
+
+	AllCardUI[3] = CreateActor<Card>(EUPDATEORDER::UI);
+	AllCardUI[3]->Transform.SetLocalPosition({ -450.0f, -350.0f });
+	AllCardUI[3]->SetHitSuccessFirstValue(300);
+
+	AllCardUI[4] = CreateActor<Card>(EUPDATEORDER::UI);
+	AllCardUI[4]->Transform.SetLocalPosition({ -430.0f, -350.0f });
+	AllCardUI[4]->SetHitSuccessFirstValue(400);
 }
 
 void StageLevel::Update(float _Delta)
 {
 	StageEnd(_Delta);
 	ParryUpdate(_Delta);
+	AllCardUIAnimationChange();
 }
 
 void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
@@ -85,6 +104,14 @@ void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		HpUI->Death();
 		HpUI = nullptr;
 	}
+
+	for (size_t i = 0; i < AllCardUI.size(); i++)
+	{
+		AllCardUI[i]->Death();
+		AllCardUI[i] = nullptr;
+	}
+
+	AllCardUI.clear();
 
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\StageEffect");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\CupHead");
@@ -182,5 +209,18 @@ void StageLevel::ParryUpdate(float _Delta)
 	if (true == LevelStopToParry)
 	{
 		StopTimer -= _Delta;
+	}
+}
+
+void StageLevel::AllCardUIAnimationChange()
+{
+	int CharacterHitSuccess = Player->GetHitSuccess();
+
+	if (500 == CharacterHitSuccess)
+	{
+		for (size_t i = 0; i < AllCardUI.size(); i++)
+		{
+			AllCardUI[i]->ChangeLoopAnimation();
+		}
 	}
 }

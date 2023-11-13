@@ -158,8 +158,9 @@ void Bullet::BulletHitSuccess(std::vector<GameEngineCollision*> _Col)
 			for (int i = 0; i < Att; ++i)
 			{
 				ColBoss->PlusHitCount();
-				BaseCharacter::MainCharacter->PlusHitSuccess();
 			}
+
+			BaseCharacter::MainCharacter->PlusHitSuccess();
 		}
 
 		ChangeBulletState(EBULLETSTATE::Death);

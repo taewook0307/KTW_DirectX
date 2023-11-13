@@ -46,14 +46,31 @@ void Card::Update(float _Delta)
 
 void Card::CardCharge()
 {
-	CurHitCount = BaseCharacter::MainCharacter->GetHitSuccess();
+	unsigned int CharacterHitSuccess = BaseCharacter::MainCharacter->GetHitSuccess();
 
-	if (PrevHitCount == CurHitCount)
+	if (InitialValue > CharacterHitSuccess)
+	{
+		CardRenderer->ChangeAnimation("Card_Spawn");
+		CardRenderer->SetImageScale({ TextureScale.X, 0.0f, 1.0f, 1.0f });
+		CardRenderer->RenderBaseInfoValue.VertexUVMul.Y = 0.0f;
+	}
+
+	if (CurHitSuccess < CharacterHitSuccess)
+	{
+		CurHitSuccess = CharacterHitSuccess;
+	}
+
+	if (true == CardRenderer->IsCurAnimation("Card_Loop"))
 	{
 		return;
 	}
 
-	unsigned int LoopCount = CurHitCount - PrevHitCount;
+	if (PrevHitSuccess == CurHitSuccess)
+	{
+		return;
+	}
+
+	unsigned int LoopCount = CurHitSuccess - PrevHitSuccess;
 
 	for (unsigned int i = 0; i < LoopCount; i++)
 	{
@@ -82,5 +99,41 @@ void Card::CardCharge()
 		}
 	}
 
-	PrevHitCount = CurHitCount;
+	PrevHitSuccess = CurHitSuccess;
+}
+
+void Card::CardAdjust(int _Value)
+{
+	CardRenderer->ChangeAnimation("Card_Spawn");
+	CurHitSuccess = _Value;
+	PrevHitSuccess = InitialValue;
+
+	unsigned int LoopCount = CurHitSuccess - PrevHitSuccess;
+
+	for (unsigned int i = 0; i < LoopCount; i++)
+	{
+		float4 Scale = CardRenderer->GetImageTransform().GetLocalScale();
+
+		float ScaleYValue = fabs(Scale.Y);
+
+		if (ScaleYValue < TextureScale.Y)
+		{
+			float Plus = TextureScale.Y / 100.0f;
+			CardRenderer->AddImageScale({ 0.0f, Plus, 0.0f, 0.0f });
+		}
+		else
+		{
+			CardRenderer->SetImageScale(TextureScale);
+			CardRenderer->ChangeAnimation("Card_Turn");
+		}
+
+		if (1.0f > CardRenderer->RenderBaseInfoValue.VertexUVMul.Y)
+		{
+			CardRenderer->RenderBaseInfoValue.VertexUVMul.Y += 0.01f;
+		}
+		else
+		{
+			CardRenderer->RenderBaseInfoValue.VertexUVMul.Y = 1.0f;
+		}
+	}
 }

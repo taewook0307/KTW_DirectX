@@ -47,6 +47,7 @@ protected:
 
 	std::shared_ptr<class BaseCharacter> Player = nullptr;
 	std::shared_ptr<class HpMarker> HpUI = nullptr;
+	std::vector<std::shared_ptr<class Card>> AllCardUI;
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
@@ -57,6 +58,7 @@ protected:
 
 	void StageEnd(float _Delta);
 	void ParryUpdate(float _Delta);
+	void AllCardUIAnimationChange();
 
 private:
 	bool LevelStopToParry = false;

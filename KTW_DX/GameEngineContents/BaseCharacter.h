@@ -152,12 +152,35 @@ protected:
 	
 	inline void PlusHitSuccess()
 	{
+		if (500 <= HitSuccess)
+		{
+			HitSuccess = 500;
+			return;
+		}
+
 		++HitSuccess;
 	}
 
 	inline void PlusHitSuccessTutorial()
 	{
+		if (500 <= HitSuccess)
+		{
+			HitSuccess = 500;
+			return;
+		}
+
 		HitSuccess += 10;
+	}
+
+	inline void PlusHitSuccessParry()
+	{
+		if (500 <= HitSuccess)
+		{
+			HitSuccess = 500;
+			return;
+		}
+
+		HitSuccess += 100;
 	}
 
 	unsigned int SpecialAttackCount = 0;

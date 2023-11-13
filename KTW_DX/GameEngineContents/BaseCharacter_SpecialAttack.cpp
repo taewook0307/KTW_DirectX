@@ -79,6 +79,7 @@ void BaseCharacter::SpecialShootState()
 	if (false == Cheat)
 	{
 		--SpecialAttackCount;
+		HitSuccess -= 100;
 	}
 }
 

@@ -13,6 +13,19 @@ public:
 	Card& operator=(const Card& _Other) = delete;
 	Card& operator=(Card&& _Other) noexcept = delete;
 
+	void SetHitSuccessFirstValue(unsigned int _Value)
+	{
+		CurHitSuccess = _Value;
+		PrevHitSuccess = _Value;
+		InitialValue = _Value;
+	}
+
+	void ChangeLoopAnimation()
+	{
+		CardRenderer->ChangeAnimation("Card_Loop");
+		return;
+	}
+
 protected:
 
 private:
@@ -23,8 +36,10 @@ private:
 	void Start() override;
 	void Update(float _Delta) override;
 
-	unsigned int CurHitCount = 0;
-	unsigned int PrevHitCount = 0;
+	unsigned int CurHitSuccess = 0;
+	unsigned int PrevHitSuccess = 0;
+	unsigned int InitialValue = 0;
 	void CardCharge();
+	void CardAdjust(int _Value);
 };
 
