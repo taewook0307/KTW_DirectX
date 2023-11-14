@@ -9,6 +9,7 @@
 #include "FirstBossPhase3.h"
 #include "FirstBossPhase3Effect.h"
 
+#include "BackGround.h"
 #include "Map.h"
 #include "UpperObject.h"
 #include "StageStartUI.h"
@@ -28,27 +29,37 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	StageResult = ESTAGERESULT::None;
 
-	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
-	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, 0.0f });
-	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
-
 	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap");
 	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\FirstBossStage\\Map\\FirstBossParryObject");
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBitMap.png");
+	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap.png");
+	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBitMapTest.png");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap_Upper.png");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\FirstBossStage\\FirstBoss");
+
+	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("FirstBossBitMapTest.png");
+	MapScale = MapTexture.get()->GetScale();
+
+	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
+
+	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -MapScale.Y + WinScaleHalf.Y, 0.0f });
+	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	Boss = CreateActor<FirstBoss>(EUPDATEORDER::Monster);
 	Boss->Transform.SetLocalPosition({ 1000.0f, -677.0f });
 
-	StageMap = CreateActor<Map>(EUPDATEORDER::Map);
+	/*StageMap = CreateActor<Map>(EUPDATEORDER::Map);
 	StageMap->MapAnimationInit("FirstBossMapAni", "FirstBossMap", 0.05f);
 	StageMap->PixelMapInit("FirstBossBitMap.Png");
-	StageMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
+	StageMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });*/
 
-	StageMapUpper = CreateActor<UpperObject>(EUPDATEORDER::Map);
+	StageMap = CreateActor<Map>(EUPDATEORDER::Map);
+	StageMap->MapInit("FirstBossMap.png");
+	StageMap->PixelMapInit("FirstBossBitMapTest.png");
+	StageMap->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y });
+
+	/*StageMapUpper = CreateActor<UpperObject>(EUPDATEORDER::Map);
 	StageMapUpper->UpperObjectInit("FirstBossMap_Upper.png");
-	StageMapUpper->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
+	StageMapUpper->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });*/
 
 	StageLevel::LevelStart(_PrevLevel);
 
@@ -57,6 +68,8 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 
 void FirstBossStage::Update(float _Delta)
 {
+	CameraMove(_Delta);
+
 	if(true == GameEngineInput::IsDown(VK_RETURN, this))
 	{
 		StageLevel::StageClear();

@@ -63,6 +63,10 @@ protected:
 	void PlayerUISetting();
 	void PlayerUIDeath();
 
+	float4 MapScale = float4::ZERO;
+	float CameraSpeed = 100.0f;
+	void CameraMove(float _Delta);
+
 private:
 	bool LevelStopToParry = false;
 	float StopTimer = STOPTIMER;
@@ -73,5 +77,7 @@ private:
 	float LevelChangeTimer = 3.0f;
 
 	std::shared_ptr<class FadePostEffect> FadeEffect = nullptr;
+
+	bool CameraMovePossible(const float4& _CheckPos);
 };
 

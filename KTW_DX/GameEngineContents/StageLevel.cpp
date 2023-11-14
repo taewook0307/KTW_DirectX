@@ -240,3 +240,60 @@ void StageLevel::AllCardUIAnimationChange()
 		}
 	}
 }
+
+void StageLevel::CameraMove(float _Delta)
+{
+	float4 CameraPos = GetMainCamera()->Transform.GetWorldPosition();
+	float4 WinScaleQuarter = GameEngineCore::MainWindow.GetScale().Half().Half();
+
+	float4 PlayerPos = Player->Transform.GetWorldPosition();
+
+	float4 MovePos = float4::ZERO;
+
+	if (PlayerPos.X < CameraPos.X - WinScaleQuarter.X)
+	{
+		MovePos = float4::LEFT * _Delta * CameraSpeed;
+	}
+	else if (PlayerPos.X > CameraPos.X + WinScaleQuarter.X)
+	{
+		MovePos = float4::RIGHT * _Delta * CameraSpeed;
+	}
+	else
+	{
+		return;
+	}
+
+	float4 CheckPos = CameraPos + MovePos;
+
+	if (true == CameraMovePossible(CheckPos))
+	{
+		GetMainCamera()->Transform.AddLocalPosition(MovePos);
+	}
+}
+
+bool StageLevel::CameraMovePossible(const float4& _CheckPos)
+{
+	if (float4::ZERO == MapScale)
+	{
+		MsgBoxAssert("맵 크기가 지정되지 않았습니다");
+		return false;
+	}
+
+	float4 CameraPos = _CheckPos;
+	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
+
+	float LeftX = CameraPos.X - WinScaleHalf.X;
+	float RightX = CameraPos.X + WinScaleHalf.X;
+
+	if (LeftX <= 0.0f)
+	{
+		return false;
+	}
+
+	if (RightX >= MapScale.X)
+	{
+		return false;
+	}
+
+	return true;
+}

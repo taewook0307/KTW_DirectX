@@ -20,6 +20,7 @@ public:
 protected:
 
 private:
+	std::shared_ptr<class BackGround> StageBackGround = nullptr;
 	std::shared_ptr<class Map> StageMap = nullptr;
 	std::shared_ptr<class UpperObject> StageMapUpper = nullptr;
 	std::shared_ptr<class FirstBoss> Boss = nullptr;
