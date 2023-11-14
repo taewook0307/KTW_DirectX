@@ -10,6 +10,8 @@
 #include "FirstBossPhase3Effect.h"
 
 #include "BackGround.h"
+#include "FarForest.h"
+#include "NearForest.h"
 #include "Map.h"
 #include "UpperObject.h"
 #include "StageStartUI.h"
@@ -29,17 +31,20 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	StageResult = ESTAGERESULT::None;
 
-	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap");
+	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGroundAnimation");
+	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGround_1.png");
+	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGround_2.png");
 	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\FirstBossStage\\Map\\FirstBossParryObject");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap.png");
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBitMapTest.png");
+	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBitMap.png");
 	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap_Upper.png");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\FirstBossStage\\FirstBoss");
 
-	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("FirstBossBitMapTest.png");
+	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("FirstBossBitMap.png");
 	MapScale = MapTexture.get()->GetScale();
 
-	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
+	float4 WinScale = GameEngineCore::MainWindow.GetScale();
+	float4 WinScaleHalf = WinScale.Half();
 
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -MapScale.Y + WinScaleHalf.Y, 0.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
@@ -47,14 +52,19 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	Boss = CreateActor<FirstBoss>(EUPDATEORDER::Monster);
 	Boss->Transform.SetLocalPosition({ 1000.0f, -677.0f });
 
-	/*StageMap = CreateActor<Map>(EUPDATEORDER::Map);
-	StageMap->MapAnimationInit("FirstBossMapAni", "FirstBossMap", 0.05f);
-	StageMap->PixelMapInit("FirstBossBitMap.Png");
-	StageMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });*/
+	StageBackGroundFarForest = CreateActor<FarForest>(EUPDATEORDER::BackGround);
+	StageBackGroundFarForest->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Y + WinScale.Y });
+
+	StageBackGroundNearForest = CreateActor<NearForest>(EUPDATEORDER::BackGround);
+	StageBackGroundNearForest->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Y + WinScaleHalf.Y });
+
+	StageBackGround = CreateActor<BackGround>(EUPDATEORDER::BackGround);
+	StageBackGround->AnimationInit("FirstBossBackGroundAnimation", "FirstBossBackGroundAnimation", 0.1f, true, false);
+	StageBackGround->Transform.SetLocalPosition({ MapScale.Half().X, -WinScaleHalf.Y });
 
 	StageMap = CreateActor<Map>(EUPDATEORDER::Map);
 	StageMap->MapInit("FirstBossMap.png");
-	StageMap->PixelMapInit("FirstBossBitMapTest.png");
+	StageMap->PixelMapInit("FirstBossBitMap.png");
 	StageMap->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y });
 
 	/*StageMapUpper = CreateActor<UpperObject>(EUPDATEORDER::Map);
@@ -136,8 +146,9 @@ void FirstBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 		BossPhase3 = nullptr;
 	}
 
-	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap");
+	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGroundAnimation");
 	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\FirstBossStage\\Map\\FirstBossParryObject");
+	ContentsSpriteManager::SingleSpriteRelease("FirstBossMap.png");
 	ContentsSpriteManager::SingleSpriteRelease("FirstBossBitMap.png");
 	ContentsSpriteManager::SingleSpriteRelease("FirstBossMap_Upper.png");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\FirstBossStage\\FirstBoss");

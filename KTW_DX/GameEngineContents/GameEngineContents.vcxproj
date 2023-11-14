@@ -241,7 +241,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="FarForest.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="HpMarker.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="NearForest.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -581,7 +589,15 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Devil_Attack.cpp" />
+    <ClCompile Include="FarForest.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="HpMarker.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="NearForest.cpp">
       <SubType>
       </SubType>
     </ClCompile>

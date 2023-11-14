@@ -20,6 +20,8 @@ public:
 protected:
 
 private:
+	std::shared_ptr<class FarForest> StageBackGroundFarForest = nullptr;
+	std::shared_ptr<class NearForest> StageBackGroundNearForest = nullptr;
 	std::shared_ptr<class BackGround> StageBackGround = nullptr;
 	std::shared_ptr<class Map> StageMap = nullptr;
 	std::shared_ptr<class UpperObject> StageMapUpper = nullptr;

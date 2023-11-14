@@ -260,6 +260,12 @@
     <ClInclude Include="Card.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="FarForest.h">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="NearForest.h">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\BackGround</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -554,6 +560,12 @@
     <ClCompile Include="Card.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="FarForest.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="NearForest.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\BackGround</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -735,6 +747,9 @@
     </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{1329adb5-7b01-4fef-999d-ef239247903b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\8. FirstBossStage\FirstBossStageActor\BackGround">
+      <UniqueIdentifier>{bba86da0-83ca-4c28-9c3a-92be0c015a5f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
