@@ -40,6 +40,8 @@ private:
 	unsigned int PrevHitSuccess = 0;
 	unsigned int InitialValue = 0;
 	void CardCharge();
-	void CardAdjust(int _Value);
+	void CardRendererReset();
+	void CardReset();
+	void CardAdjust();
 };
 
