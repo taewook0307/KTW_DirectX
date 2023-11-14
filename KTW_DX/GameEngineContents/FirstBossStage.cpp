@@ -67,9 +67,9 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	StageMap->PixelMapInit("FirstBossBitMap.png");
 	StageMap->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y });
 
-	/*StageMapUpper = CreateActor<UpperObject>(EUPDATEORDER::Map);
+	StageMapUpper = CreateActor<UpperObject>(EUPDATEORDER::Map);
 	StageMapUpper->UpperObjectInit("FirstBossMap_Upper.png");
-	StageMapUpper->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });*/
+	StageMapUpper->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 
 	StageLevel::LevelStart(_PrevLevel);
 
@@ -122,6 +122,24 @@ void FirstBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 	AllRemainActorDeath<FirstBossMoveDust>(EUPDATEORDER::Effect);
 	AllRemainActorDeath<FirstBossPhase3Effect>(EUPDATEORDER::Effect);
 
+	if (nullptr != StageBackGround)
+	{
+		StageBackGround->Death();
+		StageBackGround = nullptr;
+	}
+
+	if (nullptr != StageBackGroundFarForest)
+	{
+		StageBackGroundFarForest->Death();
+		StageBackGroundFarForest = nullptr;
+	}
+
+	if (nullptr != StageBackGroundNearForest)
+	{
+		StageBackGroundNearForest->Death();
+		StageBackGroundNearForest = nullptr;
+	}
+
 	if (nullptr != StageMap)
 	{
 		StageMap->Death();
@@ -147,9 +165,29 @@ void FirstBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 	}
 
 	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGroundAnimation");
+	ContentsSpriteManager::SingleSpriteRelease("FirstBossBackGround_1.png");
+	ContentsSpriteManager::SingleSpriteRelease("FirstBossBackGround_2.png");
 	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\FirstBossStage\\Map\\FirstBossParryObject");
 	ContentsSpriteManager::SingleSpriteRelease("FirstBossMap.png");
 	ContentsSpriteManager::SingleSpriteRelease("FirstBossBitMap.png");
 	ContentsSpriteManager::SingleSpriteRelease("FirstBossMap_Upper.png");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\FirstBossStage\\FirstBoss");
+}
+
+float4 FirstBossStage::CameraMove(float _Delta)
+{
+	float4 MovePos = StageLevel::CameraMove(_Delta);
+
+	MovePos /= CameraSpeed;
+
+	float4 FarForestMovePos = MovePos * 30.0f;
+	float4 NearForestMovePos = MovePos * -20.0f;
+
+	StageBackGroundFarForest->Transform.AddLocalPosition(FarForestMovePos);
+	StageBackGroundNearForest->Transform.AddLocalPosition(NearForestMovePos);
+
+	float4 CameraPos = GetMainCamera()->Transform.GetWorldPosition();
+	StageMapUpper->Transform.SetWorldPosition(CameraPos);
+
+	return MovePos;
 }

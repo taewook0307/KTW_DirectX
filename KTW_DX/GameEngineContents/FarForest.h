@@ -19,5 +19,4 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> FarForestRenderer = nullptr;
 
 	void Start() override;
-	void Update(float _Delta);
 };

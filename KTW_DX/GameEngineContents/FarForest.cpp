@@ -16,8 +16,3 @@ void FarForest::Start()
 	FarForestRenderer->SetPivotType(PivotType::Top);
 	FarForestRenderer->AutoSpriteSizeOn();
 }
-
-void FarForest::Update(float _Delta)
-{
-
-}

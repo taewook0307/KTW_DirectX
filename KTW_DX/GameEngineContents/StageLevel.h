@@ -65,7 +65,7 @@ protected:
 
 	float4 MapScale = float4::ZERO;
 	float CameraSpeed = 100.0f;
-	void CameraMove(float _Delta);
+	virtual float4 CameraMove(float _Delta);
 
 private:
 	bool LevelStopToParry = false;

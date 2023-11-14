@@ -241,7 +241,7 @@ void StageLevel::AllCardUIAnimationChange()
 	}
 }
 
-void StageLevel::CameraMove(float _Delta)
+float4 StageLevel::CameraMove(float _Delta)
 {
 	float4 CameraPos = GetMainCamera()->Transform.GetWorldPosition();
 	float4 WinScaleQuarter = GameEngineCore::MainWindow.GetScale().Half().Half();
@@ -260,7 +260,7 @@ void StageLevel::CameraMove(float _Delta)
 	}
 	else
 	{
-		return;
+		return float4::ZERO;
 	}
 
 	float4 CheckPos = CameraPos + MovePos;
@@ -269,6 +269,12 @@ void StageLevel::CameraMove(float _Delta)
 	{
 		GetMainCamera()->Transform.AddLocalPosition(MovePos);
 	}
+	else
+	{
+		return float4::ZERO;
+	}
+
+	return MovePos;
 }
 
 bool StageLevel::CameraMovePossible(const float4& _CheckPos)
