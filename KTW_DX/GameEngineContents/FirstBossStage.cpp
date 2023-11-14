@@ -46,11 +46,11 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 	float4 WinScaleHalf = WinScale.Half();
 
-	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -MapScale.Y + WinScaleHalf.Y, 0.0f });
+	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -MapScale.Y + WinScaleHalf.Y, 0.0f});
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	Boss = CreateActor<FirstBoss>(EUPDATEORDER::Monster);
-	Boss->Transform.SetLocalPosition({ 1000.0f, -677.0f });
+	Boss->Transform.SetLocalPosition(FIRSTBOSSSPAWNPOSITION);
 
 	StageBackGroundFarForest = CreateActor<FarForest>(EUPDATEORDER::BackGround);
 	StageBackGroundFarForest->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Y + WinScale.Y });

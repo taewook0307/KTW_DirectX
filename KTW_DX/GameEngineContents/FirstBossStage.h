@@ -4,6 +4,8 @@
 
 #define PHASE3TIMER 5.0f
 
+#define FIRSTBOSSSPAWNPOSITION { 1000.0f, -677.0f }
+
 class FirstBossStage : public StageLevel
 {
 public:

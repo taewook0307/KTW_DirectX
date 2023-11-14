@@ -16,7 +16,6 @@ void StageFailUI::Start()
 	EffectRenderer->SetEndEvent("Fail_Effect",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			EffectRenderer = nullptr;
 			Death();
 		}
 	);

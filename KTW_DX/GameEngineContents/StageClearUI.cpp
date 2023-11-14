@@ -16,7 +16,6 @@ void StageClearUI::Start()
 	EffectRenderer->SetEndEvent("Clear_Effect",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			EffectRenderer = nullptr;
 			Death();
 		}
 	);

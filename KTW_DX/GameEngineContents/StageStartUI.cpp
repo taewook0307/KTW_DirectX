@@ -16,7 +16,6 @@ void StageStartUI::Start()
 	EffectRenderer->SetEndEvent("Start_Effect",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			EffectRenderer = nullptr;
 			Death();
 		}
 	);

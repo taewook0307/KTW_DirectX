@@ -32,12 +32,13 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("LastStagePixelMap.png");
 	MapScale = MapTexture->GetScale();
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
+	float4 WinScaleHalf = WinScale.Half();
 
-	GetMainCamera()->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Half().Y });
+	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 
 	StageBackGround = CreateActor<BackGround>(EUPDATEORDER::BackGround);
 	StageBackGround->BackGroundInitAuto("LastStageBackGround.png");
-	StageBackGround->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Half().Y });
+	StageBackGround->Transform.SetLocalPosition({ MapScale.Half().X, -WinScaleHalf.Y });
 
 	StageMap = CreateActor<Map>(EUPDATEORDER::Map);
 	StageMap->MapInit("LastStageMap.Png");
