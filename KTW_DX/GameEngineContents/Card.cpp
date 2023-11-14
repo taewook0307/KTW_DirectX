@@ -62,13 +62,13 @@ void Card::CardCharge()
 {
 	unsigned int CharacterHitSuccess = BaseCharacter::MainCharacter->GetHitSuccess();
 
-	if (InitialValue > CharacterHitSuccess)
+	if (InitialValue >= CharacterHitSuccess)
 	{
 		CardReset();
 		return;
 	}
 
-	if (InitialValue < CharacterHitSuccess && CurHitSuccess > CharacterHitSuccess)
+	if (InitialValue <= CharacterHitSuccess && CurHitSuccess > CharacterHitSuccess)
 	{
 		CardRendererReset();
 		CurHitSuccess = CharacterHitSuccess;
