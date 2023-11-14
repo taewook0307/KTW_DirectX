@@ -31,6 +31,8 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	// 리소스 Load
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
+	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\UI\\HpMarker");
+	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\UI\\Card");
 	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\Tutorial");
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");
 	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\Tutorial\\Target");
@@ -41,6 +43,8 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 
 	Player = CreateActor<BaseCharacter>(EUPDATEORDER::Player);
 	Player->Transform.SetLocalPosition(PLAYERSTARTPOS);
+
+	StageLevel::PlayerUISetting();
 
 	std::shared_ptr<GameEngineSprite> Sprite = GameEngineSprite::Find("TutorialMap.Png");
 	float4 SpriteHalfScale = Sprite->GetSpriteData(0).GetScale().Half();
@@ -94,6 +98,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 void TutorialStage::Update(float _Delta)
 {
 	StageLevel::ParryUpdate(_Delta);
+	StageLevel::AllCardUIAnimationChange();
 
 	TutorialLevelCameraMove();
 
@@ -115,6 +120,8 @@ void TutorialStage::LevelEnd(GameEngineLevel* _NextLevel)
 		Player->Death();
 		Player = nullptr;
 	}
+
+	StageLevel::PlayerUIDeath();
 
 	if (nullptr != TutorialBackGround)
 	{
@@ -159,6 +166,8 @@ void TutorialStage::LevelEnd(GameEngineLevel* _NextLevel)
 
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\CupHead");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\Bullet");
+	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\UI\\HpMarker");
+	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\Global\\UI\\Card");
 	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\Tutorial");
 	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Tutorial\\Parry");
 	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\Tutorial\\Target");

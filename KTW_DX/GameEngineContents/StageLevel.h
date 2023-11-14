@@ -52,13 +52,16 @@ protected:
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
 
-	void LastLevelEnd(float _Delta);
-
 	void Update(float _Delta) override;
 
 	void StageEnd(float _Delta);
 	void ParryUpdate(float _Delta);
 	void AllCardUIAnimationChange();
+
+	void LastLevelEnd(float _Delta);
+
+	void PlayerUISetting();
+	void PlayerUIDeath();
 
 private:
 	bool LevelStopToParry = false;
@@ -68,5 +71,7 @@ private:
 
 	bool IsFade = false;
 	float LevelChangeTimer = 3.0f;
+
+	std::shared_ptr<class FadePostEffect> FadeEffect = nullptr;
 };
 

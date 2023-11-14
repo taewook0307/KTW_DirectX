@@ -42,6 +42,20 @@ void Card::Start()
 void Card::Update(float _Delta)
 {
 	CardCharge();
+	CardAnimationChange();
+}
+
+void Card::CardAnimationChange()
+{
+	if (false == CardRenderer->IsCurAnimation("Card_Spawn"))
+	{
+		return;
+	}
+
+	if (InitialValue + 100 <= CurHitSuccess)
+	{
+		CardRenderer->ChangeAnimation("Card_Turn");
+	}
 }
 
 void Card::CardCharge()
@@ -66,11 +80,6 @@ void Card::CardCharge()
 	if (CurHitSuccess < CharacterHitSuccess)
 	{
 		CurHitSuccess = CharacterHitSuccess;
-	}
-
-	if (true == CardRenderer->IsCurAnimation("Card_Loop"))
-	{
-		return;
 	}
 
 	if (PrevHitSuccess == CurHitSuccess)
@@ -113,7 +122,6 @@ void Card::CardAdjust()
 		else
 		{
 			CardRenderer->SetImageScale(TextureScale);
-			CardRenderer->ChangeAnimation("Card_Turn");
 		}
 
 		if (1.0f > CardRenderer->RenderBaseInfoValue.VertexUVMul.Y)

@@ -43,5 +43,7 @@ private:
 	void CardRendererReset();
 	void CardReset();
 	void CardAdjust();
+
+	void CardAnimationChange();
 };
 
