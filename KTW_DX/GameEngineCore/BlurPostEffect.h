@@ -1,5 +1,5 @@
 #pragma once
-#include "GameEngineRenderTarget.h"
+#include "GAMEENGINERENDERTARGET.H"
 
 // Ό³Έν :
 class BlurPostEffect : public Effect
@@ -14,6 +14,8 @@ public:
 	BlurPostEffect(BlurPostEffect&& _Other) noexcept = delete;
 	BlurPostEffect& operator=(const BlurPostEffect& _Other) = delete;
 	BlurPostEffect& operator=(BlurPostEffect&& _Other) noexcept = delete;
+
+	std::vector<float4> ArrScreenSize;
 
 protected:
 

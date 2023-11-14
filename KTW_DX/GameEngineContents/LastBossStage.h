@@ -29,8 +29,14 @@ private:
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
 
+	float CameraSpeed = 100.0f;
+	void CameraMove(float _Delta);
+	bool CameraMovePossible(const float4& _CheckPos);
+
 	float SummonTimer = SUMMONTIMER;
 	EACTORDIR SummonDir = EACTORDIR::Left;
+
+	float4 MapScale = float4::ZERO;
 
 	void CreateSummonDevil();
 };

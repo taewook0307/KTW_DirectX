@@ -30,13 +30,13 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\FireBall");
 
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("LastStagePixelMap.png");
-	float4 MapScale = MapTexture->GetScale();
+	MapScale = MapTexture->GetScale();
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 
 	GetMainCamera()->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Half().Y });
 
 	StageBackGround = CreateActor<BackGround>(EUPDATEORDER::BackGround);
-	StageBackGround->BackGroundInit("LastStageBackGround.png");
+	StageBackGround->BackGroundInitAuto("LastStageBackGround.png");
 	StageBackGround->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Half().Y });
 
 	StageMap = CreateActor<Map>(EUPDATEORDER::Map);
@@ -57,6 +57,8 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 
 void LastBossStage::Update(float _Delta)
 {
+	CameraMove(_Delta);
+
 	if (true == GameEngineInput::IsDown(VK_RETURN, this))
 	{
 		StageLevel::StageClear();
@@ -138,4 +140,55 @@ void LastBossStage::CreateSummonDevil()
 		NewDevil->Transform.SetLocalPosition({ MapScale.Half().X + 180.0f, -WinScale.Y + 150.0f });
 		SummonDir = EACTORDIR::Left;
 	}
+}
+
+void LastBossStage::CameraMove(float _Delta)
+{
+	float4 CameraPos = GetMainCamera()->Transform.GetWorldPosition();
+	float4 WinScaleQuarter = GameEngineCore::MainWindow.GetScale().Half().Half();
+
+	float4 PlayerPos = Player->Transform.GetWorldPosition();
+
+	float4 MovePos = float4::ZERO;
+	
+	if (PlayerPos.X < CameraPos.X - WinScaleQuarter.X)
+	{
+		MovePos = float4::LEFT * _Delta * CameraSpeed;
+	}
+	else if (PlayerPos.X > CameraPos.X + WinScaleQuarter.X)
+	{
+		MovePos = float4::RIGHT * _Delta * CameraSpeed;
+	}
+	else
+	{
+		return;
+	}
+
+	float4 CheckPos = CameraPos + MovePos;
+
+	if (true == CameraMovePossible(CheckPos))
+	{
+		GetMainCamera()->Transform.AddLocalPosition(MovePos);
+	}
+}
+
+bool LastBossStage::CameraMovePossible(const float4& _CheckPos)
+{
+	float4 CameraPos = _CheckPos;
+	float4 WinScaleHalf = GameEngineCore::MainWindow.GetScale().Half();
+
+	float LeftX = CameraPos.X - WinScaleHalf.X;
+	float RightX = CameraPos.X + WinScaleHalf.X;
+
+	if (LeftX <= 0.0f)
+	{
+		return false;
+	}
+
+	if (RightX >= MapScale.X)
+	{
+		return false;
+	}
+
+	return true;
 }
