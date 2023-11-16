@@ -555,6 +555,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="CharacterSound_Func.cpp" />
     <ClCompile Include="Character_Effect.cpp" />
     <ClCompile Include="Cloud.cpp">
       <SubType>

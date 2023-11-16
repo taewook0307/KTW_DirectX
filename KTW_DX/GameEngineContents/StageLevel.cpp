@@ -32,15 +32,7 @@ StageLevel::~StageLevel()
 
 void StageLevel::CharacterResourcesLoad()
 {
-	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\Player\\sfx_player_dash_01.wav");
-	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\Player\\sfx_player_death_01.wav");
-	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\Player\\sfx_player_hit_01.wav");
-	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\Player\\sfx_player_jump_01.wav");
-	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\Player\\sfx_player_land_ground_01.wav");
-	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\Player\\sfx_player_parry_slap_01.wav");
-	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\Player\\sfx_player_default_fire_loop_01.wav");
-	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\Player\\sfx_player_super_beam_start_01.wav");
-
+	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\Global\\Player");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\UI\\HpMarker");

@@ -214,4 +214,11 @@ private:
 
 	bool IsShootSoundSet = false;
 	void ShootSoundPlay();
+
+	void DashSoundPlay();
+	void DeathSoundPlay();
+	void HitSoundPlay();
+	void JumpSoundPlay();
+	void LandSoundPlay();
+	void ParrySoundPlay();
 };

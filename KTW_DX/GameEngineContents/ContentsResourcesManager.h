@@ -22,6 +22,7 @@ public:
 	static void SpriteAndTextureInAllDirRelease(std::string_view _DirPath);
 
 	static void SoundLoad(std::string_view _SoundPath);
+	static void SoundLoadDir(std::string_view _DirPath);
 
 protected:
 

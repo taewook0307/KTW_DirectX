@@ -566,6 +566,9 @@
     <ClCompile Include="NearForest.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\BackGround</Filter>
     </ClCompile>
+    <ClCompile Include="CharacterSound_Func.cpp">
+      <Filter>Global\Actor\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">

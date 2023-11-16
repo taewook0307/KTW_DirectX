@@ -203,7 +203,7 @@ void BaseCharacter::RunUpdate(float _Delta)
 
 void BaseCharacter::JumpStart()
 {
-	GameEngineSound::SoundPlay("sfx_player_jump_01.wav");
+	JumpSoundPlay();
 	SetGravityForce(float4::UP * JUMPPOWER);
 	ChangeAnimation("Jump");
 }
@@ -253,7 +253,7 @@ void BaseCharacter::JumpUpdate(float _Delta)
 
 void BaseCharacter::DashStart()
 {
-	GameEngineSound::SoundPlay("sfx_player_dash_01.wav");
+	DashSoundPlay();
 	GravityReset();
 	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
 
@@ -421,7 +421,7 @@ void BaseCharacter::HitStart()
 {
 	NoDamage = true;
 	
-	GameEngineSound::SoundPlay("sfx_player_hit_01.wav");
+	HitSoundPlay();
 
 	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
 
@@ -450,7 +450,7 @@ void BaseCharacter::HitUpdate(float _Delta)
 
 void BaseCharacter::DeathStart()
 {
-	GameEngineSound::SoundPlay("sfx_player_death_01.wav");
+	DeathSoundPlay();
 	ChangeAnimation("Death");
 	PlayerCollision->Off();
 	StageLevel::StageFail();

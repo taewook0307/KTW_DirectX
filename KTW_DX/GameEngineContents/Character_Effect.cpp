@@ -16,7 +16,7 @@ void BaseCharacter::CreateRunDust()
 
 void BaseCharacter::CreateJumpDust()
 {
-	GameEngineSound::SoundPlay("sfx_player_land_ground_01.wav");
+	LandSoundPlay();
 	std::shared_ptr<JumpDust> JumpEffect = GetLevel()->CreateActor<JumpDust>(EUPDATEORDER::Effect);
 	float4 Pos = Transform.GetWorldPosition();
 	JumpEffect->Transform.SetLocalPosition(Pos);
@@ -32,7 +32,7 @@ void BaseCharacter::CreateDashDust(EACTORDIR _DustDir)
 
 void BaseCharacter::CreateParryEffect()
 {
-	GameEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
+	ParrySoundPlay();
 	std::shared_ptr<ParryEffect> Parry = GetLevel()->CreateActor<ParryEffect>(EUPDATEORDER::Effect);
 	float4 Pos = Transform.GetWorldPosition();
 	Parry->Transform.SetLocalPosition(Pos);

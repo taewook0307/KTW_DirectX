@@ -597,30 +597,3 @@ void BaseCharacter::ChangeSpecialAttackState()
 		}
 	}
 }
-
-void BaseCharacter::ShootSoundPlay()
-{
-	if (ECHARACTERSTATE::Intro == CurState
-		|| ECHARACTERSTATE::Death == CurState
-		|| ECHARACTERSTATE::Hit == CurState)
-	{
-		ShootSound.Stop();
-		IsShootSoundSet = false;
-		return;
-	}
-
-	if (false == IsShootSoundSet && true == GameEngineInput::IsDown('X',this)
-		|| false == IsShootSoundSet && true == GameEngineInput::IsPress('X', this))
-	{
-		ShootSound = GameEngineSound::SoundPlay("sfx_player_default_fire_loop_01.wav", 1000);
-		IsShootSoundSet = true;
-	}
-	
-	if (true == GameEngineInput::IsUp('X', this) || true == GameEngineInput::IsFree('X', this))
-	{
-		ShootSound.Stop();
-		IsShootSoundSet = false;
-	}
-
-	return;
-}

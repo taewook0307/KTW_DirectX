@@ -153,3 +153,20 @@ void ContentsResourcesManager::SoundLoad(std::string_view _SoundPath)
 	Path.MoveChild(_SoundPath);
 	GameEngineSound::SoundLoad(Path.GetStringPath());
 }
+
+void ContentsResourcesManager::SoundLoadDir(std::string_view _DirPath)
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToExistsChild("Resources");
+	Dir.MoveChild(_DirPath);
+
+	std::vector<GameEngineFile> Files = Dir.GetAllFile();
+	size_t FileSize = Files.size();
+
+	for (size_t i = 0; i < FileSize; i++)
+	{
+		GameEngineFile CurFile = Files[i];
+		std::string FileName = CurFile.GetFileName();
+		GameEngineSound::SoundLoad(CurFile.GetStringPath());
+	}
+}
