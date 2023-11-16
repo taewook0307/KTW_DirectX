@@ -13,6 +13,9 @@ IntroLevel::~IntroLevel()
 
 void IntroLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Intro\\cutscene_pageturn_01.wav");
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Intro\\cutscene_pageturn_02.wav");
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Intro\\cutscene_pageturn_03.wav");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Intro");
 
 	Intro = CreateActor<IntroBook>(EUPDATEORDER::BackGround);

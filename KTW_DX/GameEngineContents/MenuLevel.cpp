@@ -19,6 +19,8 @@ void MenuLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	GameEngineInput::AddInputObject(this);
 
 	//리소스 Load
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\LevelMove\\sfx_WorldMap_LevelSelect_DiffucultySettings_Appear.wav");
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Menu\\Menu_Equipment_Move.wav");
 	ContentsResourcesManager::CreateSingleSpriteDir("Resources\\Texture\\MainMenu");
 
 	Back = CreateActor<BackGround>(EUPDATEORDER::BackGround);
@@ -39,12 +41,14 @@ void MenuLevel::Update(float _Delta)
 {
 	if (EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown(VK_DOWN, this))
 	{
+		GameEngineSound::SoundPlay("Menu_Equipment_Move.wav");
 		CurSelect = EMAINMENUSELECT::Exit;
 		MenuChange();
 	}
 
 	if (EMAINMENUSELECT::Exit == CurSelect && GameEngineInput::IsDown(VK_UP, this))
 	{
+		GameEngineSound::SoundPlay("Menu_Equipment_Move.wav");
 		CurSelect = EMAINMENUSELECT::Start;
 		MenuChange();
 	}
@@ -52,6 +56,7 @@ void MenuLevel::Update(float _Delta)
 	if (EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown(VK_RETURN, this)
 		|| EMAINMENUSELECT::Start == CurSelect && GameEngineInput::IsDown('Z', this))
 	{
+		GameEngineSound::SoundPlay("sfx_WorldMap_LevelSelect_DiffucultySettings_Appear.wav");
 		FadeEffect = GetLevelRenderTarget()->CreateEffect<FadePostEffect>();
 		IsFade = true;
 	}

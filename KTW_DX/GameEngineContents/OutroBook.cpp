@@ -14,6 +14,12 @@ void OutroBook::Start()
 	BookRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::BackGround);
 
 	BookRenderer->CreateAnimation("StoryPage_12", "Page_12", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_12", 7,
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_01.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_12",
 		[](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -23,6 +29,12 @@ void OutroBook::Start()
 	);
 
 	BookRenderer->CreateAnimation("StoryPage_13", "Page_13", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_13", 6,
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_02.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_13",
 		[](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -32,6 +44,12 @@ void OutroBook::Start()
 	);
 
 	BookRenderer->CreateAnimation("StoryPage_14", "Page_14", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_14", 7,
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_03.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_14",
 		[](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -41,6 +59,12 @@ void OutroBook::Start()
 	);
 
 	BookRenderer->CreateAnimation("StoryPage_15", "Page_15", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_15", 7,
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_01.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_15",
 		[](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -50,6 +74,12 @@ void OutroBook::Start()
 	);
 
 	BookRenderer->CreateAnimation("StoryPage_16", "Page_16", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_16", 7,
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_02.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_16",
 		[](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -59,6 +89,12 @@ void OutroBook::Start()
 	);
 
 	BookRenderer->CreateAnimation("StoryPage_17", "Page_17", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_17", 6,
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_03.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_17",
 		[](GameEngineSpriteRenderer* _Renderer)
 		{

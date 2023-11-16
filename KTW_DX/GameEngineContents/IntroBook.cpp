@@ -25,6 +25,12 @@ void IntroBook::Start()
 	);
 
 	BookRenderer->CreateAnimation("StoryPage_2", "Page_2", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_2", 7, 
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_01.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_2",
 		[](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -34,6 +40,12 @@ void IntroBook::Start()
 	);
 
 	BookRenderer->CreateAnimation("StoryPage_3", "Page_3", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_3", 5,
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_02.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_3",
 		[](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -43,6 +55,12 @@ void IntroBook::Start()
 	);
 
 	BookRenderer->CreateAnimation("StoryPage_4", "Page_4", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_4", 8,
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_03.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_4",
 		[](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -52,6 +70,12 @@ void IntroBook::Start()
 	);
 
 	BookRenderer->CreateAnimation("StoryPage_5", "Page_5", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_5", 5,
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_01.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_5",
 		[](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -61,6 +85,12 @@ void IntroBook::Start()
 	);
 
 	BookRenderer->CreateAnimation("StoryPage_6", "Page_6", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_6", 5,
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_02.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_6",
 		[](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -70,6 +100,12 @@ void IntroBook::Start()
 	);
 
 	BookRenderer->CreateAnimation("StoryPage_7", "Page_7", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_7", 5,
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_03.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_7",
 		[](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -79,6 +115,12 @@ void IntroBook::Start()
 	);
 
 	BookRenderer->CreateAnimation("StoryPage_8", "Page_8", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_8", 6,
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_01.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_8",
 		[](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -88,6 +130,12 @@ void IntroBook::Start()
 	);
 
 	BookRenderer->CreateAnimation("StoryPage_9", "Page_9", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_9", 6,
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_02.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_9",
 		[](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -97,6 +145,12 @@ void IntroBook::Start()
 	);
 
 	BookRenderer->CreateAnimation("StoryPage_10", "Page_10", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_10", 8,
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_03.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_10",
 		[](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -106,10 +160,15 @@ void IntroBook::Start()
 	);
 
 	BookRenderer->CreateAnimation("StoryPage_11", "Page_11", BOOKANIMATIONINTER, -1, -1, false);
+	BookRenderer->SetFrameEvent("StoryPage_11", 6,
+		[](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("cutscene_pageturn_01.wav");
+		}
+	);
 	BookRenderer->SetEndEvent("StoryPage_11",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			// std::shared_ptr<FadePostEffect> Effect = GetLevel()->GetLevelRenderTarget()->CreateEffect<FadePostEffect>();
 			Death();
 			GameEngineCore::ChangeLevel("0.Tutorial_Stage");
 		}

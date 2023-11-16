@@ -13,6 +13,9 @@ OutroLevel::~OutroLevel()
 
 void OutroLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Intro\\cutscene_pageturn_01.wav");
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Intro\\cutscene_pageturn_02.wav");
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Intro\\cutscene_pageturn_03.wav");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Outro");
 
 	Outro = CreateActor<OutroBook>(EUPDATEORDER::BackGround);

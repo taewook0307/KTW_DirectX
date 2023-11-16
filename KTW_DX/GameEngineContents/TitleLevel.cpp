@@ -16,6 +16,7 @@ TitleLevel::~TitleLevel()
 
 void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\LevelMove\\sfx_WorldMap_LevelSelect_DiffucultySettings_Appear.wav");
 	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\Title\\TitleAnimation");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\Title\\Title_BackGround.Png");
 
@@ -33,6 +34,7 @@ void TitleLevel::Update(float _Delta)
 	if (true == GameEngineInput::IsDown(VK_RETURN, this)
 		|| true == GameEngineInput::IsDown('Z', this))
 	{
+		GameEngineSound::SoundPlay("sfx_WorldMap_LevelSelect_DiffucultySettings_Appear.wav");
 		FadeEffect = CreateActor<FadeObject>(EUPDATEORDER::UI);
 		FadeEffect->SetFadeType();
 	}
