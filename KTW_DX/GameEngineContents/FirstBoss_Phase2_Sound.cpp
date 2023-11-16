@@ -59,3 +59,21 @@ void FirstBoss::Phase2LandSoundPlay()
 		break;
 	}
 }
+
+void FirstBoss::DeathSoundPlay()
+{
+	GameEngineRandom Random;
+	unsigned int Time = static_cast<unsigned int>(time(NULL));
+	Random.SetSeed(static_cast<long long>(Time));
+
+	int SoundNum = Random.RandomInt(0, 1);
+
+	if (0 == SoundNum)
+	{
+		GameEngineSound::SoundPlay("sfx_slime_big_death_voice_01.wav");
+	}
+	else
+	{
+		GameEngineSound::SoundPlay("sfx_slime_big_death_voice_02.wav");
+	}
+}

@@ -226,6 +226,7 @@ void FirstBoss::AttackUpdate(float _Delta)
 
 void FirstBoss::DeathStart()
 {
+	DeathSoundPlay();
 	ChangeAnimation("Death");
 	Phase2End = true;
 }

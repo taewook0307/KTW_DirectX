@@ -44,6 +44,7 @@ void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	//GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
 
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\StageEffect");
+	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\Global\\StageUI");
 	CharacterResourcesLoad();
 
 	std::shared_ptr<FadeObject> FadeEffect = CreateActor<FadeObject>(EUPDATEORDER::UI);
@@ -108,6 +109,7 @@ void StageLevel::StageEnd(float _Delta)
 
 	if (ESTAGERESULT::Fail == StageResult && false == ResultUI)
 	{
+		GameEngineSound::SoundPlay("sfx_level_announcer_knockout_0004.wav");
 		CreateActor<StageFailUI>(EUPDATEORDER::UI);
 		ResultUI = true;
 	}

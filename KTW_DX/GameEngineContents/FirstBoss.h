@@ -114,4 +114,5 @@ private:
 	void Phase2MoveSoundPlay();
 	void Phase1LandSoundPlay();
 	void Phase2LandSoundPlay();
+	void DeathSoundPlay();
 };
