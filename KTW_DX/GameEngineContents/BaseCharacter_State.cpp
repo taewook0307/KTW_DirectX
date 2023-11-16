@@ -203,6 +203,7 @@ void BaseCharacter::RunUpdate(float _Delta)
 
 void BaseCharacter::JumpStart()
 {
+	GameEngineSound::SoundPlay("sfx_player_jump_01.wav");
 	SetGravityForce(float4::UP * JUMPPOWER);
 	ChangeAnimation("Jump");
 }
@@ -233,7 +234,6 @@ void BaseCharacter::JumpUpdate(float _Delta)
 	if (FLOORCOLOR == Color || (STOOLCOLOR == Color && false == StoolPass))
 	{
 		CreateJumpDust();
-
 		ChangeState(ECHARACTERSTATE::Idle);
 		return;
 	}
@@ -253,6 +253,7 @@ void BaseCharacter::JumpUpdate(float _Delta)
 
 void BaseCharacter::DashStart()
 {
+	GameEngineSound::SoundPlay("sfx_player_dash_01.wav");
 	GravityReset();
 	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
 
@@ -346,8 +347,9 @@ void BaseCharacter::DuckUpdate(float _Delta)
 	{
 		if (true == GameEngineInput::IsPress(VK_DOWN, this) && true == GameEngineInput::IsDown('Z', this))
 		{
-			ChangeAnimation("Fall");
+			ChangeState(ECHARACTERSTATE::Fall);
 			StoolPass = true;
+			return;
 		}
 	}
 
@@ -418,6 +420,8 @@ void BaseCharacter::ParryUpdate(float _Delta)
 void BaseCharacter::HitStart()
 {
 	NoDamage = true;
+	
+	GameEngineSound::SoundPlay("sfx_player_hit_01.wav");
 
 	GameEngineColor CheckColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
 
@@ -446,6 +450,7 @@ void BaseCharacter::HitUpdate(float _Delta)
 
 void BaseCharacter::DeathStart()
 {
+	GameEngineSound::SoundPlay("sfx_player_death_01.wav");
 	ChangeAnimation("Death");
 	PlayerCollision->Off();
 	StageLevel::StageFail();

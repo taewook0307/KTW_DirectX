@@ -30,15 +30,27 @@ StageLevel::~StageLevel()
 {
 }
 
+void StageLevel::CharacterResourcesLoad()
+{
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\Player\\sfx_player_dash_01.wav");
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\Player\\sfx_player_death_01.wav");
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\Player\\sfx_player_hit_01.wav");
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\Player\\sfx_player_jump_01.wav");
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\Player\\sfx_player_land_ground_01.wav");
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Global\\Player\\sfx_player_parry_slap_01.wav");
+
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\UI\\HpMarker");
+	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\UI\\Card");
+}
+
 void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	//GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
 
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\StageEffect");
-	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
-	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
-	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\UI\\HpMarker");
-	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\UI\\Card");
+	CharacterResourcesLoad();
 
 	std::shared_ptr<FadeObject> FadeEffect = CreateActor<FadeObject>(EUPDATEORDER::UI);
 	FadeEffect->SetFadeType(true);

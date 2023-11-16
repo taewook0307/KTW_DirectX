@@ -49,6 +49,8 @@ protected:
 	std::shared_ptr<class HpMarker> HpUI = nullptr;
 	std::vector<std::shared_ptr<class Card>> AllCardUI;
 
+	void CharacterResourcesLoad();
+
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
 

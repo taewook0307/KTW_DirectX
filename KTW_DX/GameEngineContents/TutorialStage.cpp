@@ -29,10 +29,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	// 리소스 Load
-	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
-	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
-	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\UI\\HpMarker");
-	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\UI\\Card");
+	CharacterResourcesLoad();
 	ContentsResourcesManager::CreateSingleSpriteDir("Resources\\Texture\\Tutorial");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");
 	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\Tutorial\\Target");
