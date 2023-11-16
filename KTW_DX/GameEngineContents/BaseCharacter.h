@@ -210,4 +210,8 @@ protected:
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> PlayerRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> PlayerCollision = nullptr;
+	GameEngineSoundPlayer ShootSound;
+
+	bool IsShootSoundSet = false;
+	void ShootSoundPlay();
 };

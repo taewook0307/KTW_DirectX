@@ -92,6 +92,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Up", 6,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			GameEngineSound::SoundPlay("sfx_player_super_beam_start_01.wav");
 			SpecialShootState();
 		}
 	);
@@ -100,6 +101,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Down", 6,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			GameEngineSound::SoundPlay("sfx_player_super_beam_start_01.wav");
 			SpecialShootState();
 		}
 	);
@@ -108,6 +110,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Straight", 6, 
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			GameEngineSound::SoundPlay("sfx_player_super_beam_start_01.wav");
 			SpecialShootState();
 		}
 	);
@@ -115,6 +118,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_StraightUp", 6,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			GameEngineSound::SoundPlay("sfx_player_super_beam_start_01.wav");
 			SpecialShootState();
 		}
 	);
@@ -123,6 +127,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_StraightDown", 6,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			GameEngineSound::SoundPlay("sfx_player_super_beam_start_01.wav");
 			SpecialShootState();
 		}
 	);
@@ -131,6 +136,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Air_Up", 6,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			GameEngineSound::SoundPlay("sfx_player_super_beam_start_01.wav");
 			SpecialShootState();
 		}
 	);
@@ -139,6 +145,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Air_Down", 6,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			GameEngineSound::SoundPlay("sfx_player_super_beam_start_01.wav");
 			SpecialShootState();
 		}
 	);
@@ -147,6 +154,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Air_Straight", 6,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			GameEngineSound::SoundPlay("sfx_player_super_beam_start_01.wav");
 			SpecialShootState();
 		}
 	);
@@ -155,6 +163,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Air_StraightUp", 6,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			GameEngineSound::SoundPlay("sfx_player_super_beam_start_01.wav");
 			SpecialShootState();
 		}
 	);
@@ -163,6 +172,7 @@ void BaseCharacter::Start()
 	PlayerRenderer->SetFrameEvent("CupHead_SpecialAttack_Air_StraightDown", 6,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			GameEngineSound::SoundPlay("sfx_player_super_beam_start_01.wav");
 			SpecialShootState();
 		}
 	);
@@ -216,6 +226,7 @@ void BaseCharacter::Update(float _Delta)
 
 	MapOut(_Delta);
 	StateUpdate(_Delta);
+	ShootSoundPlay();
 	PlusSpecialAttackCount();
 	ChangeSpecialAttackState();
 
@@ -585,4 +596,31 @@ void BaseCharacter::ChangeSpecialAttackState()
 			ChangeState(ECHARACTERSTATE::SpecialAttack);
 		}
 	}
+}
+
+void BaseCharacter::ShootSoundPlay()
+{
+	if (ECHARACTERSTATE::Intro == CurState
+		|| ECHARACTERSTATE::Death == CurState
+		|| ECHARACTERSTATE::Hit == CurState)
+	{
+		ShootSound.Stop();
+		IsShootSoundSet = false;
+		return;
+	}
+
+	if (false == IsShootSoundSet && true == GameEngineInput::IsDown('X',this)
+		|| false == IsShootSoundSet && true == GameEngineInput::IsPress('X', this))
+	{
+		ShootSound = GameEngineSound::SoundPlay("sfx_player_default_fire_loop_01.wav", 1000);
+		IsShootSoundSet = true;
+	}
+	
+	if (true == GameEngineInput::IsUp('X', this) || true == GameEngineInput::IsFree('X', this))
+	{
+		ShootSound.Stop();
+		IsShootSoundSet = false;
+	}
+
+	return;
 }
