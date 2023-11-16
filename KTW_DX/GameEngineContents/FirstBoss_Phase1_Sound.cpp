@@ -53,3 +53,21 @@ void FirstBoss::Phase1LandSoundPlay()
 		break;
 	}
 }
+
+void FirstBoss::Phase1AttackSoundPlay()
+{
+	GameEngineRandom Random;
+	unsigned int Time = static_cast<unsigned int>(time(NULL));
+	Random.SetSeed(static_cast<long long>(Time));
+
+	int SoundNum = Random.RandomInt(0, 1);
+
+	if (0 == SoundNum)
+	{
+		GameEngineSound::SoundPlay("sfx_slime_small_stretch_punch_01.wav");
+	}
+	else
+	{
+		GameEngineSound::SoundPlay("sfx_slime_small_stretch_punch_02.wav");
+	}
+}

@@ -77,3 +77,51 @@ void FirstBoss::DeathSoundPlay()
 		GameEngineSound::SoundPlay("sfx_slime_big_death_voice_02.wav");
 	}
 }
+
+void FirstBoss::Phase2AttackSoundPlay()
+{
+	GameEngineRandom Random;
+	unsigned int Time = static_cast<unsigned int>(time(NULL));
+	Random.SetSeed(static_cast<long long>(Time));
+
+	int SoundNum = Random.RandomInt(0, 5);
+	int AttackNum = Random.RandomInt(0, 3);
+	
+	switch (SoundNum)
+	{
+	case 0:
+		GameEngineSound::SoundPlay("sfx_slime_big_punch_voice_01.wav");
+		break;
+	case 1:
+		GameEngineSound::SoundPlay("sfx_slime_big_punch_voice_02.wav");
+		break;
+	case 2:
+		GameEngineSound::SoundPlay("sfx_slime_big_punch_voice_03.wav");
+		break;
+	case 3:
+		GameEngineSound::SoundPlay("sfx_slime_big_punch_voice_04.wav");
+		break;
+	case 4:
+		GameEngineSound::SoundPlay("sfx_slime_big_punch_voice_05.wav");
+		break;
+	default:
+		GameEngineSound::SoundPlay("sfx_slime_big_punch_voice_06.wav");
+		break;
+	}
+
+	switch (AttackNum)
+	{
+	case 0:
+		GameEngineSound::SoundPlay("sfx_slime_big_punch_01.wav");
+		break;
+	case 1:
+		GameEngineSound::SoundPlay("sfx_slime_big_punch_02.wav");
+		break;
+	case 2:
+		GameEngineSound::SoundPlay("sfx_slime_big_punch_03.wav");
+		break;
+	default:
+		GameEngineSound::SoundPlay("sfx_slime_big_punch_04.wav");
+		break;
+	}
+}

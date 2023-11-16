@@ -53,6 +53,10 @@ void FirstBoss::CreateMoveDust()
 
 void FirstBoss::IntroStart()
 {
+	if (EBOSSPHASE::Phase2 == CurPhase)
+	{
+		GameEngineSound::SoundPlay("sfx_slime_small_transform.wav");
+	}
 	IsIntroState = true;
 	ChangeAnimation("Intro");
 }
@@ -176,56 +180,18 @@ void FirstBoss::MoveUpdate(float _Delta)
 
 void FirstBoss::AttackStart()
 {
-	ChangeAnimation("Attack_Ready");
+	ChangeAnimation("Attack");
 	DirCheckPrevAttack();
 }
 
 void FirstBoss::AttackUpdate(float _Delta)
 {
 	ActorGravity(_Delta, Transform.GetWorldPosition());
-
-	if (EBOSSPHASE::Phase1 == CurPhase)
-	{
-		if (0.0f > Phase1AttackReadyTimer)
-		{
-			Phase1AttackReadyTimer = PHASE1ATTACKREADYTIMER;
-			FirstBossRenderer->ChangeAnimation("FirstBoss_Phase1_Attack_Start");
-		}
-
-		if (0.0f > Phase1AttackTimer)
-		{
-			Phase1AttackTimer = PHASE1ATTACKTIMER;
-			FirstBossRenderer->ChangeAnimation("FirstBoss_Phase1_Attack_End");
-		}
-
-		if (true == FirstBossRenderer->IsCurAnimation("FirstBoss_Phase1_Attack_Ready"))
-		{
-			Phase1AttackReadyTimer -= _Delta;
-		}
-
-		if (true == FirstBossRenderer->IsCurAnimation("FirstBoss_Phase1_Attack"))
-		{
-			Phase1AttackTimer -= _Delta;
-		}
-	}
-
-	else if (EBOSSPHASE::Phase2 == CurPhase)
-	{
-		if (0.0f > Phase2AttackTimer)
-		{
-			Phase2AttackTimer = PHASE2ATTACKTIMER;
-			FirstBossRenderer->ChangeAnimation("FirstBoss_Phase2_Attack_End");
-		}
-
-		if (true == FirstBossRenderer->IsCurAnimation("FirstBoss_Phase2_Attack"))
-		{
-			Phase2AttackTimer -= _Delta;
-		}
-	}
 }
 
 void FirstBoss::DeathStart()
 {
+	GameEngineSound::SoundPlay("sfx_slime_big_death_01.wav");
 	DeathSoundPlay();
 	ChangeAnimation("Death");
 	Phase2End = true;

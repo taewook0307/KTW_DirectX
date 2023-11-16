@@ -2,7 +2,7 @@
 
 #include "BaseBoss.h"
 
-#define FIRSTBOSSANIMATIONINTER 0.1f
+#define FIRSTBOSSANIMATIONINTER 0.07f
 
 #define PHASE1HP 288
 #define PHASE2HP 540
@@ -61,8 +61,6 @@ private:
 	void MoveUpdate(float _Delta);
 
 	float Phase1AttackReadyTimer = PHASE1ATTACKREADYTIMER;
-	float Phase1AttackTimer = PHASE1ATTACKTIMER;
-	float Phase2AttackTimer = PHASE2ATTACKTIMER;
 	void AttackStart();
 	void AttackUpdate(float _Delta);
 
@@ -112,7 +110,12 @@ private:
 
 	void Phase1MoveSoundPlay();
 	void Phase2MoveSoundPlay();
+	
 	void Phase1LandSoundPlay();
 	void Phase2LandSoundPlay();
+
+	void Phase1AttackSoundPlay();
+	void Phase2AttackSoundPlay();
+
 	void DeathSoundPlay();
 };
