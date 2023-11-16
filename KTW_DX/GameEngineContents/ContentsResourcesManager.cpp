@@ -1,15 +1,15 @@
 ﻿#include "PreCompile.h"
-#include "ContentsSpriteManager.h"
+#include "ContentsResourcesManager.h"
 
-ContentsSpriteManager::ContentsSpriteManager()
+ContentsResourcesManager::ContentsResourcesManager()
 {
 }
 
-ContentsSpriteManager::~ContentsSpriteManager()
+ContentsResourcesManager::~ContentsResourcesManager()
 {
 }
 
-void ContentsSpriteManager::ImageLoad(std::string_view _ImagePath)
+void ContentsResourcesManager::ImageLoad(std::string_view _ImagePath)
 {
 	GameEnginePath Path;
 	Path.MoveParentToExistsChild("Resources");
@@ -17,7 +17,7 @@ void ContentsSpriteManager::ImageLoad(std::string_view _ImagePath)
 	GameEngineTexture::Load(Path.GetStringPath());
 }
 
-void ContentsSpriteManager::CreateFolderSpriteDir(std::string_view _DirPath)
+void ContentsResourcesManager::CreateFolderSpriteDir(std::string_view _DirPath)
 {
 	GameEngineDirectory Dir;
 	Dir.MoveParentToExistsChild("Resources");
@@ -25,7 +25,7 @@ void ContentsSpriteManager::CreateFolderSpriteDir(std::string_view _DirPath)
 	GameEngineSprite::CreateFolder(Dir.GetStringPath());
 }
 
-void ContentsSpriteManager::CreateFolderSpriteAllDir(std::string_view _DirPath)
+void ContentsResourcesManager::CreateFolderSpriteAllDir(std::string_view _DirPath)
 {
 	GameEngineDirectory Dir;
 	Dir.MoveParentToExistsChild("Resources");
@@ -44,7 +44,7 @@ void ContentsSpriteManager::CreateFolderSpriteAllDir(std::string_view _DirPath)
 	}
 }
 
-void ContentsSpriteManager::CreateSingleSpriteImage(std::string_view _ImagePath)
+void ContentsResourcesManager::CreateSingleSpriteImage(std::string_view _ImagePath)
 {
 	GameEnginePath Path;
 	Path.MoveParentToExistsChild("Resources");
@@ -53,7 +53,7 @@ void ContentsSpriteManager::CreateSingleSpriteImage(std::string_view _ImagePath)
 	GameEngineSprite::CreateSingle(Path.GetFileName());
 }
 
-void ContentsSpriteManager::CreateSingleSpriteDir(std::string_view _DirPath)
+void ContentsResourcesManager::CreateSingleSpriteDir(std::string_view _DirPath)
 {
 	GameEngineDirectory Dir;
 	Dir.MoveParentToExistsChild("Resources");
@@ -74,13 +74,13 @@ void ContentsSpriteManager::CreateSingleSpriteDir(std::string_view _DirPath)
 	}
 }
 
-void ContentsSpriteManager::SingleSpriteRelease(std::string_view _ImageName)
+void ContentsResourcesManager::SingleSpriteRelease(std::string_view _ImageName)
 {
 	GameEngineTexture::Release(_ImageName);
 	GameEngineSprite::Release(_ImageName);
 }
 
-void ContentsSpriteManager::SingleSpriteInDirRelease(std::string_view _DirPath)
+void ContentsResourcesManager::SingleSpriteInDirRelease(std::string_view _DirPath)
 {
 	GameEngineDirectory Dir;
 	Dir.MoveParentToExistsChild("Resources");
@@ -98,7 +98,7 @@ void ContentsSpriteManager::SingleSpriteInDirRelease(std::string_view _DirPath)
 	}
 }
 
-void ContentsSpriteManager::FolderSpriteRelease(std::string_view _DirPath)
+void ContentsResourcesManager::FolderSpriteRelease(std::string_view _DirPath)
 {
 	GameEngineDirectory Dir;
 	Dir.MoveParentToExistsChild("Resources");
@@ -118,7 +118,7 @@ void ContentsSpriteManager::FolderSpriteRelease(std::string_view _DirPath)
 	}
 }
 
-void ContentsSpriteManager::SpriteAndTextureInAllDirRelease(std::string_view _DirPath)
+void ContentsResourcesManager::SpriteAndTextureInAllDirRelease(std::string_view _DirPath)
 {
 	GameEngineDirectory Dir;
 	Dir.MoveParentToExistsChild("Resources");
@@ -144,4 +144,12 @@ void ContentsSpriteManager::SpriteAndTextureInAllDirRelease(std::string_view _Di
 			GameEngineTexture::Release(FileName);
 		}
 	}
+}
+
+void ContentsResourcesManager::SoundLoad(std::string_view _SoundPath)
+{
+	GameEnginePath Path;
+	Path.MoveParentToExistsChild("Resources");
+	Path.MoveChild(_SoundPath);
+	GameEngineSound::SoundLoad(Path.GetStringPath());
 }

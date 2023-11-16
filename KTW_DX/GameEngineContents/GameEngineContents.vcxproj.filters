@@ -188,7 +188,7 @@
     <ClInclude Include="TargetExplosionEffect.h">
       <Filter>Level\6. Tutorial\TutorialActor</Filter>
     </ClInclude>
-    <ClInclude Include="ContentsSpriteManager.h">
+    <ClInclude Include="ContentsResourcesManager.h">
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="ParryObject.h">
@@ -485,7 +485,7 @@
     <ClCompile Include="TargetExplosionEffect.cpp">
       <Filter>Level\6. Tutorial\TutorialActor</Filter>
     </ClCompile>
-    <ClCompile Include="ContentsSpriteManager.cpp">
+    <ClCompile Include="ContentsResourcesManager.cpp">
       <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="ParryObject.cpp">

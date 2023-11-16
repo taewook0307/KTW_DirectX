@@ -13,7 +13,7 @@ OutroLevel::~OutroLevel()
 
 void OutroLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Outro");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Outro");
 
 	Outro = CreateActor<OutroBook>(EUPDATEORDER::BackGround);
 }
@@ -26,5 +26,5 @@ void OutroLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		Outro = nullptr;
 	}
 
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Outro");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Outro");
 }

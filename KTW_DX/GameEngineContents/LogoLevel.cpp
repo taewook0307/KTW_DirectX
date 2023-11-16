@@ -13,14 +13,16 @@ LogoLevel::~LogoLevel()
 
 void LogoLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Logo\\MDHR_LOGO_STING.wav");
+	ContentsResourcesManager::ImageLoad("Resources\\Texture\\Logo\\Logo.png");
+	GameEngineSprite::CreateCut("Logo.png", 5, 20);
+
 	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, 0.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
-	
-	ContentsSpriteManager::ImageLoad("Resources\\Texture\\Logo\\Logo.png");
-	GameEngineSprite::CreateCut("Logo.png", 5, 20);
 
 	Logo = CreateActor<BackGround>(EUPDATEORDER::BackGround);
 	Logo->AnimationInit("Logo", "Logo.png", 0.04f, false);
+	GameEngineSound::SoundPlay("MDHR_LOGO_STING.wav");
 }
 
 void LogoLevel::Update(float _Delta)
@@ -39,5 +41,5 @@ void LogoLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		Logo = nullptr;
 	}
 
-	ContentsSpriteManager::SingleSpriteRelease("Logo.png");
+	ContentsResourcesManager::SingleSpriteRelease("Logo.png");
 }

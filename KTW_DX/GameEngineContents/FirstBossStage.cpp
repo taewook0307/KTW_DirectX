@@ -31,14 +31,14 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	StageResult = ESTAGERESULT::None;
 
-	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGroundAnimation");
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGround_1.png");
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGround_2.png");
-	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\FirstBossStage\\Map\\FirstBossParryObject");
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap.png");
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBitMap.png");
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap_Upper.png");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\FirstBossStage\\FirstBoss");
+	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGroundAnimation");
+	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGround_1.png");
+	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGround_2.png");
+	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\FirstBossStage\\Map\\FirstBossParryObject");
+	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap.png");
+	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBitMap.png");
+	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap_Upper.png");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\FirstBossStage\\FirstBoss");
 
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("FirstBossBitMap.png");
 	MapScale = MapTexture.get()->GetScale();
@@ -164,14 +164,14 @@ void FirstBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 		BossPhase3 = nullptr;
 	}
 
-	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGroundAnimation");
-	ContentsSpriteManager::SingleSpriteRelease("FirstBossBackGround_1.png");
-	ContentsSpriteManager::SingleSpriteRelease("FirstBossBackGround_2.png");
-	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\FirstBossStage\\Map\\FirstBossParryObject");
-	ContentsSpriteManager::SingleSpriteRelease("FirstBossMap.png");
-	ContentsSpriteManager::SingleSpriteRelease("FirstBossBitMap.png");
-	ContentsSpriteManager::SingleSpriteRelease("FirstBossMap_Upper.png");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\FirstBossStage\\FirstBoss");
+	ContentsResourcesManager::FolderSpriteRelease("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGroundAnimation");
+	ContentsResourcesManager::SingleSpriteRelease("FirstBossBackGround_1.png");
+	ContentsResourcesManager::SingleSpriteRelease("FirstBossBackGround_2.png");
+	ContentsResourcesManager::FolderSpriteRelease("Resources\\Texture\\FirstBossStage\\Map\\FirstBossParryObject");
+	ContentsResourcesManager::SingleSpriteRelease("FirstBossMap.png");
+	ContentsResourcesManager::SingleSpriteRelease("FirstBossBitMap.png");
+	ContentsResourcesManager::SingleSpriteRelease("FirstBossMap_Upper.png");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\FirstBossStage\\FirstBoss");
 }
 
 float4 FirstBossStage::CameraMove(float _Delta)

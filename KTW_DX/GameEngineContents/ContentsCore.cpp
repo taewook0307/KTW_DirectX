@@ -50,7 +50,7 @@ void ContentsCore::ContentsResourcesInit()
 		Mat->SetDepthState("AlwaysDepth");
 	}
 
-	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\OldFilm");
+	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\OldFilm");
 
 	//{
 	//	D3D11_BLEND_DESC Desc = {};

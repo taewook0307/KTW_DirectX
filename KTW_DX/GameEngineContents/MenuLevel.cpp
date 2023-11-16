@@ -19,7 +19,7 @@ void MenuLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	GameEngineInput::AddInputObject(this);
 
 	//리소스 Load
-	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\MainMenu");
+	ContentsResourcesManager::CreateSingleSpriteDir("Resources\\Texture\\MainMenu");
 
 	Back = CreateActor<BackGround>(EUPDATEORDER::BackGround);
 	Back->BackGroundInit("MainMenu.png");
@@ -115,5 +115,5 @@ void MenuLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		FadeEffect = nullptr;
 	}
 
-	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\MainMenu");
+	ContentsResourcesManager::SingleSpriteInDirRelease("Resources\\Texture\\MainMenu");
 }

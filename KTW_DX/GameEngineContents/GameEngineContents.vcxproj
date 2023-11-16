@@ -216,7 +216,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ContentsSpriteManager.h">
+    <ClInclude Include="ContentsResourcesManager.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -564,7 +564,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="ContentsSpriteManager.cpp">
+    <ClCompile Include="ContentsResourcesManager.cpp">
       <SubType>
       </SubType>
     </ClCompile>

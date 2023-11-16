@@ -16,5 +16,6 @@ void BaseLevel::Start()
 {
 	GetMainCamera()->GetCameraAllRenderTarget()->CreateEffect<OldFilm>();
 	GetMainCamera()->GetCameraAllRenderTarget()->CreateEffect<BlurPostEffect>();
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Fade");
+	
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Fade");
 }

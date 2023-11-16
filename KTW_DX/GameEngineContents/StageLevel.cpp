@@ -34,11 +34,11 @@ void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	//GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
 
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\StageEffect");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\UI\\HpMarker");
-	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\UI\\Card");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\StageEffect");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\UI\\HpMarker");
+	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\UI\\Card");
 
 	std::shared_ptr<FadeObject> FadeEffect = CreateActor<FadeObject>(EUPDATEORDER::UI);
 	FadeEffect->SetFadeType(true);
@@ -85,11 +85,11 @@ void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
 
 	PlayerUIDeath();
 
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\StageEffect");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\CupHead");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\Bullet");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\UI\\HpMarker");
-	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\Global\\UI\\Card");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\StageEffect");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\CupHead");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\Bullet");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\UI\\HpMarker");
+	ContentsResourcesManager::FolderSpriteRelease("Resources\\Texture\\Global\\UI\\Card");
 }
 
 void StageLevel::StageEnd(float _Delta)

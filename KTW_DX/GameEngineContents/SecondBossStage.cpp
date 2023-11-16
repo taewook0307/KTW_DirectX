@@ -43,20 +43,20 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, 0.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Barrel");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\DogFish");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Pirate");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Pirate_Bullet");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Shark");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship_Bubble");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship_Cannon");
-	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Periscope");
-	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship_Beam");
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship\\pirate_boatMast.Png");
-	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\SecondBossStage\\Map");
-	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\SecondBossStage\\Map\\Sky");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\Map\\Water");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Barrel");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\DogFish");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Pirate");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Pirate_Bullet");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Shark");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship_Bubble");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship_Cannon");
+	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Periscope");
+	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship_Beam");
+	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship\\pirate_boatMast.Png");
+	ContentsResourcesManager::CreateSingleSpriteDir("Resources\\Texture\\SecondBossStage\\Map");
+	ContentsResourcesManager::CreateSingleSpriteDir("Resources\\Texture\\SecondBossStage\\Map\\Sky");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\Map\\Water");
 
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 
@@ -196,18 +196,18 @@ void SecondBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 
 	Clouds.clear();
 
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Barrel");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\DogFish");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Pirate");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Pirate_Bullet");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Shark");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship_Bubble");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship_Cannon");
-	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Periscope");
-	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship_Beam");
-	ContentsSpriteManager::SingleSpriteRelease("pirate_boatMast.Png");
-	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\SecondBossStage\\Map");
-	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\SecondBossStage\\Map\\Sky");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\Map\\Water");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Barrel");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\DogFish");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Pirate");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Pirate_Bullet");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Shark");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship_Bubble");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship_Cannon");
+	ContentsResourcesManager::FolderSpriteRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Periscope");
+	ContentsResourcesManager::FolderSpriteRelease("Resources\\Texture\\SecondBossStage\\SecondBoss\\Ship_Beam");
+	ContentsResourcesManager::SingleSpriteRelease("pirate_boatMast.Png");
+	ContentsResourcesManager::SingleSpriteInDirRelease("Resources\\Texture\\SecondBossStage\\Map");
+	ContentsResourcesManager::SingleSpriteInDirRelease("Resources\\Texture\\SecondBossStage\\Map\\Sky");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\SecondBossStage\\Map\\Water");
 }

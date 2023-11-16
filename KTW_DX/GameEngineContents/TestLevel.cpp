@@ -14,9 +14,9 @@ TestLevel::~TestLevel()
 
 void TestLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\UI\\Card");
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageChair.png");
+	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\UI\\Card");
+	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
+	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageChair.png");
 
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("LastStagePixelMap.png");
 	float4 MapScale = MapTexture->GetScale();
@@ -40,5 +40,5 @@ void TestLevel::Update(float _Delta)
 
 void TestLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
-	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\Global\\UI\\Card");
+	ContentsResourcesManager::FolderSpriteRelease("Resources\\Texture\\Global\\UI\\Card");
 }

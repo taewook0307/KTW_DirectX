@@ -29,14 +29,14 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	// 리소스 Load
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\UI\\HpMarker");
-	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\UI\\Card");
-	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\Tutorial");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");
-	ContentsSpriteManager::CreateFolderSpriteDir("Resources\\Texture\\Tutorial\\Target");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\TargetExplosion");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\CupHead");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\Character\\Bullet");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\UI\\HpMarker");
+	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\UI\\Card");
+	ContentsResourcesManager::CreateSingleSpriteDir("Resources\\Texture\\Tutorial");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");
+	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\Tutorial\\Target");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\TargetExplosion");
 
 	std::shared_ptr<FadeObject> FadeEffect = CreateActor<FadeObject>(EUPDATEORDER::UI);
 	FadeEffect->SetFadeType(true);
@@ -164,14 +164,14 @@ void TutorialStage::LevelEnd(GameEngineLevel* _NextLevel)
 
 	TutorialParry.clear();
 
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\CupHead");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\Bullet");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\UI\\HpMarker");
-	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\Global\\UI\\Card");
-	ContentsSpriteManager::SingleSpriteInDirRelease("Resources\\Texture\\Tutorial");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Tutorial\\Parry");
-	ContentsSpriteManager::FolderSpriteRelease("Resources\\Texture\\Tutorial\\Target");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Tutorial\\TargetExplosion");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\CupHead");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\Character\\Bullet");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Global\\UI\\HpMarker");
+	ContentsResourcesManager::FolderSpriteRelease("Resources\\Texture\\Global\\UI\\Card");
+	ContentsResourcesManager::SingleSpriteInDirRelease("Resources\\Texture\\Tutorial");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Tutorial\\Parry");
+	ContentsResourcesManager::FolderSpriteRelease("Resources\\Texture\\Tutorial\\Target");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\Tutorial\\TargetExplosion");
 }
 
 

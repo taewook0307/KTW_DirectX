@@ -18,6 +18,6 @@
 
 #include <GameEngineCore/GameEngineRenderTarget.h>
 
-#include "ContentsSpriteManager.h"
+#include "ContentsResourcesManager.h"
 #include "CupHeadEnum.h"
 #include "ActorEnum.h"

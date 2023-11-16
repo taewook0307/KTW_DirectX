@@ -28,11 +28,11 @@ WorldMapLevel::~WorldMapLevel()
 void WorldMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	// 리소스 Load
-	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\WorldMapLevel\\Map");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapEnter");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapFlag");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapPortal");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapCharacter");
+	ContentsResourcesManager::CreateSingleSpriteDir("Resources\\Texture\\WorldMapLevel\\Map");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapEnter");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapFlag");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapPortal");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapCharacter");
 
 	// 미니맵 생성
 	WorldMap = CreateActor<Map>(EUPDATEORDER::Map);
@@ -281,11 +281,11 @@ void WorldMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 		DevilIslandPortal = nullptr;
 	}
 
-	ContentsSpriteManager::CreateSingleSpriteDir("Resources\\Texture\\WorldMapLevel\\Map");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\WorldMapLevel\\WorldMapEnter");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\WorldMapLevel\\WorldMapFlag");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\WorldMapLevel\\WorldMapPortal");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\WorldMapLevel\\WorldMapCharacter");
+	ContentsResourcesManager::CreateSingleSpriteDir("Resources\\Texture\\WorldMapLevel\\Map");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\WorldMapLevel\\WorldMapEnter");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\WorldMapLevel\\WorldMapFlag");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\WorldMapLevel\\WorldMapPortal");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\WorldMapLevel\\WorldMapCharacter");
 }
 
 float4 WorldMapLevel::CalCameraPos(const float4& _SetPos)

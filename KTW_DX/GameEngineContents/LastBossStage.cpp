@@ -20,14 +20,14 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	EACTORDIR SummonDir = EACTORDIR::Left;
 
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\BackGround\\LastStageBackGround.png");
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageMap.png");
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
-	ContentsSpriteManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageChair.png");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\Devil");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SpiderHead");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SummonDevil");
-	ContentsSpriteManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\FireBall");
+	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\BackGround\\LastStageBackGround.png");
+	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageMap.png");
+	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
+	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageChair.png");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\Devil");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SpiderHead");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SummonDevil");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\FireBall");
 
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("LastStagePixelMap.png");
 	MapScale = MapTexture->GetScale();
@@ -107,13 +107,13 @@ void LastBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 		Boss = nullptr;
 	}
 
-	ContentsSpriteManager::SingleSpriteRelease("LastStageBackGround.png");
-	ContentsSpriteManager::SingleSpriteRelease("LastStageMap.png");
-	ContentsSpriteManager::SingleSpriteRelease("LastStagePixelMap.png");
-	ContentsSpriteManager::SingleSpriteRelease("LastStageChair.png");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\Devil");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\SpiderHead");
-	ContentsSpriteManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\FireBall");
+	ContentsResourcesManager::SingleSpriteRelease("LastStageBackGround.png");
+	ContentsResourcesManager::SingleSpriteRelease("LastStageMap.png");
+	ContentsResourcesManager::SingleSpriteRelease("LastStagePixelMap.png");
+	ContentsResourcesManager::SingleSpriteRelease("LastStageChair.png");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\Devil");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\SpiderHead");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\FireBall");
 }
 
 void LastBossStage::CreateSummonDevil()
