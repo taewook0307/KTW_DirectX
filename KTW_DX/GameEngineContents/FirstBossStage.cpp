@@ -31,6 +31,8 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	StageResult = ESTAGERESULT::None;
 
+	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\FirstStage\\Slime_Big");
+	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\FirstStage\\Slime_Small");
 	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGroundAnimation");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGround_1.png");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossBackGround_2.png");

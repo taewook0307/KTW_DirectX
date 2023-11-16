@@ -555,7 +555,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="CharacterSound_Func.cpp" />
+    <ClCompile Include="Character_Sound.cpp" />
     <ClCompile Include="Character_Effect.cpp" />
     <ClCompile Include="Cloud.cpp">
       <SubType>
@@ -594,6 +594,8 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FirstBoss_Phase1_Sound.cpp" />
+    <ClCompile Include="FirstBoss_Phase2_Sound.cpp" />
     <ClCompile Include="HpMarker.cpp">
       <SubType>
       </SubType>

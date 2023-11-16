@@ -71,9 +71,6 @@
     <ClInclude Include="SpecialBullet.h">
       <Filter>Global\Actor\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="FirstBoss.h">
-      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
-    </ClInclude>
     <ClInclude Include="FadeObject.h">
       <Filter>Global\StageEffect\Fade</Filter>
     </ClInclude>
@@ -266,6 +263,9 @@
     <ClInclude Include="NearForest.h">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\BackGround</Filter>
     </ClInclude>
+    <ClInclude Include="FirstBoss.h">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\Phase1_2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -347,14 +347,8 @@
     <ClCompile Include="BaseCharacter_SpecialAttack.cpp">
       <Filter>Global\Actor\Character</Filter>
     </ClCompile>
-    <ClCompile Include="FirstBoss.cpp">
-      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
-    </ClCompile>
     <ClCompile Include="FadeObject.cpp">
       <Filter>Global\StageEffect\Fade</Filter>
-    </ClCompile>
-    <ClCompile Include="FirstBoss_State.cpp">
-      <Filter>Level\8. FirstBossStage\FirstBossStageActor</Filter>
     </ClCompile>
     <ClCompile Include="Character_Effect.cpp">
       <Filter>Global\Actor\Character</Filter>
@@ -566,8 +560,20 @@
     <ClCompile Include="NearForest.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\BackGround</Filter>
     </ClCompile>
-    <ClCompile Include="CharacterSound_Func.cpp">
+    <ClCompile Include="Character_Sound.cpp">
       <Filter>Global\Actor\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstBoss_State.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\Phase1_2</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstBoss.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\Phase1_2</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstBoss_Phase1_Sound.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\Phase1_2</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstBoss_Phase2_Sound.cpp">
+      <Filter>Level\8. FirstBossStage\FirstBossStageActor\Phase1_2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -753,6 +759,9 @@
     </Filter>
     <Filter Include="Level\8. FirstBossStage\FirstBossStageActor\BackGround">
       <UniqueIdentifier>{bba86da0-83ca-4c28-9c3a-92be0c015a5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\8. FirstBossStage\FirstBossStageActor\Phase1_2">
+      <UniqueIdentifier>{88ac670d-9a89-4a19-b51c-22853c719f39}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

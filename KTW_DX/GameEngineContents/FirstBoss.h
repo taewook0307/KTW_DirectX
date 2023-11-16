@@ -109,4 +109,9 @@ private:
 	std::vector<std::shared_ptr<class FirstMapParryObject>> AllParry;
 	void CreateParryObject();
 	void AllParryDeath();
+
+	void Phase1MoveSoundPlay();
+	void Phase2MoveSoundPlay();
+	void Phase1LandSoundPlay();
+	void Phase2LandSoundPlay();
 };

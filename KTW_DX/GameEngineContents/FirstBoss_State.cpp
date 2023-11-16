@@ -40,9 +40,14 @@ void FirstBoss::CreateMoveDust()
 	float4 MonsterPos = Transform.GetWorldPosition();
 	MoveEffect->Transform.SetLocalPosition(MonsterPos);
 
-	if (EBOSSPHASE::Phase2 == CurPhase)
+	if (EBOSSPHASE::Phase1 == CurPhase)
+	{
+		Phase1LandSoundPlay();
+	}
+	else if (EBOSSPHASE::Phase2 == CurPhase)
 	{
 		MoveEffect->ChangeEffectPhase2();
+		Phase2LandSoundPlay();
 	}
 }
 
@@ -99,6 +104,15 @@ void FirstBoss::MoveStart()
 	Random.SetSeed(reinterpret_cast<long long>(this));
 	JumpPower = Random.RandomFloat(MINJUMPPOWER, MAXJUMPPOWER);
 	Speed = Random.RandomFloat(MINSPEED, MAXSPEED);
+
+	if (EBOSSPHASE::Phase1 == CurPhase)
+	{
+		Phase1MoveSoundPlay();
+	}
+	else if (EBOSSPHASE::Phase2 == CurPhase)
+	{
+		Phase2MoveSoundPlay();
+	}
 
 	ChangeAnimation("Move");
 	SetGravityForce(float4::UP * JumpPower);
