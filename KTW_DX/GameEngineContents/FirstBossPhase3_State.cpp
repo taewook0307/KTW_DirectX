@@ -6,11 +6,31 @@
 #include "FirstBossPhase3Effect.h"
 #include "StageLevel.h"
 
+void FirstBossPhase3::FallStart()
+{
+	IsIntroState = true;
+	GameEngineSound::SoundPlay("sfx_slime_tombstone_drop_onto_slime.wav");
+	ChangeAnimation("Fall");
+}
+
+void FirstBossPhase3::FallUpdate(float _Delta)
+{
+	GameEngineColor CurColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
+
+	if (FLOORCOLOR == CurColor)
+	{
+		ChangeState(EBOSSSTATE::Intro);
+		return;
+	}
+
+	ActorGravity(_Delta, Transform.GetWorldPosition());
+}
+
 void FirstBossPhase3::IntroStart()
 {
 	IsIntroState = true;
 	ChangeAnimation("Intro");
-	FirstBossRenderer->AnimationPauseOn();
+	CreateEffect(EBOSSSTATE::Intro);
 }
 
 void FirstBossPhase3::IntroUpdate(float _Delta)
@@ -21,21 +41,8 @@ void FirstBossPhase3::IntroUpdate(float _Delta)
 		ChangeState(EBOSSSTATE::Idle);
 		return;
 	}
-
-	GameEngineColor CurColor = Map::MainMap->GetColor(Transform.GetWorldPosition(), FLOORCOLOR);
-
-	if (FLOORCOLOR == CurColor)
-	{
-		if (false == LandSoundOn)
-		{
-			GameEngineSound::SoundPlay("sfx_slime_tombstone_drop_onto_slime.wav");
-			LandSoundOn = true;
-		}
-		FirstBossRenderer->AnimationPauseOff();
-		IntroTimer -= _Delta;
-	}
-
-	ActorGravity(_Delta, Transform.GetWorldPosition());
+	
+	IntroTimer -= _Delta;
 }
 
 void FirstBossPhase3::IdleStart()
@@ -98,7 +105,6 @@ void FirstBossPhase3::MoveUpdate(float _Delta)
 
 	if (FLOORCOLOR == CheckColor)
 	{
-		MoveSound.Stop();
 		ChangeState(EBOSSSTATE::Turn);
 		return;
 	}

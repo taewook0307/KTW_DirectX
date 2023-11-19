@@ -21,6 +21,10 @@ private:
 	float IntroTimer = 3.0f;
 
 	bool LandSoundOn = false;
+
+	void FallStart();
+	void FallUpdate(float _Delta);
+
 	void IntroStart();
 	void IntroUpdate(float _Delta);
 

@@ -75,10 +75,10 @@ void FirstBossPhase3Effect::Update(float _Delta)
 	}
 	else if (EACTORDIR::Left == EffectDir)
 	{
-		EffectRenderer->LeftFlip();
+		EffectRenderer->RightFlip();
 	}
 	else
 	{
-		EffectRenderer->RightFlip();
+		EffectRenderer->LeftFlip();
 	}
 }

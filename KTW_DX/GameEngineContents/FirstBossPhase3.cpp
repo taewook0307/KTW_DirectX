@@ -17,13 +17,15 @@ void FirstBossPhase3::Start()
 {
 	FirstBossRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
 
+	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Fall", "FirstBoss_Phase3_Fall");
+
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Intro", "FirstBoss_Phase3_Intro");
-	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase3_Intro", 0,
+	/*FirstBossRenderer->SetFrameEvent("FirstBoss_Phase3_Intro", 0,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			CreateEffect(CurState);
 		}
-	);
+	);*/
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Idle", "FirstBoss_Phase3_Idle");
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase3_Idle",
 		[=](GameEngineSpriteRenderer* _Renderer)
@@ -90,7 +92,7 @@ void FirstBossPhase3::Start()
 	FirstBossAttackCollision->Transform.SetLocalScale({ 300.0f, 300.0f });
 	FirstBossAttackCollision->Off();
 
-	ChangeState(EBOSSSTATE::Intro);
+	ChangeState(EBOSSSTATE::Fall);
 }
 
 void FirstBossPhase3::Update(float _Delta)
@@ -125,6 +127,9 @@ void FirstBossPhase3::ChangeState(EBOSSSTATE _CurState)
 	{
 		switch (_CurState)
 		{
+		case EBOSSSTATE::Fall:
+			FallStart();
+			break;
 		case EBOSSSTATE::Intro:
 			IntroStart();
 			break;
@@ -155,6 +160,8 @@ void FirstBossPhase3::StateUpdate(float _Delta)
 {
 	switch (CurState)
 	{
+	case EBOSSSTATE::Fall:
+		return FallUpdate(_Delta);
 	case EBOSSSTATE::Intro:
 		return IntroUpdate(_Delta);
 	case EBOSSSTATE::Idle:

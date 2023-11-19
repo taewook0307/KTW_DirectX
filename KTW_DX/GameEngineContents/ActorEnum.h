@@ -94,6 +94,7 @@ enum class EBOSSPHASE
 enum class EBOSSSTATE
 {
 	None,
+	Fall,
 	Intro,
 	Idle,
 	Move,
