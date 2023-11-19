@@ -85,9 +85,17 @@ void PirateBoss::Start()
 	PirateRenderer->CreateAnimation("Pirate_Knockout", "Pirate_Knockout", PIRATEBOSSANIMATIONINTER, -1, -1, false);
 
 	PirateRenderer->CreateAnimation("Pirate_Whistle", "Pirate_Whistle", PIRATEBOSSANIMATIONINTER, -1, -1, false);
+	PirateRenderer->SetFrameEvent("Pirate_Whistle", 21,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("sfx_pirate_foot.wav");
+		}
+	);
+
 	PirateRenderer->SetFrameEvent("Pirate_Whistle", 24,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			GameEngineSound::SoundPlay("sfx_pirate_whistle.wav");
 			std::shared_ptr<Whistle_Effect> Effect = GetLevel()->CreateActor<Whistle_Effect>(EUPDATEORDER::Effect);
 			float4 Pos = Transform.GetWorldPosition();
 			float4 EffectPos = { Pos.X - 160.0f, Pos.Y + 390.0f };
@@ -105,6 +113,12 @@ void PirateBoss::Start()
 	);
 
 	PirateRenderer->CreateAnimation("Pirate_Shoot_Ready", "Pirate_Shoot_Ready", PIRATEBOSSANIMATIONINTER, -1, -1, false);
+	PirateRenderer->SetFrameEvent("Pirate_Shoot_Ready", 9,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("sfx_pirate_gun_start.wav");
+		}
+	);
 	PirateRenderer->SetFrameEvent("Pirate_Shoot_Ready", 16,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -145,6 +159,7 @@ void PirateBoss::Start()
 	PirateRenderer->SetFrameEvent("Pirate_Shoot", 6,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			ShootSoundPlay();
 			CreatePirateBullet();
 		}
 	);
@@ -168,6 +183,12 @@ void PirateBoss::Start()
 		{
 			PirateUpperRenderer->On();
 			PirateUpperRenderer->ChangeAnimation("Pirate_Shoot_End_Upper");
+		}
+	);
+	PirateRenderer->SetFrameEvent("Pirate_Shoot_End", 7,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("sfx_pirate_gun_end.wav");
 		}
 	);
 	PirateRenderer->SetEndEvent("Pirate_Shoot_End",

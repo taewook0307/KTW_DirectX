@@ -578,6 +578,9 @@
     <ClCompile Include="FirstBossPhase3_Sound.cpp">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Phase3</Filter>
     </ClCompile>
+    <ClCompile Include="PirateBoss_Sound.cpp">
+      <Filter>Level\9. SecondBossStage\SecondBossStageActor\Pirate</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">

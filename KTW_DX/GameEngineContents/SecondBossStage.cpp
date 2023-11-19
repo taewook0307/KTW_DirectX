@@ -43,6 +43,7 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y, 0.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
+	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\SecondStage\\Pirate");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Barrel");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\DogFish");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Pirate");

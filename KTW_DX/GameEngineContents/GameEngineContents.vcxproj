@@ -606,6 +606,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="OldFilm.cpp" />
+    <ClCompile Include="PirateBoss_Sound.cpp" />
     <ClCompile Include="TestLevel.cpp">
       <SubType>
       </SubType>

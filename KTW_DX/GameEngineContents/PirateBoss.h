@@ -86,4 +86,7 @@ private:
 	void SummonEnemy();
 
 	int ShootCount = 3;
+
+	void IntroSoundPlay();
+	void ShootSoundPlay();
 };
