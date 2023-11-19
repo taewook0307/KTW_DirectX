@@ -170,10 +170,6 @@ void FirstBossPhase3::StateUpdate(float _Delta)
 		return MoveUpdate(_Delta);
 	case EBOSSSTATE::Turn:
 		return TurnUpdate(_Delta);
-	case EBOSSSTATE::Attack:
-		return AttackUpdate(_Delta);
-	case EBOSSSTATE::Death:
-		return DeathUpdate(_Delta);
 	default:
 		break;
 	}

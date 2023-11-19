@@ -136,18 +136,10 @@ void FirstBossPhase3::AttackStart()
 	DirChangeCount = 0;
 }
 
-void FirstBossPhase3::AttackUpdate(float _Delta)
-{
-
-}
-
 void FirstBossPhase3::DeathStart()
 {
+	MoveSound.Stop();
+	GameEngineSound::SoundPlay("sfx_slime_tombstone_death.wav");
 	ChangeAnimation("Death");
 	StageLevel::StageClear();
-}
-
-void FirstBossPhase3::DeathUpdate(float _Delta)
-{
-
 }

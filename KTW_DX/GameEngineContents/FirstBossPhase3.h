@@ -38,10 +38,8 @@ private:
 	void TurnUpdate(float _Delta);
 
 	void AttackStart();
-	void AttackUpdate(float _Delta);
 
 	void DeathStart();
-	void DeathUpdate(float _Delta);
 
 	void CreateEffect(EBOSSSTATE _State);
 
