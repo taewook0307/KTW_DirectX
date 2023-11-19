@@ -26,6 +26,11 @@ void FirstBossPhase3::IntroUpdate(float _Delta)
 
 	if (FLOORCOLOR == CurColor)
 	{
+		if (false == LandSoundOn)
+		{
+			GameEngineSound::SoundPlay("sfx_slime_tombstone_drop_onto_slime.wav");
+			LandSoundOn = true;
+		}
 		FirstBossRenderer->AnimationPauseOff();
 		IntroTimer -= _Delta;
 	}
@@ -35,6 +40,7 @@ void FirstBossPhase3::IntroUpdate(float _Delta)
 
 void FirstBossPhase3::IdleStart()
 {
+	IdleSoundPlay();
 	ChangeAnimation("Idle");
 }
 
@@ -45,6 +51,8 @@ void FirstBossPhase3::IdleUpdate(float _Delta)
 
 void FirstBossPhase3::MoveStart()
 {
+	MoveSoundPlay();
+	MoveVoiceSoundPlay();
 	ChangeAnimation("Move");
 }
 
@@ -64,6 +72,7 @@ void FirstBossPhase3::MoveUpdate(float _Delta)
 
 		if (DirSize < 30.0f)
 		{
+			MoveSound.Stop();
 			ChangeState(EBOSSSTATE::Attack);
 			return;
 		}
@@ -89,6 +98,7 @@ void FirstBossPhase3::MoveUpdate(float _Delta)
 
 	if (FLOORCOLOR == CheckColor)
 	{
+		MoveSound.Stop();
 		ChangeState(EBOSSSTATE::Turn);
 		return;
 	}

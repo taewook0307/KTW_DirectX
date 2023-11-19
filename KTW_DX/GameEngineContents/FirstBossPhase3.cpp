@@ -29,6 +29,7 @@ void FirstBossPhase3::Start()
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			ChangeState(EBOSSSTATE::Move);
+			return;
 		}
 	);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Move_Left", "FirstBoss_Phase3_Move_Left");
@@ -42,15 +43,23 @@ void FirstBossPhase3::Start()
 	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase3_Move_Right", 0,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			MoveSoundPlay();
 			CreateEffect(CurState);
 		}
 	);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Turn_Left", "FirstBoss_Phase3_Turn_Left");
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Turn_Right", "FirstBoss_Phase3_Turn_Right");
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase3_Attack", "FirstBoss_Phase3_Attack");
+	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase3_Attack", 8,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("sfx_slime_tombstone_splat_start.wav");
+		}
+	);
 	FirstBossRenderer->SetFrameEvent("FirstBoss_Phase3_Attack", 9,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			AttackSoundPlay();
 			FirstBossAttackCollision->On();
 			CreateEffect(CurState);
 		}

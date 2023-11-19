@@ -20,6 +20,7 @@ protected:
 private:
 	float IntroTimer = 3.0f;
 
+	bool LandSoundOn = false;
 	void IntroStart();
 	void IntroUpdate(float _Delta);
 
@@ -39,6 +40,14 @@ private:
 	void DeathUpdate(float _Delta);
 
 	void CreateEffect(EBOSSSTATE _State);
+
+	void IdleSoundPlay();
+	void MoveSoundPlay();
+	void MoveVoiceSoundPlay();
+	void AttackSoundPlay();
+
+	GameEngineSoundPlayer MoveSound;
+
 private:
 	int DirChangeCount = 0;
 

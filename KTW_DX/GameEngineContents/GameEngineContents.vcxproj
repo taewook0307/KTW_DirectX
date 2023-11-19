@@ -594,6 +594,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FirstBossPhase3_Sound.cpp" />
     <ClCompile Include="FirstBoss_Phase1_Sound.cpp" />
     <ClCompile Include="FirstBoss_Phase2_Sound.cpp" />
     <ClCompile Include="HpMarker.cpp">
