@@ -44,6 +44,7 @@ void PirateBullet::Start()
 			[=](GameEngineState* _State)
 			{
 				BulletCollision->Off();
+				BulletPopSoundPlay();
 				Renderer->ChangeAnimation("Pirate_Bullet_Yellow_Death");
 			};
 
@@ -116,4 +117,9 @@ void PirateBullet::HitCheck()
 		PirateBulletState.ChangeState(EPIRATEBULLETSTATE::Death);
 		return;
 	}
+}
+
+void PirateBullet::BulletPopSoundPlay()
+{
+	GameEngineSound::SoundPlay("sfx_pirate_squid_attack_pop.wav");
 }

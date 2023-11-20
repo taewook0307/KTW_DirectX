@@ -44,6 +44,7 @@ void PirateBulletParry::Start()
 			[=](GameEngineState* _State)
 			{
 				BulletCollision->Off();
+				BulletPopSoundPlay();
 				Renderer->ChangeAnimation("Pirate_Bullet_Pink_Death");
 			};
 

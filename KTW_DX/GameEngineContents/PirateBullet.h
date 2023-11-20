@@ -35,5 +35,7 @@ protected:
 	std::shared_ptr<GameEngineCollision> BulletCollision = nullptr;
 
 	GameEngineState PirateBulletState;
+
+	void BulletPopSoundPlay();
 private:
 };
