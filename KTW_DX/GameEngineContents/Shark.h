@@ -53,4 +53,6 @@ private:
 
 	std::shared_ptr<GameEngineSpriteRenderer> SharkRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> AttackCollision = nullptr;
+
+	GameEngineSoundPlayer LeaveSound;
 };

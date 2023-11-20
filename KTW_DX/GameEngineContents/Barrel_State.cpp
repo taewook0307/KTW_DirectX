@@ -46,6 +46,7 @@ void Barrel::SmashReadyUpdate(float _Delta)
 
 void Barrel::DropStart()
 {
+	GameEngineSound::SoundPlay("sfx_pirate_barrel_drop_attack.wav");
 	ChangeAnimation("Drop");
 }
 void Barrel::DropUpdate(float _Delta)

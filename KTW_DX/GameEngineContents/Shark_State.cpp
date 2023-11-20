@@ -60,6 +60,7 @@ void Shark::BiteStart()
 
 void Shark::LeaveStart()
 {
+	LeaveSound = GameEngineSound::SoundPlay("sfx_pirate_shark_exit_normal_loop.wav", 5);
 	ChangeAnimation("Leave");
 }
 void Shark::LeaveUpdate(float _Delta)
@@ -73,6 +74,7 @@ void Shark::LeaveUpdate(float _Delta)
 	if (-760.0f > SharkPos.X)
 	{
 		PirateBoss::MainPirateBoss->SummonDeath();
+		LeaveSound.Stop();
 		Death();
 	}
 }

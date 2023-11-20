@@ -17,6 +17,12 @@ void Periscope::Start()
 {
 	PeriscopeRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
 	PeriscopeRenderer->CreateAnimation("Periscope", "Periscope", 0.05f, -1, -1, false);
+	PeriscopeRenderer->SetFrameEvent("Periscope", 26,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("sfx_pirate_periscope_warning.wav");
+		}
+	);
 	PeriscopeRenderer->SetEndEvent("Periscope",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{

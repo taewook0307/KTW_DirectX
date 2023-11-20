@@ -17,6 +17,12 @@ void Shark::Start()
 	SharkRenderer->CreateAnimation("Shark_Fin", "Shark_Fin");
 	SharkRenderer->CreateAnimation("Shark_Entry", "Shark_Entry", SHARKANMATIONINTER);
 	SharkRenderer->CreateAnimation("Shark_Bite", "Shark_Bite", SHARKBITEANIMATIONINTER, -1, -1, false);
+	SharkRenderer->SetFrameEvent("Shark_Bite", 5,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("sfx_pirate_shark_attack.wav");
+		}
+	);
 	SharkRenderer->SetEndEvent("Shark_Bite",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{

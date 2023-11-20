@@ -44,6 +44,9 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\SecondStage\\Pirate");
+	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\SecondStage\\Barrel");
+	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\SecondStage\\Periscope");
+	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\SecondStage\\Shark");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Barrel");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\DogFish");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\SecondBoss\\Pirate");
