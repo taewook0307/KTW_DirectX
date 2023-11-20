@@ -35,6 +35,7 @@ private:
 	void MoveStart();
 	void MoveUpdate(float _Delta);
 
+	void DeathSoundPlay();
 	void DeathStart();
 	void DeathUpdate(float _Delta);
 

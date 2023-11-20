@@ -43,25 +43,33 @@ void ShipBoss::Start()
 
 	ShipRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
 	ShipRenderer->CreateAnimation("Ship_Idle", "Ship_Idle", SHIPANIMATIONINTER);
+
 	ShipRenderer->CreateAnimation("Ship_Attack", "Ship_Attack", SHIPANIMATIONINTER);
+	ShipRenderer->SetFrameEvent("Ship_Attack", 5,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("sfx_pirate_boat_cannon_chew.wav");
+		}
+	);
 
 	ShipRenderer->SetFrameEvent("Ship_Attack", 19,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			GameEngineSound::SoundPlay("sfx_pirate_boat_cannon_fire.wav");
 			CreateCannonBall();
 		}
 	);
 
 	ShipRenderer->CreateAnimation("Ship_Wince", "Ship_Wince", SHIPANIMATIONINTER, -1, -1, false);
+	ShipRenderer->CreateAnimation("Ship_Wince_Loop", "Ship_Wince", SHIPANIMATIONINTER, 1, 8, true);
 	ShipRenderer->SetEndEvent("Ship_Wince",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
-			ChangeState(ESHIPBOSSSTATE::Transform);
-			return;
+			ShipRenderer->ChangeAnimation("Ship_Wince_Loop");
 		}
 	);
 
-	ShipRenderer->CreateAnimation("Ship_Transform", "Ship_Transform", SHIPANIMATIONINTER, -1, -1, false);
+	ShipRenderer->CreateAnimation("Ship_Transform", "Ship_Transform", SHIPANIMATIONINTER, 0, 10, false);
 	ShipRenderer->SetFrameEvent("Ship_Transform", 3,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
@@ -71,8 +79,16 @@ void ShipBoss::Start()
 			ShipMastRenderer->Death();
 		}
 	);
-	
 	ShipRenderer->SetEndEvent("Ship_Transform",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ShipRenderer->ChangeAnimation("Ship_Transform_Loop");
+		}
+	);
+
+	ShipRenderer->CreateAnimation("Ship_Transform_Loop", "Ship_Transform", SHIPANIMATIONINTER, 9, 10, true);
+	ShipRenderer->CreateAnimation("Ship_Transform_End", "Ship_Transform", SHIPANIMATIONINTER, 10, -1, false);
+	ShipRenderer->SetEndEvent("Ship_Transform_End",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			ChangeShip = true;
@@ -88,6 +104,7 @@ void ShipBoss::Start()
 	ShipRenderer->SetFrameEvent("Ship_Phase3_Attack", 8,
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			BubbleShootSoundPlay();
 			CreateBubble();
 		}
 	);
@@ -116,6 +133,7 @@ void ShipBoss::Start()
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			CreateBeam();
+			GameEngineSound::SoundPlay("sfx_pirate_boat_beam_fire.wav");
 		}
 	);
 	ShipRenderer->SetEndEvent("Ship_Phase3_Beam_Start",
@@ -190,6 +208,10 @@ void ShipBoss::StateUpdate(float _Delta)
 		return ChargeUpdate(_Delta);
 	case ESHIPBOSSSTATE::Beam:
 		return BeamUpdate(_Delta);
+	case ESHIPBOSSSTATE::Wince:
+		return WinceUpdate(_Delta);
+	case ESHIPBOSSSTATE::Transform:
+		return TransformUpdate(_Delta);
 	default:
 		break;
 	}
@@ -273,4 +295,29 @@ void ShipBoss::CreateBeam()
 
 	std::shared_ptr<ShipBeam> CurBeam = GetLevel()->CreateActor<ShipBeam>(EUPDATEORDER::Bullet);
 	CurBeam->Transform.SetLocalPosition(CreatePos);
+}
+
+void ShipBoss::BubbleShootSoundPlay()
+{
+	GameEngineRandom Random;
+	unsigned int Time = static_cast<unsigned int>(time(NULL));
+	Random.SetSeed(static_cast<long long>(Time));
+
+	int SoundNum = Random.RandomInt(0, 3);
+
+	switch (SoundNum)
+	{
+	case 0:
+		GameEngineSound::SoundPlay("sfx_pirate_boat_uvula_shoot_01.wav");
+		break;
+	case 1:
+		GameEngineSound::SoundPlay("sfx_pirate_boat_uvula_shoot_02.wav");
+		break;
+	case 2:
+		GameEngineSound::SoundPlay("sfx_pirate_boat_uvula_shoot_03.wav");
+		break;
+	default:
+		GameEngineSound::SoundPlay("sfx_pirate_boat_uvula_shoot_04.wav");
+		break;
+	}
 }

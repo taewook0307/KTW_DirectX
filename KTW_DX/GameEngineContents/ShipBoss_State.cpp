@@ -78,12 +78,39 @@ void ShipBoss::AttackUpdate(float _Delta)
 
 void ShipBoss::WinceStart()
 {
+	GameEngineSound::SoundPlay("sfx_pirate_boat_transform.wav");
 	ChangeAnimation("Wince");
+}
+
+void ShipBoss::WinceUpdate(float _Delta)
+{
+	if (0.0f > WinceTimer)
+	{
+		WinceTimer = WINCETIMER;
+		ChangeState(ESHIPBOSSSTATE::Transform);
+		return;
+	}
+
+	WinceTimer -= _Delta;
 }
 
 void ShipBoss::TransformStart()
 {
 	ChangeAnimation("Transform");
+}
+
+void ShipBoss::TransformUpdate(float _Delta)
+{
+	if (0.0f > TransformLoopTimer)
+	{
+		TransformLoopTimer = TRANSFORMLOOPTIMER;
+		ShipRenderer->ChangeAnimation("Ship_Transform_End");
+	}
+
+	if (true == ShipRenderer->IsCurAnimation("Ship_Transform_Loop"))
+	{
+		TransformLoopTimer -= _Delta;
+	}
 }
 
 void ShipBoss::ChargeStart()

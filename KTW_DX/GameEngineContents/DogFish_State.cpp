@@ -7,6 +7,7 @@ void DogFish::JumpStart()
 {
 	ChangeAnimation("Jump");
 	SetGravityForce(float4::UP * JumpPower);
+	GameEngineSound::SoundPlay("sfx_pirate_dogfish_jump.wav");
 }
 
 void DogFish::JumpUpdate(float _Delta)
@@ -88,8 +89,29 @@ void DogFish::MoveUpdate(float _Delta)
 	}
 }
 
+void DogFish::DeathSoundPlay()
+{
+	GameEngineRandom Random;
+	unsigned int Time = static_cast<unsigned int>(time(NULL));
+	Random.SetSeed(static_cast<long long>(Time));
+
+	int SoundNum = Random.RandomInt(0, 1);
+
+	if (0 == SoundNum)
+	{
+		GameEngineSound::SoundPlay("sfx_pirate_dogfish_death_poof_01.wav");
+	}
+	else
+	{
+		GameEngineSound::SoundPlay("sfx_pirate_dogfish_death_poof_02.wav");
+	}
+
+	GameEngineSound::SoundPlay("sfx_pirate_dogfish_death_flap.wav");
+}
+
 void DogFish::DeathStart()
 {
+	DeathSoundPlay();
 	ChangeAnimation("Death");
 	BodyCollision->Off();
 	CreateDeathEffect();

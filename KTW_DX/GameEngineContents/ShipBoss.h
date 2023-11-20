@@ -9,6 +9,8 @@
 #define PHASE2SHIPIDLETIMER 2.0f
 #define PHASE3SHIPIDLETIMER 1.4f
 #define SHIPCHARGETIMER 2.0f
+#define WINCETIMER 2.0f
+#define TRANSFORMLOOPTIMER 3.0f
 #define SHIPBEAMTIMER 3.0f
 #define ATTACKCOUNT 3
 
@@ -41,9 +43,13 @@ protected:
 	void AttackStart();
 	void AttackUpdate(float _Delta);
 
+	float WinceTimer = WINCETIMER;
 	void WinceStart();
+	void WinceUpdate(float _Delta);
 
+	float TransformLoopTimer = TRANSFORMLOOPTIMER;
 	void TransformStart();
+	void TransformUpdate(float _Delta);
 
 	float ChargeTimer = SHIPCHARGETIMER;
 	void ChargeStart();
@@ -78,4 +84,6 @@ private:
 	void CreateCannonBall();
 	void CreateBubble();
 	void CreateBeam();
+
+	void BubbleShootSoundPlay();
 };

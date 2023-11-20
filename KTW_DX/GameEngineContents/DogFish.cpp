@@ -27,6 +27,12 @@ void DogFish::Start()
 		}
 	);
 	DogFishRenderer->CreateAnimation("DogFish_Move", "DogFish_Move", DOGFISHANIMATIONINTER);
+	DogFishRenderer->SetFrameEvent("DogFish_Move", 4,
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("sfx_pirate_dogfish_slide.wav");
+		}
+	);
 	DogFishRenderer->CreateAnimation("DogFish_Death", "DogFish_Death", DOGFISHANIMATIONINTER);
 
 	DogFishRenderer->AutoSpriteSizeOn();
