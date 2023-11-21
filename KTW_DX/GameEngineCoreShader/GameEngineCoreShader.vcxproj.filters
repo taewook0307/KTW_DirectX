@@ -29,6 +29,9 @@
     <FxCompile Include="Function.fx">
       <Filter>Header</Filter>
     </FxCompile>
+    <FxCompile Include="ParticleUpdate.fx">
+      <Filter>Particle</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header">
@@ -45,6 +48,9 @@
     </Filter>
     <Filter Include="Effect">
       <UniqueIdentifier>{ce1e9f9d-d554-4b67-b29c-13e5632a98aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Particle">
+      <UniqueIdentifier>{4b2aacdd-d20e-468c-aa2e-3694eadc894b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

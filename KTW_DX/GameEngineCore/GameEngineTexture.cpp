@@ -17,11 +17,11 @@ const GameEngineColor GameEngineColor::AQUA = { 0, 255, 255, 255 };
 const GameEngineColor GameEngineColor::BLACK = { 0, 0, 0, 255 };
 const GameEngineColor GameEngineColor::WHITE = { 255, 255, 255, 255 };
 
-GameEngineTexture::GameEngineTexture() 
+GameEngineTexture::GameEngineTexture()
 {
 }
 
-GameEngineTexture::~GameEngineTexture() 
+GameEngineTexture::~GameEngineTexture()
 {
 	if (nullptr != DSV)
 	{
@@ -150,9 +150,9 @@ void GameEngineTexture::ResLoad(std::string_view _Path)
 		{
 			MsgBoxAssert("텍스처 로드에 실패했습니다." + std::string(_Path.data()));
 		}
-		
+
 	}
-	else if(S_OK != DirectX::LoadFromWICFile(wPath.c_str(), DirectX::WIC_FLAGS_NONE, &Data, Image))
+	else if (S_OK != DirectX::LoadFromWICFile(wPath.c_str(), DirectX::WIC_FLAGS_NONE, &Data, Image))
 	{
 		MsgBoxAssert("텍스처 로드에 실패했습니다." + std::string(_Path.data()));
 	}
@@ -185,6 +185,11 @@ void GameEngineTexture::PSSetting(UINT _Slot)
 	GameEngineCore::GetContext()->PSSetShaderResources(_Slot, 1, &SRV);
 }
 
+void GameEngineTexture::CSSetting(UINT _Slot)
+{
+	GameEngineCore::GetContext()->CSSetShaderResources(_Slot, 1, &SRV);
+}
+
 void GameEngineTexture::VSReset(UINT _Slot)
 {
 	ID3D11ShaderResourceView* ResetRes = nullptr;
@@ -194,6 +199,12 @@ void GameEngineTexture::PSReset(UINT _Slot)
 {
 	ID3D11ShaderResourceView* ResetRes = nullptr;
 	GameEngineCore::GetContext()->PSSetShaderResources(_Slot, 1, &ResetRes);
+}
+
+void GameEngineTexture::CSReset(UINT _Slot)
+{
+	ID3D11ShaderResourceView* ResetRes = nullptr;
+	GameEngineCore::GetContext()->CSSetShaderResources(_Slot, 1, &ResetRes);
 }
 
 void GameEngineTexture::ResCreate(ID3D11Texture2D* _Res)
@@ -207,7 +218,7 @@ void GameEngineTexture::ResCreate(ID3D11Texture2D* _Res)
 	int a = 0;
 }
 
-void GameEngineTexture::ResCreate(const D3D11_TEXTURE2D_DESC& _Desc) 
+void GameEngineTexture::ResCreate(const D3D11_TEXTURE2D_DESC& _Desc)
 {
 	Desc = _Desc;
 
