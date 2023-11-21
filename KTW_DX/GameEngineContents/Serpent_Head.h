@@ -26,7 +26,7 @@ protected:
 
 private:
 	EACTORDIR SerpentDir = EACTORDIR::Right;
-	float Speed = 200.0f;
+	float Speed = 280.0f;
 	float MoveEndPoint = 0.0f;
 
 	GameEngineState SerpentState;

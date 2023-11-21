@@ -41,4 +41,6 @@ private:
 	bool MoveEndCheck();
 	bool DeathPosCheck();
 	void ChangeLeftDir() override;
+
+	void ClapSoundPlay();
 };

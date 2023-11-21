@@ -23,6 +23,7 @@ void Spider_Head::Start()
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent)
 			{
+				FallSoundPlay();
 				SpiderRenderer->ChangeAnimation("SpiderHead_Fall");
 			};
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
@@ -104,6 +105,7 @@ void Spider_Head::Start()
 		Para.Start = [=](GameEngineState* _Parent)
 			{
 				++LandCount;
+				LandSoundPlay();
 				SpiderRenderer->ChangeAnimation("SpiderHead_Land");
 			};
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
@@ -154,5 +156,67 @@ void Spider_Head::LandCountCheck()
 		float4 Pos = Transform.GetWorldPosition();
 
 		Transform.SetWorldPosition({ CharacterPos.X, Pos.Y });
+	}
+}
+
+void Spider_Head::FallSoundPlay()
+{
+	GameEngineRandom Random;
+	unsigned int Time = static_cast<unsigned int>(time(NULL));
+	Random.SetSeed(static_cast<long long>(Time));
+
+	int SoundNum = Random.RandomInt(0, 5);
+
+	switch (SoundNum)
+	{
+	case 0:
+		GameEngineSound::SoundPlay("devil_spider_fall_001.wav");
+		break;
+	case 1:
+		GameEngineSound::SoundPlay("devil_spider_fall_002.wav");
+		break;
+	case 2:
+		GameEngineSound::SoundPlay("devil_spider_fall_003.wav");
+		break;
+	case 3:
+		GameEngineSound::SoundPlay("devil_spider_fall_004.wav");
+		break;
+	case 4:
+		GameEngineSound::SoundPlay("devil_spider_fall_005.wav");
+		break;
+	default:
+		GameEngineSound::SoundPlay("devil_spider_fall_006.wav");
+		break;
+	}
+}
+
+void Spider_Head::LandSoundPlay()
+{
+	GameEngineRandom Random;
+	unsigned int Time = static_cast<unsigned int>(time(NULL));
+	Random.SetSeed(static_cast<long long>(Time));
+
+	int SoundNum = Random.RandomInt(0, 5);
+
+	switch (SoundNum)
+	{
+	case 0:
+		GameEngineSound::SoundPlay("devil_spiderhead_hitfloor_001.wav");
+		break;
+	case 1:
+		GameEngineSound::SoundPlay("devil_spiderhead_hitfloor_002.wav");
+		break;
+	case 2:
+		GameEngineSound::SoundPlay("devil_spiderhead_hitfloor_003.wav");
+		break;
+	case 3:
+		GameEngineSound::SoundPlay("devil_spiderhead_hitfloor_004.wav");
+		break;
+	case 4:
+		GameEngineSound::SoundPlay("devil_spiderhead_hitfloor_005.wav");
+		break;
+	default:
+		GameEngineSound::SoundPlay("devil_spiderhead_hitfloor_006.wav");
+		break;
 	}
 }

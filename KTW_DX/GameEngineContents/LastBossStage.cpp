@@ -20,6 +20,9 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	EACTORDIR SummonDir = EACTORDIR::Left;
 
+	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\LastStage\\Devil");
+	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\LastStage\\Devil_Ram");
+	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\LastStage\\Devil_Spider");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\BackGround\\LastStageBackGround.png");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageMap.png");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");

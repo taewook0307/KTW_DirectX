@@ -114,6 +114,11 @@ void Devil::Start()
 	}
 
 	DevilRenderer->CreateAnimation("Devil_Ram", "Devil_Ram", DEVILANIMATIONINTER, -1, -1, false);
+	DevilRenderer->SetStartEvent("Devil_Ram", [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("sfx_level_devil_sitting_devil_ram_morph_start.wav");
+		}
+	);
 	DevilRenderer->SetEndEvent("Devil_Ram", [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			DevilRenderer->ChangeAnimation("Devil_Ram_Stay");
@@ -122,6 +127,11 @@ void Devil::Start()
 	);
 	DevilRenderer->CreateAnimation("Devil_Ram_Stay", "Devil_Ram", DEVILANIMATIONINTER, 29, 30, true);
 	DevilRenderer->CreateAnimation("Devil_Ram_End", "Devil_Ram", DEVILANIMATIONINTER, 30, 0, false);
+	DevilRenderer->SetStartEvent("Devil_Ram_End", [=](GameEngineSpriteRenderer* _Renderer)
+		{
+			GameEngineSound::SoundPlay("sfx_level_devil_sitting_devil_ram_morph_end.wav");
+		}
+	);
 	DevilRenderer->SetEndEvent("Devil_Ram_End", [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			DevilState.ChangeState(EDEVILSTATE::Idle);
@@ -214,27 +224,31 @@ void Devil::Start()
 	{
 		CreateStateParameter Para;
 
-		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Serpent"); };
+		Para.Start = [=](GameEngineState* _Parent)\
+		{
+			GameEngineSound::SoundPlay("devil_handclap_snake_001.wav");
+			DevilRenderer->ChangeAnimation("Devil_Serpent");
+		};
 		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
+		{
+			if (true == DevilRenderer->IsCurAnimation("Devil_Serpent_Stay_Left"))
 			{
-				if (true == DevilRenderer->IsCurAnimation("Devil_Serpent_Stay_Left"))
+				if (true == SummonDeathCheck())
 				{
-					if (true == SummonDeathCheck())
-					{
-						SummonActors.clear();
-						DevilRenderer->ChangeAnimation("Devil_Serpent_End_Left");
-					}
+					SummonActors.clear();
+					DevilRenderer->ChangeAnimation("Devil_Serpent_End_Left");
 				}
+			}
 
-				if (true == DevilRenderer->IsCurAnimation("Devil_Serpent_Stay_Right"))
+			if (true == DevilRenderer->IsCurAnimation("Devil_Serpent_Stay_Right"))
+			{
+				if (true == SummonDeathCheck())
 				{
-					if (true == SummonDeathCheck())
-					{
-						SummonActors.clear();
-						DevilRenderer->ChangeAnimation("Devil_Serpent_End_Right");
-					}
+					SummonActors.clear();
+					DevilRenderer->ChangeAnimation("Devil_Serpent_End_Right");
 				}
-			};
+			}
+		};
 
 		DevilState.CreateState(EDEVILSTATE::Serpent, Para);
 	}
@@ -243,6 +257,7 @@ void Devil::Start()
 	DevilRenderer->SetStartEvent("Devil_Spider", [=](GameEngineSpriteRenderer* _Renderer)
 		{
 			DevilCollision->Off();
+			GameEngineSound::SoundPlay("devil_spider_head_intro.wav");
 		}
 	);
 	DevilRenderer->SetEndEvent("Devil_Spider", [=](GameEngineSpriteRenderer* _Renderer)
@@ -271,6 +286,7 @@ void Devil::Start()
 					if (true == SummonDeathCheck())
 					{
 						SummonActors.clear();
+						GameEngineSound::SoundPlay("sfx_level_devil_sitting_devil_spider_morph_end.wav");
 						DevilRenderer->ChangeAnimation("Devil_Spider_End");
 					}
 				}

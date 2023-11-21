@@ -12,7 +12,7 @@ Serpent_Head::~Serpent_Head()
 void Serpent_Head::Start()
 {
 	SerpentRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
-	SerpentRenderer->CreateAnimation("Serpent_Head_Move", "Serpent_Head", 0.1f, 0, 23, true);
+	SerpentRenderer->CreateAnimation("Serpent_Head_Move", "Serpent_Head", 0.05f, 0, 23, true);
 	{
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent) { SerpentRenderer->ChangeAnimation("Serpent_Head_Move"); };
@@ -31,7 +31,7 @@ void Serpent_Head::Start()
 		SerpentState.CreateState(ESERPENTSTATE::Move, Para);
 	}
 
-	SerpentRenderer->CreateAnimation("Serpent_Head_Back", "Serpent_Head", 0.1f, 24, -1, false);
+	SerpentRenderer->CreateAnimation("Serpent_Head_Back", "Serpent_Head", 0.05f, 24, -1, false);
 	{
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent)

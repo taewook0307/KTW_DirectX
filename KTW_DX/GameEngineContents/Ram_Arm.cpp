@@ -35,7 +35,11 @@ void Ram_Arm::Start()
 	ArmRenderer->CreateAnimation("Ram_Arm_Clap", "Ram_Arm", RAMARMANIMATIONINTER, 5, 9, false);
 	{
 		CreateStateParameter Para;
-		Para.Start = [=](GameEngineState* _Parent) { ArmRenderer->ChangeAnimation("Ram_Arm_Clap"); };
+		Para.Start = [=](GameEngineState* _Parent)
+			{
+				ClapSoundPlay();
+				ArmRenderer->ChangeAnimation("Ram_Arm_Clap");
+			};
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
 			{
 				if (true == ArmRenderer->IsCurAnimationEnd())
@@ -143,4 +147,29 @@ bool Ram_Arm::DeathPosCheck()
 	}
 
 	return false;
+}
+
+void Ram_Arm::ClapSoundPlay()
+{
+	GameEngineRandom Random;
+	unsigned int Time = static_cast<unsigned int>(time(NULL));
+	Random.SetSeed(static_cast<long long>(Time));
+
+	int SoundNum = Random.RandomInt(0, 3);
+
+	switch (SoundNum)
+	{
+	case 0:
+		GameEngineSound::SoundPlay("sfx_level_devil_ram_hand_clap_01.wav");
+		break;
+	case 1:
+		GameEngineSound::SoundPlay("sfx_level_devil_ram_hand_clap_02.wav");
+		break;
+	case 2:
+		GameEngineSound::SoundPlay("sfx_level_devil_ram_hand_clap_03.wav");
+		break;
+	default:
+		GameEngineSound::SoundPlay("sfx_level_devil_ram_hand_clap_04.wav");
+		break;
+	}
 }
