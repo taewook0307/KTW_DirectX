@@ -66,6 +66,9 @@ private:
 
 	void EyeRendererSetting();
 	void BodyRendererSetting();
+	bool IsHeadSoundCheck = false;
+	void HeadSoundPlay();
 	void HeadRendererSetting();
+	void TridentSoundPlay();
 	void TridentRendererSetting();
 };

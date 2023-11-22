@@ -46,7 +46,11 @@ void Summon_Fire::Start()
 
 	{
 		CreateStateParameter Para;
-		Para.Start = [=](GameEngineState* _Parent) { DirPosSetting(); };
+		Para.Start = [=](GameEngineState* _Parent)
+			{
+				AttackSoundPlay();
+				DirPosSetting();
+			};
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
 			{
 				if (true == CameraOutCheck())

@@ -83,6 +83,7 @@ void Spider_Head::Start()
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent)
 			{
+				FallSoundPlay();
 				LandCountCheck();
 				SpiderRenderer->ChangeAnimation("SpiderHead_JumpToFall");
 			};

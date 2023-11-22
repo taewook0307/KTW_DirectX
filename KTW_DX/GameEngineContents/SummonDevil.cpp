@@ -43,7 +43,11 @@ void SummonDevil::Start()
 	SummonDevilRenderer->CreateAnimation("SummonDevil_Appear", "SummonDevil_Appear", 0.1f, -1, -1, false);
 	{
 		CreateStateParameter Para;
-		Para.Start = [=](GameEngineState* _Parent) { SummonDevilRenderer->ChangeAnimation("SummonDevil_Appear"); };
+		Para.Start = [=](GameEngineState* _Parent)
+			{
+				SpawnSoundPlay();
+				SummonDevilRenderer->ChangeAnimation("SummonDevil_Appear");
+			};
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
 			{
 				if (true == SummonDevilRenderer->IsCurAnimationEnd())
@@ -116,6 +120,7 @@ void SummonDevil::Start()
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent)
 			{
+				DeathSoundPlay();
 				SummonDevilCollision->Off();
 				SummonDevilEffectRenderer->On();
 				SummonDevilRenderer->ChangeAnimation("SummonDevil_Death");
@@ -219,5 +224,52 @@ void SummonDevil::HitCheck()
 	{
 		SummonDevilState.ChangeState(ESUMMONDEVILSTATE::Death);
 		return;
+	}
+}
+
+void SummonDevil::SpawnSoundPlay()
+{
+	GameEngineRandom Random;
+	unsigned int Time = static_cast<unsigned int>(time(NULL));
+	Random.SetSeed(static_cast<long long>(Time));
+
+	int SoundNum = Random.RandomInt(0, 2);
+
+	switch (SoundNum)
+	{
+	case 0:
+		GameEngineSound::SoundPlay("sfx_devil_imp_spawn_01.wav");
+		break;
+	case 1:
+		GameEngineSound::SoundPlay("sfx_devil_imp_spawn_02.wav");
+		break;
+	default:
+		GameEngineSound::SoundPlay("sfx_devil_imp_spawn_03.wav");
+		break;
+	}
+}
+
+void SummonDevil::DeathSoundPlay()
+{
+	GameEngineRandom Random;
+	unsigned int Time = static_cast<unsigned int>(time(NULL));
+	Random.SetSeed(static_cast<long long>(Time));
+
+	int SoundNum = Random.RandomInt(0, 3);
+
+	switch (SoundNum)
+	{
+	case 0:
+		GameEngineSound::SoundPlay("sfx_devil_imp_death_01.wav");
+		break;
+	case 1:
+		GameEngineSound::SoundPlay("sfx_devil_imp_death_02.wav");
+		break;
+	case 2:
+		GameEngineSound::SoundPlay("sfx_devil_imp_death_03.wav");
+		break;
+	default:
+		GameEngineSound::SoundPlay("sfx_devil_imp_death_04.wav");
+		break;
 	}
 }

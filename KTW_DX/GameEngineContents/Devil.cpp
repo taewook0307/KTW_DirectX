@@ -403,6 +403,7 @@ void Devil::Start()
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent)
 			{
+				GameEngineSound::SoundPlay("sfx_level_devil_sitting_devil_p1_death_start.wav");
 				DevilRenderer->ChangeAnimation("Devil_Death");
 				DevilCollision->Off();
 			};
@@ -450,6 +451,19 @@ void Devil::EyeRendererSetting()
 {
 	EyeRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
 	EyeRenderer->CreateAnimation("Intro_Eye", "Intro_Eye", DEVILANIMATIONINTER, -1, -1, false);
+	EyeRenderer->SetFrameEvent("Intro_Eye", 25,
+		[=](GameEngineSpriteRenderer* _Parent)
+		{
+			GameEngineSound::SoundPlay("sfx_level_devil_sitting_devil_intro_pupils_cup.wav");
+		}
+	);
+
+	EyeRenderer->SetEndEvent("Intro_Eye",
+		[=](GameEngineSpriteRenderer* _Parent)
+		{
+			GameEngineSound::SoundPlay("sfx_level_devil_head_devil_intro_end.wav");
+		}
+	);
 	EyeRenderer->Transform.SetLocalPosition({ -85.0f, 230.0f });
 	EyeRenderer->AutoSpriteSizeOn();
 	EyeRenderer->Off();
@@ -464,19 +478,62 @@ void Devil::BodyRendererSetting()
 	BodyRenderer->Off();
 }
 
+void Devil::HeadSoundPlay()
+{
+	if (true == IsHeadSoundCheck)
+	{
+		return;
+	}
+
+	GameEngineSound::SoundPlay("sfx_level_devil_sitting_devil_trident_head.wav");
+	IsHeadSoundCheck = true;
+}
+
 void Devil::HeadRendererSetting()
 {
 	HeadRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
 	HeadRenderer->CreateAnimation("Devil_Attack_Head", "Devil_Attack_Head", DEVILANIMATIONINTER);
+	HeadRenderer->SetStartEvent("Devil_Attack_Head", [=](GameEngineSpriteRenderer* _Parent)
+		{
+			HeadSoundPlay();
+		}
+	);
 	HeadRenderer->AutoSpriteSizeOn();
 	HeadRenderer->SetPivotType(PivotType::Bottom);
 	HeadRenderer->Off();
+}
+
+void Devil::TridentSoundPlay()
+{
+	GameEngineRandom Random;
+	unsigned int Time = static_cast<unsigned int>(time(NULL));
+	Random.SetSeed(static_cast<long long>(Time));
+
+	int SoundNum = Random.RandomInt(0, 2);
+
+	switch (SoundNum)
+	{
+	case 0:
+		GameEngineSound::SoundPlay("sfx_level_devil_sitting_devil_trident_attack_01.wav");
+		break;
+	case 1:
+		GameEngineSound::SoundPlay("sfx_level_devil_sitting_devil_trident_attack_02.wav");
+		break;
+	default:
+		GameEngineSound::SoundPlay("sfx_level_devil_sitting_devil_trident_attack_03.wav");
+		break;
+	}
 }
 
 void Devil::TridentRendererSetting()
 {
 	TridentRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Boss);
 	TridentRenderer->CreateAnimation("Devil_Attack_Trident", "Devil_Attack_Trident", DEVILANIMATIONINTER, -1, -1, false);
+	TridentRenderer->SetStartEvent("Devil_Attack_Trident", [=](GameEngineSpriteRenderer* _Parent)
+		{
+			TridentSoundPlay();
+		}
+	);
 	TridentRenderer->SetEndEvent("Devil_Attack_Trident", [=](GameEngineSpriteRenderer* _Parent)
 		{
 			TridentRenderer->Off();

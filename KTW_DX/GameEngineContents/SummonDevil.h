@@ -42,4 +42,7 @@ private:
 	void PosSetting();
 
 	void HitCheck();
+
+	void SpawnSoundPlay();
+	void DeathSoundPlay();
 };

@@ -102,6 +102,7 @@ void Summon_Ball::BallMove(float _Delta)
 	}
 	else if (true == CameraOutCheck(CheckPos))
 	{
+		AttackSoundPlay();
 		ChangeDirPos(CheckPos);
 	}
 	else

@@ -21,6 +21,7 @@ protected:
 	bool CameraOutCheck(const float4& _Pos);
 	bool CameraOutCheck();
 
+	void AttackSoundPlay();
 private:
 
 };

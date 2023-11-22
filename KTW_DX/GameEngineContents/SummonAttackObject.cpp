@@ -45,3 +45,28 @@ bool SummonAttackObject::CameraOutCheck()
 	float4 Pos = Transform.GetWorldPosition();
 	return CameraOutCheck(Pos);
 }
+
+void SummonAttackObject::AttackSoundPlay()
+{
+	GameEngineRandom Random;
+	unsigned int Time = static_cast<unsigned int>(time(NULL));
+	Random.SetSeed(static_cast<long long>(Time));
+
+	int SoundNum = Random.RandomInt(0, 3);
+
+	switch (SoundNum)
+	{
+	case 0:
+		GameEngineSound::SoundPlay("sfx_DLC_Graveyard_Devil_Shoot_01.wav");
+		break;
+	case 1:
+		GameEngineSound::SoundPlay("sfx_DLC_Graveyard_Devil_Shoot_02.wav");
+		break;
+	case 2:
+		GameEngineSound::SoundPlay("sfx_DLC_Graveyard_Devil_Shoot_03.wav");
+		break;
+	default:
+		GameEngineSound::SoundPlay("sfx_DLC_Graveyard_Devil_Shoot_04.wav");
+		break;
+	}
+}

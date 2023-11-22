@@ -23,6 +23,8 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\LastStage\\Devil");
 	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\LastStage\\Devil_Ram");
 	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\LastStage\\Devil_Spider");
+	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\LastStage\\Devil_AttackObject");
+	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\LastStage\\SummonDevil");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\BackGround\\LastStageBackGround.png");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageMap.png");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
