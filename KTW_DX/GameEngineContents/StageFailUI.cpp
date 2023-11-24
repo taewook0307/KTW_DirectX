@@ -20,8 +20,6 @@ void StageFailUI::Start()
 		}
 	);
 
-	float4 WinScale = GameEngineCore::MainWindow.GetScale();
-	EffectRenderer->SetImageScale(WinScale);
-
+	EffectRenderer->AutoSpriteSizeOn();
 	EffectRenderer->ChangeAnimation("Fail_Effect");
 }

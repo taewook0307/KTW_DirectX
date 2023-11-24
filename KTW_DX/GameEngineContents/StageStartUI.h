@@ -19,4 +19,8 @@ private:
 	std::shared_ptr<GameEngineUIRenderer> EffectRenderer = nullptr;
 
 	void Start() override;
+
+	int SoundANum = 0;
+	void StartSoundAPlay();
+	void StartSoundBPlay();
 };
