@@ -32,7 +32,8 @@ void WorldMapCharacter::RunUpdate(float _Delta)
 	int CurIndex = WorldCharacterRenderer->CurAnimation()->CurIndex;
 	if (2 == CurIndex || 10 == CurIndex)
 	{
-		
+		RunSoundPlayer.RandomSoundPlay();
+		CreateRunDust();
 	}
 
 	DirChange();

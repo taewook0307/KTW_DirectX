@@ -3,6 +3,7 @@
 
 #include "Map.h"
 #include "WorldMapPortal.h"
+#include "WorldMapCharacter_RunDust.h"
 
 #include "FadeObject.h"
 
@@ -17,7 +18,7 @@ WorldMapCharacter::~WorldMapCharacter()
 
 void WorldMapCharacter::Start()
 {
-	WalkSoundSetting();
+	RunSoundSetting();
 
 	WorldCharacterRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
 	WorldCharacterRenderer->CreateAnimation("WorldCharacter_Idle_Up", "WorldMapCharacter_Idle_Up", 0.1f, -1, -1);
@@ -258,23 +259,25 @@ void WorldMapCharacter::PortalEventParaSetting()
 		};
 }
 
-void WorldMapCharacter::WalkSoundSetting()
+void WorldMapCharacter::CreateRunDust()
 {
-	WalkSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_001.wav");
-	WalkSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_002.wav");
-	WalkSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_003.wav");
-	WalkSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_004.wav");
-	WalkSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_005.wav");
-	WalkSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_006.wav");
-	WalkSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_007.wav");
-	WalkSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_008.wav");
-	WalkSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_009.wav");
-	WalkSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_010.wav");
-	WalkSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_011.wav");
-	WalkSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_012.wav");
+	std::shared_ptr<WorldMapCharacter_RunDust> DustEffect = GetLevel()->CreateActor<WorldMapCharacter_RunDust>(EUPDATEORDER::Effect);
+	float4 Pos = Transform.GetWorldPosition();
+	DustEffect->Transform.SetLocalPosition(Pos);
 }
 
-void WorldMapCharacter::WalkSoundPlay(GameEngineSpriteRenderer*)
+void WorldMapCharacter::RunSoundSetting()
 {
-	WalkSoundPlayer.RandomSoundPlay();
+	RunSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_001.wav");
+	RunSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_002.wav");
+	RunSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_003.wav");
+	RunSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_004.wav");
+	RunSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_005.wav");
+	RunSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_006.wav");
+	RunSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_007.wav");
+	RunSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_008.wav");
+	RunSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_009.wav");
+	RunSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_010.wav");
+	RunSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_011.wav");
+	RunSoundPlayer.AddSoundList("sfx_WorldMap_Footstep_012.wav");
 }

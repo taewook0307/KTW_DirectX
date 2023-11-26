@@ -44,6 +44,7 @@ enum class ERENDERORDER
 
 	BossEffect,
 	
+	BackEffect,
 	Play,
 	PlayEffect,
 	

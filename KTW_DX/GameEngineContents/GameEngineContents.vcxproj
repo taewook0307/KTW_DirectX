@@ -262,6 +262,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="WorldMapCharacter_RunDust.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="WorldMapPortal.h">
       <SubType>
       </SubType>
@@ -616,6 +620,10 @@
     <ClCompile Include="OldFilm.cpp" />
     <ClCompile Include="PirateBoss_Sound.cpp" />
     <ClCompile Include="TestLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="WorldMapCharacter_RunDust.cpp">
       <SubType>
       </SubType>
     </ClCompile>

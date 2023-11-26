@@ -63,8 +63,8 @@ private:
 
 	void PortalEventParaSetting();
 
-	ContentsSoundPlayer WalkSoundPlayer;
+	ContentsSoundPlayer RunSoundPlayer;
 
-	void WalkSoundSetting();
-	void WalkSoundPlay(GameEngineSpriteRenderer*);
+	void CreateRunDust();
+	void RunSoundSetting();
 };

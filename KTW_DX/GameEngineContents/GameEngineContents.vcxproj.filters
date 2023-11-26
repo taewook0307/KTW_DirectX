@@ -269,6 +269,9 @@
     <ClInclude Include="ContentsSoundPlayer.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="WorldMapCharacter_RunDust.h">
+      <Filter>Level\7. WorldMap\WorldMapActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -586,6 +589,9 @@
     </ClCompile>
     <ClCompile Include="ContentsSoundPlayer.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMapCharacter_RunDust.cpp">
+      <Filter>Level\7. WorldMap\WorldMapActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
