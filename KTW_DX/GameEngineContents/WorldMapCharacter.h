@@ -2,6 +2,8 @@
 
 #include "BaseActor.h"
 
+#include "ContentsSoundPlayer.h"
+
 #define MINIMAPCHARACTERCOLLISIONSCALE { 60.0f, 90.0f }
 
 #define CLEARLOOPCOUNT 2
@@ -60,4 +62,9 @@ private:
 	void Update(float _Delta) override;
 
 	void PortalEventParaSetting();
+
+	ContentsSoundPlayer WalkSoundPlayer;
+
+	void WalkSoundSetting();
+	void WalkSoundPlay(GameEngineSpriteRenderer*);
 };

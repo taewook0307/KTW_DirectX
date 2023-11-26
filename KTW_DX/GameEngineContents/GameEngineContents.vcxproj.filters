@@ -266,6 +266,9 @@
     <ClInclude Include="FirstBoss.h">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Phase1_2</Filter>
     </ClInclude>
+    <ClInclude Include="ContentsSoundPlayer.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -580,6 +583,9 @@
     </ClCompile>
     <ClCompile Include="PirateBoss_Sound.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Pirate</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsSoundPlayer.cpp">
+      <Filter>Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

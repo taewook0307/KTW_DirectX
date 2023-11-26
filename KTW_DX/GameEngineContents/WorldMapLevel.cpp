@@ -28,6 +28,7 @@ WorldMapLevel::~WorldMapLevel()
 void WorldMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	// 리소스 Load
+	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\WorldMap");
 	ContentsResourcesManager::CreateSingleSpriteDir("Resources\\Texture\\WorldMapLevel\\Map");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapEnter");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapFlag");
