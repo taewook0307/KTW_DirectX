@@ -2,6 +2,7 @@
 #include "LastBossStage.h"
 
 #include "BackGround.h"
+#include "UpperObject.h"
 #include "Map.h"
 #include "DevilChair.h"
 #include "Devil.h"
@@ -26,6 +27,7 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\LastStage\\Devil_AttackObject");
 	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\LastStage\\SummonDevil");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\BackGround\\LastStageBackGround.png");
+	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\BackGround\\devil_bg_ph_1_foreground.png");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageMap.png");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageChair.png");
@@ -49,6 +51,10 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	StageMap->MapInit("LastStageMap.Png");
 	StageMap->PixelMapInit("LastStagePixelMap.Png");
 	StageMap->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y });
+
+	StageUpper = CreateActor<UpperObject>(EUPDATEORDER::BackGround);
+	StageUpper->UpperObjectInit("devil_bg_ph_1_foreground.png", 0, false);
+	StageUpper->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y });
 
 	BossChair = CreateActor<DevilChair>(EUPDATEORDER::Map);
 	BossChair->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Y + 80.0f });
