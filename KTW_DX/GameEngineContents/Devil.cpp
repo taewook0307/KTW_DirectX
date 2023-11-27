@@ -561,7 +561,9 @@ void Devil::ChangeSerpentDir()
 
 void Devil::HitCountCheck()
 {
-	if (735 < HitCount && false == DevilRenderer->IsCurAnimation("Devil_Death_Stay"))
+	if (735 < HitCount
+		&& false == DevilRenderer->IsCurAnimation("Devil_Death_Stay")
+		&& false == DevilRenderer->IsCurAnimation("Devil_Death"))
 	{
 		StageLevel::StageClear();
 		DevilState.ChangeState(EDEVILSTATE::Death);
