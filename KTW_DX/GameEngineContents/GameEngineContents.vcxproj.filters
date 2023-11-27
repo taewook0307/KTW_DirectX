@@ -266,6 +266,12 @@
     <ClInclude Include="FirstBoss.h">
       <Filter>Level\8. FirstBossStage\FirstBossStageActor\Phase1_2</Filter>
     </ClInclude>
+    <ClInclude Include="ContentsSoundPlayer.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMapCharacter_RunDust.h">
+      <Filter>Level\7. WorldMap\WorldMapActor</Filter>
+    </ClInclude>
     <ClInclude Include="LogoActor.h">
       <Filter>Level\1. Logo</Filter>
     </ClInclude>
@@ -583,6 +589,12 @@
     </ClCompile>
     <ClCompile Include="PirateBoss_Sound.cpp">
       <Filter>Level\9. SecondBossStage\SecondBossStageActor\Pirate</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsSoundPlayer.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMapCharacter_RunDust.cpp">
+      <Filter>Level\7. WorldMap\WorldMapActor</Filter>
     </ClCompile>
     <ClCompile Include="LogoActor.cpp">
       <Filter>Level\1. Logo</Filter>
