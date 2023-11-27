@@ -4,8 +4,8 @@
 void FirstBoss::Phase2MoveSoundPlay()
 {
 	GameEngineRandom Random;
-	unsigned int Time = static_cast<unsigned int>(time(NULL));
-	Random.SetSeed(static_cast<long long>(Time));
+	long long Time = static_cast<long long>(time(NULL));
+	Random.SetSeed(Time);
 
 	int SoundNum = Random.RandomInt(0, 4);
 
@@ -32,8 +32,8 @@ void FirstBoss::Phase2MoveSoundPlay()
 void FirstBoss::Phase2LandSoundPlay()
 {
 	GameEngineRandom Random;
-	unsigned int Time = static_cast<unsigned int>(time(NULL));
-	Random.SetSeed(static_cast<long long>(Time));
+	long long Time = static_cast<long long>(time(NULL));
+	Random.SetSeed(Time);
 
 	int SoundNum = Random.RandomInt(0, 5);
 
@@ -63,8 +63,8 @@ void FirstBoss::Phase2LandSoundPlay()
 void FirstBoss::DeathSoundPlay()
 {
 	GameEngineRandom Random;
-	unsigned int Time = static_cast<unsigned int>(time(NULL));
-	Random.SetSeed(static_cast<long long>(Time));
+	long long Time = static_cast<long long>(time(NULL));
+	Random.SetSeed(Time);
 
 	int SoundNum = Random.RandomInt(0, 1);
 
@@ -81,8 +81,8 @@ void FirstBoss::DeathSoundPlay()
 void FirstBoss::Phase2AttackSoundPlay()
 {
 	GameEngineRandom Random;
-	unsigned int Time = static_cast<unsigned int>(time(NULL));
-	Random.SetSeed(static_cast<long long>(Time));
+	long long Time = static_cast<long long>(time(NULL));
+	Random.SetSeed(Time);
 
 	int SoundNum = Random.RandomInt(0, 5);
 	int AttackNum = Random.RandomInt(0, 3);

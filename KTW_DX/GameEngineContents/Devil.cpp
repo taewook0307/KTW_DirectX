@@ -72,8 +72,8 @@ void Devil::Start()
 					IdleTimer = IDLETIMER;
 
 					GameEngineRandom Random;
-					unsigned int Time = static_cast<unsigned int>(time(NULL));
-					Random.SetSeed(static_cast<long long>(Time));
+					long long Time = static_cast<long long>(time(NULL));
+					Random.SetSeed(Time);
 
 					int Pattern = Random.RandomInt(0, 3);
 
@@ -506,8 +506,8 @@ void Devil::HeadRendererSetting()
 void Devil::TridentSoundPlay()
 {
 	GameEngineRandom Random;
-	unsigned int Time = static_cast<unsigned int>(time(NULL));
-	Random.SetSeed(static_cast<long long>(Time));
+	long long Time = static_cast<long long>(time(NULL));
+	Random.SetSeed(Time);
 
 	int SoundNum = Random.RandomInt(0, 2);
 

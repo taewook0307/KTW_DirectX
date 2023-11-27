@@ -24,7 +24,11 @@ void WorldMapEnter::Update(float _Delta)
 	{
 		if (true == GameEngineInput::IsDown('Z', this) || true == GameEngineInput::IsDown(VK_RETURN, this))
 		{
-			GameEngineSound::SoundPlay("sfx_WorldMap_LevelSelect_StartLevel.wav");
+			if (true == LevelChangeSound)
+			{
+				GameEngineSound::SoundPlay("sfx_WorldMap_LevelSelect_StartLevel.wav");
+			}
+			
 			FadeEffect = GetLevel()->CreateActor<FadeObject>(EUPDATEORDER::UI);
 			FadeEffect->SetFadeType();
 		}

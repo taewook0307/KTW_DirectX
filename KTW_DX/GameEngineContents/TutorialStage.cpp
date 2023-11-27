@@ -89,6 +89,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	TutorialExit = CreateActor<WorldMapEnter>(EUPDATEORDER::Map);
 	TutorialExit->EnterSpriteInit("Tutorial_Exit.png");
 	TutorialExit->SetEnterLevel("WorldMapLevel");
+	TutorialExit->LevelChangeSoundOff();
 	TutorialExit->Transform.SetLocalPosition(EXITPOS);
 }
 

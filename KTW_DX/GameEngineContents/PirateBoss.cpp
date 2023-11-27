@@ -284,7 +284,8 @@ void PirateBoss::ChangeAnimation(std::string_view _State)
 void PirateBoss::CreatePirateBullet()
 {
 	GameEngineRandom Random;
-	Random.SetSeed(time(0));
+	long long Time = static_cast<long long>(time(NULL));
+	Random.SetSeed(Time);
 	int BulletType = Random.RandomInt(0, 1);
 
 	std::shared_ptr<PirateBullet> NewBullet = nullptr;

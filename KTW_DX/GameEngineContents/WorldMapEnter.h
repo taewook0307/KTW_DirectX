@@ -23,6 +23,16 @@ public:
 		EnterLevel = _EnterLevel;
 	}
 
+	void LevelChangeSoundOn()
+	{
+		LevelChangeSound = true;
+	}
+
+	void LevelChangeSoundOff()
+	{
+		LevelChangeSound = false;
+	}
+
 protected:
 
 private:
@@ -30,6 +40,8 @@ private:
 	std::shared_ptr<GameEngineCollision> WorldMapEnterCollision = nullptr;
 	std::shared_ptr<class FadeObject> FadeEffect = nullptr;
 	std::string EnterLevel = "";
+
+	bool LevelChangeSound = true;
 
 	void Start() override;
 	void Update(float _Delta) override;

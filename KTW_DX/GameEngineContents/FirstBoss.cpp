@@ -597,7 +597,8 @@ void FirstBoss::AllParryDeath()
 void FirstBoss::ChangeAttackState()
 {
 	GameEngineRandom Random;
-	Random.SetSeed(reinterpret_cast<long long>(this));
+	long long Time = static_cast<long long>(time(NULL));
+	Random.SetSeed(Time);
 	BounceCount = Random.RandomInt(MINBOUNCECOUNT, MAXBOUNCECOUNT);
 	ChangeState(EBOSSSTATE::Attack);
 	return;

@@ -76,7 +76,8 @@ void PirateBoss::IdleUpdate(float _Delta)
 void PirateBoss::ShootStart()
 {
 	GameEngineRandom Random;
-	Random.SetSeed(reinterpret_cast<long long>(this));
+	long long Time = static_cast<long long>(time(NULL));
+	Random.SetSeed(Time);
 	ShootCount = Random.RandomInt(MINSHOOTCOUNT, MAXSHOOTCOUNT);
 
 	ChangeAnimation("Shoot");

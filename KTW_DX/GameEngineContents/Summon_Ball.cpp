@@ -114,7 +114,8 @@ void Summon_Ball::BallMove(float _Delta)
 void Summon_Ball::DirPosSetting()
 {
 	GameEngineRandom Random;
-	Random.SetSeed(reinterpret_cast<long long>(this));
+	long long Time = static_cast<long long>(time(NULL));
+	Random.SetSeed(Time);
 
 	float RandomDeg = Random.RandomFloat(0.0f, 360.0f);
 	float4 Dir = float4::GetUnitVectorFromDeg(RandomDeg);

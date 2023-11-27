@@ -31,8 +31,8 @@ void BaseCharacter::ShootSoundPlay()
 void BaseCharacter::DashSoundPlay()
 {
 	GameEngineRandom Random;
-	unsigned int Time = static_cast<unsigned int>(time(NULL));
-	Random.SetSeed(static_cast<long long>(Time));
+	long long Time = static_cast<long long>(time(NULL));
+	Random.SetSeed(Time);
 
 	int SoundNum = Random.RandomInt(0, 2);
 
@@ -53,8 +53,8 @@ void BaseCharacter::DashSoundPlay()
 void BaseCharacter::DeathSoundPlay()
 {
 	GameEngineRandom Random;
-	unsigned int Time = static_cast<unsigned int>(time(NULL));
-	Random.SetSeed(static_cast<long long>(Time));
+	long long Time = static_cast<long long>(time(NULL));
+	Random.SetSeed(Time);
 
 	int SoundNum = Random.RandomInt(0, 1);
 
@@ -71,8 +71,8 @@ void BaseCharacter::DeathSoundPlay()
 void BaseCharacter::HitSoundPlay()
 {
 	GameEngineRandom Random;
-	unsigned int Time = static_cast<unsigned int>(time(NULL));
-	Random.SetSeed(static_cast<long long>(Time));
+	long long Time = static_cast<long long>(time(NULL));
+	Random.SetSeed(Time);
 
 	int SoundNum = Random.RandomInt(0, 4);
 
@@ -101,8 +101,8 @@ void BaseCharacter::HitSoundPlay()
 void BaseCharacter::JumpSoundPlay()
 {
 	GameEngineRandom Random;
-	unsigned int Time = static_cast<unsigned int>(time(NULL));
-	Random.SetSeed(static_cast<long long>(Time));
+	long long Time = static_cast<long long>(time(NULL));
+	Random.SetSeed(Time);
 
 	int SoundNum = Random.RandomInt(0, 2);
 
@@ -123,8 +123,8 @@ void BaseCharacter::JumpSoundPlay()
 void BaseCharacter::LandSoundPlay()
 {
 	GameEngineRandom Random;
-	unsigned int Time = static_cast<unsigned int>(time(NULL));
-	Random.SetSeed(static_cast<long long>(Time));
+	long long Time = static_cast<long long>(time(NULL));
+	Random.SetSeed(Time);
 
 	int SoundNum = Random.RandomInt(0, 1);
 
@@ -141,8 +141,8 @@ void BaseCharacter::LandSoundPlay()
 void BaseCharacter::ParrySoundPlay()
 {
 	GameEngineRandom Random;
-	unsigned int Time = static_cast<unsigned int>(time(NULL));
-	Random.SetSeed(static_cast<long long>(Time));
+	long long Time = static_cast<long long>(time(NULL));
+	Random.SetSeed(Time);
 
 	int SoundNum = Random.RandomInt(0, 1);
 
