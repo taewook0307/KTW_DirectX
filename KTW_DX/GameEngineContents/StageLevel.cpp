@@ -103,8 +103,6 @@ void StageLevel::StageEnd(float _Delta)
 {
 	if (ESTAGERESULT::Success == StageResult && false == ResultUI)
 	{
-		GameEngineSound::SoundPlay("sfx_level_knockout_bell.wav");
-		GameEngineSound::SoundPlay("sfx_level_announcer_knockout_0004.wav");
 		CreateActor<StageClearUI>(EUPDATEORDER::UI);
 		ResultUI = true;
 	}
