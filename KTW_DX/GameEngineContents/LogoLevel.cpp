@@ -1,7 +1,7 @@
 ﻿#include "PreCompile.h"
 #include "LogoLevel.h"
 
-#include "BackGround.h"
+#include "LogoActor.h"
 
 LogoLevel::LogoLevel()
 {
@@ -20,17 +20,8 @@ void LogoLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, 0.0f });
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
-	Logo = CreateActor<BackGround>(EUPDATEORDER::BackGround);
-	Logo->AnimationInit("Logo", "Logo.png", 0.04f, false);
+	Logo = CreateActor<LogoActor>(EUPDATEORDER::BackGround);
 	GameEngineSound::SoundPlay("MDHR_LOGO_STING.wav");
-}
-
-void LogoLevel::Update(float _Delta)
-{
-	if (true == Logo->AnimationEndCheck())
-	{
-		GameEngineCore::ChangeLevel("TitleLevel");
-	}
 }
 
 void LogoLevel::LevelEnd(GameEngineLevel* _NextLevel)

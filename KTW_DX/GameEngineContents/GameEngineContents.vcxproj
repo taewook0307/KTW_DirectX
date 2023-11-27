@@ -249,6 +249,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="LogoActor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="NearForest.h">
       <SubType>
       </SubType>
@@ -598,6 +602,10 @@
     <ClCompile Include="FirstBoss_Phase1_Sound.cpp" />
     <ClCompile Include="FirstBoss_Phase2_Sound.cpp" />
     <ClCompile Include="HpMarker.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="LogoActor.cpp">
       <SubType>
       </SubType>
     </ClCompile>

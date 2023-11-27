@@ -18,9 +18,8 @@ public:
 protected:
 
 private:
-	std::shared_ptr<class BackGround> Logo = nullptr;
+	std::shared_ptr<class LogoActor> Logo = nullptr;
 
-	void Update(float _Delta) override;
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
 };
