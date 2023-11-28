@@ -104,7 +104,6 @@ void ShipBubble::MoveStart()
 
 void ShipBubble::PopStart()
 {
-	AttackCollision->Off();
 	ChangeAnimation("Pop");
 }
 
