@@ -80,13 +80,16 @@ void LastBossStage::Update(float _Delta)
 
 	StageLevel::LastLevelEnd(_Delta);
 
-	if (0.0f > SummonTimer)
+	if (ESTAGERESULT::None == StageResult)
 	{
-		CreateSummonDevil();
-		SummonTimer = SUMMONTIMER;
-	}
+		if (0.0f > SummonTimer)
+		{
+			CreateSummonDevil();
+			SummonTimer = SUMMONTIMER;
+		}
 
-	SummonTimer -= _Delta;
+		SummonTimer -= _Delta;
+	}
 }
 
 void LastBossStage::LevelEnd(GameEngineLevel* _NextLevel)

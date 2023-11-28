@@ -154,17 +154,37 @@ void StageLevel::LastLevelEnd(float _Delta)
 		ResultUI = true;
 	}
 
-	if (ESTAGERESULT::None != StageResult)
+	if (true == ResultUI)
 	{
 		PhaseMoveTimer -= _Delta;
 	}
 
-	if (PhaseMoveTimer < 0.0f && ESTAGERESULT::Success == StageResult)
+	if (PhaseMoveTimer < 0.0f)
 	{
+		PhaseMoveTimer = PHASEMOVETIMER;
+		IsFade = true;
+		FadeEffect = GetLevelRenderTarget()->CreateEffect<FadePostEffect>();
+	}
+
+	if (true == IsFade)
+	{
+		LevelChangeTimer -= _Delta;
+	}
+
+	if (LevelChangeTimer < 0.0f && ESTAGERESULT::Success == StageResult)
+	{
+		IsFade = false;
+		ResultUI = false;
+		LevelChangeTimer = 3.0f;
+		StageResult = ESTAGERESULT::None;
 		GameEngineCore::ChangeLevel("OutroLevel");
 	}
-	else if(PhaseMoveTimer < 0.0f && ESTAGERESULT::Fail == StageResult)
+	else if(LevelChangeTimer < 0.0f && ESTAGERESULT::Fail == StageResult)
 	{
+		IsFade = false;
+		ResultUI = false;
+		LevelChangeTimer = 3.0f;
+		StageResult = ESTAGERESULT::None;
 		GameEngineCore::ChangeLevel("WorldMapLevel");
 	}
 }
