@@ -22,6 +22,23 @@ void BaseCharacter::Start()
 	PlayerRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::Play);
 	PlayerRenderer->CreateAnimation("CupHead_Intro", "Intro_Regular", CHARACTERANIMATIONINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Intro_Flex", "Intro_Flex", CHARACTERANIMATIONINTER);
+	PlayerRenderer->CreateAnimation("CupHead_Scared", "Scared", 0.06f, 0, 3, false);
+	PlayerRenderer->CreateAnimation("CupHead_Scared_Loop", "Scared", 0.06f, 4, 7, true);
+	PlayerRenderer->CreateAnimation("CupHead_Scared_End", "Scared", 0.06f, 8, 10, false);
+	PlayerRenderer->SetEndEvent("CupHead_Scared",
+		[&](GameEngineSpriteRenderer* _Renderer)
+		{
+			PlayerRenderer->ChangeAnimation("CupHead_Scared_Loop");
+			GameEngineSound::SoundPlay("sfx_player_intro_scared.wav");
+		}
+	);
+	PlayerRenderer->SetEndEvent("CupHead_Scared_End",
+		[=](GameEngineSpriteRenderer* _Renderer)
+		{
+			ChangeState(ECHARACTERSTATE::Idle);
+			return;
+		}
+	);
 	PlayerRenderer->CreateAnimation("CupHead_Idle", "Idle", IDLEINTER);
 	PlayerRenderer->CreateAnimation("CupHead_Run", "Run", CHARACTERANIMATIONINTER);
 	PlayerRenderer->SetFrameEvent("CupHead_Run", 1,
@@ -386,6 +403,8 @@ void BaseCharacter::StateUpdate(float _Delta)
 	{
 	case ECHARACTERSTATE::Intro:
 		return IntroUpdate(_Delta);
+	case ECHARACTERSTATE::Scared:
+		return ScaredUpdate(_Delta);
 	case ECHARACTERSTATE::Idle:
 		return IdleUpdate(_Delta);
 	case ECHARACTERSTATE::Run:
@@ -429,6 +448,9 @@ void BaseCharacter::ChangeState(ECHARACTERSTATE _CurState)
 		{
 		case ECHARACTERSTATE::Intro:
 			IntroStart();
+			break;
+		case ECHARACTERSTATE::Scared:
+			ScaredStart();
 			break;
 		case ECHARACTERSTATE::Idle:
 			IdleStart();
@@ -597,3 +619,4 @@ void BaseCharacter::ChangeSpecialAttackState()
 		}
 	}
 }
+

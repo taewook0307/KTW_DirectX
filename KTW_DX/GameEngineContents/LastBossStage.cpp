@@ -64,6 +64,8 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 
 	StageLevel::LevelStart(_PrevLevel);
 
+	Player->ChangeDevilStageIntro();
+
 	GameEngineInput::AddInputObject(this);
 }
 

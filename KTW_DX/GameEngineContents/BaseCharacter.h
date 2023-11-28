@@ -4,6 +4,8 @@
 #define CHARACTERANIMATIONINTER 0.04f
 #define IDLEINTER 0.08f
 
+#define SCAREDLOOPTIMER 1.6f
+
 #define SPEED 400.0f
 #define JUMPPOWER 1400.0f
 #define SHOOTTIMER 0.2f
@@ -69,6 +71,12 @@ public:
 		return HitSuccess;
 	}
 
+	void ChangeDevilStageIntro()
+	{
+		ChangeState(ECHARACTERSTATE::Scared);
+		return;
+	}
+
 protected:
 	void DirChange();
 	void AimDirChange();
@@ -89,6 +97,10 @@ protected:
 
 	void IntroStart();
 	void IntroUpdate(float _Delta);
+
+	float ScaredLoopTimer = SCAREDLOOPTIMER;
+	void ScaredStart();
+	void ScaredUpdate(float _Delta);
 
 	void IdleStart();
 	void IdleUpdate(float _Delta);

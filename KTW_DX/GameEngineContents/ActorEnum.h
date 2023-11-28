@@ -31,6 +31,7 @@ enum class ECHARACTERSTATE
 {
 	None,
 	Intro,
+	Scared,
 	Idle,
 	Run,
 	Jump,

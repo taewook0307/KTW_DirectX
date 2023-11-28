@@ -242,9 +242,6 @@
     <ClInclude Include="OldFilm.h">
       <Filter>Global\PostEffect</Filter>
     </ClInclude>
-    <ClInclude Include="BaseLevel.h">
-      <Filter>Global</Filter>
-    </ClInclude>
     <ClInclude Include="TestLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
@@ -274,6 +271,9 @@
     </ClInclude>
     <ClInclude Include="LogoActor.h">
       <Filter>Level\1. Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseLevel.h">
+      <Filter>Global\Level</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -548,9 +548,6 @@
     <ClCompile Include="OldFilm.cpp">
       <Filter>Global\PostEffect</Filter>
     </ClCompile>
-    <ClCompile Include="BaseLevel.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
     <ClCompile Include="TestLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
@@ -598,6 +595,9 @@
     </ClCompile>
     <ClCompile Include="LogoActor.cpp">
       <Filter>Level\1. Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseLevel.cpp">
+      <Filter>Global\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

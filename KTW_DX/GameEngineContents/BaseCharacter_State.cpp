@@ -102,6 +102,25 @@ void BaseCharacter::IntroUpdate(float _Delta)
 	}
 }
 
+void BaseCharacter::ScaredStart()
+{
+	ChangeAnimation("Scared");
+}
+
+void BaseCharacter::ScaredUpdate(float _Delta)
+{
+	if (ScaredLoopTimer < 0.0f)
+	{
+		PlayerRenderer->ChangeAnimation("CupHead_Scared_End");
+		ScaredLoopTimer = SCAREDLOOPTIMER;
+	}
+
+	if (true == PlayerRenderer->IsCurAnimation("CupHead_Scared_Loop"))
+	{
+		ScaredLoopTimer -= _Delta;
+	}
+}
+
 void BaseCharacter::IdleStart()
 {
 	ChangeAnimation("Idle");
