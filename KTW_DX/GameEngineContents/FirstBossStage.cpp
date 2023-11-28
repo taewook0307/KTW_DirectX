@@ -43,6 +43,8 @@ void FirstBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\FirstBossStage\\Map\\FirstBossMap_Upper.png");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\FirstBossStage\\FirstBoss");
 
+	BGMPlayer = GameEngineSound::SoundPlay("12 Ruse Of An Ooze.mp3");
+
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("FirstBossBitMap.png");
 	MapScale = MapTexture.get()->GetScale();
 
@@ -118,6 +120,8 @@ void FirstBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	Phase3Timer = PHASE3TIMER;
 	Phase3Start = false;
+
+	BGMPlayer.Stop();
 
 	StageLevel::LevelEnd(_NextLevel);
 

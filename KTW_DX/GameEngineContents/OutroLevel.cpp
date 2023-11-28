@@ -18,11 +18,15 @@ void OutroLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Intro\\cutscene_pageturn_03.wav");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Outro");
 
+	BGMPlayer = GameEngineSound::SoundPlay("55 Winner Takes All.mp3");
+
 	Outro = CreateActor<OutroBook>(EUPDATEORDER::BackGround);
 }
 
 void OutroLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
+	BGMPlayer.Stop();
+
 	if (nullptr != Outro)
 	{
 		Outro->Death();

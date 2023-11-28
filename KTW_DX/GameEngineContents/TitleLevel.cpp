@@ -20,6 +20,8 @@ void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\Title\\TitleAnimation");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\Title\\Title_BackGround.Png");
 
+	BGMPlayer = GameEngineSound::SoundPlay("01 Don't Deal With The Devil.mp3");
+
 	TitleBackGround = CreateActor<BackGround>(EUPDATEORDER::BackGround);
 	TitleBackGround->BackGroundInit("Title_BackGround.Png");
 

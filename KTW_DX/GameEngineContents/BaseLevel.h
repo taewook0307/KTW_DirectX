@@ -30,6 +30,8 @@ protected:
 		}
 	}
 
+	static GameEngineSoundPlayer BGMPlayer;
+
 private:
 	void Start() override;
 };

@@ -96,6 +96,8 @@ void MenuLevel::MenuChange()
 
 void MenuLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
+	BGMPlayer.Stop();
+
 	if (nullptr != Back)
 	{
 		Back->Death();

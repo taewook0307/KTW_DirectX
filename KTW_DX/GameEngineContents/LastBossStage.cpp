@@ -36,6 +36,8 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SummonDevil");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\FireBall");
 
+	BGMPlayer = GameEngineSound::SoundPlay("53 One Hell Of A Time.mp3");
+
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("LastStagePixelMap.png");
 	MapScale = MapTexture->GetScale();
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
@@ -94,6 +96,8 @@ void LastBossStage::Update(float _Delta)
 
 void LastBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
+	BGMPlayer.Stop();
+
 	StageLevel::LevelEnd(_NextLevel);
 
 	Boss->AllSummonDeath();

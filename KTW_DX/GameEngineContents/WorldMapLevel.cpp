@@ -35,6 +35,8 @@ void WorldMapLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapPortal");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\WorldMapLevel\\WorldMapCharacter");
 
+	BGMPlayer = GameEngineSound::SoundPlay("06 Inkwell Isle One.mp3");
+
 	// 미니맵 생성
 	WorldMap = CreateActor<Map>(EUPDATEORDER::Map);
 	WorldMap->MapInit("CupHead_WorldMap.png");
@@ -215,6 +217,8 @@ void WorldMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	CharacterSavePos = Character->Transform.GetWorldPosition();
 
 	AllRemainActorDeath<FadeObject>(EUPDATEORDER::UI);
+
+	BGMPlayer.Stop();
 
 	if (nullptr != WorldMap)
 	{

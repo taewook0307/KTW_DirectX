@@ -65,6 +65,8 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsResourcesManager::CreateSingleSpriteDir("Resources\\Texture\\SecondBossStage\\Map\\Sky");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\SecondBossStage\\Map\\Water");
 
+	BGMPlayer = GameEngineSound::SoundPlay("36 Shootin n' Lootin.mp3");
+
 	float4 WinScale = GameEngineCore::MainWindow.GetScale();
 
 	PirateBossActor = CreateActor<PirateBoss>(EUPDATEORDER::Monster);
@@ -146,6 +148,8 @@ void SecondBossStage::Update(float _Delta)
 
 void SecondBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
+	BGMPlayer.Stop();
+
 	StageLevel::LevelEnd(_NextLevel);
 
 	AllRemainActorDeath<PirateBullet>(EUPDATEORDER::Bullet);

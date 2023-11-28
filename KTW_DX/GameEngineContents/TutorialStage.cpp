@@ -35,6 +35,8 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\Tutorial\\Target");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\TargetExplosion");
 
+	BGMPlayer = GameEngineSound::SoundPlay("04 Tutorial.mp3");
+
 	std::shared_ptr<FadeObject> FadeEffect = CreateActor<FadeObject>(EUPDATEORDER::UI);
 	FadeEffect->SetFadeType(true);
 
@@ -112,6 +114,8 @@ void TutorialStage::Update(float _Delta)
 void TutorialStage::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	AllRemainActorDeath<FadeObject>(EUPDATEORDER::UI);
+
+	BGMPlayer.Stop();
 
 	if (nullptr != Player)
 	{

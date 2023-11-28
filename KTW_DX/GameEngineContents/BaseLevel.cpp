@@ -4,6 +4,8 @@
 #include "OldFilm.h"
 #include <GameEngineCore/BlurPostEffect.h>
 
+GameEngineSoundPlayer BaseLevel::BGMPlayer;
+
 BaseLevel::BaseLevel()
 {
 }

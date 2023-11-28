@@ -51,6 +51,7 @@ void ContentsCore::ContentsResourcesInit()
 	}
 
 	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\OldFilm");
+	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\BGM");
 
 	//{
 	//	D3D11_BLEND_DESC Desc = {};
