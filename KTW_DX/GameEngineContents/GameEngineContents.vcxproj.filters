@@ -275,9 +275,6 @@
     <ClInclude Include="BaseLevel.h">
       <Filter>Global\Level</Filter>
     </ClInclude>
-    <ClInclude Include="Smoke.h">
-      <Filter>Level\10. LastBossStage\LastBossStageActor\BackGround</Filter>
-    </ClInclude>
     <ClInclude Include="Lava.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\BackGround</Filter>
     </ClInclude>
@@ -604,9 +601,6 @@
     </ClCompile>
     <ClCompile Include="BaseLevel.cpp">
       <Filter>Global\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="Smoke.cpp">
-      <Filter>Level\10. LastBossStage\LastBossStageActor\BackGround</Filter>
     </ClCompile>
     <ClCompile Include="Lava.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor\BackGround</Filter>

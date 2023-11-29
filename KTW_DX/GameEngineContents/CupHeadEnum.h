@@ -13,7 +13,8 @@ enum class EUPDATEORDER
 enum class ERENDERORDER
 {
 	BackGround,
-	
+	UpperBackGround,
+
 	PrevMap,
 	PrevMap1,
 	PrevMap2,

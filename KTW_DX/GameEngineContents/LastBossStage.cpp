@@ -2,6 +2,7 @@
 #include "LastBossStage.h"
 
 #include "BackGround.h"
+#include "Lava.h"
 #include "UpperObject.h"
 #include "Map.h"
 #include "DevilChair.h"
@@ -28,6 +29,7 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\LastStage\\SummonDevil");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\BackGround\\LastStageBackGround.png");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\BackGround\\devil_bg_ph_1_foreground.png");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\BackGround\\Lava");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageMap.png");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageChair.png");
@@ -48,6 +50,13 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	StageBackGround = CreateActor<BackGround>(EUPDATEORDER::BackGround);
 	StageBackGround->BackGroundInitAuto("LastStageBackGround.png");
 	StageBackGround->Transform.SetLocalPosition({ MapScale.Half().X, -WinScaleHalf.Y });
+
+	LavaA = CreateActor<Lava>(EUPDATEORDER::BackGround);
+	LavaA->Transform.SetLocalPosition({ 265.0f, -255.0f });
+
+	LavaB = CreateActor<Lava>(EUPDATEORDER::BackGround);
+	LavaB->ChagneLavaType();
+	LavaB->Transform.SetLocalPosition({ 1155.0f, -215.0f });
 
 	StageMap = CreateActor<Map>(EUPDATEORDER::Map);
 	StageMap->MapInit("LastStageMap.Png");
@@ -109,6 +118,18 @@ void LastBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 		StageBackGround = nullptr;
 	}
 
+	if (nullptr != LavaA)
+	{
+		LavaA->Death();
+		LavaA = nullptr;
+	}
+
+	if (nullptr != LavaB)
+	{
+		LavaB->Death();
+		LavaB = nullptr;
+	}
+
 	if (nullptr != StageMap)
 	{
 		StageMap->Death();
@@ -128,6 +149,7 @@ void LastBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 	}
 
 	ContentsResourcesManager::SingleSpriteRelease("LastStageBackGround.png");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\BackGround\\Lava");
 	ContentsResourcesManager::SingleSpriteRelease("LastStageMap.png");
 	ContentsResourcesManager::SingleSpriteRelease("LastStagePixelMap.png");
 	ContentsResourcesManager::SingleSpriteRelease("LastStageChair.png");
