@@ -1,8 +1,9 @@
 ﻿#include "PreCompile.h"
 #include "TestLevel.h"
 
-#include "Card.h"
-#include "Map.h"
+#include "BackGround.h"
+#include "Lava.h"
+#include "Smoke.h"
 
 TestLevel::TestLevel()
 {
@@ -14,9 +15,9 @@ TestLevel::~TestLevel()
 
 void TestLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\Global\\UI\\Card");
 	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
-	ContentsResourcesManager::CreateSingleSpriteImage("Resources\\Texture\\LastBossStage\\Map\\LastStageChair.png");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\BackGround\\Lava");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\BackGround\\Smoke");
 
 	std::shared_ptr<GameEngineTexture> MapTexture = GameEngineTexture::Find("LastStagePixelMap.png");
 	float4 MapScale = MapTexture->GetScale();
@@ -24,13 +25,15 @@ void TestLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	GetMainCamera()->Transform.SetLocalPosition({ MapScale.Half().X, -(MapScale.Y - WinScale.Half().Y) });
 
-	std::shared_ptr<Map> TempMap = CreateActor<Map>(EUPDATEORDER::Map);
-	TempMap->MapInit("LastStagePixelMap.png");
-	TempMap->PixelMapInit("LastStagePixelMap.png");
-	TempMap->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y });
+	std::shared_ptr<BackGround> TempBack = CreateActor<BackGround>(EUPDATEORDER::BackGround);
+	TempBack->BackGroundInit("LastStagePixelMap.png");
+	TempBack->Transform.SetLocalPosition({ MapScale.Half().X, -MapScale.Half().Y });
 
-	std::shared_ptr<Card> Check = CreateActor<Card>(EUPDATEORDER::UI);
-	Check->Transform.SetLocalPosition({ 0.0f, 0.0f });
+	std::shared_ptr<Lava> TestLava = CreateActor<Lava>(EUPDATEORDER::BackGround);
+	TestLava->Transform.SetLocalPosition({ MapScale.Half().X, -(MapScale.Y - WinScale.Half().Y) });
+
+	std::shared_ptr<Smoke> TestSmoke = CreateActor<Smoke>(EUPDATEORDER::BackGround);
+	TestSmoke->Transform.SetLocalPosition({ MapScale.Half().X, -(MapScale.Y - WinScale.Half().Y) });
 }
 
 void TestLevel::Update(float _Delta)
@@ -40,5 +43,7 @@ void TestLevel::Update(float _Delta)
 
 void TestLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
-	ContentsResourcesManager::FolderSpriteRelease("Resources\\Texture\\Global\\UI\\Card");
+	ContentsResourcesManager::SingleSpriteRelease("Resources\\Texture\\LastBossStage\\Map\\LastStagePixelMap.png");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\BackGround\\Lava");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\BackGround\\Smoke");
 }

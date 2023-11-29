@@ -275,6 +275,12 @@
     <ClInclude Include="BaseLevel.h">
       <Filter>Global\Level</Filter>
     </ClInclude>
+    <ClInclude Include="Smoke.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Lava.h">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\BackGround</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -599,6 +605,12 @@
     <ClCompile Include="BaseLevel.cpp">
       <Filter>Global\Level</Filter>
     </ClCompile>
+    <ClCompile Include="Smoke.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Lava.cpp">
+      <Filter>Level\10. LastBossStage\LastBossStageActor\BackGround</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -786,6 +798,9 @@
     </Filter>
     <Filter Include="Level\8. FirstBossStage\FirstBossStageActor\Phase1_2">
       <UniqueIdentifier>{88ac670d-9a89-4a19-b51c-22853c719f39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\10. LastBossStage\LastBossStageActor\BackGround">
+      <UniqueIdentifier>{2138a680-6ef4-40d3-839a-7c25778eda19}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

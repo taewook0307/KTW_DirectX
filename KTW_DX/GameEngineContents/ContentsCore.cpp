@@ -105,14 +105,10 @@ void ContentsCore::Start()
 	GameEngineInput::AddInputObject(this);
 
 	//GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
-	//GameEngineGUI::CreateGUIWindow<GameEngineCoreWindow>("GameEngineCoreWindow");
 }
 
 void ContentsCore::Update(float _Delta)
 {
-	/*OutputDebugStringA(std::to_string(1.0f / _Delta).c_str());
-	OutputDebugStringA("\n");*/
-
 	if (true == GameEngineInput::IsDown('K', this))
 	{
 		GameEngineLevel::IsDebug = !GameEngineLevel::IsDebug;
