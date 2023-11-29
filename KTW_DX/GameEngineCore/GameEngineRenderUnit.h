@@ -13,6 +13,12 @@
 //	virtual void Draw() {}
 //};
 
+enum class RenderMode
+{
+	Indexed,
+	Instancing,
+};
+
 class GameEngineRenderUnit final : public GameEngineObjectBase, std::enable_shared_from_this<GameEngineRenderUnit>
 {
 public:
@@ -22,6 +28,7 @@ public:
 
 	void SetText(const std::string& _Font, const std::string& _Text, float _Scale = 20.0f, float4 Color = float4::RED, FW1_TEXT_FLAG Flag = FW1_LEFT);
 	void ChangeText(std::string_view _Text);
+	void ChangeFontScale(float _Size);
 	void SetTextColor(const float4& _Color = float4::RED);
 	void SetTextAlpha(float _AlphaValue = 0.0f);
 
@@ -29,6 +36,7 @@ public:
 	void SetMaterial(std::string_view _Name);
 
 	void ResSetting();
+	void ResReset();
 	void Draw();
 
 	void Render();
@@ -45,6 +53,16 @@ public:
 
 	GameEngineShaderResHelper ShaderResHelper;
 
+	inline void SetRenderMode(RenderMode _Mode)
+	{
+		Mode = _Mode;
+	}
+
+	inline void SetInstancingCount(int _Count)
+	{
+		InstancingCount = _Count;
+	}
+
 private:
 	class GameEngineRenderer* ParentRenderer = nullptr;
 
@@ -53,6 +71,11 @@ private:
 	float FontScale = 20.0f;
 	float4 FontColor = float4::RED;
 	FW1_TEXT_FLAG FontFlag;
+
+	RenderMode Mode = RenderMode::Indexed;
+
+	int InstancingCount = 0;
+
 
 	// 최적화 대상이 될수 있다.
 	// 이걸 어떻게든 관리할 방법을 찾는게 맞다.

@@ -1,11 +1,11 @@
 #include "PreCompile.h"
 #include "AStartPathFinder.h"
 
-AStartPathFinder::AStartPathFinder() 
+AStartPathFinder::AStartPathFinder()
 {
 }
 
-AStartPathFinder::~AStartPathFinder() 
+AStartPathFinder::~AStartPathFinder()
 {
 }
 
@@ -33,7 +33,7 @@ std::shared_ptr<PathFindNode> AStartPathFinder::CreateNode(PathFindNode* _Parent
 	NewNode->Index = _Start;
 	OpenIndex.insert(NewNode->Index.Key);
 
-	OpenList.insert(std::make_pair(NewNode->F,NewNode));
+	OpenList.insert(std::make_pair(NewNode->F, NewNode));
 	return NewNode;
 }
 

@@ -13,10 +13,10 @@ struct PixelOutPut
 };
 
 
-PixelOutPut DebugColor_VS(GameEngineVertex2D _Input) 
+PixelOutPut DebugColor_VS(GameEngineVertex2D _Input)
 {
     // 쉐이더 문법 모두 0인 자료형으로 초기화 하는것
-    PixelOutPut Result = (PixelOutPut)0;
+    PixelOutPut Result = (PixelOutPut) 0;
     Result.POSITION = mul(_Input.POSITION, WorldViewProjectionMatrix);
     
     return Result;

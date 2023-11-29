@@ -9,7 +9,7 @@
 
 bool GameEngineLevel::IsDebug = true;
 
-GameEngineLevel::GameEngineLevel() 
+GameEngineLevel::GameEngineLevel()
 {
 	// Main
 	{
@@ -34,11 +34,11 @@ std::shared_ptr<GameEngineCamera> GameEngineLevel::CreateCamera(int _Order, int 
 	return NewCamera;
 }
 
-GameEngineLevel::~GameEngineLevel() 
+GameEngineLevel::~GameEngineLevel()
 {
 }
 
-void GameEngineLevel::Start() 
+void GameEngineLevel::Start()
 {
 }
 

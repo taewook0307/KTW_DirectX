@@ -9,9 +9,9 @@
 class PathPoint
 {
 public:
-	union 
+	union
 	{
-		struct 
+		struct
 		{
 			int X;
 			int Y;
@@ -45,7 +45,7 @@ public:
 	float G;
 	float F; // H + G
 
-	void CalF() 
+	void CalF()
 	{
 		F = G + H;
 	}
@@ -57,7 +57,7 @@ class AStartPathFinder
 public:
 	std::function<bool(PathPoint)> IsBlockCallBack;
 
-	
+
 public:
 	AStartPathFinder();
 	~AStartPathFinder();

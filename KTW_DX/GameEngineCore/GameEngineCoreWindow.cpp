@@ -20,11 +20,11 @@ void GameEngineImageShotWindow::OnGUI(class GameEngineLevel* _Level, float _Delt
 // Core
 std::map<int, NameRenderTarget> GameEngineCoreWindow::DebugRenderTarget;
 
-GameEngineCoreWindow::GameEngineCoreWindow() 
+GameEngineCoreWindow::GameEngineCoreWindow()
 {
 }
 
-GameEngineCoreWindow::~GameEngineCoreWindow() 
+GameEngineCoreWindow::~GameEngineCoreWindow()
 {
 }
 

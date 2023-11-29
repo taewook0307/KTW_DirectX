@@ -15,12 +15,16 @@ struct ParticleUpdateInfo
 	float MinSpeed = 100.0f;
 	float MaxSpeed = 100.0f;
 	float MaxLife = 100.0f;
-	float Temp;
+	float Temp0;
+	float Temp1;
 	float4 ObjectWorldPos; // 액터나 랜더러의 월드 포지션
+	float4 StartScale = float4::ONE * 100.0f; // 액터나 랜더러의 월드 포지션
+	float4 EndScale = float4::ONE * 100.0f; // 액터나 랜더러의 월드 포지션
 };
 
 struct ParticleShareData
 {
+	// 현재 몇개나 살아있냐?
 	unsigned int iAliveCount;
 	unsigned int iPadding0;
 	unsigned int iPadding1;
