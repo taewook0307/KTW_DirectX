@@ -22,6 +22,7 @@
 
 #include "BackGround.h"
 #include "Map.h"
+#include "UpperObject.h"
 #include "Ocean.h"
 #include "Cloud.h"
 #include "WorldMapLevel.h"
@@ -79,7 +80,7 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	BarrelActor->Transform.SetLocalPosition({ WinScale.Half().X, -220.0f });
 
 	Oceans[0] = CreateActor<Ocean>(EUPDATEORDER::BackGround);
-	Oceans[0]->SetOceanAnimation(ERENDERORDER::UpperBoss5, "Water_A", "Water_A");
+	Oceans[0]->SetOceanAnimation(ERENDERORDER::UpperPlayer1, "Water_A", "Water_A");
 	Oceans[0]->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScale.Y });
 
 	Oceans[1] = CreateActor<Ocean>(EUPDATEORDER::BackGround);
@@ -120,6 +121,10 @@ void SecondBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	SecondStageMap->MapInit("SecondMap.Png");
 	SecondStageMap->PixelMapInit("SecondStagePixelMap.Png");
 	SecondStageMap->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
+
+	MapUpper = CreateActor<UpperObject>(EUPDATEORDER::Map);
+	MapUpper->UpperObjectInit("SecondMap_Upper.png", 0, false);
+	MapUpper->Transform.SetLocalPosition({ WinScaleHalf.X, -WinScaleHalf.Y });
 
 	StageLevel::LevelStart(_PrevLevel);
 

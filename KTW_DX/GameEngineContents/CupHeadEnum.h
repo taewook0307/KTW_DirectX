@@ -50,6 +50,7 @@ enum class ERENDERORDER
 	PlayEffect,
 	
 	UpperPlayer,
+	UpperPlayer1,
 
 	Bullet,
 	UI,

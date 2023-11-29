@@ -22,6 +22,7 @@ private:
 	std::shared_ptr<class ShipBoss> ShipBossActor = nullptr;
 	std::shared_ptr<class Barrel> BarrelActor = nullptr;
 	std::shared_ptr<class Map> SecondStageMap = nullptr;
+	std::shared_ptr<class UpperObject> MapUpper = nullptr;
 
 	std::shared_ptr<class BackGround> Sky = nullptr;
 
