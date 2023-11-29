@@ -264,16 +264,10 @@ void FirstBoss::Start()
 
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_IntroStay", "FirstBoss_Phase2_Intro", FIRSTBOSSANIMATIONINTER, 35, 36, true);
 	FirstBossRenderer->CreateAnimation("FirstBoss_Phase2_IntroEnd", "FirstBoss_Phase2_Intro", FIRSTBOSSANIMATIONINTER, 37, 47, false);
-	FirstBossRenderer->SetStartEvent("FirstBoss_Phase2_IntroEnd",
-		[=](GameEngineSpriteRenderer* _Renderer)
-		{
-			AllParryDeath();
-		}
-	);
-
 	FirstBossRenderer->SetEndEvent("FirstBoss_Phase2_IntroEnd",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
+			AllParryDeath();
 			IsIntroState = false;
 			ChangeState(EBOSSSTATE::Idle);
 			return;
@@ -576,13 +570,13 @@ void FirstBoss::CreateParryObject()
 
 	AllParry[0]->Transform.SetLocalPosition(ParryObjectPos);
 
-	ParryObjectPos = { MonsterPos.X - 100.0f, (MonsterPos.Y + SpriteScale.Y) };
+	ParryObjectPos = { MonsterPos.X - 130.0f, (MonsterPos.Y + SpriteScale.Y) };
 	AllParry[1]->Transform.SetLocalPosition(ParryObjectPos);
-	AllParry[1]->Transform.SetLocalRotation({ 0.0f, 0.0f, -30.0f });
-
-	ParryObjectPos = { MonsterPos.X + 100.0f, (MonsterPos.Y + SpriteScale.Y) };
-	AllParry[2]->Transform.SetLocalPosition(ParryObjectPos);
 	AllParry[1]->Transform.SetLocalRotation({ 0.0f, 0.0f, 30.0f });
+
+	ParryObjectPos = { MonsterPos.X + 130.0f, (MonsterPos.Y + SpriteScale.Y) };
+	AllParry[2]->Transform.SetLocalPosition(ParryObjectPos);
+	AllParry[2]->Transform.SetLocalRotation({ 0.0f, 0.0f, -30.0f });
 }
 
 void FirstBoss::AllParryDeath()
