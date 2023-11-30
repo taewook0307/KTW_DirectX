@@ -55,6 +55,7 @@ void Devil::Start()
 			};
 		Para.End = [=](GameEngineState* _Parent)
 			{
+				EyeRenderer->Off();
 				DevilCollision->On();
 			};
 		DevilState.CreateState(EDEVILSTATE::Intro, Para);
@@ -64,7 +65,11 @@ void Devil::Start()
 	{
 		CreateStateParameter Para;
 
-		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Idle"); };
+		Para.Start = [=](GameEngineState* _Parent)
+			{
+				DevilCollision->On();
+				DevilRenderer->ChangeAnimation("Devil_Idle");
+			};
 		Para.Stay = [&](float _DeltaTime, GameEngineState* _Parent)
 			{
 				if (IdleTimer < 0.0f)
@@ -141,7 +146,11 @@ void Devil::Start()
 	{
 		CreateStateParameter Para;
 
-		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Ram"); };
+		Para.Start = [=](GameEngineState* _Parent)
+			{
+				DevilCollision->On();
+				DevilRenderer->ChangeAnimation("Devil_Ram");
+			};
 		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
 			{
 				if (true == DevilRenderer->IsCurAnimation("Devil_Ram_Stay"))
@@ -226,6 +235,7 @@ void Devil::Start()
 
 		Para.Start = [=](GameEngineState* _Parent)\
 		{
+			DevilCollision->On();
 			GameEngineSound::SoundPlay("devil_handclap_snake_001.wav");
 			DevilRenderer->ChangeAnimation("Devil_Serpent");
 		};
@@ -299,7 +309,11 @@ void Devil::Start()
 	{
 		CreateStateParameter Para;
 
-		Para.Start = [=](GameEngineState* _Parent) { DevilRenderer->ChangeAnimation("Devil_Attack"); };
+		Para.Start = [=](GameEngineState* _Parent)
+			{
+				DevilCollision->On();
+				DevilRenderer->ChangeAnimation("Devil_Attack");
+			};
 		Para.Stay = [=](float DeltaTime, GameEngineState* _Parent)
 			{
 				if (true == DevilRenderer->IsCurAnimationEnd())
