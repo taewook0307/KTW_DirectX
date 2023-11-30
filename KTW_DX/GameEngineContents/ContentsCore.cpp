@@ -104,7 +104,7 @@ void ContentsCore::Start()
 
 	GameEngineInput::AddInputObject(this);
 
-	//GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
+	GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("Level Change Tool");
 }
 
 void ContentsCore::Update(float _Delta)

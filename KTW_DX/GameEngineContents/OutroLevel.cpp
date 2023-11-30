@@ -2,6 +2,7 @@
 #include "OutroLevel.h"
 
 #include "OutroBook.h"
+#include "WorldMapLevel.h"
 
 OutroLevel::OutroLevel()
 {
@@ -25,6 +26,8 @@ void OutroLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void OutroLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
+	WorldMapLevel::WorldReset();
+
 	BGMPlayer.Stop();
 
 	if (nullptr != Outro)

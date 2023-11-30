@@ -41,7 +41,7 @@ void StageLevel::CharacterResourcesLoad()
 
 void StageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	//GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
+	GameEngineGUI::CreateGUIWindow<DebugWindow>("Debug Tool");
 
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Global\\StageEffect");
 	ContentsResourcesManager::SoundLoadDir("Resources\\Sound\\Global\\StageUI");

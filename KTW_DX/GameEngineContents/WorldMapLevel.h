@@ -28,6 +28,7 @@
 
 class WorldMapLevel : public BaseLevel
 {
+	friend class Trigger;
 public:
 	// constrcuter destructer
 	WorldMapLevel();
@@ -47,6 +48,16 @@ public:
 	static void IsCreateStage2Flag()
 	{
 		CreateStage2Flag = true;
+	}
+
+	static void WorldReset()
+	{
+		Stage1Clear = false;
+		Stage2Clear = false;
+		CreateStage1Flag = false;
+		CreateStage2Flag = false;
+		PortalSpawnDone = false;
+		CharacterSavePos = CHARACTERSTARTPOS;
 	}
 
 protected:
@@ -78,6 +89,8 @@ private:
 	static bool Stage1Clear;
 	static bool Stage2Clear;
 
+	static bool LastStageIn;
+
 	static bool CreateStage1Flag;
 	static bool CreateStage2Flag;
 
@@ -92,4 +105,14 @@ private:
 	bool CameraMoveToCharacterPos(float _Delta);
 
 	GameEngineState WorldMapState;
+
+	static void LastStageInTrue()
+	{
+		LastStageIn = true;
+	}
+
+	inline void ChangeCharacterSavePosToLastStage()
+	{
+		CharacterSavePos = LASTSTAGESPAWNPOSITiON;
+	}
 };

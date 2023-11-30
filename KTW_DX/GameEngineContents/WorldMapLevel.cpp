@@ -12,6 +12,8 @@
 
 bool WorldMapLevel::Stage1Clear = false;
 bool WorldMapLevel::Stage2Clear = false;
+bool WorldMapLevel::LastStageIn = false;
+
 bool WorldMapLevel::CreateStage1Flag = false;
 bool WorldMapLevel::CreateStage2Flag = false;
 bool WorldMapLevel::PortalSpawnDone = false;
@@ -215,6 +217,12 @@ void WorldMapLevel::Update(float _Delta)
 void WorldMapLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	CharacterSavePos = Character->Transform.GetWorldPosition();
+
+	if (true == LastStageIn)
+	{
+		LastStageIn = false;
+		ChangeCharacterSavePosToLastStage();
+	}
 
 	AllRemainActorDeath<FadeObject>(EUPDATEORDER::UI);
 

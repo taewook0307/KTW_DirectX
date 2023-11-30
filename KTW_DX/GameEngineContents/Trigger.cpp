@@ -1,6 +1,7 @@
 ﻿#include "PreCompile.h"
 #include "Trigger.h"
 
+#include "WorldMapLevel.h"
 #include "FadeObject.h"
 
 Trigger::Trigger()
@@ -32,6 +33,7 @@ void Trigger::Update(float _Delta)
 		
 		if (nullptr != FadeEffect && true == FadeEffect->GetFadeAnimationEnd())
 		{
+			WorldMapLevel::LastStageInTrue();
 			GameEngineCore::ChangeLevel("3.LastBoss_Stage");
 		}
 	}
