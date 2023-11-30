@@ -209,6 +209,8 @@ void PirateBoss::Start()
 	PirateCollision->Transform.SetLocalPosition(PIRATECOLLISIONPOSITION);
 
 	ChangeState(EPIRATEBOSSSTATE::Intro);
+
+	GameEngineInput::AddInputObject(this);
 }
 
 void PirateBoss::Update(float _Delta)
@@ -216,6 +218,18 @@ void PirateBoss::Update(float _Delta)
 	StateUpdate(_Delta);
 
 	PhaseChange();
+
+	if (true == GameEngineInput::IsDown('1', this))
+	{
+		if (EBOSSPHASE::Phase2 != CurPhase)
+		{
+			CurPhase = EBOSSPHASE::Phase2;
+			ShipBoss::MainShip->CurPhase = EBOSSPHASE::Phase2;
+		}
+
+		ChangeState(EPIRATEBOSSSTATE::Whistle);
+		return;
+	}
 }
 
 void PirateBoss::ChangeState(EPIRATEBOSSSTATE _CurState)
