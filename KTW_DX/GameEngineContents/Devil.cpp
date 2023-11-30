@@ -424,7 +424,7 @@ void Devil::Start()
 		DevilState.CreateState(EDEVILSTATE::Death, Para);
 	}
 
-	DevilCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossBody);
+	DevilCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::UnDamageBoss);
 	DevilCollision->Transform.SetLocalScale(DEVILCOLLISIONSCALE);
 	DevilCollision->Transform.SetLocalPosition(DEVILCOLLISIONPOSITION);
 
