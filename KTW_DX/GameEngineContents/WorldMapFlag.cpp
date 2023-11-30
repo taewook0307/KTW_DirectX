@@ -37,7 +37,11 @@ void WorldMapFlag::Start()
 	// Rise State
 	{
 		CreateStateParameter Para;
-		Para.Start = [=](GameEngineState* _State) { FlagRenderer->ChangeAnimation("Flag_Rise"); };
+		Para.Start = [=](GameEngineState* _State)
+			{
+				GameEngineSound::SoundPlay("flag_raise.wav");
+				FlagRenderer->ChangeAnimation("Flag_Rise");
+			};
 		Para.Stay =
 			[=](float _DeltaTime, GameEngineState* _State)
 			{

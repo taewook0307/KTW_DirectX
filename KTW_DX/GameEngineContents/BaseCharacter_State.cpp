@@ -347,6 +347,12 @@ void BaseCharacter::FallUpdate(float _Delta)
 		ChangeState(ECHARACTERSTATE::Parry);
 		return;
 	}
+
+	if (true == GameEngineInput::IsDown(VK_SHIFT, this))
+	{
+		ChangeState(ECHARACTERSTATE::Dash);
+		return;
+	}
 }
 
 void BaseCharacter::DuckStart()

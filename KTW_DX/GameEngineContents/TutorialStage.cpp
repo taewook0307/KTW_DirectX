@@ -30,6 +30,7 @@ void TutorialStage::LevelStart(GameEngineLevel* _PrevLevel)
 
 	// 리소스 Load
 	CharacterResourcesLoad();
+	ContentsResourcesManager::SoundLoad("Resources\\Sound\\Tutorial\\sfx_clown_bulb_explosion_01.wav");
 	ContentsResourcesManager::CreateSingleSpriteDir("Resources\\Texture\\Tutorial");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\Tutorial\\Parry");
 	ContentsResourcesManager::CreateFolderSpriteDir("Resources\\Texture\\Tutorial\\Target");

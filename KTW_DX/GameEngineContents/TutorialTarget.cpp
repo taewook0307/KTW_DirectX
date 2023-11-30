@@ -49,6 +49,8 @@ void TutorialTarget::Update(float _Delta)
 
 void TutorialTarget::CreateExplosionEffect()
 {
+	GameEngineSound::SoundPlay("sfx_clown_bulb_explosion_01.wav");
+
 	std::shared_ptr<TargetExplosionEffect> Effect = GetLevel()->CreateActor<TargetExplosionEffect>(EUPDATEORDER::Effect);
 
 	float4 Pos = Transform.GetWorldPosition();
