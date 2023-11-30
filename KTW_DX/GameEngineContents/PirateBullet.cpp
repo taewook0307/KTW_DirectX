@@ -67,10 +67,6 @@ void PirateBullet::Start()
 	BulletCollision->Transform.SetLocalScale(PIRATEBULLETCOLLISIONSCALE);
 	BulletCollision->Transform.SetLocalPosition(PIRATEBULLETCOLLISIONPOSITION);
 
-	ParryCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::ParryObject);
-	ParryCollision->Transform.SetLocalScale(PIRATEBULLETCOLLISIONSCALE);
-	ParryCollision->Transform.SetLocalPosition(PIRATEBULLETCOLLISIONPOSITION);
-
 	float4 CharacterPos = BaseCharacter::MainCharacter->Transform.GetWorldPosition();
 	PlayerPos = { CharacterPos.X, CharacterPos.Y + ADJUSTVALUE };
 	PirateBulletState.ChangeState(EPIRATEBULLETSTATE::Move);
