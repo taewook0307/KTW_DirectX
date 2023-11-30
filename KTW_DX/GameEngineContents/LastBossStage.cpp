@@ -71,7 +71,7 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	BossChair->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Y + 80.0f });
 
 	Boss = CreateActor<Devil>(EUPDATEORDER::Monster);
-	Boss->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Y });
+	Boss->Transform.SetLocalPosition({ MapScale.Half().X, -WinScale.Y + 10.0f });
 
 	StageLevel::LevelStart(_PrevLevel);
 
