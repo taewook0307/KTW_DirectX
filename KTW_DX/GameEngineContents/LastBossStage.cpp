@@ -84,6 +84,7 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 void LastBossStage::Update(float _Delta)
 {
 	CameraMove(_Delta);
+	StageLevel::ParryUpdate(_Delta);
 
 	if (true == GameEngineInput::IsDown(VK_RETURN, this))
 	{
