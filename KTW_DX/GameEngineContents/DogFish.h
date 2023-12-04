@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BaseActor.h"
+#include "BaseSummonActor.h"
 
 #define DOGFISHJUMPPOWER 1400.0f
 
@@ -9,7 +9,7 @@
 #define DOGFISHCOLLISIONSCALE { 150.0f, 70.0f }
 #define DOGFISHCOLLISIONPOSITION { 0.0f, 35.0f }
 
-class DogFish : public BaseActor
+class DogFish : public BaseSummonActor
 {
 public:
 	// constrcuter destructer

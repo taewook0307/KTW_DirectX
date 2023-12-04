@@ -1,6 +1,6 @@
 #pragma once
 
-#include "DevilSummonActor.h"
+#include "BaseSummonActor.h"
 
 #define RAMARMANIMATIONINTER 0.1f
 #define MOVEENDPOINTERROR 0.05f
@@ -9,7 +9,7 @@
 #define RAMARMCOLLISIONPOSITIONRIGHT { -475.0f, 0.0f }
 #define RAMARMCOLLISIONPOSITIONLEFT { 475.0f, 0.0f }
 
-class Ram_Arm : public DevilSummonActor
+class Ram_Arm : public BaseSummonActor
 {
 public:
 	// constrcuter destructer

@@ -30,10 +30,6 @@ private:
 	void CreateFire();
 	void CreateBall();
 
-	bool SummonDeathCheck();
-	void AllSummonDeath();
-	std::vector<std::shared_ptr<class DevilSummonActor>> SummonActors;
-
 	bool SummonAttackBall = false;
 
 	bool AllChangeMove = false;

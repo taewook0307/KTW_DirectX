@@ -35,11 +35,6 @@ public:
 	PirateBoss& operator=(const PirateBoss& _Other) = delete;
 	PirateBoss& operator=(PirateBoss&& _Other) noexcept = delete;
 
-	void SummonDeath()
-	{
-		IsSummonDeath = true;
-	}
-
 	void ChangePhase3();
 
 protected:
@@ -57,9 +52,9 @@ private:
 
 	void KnockoutStart();
 
-	bool IsSummonDeath = true;
 	bool WhistleTime = true;
 	void WhistleStart();
+	void WhistleUpdate(float _Delta);
 
 	float PirateDeathTimer = PIRATEDEATHTIMER;
 	void DeathStart();

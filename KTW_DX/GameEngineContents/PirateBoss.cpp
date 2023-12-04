@@ -107,7 +107,7 @@ void PirateBoss::Start()
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			SummonEnemy();
-			ChangeState(EPIRATEBOSSSTATE::Idle);
+			PirateRenderer->ChangeAnimation("Pirate_Idle");
 			return;
 		}
 	);
@@ -272,6 +272,8 @@ void PirateBoss::StateUpdate(float _Delta)
 		return IntroUpdate(_Delta);
 	case EPIRATEBOSSSTATE::Idle:
 		return IdleUpdate(_Delta);
+	case EPIRATEBOSSSTATE::Whistle:
+		return WhistleUpdate(_Delta);
 	case EPIRATEBOSSSTATE::Death:
 		return DeathUpdate(_Delta);
 	default:
@@ -347,18 +349,20 @@ void PirateBoss::PhaseChange()
 
 void PirateBoss::SummonEnemy()
 {
-	IsSummonDeath = false;
+	SummonActors.clear();
+
+	SummonActors.resize(1);
 
 	if (false == SummonScope)
 	{
-		std::shared_ptr SummonShark = GetLevel()->CreateActor<Shark>(EUPDATEORDER::Monster);
-		SummonShark->Transform.SetLocalPosition(SUMMONSHARKPOS);
+		SummonActors[0] = GetLevel()->CreateActor<Shark>(EUPDATEORDER::Monster);
+		SummonActors[0]->Transform.SetLocalPosition(SUMMONSHARKPOS);
 		SummonScope = true;
 	}
 	else
 	{
-		std::shared_ptr<Periscope> SummonPeriscope = GetLevel()->CreateActor<Periscope>(EUPDATEORDER::Monster);
-		SummonPeriscope->Transform.SetLocalPosition(SUMMONSCOPEPOS);
+		SummonActors[0] = GetLevel()->CreateActor<Periscope>(EUPDATEORDER::Monster);
+		SummonActors[0]->Transform.SetLocalPosition(SUMMONSCOPEPOS);
 		SummonScope = false;
 	}
 }

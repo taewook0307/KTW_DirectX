@@ -7,17 +7,6 @@
 #include "Summon_Fire.h"
 #include "Summon_Ball.h"
 
-
-void Devil::AllSummonDeath()
-{
-	for (size_t i = 0; i < SummonActors.size(); i++)
-	{
-		SummonActors[i]->Death();
-	}
-
-	SummonActors.clear();
-}
-
 void Devil::CreateRamArm()
 {
 	AllSummonDeath();
@@ -160,18 +149,4 @@ void Devil::BallMoveReq(float _Delta)
 	}
 
 	BallMoveTimer -= _Delta;
-}
-
-bool Devil::SummonDeathCheck()
-{
-	for (size_t i = 0; i < SummonActors.size(); i++)
-	{
-		bool Check = SummonActors[i]->IsDeath();
-
-		if (false == Check)
-		{
-			return false;
-		}
-	}
-	return true;
 }

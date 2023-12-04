@@ -218,9 +218,6 @@
     <ClInclude Include="Devil.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil</Filter>
     </ClInclude>
-    <ClInclude Include="DevilSummonActor.h">
-      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon</Filter>
-    </ClInclude>
     <ClInclude Include="Summon_Ball.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
     </ClInclude>
@@ -277,6 +274,9 @@
     </ClInclude>
     <ClInclude Include="Lava.h">
       <Filter>Level\10. LastBossStage\LastBossStageActor\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseSummonActor.h">
+      <Filter>Global\Actor\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -527,9 +527,6 @@
     <ClCompile Include="Devil_Attack.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil</Filter>
     </ClCompile>
-    <ClCompile Include="DevilSummonActor.cpp">
-      <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon</Filter>
-    </ClCompile>
     <ClCompile Include="Summon_Ball.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor\Devil\Summon\SummonAttack</Filter>
     </ClCompile>
@@ -604,6 +601,9 @@
     </ClCompile>
     <ClCompile Include="Lava.cpp">
       <Filter>Level\10. LastBossStage\LastBossStageActor\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseSummonActor.cpp">
+      <Filter>Global\Actor\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

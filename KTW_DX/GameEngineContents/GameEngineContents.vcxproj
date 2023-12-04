@@ -192,6 +192,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BaseSummonActor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Bullet.h">
       <SubType>
       </SubType>
@@ -238,10 +242,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="DevilChair.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="DevilSummonActor.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -554,6 +554,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BaseSummonActor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <SubType>
       </SubType>
@@ -602,10 +606,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="DevilChair.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="DevilSummonActor.cpp">
       <SubType>
       </SubType>
     </ClCompile>

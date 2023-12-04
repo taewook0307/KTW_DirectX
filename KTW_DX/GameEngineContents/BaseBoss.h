@@ -31,6 +31,10 @@ protected:
 
 	int HitCount = 0;
 
+	std::vector<std::shared_ptr<class BaseSummonActor>> SummonActors;
+	bool SummonDeathCheck();
+	void AllSummonDeath();
+
 private:
 
 };

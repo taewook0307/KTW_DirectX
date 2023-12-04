@@ -1,12 +1,12 @@
 #pragma once
 
-#include "DevilSummonActor.h"
+#include "BaseSummonActor.h"
 
 #define SUMMONDEVILCOLLISIONSCALE { 125.0f, 150.0f }
 #define SUMMONDEVILCOLLISIONPOSITIONLEFT { 180.0f, 90.0f }
 #define SUMMONDEVILCOLLISIONPOSITIONRIGHT { -180.0f, 90.0f }
 
-class SummonDevil : public DevilSummonActor
+class SummonDevil : public BaseSummonActor
 {
 public:
 	// constrcuter destructer

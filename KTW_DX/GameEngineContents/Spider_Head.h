@@ -1,11 +1,11 @@
 #pragma once
 
-#include "DevilSummonActor.h"
+#include "BaseSummonActor.h"
 
 #define SPIDERCOLLISIONSCALE { 240.0f, 140.0f }
 #define SPIDERCOLLISIONPOSITION { 0.0f, 110.0f }
 
-class Spider_Head : public DevilSummonActor
+class Spider_Head : public BaseSummonActor
 {
 public:
 	// constrcuter destructer

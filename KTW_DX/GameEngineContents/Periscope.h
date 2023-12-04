@@ -1,11 +1,11 @@
 #pragma once
 
-#include <GameEngineCore/GameEngineActor.h>
+#include "BaseSummonActor.h"
 
 #define SUMMONPOS { 1050.0f, -720.0f }
 #define SUMMONTIMER 3.0f
 
-class Periscope : public GameEngineActor
+class Periscope : public BaseSummonActor
 {
 public:
 	// constrcuter destructer

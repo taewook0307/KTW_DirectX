@@ -1,5 +1,7 @@
 #pragma once
 
+#include "BaseSummonActor.h"
+
 #define SHARKANMATIONINTER 0.05f
 #define SHARKBITEANIMATIONINTER 0.03f
 
@@ -10,7 +12,7 @@
 #define SHARKSPEED 800.0f
 #define LEAVESPEED 400.0f
 
-class Shark : public GameEngineActor
+class Shark : public BaseSummonActor
 {
 public:
 	// constrcuter destructer

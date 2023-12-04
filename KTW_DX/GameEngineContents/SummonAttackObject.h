@@ -1,8 +1,8 @@
 #pragma once
 
-#include "DevilSummonActor.h"
+#include "BaseSummonActor.h"
 
-class SummonAttackObject : public DevilSummonActor
+class SummonAttackObject : public BaseSummonActor
 {
 public:
 	// constrcuter destructer

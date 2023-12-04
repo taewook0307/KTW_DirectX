@@ -1,6 +1,6 @@
 #pragma once
 
-#include "DevilSummonActor.h"
+#include "BaseSummonActor.h"
 
 #define SERPENTENDPOINTRATIO 0.25f
 
@@ -8,7 +8,7 @@
 #define SERPENTCOLLISIONPOSISIONRIGHT { -960.0f, 280.0f }
 #define SERPENTCOLLISIONPOSISIONLEFT { 960.0f, 280.0f }
 
-class Serpent_Head : public DevilSummonActor
+class Serpent_Head : public BaseSummonActor
 {
 public:
 	// constrcuter destructer

@@ -73,7 +73,6 @@ void Shark::LeaveUpdate(float _Delta)
 
 	if (-760.0f > SharkPos.X)
 	{
-		PirateBoss::MainPirateBoss->SummonDeath();
 		LeaveSound.Stop();
 		Death();
 	}

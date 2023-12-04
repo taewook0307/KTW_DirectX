@@ -56,7 +56,6 @@ void Periscope::Update(float _Delta)
 
 	if (0 == SummonCount)
 	{
-		PirateBoss::MainPirateBoss->SummonDeath();
 		Death();
 	}
 }

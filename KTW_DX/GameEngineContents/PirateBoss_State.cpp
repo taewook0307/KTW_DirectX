@@ -54,22 +54,7 @@ void PirateBoss::IdleUpdate(float _Delta)
 		}
 	}
 
-	if (EBOSSPHASE::Phase1 == CurPhase)
-	{
-		IdleTimer -= _Delta;
-	}
-	else if (EBOSSPHASE::Phase2 == CurPhase)
-	{
-		if (true == IsSummonDeath)
-		{
-			IdleTimer -= _Delta;
-			return;
-		}
-		else
-		{
-			return;
-		}
-	}
+	IdleTimer -= _Delta;
 }
 
 
@@ -91,6 +76,16 @@ void PirateBoss::KnockoutStart()
 void PirateBoss::WhistleStart()
 {
 	ChangeAnimation("Whistle");
+}
+
+void PirateBoss::WhistleUpdate(float _Delta)
+{
+	if (true == SummonDeathCheck() && 0 < SummonActors.size())
+	{
+		AllSummonDeath();
+		ChangeState(EPIRATEBOSSSTATE::Idle);
+		return;
+	}
 }
 
 void PirateBoss::DeathStart()
