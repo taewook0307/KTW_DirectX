@@ -1,7 +1,8 @@
 ﻿#include "PreCompile.h"
 #include "SummonAttackObject.h"
 
-#include "SummonAttacker_Effect.h"
+#include "SummonAttackObject_Effect.h"
+#include "SummonAttackObject_Effect_Parry.h"
 
 SummonAttackObject::SummonAttackObject()
 {
@@ -13,7 +14,13 @@ SummonAttackObject::~SummonAttackObject()
 
 void SummonAttackObject::CreateSummonEffect(const float4& _Pos)
 {
-	std::shared_ptr<SummonAttacker_Effect> Effect = GetLevel()->CreateActor<SummonAttacker_Effect>(EUPDATEORDER::Effect);
+	std::shared_ptr<SummonAttackObject_Effect> Effect = GetLevel()->CreateActor<SummonAttackObject_Effect>(EUPDATEORDER::Effect);
+	Effect->Transform.SetLocalPosition(_Pos);
+}
+
+void SummonAttackObject::CreateSummonEffectParry(const float4& _Pos)
+{
+	std::shared_ptr<SummonAttackObject_Effect_Parry> Effect = GetLevel()->CreateActor<SummonAttackObject_Effect_Parry>(EUPDATEORDER::Effect);
 	Effect->Transform.SetLocalPosition(_Pos);
 }
 

@@ -5,7 +5,9 @@
 #include "Spider_Head.h"
 #include "Serpent_Head.h"
 #include "Summon_Fire.h"
+#include "Summon_Fire_Parry.h"
 #include "Summon_Ball.h"
+#include "Summon_Ball_Parry.h"
 
 void Devil::CreateRamArm()
 {
@@ -76,7 +78,7 @@ void Devil::CreateFire()
 	SummonActors[2] = GetLevel()->CreateActor<Summon_Fire>(EUPDATEORDER::Bullet);
 	SummonActors[2]->Transform.SetLocalPosition(DevilPos + float4{ -150.0f, 200.0f });
 
-	SummonActors[3] = GetLevel()->CreateActor<Summon_Fire>(EUPDATEORDER::Bullet);
+	SummonActors[3] = GetLevel()->CreateActor<Summon_Fire_Parry>(EUPDATEORDER::Bullet);
 	SummonActors[3]->Transform.SetLocalPosition(DevilPos + float4{ 0.0f, 120.0f });
 
 	SummonActors[4] = GetLevel()->CreateActor<Summon_Fire>(EUPDATEORDER::Bullet);
@@ -104,7 +106,7 @@ void Devil::CreateBall()
 	SummonActors[2] = GetLevel()->CreateActor<Summon_Ball>(EUPDATEORDER::Bullet);
 	SummonActors[2]->Transform.SetLocalPosition(DevilPos + float4{ 200.0f, 300.0f });
 
-	SummonActors[3] = GetLevel()->CreateActor<Summon_Ball>(EUPDATEORDER::Bullet);
+	SummonActors[3] = GetLevel()->CreateActor<Summon_Ball_Parry>(EUPDATEORDER::Bullet);
 	SummonActors[3]->Transform.SetLocalPosition(DevilPos + float4{ 0.0f, 120.0f });
 }
 

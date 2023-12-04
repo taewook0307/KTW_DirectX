@@ -36,7 +36,8 @@ void LastBossStage::LevelStart(GameEngineLevel* _PrevLevel)
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\Devil");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SpiderHead");
 	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\SummonDevil");
-	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\FireBall");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\DevilAttackObject");
+	ContentsResourcesManager::CreateFolderSpriteAllDir("Resources\\Texture\\LastBossStage\\DevilAttackObject_Parry");
 
 	BGMPlayer = GameEngineSound::SoundPlay("53 One Hell Of A Time.mp3");
 
@@ -155,7 +156,8 @@ void LastBossStage::LevelEnd(GameEngineLevel* _NextLevel)
 	ContentsResourcesManager::SingleSpriteRelease("LastStageChair.png");
 	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\Devil");
 	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\SpiderHead");
-	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\FireBall");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\DevilAttackObject");
+	ContentsResourcesManager::SpriteAndTextureInAllDirRelease("Resources\\Texture\\LastBossStage\\DevilAttackObject_Parry");
 }
 
 void LastBossStage::CreateSummonDevil()

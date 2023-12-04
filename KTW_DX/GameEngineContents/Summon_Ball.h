@@ -18,14 +18,11 @@ public:
 	Summon_Ball& operator=(Summon_Ball&& _Other) noexcept = delete;
 
 protected:
-
-private:
 	float Speed = 500.0f;
 	float4 DirPos = float4::ZERO;
 
 	int Count = 0;
 
-	std::shared_ptr<GameEngineSpriteRenderer> BallRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> BallCollision = nullptr;
 
 	GameEngineState BallState;
@@ -38,5 +35,7 @@ private:
 	void BallMove(float _Delta);
 
 	void ChangeStateReq() override;
+
+private:
 
 };

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "BaseSummonActor.h"
+#include "ParryObject.h"
 
-class SummonAttackObject : public BaseSummonActor
+class SummonAttackObject : public ParryObject
 {
 public:
 	// constrcuter destructer
@@ -17,6 +17,7 @@ public:
 
 protected:
 	void CreateSummonEffect(const float4& _Pos);
+	void CreateSummonEffectParry(const float4& _Pos);
 
 	bool CameraOutCheck(const float4& _Pos);
 	bool CameraOutCheck();

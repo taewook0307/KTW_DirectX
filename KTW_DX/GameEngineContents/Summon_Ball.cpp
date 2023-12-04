@@ -13,9 +13,9 @@ Summon_Ball::~Summon_Ball()
 
 void Summon_Ball::Start()
 {
-	BallRenderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
-	BallRenderer->CreateAnimation("Ball_Spawn", "DevilAttacker_Spawn", 0.1f, -1, -1, false);
-	BallRenderer->SetStartEvent("Ball_Spawn",
+	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
+	Renderer->CreateAnimation("Ball_Spawn", "DevilAttackObject_Spawn", 0.1f, -1, -1, false);
+	Renderer->SetStartEvent("Ball_Spawn",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			float4 Pos = Transform.GetWorldPosition();
@@ -25,10 +25,10 @@ void Summon_Ball::Start()
 	{
 		CreateStateParameter Para;
 
-		Para.Start = [=](GameEngineState* _Parent) { BallRenderer->ChangeAnimation("Ball_Spawn"); };
+		Para.Start = [=](GameEngineState* _Parent) { Renderer->ChangeAnimation("Ball_Spawn"); };
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
 			{
-				if (true == BallRenderer->IsCurAnimationEnd())
+				if (true == Renderer->IsCurAnimationEnd())
 				{
 					BallState.ChangeState(ESUMMONATTACKOBJECTSTATE::Idle);
 				}
@@ -36,10 +36,10 @@ void Summon_Ball::Start()
 		BallState.CreateState(ESUMMONATTACKOBJECTSTATE::Spawn, Para);
 	}
 
-	BallRenderer->CreateAnimation("FireBall_Idle", "FireBall_Idle");
+	Renderer->CreateAnimation("Ball_Idle", "FireBall_Idle");
 	{
 		CreateStateParameter Para;
-		Para.Start = [=](GameEngineState* _Parent) { BallRenderer->ChangeAnimation("FireBall_Idle"); };
+		Para.Start = [=](GameEngineState* _Parent) { Renderer->ChangeAnimation("Ball_Idle"); };
 		BallState.CreateState(ESUMMONATTACKOBJECTSTATE::Idle, Para);
 	}
 
@@ -59,17 +59,17 @@ void Summon_Ball::Start()
 		BallState.CreateState(ESUMMONATTACKOBJECTSTATE::Move, Para);
 	}
 
-	BallRenderer->CreateAnimation("Ball_Death", "DevilAttacker_Death", 0.1f, -1, -1, false);
+	Renderer->CreateAnimation("Ball_Death", "DevilAttackObject_Death", 0.1f, -1, -1, false);
 	{
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent)
 			{
 				BallCollision->Off();
-				BallRenderer->ChangeAnimation("Ball_Death");
+				Renderer->ChangeAnimation("Ball_Death");
 			};
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
 			{
-				if (true == BallRenderer->IsCurAnimationEnd())
+				if (true == Renderer->IsCurAnimationEnd())
 				{
 					Death();
 				}
@@ -77,7 +77,7 @@ void Summon_Ball::Start()
 		BallState.CreateState(ESUMMONATTACKOBJECTSTATE::Death, Para);
 	}
 
-	BallRenderer->AutoSpriteSizeOn();
+	Renderer->AutoSpriteSizeOn();
 
 	BallCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
 	BallCollision->Transform.SetLocalScale(BALLCOLLISIONSCALE);

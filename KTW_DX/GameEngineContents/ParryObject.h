@@ -1,6 +1,8 @@
 #pragma once
 
-class ParryObject : public GameEngineActor
+#include "BaseSummonActor.h"
+
+class ParryObject : public BaseSummonActor
 {
 public:
 	// constrcuter destructer

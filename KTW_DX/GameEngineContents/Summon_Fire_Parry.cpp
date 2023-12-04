@@ -1,31 +1,29 @@
 ﻿#include "PreCompile.h"
-#include "Summon_Fire.h"
+#include "Summon_Fire_Parry.h"
 
-#include "BaseCharacter.h"
-
-Summon_Fire::Summon_Fire()
+Summon_Fire_Parry::Summon_Fire_Parry()
 {
 }
 
-Summon_Fire::~Summon_Fire()
+Summon_Fire_Parry::~Summon_Fire_Parry()
 {
 }
 
-void Summon_Fire::Start()
+void Summon_Fire_Parry::Start()
 {
 	Renderer = CreateComponent<GameEngineSpriteRenderer>(ERENDERORDER::UpperBoss);
-	Renderer->CreateAnimation("Fire_Spawn", "DevilAttackObject_Spawn", 0.1f, -1, -1, false);
-	Renderer->SetStartEvent("Fire_Spawn",
+	Renderer->CreateAnimation("Fire_Parry_Spawn", "DevilAttackObject_Parry_Spawn", 0.1f, -1, -1, false);
+	Renderer->SetStartEvent("Fire_Parry_Spawn",
 		[=](GameEngineSpriteRenderer* _Renderer)
 		{
 			float4 Pos = Transform.GetWorldPosition();
-			CreateSummonEffect(Pos);
+			CreateSummonEffectParry(Pos);
 		}
 	);
 	{
 		CreateStateParameter Para;
 
-		Para.Start = [=](GameEngineState* _Parent) { Renderer->ChangeAnimation("Fire_Spawn"); };
+		Para.Start = [=](GameEngineState* _Parent) { Renderer->ChangeAnimation("Fire_Parry_Spawn"); };
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
 			{
 				if (true == Renderer->IsCurAnimationEnd())
@@ -37,10 +35,10 @@ void Summon_Fire::Start()
 		FireState.CreateState(ESUMMONATTACKOBJECTSTATE::Spawn, Para);
 	}
 
-	Renderer->CreateAnimation("Fire_Idle", "Fire_Idle");
+	Renderer->CreateAnimation("Fire_Parry_Idle", "Fire_Parry_Idle");
 	{
 		CreateStateParameter Para;
-		Para.Start = [=](GameEngineState* _Parent) { Renderer->ChangeAnimation("Fire_Idle"); };
+		Para.Start = [=](GameEngineState* _Parent) { Renderer->ChangeAnimation("Fire_Parry_Idle"); };
 		FireState.CreateState(ESUMMONATTACKOBJECTSTATE::Idle, Para);
 	}
 
@@ -73,13 +71,13 @@ void Summon_Fire::Start()
 		FireState.CreateState(ESUMMONATTACKOBJECTSTATE::Move, Para);
 	}
 
-	Renderer->CreateAnimation("Fire_Death", "DevilAttackObject_Death", 0.1f, -1, -1, false);
+	Renderer->CreateAnimation("Fire_Parry_Death", "DevilAttackObject_Parry_Death", 0.1f, -1, -1, false);
 	{
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent)
 			{
 				FireCollision->Off();
-				Renderer->ChangeAnimation("Fire_Death");
+				Renderer->ChangeAnimation("Fire_Parry_Death");
 			};
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
 			{
@@ -96,25 +94,8 @@ void Summon_Fire::Start()
 	FireCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::BossAttack);
 	FireCollision->Transform.SetLocalScale(FIRECOLLISIONSCALE);
 
+	ParryCollision = CreateComponent<GameEngineCollision>(ECOLLISIONORDER::ParryObject);
+	ParryCollision->Transform.SetLocalScale(FIRECOLLISIONSCALE);
+
 	FireState.ChangeState(ESUMMONATTACKOBJECTSTATE::Spawn);
-}
-
-void Summon_Fire::Update(float _Delta)
-{
-	FireState.Update(_Delta);
-}
-
-void Summon_Fire::DirPosSetting()
-{
-	float4 CharacterPos = BaseCharacter::MainCharacter->Transform.GetWorldPosition();
-	float4 Pos = Transform.GetWorldPosition();
-
-	float4 Dir = CharacterPos - Pos;
-
-	DirPos = Dir.NormalizeReturn();
-}
-
-void Summon_Fire::ChangeStateReq()
-{
-	FireState.ChangeState(ESUMMONATTACKOBJECTSTATE::Move);
 }

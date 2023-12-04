@@ -18,12 +18,9 @@ public:
 	Summon_Fire& operator=(Summon_Fire&& _Other) noexcept = delete;
 
 protected:
-
-private:
 	float Speed = 500.0f;
 	float4 DirPos = float4::ZERO;
 
-	std::shared_ptr<GameEngineSpriteRenderer> FireRenderer = nullptr;
 	std::shared_ptr<GameEngineCollision> FireCollision = nullptr;
 
 	GameEngineState FireState;
@@ -33,4 +30,7 @@ private:
 
 	void DirPosSetting();
 	void ChangeStateReq() override;
+
+private:
+	
 };

@@ -266,6 +266,18 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="OldFilm.h" />
+    <ClInclude Include="SummonAttackObject_Effect_Parry.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Summon_Ball_Parry.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Summon_Fire_Parry.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TestLevel.h">
       <SubType>
       </SubType>
@@ -476,7 +488,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="SummonAttacker_Effect.h">
+    <ClInclude Include="SummonAttackObject_Effect.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -635,6 +647,18 @@
     </ClCompile>
     <ClCompile Include="OldFilm.cpp" />
     <ClCompile Include="PirateBoss_Sound.cpp" />
+    <ClCompile Include="SummonAttackObject_Effect_Parry.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Summon_Ball_Parry.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Summon_Fire_Parry.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TestLevel.cpp">
       <SubType>
       </SubType>
@@ -856,7 +880,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="SummonAttacker_Effect.cpp">
+    <ClCompile Include="SummonAttackObject_Effect.cpp">
       <SubType>
       </SubType>
     </ClCompile>
