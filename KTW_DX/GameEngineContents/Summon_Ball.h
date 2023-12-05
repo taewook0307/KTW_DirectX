@@ -36,6 +36,7 @@ protected:
 
 	void ChangeStateReq() override;
 
+	void DeathConditionCheck();
 private:
 
 };

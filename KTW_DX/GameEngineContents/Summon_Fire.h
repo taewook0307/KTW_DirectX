@@ -31,6 +31,7 @@ protected:
 	void DirPosSetting();
 	void ChangeStateReq() override;
 
+	void DeathConditionCheck();
 private:
 	
 };

@@ -38,6 +38,10 @@ void Summon_Ball_Parry::Start()
 	{
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent) { Renderer->ChangeAnimation("Ball_Parry_Idle"); };
+		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
+			{
+				DeathConditionCheck();
+			};
 		BallState.CreateState(ESUMMONATTACKOBJECTSTATE::Idle, Para);
 	}
 
@@ -47,12 +51,7 @@ void Summon_Ball_Parry::Start()
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
 			{
 				BallMove(_DeltaTime);
-
-				if (true == BallCollision->Collision(ECOLLISIONORDER::Player))
-				{
-					BallState.ChangeState(ESUMMONATTACKOBJECTSTATE::Death);
-					return;
-				}
+				DeathConditionCheck();
 			};
 		BallState.CreateState(ESUMMONATTACKOBJECTSTATE::Move, Para);
 	}

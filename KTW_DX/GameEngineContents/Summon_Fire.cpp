@@ -41,6 +41,7 @@ void Summon_Fire::Start()
 	{
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent) { Renderer->ChangeAnimation("Fire_Idle"); };
+		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent) { DeathConditionCheck(); };
 		FireState.CreateState(ESUMMONATTACKOBJECTSTATE::Idle, Para);
 	}
 
@@ -64,11 +65,7 @@ void Summon_Fire::Start()
 					Transform.AddLocalPosition(DirPos * _DeltaTime * Speed);
 				}
 
-				if (true == FireCollision->Collision(ECOLLISIONORDER::Player))
-				{
-					FireState.ChangeState(ESUMMONATTACKOBJECTSTATE::Death);
-					return;
-				}
+				DeathConditionCheck();
 			};
 		FireState.CreateState(ESUMMONATTACKOBJECTSTATE::Move, Para);
 	}
@@ -117,4 +114,13 @@ void Summon_Fire::DirPosSetting()
 void Summon_Fire::ChangeStateReq()
 {
 	FireState.ChangeState(ESUMMONATTACKOBJECTSTATE::Move);
+}
+
+void Summon_Fire::DeathConditionCheck()
+{
+	if (true == FireCollision->Collision(ECOLLISIONORDER::Player))
+	{
+		FireState.ChangeState(ESUMMONATTACKOBJECTSTATE::Death);
+		return;
+	}
 }

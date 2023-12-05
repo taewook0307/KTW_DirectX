@@ -39,6 +39,7 @@ void Summon_Fire_Parry::Start()
 	{
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent) { Renderer->ChangeAnimation("Fire_Parry_Idle"); };
+		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent) { DeathConditionCheck(); };
 		FireState.CreateState(ESUMMONATTACKOBJECTSTATE::Idle, Para);
 	}
 
@@ -62,11 +63,7 @@ void Summon_Fire_Parry::Start()
 					Transform.AddLocalPosition(DirPos * _DeltaTime * Speed);
 				}
 
-				if (true == FireCollision->Collision(ECOLLISIONORDER::Player))
-				{
-					FireState.ChangeState(ESUMMONATTACKOBJECTSTATE::Death);
-					return;
-				}
+				DeathConditionCheck();
 			};
 		FireState.CreateState(ESUMMONATTACKOBJECTSTATE::Move, Para);
 	}

@@ -40,6 +40,10 @@ void Summon_Ball::Start()
 	{
 		CreateStateParameter Para;
 		Para.Start = [=](GameEngineState* _Parent) { Renderer->ChangeAnimation("Ball_Idle"); };
+		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
+			{
+				DeathConditionCheck();
+			};
 		BallState.CreateState(ESUMMONATTACKOBJECTSTATE::Idle, Para);
 	}
 
@@ -49,12 +53,7 @@ void Summon_Ball::Start()
 		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
 			{
 				BallMove(_DeltaTime);
-
-				if (true == BallCollision->Collision(ECOLLISIONORDER::Player))
-				{
-					BallState.ChangeState(ESUMMONATTACKOBJECTSTATE::Death);
-					return;
-				}
+				DeathConditionCheck();
 			};
 		BallState.CreateState(ESUMMONATTACKOBJECTSTATE::Move, Para);
 	}
@@ -162,4 +161,13 @@ void Summon_Ball::ChangeDirPos(const float4& _Pos)
 void Summon_Ball::ChangeStateReq()
 {
 	BallState.ChangeState(ESUMMONATTACKOBJECTSTATE::Move);
+}
+
+void Summon_Ball::DeathConditionCheck()
+{
+	if (true == BallCollision->Collision(ECOLLISIONORDER::Player))
+	{
+		BallState.ChangeState(ESUMMONATTACKOBJECTSTATE::Death);
+		return;
+	}
 }
