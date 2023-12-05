@@ -148,7 +148,7 @@ void BaseCharacter::IdleUpdate(float _Delta)
 		return;
 	}
 
-	if (true == GameEngineInput::IsPress('Z', this))
+	if (true == GameEngineInput::IsPress('Z', this) && false == PlayerCollision->Collision(ECOLLISIONORDER::FieldEnter))
 	{
 		ChangeState(ECHARACTERSTATE::Jump);
 		return;
