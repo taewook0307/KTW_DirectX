@@ -69,7 +69,7 @@ void Devil::CreateFire()
 	
 	float4 DevilPos = Transform.GetWorldPosition();
 
-	SummonActors[0] = GetLevel()->CreateActor<Summon_Fire>(EUPDATEORDER::Bullet);
+	SummonActors[0] = GetLevel()->CreateActor<Summon_Fire_Parry>(EUPDATEORDER::Bullet);
 	SummonActors[0]->Transform.SetLocalPosition(DevilPos + float4{ 0.0f, 480.0f });
 
 	SummonActors[1] = GetLevel()->CreateActor<Summon_Fire>(EUPDATEORDER::Bullet);
@@ -78,7 +78,7 @@ void Devil::CreateFire()
 	SummonActors[2] = GetLevel()->CreateActor<Summon_Fire>(EUPDATEORDER::Bullet);
 	SummonActors[2]->Transform.SetLocalPosition(DevilPos + float4{ -150.0f, 200.0f });
 
-	SummonActors[3] = GetLevel()->CreateActor<Summon_Fire_Parry>(EUPDATEORDER::Bullet);
+	SummonActors[3] = GetLevel()->CreateActor<Summon_Fire>(EUPDATEORDER::Bullet);
 	SummonActors[3]->Transform.SetLocalPosition(DevilPos + float4{ 0.0f, 120.0f });
 
 	SummonActors[4] = GetLevel()->CreateActor<Summon_Fire>(EUPDATEORDER::Bullet);
@@ -97,7 +97,7 @@ void Devil::CreateBall()
 
 	float4 DevilPos = Transform.GetWorldPosition();
 
-	SummonActors[0] = GetLevel()->CreateActor<Summon_Ball>(EUPDATEORDER::Bullet);
+	SummonActors[0] = GetLevel()->CreateActor<Summon_Ball_Parry>(EUPDATEORDER::Bullet);
 	SummonActors[0]->Transform.SetLocalPosition(DevilPos + float4{ 0.0f, 480.0f });
 
 	SummonActors[1] = GetLevel()->CreateActor<Summon_Ball>(EUPDATEORDER::Bullet);
@@ -106,7 +106,7 @@ void Devil::CreateBall()
 	SummonActors[2] = GetLevel()->CreateActor<Summon_Ball>(EUPDATEORDER::Bullet);
 	SummonActors[2]->Transform.SetLocalPosition(DevilPos + float4{ 200.0f, 300.0f });
 
-	SummonActors[3] = GetLevel()->CreateActor<Summon_Ball_Parry>(EUPDATEORDER::Bullet);
+	SummonActors[3] = GetLevel()->CreateActor<Summon_Ball>(EUPDATEORDER::Bullet);
 	SummonActors[3]->Transform.SetLocalPosition(DevilPos + float4{ 0.0f, 120.0f });
 }
 
@@ -127,6 +127,19 @@ void Devil::FireMoveReq(float _Delta)
 
 	if (0.0f > FireMoveTimer)
 	{
+		bool Check = SummonActors[FireIndex]->IsDeath();
+
+		if (true == Check)
+		{
+			++FireIndex;
+
+			if (FireIndex >= SummonActors.size())
+			{
+				AllChangeMove = true;
+				return;
+			}
+		}
+
 		SummonActors[FireIndex]->ChangeStateReq();
 		FireMoveTimer = 1.0f;
 		++FireIndex;

@@ -160,6 +160,11 @@ void Summon_Ball::ChangeDirPos(const float4& _Pos)
 
 void Summon_Ball::ChangeStateReq()
 {
+	if (true == BallState.IsCurState(ESUMMONATTACKOBJECTSTATE::Death))
+	{
+		return;
+	}
+
 	BallState.ChangeState(ESUMMONATTACKOBJECTSTATE::Move);
 }
 

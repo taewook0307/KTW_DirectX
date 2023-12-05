@@ -113,6 +113,11 @@ void Summon_Fire::DirPosSetting()
 
 void Summon_Fire::ChangeStateReq()
 {
+	if (true == FireState.IsCurState(ESUMMONATTACKOBJECTSTATE::Death))
+	{
+		return;
+	}
+
 	FireState.ChangeState(ESUMMONATTACKOBJECTSTATE::Move);
 }
 

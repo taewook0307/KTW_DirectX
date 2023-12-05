@@ -92,6 +92,32 @@ public:
 		return StateTime;
 	}
 
+	template<typename EnumType>
+	bool IsCurState(EnumType _Index)
+	{
+		return IsCurState(static_cast<int>(_Index));
+	}
+
+	bool IsCurState(int _Index)
+	{
+		State* CheckState = Find(_Index);
+
+		if (nullptr == CheckState)
+		{
+			MsgBoxAssert("생성되지 않은 State입니다");
+			return false;
+		}
+
+		if (CheckState == CurState)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 protected:
 
 private:
