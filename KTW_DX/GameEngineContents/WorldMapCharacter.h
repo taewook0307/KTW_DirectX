@@ -32,15 +32,15 @@ protected:
 	void DirChange();
 	void ChangeAnimation(std::string_view _State);
 
-	void IdleStart();
-	void IdleUpdate(float _Delta);
+	void IdleStart(GameEngineState* _State);
+	void IdleUpdate(float _Delta, GameEngineState* _State);
 
-	void RunStart();
-	void RunUpdate(float _Delta);
+	void RunStart(GameEngineState* _State);
+	void RunUpdate(float _Delta, GameEngineState* _State);
 
 	int ClearLoopCount = CLEARLOOPCOUNT;
-	void ClearStart();
-	void ClearUpdate(float _Delta);
+	void ClearStart(GameEngineState* _State);
+	void ClearUpdate(float _Delta, GameEngineState* _State);
 
 protected:
 	EACTORDIR Dir = EACTORDIR::None;

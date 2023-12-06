@@ -43,47 +43,22 @@ void WorldMapCharacter::Start()
 
 	{
 		CreateStateParameter Para;
-		Para.Start = [=](GameEngineState* _State)
-			{
-				IdleStart();
-			};
-
-		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
-			{
-				IdleUpdate(_DeltaTime);
-			};
+		Para.Start = std::bind(&WorldMapCharacter::IdleStart, this, std::placeholders::_1);
+		Para.Stay = std::bind(&WorldMapCharacter::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2);
 		WorldMapCharacterState.CreateState(EWORLDMAPCHARACTERSTATE::Idle, Para);
 	}
 
 	{
 		CreateStateParameter Para;
-		Para.Start = 
-			[=](GameEngineState* _State)
-			{
-				RunStart();
-			};
-
-		Para.Stay = 
-			[=](float _DeltaTime, GameEngineState* _Parent)
-			{
-				RunUpdate(_DeltaTime);
-			};
-
+		Para.Start = std::bind(&WorldMapCharacter::RunStart, this, std::placeholders::_1);
+		Para.Stay = std::bind(&WorldMapCharacter::RunUpdate, this, std::placeholders::_1, std::placeholders::_2);
 		WorldMapCharacterState.CreateState(EWORLDMAPCHARACTERSTATE::Run, Para);
 	}
 
 	{
 		CreateStateParameter Para;
-		Para.Start = 
-			[=](GameEngineState* _State)
-			{
-				ClearStart();
-			};
-
-		Para.Stay = [=](float _DeltaTime, GameEngineState* _Parent)
-			{
-				ClearUpdate(_DeltaTime);
-			};
+		Para.Start = std::bind(&WorldMapCharacter::ClearStart, this, std::placeholders::_1);
+		Para.Stay = std::bind(&WorldMapCharacter::ClearUpdate, this, std::placeholders::_1, std::placeholders::_2);
 		WorldMapCharacterState.CreateState(EWORLDMAPCHARACTERSTATE::Clear, Para);
 	}
 

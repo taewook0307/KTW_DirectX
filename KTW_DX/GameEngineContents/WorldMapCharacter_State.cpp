@@ -3,12 +3,12 @@
 
 #include "Map.h"
 
-void WorldMapCharacter::IdleStart()
+void WorldMapCharacter::IdleStart(GameEngineState* _State)
 {
 	ChangeAnimation("Idle");
 }
 
-void WorldMapCharacter::IdleUpdate(float _Delta)
+void WorldMapCharacter::IdleUpdate(float _Delta, GameEngineState* _State)
 {
 	if (
 		true == GameEngineInput::IsPress(VK_LEFT, this)
@@ -22,12 +22,12 @@ void WorldMapCharacter::IdleUpdate(float _Delta)
 	}
 }
 
-void WorldMapCharacter::RunStart()
+void WorldMapCharacter::RunStart(GameEngineState* _State)
 {
 	ChangeAnimation("Run");
 }
 
-void WorldMapCharacter::RunUpdate(float _Delta)
+void WorldMapCharacter::RunUpdate(float _Delta, GameEngineState* _State)
 {
 	int CurIndex = WorldCharacterRenderer->CurAnimation()->CurIndex;
 	if (2 == CurIndex || 10 == CurIndex)
@@ -112,12 +112,12 @@ void WorldMapCharacter::RunUpdate(float _Delta)
 	}
 }
 
-void WorldMapCharacter::ClearStart()
+void WorldMapCharacter::ClearStart(GameEngineState* _State)
 {
 	ChangeAnimation("Clear");
 }
 
-void WorldMapCharacter::ClearUpdate(float _Delta)
+void WorldMapCharacter::ClearUpdate(float _Delta, GameEngineState* _State)
 {
 	if (true == WorldCharacterRenderer->IsCurAnimationEnd())
 	{
