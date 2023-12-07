@@ -80,8 +80,6 @@ void StageLevel::LevelEnd(GameEngineLevel* _NextLevel)
 	{
 		Player->Death();
 		Player = nullptr;
-		BaseCharacter::MainCharacter->Death();
-		BaseCharacter::MainCharacter = nullptr;
 	}
 
 	if (nullptr != FadeEffect)
