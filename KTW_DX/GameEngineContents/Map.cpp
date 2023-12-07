@@ -10,6 +10,7 @@ Map::Map()
 
 Map::~Map()
 {
+	MainMap = nullptr;
 }
 
 void Map::Start()

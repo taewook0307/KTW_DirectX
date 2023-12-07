@@ -16,6 +16,7 @@ BaseCharacter::BaseCharacter()
 BaseCharacter::~BaseCharacter()
 {
 	ShootSound.Stop();
+	MainCharacter = nullptr;
 }
 
 void BaseCharacter::Start()
