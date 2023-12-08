@@ -38,7 +38,14 @@ void WorldMapCharacter::RunUpdate(float _Delta, GameEngineState* _State)
 
 	DirChange();
 
-	float Speed = 200.0f;
+	if (true == SpeedUp)
+	{
+		Speed = 400.0f;
+	}
+	else
+	{
+		Speed = 200.0f;
+	}
 
 	float4 MovePos = float4::ZERO;
 	float4 CheckPos = float4::ZERO;

@@ -75,6 +75,11 @@ void WorldMapCharacter::Start()
 
 void WorldMapCharacter::Update(float _Delta)
 {
+	if (true == GameEngineInput::IsDown('P', this))
+	{
+		SpeedUp = !SpeedUp;
+	}
+
 	float4 Pos = Transform.GetWorldPosition();
 	OutputDebugStringA(Pos.ToString().c_str());
 
