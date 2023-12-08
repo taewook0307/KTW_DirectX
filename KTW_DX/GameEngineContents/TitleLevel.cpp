@@ -41,6 +41,11 @@ void TitleLevel::Update(float _Delta)
 		FadeEffect->SetFadeType();
 	}
 
+	if (true == GameEngineInput::IsDown('P', this))
+	{
+		BGMPlayer.Stop();
+	}
+
 	if (nullptr != FadeEffect && true == FadeEffect->GetFadeAnimationEnd())
 	{
 		GameEngineCore::ChangeLevel("MenuLevel");

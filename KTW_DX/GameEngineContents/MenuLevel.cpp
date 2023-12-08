@@ -78,6 +78,11 @@ void MenuLevel::Update(float _Delta)
 	{
 		GameEngineWindow::WindowLoopOff();
 	}
+
+	if (true == GameEngineInput::IsDown('P', this))
+	{
+		BGMPlayer.Stop();
+	}
 }
 
 void MenuLevel::MenuChange()
