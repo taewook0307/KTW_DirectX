@@ -48,8 +48,8 @@ protected:
 	EWORLDMAPCHARACTERSTATE CurState = EWORLDMAPCHARACTERSTATE::None;
 	std::string State = "";
 
-	class WorldMapPortal* PrevPortal = nullptr;
-	class WorldMapPortal* CurPortal = nullptr;
+	std::shared_ptr<class WorldMapPortal> PrevPortal = nullptr;
+	std::shared_ptr<class WorldMapPortal> CurPortal = nullptr;
 	EventParameter PortalPara;
 
 private:

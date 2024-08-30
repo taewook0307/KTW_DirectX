@@ -199,8 +199,8 @@ void WorldMapCharacter::PortalEventParaSetting()
 {
 	PortalPara.Enter = [&](GameEngineCollision* _This, GameEngineCollision* _Collisions)
 		{
-			GameEngineActor* Other = _Collisions->GetActor();
-			CurPortal = dynamic_cast<WorldMapPortal*>(Other);
+			std::shared_ptr<GameEngineObject> Other = _Collisions->GetActor()->shared_from_this();
+			CurPortal = std::dynamic_pointer_cast<WorldMapPortal>(Other);
 		};
 
 	PortalPara.Stay = [&](GameEngineCollision* _This, GameEngineCollision* _Collisions)
